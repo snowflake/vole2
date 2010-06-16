@@ -843,7 +843,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA503398085CFC6000BC203D /* Build configuration list for PBXNativeTarget "Vienna" */;
 			buildPhases = (
-				61AD4D9211C94A770033534B /* ShellScript */,
+				61AD4D9211C94A770033534B /* Growl Extract */,
 				8D15AC280486D014006FF6A4 /* Headers */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
@@ -965,13 +965,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		61AD4D9211C94A770033534B /* ShellScript */ = {
+		61AD4D9211C94A770033534B /* Growl Extract */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Growl Extract";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
