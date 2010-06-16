@@ -1,0 +1,32 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                doCancel = id; 
+                doOK = id; 
+                selectFillBackToSpecific = id; 
+                selectFillExisting = id; 
+                selectSkipBack = id; 
+                stopScan = id; 
+            }; 
+            CLASS = MissingMessagesController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                fillBackToSpecific = NSButtonCell; 
+                fillExisting = NSButtonCell; 
+                messageNumber = NSTextField; 
+                missingMessagesProgressWindow = NSWindow; 
+                missingMessagesWindow = NSWindow; 
+                okButton = NSButton; 
+                progressBar = NSProgressIndicator; 
+                progressInfo = NSTextField; 
+                skipBack = NSButtonCell; 
+                skipBackCount = NSTextField; 
+                stopButton = NSButton; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,19 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {saveAsDraft = id; sendMessage = id; signatureSelected = id; }; 
+            CLASS = MessageWindow; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                messageWindow = NSWindow; 
+                postToLine = NSTextField; 
+                signaturesList = NSPopUpButton; 
+                subjectLine = NSTextField; 
+                textView = NSTextView; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

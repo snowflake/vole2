@@ -1,0 +1,25 @@
+Vienna To-Do File
+=================
+
+Update this file with a list of things that users have requested but which aren't yet implemented.
+Thanks!
+
+General
+=======
+Now that RSS support is added, it's all a bit of a hack. The connect code really
+needs some significant refactoring to separate out the CIX and RSS stuff. I didn't
+do this up-front as I wasn't sure how the separation would look and it was just
+easier to integrate the RSS code into the existing code bit by bit. Instead now
+that the full functionality is there, we can look at the common bits of CIX and RSS
+services and consider separating them out in a future version.
+
+Mainly 1.4.x Stuff
+==================
+- Improve ParseXmlDate in XMLParser.m. Make it more efficient.
+- Fix character set translation.
+
+Requested Features
+==================
+- Allow sending 8-bit chrs cleanly.
+- Support searching scoped by folders. (2.0 has an implementation of this that could be backported).
+- Killfile.

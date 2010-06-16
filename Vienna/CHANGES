@@ -1,0 +1,288 @@
+Vienna ChangeLog File
+=====================
+
+As you release new builds, update this file with details of the changes in each build.
+Thanks!
+
+Change 1.5.14
+=============
+- Fix dates in smart folders. Broken when we moved to sqlite3
+
+Changes in 1.5.13
+=================
+- Fix "NSConditionLock" error that shows in the console.
+- Clean the forum & categories list before fetching the new conference list
+  so moved/deleted entries don't hang around.
+
+Changes in 1.5.12
+=================
+- Added "Connect" to dock menu
+- Fix  bug where an acronym at the end of a message would cause the
+  message not to be displayed
+
+Changes in 1.5.11
+=================
+- Select default signature based on conference name
+- Fix odd-looking gears button on Leopard
+
+Done in 1.5.10
+==============
+- Upgrade to sqlte3.3.14, using the amalgamation. (more speed!)
+- Save GUIDs of RSS articles to help exclude duplicates
+- Add "Set cix back 1 day" menu item
+- Add menu items to update RSS feeds/Cix only
+- Add support for conference-specific mugshots
+- Update some help text
+
+Done in 1.5.9
+=============
+- Fix duplicate fetching of some RSS articles
+- Fix smart folders broken with the sqlite3 upgrade
+
+Done in 1.5.8
+=============
+- Add support for Ameol acronyms file
+- Use sqlite3 database - watch that automated upgrade!
+- Check RSS published date, in case that helps resolve some duplicates
+
+Done in 1.5.7
+=============
+- Fix "Missing Messages" to not always collect from the start
+- Display message titles using ISOLatin1 as we do the messages themselves
+
+Done in 1.5.6
+=============
+- Build universal (ppc & i386) binaries
+- Upload messages with high-bit set using Zmodem.
+- Add 'Z' key. like 'z' but goes to root of next unread message
+
+Done in 1.5.5
+=============
+- Added "copy URL" option to Edit menu
+- Added /  key to move to root of next unread
+
+Done in 1.5.4
+=============
+- Add Zmodem file upload/download
+- Try to display as many of the current subfolders as possible
+- Put import/export menu items back(sorry)
+- Fixed drag onto mugshots
+- Make sure the text window is fully redrawn after a large message
+
+Done in 1.5.3
+=============
+- Add menu option to resign from CIX conferences without removing messages
+- Add connection logging
+- Add moderator functions
+
+Done in 1.5.2
+=============
+- Check if network is available before attempting to connect
+- Increase initial size of profile text so that messages are fully visible
+- Recognise cixfile: URLs & use web browser to download from CIX online
+
+
+Done in 1.5.1
+=============
+- Added option to create spotlight metadata files.
+- Make sure SSH child process is killed after disconnect.
+- Fix smart folders
+- Enforce case-sensitivity in join dialog
+
+Done in 1.5.0
+=============
+- Bumped up version to release.
+- Fixed import/export to handle character entities in the URL attribute and to import structured OPML files.
+
+Done in 1.4.5
+=============
+- Fixed the ability to interrupt a connection (which had been broken for a while). Cmd+T now stops
+  the current connect if it is active and the menu command title changes to reflect this.
+- Fixed refresh of the message list when deleting messages and the selection does not change.
+- Fixed bug that caused lines with unconvertable characters to be blank when posted during a connect.
+- Properly convert Unicode smart quotes to their ASCII equivalents before posting.
+
+Done in 1.4.4
+=============
+- Fixed saving of mugshots splitter position
+
+Done in 1.4.3
+=============
+- Added support for enabling and disabling auto-collapse in the folders list with an option in Preferences.
+- Backported the code that preserves the split bar position in between sessions.
+
+Done in 1.4.2
+=============
+- More RSS/Atom parsing improvements backported from 2.0.
+- Recognise feed: scheme links in the New Subscription dialog and convert to http:
+- Accept https: links in feed: schemes.
+
+Done in 1.4.1
+=============
+- Several bug fixes and improvements backported from 2.0.
+- Dropped existing index and added new indexes.
+- Changed folder selection semantics. Trying to avoid changing folder when right-clicking was too buggy and hack-ridden. Now we
+  always switch to the right-click selected folder.
+
+Done in 1.4.0
+=============
+- User interface overhaul.
+  * Moved folders pane into main window and eliminated drawer.
+  * Added folder header bar above message list pane.
+- Added RSS/Atom feed parsing support. Some menu commands reorganised as a result for consistency.
+- Added Help/Acknowledgements to credit shared sources.
+- Changed 'F' to put focus in toolbar search field and removed undocumented quick search feature.
+- Added rename folder support (for RSS and Search folders).
+- Dropped "CIX Home Page" from Help menu.
+- Dropped initial CIX specific Welcome screen.
+- Import/Export commands made into sub-menus.
+- Double click on Smart folder or RSS Subscription nodes in folder tree now bring up edit window.
+- Add check for updates on startup. Defaults to OFF.
+- Handle feed:// links natively.
+- Support importing RSS Subscriptions from an OPML format file (as generated by Bloglines).
+- Support exporting RSS Subscriptions to an OPML format file (for import into Bloglines).
+- Updated Growl support to 0.62.
+- Joining a CIX conference now retrieves and stores the description for each topic.
+- Folder list font and font size are now configurable.
+
+Done in 1.3.3
+=============
+- Fix bug that left SSH task still running when quitting while online
+- Fix toolbar validation for next unread & folders toolbar icons
+
+Done in 1.3.2
+=============
+- Added support for SSH connections
+- Added https to supported hotclick URIs
+
+Done in 1.3.1
+=============
+- Fix crash that occurs when **COPIED FROM statement has a different format (**COPIED FROM: >>>cix:politics-open/5hack-watch:271 with a ':'
+  instead of a space before the number).
+- Fix the bug where right-clicking on a folder item does not reset the internal selection index back to what was actually selected before the right-click.
+
+Done in 1.3.0
+=============
+- No changes. This is the release version of 1.2.9.
+
+Done in 1.2.9
+=============
+- Full support for Growl completed.
+- Fix a minor issue which caused tasks to be executed online out of order.
+- Plugged a few more leaks.
+- Fix UI painting issue by modifying the way that auto-collapse is triggered.
+- Tweaked the on-line help files.
+- Reply By Mail now uses person's preferred e-mail address from the profile if there is one.
+
+Done in 1.2.8
+=============
+- Fix for extra apostrophes appearing in the profile info text.
+- Revamped profile Preferences window.
+- Initial support for Growl (http://growl.info) but stubbed out until I can get the weak loading framework code working.
+
+Done in 1.2.7
+=============
+- Fix exception error when deleting a task from the task table.
+- Incorporate Patrick's fix for the mugshot window size problem.
+
+Done in 1.2.6
+=============
+- Support displaying poster's profile.
+
+Done in 1.2.5
+=============
+- Fixed Show Windows Characters.
+- Fixed crash caused by early memory release when commenting with selected text.
+- Fixed crash when creating new messages.
+
+Done in 1.2.4
+=============
+- Fixed bug where the Browser tables were not being created in the database.
+- Fixed bug where 'Z' command was not marking all messages read.
+- Fixed a bunch of memory leaks.
+- Added missing function header comments.
+- Replaced "To Do" file with TODO and CHANGES file.
+
+Done in 1.2.3
+=============
+- Mugshot enhancements:
+  - Drop onto mugshot window, saves as TIF file in the mugshots folder
+  - Change mugshot search order: tif, gif, bmp, jpg
+  - Ignore DPI setting in mugshot files so they don't display REALLY small.
+  - Also read mugshots from Address Book
+- Quoting of original message in reply (all or selection)
+- Improvements & fixes in "windows conversion"
+- 'Z' also moves to next unread message
+- Add a "next Unread" button for the toolbar
+
+Done in 1.2.2
+=============
+- Add menu option and hot-key to toggle the display of Windows characters.
+
+Done in 1.2.1
+=============
+- Added support for mugshots
+
+Done in 1.2.0
+=============
+No changes. This was the release version of 1.1.5.
+
+Done in 1.1.5
+=============
+- More AppleScript support:
+  - set and retrieve "priority colour", "quote colour" and "ignored colour" (Note: set/get quote colour was actually broken in 1.1.4).
+  - set and retrieve "check frequency".
+  - get "unread count" for total number of unread messages.
+- Update Preferences when settings changed via scripting.
+- Make export code not call the db on the export thread and show a little more detail in the progress pane.
+- Bumped up default timeout to 45 seconds.
+- Fix crash when marking a range of messages priority or ignored.
+- Add support for recovering a scratchpad if the download was interrupted.
+- Correctly show unread priority message count on app icon after deleting a folder that has unread priority messages.
+
+Done in 1.1.4
+=============
+- Support styling '**COPIED FROM:' links.
+- Fix a bug introduced in 1.1.3 where messages could be double-posted while in online mode.
+- Cmd-K to bring up Tasks Window.
+- Cmd-B to bring up Browser Window.
+- Support skipping back X messages in Fill Message Gaps command.
+- Added popup menu to Folders tree for those of us who won't use Ctrl+Click.
+- Indicate conferences that are read-only/full in the message view and folder tree with a lock icon. (This is only detected when Vienna adds new messages to the folder).
+- "Search Folders" renamed to "Smart Folders".
+- Fixed crash that was re-introduced when opening the Vienna dictionary from the Apple Script Editor.
+- Fixed bug where /, * or _ followed by a whitespace inadvertently styles the following text.
+- Support a small set of commands via AppleScript:
+  - Initiate a connect.
+  - Change some preferences.
+- Fixed line wrap bug with long URLs.
+
+Done in 1.1.3
+=============
+- Disable online mode if you're on a per-minute account.
+- View full CIX conference list (use NSBrowser control) and sort by category and last updated.
+- Fix bug where doing a 'store'/'restore' when posting messages online cause old messages to be downloaded again.
+
+Done in 1.1.2
+=============
+- When inserting messages, the title is now taken from the first non blank line.
+- Renamed preferences file to uk.co.opencommunity.vienna.
+- Moved file source from .Mac to SourceForge so the location in MacPAD.url now changes to http://cix-vienna.sourceforge.net/Vienna.plist.
+- URL registration contention between Vienna and Parlance. (ICGetPref). Allow user to pick the cix: handler.
+- Support drag and drop of messages.
+- Online mode.
+- New Tasks Window.
+- Show Original now works properly in Draft and Out Basket folders.
+
+Done in 1.1.1
+=============
+- Mark Thread Read (shortcut = 'Z')
+- Centralise the shortcut key handling so they work when the focus is in the message list.
+- Support Shift+P, Shift+M, Shift+R and Shift+I to mark entire thread (from root forward).
+- Handle url: prefix and URLs wrapped in <...> spread across lines.
+- Compact Database on File menu now has ellipsis removed.
+- Dropped Priority and Ignore from available columns in message list.
+- Properly set row height in message list when changing font.
+- Can now specify number of recent messages to get when joining a new conference or topic.
+- Changed Accounts tab in Preferences to CIX.
+- Get Missing Messages.

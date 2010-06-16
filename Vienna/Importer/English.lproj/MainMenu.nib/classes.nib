@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {quit = id; start = id; }; 
+            CLASS = Generator; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {progressBar = id; startButton = id; textField = id; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

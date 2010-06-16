@@ -1,0 +1,19 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {doClose = id; doSignUp = id; doStart = id; }; 
+            CLASS = Welcome; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                closeButton = NSButton; 
+                password = NSTextField; 
+                signUpButton = NSButton; 
+                startButton = NSButton; 
+                username = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

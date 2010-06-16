@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Vienna Script Suite</string>
+	<key>Name</key>
+	<string>Vienna Suite</string>
+
+	<key>Classes</key>
+	<dict>
+		<key>ViennaApp</key>
+		<dict>
+			<key>Description</key>
+			<string>Vienna</string>
+			<key>Name</key>
+			<string>application</string>
+			<key>PluralName</key>
+			<string>applications</string>
+			<key>Attributes</key>
+			<dict>
+				<key>applicationVersion</key>
+				<dict>
+					<key>Description</key>
+					<string>The build number for the Vienna application bundle</string>
+					<key>Name</key>
+					<string>application version</string>
+				</dict>
+				<key>checkFrequency</key>
+				<dict>
+					<key>Description</key>
+					<string>The frequency (in milliseconds) with which we check for new messages</string>
+					<key>Name</key>
+					<string>check frequency</string>
+				</dict>
+				<key>priorityColour</key>
+				<dict>
+					<key>Description</key>
+					<string>The colour of priority messages in the message list</string>
+					<key>Name</key>
+					<string>priority colour</string>
+				</dict>
+				<key>ignoredColour</key>
+				<dict>
+					<key>Description</key>
+					<string>The colour of ignored messages in the message list</string>
+					<key>Name</key>
+					<string>ignored colour</string>
+				</dict>
+				<key>quoteColour</key>
+				<dict>
+					<key>Description</key>
+					<string>The colour of quoted text in the message pane</string>
+					<key>Name</key>
+					<string>quote colour</string>
+				</dict>
+				<key>currentFolder</key>
+				<dict>
+					<key>Description</key>
+					<string>Returns the current folder in the message window</string>
+					<key>Name</key>
+					<string>current folder</string>
+				</dict>
+				<key>isConnecting</key>
+				<dict>
+					<key>Description</key>
+					<string>Returns whether Vienna is in the middle of a connection</string>
+					<key>Name</key>
+					<string>connecting</string>
+				</dict>
+				<key>unreadCount</key>
+				<dict>
+					<key>Description</key>
+					<string>Returns the count of unread messages</string>
+					<key>Name</key>
+					<string>unread count</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>Folder</key>
+		<dict>
+			<key>Name</key>
+			<string>folder</string>
+			<key>PluralName</key>
+			<string>folders</string>
+			<key>Description</key>
+			<string>A Vienna message folder</string>
+			<key>Attributes</key>
+			<dict>
+				<key>name</key>
+				<dict>
+					<key>Description</key>
+					<string>The folder name</string>
+					<key>Name</key>
+					<string>name</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+
+	<key>Commands</key>
+	<dict>
+		<key>GetURL</key>
+		<dict>
+			<key>Description</key>
+			<string>Open a URL</string>
+			<key>Name</key>
+			<string>GetURL</string>
+		</dict>
+		<key>Connect</key>
+		<dict>
+			<key>Description</key>
+			<string>Connect to each service and retrieve new messages</string>
+			<key>Name</key>
+			<string>connect</string>
+		</dict>
+		<key>MarkAllRead</key>
+		<dict>
+			<key>Description</key>
+			<string>Mark read all unread messages in the specified folder</string>
+			<key>Name</key>
+			<string>mark all read</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
