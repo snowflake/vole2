@@ -19,7 +19,6 @@ printf '"%s\\n"\n'  `cat ../manifest.uuid` >>${OF}
 printf '"\\n"\n' >>${OF}
 printf '"Built on: %s\\n\\n"\n' "`date`" >> ${OF}
 printf '"   === Version control status ===\\n"\n' >>${OF}
-lines=0
 fossil status  | \
 	while read i
 		do	
