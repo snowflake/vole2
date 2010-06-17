@@ -1,6 +1,7 @@
 // !$*UTF8*$!
 {
 	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
+		activeArchitecturePreference = i386;
 		activeBuildConfigurationName = Deployment;
 		activeExecutable = 61AD4D6D11C947620033534B /* Vienna */;
 		activeTarget = 8D15AC270486D014006FF6A4 /* Vienna */;
