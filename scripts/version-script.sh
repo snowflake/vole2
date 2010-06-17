@@ -22,6 +22,8 @@ if test -f ../manifest.uuid
 printf '"%s\\n"\n'  "$uuid" >>${OF}
  
 printf '"\\n"\n' >>${OF}
+printf '"Build machine hostname: %s\\n"\n' `hostname -f` >> ${OF}
+printf '"Built by username: %s\\n\\n"\n' `whoami` >> ${OF}
 builddate=`TZ=UTC date`
 printf '"Built on: %s\\n\\n"\n' "$builddate"  >> ${OF}
 printf '"   === Version control status ===\\n"\n' >>${OF}
@@ -34,6 +36,8 @@ unchecked_files=`fossil changes | wc -l`
 if [ $unchecked_files -ne 0 ]	
 then
 printf '"Warning: %d unchecked files (this is bad)\\n"\n' $unchecked_files >>${OF}
+printf '"         It means that the UUID does not reflect the state of the files used\\n"\n' >> ${OF}
+printf '"         for this build.\\n"\n' >> ${OF}
 fi		
 printf '"\\n"\n' >>${OF}
 printf '"Archs: %s\\n"\n' "${ARCHS}" >>${OF} 

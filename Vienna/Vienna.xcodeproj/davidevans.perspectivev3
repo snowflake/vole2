@@ -520,12 +520,12 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {810, 168}}</string>
+						<string>{{0, 0}, {988, 170}}</string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
 					<key>Proportion</key>
-					<string>168pt</string>
+					<string>170pt</string>
 				</dict>
 				<dict>
 					<key>ContentConfiguration</key>
@@ -544,8 +544,8 @@
 								<string>yes</string>
 								<key>sizes</key>
 								<array>
-									<string>{{0, 0}, {395, 133}}</string>
-									<string>{{395, 0}, {415, 133}}</string>
+									<string>{{0, 0}, {482, 135}}</string>
+									<string>{{482, 0}, {506, 135}}</string>
 								</array>
 							</dict>
 							<key>VerticalSplitView</key>
@@ -560,8 +560,8 @@
 								<string>yes</string>
 								<key>sizes</key>
 								<array>
-									<string>{{0, 0}, {810, 133}}</string>
-									<string>{{0, 133}, {810, 140}}</string>
+									<string>{{0, 0}, {988, 135}}</string>
+									<string>{{0, 135}, {988, 142}}</string>
 								</array>
 							</dict>
 						</dict>
@@ -581,7 +581,7 @@
 						<key>DebugSTDIOWindowFrame</key>
 						<string>{{200, 200}, {500, 300}}</string>
 						<key>Frame</key>
-						<string>{{0, 173}, {810, 273}}</string>
+						<string>{{0, 175}, {988, 277}}</string>
 						<key>PBXDebugSessionStackFrameViewKey</key>
 						<dict>
 							<key>DebugVariablesTableConfiguration</key>
@@ -591,16 +591,16 @@
 								<string>Value</string>
 								<real>85</real>
 								<string>Summary</string>
-								<real>185</real>
+								<real>276</real>
 							</array>
 							<key>Frame</key>
-							<string>{{395, 0}, {415, 133}}</string>
+							<string>{{482, 0}, {506, 135}}</string>
 						</dict>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
 					<key>Proportion</key>
-					<string>273pt</string>
+					<string>277pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -644,7 +644,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>298430429.13889903</real>
+	<real>298464996.05891597</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -661,6 +661,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>61AD4E0911CA30DC0033534B</string>
+		<string>61AD4E0A11CA30DC0033534B</string>
 		<string>/Users/davidevans/Vienna-source/xxx/Vienna/Vienna.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
