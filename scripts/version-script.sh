@@ -24,7 +24,7 @@ fossil status  | \
 		do	
 			printf '"%s\\n"\n' "$i"
 		done  >> ${OF}
-if expr `fossil status | wc -l` '!=' 6
+if expr `fossil status | wc -l` '!=' 6 > /dev/null
 	then 
 		echo ERROR files not checked into Fossil
 		exit 1
