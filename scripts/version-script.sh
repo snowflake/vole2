@@ -23,11 +23,9 @@ lines=0
 fossil status  | \
 	while read i
 		do	
-			lines=`expr $lines + 1`
 			printf '"%s\\n"\n' "$i"
 		done  >> ${OF}
-
-if expr $lines '!=' 6
+if expr `fossil status | wc -l` '!=' 6
 	then 
 		echo ERROR files not checked into Fossil
 		exit 1
