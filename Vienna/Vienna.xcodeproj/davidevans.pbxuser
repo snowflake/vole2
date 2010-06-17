@@ -1,7 +1,7 @@
 // !$*UTF8*$!
 {
 	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Development;
+		activeBuildConfigurationName = Deployment;
 		activeExecutable = 61AD4D6D11C947620033534B /* Vienna */;
 		activeTarget = 8D15AC270486D014006FF6A4 /* Vienna */;
 		codeSenseManager = 61AD4D7411C947800033534B /* Code sense */;

@@ -19,11 +19,21 @@ printf '"%s\\n"\n'  `cat ../manifest.uuid` >>${OF}
 printf '"\\n"\n' >>${OF}
 printf '"Built on: %s\\n\\n"\n' "`date`" >> ${OF}
 printf '"   === Version control status ===\\n"\n' >>${OF}
+lines=0
 fossil status  | \
 	while read i
-		do
+		do	
+			lines=`expr $lines + 1`
 			printf '"%s\\n"\n' "$i"
 		done  >> ${OF}
+
+if expr $lines '!=' 6
+	then 
+		echo ERROR files not checked into Fossil
+		exit 1
+	fi
+	
+		
 printf '"\\n"\n' >>${OF}
 printf '"Archs: %s\\n"\n' "${ARCHS}" >>${OF} 
 printf '"Build Style: %s\\n"\n' "${BUILD_STYLE}" >>${OF}
