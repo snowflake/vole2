@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */; };
 		8D15AC290486D014006FF6A4 /* Vienna_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -242,6 +243,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vienna_Prefix.pch; sourceTree = "<group>"; };
+		61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XXXX-Tempfile.h"; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Vienna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vienna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA056D6C0626105E0003B9F5 /* markAsFlagged.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = markAsFlagged.tiff; sourceTree = "<group>"; };
@@ -736,6 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */,
+				61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -833,6 +836,7 @@
 				AA55EB290870629A00D7DBFA /* SplitViewExtensions.h in Headers */,
 				CD4DF90408DD93C200D245E1 /* Logfile.h in Headers */,
 				CDD2C16C0BC4F0AE00E1CF06 /* sqlite3.h in Headers */,
+				61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,6 +1285,78 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		61AD506311CBA0ED0033534B /* Development copy */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = macosx10.4;
+			};
+			name = "Development copy";
+		};
+		61AD506411CBA0ED0033534B /* Development copy */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = 4.0;
+				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
+				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
+				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MDDirectory = MDImporter;
+				MDTarget = Vienna;
+				MDTargetApp = Vienna.app;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Vienna;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = "Development copy";
+		};
 		AA503399085CFC6000BC203D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1471,21 +1547,23 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA503399085CFC6000BC203D /* Development */,
+				61AD506411CBA0ED0033534B /* Development copy */,
 				AA50339A085CFC6000BC203D /* Deployment */,
 				AA50339B085CFC6000BC203D /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vienna" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA50339D085CFC6000BC203D /* Development */,
+				61AD506311CBA0ED0033534B /* Development copy */,
 				AA50339E085CFC6000BC203D /* Deployment */,
 				AA50339F085CFC6000BC203D /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 /* End XCConfigurationList section */
 	};

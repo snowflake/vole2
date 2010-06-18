@@ -4,7 +4,7 @@
 //
 //  Created by Steve on Sun Mar 14 2004.
 //  Copyright (c) 2004 Steve Palmer. All rights reserved.
-//  Modified Dave Evans Thu June 2010
+//  Modified by Dave Evans Thu June 18 2010
 
 #import <Cocoa/Cocoa.h>
 #import <stdio.h>
