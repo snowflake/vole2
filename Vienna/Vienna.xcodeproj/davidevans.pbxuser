@@ -103,10 +103,6 @@
 			PBXPerProjectTemplateStateSaveDate = 298561016;
 			PBXWorkspaceStateSaveDate = 298561016;
 		};
-		perUserProjectItems = {
-			61AD507411CBA74D0033534B = 61AD507411CBA74D0033534B /* PBXBookmark */;
-			61AD507F11CBAB980033534B = 61AD507F11CBAB980033534B /* PBXTextBookmark */;
-		};
 		sourceControlManager = 61AD4D7311C947800033534B /* Source Control */;
 		userBuildSettings = {
 		};
@@ -128,7 +124,7 @@
 			"-d",
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 1;
+		breakpointsEnabled = 0;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -172,20 +168,6 @@
 			sepNavVisRange = "{0, 1367}";
 			sepNavWindowFrame = "{{38, 17}, {874, 985}}";
 		};
-	};
-	61AD507411CBA74D0033534B /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */;
-	};
-	61AD507F11CBAB980033534B /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */;
-		name = "XXXX-Tempfile.h: 37";
-		rLen = 0;
-		rLoc = 1367;
-		rType = 0;
-		vrLen = 1367;
-		vrLoc = 0;
 	};
 	8D15AC270486D014006FF6A4 /* Vienna */ = {
 		activeExec = 0;
