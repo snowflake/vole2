@@ -122,7 +122,7 @@
 	61AD4D6D11C947620033534B /* Vienna */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
-			YES,
+			NO,
 		);
 		argumentStrings = (
 			"-d",
