@@ -190,7 +190,8 @@
 		
 		while (!endOfFile && !stopImportFlag)
 		{
-			BOOL read_flag = YES;
+//			BOOL read_flag = YES;
+			BOOL read_flag = NO;  // dje changed from YES
 			BOOL marked_flag = NO;
 			BOOL ignore_flag = NO;
 			BOOL author_flag = NO;
