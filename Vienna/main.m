@@ -13,6 +13,10 @@
 
 int main(int argc, const char *argv[])
 {
+	int i;
+	for(i=0; i<argc; i++)
+	    printf("== arg %d == %s\n", i, argv[i]);
+
 	if(argc==2){
 		if(!strcmp("-v",argv[1])){
 			printf("UUID: %s\n",source_code_fossil_uuid);
@@ -25,11 +29,11 @@ int main(int argc, const char *argv[])
 		} else if (!strcmp("-d",argv[1])) {
 			printf("%s", buildinfo);
 			exit(0);
-		} else { // unrecognised option
+		} else if (!strcmp("-h", argv[1])){ // help requested
 			printf("Usage:\n");
 			printf("-v   Display version (brief)\n");
 			printf("-d   Display version and build information (full)\n");
-			exit(1);
+			exit(1);   
 		}
 	}
     return NSApplicationMain(argc, argv);
