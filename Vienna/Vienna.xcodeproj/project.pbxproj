@@ -876,7 +876,14 @@
 			isa = PBXProject;
 			buildConfigurationList = AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vienna" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Vienna */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1353,7 +1360,7 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = macosx10.4;
 				SYMROOT = "../../Vienna-build";
 			};
