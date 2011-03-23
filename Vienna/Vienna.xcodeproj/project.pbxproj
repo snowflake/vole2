@@ -1332,7 +1332,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				MDDirectory = MDImporter;
 				MDTarget = Vienna;
 				MDTargetApp = Vienna.app;
@@ -1340,7 +1340,7 @@
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = Vienna;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.4;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
