@@ -1360,8 +1360,8 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = macosx10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx10.5;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = Development;
