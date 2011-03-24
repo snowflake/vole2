@@ -36,6 +36,7 @@ printf '"   === Version control status ===\\n"\n' >>${OF}
 fossil status  | \
 	while read i
 		do	
+			i=`echo $i | tr -d '"' `
 			printf '"%s\\n"\n' "$i"
 		done  >> ${OF}
 if [ $unchecked_files -ne 0 ]	
