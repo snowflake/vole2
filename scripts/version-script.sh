@@ -67,7 +67,7 @@ printf 'char source_code_fossil_uuid[]="%s";\n' $uuid >>${OF}
 if [ $unchecked_files -ne 0 ]
 	then 
 		echo ERROR files not checked into Fossil
-		exit 1
+		exit 0
 	else
 		exit 0
 	fi
