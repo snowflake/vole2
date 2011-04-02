@@ -6,14 +6,12 @@
 T=temporary-file
 G="grep -i Vienna"
 
-if [ X$1 = X ]
-then
-	echo Usage: sh census.sh '<Your cix nickname>'
-	echo Example: sh census.sh devans
-	exit 1
-fi
+read -p "Please enter your Cix nickname: " nick
+read -p "Please enter Vienna version   : " vers
 
-echo Cix user nickname: $1 > $T
+echo Cix user nickname: $nick > $T
+echo Local user name: $USER >> $T
+echo Vienna version: $vers >> $T
 echo Script run on: `date` >> $T
 
 uname -a >> $T
