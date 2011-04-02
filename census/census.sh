@@ -13,7 +13,10 @@ echo Cix user nickname: $nick > $T
 echo Local user name: $USER >> $T
 echo Vienna version: $vers >> $T
 echo Script run on: `date` >> $T
+H=${nick}.${USER}.`hostname`.`date +%Y-%m-%dT%H:%M:%S`
 
+
+echo $H
 uname -a >> $T
 echo >> $T
 [ -x /usr/bin/xcodebuild ] && xcodebuild -version >> $T
@@ -24,3 +27,5 @@ gzip -d /var/log/system.log.[0-9]*.gz | sort | $G  >> $T
 bzcat /var/log/system.log.[0-9]*.bz2 |sort |  $G >> $T
 cat /var/log/system.log | $G >> $T
 
+cat $T | uuencode ${H}.census | pbcopy -Prefer txt
+ 
