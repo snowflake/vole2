@@ -21,11 +21,14 @@ uname -a >> $T
 echo >> $T
 [ -x /usr/bin/xcodebuild ] && xcodebuild -version >> $T
 
+
 echo >> $T
+echo 'Begin system log for Vienna' >> $T
 gzip -d /var/log/system.log.[0-9]*.gz | sort | $G  >> $T
 
 bzcat /var/log/system.log.[0-9]*.bz2 |sort |  $G >> $T
 cat /var/log/system.log | $G >> $T
+echo 'End system log for Vienna' >> $T
 
 cat $T | uuencode ${H}.census | pbcopy -Prefer txt
  
