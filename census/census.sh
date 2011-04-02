@@ -13,7 +13,7 @@ echo Cix user nickname: $nick > $T
 echo Local user name: $USER >> $T
 echo Vienna version: $vers >> $T
 echo Script run on: `date` >> $T
-echo Script version: 1.1
+echo Script version: 1.1 >> $T
 H=${nick}.${USER}.`hostname`.`date +%Y-%m-%dT%H:%M:%S`
 
 
