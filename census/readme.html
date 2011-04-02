@@ -45,8 +45,10 @@ with the Vienna version information.
 
 When you have done that, your default email program
 will open with the To: and Subject: fields already
-
 filled in. 
+
+You will be asked if you wish to send the census data.
+Answer Y (default) or N
 
 We are almost done. A tiny program has copied the
 census data to your clipboard. 
@@ -88,7 +90,8 @@ Review the script census.sh.
 Q: What programs are used to create the census.
 
 A: census.sh - a small Bash shell script available for review by anyone.
-Standard system utilities such as gzip bzcat pbcopy grep uuencode.
+Standard system utilities such as gzip bzcat pbcopy grep uuencode
+hostname uname and (if it exists) xcodebuild.
 Your default email application.
 
 Q: Why is the census data sent in BASE64 or UUencoded form?
@@ -99,6 +102,14 @@ Q: Why are the system log messages relating to Vienna being gathered?
 
 A: I want to see whether you get the same messages that I get, or
 any that I have not seen before.
+---
+
+Privacy Policy
+--------------
+Your personal data (email addres, login name, cix nickname, hostname)
+will not be shared with anyone.
+
+You do not have to give your cix nickname to participate.
 
 </pre>
 </body>
