@@ -29,3 +29,4 @@ cat /var/log/system.log | $G >> $T
 
 cat $T | uuencode ${H}.census | pbcopy -Prefer txt
  
+open "mailto:dave.evans55@googlemail.com?subject=Vienna%20census%20${H}"

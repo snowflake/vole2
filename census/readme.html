@@ -46,12 +46,17 @@ will open with the To: and Subject: fields already
 filled in. 
 
 We are almost done. A tiny program has copied the
-census data to your clipboard. Paste the clipboard
-to the message window. At the top of the window,
+census data to your clipboard. 
+
+Now for the important step!
+
+=== Paste the clipboard to the message window. ===
+
+At the top of the window,
 add any comments you can think of, taking care
 not to disturb the census data.
 
-When you finished typing your comment, send the message.
+When you have finished typing your comment, send the message.
 
 That's it. Job done. Simples. Thanks for your participation.
 It will help us in the future development of Vienna.
@@ -74,12 +79,20 @@ A:
 Read the file temporary-file in the census directory.
 Review the script census.sh.
 
+Q: What programs are used to create the census.
+
+A: census.sh - a small Bash shell script available for review by anyone.
+Standard system utilities such as gzip bzcat pbcopy grep uuencode.
+Your default email application.
+
 Q: Why is the census data sent in BASE64 or UUencoded form?
 
-A: To prevent long lines getting mangled.
+A: To prevent long lines from getting mangled.
 
+Q: Why are the system log messages relating to Vienna being gathered?
 
-
+A: I want to see whether you get the same messages that I get, or
+any that I have not seen before.
 
 </pre>
 </body>
