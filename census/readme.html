@@ -37,11 +37,15 @@ In Terminal window type:
       cd census
       sh census.sh
 
+You will be asked if you wish to view the documentation in
+your browser. Answer Y or N.
+
 A prompt will appear. Please answer the question
 with your Cix nickname.
 
 Another prompt will appear. Please answer the question
-with the Vienna version information.
+with the Vienna version information or "none" if you do
+not have Vienna..
 
 You will be asked if you wish to send the census data.
 Answer Y (default) or N
@@ -57,15 +61,20 @@ Now for the important step!
 
 === Paste the clipboard into the message window. ===
 
-At the top of the window,
-add any comments you can think of, taking care
-not to disturb the census data.
+Take care not to disturb the census data.
 
-When you have finished typing your comment, send the message.
+Now send the message.
 
 That's it. Job done. Simples. Thanks for your participation.
 It will help us in the future development of Vienna.
 ----
+
+Problems
+--------
+When pasting the clipboard into Thunderbird, it sometimes comes up with
+a message "Found an attachment keyword XX". It is trying to be too
+clever. Close the yellow window by clicking on the litte X icon
+on the right and send the message as usual.
 
 For the security conscious.
 ---------------------------
@@ -94,7 +103,7 @@ Q: What programs are used to create the census.
 
 A: census.sh - a small Bash shell script available for review by anyone.
 Standard system utilities such as gzip bzcat pbcopy grep uuencode
-hostname uname and (if it exists) xcodebuild.
+hostname uname uuidgen and (if it exists) xcodebuild.
 Your default email application.
 
 Q: Why is the census data sent in BASE64 or UUencoded form?
@@ -113,12 +122,13 @@ Privacy Policy
 Your personal data (email address, login name, cix nickname, hostname)
 will not be shared with anyone.
 
-You do not have to give your cix nickname to participate.
+You do not have to give your cix nickname to participate but I would
+much prefer that you do give it.
 
 The script will install a small cookie in ~/Library/Vienna/Vienna.cookie
 It contains a UUID. Please see http://en.wikipedia.org/wiki/UUID
 Please do not delete this file. It is used to identify your Mac
-if you submit more than one report.
+anonymously in the event you send more than one report.
 
 </pre>
 </body>

@@ -53,6 +53,15 @@ if [ -f ${Cookiefile} ]
 echo
 echo Welcome to the Vienna census.
 echo
+
+read -p "Do you wish to view the documentation in your browser y/N : " docs
+if [ X$docs = Xy ] || [ X$docs = XY ]
+then
+open readme.html
+fi
+
+
+
 read -p "Please enter your Cix nickname or anon: " nick
 read -p "Please enter Vienna version           : " vers
 if [ X$nick = X ]
