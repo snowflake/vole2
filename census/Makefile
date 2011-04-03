@@ -3,5 +3,6 @@
 all:
 
 zip:
-	zip census.zip census.sh readme.html
+	cp ../manifest.uuid .
+	zip census.zip census.sh readme.html manifest.uuid
 
