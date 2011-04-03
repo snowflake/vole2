@@ -7,4 +7,4 @@ zip:	checkedin
 	zip census.zip census.sh readme.html manifest.uuid
 
 checkedin:
-	[  `fossil changes | wc -l` -ne 0 ]
+	[  `fossil changes | wc -l` -eq 0 ]
