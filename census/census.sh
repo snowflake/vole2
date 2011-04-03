@@ -31,7 +31,6 @@ fi
 reportid=`uuidgen`
 datenow=`TZ=UTC date +%Y-%m-%dT%H:%M:%S-%Z`
 G="grep -i Vienna"
-# H=${nick}.${USER}.`hostname`.`date +%Y-%m-%dT%H:%M:%S`
 H=${reportid}.${datenow}
 
 # where the system logs live
