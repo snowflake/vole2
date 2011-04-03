@@ -18,8 +18,15 @@ which -s uuidgen
 if [ $? -ne 0 ]
 then
 echo "An error has occurred. You do not seem to have uuidgen"
+echo "It has been available since OS X 10.2 so something is amiss."
 echo "Please report this error to the vienna/chatter topic"
+
 exit 1
+fi
+# get the Fossil manifest
+if [ -f manifest.uuid ]
+then
+manifest=`cat manifest.uuid`
 fi
 reportid=`uuidgen`
 datenow=`TZ=UTC date +%Y-%m-%dT%H:%M:%S-%Z`
@@ -91,7 +98,7 @@ echo Script run on: ${datenow} >> $T
 echo Script version: $scriptversion  >> $T
 echo Unique report ID: ${reportid} >> $T
 echo Cookie: ${Cookie} >> $T
-
+echo Fossil manifest SHA1: ${manifest} >> $T
 echo $H
 
 uname -a >> $T
@@ -128,7 +135,7 @@ echo
 echo Your email app will now be opened with the To: and Subject:
 echo fields already filled in. Please remember to paste your clipboard
 echo into the message body and then send the message. Please do not
-echo alter the mesage header or body in any way.
+echo alter the message header or body in any way.
 echo
 echo There will now be a brief pause while you read this message  ...
 sleep 10
