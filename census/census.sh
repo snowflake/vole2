@@ -38,7 +38,7 @@ L=/var/log/system.log
 # where the crash reporter files live
 CR=~/Library/Logs/CrashReporter
 Viennadata=~/Library/Vienna
-Cookiefile=${Viennadata}/Vienna.cookie
+Cookiefile=${Viennadata}/Vienna-census.cookie
 if [ ! -d ${Viennadata} ]
 then
 mkdir -p ${Viennadata}
