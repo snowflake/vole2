@@ -6,7 +6,7 @@
 # Created 2011-03-02
 
 # use Apple version of the utilities. Avoid Macports,Fink or Darwinports
-PATH=/usr/bin:/bin
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 # Note: I don't know how long bzip2 has been available on OS X
 # therefore gzip is used to compress the log.
@@ -14,11 +14,42 @@ scriptversion=1.5
 # send results to TO
 TO='dave.evans55@googlemail.com'
 T=temporary-file
+which -s uuidgen
+if [ $? -ne 0 ]
+then
+echo "An error has occurred. You do not seem to have uuidgen"
+echo "Please report this error to the vienna/chatter topic"
+exit 1
+fi
+reportid=`uuidgen`
+datenow=`TZ=UTC date +%Y-%m-%dT%H:%M:%S-%Z`
 G="grep -i Vienna"
+# H=${nick}.${USER}.`hostname`.`date +%Y-%m-%dT%H:%M:%S`
+H=${reportid}.${datenow}
+
 # where the system logs live
 L=/var/log/system.log
 # where the crash reporter files live
 CR=~/Library/Logs/CrashReporter
+Viennadata=~/Library/Vienna
+Cookiefile=${Viennadata}/Vienna.cookie
+if [ ! -d ${Viennadata} ]
+then
+mkdir -p ${Viennadata}
+fi
+if [ -f ${Cookiefile} ]
+    then 
+	Cookie=`tail -1 ${Cookiefile}`
+    else
+     # give the user a cookie - Yum Yum
+	echo Hello new user
+	echo 'Please do not delete or modify this file.' > ${Cookiefile}
+	echo 'It is used by the Vienna census and crash reporter' >>${Cookiefile}
+	echo 'to anonymously identify your Mac.' >> ${Cookiefile}
+	echo 'Please read the man page for uuidgen.' >> ${Cookiefile}
+	Cookie=`uuidgen`
+	echo ${Cookie} >> ${Cookiefile}
+    fi
 echo
 echo Welcome to the Vienna census.
 echo
@@ -40,16 +71,17 @@ then
 echo Thanks for your participation. Your data have not been sent.
 exit 0
 fi
-logger "Vienna census script version ${scriptversion} started"
+
+logger "Vienna census script version ${scriptversion} started for report ${H}"
 
 
 echo Cix user nickname: $nick > $T
 echo Local user name: $USER >> $T
 echo Vienna version: $vers >> $T
-echo Script run on: `date` >> $T
+echo Script run on: ${datenow} >> $T
 echo Script version: $scriptversion  >> $T
-H=${nick}.${USER}.`hostname`.`date +%Y-%m-%dT%H:%M:%S`
-
+echo Unique report ID: ${reportid} >> $T
+echo Cookie: ${Cookie} >> $T
 
 echo $H
 
@@ -81,12 +113,13 @@ ls -lT ${CR}/Vienna_* >> $T
 echo '=== End crash reporter filelist for Vienna ===' >> $T
 
 # use gzip because bzip2 may not be available
-cat $T | gzip  -c9| uuencode ${H}.census.gz | pbcopy -Prefer txt
+cat $T | gzip  -c9| uuencode ${H}.vnr.gz | pbcopy -Prefer txt
  
 echo
 echo Your email app will now be opened with the To: and Subject:
 echo fields already filled in. Please remember to paste your clipboard
-echo into the message body and then send the message.
+echo into the message body and then send the message. Please do not
+echo alter the mesage header or body in any way.
 echo
 echo There will now be a brief pause while you read this message  ...
 sleep 10
