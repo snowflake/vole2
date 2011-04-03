@@ -5,6 +5,9 @@
 # Author: devans
 # Created 2011-03-02
 
+# use Apple version of the utilities. Avoid Macports,Fink or Darwinports
+PATH=/usr/bin:/bin
+
 # Note: I don't know how long bzip2 has been available on OS X
 # therefore gzip is used to compress the log.
 scriptversion=1.5
@@ -60,12 +63,12 @@ echo '=== Begin system log for Vienna ===' >> $T
 FC=`ls  ${L}.[0-9]*.gz 2>/dev/null | wc -l`
 echo gzip files ${FC}
 [ $FC -gt 0 ] && \
-gzcat ${L}.[0-9]*.gz | sort | $G  >> $T
+gzcat ${L}.[0-9]*.gz |  $G  >> $T
 
 FC=`ls ${L}.[0-9]*.bz2 2>/dev/null | wc -l`
 echo bzip files ${FC}
 [ $FC -gt 0 ] && which bzcat && \
-bzcat ${L}.[0-9]*.bz2 |sort |  $G >> $T
+bzcat ${L}.[0-9]*.bz2  |  $G >> $T
 
 [ -f ${L} ] && cat ${L} | $G >> $T
 echo '=== End system log for Vienna ===' >> $T
