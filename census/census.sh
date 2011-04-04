@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# This script requieres that the user be in the admin group
+
 # A script to generate Vienna and system log information, and send it
 # to the conference moderator
 # Author: devans
@@ -37,24 +39,30 @@ H=${reportid}.${datenow}
 L=/var/log/system.log
 # where the crash reporter files live
 CR=~/Library/Logs/CrashReporter
-Viennadata=~/Library/Vienna
-Cookiefile=${Viennadata}/Vienna-census.cookie
-if [ ! -d ${Viennadata} ]
+
+# Check for cookies and set if required
+
+Viennadata='/Library/Application Support/Vienna'
+Cookiefile="${Viennadata}/Vienna.cookie"
+
+
+if [ ! -d "${Viennadata}" ]
 then
-mkdir -p ${Viennadata}
+mkdir -p "${Viennadata}"
 fi
-if [ -f ${Cookiefile} ]
+if [ -f "${Cookiefile}" ]
     then 
-	Cookie=`tail -1 ${Cookiefile}`
+	Cookie=`tail -1 "${Cookiefile}"`
     else
      # give the user a cookie - Yum Yum
 	echo Hello new user
-	echo 'Please do not delete or modify this file.' > ${Cookiefile}
-	echo 'It is used by the Vienna census and crash reporter' >>${Cookiefile}
-	echo 'to anonymously identify your Mac.' >> ${Cookiefile}
-	echo 'Please read the man page for uuidgen.' >> ${Cookiefile}
+	echo 'Please do not delete or modify this file.' > "${Cookiefile}"
+	echo 'It is used by the Vienna census and crash reporter' >> \
+		"${Cookiefile}"
+	echo 'to anonymously identify your Mac.' >> "${Cookiefile}"
+	echo 'Please read the man page for uuidgen.' >> "${Cookiefile}"
 	Cookie=`uuidgen`
-	echo ${Cookie} >> ${Cookiefile}
+	echo ${Cookie} >> "${Cookiefile}"
     fi
 echo
 echo Welcome to the Vienna census.
