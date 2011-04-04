@@ -10,7 +10,7 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 # Note: I don't know how long bzip2 has been available on OS X
 # therefore gzip is used to compress the log.
-scriptversion=1.5
+scriptversion=1.6
 # send results to TO
 TO='dave.evans55@googlemail.com'
 T=temporary-file
@@ -61,7 +61,7 @@ echo Welcome to the Vienna census.
 echo
 
 read -p "Do you wish to view the documentation in your browser y/N : " docs
-if [ X$docs = Xy ] || [ X$docs = XY ]
+if [ "X${docs}" = Xy ] || [ "X${docs}" = XY ]
 then
 open readme.html
 fi
@@ -70,18 +70,18 @@ fi
 
 read -p "Please enter your Cix nickname or anon: " nick
 read -p "Please enter Vienna version           : " vers
-if [ X$nick = X ]
+if [ "X${nick}" = X ]
 then
 nick=notknown
 fi
-if [ X$vers = X ]
+if [ "X${vers}" = X ]
 then
 vers=notknown
 fi
 
 echo 
 read -p "Is it OK to send Y/n ? : " ok
-if [ X$ok = Xn ] || [ X$ok = XN ] 
+if [ "X${ok}" = Xn ] || [ "X${ok}" = XN ] 
 then
 echo Thanks for your participation. Your data have not been sent.
 exit 0
@@ -102,7 +102,20 @@ echo $H
 
 uname -a >> $T
 echo >> $T
+echo === Begin xcodebuild === >> $T
 [ -x /usr/bin/xcodebuild ] && xcodebuild -version >> $T
+[ -x /usr/bin/xcode-select ]  && xcode-select -print-path >> $T
+echo === End xcodebuild === >> $T
+
+echo === Begin developer tools === >> $T
+if [ -x /usr/sbin/system_profiler ]
+then
+system_profiler SPDeveloperToolsDataType >> $T
+else
+echo No system_profiler, shame >> $T
+fi
+echo === End developer tools === >> $T
+
 
 
 echo >> $T
