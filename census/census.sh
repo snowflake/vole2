@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script requieres that the user be in the admin group
+# This script requires that the user be in the admin group
 
 # A script to generate Vienna and system log information, and send it
 # to the conference moderator
@@ -37,8 +37,6 @@ H=${reportid}.${datenow}
 
 # where the system logs live
 L=/var/log/system.log
-# where the crash reporter files live
-CR=~/Library/Logs/CrashReporter
 
 # Check for cookies and set if required
 
@@ -141,12 +139,8 @@ bzcat ${L}.[0-9]*.bz2  |  $G >> $T
 [ -f ${L} ] && cat ${L} | $G >> $T
 echo '=== End system log for Vienna ===' >> $T
 
-echo '=== Begin crash reporter filelist for Vienna ===' >> $T
-FC=`ls ${CR}/Vienna_* 2>/dev/null | wc -l`
-echo crash report files ${FC}
-[ ${FC} -gt 0 ] && \
-ls -lT ${CR}/Vienna_* >> $T
-echo '=== End crash reporter filelist for Vienna ===' >> $T
+# because the administrator does not have permission to access other
+# users files, the crash reporter filelist has been deleted
 
 # use gzip because bzip2 may not be available
 cat $T | gzip  -c9| uuencode ${H}.vnr.gz | pbcopy -Prefer txt
