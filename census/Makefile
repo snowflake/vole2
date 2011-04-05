@@ -4,7 +4,7 @@ all:
 
 zip:	checkedin
 	cp ../manifest.uuid .
-	zip census.zip census.sh readme.html manifest.uuid
+	zip census.zip vlcr.sh readme.html manifest.uuid
 
 checkedin:
 	[  `fossil changes | wc -l` -eq 0 ]
