@@ -54,6 +54,18 @@ nickset=1
 }
 ############### end of nickanme setting #########
 
+########### begin w3c_boilerplate ############
+function w3c_boilerplate() {
+# This goes at the head of each html page. It keeps the validator happy.
+cat << "W3C_END"
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" >
+W3C_END
+}
+############## end of w3c_boilerplate ################################
+
 ############### begin standard_header function ########
 function standard_header() {
 # this header goes at the beginning of reports and emails
@@ -238,15 +250,40 @@ function mailto_url_encode () {
 
 ############ end mailto helper function ##############
 
+############ begin quick start guide #############
+function quick_start(){
+cat > "${QSGDOC}"<< QUICK_START
+$(w3c_boilerplate)
+<!-- Full documentation for Vienna crash reporter is now
+stored in the script -->
+<title>Vienna census,log and crash reporter quick start guide</title>
+</head>
+<body>
+<pre>
+hello
+</pre>
+</body>
+QUICK_START
+if [ $? -ne 0 ] 
+then
+echo an error has occured in generating the documentation file
+return 1
+fi
+open "${QSGDOC}"
+}
+
+############# end quick start documentation function ##########}
 
 ############# begin full documentation function ##############
 
 function full_docs () {
 
-cat > ${FULLDOC} << "END_OF_FULL_DOC_zhqa"
-<!-- Full documentation for Vienna crash reporter is now
-stored in the script -->
-<head>
+menu=`get_menu`
+
+cat > ${FULLDOC} << END_OF_FULL_DOC_zhqa
+$(w3c_boilerplate)
+
+
 <title>The Vienna census - how to participate</title>
 </head>
 
@@ -284,6 +321,10 @@ In Terminal window type:
 
       cd census
       sh census.sh
+
+The screen will clear and a menu will be displayed like this:
+
+${menu}
 
 You will be asked if you wish to view the documentation in
 your browser. Answer Y or N.
@@ -345,7 +386,7 @@ Q: How do I find out what is being sent?
 
 A:
 Read the file temporary-file in the census directory.
-Review the script census.sh.
+Review the script vlcr.sh.sh.
 
 Q: What programs are used to create the census.
 
@@ -417,10 +458,8 @@ open "mailto:${TO}?body=${mailbody}&subject=Vienna%20vlcr"
 }
 ########### end of send_email function #############
 
-
-
-############## start of menu function #############
-function menu () {
+########### begin get_menu function #############
+function get_menu() {
 
 cat << END_OF_MENU
 
@@ -435,6 +474,19 @@ cat << END_OF_MENU
   Q         Quit this program
 
 END_OF_MENU
+
+
+}
+########### end of get_menu #####################
+
+
+
+
+############## start of menu function #############
+function menu () {
+
+get_menu
+
 read -p "Please make your choice [SLCFZNTMQ] ? : " choice
 
     case "${choice}" in
