@@ -54,10 +54,10 @@ nickset=1
 }
 ############### end of nickanme setting #########
 
+############### begin standard_header function ########
+function standard_header() {
+# this header goes at the beginning of reports and emails
 
-
-################ begin reporter function ##################
-function reporter () {
 which -s uuidgen
 if [ $? -ne 0 ]
 then
@@ -105,28 +105,38 @@ if [ -f "${Cookiefile}" ]
 # ask the user for nickname if never set
 if [ "${nickset}" -eq 0 ] ; then cix_nick ; fi
 
-echo Cix user nickname: $nick > $T
-echo Local user name: $USER >> $T
-echo Vienna version: $vers >> $T
-echo Report type: ${REPORT_TYPE} >> $T
-echo Script run on: ${datenow} >> $T
-echo Script version: $scriptversion  >> $T
-echo Unique report ID: ${reportid} >> $T
-echo Cookie: ${Cookie} >> $T
-echo Fossil manifest SHA1: ${manifest} >> $T
+echo Cix user nickname: $nick 
+echo Local user name: $USER 
+echo Vienna version: $vers 
+echo Report type: ${REPORT_TYPE} 
+echo Script run on: ${datenow} 
+echo Script version: $scriptversion 
+echo Unique report ID: ${reportid} 
+echo Cookie: ${Cookie} 
+echo Fossil manifest SHA1: ${manifest} 
 if  which -s openssl 
 then 
-echo Script SHA1 sum: `openssl sha1 $0` >> $T
+echo Script SHA1 sum: `openssl sha1 $0` 
 else
-echo Script SHA1 sum: no openssl >> $T
+echo Script SHA1 sum: no openssl 
 fi
 if  which -s md5 
 then
-echo Script MD5 sum: `md5 $0` >> $T
+echo Script MD5 sum: `md5 $0`
 else
 echo Script MD5 sum: no md5
 fi 
-echo >> $T
+echo 
+
+}
+########## end of standard header function ###########
+
+
+################ begin reporter function ##################
+function reporter () {
+
+standard_header > $T
+
 echo '=== Begin uname ===' >> $T
 uname -a >> $T
 echo '=== End uname ===' >> $T
@@ -382,7 +392,14 @@ Your email application will open in a new window
 with the To: and Subject: headers filled in.
 Feel free to change the Subject:, leaving the word
 Vienna in there somewhere.
+
+Please paste a brief header into the beginning of 
+your message.
 END_OF_EMAIL
+
+read -p "Press enter to continue : " junk
+REPORT_TYPE=Email from user
+standard_header | pbcopy
 
 open "mailto:${TO}?subject=Vienna%20vlcr"
 
