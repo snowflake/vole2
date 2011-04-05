@@ -260,7 +260,31 @@ stored in the script -->
 </head>
 <body>
 <pre>
-hello
+This is for the impatient and those experienced with the command line.
+All others should view the full documentation first.
+
+1. Unzip the zip file.
+2. Open Terminal
+3. Run the script with "sh vlcr.sh"
+4. A menu appears. It looks like this:
+
+$(get_menu)
+
+Census collects basic information about your mac
+Log Reporter collects the system log files relating to Vienna.
+      It should be run from an administrator account.
+Crash Reporter collects the crash reports relating to Vienna.
+      It should be run from the account where you run Vienna.
+View full or quick documentation displays the documentation
+      relating to the current version of vlcr.sh.
+Change or set your Cix nickname and Vienna version does what
+      it says.
+View last report lets you see what's in the reports.
+Send me email if you want. It invokes your default email client
+      such as Apple Mail or Thunderbird.
+Quit does the obvious thing.
+
+That's about it really. Have fun. I like reports, stats and logs.
 </pre>
 </body>
 QUICK_START
