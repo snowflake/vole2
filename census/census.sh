@@ -114,6 +114,18 @@ echo Script version: $scriptversion  >> $T
 echo Unique report ID: ${reportid} >> $T
 echo Cookie: ${Cookie} >> $T
 echo Fossil manifest SHA1: ${manifest} >> $T
+if  which -s openssl 
+then 
+echo Script SHA1 sum: `openssl sha1 $0` >> $T
+else
+echo Script SHA1 sum: no openssl >> $T
+fi
+if  which -s md5 
+then
+echo Script MD5 sum: `md5 $0` >> $T
+else
+echo Script MD5 sum: no md5
+fi 
 echo >> $T
 echo '=== Begin uname ===' >> $T
 uname -a >> $T
