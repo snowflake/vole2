@@ -23,6 +23,10 @@ echo
 echo
 echo "Vienna census and log reporter version ${scriptversion}"  
 echo 
+
+
+################ begin reporter function ##################
+function reporter () {
 which -s uuidgen
 if [ $? -ne 0 ]
 then
@@ -73,11 +77,6 @@ echo
 echo Welcome to the Vienna census.
 echo
 
-read -p "Do you wish to view the documentation in your browser y/N : " docs
-if [ "X${docs}" = Xy ] || [ "X${docs}" = XY ]
-then
-open readme.html
-fi
 
 
 
@@ -105,6 +104,7 @@ fi
 echo Cix user nickname: $nick > $T
 echo Local user name: $USER >> $T
 echo Vienna version: $vers >> $T
+echo Report type: ${REPORT_TYPE} >> $T
 echo Script run on: ${datenow} >> $T
 echo Script version: $scriptversion  >> $T
 echo Unique report ID: ${reportid} >> $T
@@ -139,6 +139,8 @@ echo === End developer tools === >> $T
 
 
 echo >> $T
+if [ X${REPORT_TYPE} = XLog ]
+then
 echo '=== Begin system log files count ===' >> $T
 GFC=`ls  ${L}.[0-9]*.gz 2>/dev/null | wc -l`
 echo System log gzip files: ${GFC} | tee -a $T
@@ -156,6 +158,8 @@ bzcat ${L}.[0-9]*.bz2  |  $G >> $T
 
 [ -f ${L} ] && cat ${L} | $G >> $T
 echo '=== End system log for Vienna ===' >> $T
+fi  # end of if for report type log
+
 
 echo >> $T
 echo '=*= End of report =*=' >> $T
@@ -179,3 +183,55 @@ sleep 10
 logger "Vienna census script version ${scriptversion} sending report ${H}"
 echo Starting email app.
 open "mailto:${TO}?subject=Vienna%20census%20${H}"
+
+} 
+################ end of reporter function ####################
+
+############# begin full documentation function ##############
+
+function full_docs () {
+
+read -p "Do you wish to view the documentation in your browser y/N : " docs
+if [ "X${docs}" = Xy ] || [ "X${docs}" = XY ]
+then
+open readme.html
+fi
+
+}
+############ end of full_docs function ##############
+
+
+
+############## start of menu function #############
+function menu () {
+
+cat << END_OF_MENU
+
+  S         Census
+  L         Log Reporter
+  C         Crash Reporter
+  F         View full documentation in your browser
+  Z         View quick start guide in your browser
+  Q         Quit this program
+
+END_OF_MENU
+read -p "Please make your choice : " choice
+
+    case "${choice}" in
+	 [Ss] )  REPORT_TYPE=Census ; reporter ;;
+	 [Ll] )  REPORT_TYPE=Log ; reporter ;;
+	 [Cc] )  REPORT_TYPE=Crash ; reporter;;
+	 [Ff] )  full_docs ;;
+	 [Zz] )  quick_start ;;
+	 [Qq] )  exit 0;;
+     esac 
+
+}  ######### end of menu function ###########
+
+
+############# start of main script ###########
+# all functions must precede this #
+
+menu
+
+
