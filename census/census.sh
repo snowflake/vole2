@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script requires that the user be in the admin group
+# This script requires that the user be in the admin group to send a log report
 
 # A script to generate Vienna and system log information, and send it
 # to the conference moderator
@@ -18,28 +18,35 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin
 # send results to TO
 TO='dave.evans55@googlemail.com'
 T=temporary-file
+
+FULLDOC=/tmp/vlcr.${USER}.fulldoc.html
+QSGDOC=/tmp/vlcr.${USER}.qsgdoc.html
+
+# get the Fossil manifest
+manifest='Not found'
+if [ -f manifest.uuid ]
+then
+manifest=`cat manifest.uuid`
+fi
+
 clear
 echo
 echo
-echo "Vienna census and log reporter version ${scriptversion}"  
+echo "Vienna census, crash and log reporter version ${scriptversion}"  
 echo 
 
 
 ################ begin reporter function ##################
 function reporter () {
-which -s uuidgen
+which -s uuidgenx
 if [ $? -ne 0 ]
 then
-echo "An error has occurred. You do not seem to have uuidgen"
+echo "An error has occurred. You do not seem to have uuidgen."
 echo "It has been available since OS X 10.2 so something is amiss."
-echo "Please report this error to the vienna/chatter topic"
-
-exit 1
-fi
-# get the Fossil manifest
-if [ -f manifest.uuid ]
-then
-manifest=`cat manifest.uuid`
+echo "Please report this error to the vienna/chatter topic."
+echo "You are welcome to browse the documentation."
+echo 
+return  1
 fi
 reportid=`uuidgen`
 datenow=`TZ=UTC date +%Y-%m-%dT%H:%M:%SZ`
@@ -73,11 +80,6 @@ if [ -f "${Cookiefile}" ]
 	Cookie=`uuidgen`
 	echo ${Cookie} >> "${Cookiefile}"
     fi
-echo
-echo Welcome to the Vienna census.
-echo
-
-
 
 
 read -p "Please enter your Cix nickname or anon: " nick
@@ -191,12 +193,156 @@ open "mailto:${TO}?subject=Vienna%20census%20${H}"
 
 function full_docs () {
 
-read -p "Do you wish to view the documentation in your browser y/N : " docs
-if [ "X${docs}" = Xy ] || [ "X${docs}" = XY ]
-then
-open readme.html
-fi
+cat > ${FULLDOC} << "END_OF_FULL_DOC_zhqa"
+<!-- Full documentation for Vienna crash reporter is now
+stored in the script -->
+<head>
+<title>The Vienna census - how to participate</title>
+</head>
 
+<body>
+<pre>
+It's census time here in the Vienna conference.  This is
+the one you cannot afford to miss! Your  participation
+will be most welcome and it will help the Vienna developers
+in the future development of Vienna.
+
+What's being collected?  - see below
+
+How to participate.
+------------------
+Download cixfile:vienna/files:census.zip
+(It's tiny, < 5k)
+
+Open Vienna and navigate to Vienna -> About Vienna
+Make a note of Vienna version information, N.N.NN (NNNN)
+
+Create an empty folder in your home folder and name it
+"census". Unzip the zip file into it.
+
+If you have any work that you have copied to the clipboard,
+please save it now.
+
+Open /Applications/Utilities/Terminal
+
+Yes, I know it is the command line. I'm very sorry
+for those of you who are averse to the command line, but
+this is the simplest way for me to implement a simple
+survey.
+
+In Terminal window type:
+
+      cd census
+      sh census.sh
+
+You will be asked if you wish to view the documentation in
+your browser. Answer Y or N.
+
+A prompt will appear. Please answer the question
+with your Cix nickname.
+
+Another prompt will appear. Please answer the question
+with the Vienna version information or "none" if you do
+not have Vienna..
+
+You will be asked if you wish to send the census data.
+Answer Y (default) or N
+
+When you have done that, your default email program
+will open with the To: and Subject: fields already
+filled in. 
+
+We are almost done. A tiny program has copied the
+census data to your clipboard. 
+
+Now for the important step!
+
+=== Paste the clipboard into the message window. ===
+
+Take care not to disturb the census data.
+
+Now send the message.
+
+That's it. Job done. Simples. Thanks for your participation.
+It will help us in the future development of Vienna.
+----
+
+Problems
+--------
+When pasting the clipboard into Thunderbird, it sometimes comes up with
+a message "Found an attachment keyword XX". It is trying to be too
+clever. Close the yellow window by clicking on the litte X icon
+on the right and send the message as usual.
+
+For the security conscious.
+---------------------------
+
+Q: What information is being gathered?
+
+A:
+Most of this information is gathered by the script automatically.
+Basic information about your Mac.
+Your Vienna version.
+Whether you have the development system installed and which
+version.
+Your Mac's hostname.
+Your cix nickname and login name on your Mac.
+System log messages that relate to Vienna.
+A list of Crash Reporter files that relate to Vienna. We don't collect
+the files at the moment..
+
+Q: How do I find out what is being sent?
+
+A:
+Read the file temporary-file in the census directory.
+Review the script census.sh.
+
+Q: What programs are used to create the census.
+
+A: census.sh - a small Bash shell script available for review by anyone.
+Standard system utilities such as gzip bzcat pbcopy grep uuencode
+hostname uname uuidgen and (if it exists) xcodebuild.
+Your default email application.
+
+Q: Why is the census data sent in BASE64 or UUencoded form?
+
+A: To prevent long lines from getting mangled. The data are also
+compressed.
+
+Q: Why are the system log messages relating to Vienna being gathered?
+
+A: I want to see whether you get the same messages that I get, or
+any that I have not seen before.
+---
+
+Privacy Policy
+--------------
+Your personal data (email address, login name, cix nickname, hostname)
+will not be shared with anyone.
+
+You do not have to give your cix nickname to participate but I would
+much prefer that you do give it.
+
+The script will install a small cookie in 
+~/Library/Vienna/Vienna-census.cookie
+It contains a UUID. Please see http://en.wikipedia.org/wiki/UUID
+Please do not delete this file. It is used to identify your Mac
+anonymously in the event you send more than one report. It will
+also be used in a forthcoming crash reporter.
+
+</pre>
+</body>
+
+
+
+
+END_OF_FULL_DOC_zhqa
+if [ $? -ne 0 ] 
+then
+echo an error has occured in generating the documentation file
+return 1
+fi
+open ${FULLDOC}
 }
 ############ end of full_docs function ##############
 
@@ -215,7 +361,7 @@ cat << END_OF_MENU
   Q         Quit this program
 
 END_OF_MENU
-read -p "Please make your choice : " choice
+read -p "Please make your choice [SLCFZQ] ? : " choice
 
     case "${choice}" in
 	 [Ss] )  REPORT_TYPE=Census ; reporter ;;
@@ -232,6 +378,6 @@ read -p "Please make your choice : " choice
 ############# start of main script ###########
 # all functions must precede this #
 
-menu
+while true; do menu ;done
 
 
