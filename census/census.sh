@@ -17,7 +17,7 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin
 # therefore gzip is used to compress the log.
 # send results to TO
 TO='dave.evans55@googlemail.com'
-T=temporary-file
+T=/tmp/vlcr.${USER}.report.temporary.txt
 
 FULLDOC=/tmp/vlcr.${USER}.fulldoc.html
 QSGDOC=/tmp/vlcr.${USER}.qsgdoc.html
@@ -93,15 +93,6 @@ then
 vers=notknown
 fi
 
-echo 
-read -p "Is it OK to send Y/n ? : " ok
-if [ "X${ok}" = Xn ] || [ "X${ok}" = XN ] 
-then
-echo Thanks for your participation. Your data have not been sent.
-exit 0
-fi
-
-
 
 echo Cix user nickname: $nick > $T
 echo Local user name: $USER >> $T
@@ -170,6 +161,20 @@ echo '=*= End of report =*=' >> $T
 
 # because the administrator does not have permission to access other
 # users files, the crash reporter filelist has been deleted
+
+echo 
+read -p "Is it OK to send the report [Y/n] ? : " ok
+if [ "X${ok}" = Xn ] || [ "X${ok}" = XN ] 
+then
+echo Thanks for your participation. Your report has not been sent.
+echo You can find the text of the report that would have been 
+echo sent in the file "${T}"
+return 0
+echo
+fi
+
+
+
 
 # use gzip because bzip2 may not be available
 cat $T | gzip  -c9| uuencode ${H}.vnr.gz | pbcopy -Prefer txt
@@ -346,6 +351,21 @@ open ${FULLDOC}
 }
 ############ end of full_docs function ##############
 
+########### start of send_email function ############
+
+function send_email () {
+cat << END_OF_EMAIL
+Your email application will open in a new window
+with the To: and Subject: headers filled in.
+Feel free to change the Subject:, leaving the word
+Vienna in there somewhere.
+END_OF_EMAIL
+
+open "mailto:${TO}?subject=Vienna%20vlcr"
+
+}
+########### end of send_email function #############
+
 
 
 ############## start of menu function #############
@@ -358,10 +378,11 @@ cat << END_OF_MENU
   C         Crash Reporter
   F         View full documentation in your browser
   Z         View quick start guide in your browser
+  M         Send email to the maintainer of this program
   Q         Quit this program
 
 END_OF_MENU
-read -p "Please make your choice [SLCFZQ] ? : " choice
+read -p "Please make your choice [SLCFZMQ] ? : " choice
 
     case "${choice}" in
 	 [Ss] )  REPORT_TYPE=Census ; reporter ;;
@@ -369,6 +390,7 @@ read -p "Please make your choice [SLCFZQ] ? : " choice
 	 [Cc] )  REPORT_TYPE=Crash ; reporter;;
 	 [Ff] )  full_docs ;;
 	 [Zz] )  quick_start ;;
+         [Mm] )  send_email ;;
 	 [Qq] )  exit 0;;
      esac 
 
