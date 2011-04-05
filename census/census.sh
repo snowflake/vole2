@@ -116,15 +116,15 @@ echo Cookie: ${Cookie}
 echo Fossil manifest SHA1: ${manifest} 
 if  which -s openssl 
 then 
-echo Script SHA1 sum: `openssl sha1 $0` 
+echo Script SHA1: `openssl sha1 "$0" | sed -e 's/.*= //'` 
 else
-echo Script SHA1 sum: no openssl 
+echo Script SHA1: no openssl 
 fi
 if  which -s md5 
 then
-echo Script MD5 sum: `md5 $0`
+echo Script MD5: `md5 "$0" | sed -e 's/.*= //'`
 else
-echo Script MD5 sum: no md5
+echo Script MD5: no md5
 fi 
 echo 
 
@@ -226,6 +226,18 @@ open "mailto:${TO}?subject=Vienna%20census%20${H}"
 
 } 
 ################ end of reporter function ####################
+
+############ begin mailto helper function ####################
+
+# protect spaces and newlines for the mailto facility 
+# See RFC 2368
+function mailto_url_encode () {
+	awk  ' { gsub(/ /, "%20"); printf("%s%%0d%%0a",$0);}'
+	}
+
+
+############ end mailto helper function ##############
+
 
 ############# begin full documentation function ##############
 
@@ -398,10 +410,9 @@ your message.
 END_OF_EMAIL
 
 read -p "Press enter to continue : " junk
-REPORT_TYPE=Email from user
-standard_header | pbcopy
-
-open "mailto:${TO}?subject=Vienna%20vlcr"
+REPORT_TYPE='Email from user'
+mailbody=`standard_header | mailto_url_encode`
+open "mailto:${TO}?body=${mailbody}&subject=Vienna%20vlcr"
 
 }
 ########### end of send_email function #############
@@ -444,7 +455,9 @@ read -p "Please make your choice [SLCFZNTMQ] ? : " choice
 function view_in_textedit () {
 if [ -f "${T}" ]
 then
-opin_in_textdit_todo
+# Pipe the file into the editor, because textedit may not realise the file
+# has changed.
+cat "${T}" | open -f 
 else
 echo
 echo You have not generated any reports yet
