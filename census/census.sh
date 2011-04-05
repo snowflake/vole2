@@ -38,7 +38,7 @@ echo
 
 ################ begin reporter function ##################
 function reporter () {
-which -s uuidgenx
+which -s uuidgen
 if [ $? -ne 0 ]
 then
 echo "An error has occurred. You do not seem to have uuidgen."
