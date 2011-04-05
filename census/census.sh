@@ -22,6 +22,9 @@ T=/tmp/vlcr.${USER}.report.temporary.txt
 FULLDOC=/tmp/vlcr.${USER}.fulldoc.html
 QSGDOC=/tmp/vlcr.${USER}.qsgdoc.html
 
+# 0 if nickname not set 
+nickset=0
+
 # get the Fossil manifest
 manifest='Not found'
 if [ -f manifest.uuid ]
@@ -34,6 +37,23 @@ echo
 echo
 echo "Vienna census, crash and log reporter version ${scriptversion}"  
 echo 
+
+############### nickname setting function #######
+function cix_nick() {
+read -p "Please enter your Cix nickname or anon: " nick
+read -p "Please enter Vienna version           : " vers
+if [ "X${nick}" = X ]
+then
+nick=notknown
+fi
+if [ "X${vers}" = X ]
+then
+vers=notknown
+fi
+nickset=1
+}
+############### end of nickanme setting #########
+
 
 
 ################ begin reporter function ##################
@@ -82,17 +102,8 @@ if [ -f "${Cookiefile}" ]
     fi
 
 
-read -p "Please enter your Cix nickname or anon: " nick
-read -p "Please enter Vienna version           : " vers
-if [ "X${nick}" = X ]
-then
-nick=notknown
-fi
-if [ "X${vers}" = X ]
-then
-vers=notknown
-fi
-
+# ask the user for nickname if never set
+if [ "${nickset}" -eq 0 ] ; then cix_nick ; fi
 
 echo Cix user nickname: $nick > $T
 echo Local user name: $USER >> $T
@@ -378,11 +389,13 @@ cat << END_OF_MENU
   C         Crash Reporter
   F         View full documentation in your browser
   Z         View quick start guide in your browser
+  N         Change or set your Cix nickname and Vienna version
+  T         View the last report generated in Textedit
   M         Send email to the maintainer of this program
   Q         Quit this program
 
 END_OF_MENU
-read -p "Please make your choice [SLCFZMQ] ? : " choice
+read -p "Please make your choice [SLCFZNTMQ] ? : " choice
 
     case "${choice}" in
 	 [Ss] )  REPORT_TYPE=Census ; reporter ;;
@@ -390,11 +403,29 @@ read -p "Please make your choice [SLCFZMQ] ? : " choice
 	 [Cc] )  REPORT_TYPE=Crash ; reporter;;
 	 [Ff] )  full_docs ;;
 	 [Zz] )  quick_start ;;
+	 [Nn] )  cix_nick ;;
+         [Tt] )  view_in_textedit ;;
          [Mm] )  send_email ;;
 	 [Qq] )  exit 0;;
      esac 
 
 }  ######### end of menu function ###########
+
+########### begin view_in_textedit function ###########
+function view_in_textedit () {
+if [ -f "${T}" ]
+then
+opin_in_textdit_todo
+else
+echo
+echo You have not generated any reports yet
+echo
+fi
+return 0
+
+}
+############ end of view_in_textedit function ###########
+
 
 
 ############# start of main script ###########
