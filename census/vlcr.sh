@@ -75,6 +75,7 @@ echo Vienna version: $vers
 echo Report type: ${REPORT_TYPE} 
 echo Script run on: ${datenow} 
 echo Script version: $scriptversion 
+echo Local time: `date`
 echo Report ID: ${reportid} 
 echo Cookie: ${Cookie} 
 echo Fossil manifest SHA1: ${manifest} 
