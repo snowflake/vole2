@@ -69,6 +69,36 @@ W3C_END
 function standard_header() {
 # this header goes at the beginning of reports and emails
 
+echo Cix user nickname: $nick 
+echo Local user name: $USER 
+echo Vienna version: $vers 
+echo Report type: ${REPORT_TYPE} 
+echo Script run on: ${datenow} 
+echo Script version: $scriptversion 
+echo Report ID: ${reportid} 
+echo Cookie: ${Cookie} 
+echo Fossil manifest SHA1: ${manifest} 
+if  which -s openssl 
+then 
+echo Script SHA1: `openssl sha1 "$0" | sed -e 's/.*= //'` 
+else
+echo Script SHA1: no openssl 
+fi
+if  which -s md5 
+then
+echo Script MD5: `md5 "$0" | sed -e 's/.*= //'`
+else
+echo Script MD5: no md5
+fi 
+echo 
+
+
+}
+########## end of standard header function ###########
+
+
+########## beginning of set_variables function ######
+function set_variables () {
 which -s uuidgen
 if [ $? -ne 0 ]
 then
@@ -115,40 +145,11 @@ if [ -f "${Cookiefile}" ]
 
 # ask the user for nickname if never set
 if [ ${nickset} -eq 0 ] ; then cix_nick ; fi
-
-echo Cix user nickname: $nick 
-echo Local user name: $USER 
-echo Vienna version: $vers 
-echo Report type: ${REPORT_TYPE} 
-echo Script run on: ${datenow} 
-echo Script version: $scriptversion 
-echo Report ID: ${reportid} 
-echo Cookie: ${Cookie} 
-echo Fossil manifest SHA1: ${manifest} 
-if  which -s openssl 
-then 
-echo Script SHA1: `openssl sha1 "$0" | sed -e 's/.*= //'` 
-else
-echo Script SHA1: no openssl 
-fi
-if  which -s md5 
-then
-echo Script MD5: `md5 "$0" | sed -e 's/.*= //'`
-else
-echo Script MD5: no md5
-fi 
-echo 
-echo "Please compose your message below this line."
-echo
-
-
 }
-########## end of standard header function ###########
-
-
+#################
 ################ begin reporter function ##################
 function reporter () {
-
+set_variables
 standard_header > $T
 
 echo '=== Begin uname ===' >> $T
@@ -236,7 +237,7 @@ echo There will now be a brief pause while you read this message  ...
 sleep 10
 logger "Vienna census script version ${scriptversion} sending report ${H}"
 echo Starting email app.
-hint=$(echo Paste your clipboard below this line | mailto_url_encode)
+hint=$(echo Paste your clipboard below this line. | mailto_url_encode)
 open "mailto:${TO}?subject=Vienna%20vlcr%20${H}&body=${hint}"
 
 } 
@@ -467,6 +468,7 @@ open ${FULLDOC}
 ########### start of send_email function ############
 
 function send_email () {
+set_variables
 cat << END_OF_EMAIL
 Your email application will open in a new window
 with the To: and Subject: headers filled in.
@@ -479,9 +481,13 @@ Please compose your message below the last line of this block.
 END_OF_EMAIL
 
 read -p "Press enter to continue : " junk
-REPORT_TYPE='EmailFromUser'
-mailbody=`standard_header | mailto_url_encode`
-open "mailto:${TO}?body=${mailbody}&subject=Vienna%20vlcr"
+tm=$(printf "%s\n\n%s%s%s" \
+      "$(standard_header)" \
+      "Thanks from the Vienna developers for your feedback.\n" \
+      "Please add something meaningful to the subject.\n" \
+      "Please compose your message below this line.\n" )
+mailbody=$(echo "${tm}" | mailto_url_encode )
+open "mailto:${TO}?body=${mailbody}&subject=Vienna%20user"
 
 }
 ########### end of send_email function #############
@@ -525,7 +531,7 @@ read -p "Please make your choice [SLCFZNTMQ] ? : " choice
 	 [Zz] )  quick_start ;;
 	 [Nn] )  cix_nick ;;
          [Tt] )  view_in_textedit ;;
-         [Mm] )  send_email ;;
+         [Mm] )  REPORT_TYPE='User' ;   send_email ;;
 	 [Qq] )  exit 0;;
      esac 
 
