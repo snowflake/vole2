@@ -32,6 +32,15 @@ if [ -f manifest.uuid ]
 then
 manifest=`cat manifest.uuid`
 fi
+# find out if the user is an admin
+id | grep '(admin)'
+Admin=$?
+case $Admin in 
+	0 ) AdminText=yes ;; 
+        1 ) AdminText=no  ;;
+	2 ) AdminText='error occurred' ;;
+	esac
+
 
 clear
 echo
@@ -73,6 +82,7 @@ function standard_header() {
 
 echo Cix user nickname: $nick 
 echo Local user name: $USER 
+echo Admin user: $AdminText
 echo Vienna version: $vers 
 echo Report type: ${REPORT_TYPE} 
 echo Script run on: ${datenow} 
@@ -93,6 +103,7 @@ echo Script MD5: `md5 "$0" | sed -e 's/.*= //'`
 else
 echo Script MD5: no md5
 fi 
+echo Bash version: ${BASH_VERSION}
 echo 
 
 
