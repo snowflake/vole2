@@ -479,7 +479,7 @@ Please compose your message below the last line of this block.
 END_OF_EMAIL
 
 read -p "Press enter to continue : " junk
-REPORT_TYPE='Email from user'
+REPORT_TYPE='EmailFromUser'
 mailbody=`standard_header | mailto_url_encode`
 open "mailto:${TO}?body=${mailbody}&subject=Vienna%20vlcr"
 
