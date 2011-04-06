@@ -21,6 +21,7 @@ T=/tmp/vlcr.${USER}.report.temporary.txt
 FULLDOC=/tmp/vlcr.${USER}.fulldoc.html
 QSGDOC=/tmp/vlcr.${USER}.qsgdoc.html
 
+
 # 0 if nickname not set 
 nickset=0
 
