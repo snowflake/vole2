@@ -7,7 +7,7 @@
 # Author: devans
 # Created 2011-03-02
 
-scriptversion=1.7
+scriptversion=1.8
 
 
 # use Apple version of the utilities. Avoid Macports,Fink or Darwinports
@@ -18,7 +18,6 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin
 # send results to TO
 TO='dave.evans55@googlemail.com'
 T=/tmp/vlcr.${USER}.report.temporary.txt
-
 FULLDOC=/tmp/vlcr.${USER}.fulldoc.html
 QSGDOC=/tmp/vlcr.${USER}.qsgdoc.html
 
@@ -139,6 +138,9 @@ else
 echo Script MD5: no md5
 fi 
 echo 
+echo "Please compose your message below this line."
+echo
+
 
 }
 ########## end of standard header function ###########
@@ -177,7 +179,7 @@ echo === End developer tools === >> $T
 
 
 echo >> $T
-if [ X${REPORT_TYPE} = XLog ]
+if [ "X${REPORT_TYPE}" = XLog ]
 then
 echo '=== Begin system log files count ===' >> $T
 GFC=`ls  ${L}.[0-9]*.gz 2>/dev/null | wc -l`
@@ -234,7 +236,8 @@ echo There will now be a brief pause while you read this message  ...
 sleep 10
 logger "Vienna census script version ${scriptversion} sending report ${H}"
 echo Starting email app.
-open "mailto:${TO}?subject=Vienna%20census%20${H}"
+hint=$(echo Paste your clipboard below this line | mailto_url_encode)
+open "mailto:${TO}?subject=Vienna%20vlcr%20${H}&body=${hint}"
 
 } 
 ################ end of reporter function ####################
@@ -470,8 +473,9 @@ with the To: and Subject: headers filled in.
 Feel free to change the Subject:, leaving the word
 Vienna in there somewhere.
 
-Please paste a brief header into the beginning of 
-your message.
+A short block of text will be placed at the beginning of the message.
+Please compose your message below the last line of this block.
+
 END_OF_EMAIL
 
 read -p "Press enter to continue : " junk
