@@ -114,7 +114,7 @@ if [ -f "${Cookiefile}" ]
 
 
 # ask the user for nickname if never set
-if [ "${nickset}" -eq 0 ] ; then cix_nick ; fi
+if [ ${nickset} -eq 0 ] ; then cix_nick ; fi
 
 echo Cix user nickname: $nick 
 echo Local user name: $USER 
