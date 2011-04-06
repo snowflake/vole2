@@ -20,7 +20,8 @@ TO='dave.evans55@googlemail.com'
 T=/tmp/vlcr.${USER}.report.temporary.txt
 FULLDOC=/tmp/vlcr.${USER}.fulldoc.html
 QSGDOC=/tmp/vlcr.${USER}.qsgdoc.html
-
+# where the crash reporter files live
+CR=~/Library/Logs/CrashReporter
 
 # 0 if nickname not set 
 nickset=0
@@ -204,13 +205,20 @@ echo '=== End system log for Vienna ===' >> $T
 fi  # end of if for report type log
 
 
+
+if [ "X${REPORT_TYPE}" = XCrash ]
+then
+echo '=== Begin crash reporter filelist for Vienna ===' >> $T
+FC=`ls ${CR}/Vienna_* 2>/dev/null | wc -l`
+echo crash report files ${FC}
+[ ${FC} -gt 0 ] && \
+ls -lT ${CR}/Vienna_* >> $T
+echo '=== End crash reporter filelist for Vienna ===' >> $T
+fi
+
 echo >> $T
 echo '=*= End of report =*=' >> $T
 
-
-
-# because the administrator does not have permission to access other
-# users files, the crash reporter filelist has been deleted
 
 echo 
 read -p "Is it OK to send the report [Y/n] ? : " ok
