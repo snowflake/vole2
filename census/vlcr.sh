@@ -295,10 +295,10 @@ if [ "X${ok}" = Xn ] || [ "X${ok}" = XN ]
 then
 echo Thanks for your participation. Your report has not been sent.
 echo You can find the text of the report that would have been 
-echo sent in the file "${T}". You can view this report using the T
-echo menu option.
-return 0
+echo sent in the file "${T}". 
+echo You can view this report using the T menu option.
 echo
+return 0
 fi
 
 
@@ -361,8 +361,7 @@ Crash Reporter collects the crash reports relating to Vienna.
       It should be run from the account where you run Vienna.
 View full or quick documentation displays the documentation
       relating to the current version of vlcr.sh.
-Change or set your Cix nickname and Vienna version does what
-      it says.
+Change or set your Cix nickname does what it says.
 View last report lets you see what's in the reports.
 Send me email if you want. It invokes your default email client
       such as Apple Mail or Thunderbird.
@@ -523,7 +522,7 @@ You do not have to give your cix nickname to participate but I would
 much prefer that you do give it.
 
 The script will install a small cookie in 
-~/Library/Vienna/Vienna-census.cookie
+"${Cookiefile}"
 It contains a UUID. Please see http://en.wikipedia.org/wiki/UUID
 Please do not delete this file. It is used to identify your Mac
 anonymously in the event you send more than one report. It will
@@ -611,7 +610,7 @@ cat << END_OF_MENU
   C         Crash Reporter
   F         View full documentation in your browser
   Z         View quick start guide in your browser
-  N         Change or set your Cix nickname and Vienna version
+  N         Change or set your Cix nickname
   T         View the last report generated in your browser
   M         Send email to the maintainer of this program
   V         Show Vienna installations on your Mac
