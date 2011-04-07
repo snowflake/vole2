@@ -67,7 +67,7 @@ echo
 ######### get_nickname function ##########
 function get_nickname(){
 if [ -f "${cixnicknamefile}" ]
-nick=$(cat "${cixnicknamefile}"
+nick=$(cat "${cixnicknamefile}")
 nickset=1
 }
 ########## end of get_nickname function ######
@@ -704,7 +704,4 @@ echo 'Use the V menu option to display the full Vienna installation report.'
 echo 'Done'
 echo
 
-
 while true; do menu ;done
-
-
