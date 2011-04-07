@@ -703,7 +703,7 @@ echo
 get_nickname
 if [ $nickset -eq 1 ]
 then
-print 'Your cix nickname is currently \"%s\"' "${nick}"
+printf 'Your cix nickname is currently \"%s\"' "${nick}"
 fi
 
 
