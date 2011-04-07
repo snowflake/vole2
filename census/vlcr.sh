@@ -17,21 +17,35 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin
 # therefore gzip is used to compress the log.
 # send results to TO
 TO='dave.evans55@googlemail.com'
+# temporary file for reports
 T="/tmp/vlcr.${USER}.report.temporary.txt"
-# display reports using this file
+# display reportsint he browser  using this file
 HTMLREPORT="/tmp/vlcr.${USER}.report.html"
+# where to put the full documentation
 FULLDOC="/tmp/vlcr.${USER}.fulldoc.html"
+# where to put the quick start documentation
 QSGDOC="/tmp/vlcr.${USER}.qsgdoc.html"
-# for the Vienna installations report
+# location for the Vienna installations report
 VINSTALL="/tmp/vlcr.${USER}.vienna.html"
 # where the crash reporter files live
 CR=~/Library/Logs/CrashReporter
 
+# all apps need application support
+appsupportdir='/Library/Application Support/Vienna Reporter'
+Cookiefile="${appsupportdir}/ViennaReporter.cookie.txt"
+# if this file exists, cookies are disabled
+cookiedisable="${appsupportdir}/cookie-disable"
+# Where we stash the users nickname
+cixnicknamefile="${appsupportdir}/cixnickname.txt"
+
 # 0 if nickname not set 
 nickset=0
 
+# where the system logs live
+L=/var/log/system.log
+
 # get the Fossil manifest
-manifest='Not found'
+manifest='Not found, no worries, it does not matter'
 if [ -f manifest.uuid ]
 then
 manifest=`cat manifest.uuid`
@@ -44,12 +58,10 @@ case $Admin in
         1 ) AdminText=no  ;;
 	2 ) AdminText='error occurred' ;;
 	esac
-
-
 clear
 echo
 echo
-echo "Vienna census, crash and log reporter version ${scriptversion}"  
+echo "Vienna Reporter version ${scriptversion}"  
 echo 
 
 ############### nickname setting function #######
@@ -157,18 +169,12 @@ datenow=`TZ=UTC date +%Y-%m-%dT%H:%M:%SZ`
 G="grep -i Vienna"
 H=${reportid}.${datenow}
 
-# where the system logs live
-L=/var/log/system.log
 
 # Check for cookies and set if required
 
-Viennadata='/Library/Application Support/Vienna'
-Cookiefile="${Viennadata}/Vienna.cookie"
-
-
-if [ ! -d "${Viennadata}" ]
+if [ ! -d "${appsupportdir}" ]
 then
-mkdir -p "${Viennadata}"
+mkdir -p "${appsupportdir}"
 fi
 if [ -f "${Cookiefile}" ]
     then 
