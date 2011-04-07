@@ -174,16 +174,7 @@ echo
 
 ########## beginning of set_variables function ######
 function set_variables () {
-which -s uuidgen
-if [ $? -ne 0 ]
-then
-echo "An error has occurred. You do not seem to have uuidgen."
-echo "It has been available since OS X 10.2 so something is amiss."
-echo "Please report this error to the vienna/chatter topic."
-echo "You are welcome to browse the documentation."
-echo 
-return  1
-fi
+
 reportid=`uuidgen`
 datenow=`TZ=UTC date +%Y-%m-%dT%H:%M:%SZ`
 G="grep -i Vienna"
@@ -203,7 +194,7 @@ if [ -f "${Cookiefile}" ]
      # give the user a cookie - Yum Yum
 	echo Hello new user
 	echo 'Please do not delete or modify this file.' > "${Cookiefile}"
-	echo 'It is used by the Vienna census and crash reporter' >> \
+	echo 'It is used by the Vienna Reporter' >> \
 		"${Cookiefile}"
 	echo 'to anonymously identify your Mac.' >> "${Cookiefile}"
 	echo 'Please read the man page for uuidgen.' >> "${Cookiefile}"
@@ -315,7 +306,8 @@ echo alter the message header or body in any way.
 echo
 echo There will now be a brief pause while you read this message  ...
 sleep 10
-logger "Vienna census script version ${scriptversion} sending report ${H}"
+logger "Vienna Reporter script version ${scriptversion} sending report ${H}\
+ for type ${REPORT_TYPE}"
 echo Starting email app.
 hint=$(echo Paste your clipboard below this line. | mailto_url_encode)
 open "mailto:${TO}?subject=Vienna%20vlcr%20${H}&body=${hint}"
@@ -697,6 +689,19 @@ return 0
 
 ############# start of main script ###########
 # all functions must precede this #
+
+if ! which -s uuidgen
+then
+echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
+echo "An error has occurred. Your Mac does not have uuidgen."
+echo "It has been available since OS X 10.2 so something is amiss."
+echo "Please report this error to the vienna/chatter topic."
+echo "You are welcome to browse the documentation, but expect to"
+echo "see error messages mesages if you use the reports or email options."
+echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
+echo 
+read -p "press return to acknowledge this message : " junk
+fi
 
 echo 'Please wait while we find Vienna on your Mac ...'
 vienna_full=$( system_profiler SPApplicationsDataType | find_vienna )
