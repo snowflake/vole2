@@ -90,6 +90,11 @@ then
 echo "${nick}" > "${cixnicknamefile}"
 printf 'You are an administrator. Your nickname has been saved as \"%s\"' \
 	"${nick}"
+else
+printf 'You are an unpriveleged user. Your nickname has been set\n'
+printf 'for the current session only. To save it permanently, login\n'
+printf 'as an administrator. Your nickname is \"%s\"\n' "${nick}"
+echo 
 fi
 nickset=1
 }
