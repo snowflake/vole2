@@ -64,6 +64,20 @@ nickset=1
 }
 ############### end of nickanme setting #########
 
+############## find_vienna function ############
+
+# search the output of system_profiler for instances of Vienna
+function find_vienna() {
+awk  'BEGIN { o = 0 }
+/^    [0-9A-Za-z]/ { o=0 }
+/^    Vienna:/ { o=1; print }
+/^      / { if (o==1) print }'
+
+
+
+}
+########### end of find_vienna ###############
+
 ########### begin w3c_boilerplate ############
 function w3c_boilerplate() {
 # This goes at the head of each html page. It keeps the validator happy.
@@ -526,6 +540,7 @@ cat << END_OF_MENU
   N         Change or set your Cix nickname and Vienna version
   T         View the last report generated in Textedit
   M         Send email to the maintainer of this program
+  V         Find Vienna on your Mac
   Q         Quit this program
 
 END_OF_MENU
@@ -542,7 +557,7 @@ function menu () {
 
 get_menu
 
-read -p "Please make your choice [SLCFZNTMQ] ? : " choice
+read -p "Please make your choice [SLCFZNTVMQ] ? : " choice
 
     case "${choice}" in
 	 [Ss] )  REPORT_TYPE=Census ; reporter ;;
@@ -553,6 +568,7 @@ read -p "Please make your choice [SLCFZNTMQ] ? : " choice
 	 [Nn] )  cix_nick ;;
          [Tt] )  view_in_textedit ;;
          [Mm] )  REPORT_TYPE='User' ;   send_email ;;
+	 [Vv] )  echo; echo  "${vienna_full}" ;;
 	 [Qq] )  exit 0;;
      esac 
 
@@ -579,6 +595,12 @@ return 0
 
 ############# start of main script ###########
 # all functions must precede this #
+
+echo 'Please wait while we find Vienna on your Mac ...'
+vienna_full=$( system_profiler SPApplicationsDataType | find_vienna )
+echo 'Done'
+echo
+
 
 while true; do menu ;done
 
