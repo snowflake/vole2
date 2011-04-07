@@ -40,6 +40,7 @@ cixnicknamefile="${appsupportdir}/cixnickname.txt"
 
 # 0 if nickname not set 
 nickset=0
+nick=not_set_yet
 
 # where the system logs live
 L=/var/log/system.log
@@ -78,7 +79,7 @@ fi
 
 ############### nickname setting function #######
 function cix_nick() {
-printf 'Your nickname is currently set to \"%s\"' "${nick}"
+printf 'Your nickname is currently set to \"%s\"\n' "${nick}"
 read -p "Please enter your Cix nickname or anon: " nick
 if [ "X${nick}" = X ]
 then
@@ -692,12 +693,6 @@ return 0
 
 ############# start of main script ###########
 # all functions must precede this #
-get_nickname
-if [ $nickset -eq 1 ]
-then
-echo Your cix nickname is set to "${nick}"
-fi
-
 
 echo 'Please wait while we find Vienna on your Mac ...'
 vienna_full=$( system_profiler SPApplicationsDataType | find_vienna )
@@ -705,5 +700,11 @@ echo "${vienna_full}" | grep 'Version:\|detected'
 echo 'Use the V menu option to display the full Vienna installation report.'
 echo 'Done'
 echo
+get_nickname
+if [ $nickset -eq 1 ]
+then
+print 'Your cix nickname is currently \"%s\"' "${nick}"
+fi
+
 
 while true; do menu ;done
