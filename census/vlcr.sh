@@ -193,13 +193,16 @@ if [ -f "${Cookiefile}" ]
     else
      # give the user a cookie - Yum Yum
 	echo Hello new user
-	echo 'Please do not delete or modify this file.' > "${Cookiefile}"
-	echo 'It is used by the Vienna Reporter' >> \
+	if  which -s uuidgen
+        then
+	 echo 'Please do not delete or modify this file.' > "${Cookiefile}"
+	 echo 'It is used by the Vienna Reporter' >> \
 		"${Cookiefile}"
-	echo 'to anonymously identify your Mac.' >> "${Cookiefile}"
-	echo 'Please read the man page for uuidgen.' >> "${Cookiefile}"
-	Cookie=`uuidgen`
-	echo ${Cookie} >> "${Cookiefile}"
+	 echo 'to anonymously identify your Mac.' >> "${Cookiefile}"
+	 echo 'Please read the man page for uuidgen.' >> "${Cookiefile}"
+	 Cookie=`uuidgen`
+	 echo ${Cookie} >> "${Cookiefile}"
+       fi
     fi
 
 
