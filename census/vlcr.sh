@@ -64,8 +64,19 @@ echo
 echo "Vienna Reporter version ${scriptversion}"  
 echo 
 
+######### get_nickname function ##########
+function get_nickname(){
+if [ -f "${cixnicknamefile}" ]
+nick=$(cat "${cixnicknamefile}"
+nickset=1
+}
+########## end of get_nickname function ######
+
+
+
 ############### nickname setting function #######
 function cix_nick() {
+printf 'Your nickname is currently set to \"%s\"' "${nick}"
 read -p "Please enter your Cix nickname or anon: " nick
 if [ "X${nick}" = X ]
 then
@@ -679,6 +690,12 @@ return 0
 
 ############# start of main script ###########
 # all functions must precede this #
+get_nickname
+if [ $nickset -eq 1 ]
+then
+echo Your cix nickname is set to "${nick}"
+fi
+
 
 echo 'Please wait while we find Vienna on your Mac ...'
 vienna_full=$( system_profiler SPApplicationsDataType | find_vienna )
