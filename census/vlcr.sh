@@ -600,9 +600,9 @@ function get_menu() {
 
 cat << END_OF_MENU
 
-  S         Census
-  L         Log Reporter
-  C         Crash Reporter
+  S         Census Reporter
+  L         Log Reporter ( Administrators only )
+  C         Crash Reporter ( Login to the account where you use Vienna )
   F         View full documentation in your browser
   Z         View quick start guide in your browser
   N         Change or set your Cix nickname
@@ -629,7 +629,14 @@ read -p "Please make your choice [SLCFZNTVMQ] ? : " choice
 
     case "${choice}" in
 	 [Ss] )  REPORT_TYPE=Census ; reporter ;;
-	 [Ll] )  REPORT_TYPE=Log ; reporter ;;
+	 [Ll] )  REPORT_TYPE=Log ;
+		if [ $Admin -ne 0 ]
+		 then
+		  echo '********* Login as Administrator please! **********'
+		  read -p "Press Enter to continue : " junk
+		 else
+		  reporter 
+		 fi;;
 	 [Cc] )  REPORT_TYPE=Crash ; reporter;;
 	 [Ff] )  full_docs ;;
 	 [Zz] )  quick_start ;;
