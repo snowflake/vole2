@@ -67,14 +67,15 @@ echo
 ############### nickname setting function #######
 function cix_nick() {
 read -p "Please enter your Cix nickname or anon: " nick
-read -p "Please enter Vienna version           : " vers
 if [ "X${nick}" = X ]
 then
 nick=notknown
 fi
-if [ "X${vers}" = X ]
+if [ $Admin -eq 0 ]
 then
-vers=notknown
+echo "${nick}" > "${cixnicknamefile}"
+printf 'You are an administrator. Your nickname has been saved as \"%s\"' \
+	"${nick}"
 fi
 nickset=1
 }
