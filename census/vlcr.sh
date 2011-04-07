@@ -67,8 +67,10 @@ echo
 ######### get_nickname function ##########
 function get_nickname(){
 if [ -f "${cixnicknamefile}" ]
+then
 nick=$(cat "${cixnicknamefile}")
 nickset=1
+fi
 }
 ########## end of get_nickname function ######
 
