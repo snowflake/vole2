@@ -269,7 +269,7 @@ if [ "X${ok}" = Xn ] || [ "X${ok}" = XN ]
 then
 echo Thanks for your participation. Your report has not been sent.
 echo You can find the text of the report that would have been 
-echo sent in the file "${T}". You cna view this report using the T
+echo sent in the file "${T}". You can view this report using the T
 echo menu option.
 return 0
 echo
