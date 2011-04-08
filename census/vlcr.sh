@@ -361,23 +361,20 @@ QUICK_START
 if [ $? -ne 0 ] 
 then
 echo an error has occured in generating the documentation file
-return 1
-else
-return 0
+exit 1
 fi
 }
 
 ############## end generate_quick_start_guide function
-############# begin full documentation function ##############
+############# begin full_docs_gen function ##############
 
-function full_docs () {
+function full_docs_gen () {
+# one argument, the name of the file to generate
 
 menu=`get_menu`
 
-cat > ${FULLDOC} << END_OF_FULL_DOC_zhqa
+cat > "${1}" << END_OF_FULL_DOC_zhqa
 $(w3c_boilerplate)
-
-
 <title>The Vienna census - how to participate</title>
 </head>
 
@@ -525,11 +522,20 @@ END_OF_FULL_DOC_zhqa
 if [ $? -ne 0 ] 
 then
 echo an error has occured in generating the documentation file
-return 1
+exit 1
 fi
-open ${FULLDOC}
 }
-############ end of full_docs function ##############
+############ end of full_docs_generate function ##############
+
+########## begin full_docs function ###########
+
+function full_docs(){
+full_docs_gen "${FULLDOC}"
+
+open "${FULLDOC}"
+}
+
+######### end of full_docs function ##########
 
 ########### start of send_email function ############
 
@@ -719,7 +725,7 @@ return 0
 ############## begin generate_local_docs function #######
 function generate_local_docs(){
 quick_start_gen  quick_start.html
-
+full_docs_gen    manual.html
 }
 ############## end generate_local_docs function #########
 
