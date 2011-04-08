@@ -315,6 +315,9 @@ stored in the script -->
 This is for the impatient and those experienced with the command line.
 All others should view the full documentation first.
 
+When running the script for the first time, you should log in as
+an administrator.
+
 1. Unzip the zip file.
 2. Open Terminal
 3. Run the script with "sh vlcr.sh"
@@ -360,6 +363,17 @@ $(w3c_boilerplate)
 </head>
 <body>
 <pre>
+
+
+
+When running the script for the first time you should be logged in
+as an administrator.  To use the Crash Reporter you should log into
+the account where you run Vienna. To use the Log Reporter you
+should log into the administrator account.
+
+********** the rest of this document is  mostly out of date *************
+
+
 It's census time here in the Vienna conference.  This is
 the one you cannot afford to miss! Your  participation
 will be most welcome and it will help the Vienna developers
@@ -548,6 +562,23 @@ is completely garbled.
 
 As OS X sh command is currently version 3, this is not a problem
  at the moment.
+
+Documentation
+-------------
+
+The full manual is still out of date.
+
+The manual does not it clear that the script should be run from
+an administrator account the first time it is used. This is so
+the cookie is set correctly and the cix password is saved.
+
+Undocumentated features
+-----------------------
+
+sh vlcr.sh help
+sh vlcr.sh version
+sh vlcr.sh docgen    # this generates the documentation into the current directory
+ 
 
 </pre>
 </body>
