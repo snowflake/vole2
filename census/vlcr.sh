@@ -516,7 +516,7 @@ function show_bugs_in_browser() {
 bugs_doc_gen "${BUGSDOC}"
 if [ $? -eq 0 ]
 then
-open "${QSGDOC}"
+open "${BUGSDOC}"
 fi
 }
 
