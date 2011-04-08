@@ -7,7 +7,7 @@
 # Author: devans
 # Created 2011-03-02
 
-scriptversion=1.8
+scriptversion=1.9
 
 
 # use Apple version of the utilities. Avoid Macports,Fink or Darwinports
