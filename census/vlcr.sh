@@ -678,9 +678,45 @@ return 0
 }
 ############ end view_report_in_browser function #########
 
+########## begin givehelp function ##############
+
+function givehelp() {
+cat << end_of_givehelp_x201
+
+Usage:   sh vlcr.sh option
+
+where option is:
+
+help    - displays this help
+version - shows version information
+docgen  - generate documentation in the current directory
+
+If option is not supplied vlcr will enter its menu-driven mode
+end_of_givehelp_x201
+}
+
+############ begin process_arguments function  ############
+function process_arguments() {
+case "$1" in 
+	version ) echo Version ${scriptversion} ;;
+	docgen ) generate_local_docs ;;
+	* ) givehelp ;;
+	esac
+return 0
+}
+############# end process_arguments function #############
+
 
 ############# start of main script ###########
 # all functions must precede this #
+
+if [ -n "${1}" ]
+then 
+# user has supplied at least one argument to the script
+process_arguments $1 
+exit 0
+fi
+
 
 # get the Fossil manifest
 manifest='Not found, no worries, it does not matter'
