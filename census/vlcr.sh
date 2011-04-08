@@ -312,8 +312,18 @@ function mailto_url_encode () {
 ############ end mailto helper function ##############
 
 ############ begin quick start guide #############
-function quick_start(){
-cat > "${QSGDOC}"<< QUICK_START
+function quick_start() {
+quick_start_gen "${QSGDOC}"
+if [ $? -eq 0 ]
+then
+open "${QSGDOC}"
+fi
+}
+
+############# end quick start guide function ##########
+############# begin generate quick start generate function ########
+function quick_start_gen(){
+cat > "${1}"<< QUICK_START
 $(w3c_boilerplate)
 <!-- Full documentation for Vienna crash reporter is now
 stored in the script -->
@@ -352,12 +362,12 @@ if [ $? -ne 0 ]
 then
 echo an error has occured in generating the documentation file
 return 1
+else
+return 0
 fi
-open "${QSGDOC}"
 }
 
-############# end quick start documentation function ##########}
-
+############## end generate_quick_start_guide function
 ############# begin full documentation function ##############
 
 function full_docs () {
@@ -621,7 +631,7 @@ read -p "Please make your choice [SLCFZNTVMQ] ? : " choice
 		 fi;;
 	 [Cc] )  REPORT_TYPE=Crash ; reporter;;
 	 [Ff] )  full_docs ;;
-	 [Zz] )  quick_start ;;
+	 [Zz] )  quick_start "${QSGDOC}" ;;
 	 [Nn] )  cix_nick ;;
          [Tt] )  view_report_in_browser ;;
          [Mm] )  REPORT_TYPE='User' ;   send_email ;;
