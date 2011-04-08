@@ -515,7 +515,7 @@ open "${FULLDOC}"
 ######### begin bugs_doc_gen function ##########
 function bugs_doc_gen(){
 # generate the bugs document - 1 argument, the name of the file 
-[ -n "${1}" || exit 1
+[  "${1}" ] || exit 1
 cat > "${1}" << BUGS_DOC_jejsk
 $(w3c_boilerplate)
 <title>Known bugs and issues</title>
