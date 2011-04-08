@@ -511,6 +511,15 @@ full_docs_gen "${FULLDOC}"
 open "${FULLDOC}"
 }
 ######### end of full_docs function ##########
+########## begin show_bugs_in_browser function ######
+function show_bugs_in_browser() {
+bugs_doc_gen "${BUGSDOC}"
+if [ $? -eq 0 ]
+then
+open "${QSGDOC}"
+fi
+}
+
 
 ######### begin bugs_doc_gen function ##########
 function bugs_doc_gen(){
@@ -616,6 +625,7 @@ cat << END_OF_MENU
   C         Crash Reporter ( Login to the account where you use Vienna )
   F         View full documentation in your browser
   Z         View quick start guide in your browser
+  B         View bugs and issues in your browser
   N         Change or set your Cix nickname
   T         View the last report generated in your browser
   M         Send email to the maintainer of this program
@@ -636,7 +646,7 @@ function menu () {
 
 get_menu
 
-read -p "Please make your choice [SLCFZNTVMQ] ? : " choice
+read -p "Please make your choice [SLCFZBNTMVQ] ? : " choice
 
     case "${choice}" in
 	 [Ss] )  REPORT_TYPE=Census ; reporter ;;
@@ -651,6 +661,7 @@ read -p "Please make your choice [SLCFZNTVMQ] ? : " choice
 	 [Cc] )  REPORT_TYPE=Crash ; reporter;;
 	 [Ff] )  full_docs ;;
 	 [Zz] )  quick_start "${QSGDOC}" ;;
+         [Bb] )  show_bugs_in_browser ;;
 	 [Nn] )  cix_nick ;;
          [Tt] )  view_report_in_browser ;;
          [Mm] )  REPORT_TYPE='User' ;   send_email ;;
