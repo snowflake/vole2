@@ -9,7 +9,6 @@
 
 scriptversion=1.9
 
-
 # use Apple version of the utilities. Avoid Macports,Fink or Darwinports
 PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
@@ -25,6 +24,8 @@ HTMLREPORT="/tmp/vlcr.${USER}.report.html"
 FULLDOC="/tmp/vlcr.${USER}.fulldoc.html"
 # where to put the quick start documentation
 QSGDOC="/tmp/vlcr.${USER}.qsgdoc.html"
+# where to puts the bugs document
+BUGSDOC="/tmp/vlcr.${USER}.bugs.html"
 # location for the Vienna installations report
 VINSTALL="/tmp/vlcr.${USER}.vienna.html"
 # where the crash reporter files live
@@ -56,8 +57,6 @@ nickset=1
 fi
 }
 ########## end of get_nickname function ######
-
-
 
 ############### nickname setting function #######
 function cix_nick() {
@@ -148,11 +147,8 @@ echo Script MD5: no md5
 fi 
 echo Bash version: ${BASH_VERSION}
 echo 
-
-
 }
 ########## end of standard header function ###########
-
 
 ########## beginning of set_variables function ######
 function set_variables () {
@@ -161,7 +157,6 @@ reportid=`uuidgen`
 datenow=`TZ=UTC date +%Y-%m-%dT%H:%M:%SZ`
 G="grep -i Vienna"
 H=${reportid}.${datenow}
-
 
 # Check for cookies and set if required
 
@@ -186,8 +181,6 @@ if [ -f "${Cookiefile}" ]
 	 echo ${Cookie} >> "${Cookiefile}"
        fi
     fi
-
-
 # ask the user for nickname if never set
 if [ ${nickset} -eq 0 ] ; then cix_nick ; fi
 }
@@ -196,7 +189,6 @@ if [ ${nickset} -eq 0 ] ; then cix_nick ; fi
 function reporter () {
 set_variables
 standard_header > $T
-
 echo '=== Begin uname ===' >> $T
 uname -a >> $T
 echo '=== End uname ===' >> $T
@@ -249,8 +241,6 @@ bzcat ${L}.[0-9]*.bz2  |  $G >> $T
 echo '=== End system log for Vienna ===' >> $T
 fi  # end of if for report type log
 
-
-
 if [ "X${REPORT_TYPE}" = XCrash ]
 then
 echo '=== Begin crash reporter filelist for Vienna ===' >> $T
@@ -263,8 +253,6 @@ fi
 
 echo >> $T
 echo '=*= End of report =*=' >> $T
-
-
 echo 
 read -p "Is it OK to send the report [Y/n] ? : " ok
 if [ "X${ok}" = Xn ] || [ "X${ok}" = XN ] 
@@ -276,9 +264,6 @@ echo You can view this report using the T menu option.
 echo
 return 0
 fi
-
-
-
 
 # use gzip because bzip2 may not be available
 cat $T | gzip  -c9| uuencode ${H}.vnr.gz | pbcopy -Prefer txt
@@ -296,19 +281,15 @@ logger "Vienna Reporter script version ${scriptversion} sending report ${H}\
 echo Starting email app.
 hint=$(echo Paste your clipboard below this line. | mailto_url_encode)
 open "mailto:${TO}?subject=Vienna%20vlcr%20${H}&body=${hint}"
-
 } 
 ################ end of reporter function ####################
 
 ############ begin mailto helper function ####################
-
 # protect spaces and newlines for the mailto facility 
 # See RFC 2368
 function mailto_url_encode () {
 	awk  ' { gsub(/ /, "%20"); printf("%s%%0d%%0a",$0);}'
 	}
-
-
 ############ end mailto helper function ##############
 
 ############ begin quick start guide #############
@@ -319,9 +300,9 @@ then
 open "${QSGDOC}"
 fi
 }
-
 ############# end quick start guide function ##########
-############# begin generate quick start generate function ########
+
+############# begin quick_start_gen function  ########
 function quick_start_gen(){
 cat > "${1}"<< QUICK_START
 $(w3c_boilerplate)
@@ -364,20 +345,19 @@ echo an error has occured in generating the documentation file
 exit 1
 fi
 }
+############## end qucik_start_gen function ########
 
-############## end generate_quick_start_guide function
 ############# begin full_docs_gen function ##############
 
 function full_docs_gen () {
 # one argument, the name of the file to generate
 
 menu=`get_menu`
-
+[ -n "${1}" ] || exit 1
 cat > "${1}" << END_OF_FULL_DOC_zhqa
 $(w3c_boilerplate)
 <title>The Vienna census - how to participate</title>
 </head>
-
 <body>
 <pre>
 It's census time here in the Vienna conference.  This is
@@ -514,10 +494,6 @@ also be used in a forthcoming crash reporter.
 
 </pre>
 </body>
-
-
-
-
 END_OF_FULL_DOC_zhqa
 if [ $? -ne 0 ] 
 then
@@ -534,9 +510,46 @@ full_docs_gen "${FULLDOC}"
 
 open "${FULLDOC}"
 }
-
 ######### end of full_docs function ##########
 
+######### begin bugs_doc_gen function ##########
+function bugs_doc_gen(){
+# generate the bugs document - 1 argument, the name of the file 
+[ -n "${1}" || exit 1
+cat > "${1}" << BUGS_DOC_jejsk
+$(w3c_boilerplate)
+<title>Known bugs and issues</title>
+</head>
+<body>
+<pre>
+Thunderbird email client
+------------------------
+When  pasting the report into Thunderbird's message window, it sometimes
+pops up an Alert panel  in yellow at the bottom of the window with
+a message &quot;Attachment detected&quot;. Dismiss the panel by clicking
+on the little X button on the right hand side. It does not seem to affect
+anything.
+
+Bash version 4
+--------------
+
+When using Bash version 4 as the shell, when sending an email with the
+M option, the pre-composed header at the top of the message body window
+is completely garbled.
+
+As OS X sh command is currently version 3, this is not a problem
+ at the moment.
+
+</pre>
+</body>
+BUGS_DOC_jejsk
+if [ $? -ne 0 ]
+then
+echo An error has occurred. "${1}" not generated
+exit 1
+fi
+}
+######### end bugs_doc_gen function ############
 ########### start of send_email function ############
 
 function send_email () {
@@ -726,6 +739,7 @@ return 0
 function generate_local_docs(){
 quick_start_gen  quick_start.html
 full_docs_gen    manual.html
+bugs_doc_gen     bugs.html
 }
 ############## end generate_local_docs function #########
 
