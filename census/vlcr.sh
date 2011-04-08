@@ -45,25 +45,7 @@ nick=not_set_yet
 # where the system logs live
 L=/var/log/system.log
 
-# get the Fossil manifest
-manifest='Not found, no worries, it does not matter'
-if [ -f manifest.uuid ]
-then
-manifest=`cat manifest.uuid`
-fi
-# find out if the user is an admin
-id | grep '(admin)'
-Admin=$?
-case $Admin in 
-	0 ) AdminText=yes ;; 
-        1 ) AdminText=no  ;;
-	2 ) AdminText='error occurred' ;;
-	esac
-clear
-echo
-echo
-echo "Vienna Reporter version ${scriptversion}"  
-echo 
+# all functions go before the main part of the script
 
 ######### get_nickname function ##########
 function get_nickname(){
@@ -699,6 +681,28 @@ return 0
 
 ############# start of main script ###########
 # all functions must precede this #
+
+# get the Fossil manifest
+manifest='Not found, no worries, it does not matter'
+if [ -f manifest.uuid ]
+then
+manifest=`cat manifest.uuid`
+fi
+# find out if the user is an admin
+id | grep '(admin)'
+Admin=$?
+case $Admin in 
+	0 ) AdminText=yes ;; 
+        1 ) AdminText=no  ;;
+	2 ) AdminText='error occurred' ;;
+	esac
+clear
+echo
+echo
+echo "Vienna Reporter version ${scriptversion}"  
+echo 
+
+
 
 if ! which -s uuidgen
 then
