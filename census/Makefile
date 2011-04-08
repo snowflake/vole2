@@ -14,7 +14,7 @@ docs:
 
 zip:	clean docs gpg checkedin
 	cp ../manifest.uuid .
-	zip vlcr.zip ${FILES}
+	zip -MM vlcr.zip ${FILES}
 
 gpg:
 	gpg --no-armor --detach-sign vlcr.sh
