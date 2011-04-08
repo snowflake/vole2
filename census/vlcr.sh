@@ -704,7 +704,7 @@ docgen  - generate documentation in the current directory
 If option is not supplied vlcr will enter its menu-driven mode
 end_of_givehelp_x201
 }
-
+############ end of givehelp function #########
 ############ begin process_arguments function  ############
 function process_arguments() {
 case "$1" in 
@@ -715,6 +715,13 @@ case "$1" in
 return 0
 }
 ############# end process_arguments function #############
+
+############## begin generate_local_docs function #######
+function generate_local_docs(){
+quick_start_gen  quick_start.html
+
+}
+############## end generate_local_docs function #########
 
 
 ############# start of main script ###########
