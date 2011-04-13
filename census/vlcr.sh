@@ -31,6 +31,11 @@ VINSTALL="/tmp/vlcr.${USER}.vienna.html"
 # where the crash reporter files live
 CR=~/Library/Logs/CrashReporter
 
+Vienna_user=No
+Vienna_path=~/Library/Vienna
+Vienna_db=${Vienna_path}/database3.db
+
+
 # all apps need application support
 appsupportdir='/Library/Application Support/Vienna Reporter'
 Cookiefile="${appsupportdir}/ViennaReporter.cookie.txt"
@@ -57,6 +62,16 @@ nickset=1
 fi
 }
 ########## end of get_nickname function ######
+
+########## begin vienna_user_q function ######
+function vienna_user_q(){
+	if [ -f "${Vienna_db}" ]
+		then
+			Vienna_user=yes
+		fi
+	return 0
+}
+########## end vienna_user_q function #######
 
 ############### nickname setting function #######
 function cix_nick() {
@@ -143,6 +158,7 @@ function standard_header() {
 echo Cix user nickname: $nick 
 echo Local user name: $USER 
 echo Admin user: $AdminText
+echo Vienna user: "${Vienna_user}"
 echo Vienna version from user: $vers 
 echo Report type: ${REPORT_TYPE} 
 echo Script run on: ${datenow} 
@@ -850,7 +866,8 @@ echo "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
 echo 
 read -p "press return to acknowledge this message : " junk
 fi
-
+# set the Vienna_user string
+vienna_user_q
 echo 'Please wait while we find Vienna on your Mac ...'
 vienna_full=$( system_profiler SPApplicationsDataType | find_vienna )
 echo "${vienna_full}" | grep 'Version:\|detected'
