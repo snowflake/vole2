@@ -470,7 +470,7 @@ Now for the important step!
 
 === Paste the clipboard into the message window. ===
 
-Take care not to disturb the census data.
+Take care not to disturb the report data.
 
 Now send the message.
 
@@ -483,7 +483,8 @@ Problems
 When pasting the clipboard into Thunderbird, it sometimes comes up with
 a message "Found an attachment keyword XX". It is trying to be too
 clever. Close the yellow window by clicking on the litte X icon
-on the right and send the message as usual.
+on the right and send the message as usual. See more bugs and issues on the 
+bugs page.
 
 For the security conscious.
 ---------------------------
@@ -494,25 +495,34 @@ A:
 Most of this information is gathered by the script automatically.
 Basic information about your Mac.
 Your Vienna version.
+Any Vienna installations that the script can find. (This is done by
+system_profiler)
 Whether you have the development system installed and which
 version.
 Your Mac's hostname.
 Your cix nickname and login name on your Mac.
 System log messages that relate to Vienna.
 A list of Crash Reporter files that relate to Vienna. We don't collect
-the files at the moment..
+the files at the moment. Crash Reporter is the OS X program that gives you
+those annoying screens about "Application XXX has quit unexpectedly".
 
 Q: How do I find out what is being sent?
 
 A:
-Read the file temporary-file in the census directory.
-Review the script vlcr.sh.sh.
+There is a facility to view the reports in your browser.
+Read the file /tmp/vlcr.<your-login-name>.report.temporary.txt.
+Review the script vlcr.sh. (all this will change in a future release)
 
-Q: What programs are used to create the census.
+Q: What directory is used for temporary files?
 
-A: census.sh - a small Bash shell script available for review by anyone.
+A: /tmp.  Look for files beginning "vlcr."  You can erase the files
+if you want, provided you own them.  The system will clean them up eventually.
+
+Q: What programs are used to create the reports?
+
+A: vlcr.sh  - a small Bash shell script available for review by anyone.
 Standard system utilities such as gzip bzcat pbcopy grep uuencode
-hostname uname uuidgen and (if it exists) xcodebuild.
+hostname uname uuidgen defaults and (if it exists) xcodebuild.
 Your default email application.
 
 Q: Why is the census data sent in BASE64 or UUencoded form?
@@ -605,7 +615,7 @@ The full manual is still out of date.
 
 The manual does not it clear that the script should be run from
 an administrator account the first time it is used. This is so
-the cookie is set correctly and the cix password is saved.
+the cookie is set correctly and the cix nickname is saved.
 
 Undocumentated features
 -----------------------
