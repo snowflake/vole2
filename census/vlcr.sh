@@ -81,6 +81,24 @@ nickset=1
 }
 ############### end of nickanme setting #########
 
+############### begin cr_uuid function ########
+# get Mac crash report UUID for the current account
+function cr_uuid(){
+	if ! which -s defaults
+		then
+			echo 'defaults: program not found'
+			return 0
+		fi
+	if defaults read com.apple.crashreporter userUUID 2>/dev/null
+		then
+			return 0
+		else
+			echo 'Not set'
+			return 0
+		fi
+	return 0
+}
+############## end cr_uuid function ###########
 ############### html_entities function ##########
 # see HTML spec 4.01
 function html_entities(){
@@ -132,6 +150,7 @@ echo Script version: $scriptversion
 echo Local time: `date`
 echo Report ID: ${reportid} 
 echo Cookie: ${Cookie} 
+echo Mac CrashReporter UUID: $(cr_uuid)
 echo Fossil manifest SHA1: ${manifest} 
 if  which -s openssl 
 then 
