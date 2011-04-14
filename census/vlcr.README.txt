@@ -1,0 +1,4 @@
+The vlcr command line scripts have now moved to their own fossil
+reporter.fossil
+
+
