@@ -2374,7 +2374,7 @@ abortLabel:
 	// - No paging in terminal
 	int recentCount = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_RecentOnJoin];
 
-	[self writeStringWithFormat:YES string:@"opt terse comp y ref y term pag 0 term width 300 edit v bit8 y recent %d u z d z q\n", recentCount];
+	[self writeStringWithFormat:YES string:@"opt missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent %d u z d z q\n", recentCount];
 	[self readAndScanForMainPrompt:&endOfFile];
 	if (endOfFile)
 		return MA_Connect_Aborted;
