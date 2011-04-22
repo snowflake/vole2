@@ -68,7 +68,7 @@ printf '"Xcode Version Minor: %s\\n"\n' "${XCODE_VERSION_MINOR}" >>${OF}
 echo \; >>${OF}
 printf 'int unchecked_files = %d;\n' $unchecked_files >>${OF}
 printf 'char source_code_fossil_uuid[]="%s";\n' $uuid >>${OF}
-printf 'char build_uuid="%s";\n' "${build_uuid}" >> ${OF}
+printf 'char build_uuid[]="%s";\n' "${build_uuid}" >> ${OF}
 if [ $unchecked_files -ne 0 ]
 	then 
 		echo ERROR files not checked into Fossil

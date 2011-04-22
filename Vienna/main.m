@@ -29,10 +29,18 @@ int main(int argc, const char *argv[])
 		} else if (!strcmp("-d",argv[1])) {
 			printf("%s", buildinfo);
 			exit(0);
-		} else if (!strcmp("-h", argv[1])){ // help requested
+		} else if(!strcmp("-b", argv[1])){
+			printf("%s\n", build_uuid);
+			exit(0);
+		} else if(!strcmp("-c", argv[1])){
+			printf("%s\n",source_code_fossil_uuid);
+			exit(0);
+ 		} else if (!strcmp("-h", argv[1])){ // help requested
 			printf("Usage:\n");
 			printf("-v   Display version (brief)\n");
 			printf("-d   Display version and build information (full)\n");
+			printf("-b   Display build UUID\n";
+			printf("-c   Display Fossil checkin\n");
 			exit(1);   
 		}
 	}
