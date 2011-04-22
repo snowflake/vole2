@@ -127,7 +127,7 @@
 -(BOOL)sendString:(NSString *)stringToSend
 {
 	int length = [stringToSend length];
-	const char * stringBytes = (char *)[stringToSend cString];
+	const char * stringBytes = (char *)[stringToSend cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	return [self sendBytes:stringBytes length:length];
 }
 

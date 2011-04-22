@@ -62,7 +62,7 @@
 	// check if we've got a raw IP address here and skip the
 	// DNS lookup if so.
 	struct hostent * hostentry;
-	hostentry = gethostbyname([address cString]);
+	hostentry = gethostbyname([address cStringUsingEncoding:NSWindowsCP1252StringEncoding]);
 	if (hostentry == NULL)
 	{
 		[self close];

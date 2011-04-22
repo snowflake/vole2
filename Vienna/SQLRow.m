@@ -75,7 +75,7 @@
 		return nil;
 	
 	for( index = 0; index < mColumnCount; index++ )
-		if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		if( strcmp( mColumns[ index ], [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
 			break;
 	
 	return [self stringForColumnAtIndex:index];
@@ -89,7 +89,7 @@
 		return nil;
 	
 	for( index = 0; index < mColumnCount; index++ )
-		if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		if( strcmp( mColumns[ index ], [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
 			break;
 	
 	return [self stringForColumnAtIndexNoCopy:index];

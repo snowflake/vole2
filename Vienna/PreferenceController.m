@@ -384,7 +384,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 
 	spec.fCreator = creatorCode;
 	// Make a Pascal string.
-	memcpy(&spec.name[1], [newHandler cString], [newHandler length]);
+	memcpy(&spec.name[1], [newHandler cStringUsingEncoding:NSWindowsCP1252StringEncoding], [newHandler length]);
 	spec.name[0] = [newHandler length];
 	ICSetPref(internetConfigHandler, kICHelper "cix", attr, &spec, sizeof(spec));
 }

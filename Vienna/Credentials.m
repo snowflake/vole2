@@ -74,8 +74,8 @@
  */
 -(NSString *)getPasswordFromKeychain:(NSString *)theUsername
 {
-	const char * cServiceName = [[NSString stringWithFormat:@"Vienna:%@", serviceName] cString];
-	const char * cUsername = [username cString];
+	const char * cServiceName = [[NSString stringWithFormat:@"Vienna:%@", serviceName] cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+	const char * cUsername = [username cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	UInt32 passwordLength;
 	void * passwordPtr;
 	NSString * thePassword;
@@ -109,9 +109,9 @@
  */
 -(void)setPassword:(NSString *)newPassword
 {
-	const char * cServiceName = [[NSString stringWithFormat:@"Vienna:%@", serviceName] cString];
-	const char * cPassword = [newPassword cString];
-	const char * cUsername = [username cString];
+	const char * cServiceName = [[NSString stringWithFormat:@"Vienna:%@", serviceName] cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+	const char * cPassword = [newPassword cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+	const char * cUsername = [username cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	SecKeychainItemRef itemRef;
 	OSStatus status;
 

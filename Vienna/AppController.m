@@ -2308,7 +2308,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	[underlineAttr setValue:[NSNumber numberWithInt:NSSingleUnderlineStyle] forKey:NSUnderlineStyleAttributeName];
 	
 	// If message text begins with <html> then we render as HTML only
-	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cString] length:[messageText length]];
+	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding] length:[messageText length]];
 	if ([messageText hasPrefix:@"<HTML>"])
 	{
 		attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
@@ -2326,7 +2326,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		@try 
 		{
 			mactext = [[NSString alloc] initWithData: chardata encoding: enc];
-			charptr = [mactext cString];
+			charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString: mactext];
 			messageText = mactext;
 		}
@@ -2334,7 +2334,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		{
 			// Can't convert the string, display it as-is
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString:messageText];
-			charptr = [messageText cString];
+			charptr = [messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 		}
 		[chardata autorelease];
 		[mactext autorelease];
@@ -4709,7 +4709,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		Folder * srcFolder = [db folderFromID:[thisMessage folderId]];
 		if (IsRSSFolder(srcFolder))
 		{
-			NSData * textData = [[NSData alloc] initWithBytes:[text cString] length:[text length]];
+			NSData * textData = [[NSData alloc] initWithBytes:[text cStringUsingEncoding:NSWindowsCP1252StringEncoding] length:[text length]];
 			NSAttributedString * attrString = [[NSAttributedString alloc] initWithHTML:textData documentAttributes:nil];
 			[newtext appendFormat: @"%@\n", [attrString string]];
 			[attrString release];

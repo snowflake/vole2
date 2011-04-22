@@ -166,7 +166,7 @@
  */
 -(NSString *)reversedString
 {
-	const char * cString = [self cString];
+	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	char * rcString = strdup(cString);
 	NSString * reversedString = nil;
 
@@ -191,7 +191,7 @@
 -(NSMutableArray *)rewrapString:(int)wrapColumn
 {
 	NSMutableArray * arrayOfLines = [NSMutableArray array];
-	const char * cString = [self cString];
+	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	const char * lineStart;
 	int lineLength;
 	int indexOfEndOfLastWord;

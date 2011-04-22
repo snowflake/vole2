@@ -199,7 +199,7 @@
 	if ((self = [super init]) != nil)
 	{
 		criteriaTree = [[NSMutableArray alloc] init];
-		NSData * data = [NSData dataWithBytes:[string cString] length:[string length]];
+		NSData * data = [NSData dataWithBytes:[string cStringUsingEncoding:NSWindowsCP1252StringEncoding] length:[string length]];
 		XMLParser * xmlTree = [[XMLParser alloc] initWithData:data];
 		XMLParser * criteriaGroup = [xmlTree treeByName:@"criteriagroup"];
 		int index = 0;

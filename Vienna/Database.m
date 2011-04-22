@@ -2598,7 +2598,7 @@ enum {
 -(NSString *)convertFromISO:(NSString *)messageText
 {
 	NSString *mactext;
-	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cString] length:[messageText length]];
+	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cStringUsingEncoding:NSISOLatin1StringEncoding] length:[messageText length]];
 	mactext = [[NSString alloc] initWithData: chardata encoding: NSISOLatin1StringEncoding];
 	[chardata release];
 	
