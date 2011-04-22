@@ -13,9 +13,9 @@
 
 int main(int argc, const char *argv[])
 {
-	int i;
-	for(i=0; i<argc; i++)
-	    printf("== arg %d == %s\n", i, argv[i]);
+	// int i;
+	// for(i=0; i<argc; i++)
+	//      printf("== arg %d == %s\n", i, argv[i]);
 
 	if(argc==2){
 		if(!strcmp("-v",argv[1])){
@@ -39,7 +39,7 @@ int main(int argc, const char *argv[])
 			printf("Usage:\n");
 			printf("-v   Display version (brief)\n");
 			printf("-d   Display version and build information (full)\n");
-			printf("-b   Display build UUID\n";
+			printf("-b   Display build UUID\n");
 			printf("-c   Display Fossil checkin\n");
 			exit(1);   
 		}
