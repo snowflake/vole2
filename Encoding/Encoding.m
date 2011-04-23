@@ -5,6 +5,6 @@
 -(void) awakeFromNib
 {
 NSString *t = @"hello";
-[encoding setObjectValue t]
+[encoding setObjectValue: t]
 
 }
