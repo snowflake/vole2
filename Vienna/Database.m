@@ -2598,7 +2598,7 @@ enum {
 -(NSString *)convertFromISO:(NSString *)messageText
 {
 	NSString *mactext;
-	// DJE changed this
+	// DJE changed this - what is this method supposed to achieve?
 	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding] length:[messageText length]];
 	mactext = [[NSString alloc] initWithData: chardata encoding: NSWindowsCP1252StringEncoding];
 	[chardata release];
