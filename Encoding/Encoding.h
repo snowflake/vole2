@@ -3,7 +3,7 @@
 @interface Encoding : NSObject 
 {
  
-IBOutlet NSTextView encoding;
+IBOutlet NSTextField *encoding;
 }
 
 @end
