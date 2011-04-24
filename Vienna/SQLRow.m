@@ -61,7 +61,7 @@
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	
+	XXX deprecated API here DJE
 	return [[[NSString alloc] initWithCStringNoCopy:mColumns[ inIndex ] length:strlen( mColumns[ inIndex ]) freeWhenDone:NO] autorelease];
 }
 
@@ -110,7 +110,7 @@
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	
+	XXX deprecated API here DJE
 	return [[[NSString alloc] initWithCStringNoCopy:mRowData[ inIndex ] length:strlen( mRowData[ inIndex ]) freeWhenDone:NO] autorelease];
 }
 
