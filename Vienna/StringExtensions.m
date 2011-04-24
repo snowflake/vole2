@@ -165,7 +165,8 @@
  * Return the string reversed.
  */
 -(NSString *)reversedString
-{
+{ 
+	// DJE
 	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	char * rcString = strdup(cString);
 	NSString * reversedString = nil;
@@ -178,6 +179,7 @@
 		for (p = 0; p < length; ++p)
 			rcString[p] = cString[(length - p) - 1];
 		rcString[p] = '\0';
+		// DJE deprecated API here
 		reversedString = [[[NSMutableString alloc] initWithCString:rcString] autorelease];
 		free(rcString);
 	}

@@ -2325,13 +2325,14 @@ int messageSortHandler(id i1, id i2, void * context)
 		// Convert using selected charset.
 		@try 
 		{
+			// DJE
 			mactext = [[NSString alloc] initWithData: chardata encoding: enc];
 			charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString: mactext];
 			messageText = mactext;
 		}
 		@catch (NSException *e)
-		{
+		{	// DJE
 			// Can't convert the string, display it as-is
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString:messageText];
 			charptr = [messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding];
