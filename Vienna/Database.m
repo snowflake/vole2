@@ -2598,15 +2598,9 @@ enum {
 -(NSString *)convertFromISO:(NSString *)messageText
 {
 	NSString *mactext;
-	// DJE changed this - what is this method supposed to achieve?
-//	NSLog(@"convert from ISO %@", messageText);
-//	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding] length:[messageText length]];
-//	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cString] length:[messageText length]];
-//  DJE try this:
-	NSData *chardata =  [messageText dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion: YES ];
-	mactext = [[NSString alloc] initWithData: chardata encoding: NSWindowsCP1252StringEncoding];
-//	NSLog(@" converted to %@", mactext);
-//	[chardata release];   // It is not our responsibilty to release if we use dataUsingEncoding. If you do you get a mysterious crash.
+	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cString] length:[messageText length]];
+	mactext = [[NSString alloc] initWithData: chardata encoding: NSISOLatin1StringEncoding];
+	[chardata release];
 	
 	return mactext;
 }

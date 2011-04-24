@@ -2577,7 +2577,7 @@ abortLabel:
 
 			for (c = 0; c < count && matchIndex == NSNotFound; ++c)
 			{
-				const char * scanString = [[scanStrings objectAtIndex:c] cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+				const char * scanString = [[scanStrings objectAtIndex:c] cString];
 				if (memcmp(matchbuffer, scanString, strlen(scanString)) == 0)
 					matchIndex = c;
 			}

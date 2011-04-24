@@ -230,7 +230,7 @@
 			dateString,
 			commentString,
 			messageText];
-		NSData * msgData = [NSData dataWithBytes:[msgText cStringUsingEncoding:NSISOLatin1StringEncoding] length:[msgText length]];
+		NSData * msgData = [NSData dataWithBytes:[msgText cString] length:[msgText length]];
 		[fileHandle writeData:msgData];
 	}
 	

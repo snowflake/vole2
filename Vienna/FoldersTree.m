@@ -209,7 +209,7 @@
  */
 -(int)folderFromPath:(int)parentId path:(NSString *)path
 {
-	const char * cString = [path cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+	const char * cString = [path cString];
 	TreeNode * parentNode = [rootNode nodeFromID:parentId];
 	NSRange range;
 

@@ -61,7 +61,7 @@
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	XXX deprecated API here DJE
+	
 	return [[[NSString alloc] initWithCStringNoCopy:mColumns[ inIndex ] length:strlen( mColumns[ inIndex ]) freeWhenDone:NO] autorelease];
 }
 
@@ -75,7 +75,7 @@
 		return nil;
 	
 	for( index = 0; index < mColumnCount; index++ )
-		if( strcmp( mColumns[ index ], [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
+		if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
 			break;
 	
 	return [self stringForColumnAtIndex:index];
@@ -89,7 +89,7 @@
 		return nil;
 	
 	for( index = 0; index < mColumnCount; index++ )
-		if( strcmp( mColumns[ index ], [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
+		if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
 			break;
 	
 	return [self stringForColumnAtIndexNoCopy:index];
@@ -110,7 +110,7 @@
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	XXX deprecated API here DJE
+	
 	return [[[NSString alloc] initWithCStringNoCopy:mRowData[ inIndex ] length:strlen( mRowData[ inIndex ]) freeWhenDone:NO] autorelease];
 }
 
