@@ -29,6 +29,8 @@
 #include <unistd.h>
 #include <sys/uio.h>
 
+#import "sanitise_string.h"
+
 #define BF_LINE_MAX			128
 #define BF_STRING_MAX		256
 
