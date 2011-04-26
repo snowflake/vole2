@@ -230,7 +230,11 @@
 			dateString,
 			commentString,
 			messageText];
-		NSData * msgData = [NSData dataWithBytes:[msgText cString] length:[msgText length]];
+		// DJE deprecated API here
+		//     NSData * msgData = [NSData dataWithBytes:[msgText cString] length:[msgText length]];
+		// replace with
+		NSData * msgData = [NSData dataWithBytes:[msgText cStringUsingEncoding:NSWindowsCP1252StringEncoding] length:[msgText length]];
+
 		[fileHandle writeData:msgData];
 	}
 	
