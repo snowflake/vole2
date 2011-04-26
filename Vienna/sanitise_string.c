@@ -1,3 +1,4 @@
+#import <stddef.h>
 #import "sanitise_string.h"
 #import "sanitise_string_private.h"
 
