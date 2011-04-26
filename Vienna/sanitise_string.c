@@ -11,7 +11,7 @@ sanitise_string(char *p)
 	 * feeding them to NSString conversion routines
 	 */
 	char           *cp = p;
-	char		c;
+	unsigned char		c;
 	if (p == NULL)
 		return p;
 	while ((c = *cp) != '\0')
