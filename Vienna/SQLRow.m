@@ -115,7 +115,7 @@
 	// deprecated API here DJE
 	// return [NSString stringWithCString:mRowData[ inIndex ]];
 	// replacement here
-	return [NSString stringWithCString:mColumns[ inIndex ]
+	return [NSString stringWithCString:mRowData[ inIndex ]
 							  encoding:NSWindowsCP1252StringEncoding];
 
 	
