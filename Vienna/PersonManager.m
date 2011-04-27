@@ -169,7 +169,14 @@
 			// better than NSScanner for the parsing).
 			NSMutableString * resumeText = [NSMutableString stringWithString:resumeXMLText];
 			[resumeText appendString:@"</resume>"];
-			NSData * data = [NSData dataWithBytes:[resumeText cString] length:[resumeText length]];
+			// deprecated API here DJE
+			//NSData * data = [NSData dataWithBytes:[resumeText cString] length:[resumeText length]];
+			// replacement here
+			NSData * data = [NSData 
+							 dataWithBytes:[resumeText 
+											cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+										   length:[resumeText length]];
+
 			XMLParser * xmlTree = [[XMLParser alloc] initWithData:data];
 			
 			// Get the resume block

@@ -2596,9 +2596,11 @@ enum {
 }
 
 -(NSString *)convertFromISO:(NSString *)messageText
-{
+{// this method is only used to display the message title.  Should it be call convertToISO
 	NSString *mactext;
-	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cString] length:[messageText length]];
+	NSData * chardata = [[NSData alloc] initWithBytes:[messageText
+													   cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+											   length:[messageText length]];
 	mactext = [[NSString alloc] initWithData: chardata encoding: NSISOLatin1StringEncoding];
 	[chardata release];
 	

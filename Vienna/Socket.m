@@ -155,6 +155,7 @@
 		if (count == BF_LINE_MAX-1)
 		{
 			lineBuffer[count] = '\0';
+			// deprecated API was here
 			sanitise_string(lineBuffer);
 			[lineString appendString:[NSString stringWithCString:lineBuffer encoding: NSWindowsCP1252StringEncoding]];
 			count = 0;
@@ -229,7 +230,9 @@
 			//	;
 			// DJE Replace with:
 			sanitise_string(data);
-			string= [[[NSString alloc] initWithBytes:(data) length:(length) encoding:NSWindowsCP1252StringEncoding ] autorelease];
+			string= [[[NSString alloc] initWithBytes:(data) 
+											  length:(length)
+											encoding:NSWindowsCP1252StringEncoding ] autorelease];
 			
 
 		}

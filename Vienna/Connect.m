@@ -2562,7 +2562,9 @@ abortLabel:
 		if (bufferindex == MAX_LINE - 1)
 		{
 			linebuffer[bufferindex] = '\0';
-			[self sendActivityStringToDelegate:[NSString stringWithCString:linebuffer]];
+			// deprecated API was here DJE
+			[self sendActivityStringToDelegate:[NSString stringWithCString:linebuffer
+																  encoding:NSWindowsCP1252StringEncoding]];
 			bufferindex = 0;
 		}
 		if (ch != '\r')
@@ -2589,7 +2591,9 @@ abortLabel:
 		ch = [self readServiceChar:endOfFile];
 	}
 	linebuffer[bufferindex] = '\0';
-	[self sendActivityStringToDelegate:[NSString stringWithCString:linebuffer]];
+	// deprecated API was here DJE
+	[self sendActivityStringToDelegate:[NSString stringWithCString:linebuffer
+														  encoding:NSWindowsCP1252StringEncoding]];
 	
 	// Exit
 	free(matchbuffer);

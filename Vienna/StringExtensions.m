@@ -166,7 +166,7 @@
  */
 -(NSString *)reversedString
 {
-	const char * cString = [self cString];
+	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	char * rcString = strdup(cString);
 	NSString * reversedString = nil;
 
@@ -188,10 +188,12 @@
  * Reformat a string so that lines are broken at the specified
  * column.
  */
+// This method is only used by Connect.m
 -(NSMutableArray *)rewrapString:(int)wrapColumn
 {
 	NSMutableArray * arrayOfLines = [NSMutableArray array];
-	const char * cString = [self cString];
+	// deprecated API was here, changed by DJE
+	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	const char * lineStart;
 	int lineLength;
 	int indexOfEndOfLastWord;
@@ -217,7 +219,14 @@
 		}
 		if (*cString == '\n')
 		{
-			[arrayOfLines addObject:[NSString stringWithCString:lineStart length:lineLength]];
+			// Deprecated API here DJE
+			//[arrayOfLines addObject:[NSString stringWithCString:lineStart length:lineLength]];
+			// converted to
+			[arrayOfLines addObject:[[[NSString alloc] initWithBytes:lineStart 
+															  length:lineLength
+															encoding:NSWindowsCP1252StringEncoding] autorelease]];
+			// end of conversion
+
 			lineLength = 0;
 			indexOfEndOfLastWord = 0;
 			lineStart = ++cString;
@@ -226,7 +235,14 @@
 		{
 			if (indexOfEndOfLastWord == 0)
 				indexOfEndOfLastWord = lineLength;
-			[arrayOfLines addObject:[NSString stringWithCString:lineStart length:indexOfEndOfLastWord]];
+			// deprecated API here DJE
+//			[arrayOfLines addObject:[NSString stringWithCString:lineStart length:indexOfEndOfLastWord]];
+			// replaced by
+			[arrayOfLines addObject:[[[NSString alloc ] initWithBytes: lineStart 
+															   length:indexOfEndOfLastWord
+															 encoding:NSWindowsCP1252StringEncoding] autorelease]];
+			// end of replacement
+
 			lineLength = 0;
 			lineStart += indexOfEndOfLastWord;
 			
@@ -241,7 +257,13 @@
 		}
 	}
 	if (lineLength)
-		[arrayOfLines addObject:[NSString stringWithCString:lineStart length:lineLength]];
+		// deprecated API here DJE
+		//[arrayOfLines addObject:[NSString stringWithCString:lineStart length:lineLength]];
+		// replaced by
+		[arrayOfLines addObject:[[[NSString alloc ] initWithBytes:lineStart 
+														   length:lineLength
+														 encoding: NSWindowsCP1252StringEncoding ] autorelease]];
+
 	return arrayOfLines;
 }
 @end

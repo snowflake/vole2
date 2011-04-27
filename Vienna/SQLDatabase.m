@@ -123,8 +123,19 @@
 	
 	if( !mDatabase )
 		return nil;
-	
-	result = sqlite3_get_table( mDatabase, [inQuery lossyCString], &results, &rows, &columns, NULL );
+	// deprecated API here DJE
+//	result = sqlite3_get_table( mDatabase, [inQuery lossyCString], &results, &rows, &columns, NULL );
+	// replacement here
+	NSData  *ls = [ inQuery dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion: YES];
+	char *qs = calloc( [ls length] +1, 1);
+	if(qs == NULL){
+		NSLog(@"calloc failed at %s %d",__FILE__, __LINE__);
+		return nil;
+	}
+	[ ls getBytes: qs length: [ls length]];
+	result = sqlite3_get_table( mDatabase, qs , &results, &rows, &columns, NULL );
+	free(qs);
+	// end of replacement
 	if( result != SQLITE_OK )
 	{
 		sqlite3_free_table( results );

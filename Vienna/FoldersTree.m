@@ -138,8 +138,12 @@
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_FolderFont];
 	cellFont = [NSUnarchiver unarchiveObjectWithData:fontData];
 	boldCellFont = [[NSFontManager sharedFontManager] convertWeight:YES ofFont:cellFont];
-	
-	height = [boldCellFont defaultLineHeightForFont];
+	// deprecated API was here DJE
+	//	height = [boldCellFont defaultLineHeightForFont];
+	NSLayoutManager *nsl = [[ NSLayoutManager alloc] init];
+	height= (int) [ nsl defaultLineHeightForFont: boldCellFont];
+	[ nsl release];
+
 	[outlineView setRowHeight:height + 3];
 }
 
@@ -208,8 +212,8 @@
  * Parses off a folder and returns the ID of the leaf node
  */
 -(int)folderFromPath:(int)parentId path:(NSString *)path
-{
-	const char * cString = [path cString];
+{// deprecated API was here DJE
+	const char * cString = [path cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	TreeNode * parentNode = [rootNode nodeFromID:parentId];
 	NSRange range;
 

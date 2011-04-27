@@ -92,7 +92,13 @@
 		[feedURL setStringValue:@""];
 		if (pboardData != nil)
 		{
-			NSString * pasteString = [NSString stringWithCString:[pboardData bytes] length:[pboardData length]];
+			// deprecated API here, DJE
+//			NSString * pasteString = [NSString stringWithCString:[pboardData bytes] length:[pboardData length]];
+//	replaced by  ( use ISOLatin1 encoding as it allows losses, we are only interested in an URL)
+			NSString * pasteString = [[[NSString alloc] initWithBytes: [pboardData bytes]
+															   length: [pboardData length]
+															 encoding: NSISOLatin1StringEncoding ] autorelease ];
+// end of changes
 			if (pasteString != nil && ([[pasteString lowercaseString] hasPrefix:@"http://"] || [[pasteString lowercaseString] hasPrefix:@"feed://"]))
 			{
 				[feedURL setStringValue:pasteString];

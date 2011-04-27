@@ -592,8 +592,12 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_MessageListFont];
 	messageListFont = [NSUnarchiver unarchiveObjectWithData:fontData];
 	boldMessageListFont = [[NSFontManager sharedFontManager] convertWeight:YES ofFont:messageListFont];
-	
-	height = [boldMessageListFont defaultLineHeightForFont];
+// deprecated API was here DJE	
+//	height = [boldMessageListFont defaultLineHeightForFont];
+	// replacement here
+	NSLayoutManager *nslm = [[NSLayoutManager alloc] init];
+	height = (int) [ nslm defaultLineHeightForFont: boldMessageListFont ];
+	[ nslm release];
 	[messageList setRowHeight:height + 3];
 }
 
@@ -2308,7 +2312,12 @@ int messageSortHandler(id i1, id i2, void * context)
 	[underlineAttr setValue:[NSNumber numberWithInt:NSSingleUnderlineStyle] forKey:NSUnderlineStyleAttributeName];
 	
 	// If message text begins with <html> then we render as HTML only
-	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cString] length:[messageText length]];
+	// Deprecated API was here DJE
+	// The messageText should have already been sanitised, otherwise expect a crash (DJE)
+	NSData * chardata = [[NSData alloc] 
+						 initWithBytes:[messageText
+										cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+						 length:[messageText length]];
 	if ([messageText hasPrefix:@"<HTML>"])
 	{
 		attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
@@ -2326,7 +2335,11 @@ int messageSortHandler(id i1, id i2, void * context)
 		@try 
 		{
 			mactext = [[NSString alloc] initWithData: chardata encoding: enc];
-			charptr = [mactext cString];
+			// deprecated API was here DJE
+		//	charptr = [mactext cString];
+			// replacement here
+			charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString: mactext];
 			messageText = mactext;
 		}
@@ -2334,7 +2347,11 @@ int messageSortHandler(id i1, id i2, void * context)
 		{
 			// Can't convert the string, display it as-is
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString:messageText];
-			charptr = [messageText cString];
+			// deprecated API was here DJE
+			//charptr = [messageText cString];
+			// replacement here
+			charptr = [messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+
 		}
 		[chardata autorelease];
 		[mactext autorelease];
@@ -4709,7 +4726,11 @@ int messageSortHandler(id i1, id i2, void * context)
 		Folder * srcFolder = [db folderFromID:[thisMessage folderId]];
 		if (IsRSSFolder(srcFolder))
 		{
-			NSData * textData = [[NSData alloc] initWithBytes:[text cString] length:[text length]];
+			// deprecated API was hare DJE
+			NSData * textData = [[NSData alloc] 
+								 initWithBytes:[text
+												cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+								 length:[text length]];
 			NSAttributedString * attrString = [[NSAttributedString alloc] initWithHTML:textData documentAttributes:nil];
 			[newtext appendFormat: @"%@\n", [attrString string]];
 			[attrString release];

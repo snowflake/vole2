@@ -53,8 +53,11 @@
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	
-	return [NSString stringWithCString:mColumns[ inIndex ]];
+	// deprecated API was here DJE
+	//	return [NSString stringWithCString:mColumns[ inIndex ]];
+	//replacement here
+	return [NSString stringWithCString:mColumns[ inIndex ] encoding:NSWindowsCP1252StringEncoding];
+
 }
 
 -(NSString*)nameOfColumnAtIndexNoCopy:(int)inIndex
@@ -75,7 +78,11 @@
 		return nil;
 	
 	for( index = 0; index < mColumnCount; index++ )
-		if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		//deprecated API here DJE
+		//if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		// replacement here
+		if( strcmp( mColumns[ index ],
+				   [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
 			break;
 	
 	return [self stringForColumnAtIndex:index];
@@ -89,7 +96,10 @@
 		return nil;
 	
 	for( index = 0; index < mColumnCount; index++ )
-		if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		// deprecated API here DJE
+		//if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		// replcement here
+		if( strcmp( mColumns[ index ], [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
 			break;
 	
 	return [self stringForColumnAtIndexNoCopy:index];
@@ -102,8 +112,13 @@
 
 	if (mRowData[ inIndex ] == nil) // PJC
 		return @"";
+	// deprecated API here DJE
+	// return [NSString stringWithCString:mRowData[ inIndex ]];
+	// replacement here
+	return [NSString stringWithCString:mColumns[ inIndex ]
+							  encoding:NSWindowsCP1252StringEncoding];
+
 	
-	return [NSString stringWithCString:mRowData[ inIndex ]];
 }
 
 -(NSString*)stringForColumnAtIndexNoCopy:(int)inIndex
