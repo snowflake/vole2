@@ -268,7 +268,8 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 	{
 		VPerson * person = [db retrievePerson:[credentials username]];
 		[task setActionData:[person info]];
-		[person release];
+		// static analyser complains 
+		// [person release];
 	}
 
 	// Handle RSS connections specially. Create a local array of all RSS sites

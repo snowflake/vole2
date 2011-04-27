@@ -131,7 +131,8 @@ enum {
 		NSString * versionString = [[results rowAtIndex:0] stringForColumn:@"version"];
 		databaseVersion = [versionString intValue];
 	}
-	[results release];
+	// static analyser complains
+	// [results release];
 
 	// Save this thread handle to ensure we trap cases of calling the db on
 	// the wrong thread.
@@ -283,7 +284,8 @@ enum {
 -(void)executeSQL:(NSString *)sqlStatement
 {
 	SQLResult * result = [sqlDatabase performQuery:sqlStatement];
-	[result release];
+	// static analyser complains
+	// [result release];
 }
 
 /* executeSQLWithFormat
@@ -297,7 +299,8 @@ enum {
 	NSString * query = [[NSString alloc] initWithFormat:sqlStatement arguments:arguments];
 	SQLResult * result = [sqlDatabase performQuery:query];
 	[query release];
-	[result release];
+	// static analyser complains
+	// [result release];
 }
 
 /* verifyThreadSafety
@@ -318,7 +321,8 @@ enum {
 	[self verifyThreadSafety];
 	SQLResult * result = [sqlDatabase performQueryWithFormat:@"update info set last_opened='%@'", [NSDate date]];
 	readOnly = (result == nil);
-	[result release];
+	// static analyser complains
+	// [result release];
 }
 
 /* addField
@@ -509,7 +513,8 @@ enum {
 				[category release];
 			}
 		}
-		[results release];
+		// static analsyer complains
+		// [results release];
 		initializedForumArray = YES;
 	}
 }
@@ -618,7 +623,8 @@ enum {
 		// Add this new category to our internal cache
 		[newCategory setCategoryId:newItemId];
 		[categoryArray setObject:newCategory forKey:[NSNumber numberWithInt:newItemId]];
-		[results release];
+		// staic analyser complains
+		// [results release];
 	}
 	return [newCategory categoryId];
 }
@@ -665,7 +671,8 @@ enum {
 		[forum setDescription:[newForum description]];
 		[forum setStatus:[newForum status]];
 		[forum setCategoryId:[newForum categoryId]];
-		[results release];
+		// static analyser complains
+		// [results release];
 	}
 	else
 	{
@@ -688,7 +695,8 @@ enum {
 		// Add this new forum to our internal cache
 		[newForum setNodeId:newItemId];
 		[forumArray setObject:newForum forKey:[newForum name]];
-		[results release];
+		// static analysercomplains
+		// [results release];
 	}
 	return [newForum nodeId];
 }
@@ -748,7 +756,8 @@ enum {
 				[rssFolder release];
 			}
 		}
-		[results release];
+		// static analyser complains
+		// [results release];
 		initializedRSSArray = YES;
 	}
 }
@@ -878,7 +887,8 @@ enum {
 		Folder * folder = [self folderFromID:folderId];
 		RSSFolder * itemPtr = [[[RSSFolder alloc] initWithId:folder subscriptionURL:url update:lastUpdate] autorelease];
 		[rssFeedArray setObject:itemPtr forKey:[NSNumber numberWithInt:folderId]];
-		[results release];
+		// static analyser complains
+		// [results release];
 	}
 	return folderId;
 }
@@ -930,7 +940,8 @@ enum {
 
 	// Send a notification when new folders are added
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FolderAdded" object:itemPtr];
-	[results release];
+	// static analyser complains
+	// [results release];
 	return [itemPtr itemId];
 }
 
@@ -1432,7 +1443,8 @@ enum {
 					preparedGuid];
 			if (!results)
 				return -1;
-			[results release];
+			// static analyser complains
+			// [results release];
 			
 			// Now extract the number of the message we just inserted. This is a tricky step that tries to
 			// be as specific as possible to avoid potential race conditions. I regard the interval value to
@@ -1443,7 +1455,8 @@ enum {
 				SQLRow * row = [results rowAtIndex:0];
 				messageNumber = [[row stringForColumn:@"max(message_id)"] intValue];
 			}
-			[results release];
+			// analyser complains
+			// [results release];
 
 			// Add the message to the folder
 			[message setNumber:messageNumber];
@@ -1484,7 +1497,8 @@ enum {
 				// the read count on the folders if it changed.
 				if (old_read_flag != read_flag)
 					adjustment = (read_flag ? -1 : 1);
-				[results release];
+				// static analyser complains
+				// [results release];
 				if (wasNew != nil)
 					*wasNew = NO;
 			}
@@ -1517,7 +1531,8 @@ enum {
 				// Update folder unread count
 				if (!read_flag)
 					adjustment = 1;
-				[results release];
+				// static analyser complians
+				// [results release];
 				if (wasNew != nil)
 					*wasNew = YES;
 			}
@@ -1586,7 +1601,8 @@ enum {
 					}
 				}
 				[folder deleteMessage:messageNumber];
-				[results release];
+				// static analyser complains
+				// [results release];
 				
 				// Remove associated spotlight metadata file.
 				if ([[NSUserDefaults standardUserDefaults] boolForKey:MAPref_SaveSpotlightMetadata])
@@ -1681,7 +1697,8 @@ enum {
 				[task release];
 			}
 		}
-		[results release];
+		// static analsyer complains 
+		// [results release];
 		initializedTasksArray = YES;
 	}
 }
@@ -1807,7 +1824,8 @@ enum {
 
 	// Notify all interested parties
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_TaskChanged" object:task];
-	[result release];
+	// static analyser ccomplains
+	// [result release];
 }
 
 /* addTask
@@ -1897,7 +1915,8 @@ enum {
 	[task setTaskId:newTaskId];
 	[tasksArray insertObject:task atIndex:insertIndex];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_TaskAdded" object:task];
-	[results release];
+	// static analyser complains
+	// [results release];
 	return task;
 }
 
@@ -1947,7 +1966,8 @@ enum {
 				[criteriaTree release];
 			}
 		}
-		[results release];
+		// static analyser complains
+		// [results release];
 		initializedSearchFoldersArray = YES;
 	}
 }
@@ -2079,7 +2099,8 @@ enum {
 				[foldersArray setObject:folder forKey:[NSNumber numberWithInt:newItemId]];
 			}
 		}
-		[results release];
+		// static analyser complains 
+		// [results release];
 
 		// Load descriptions and assign to each folder.
 		results = [sqlDatabase performQuery:@"select folder_id, description, link from folder_descriptions"];
@@ -2098,7 +2119,8 @@ enum {
 				[folder setLink:linktext];
 			}
 		}
-		[results release];
+		// static analyser complains
+		// [results release];
 
 		// Done
 		initializedFoldersArray = YES;
@@ -2165,7 +2187,8 @@ enum {
 				[person release];
 			}
 		}
-		[results release];
+		// static analyser complains
+		// [results release];
 		initializedPersonArray = YES;
 	}
 }
@@ -2216,7 +2239,8 @@ enum {
 	
 	// Send a notification when new folders are added
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_PersonUpdated" object:person];
-	[results release];
+	// static analyser complains
+	// [results release];
 }
 
 /* findMessages
@@ -2296,7 +2320,8 @@ enum {
 				[message release];
 			}
 		}
-		[results release];
+		// static analyser complains
+		// [results release];
 	}
 	return messageArray;
 }
@@ -2375,7 +2400,8 @@ enum {
 				[self flushFolder:folderId];
 			}
 		}
-		[results release];
+		// analyser complains
+		// [results release];
 	}
 	return YES;
 }
@@ -2589,7 +2615,8 @@ enum {
 					[newArray addObject:[NSNumber numberWithInt:messageId]];
 				}
 			}
-			[results release];
+			// static analyser complains
+			//  [results release];
 		}
 	}
 	return [newArray sortedArrayUsingSelector:@selector(compare:)];
@@ -2719,7 +2746,8 @@ enum {
 		}
 
 		// Deallocate
-		[results release];
+		// static analyser complains 
+		// [results release];
 	}
 	return newArray;
 }
@@ -2762,7 +2790,8 @@ enum {
 			[folder setPriorityUnreadCount:0];
 			[self flushFolder:folderId];
 		}
-		[results release];
+		// static analyser complains
+		// [results release];
 	}
 }
 
@@ -2823,7 +2852,8 @@ enum {
 					countOfPriorityUnread += adjustment;
 				}
 			}
-			[results release];
+			// static analyser complains
+			// [results release];
 		}
 	}
 }
@@ -2918,7 +2948,8 @@ enum {
 			[RSSGuids setObject: title forKey:guid];
 		}
 	}
-	[results release];
+	// static analyser complains
+	// [results release];
 }
 
 /* messageText
@@ -2940,7 +2971,8 @@ enum {
 	}
 	else
 		text = @"** Cannot retrieve text for message **";
-	[results release];
+	// static analsyer complains
+	// [results release];
 	return text;
 }
 

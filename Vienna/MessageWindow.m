@@ -229,7 +229,8 @@
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_PlainTextFont];
 	NSFont * messageFont = [NSUnarchiver unarchiveObjectWithData:fontData];
 	[textView setFont:messageFont];
-	[messageFont release];
+	// static analyser complains
+	//[messageFont release];
 }
 
 /* message

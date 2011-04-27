@@ -767,7 +767,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		VPerson * person = [personManager personFromPerson:[cixCredentials username]];
 		if (person == nil)
 			[db addTask:MA_TaskCode_GetResume actionData:[cixCredentials username] folderName:@"" orderCode:MA_OrderCode_GetResume];
-		[person release];
+		// static analyser complains
+		//[person release];
 	}
 
 	// Check for application updates silently
@@ -1583,8 +1584,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	else if (rowIndex == currentSelectedRow)
 		[self refreshMessageAtRow:rowIndex];
 	else
-	{
-		[messageList selectRow:rowIndex byExtendingSelection:NO];
+	{   // DJE changed here to use NSIndexSet
+		[messageList selectRowIndexes:[ NSIndexSet indexSetWithIndex: rowIndex] byExtendingSelection:NO];
 		[self centerSelectedRow];
 	}
 }
@@ -1764,7 +1765,8 @@ int messageSortHandler(id i1, id i2, void * context)
 			NSString * personName = [message sender];
 			VPerson * person = [personManager personFromPerson:personName];
 			[profileWindow setCurrentPerson:person];
-			[person release];
+			// static analyser complains
+			// [person release];
 		}
 	}
 }
@@ -1780,7 +1782,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	{
 		person = [personManager personFromPerson:[person shortName]];
 		[profileWindow setCurrentPerson:person];
-		[person release];
+		// static analyser complains 
+		// [person release];
 	}
 }
 
@@ -2183,7 +2186,8 @@ int messageSortHandler(id i1, id i2, void * context)
 
 	NSAttributedString * attrText = [self formatMessage:messageText usePlainText:showPlainText];
 	[[textView textStorage] setAttributedString:attrText];
-	[attrText release];
+	// static analyser complains
+	// [attrText release];
 	
 	[infoBarView update:theRecord database:db];
 	[self displayMugshot:theRecord];
@@ -2224,7 +2228,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		{
 			[mugshotView setImage:nil];
 		}
-		[person release];
+		// static analyser complains
+		// [person release];
 	}
 }
 
@@ -2871,10 +2876,12 @@ int messageSortHandler(id i1, id i2, void * context)
 		{
 			NSString *reply = [self makeReplyText];
 			msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:nodePath commentNumber:(int)comment initialText:reply];
-			[reply release];
+			// static analyser complains
+			// [reply release];
 		}
 		[[msgWindow window] makeKeyAndOrderFront:self];
-		[messageArray release];
+		// static analyser complains
+		// [messageArray release];
 
 		// Clean up on the way out.
 		[criteriaDictionary release];
@@ -2913,7 +2920,8 @@ int messageSortHandler(id i1, id i2, void * context)
 
 		// Clean up at the end
 		[mailURL release];
-		[person release];
+		// static analyser complains
+		// [person release];
 		[title release];
 	}
 }
@@ -3820,7 +3828,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		NSString * personName = [message sender];
 		VPerson * person = [personManager personFromPerson:personName];
 		[profileWindow setCurrentPerson:person];
-		[person release];
+		// static analyser complains
+		// [person release];
 	}
 }
 

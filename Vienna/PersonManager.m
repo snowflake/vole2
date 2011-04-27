@@ -125,17 +125,20 @@
 		image = [self findMugshotFile:personName];
 		if (image && ![image isValid] && [personName length] > 8)
 		{
-			[image release];
+		// static analyser complains
+			//[image release];
 			image = [self findMugshotFile:[personName substringToIndex:8]];
 		}
 	}
 	if (image && ![image isValid])
 	{
-		[image release];
+		// static analyser complains
+		// [image release];
 		image = nil;
 	}
 	[newPerson setPicture:image];
-	[image release];
+// static analyser complains
+	// [image release];
 
 	// Parse the resumeX format. This will override our assumptions
 	// so this should be one of the last things we do.

@@ -47,7 +47,8 @@
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_PlainTextFont];
 	NSFont * plainTextFont = [NSUnarchiver unarchiveObjectWithData:fontData];
 	[personResume setFont:plainTextFont];
-	[plainTextFont release];
+// atatic analyser complains about this
+	// [plainTextFont release];
 
 	// Work around a Cocoa bug where the window positions aren't saved
 	[self setShouldCascadeWindows:NO];
@@ -128,7 +129,8 @@
 			[noResumeText setHidden:YES];
 			NSAttributedString * attrText = [currentPerson info] ? [[NSApp delegate] formatMessage:[currentPerson parsedInfo] usePlainText:YES] : nil;
 			[[personResume textStorage] setAttributedString:attrText];
-			[attrText release];
+		//  static analyser complains here
+			// [attrText release];
 		}
 
 		// Set the image

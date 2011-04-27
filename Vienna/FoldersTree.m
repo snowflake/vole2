@@ -289,8 +289,9 @@
 	[self expandToParent:node];
 	int rowIndex = [outlineView rowForItem:node];
 	if (rowIndex >= 0)
-	{
-		[outlineView selectRow:rowIndex byExtendingSelection:NO];
+		// DJE changed here to use an NSIndexSet
+	{	NSIndexSet *ind  =  [NSIndexSet indexSetWithIndex: rowIndex ];
+		[outlineView selectRowIndexes: ind byExtendingSelection:NO];
 		[outlineView scrollRowToVisible:rowIndex];
 		
 		// Now make the last folder of this parent visible, so the whole list of sub-folders
@@ -406,7 +407,9 @@
     {
 		// Select the row under the cursor if it isn't already selected
 		if ([outlineView numberOfSelectedRows] <= 1)
-			[outlineView selectRow:row byExtendingSelection:NO];
+			// DJE changed here to get rid of selectRow:byExtendingSelection log message 
+			[outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex: row] 
+					 byExtendingSelection:NO];
     }
 }
 

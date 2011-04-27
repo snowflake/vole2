@@ -69,10 +69,10 @@
 // #warning are there more initWithCStringNoCopy in the rest of the source?
 //	return [[[NSString alloc] initWithCStringNoCopy:mColumns[ inIndex ] length:strlen( mColumns[ inIndex ]) freeWhenDone:NO] autorelease];
 // replace with:
-	return [[[NSString alloc] initWithBytesNoCopy: sanitise_string( mColumns[ inIndex ] )
+	return /* DJE [ */ [[NSString alloc] initWithBytesNoCopy: sanitise_string( mColumns[ inIndex ] )
 												 length: strlen( mColumns[ inIndex ] )
 											   encoding: NSWindowsCP1252StringEncoding
-										   freeWhenDone: NO] autorelease];
+										   freeWhenDone: NO]/* autorelease DJE do we need this? ]  */;
 	}
 
 #pragma mark -
@@ -135,10 +135,10 @@
 	//  deprecated API here
 	// 	return [[[NSString alloc] initWithCStringNoCopy:mRowData[ inIndex ] length:strlen( mRowData[ inIndex ]) freeWhenDone:NO] autorelease];
 	// replacement here
-	return [[[NSString alloc] initWithBytesNoCopy: sanitise_string(mRowData[ inIndex ])
+	return /* DJE [ */ [[NSString alloc] initWithBytesNoCopy: sanitise_string(mRowData[ inIndex ])
 										   length: strlen( mRowData[ inIndex ])
 										 encoding: NSWindowsCP1252StringEncoding
-									 freeWhenDone: NO] autorelease];
+									 freeWhenDone: NO] /*autorelease  DJE ] */;
 
 }
 
