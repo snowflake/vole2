@@ -132,8 +132,14 @@
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	
-	return [[[NSString alloc] initWithCStringNoCopy:mRowData[ inIndex ] length:strlen( mRowData[ inIndex ]) freeWhenDone:NO] autorelease];
+	//  deprecated API here
+	// 	return [[[NSString alloc] initWithCStringNoCopy:mRowData[ inIndex ] length:strlen( mRowData[ inIndex ]) freeWhenDone:NO] autorelease];
+	// replacement here
+	return [[[NSString alloc] initWithBytesNoCopy: sanitise_string(mRowData[ inIndex ])
+										   length: strlen( mRowData[ inIndex ])
+										 encoding: NSWindowsCP1252StringEncoding
+									 freeWhenDone: NO] autorelease];
+
 }
 
 #pragma mark -
