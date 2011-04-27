@@ -8,9 +8,10 @@
 
 #import "SQLDatabase.h"
 #import "SQLDatabasePrivate.h"
-
+#import "sanitise_string.h"
 @implementation SQLRow
 
+// #warning: more work is required in this file 
 -(id)initWithColumns:(char**)inColumns rowData:(char**)inRowData columns:(int)inColumnCount
 {
 	if( ![super init])
@@ -64,9 +65,15 @@
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	
-	return [[[NSString alloc] initWithCStringNoCopy:mColumns[ inIndex ] length:strlen( mColumns[ inIndex ]) freeWhenDone:NO] autorelease];
-}
+// deprecated API here DJE
+// #warning are there more initWithCStringNoCopy in the rest of the source?
+//	return [[[NSString alloc] initWithCStringNoCopy:mColumns[ inIndex ] length:strlen( mColumns[ inIndex ]) freeWhenDone:NO] autorelease];
+// replace with:
+	return [[[NSString alloc] initWithBytesNoCopy: sanitise_string( mColumns[ inIndex ] )
+												 length: strlen( mColumns[ inIndex ] )
+											   encoding: NSWindowsCP1252StringEncoding
+										   freeWhenDone: NO] autorelease];
+	}
 
 #pragma mark -
 
@@ -115,7 +122,7 @@
 	// deprecated API here DJE
 	// return [NSString stringWithCString:mRowData[ inIndex ]];
 	// replacement here
-	return [NSString stringWithCString:mRowData[ inIndex ]
+	return [NSString stringWithCString: sanitise_string(mRowData[ inIndex ])
 							  encoding:NSWindowsCP1252StringEncoding];
 
 	
