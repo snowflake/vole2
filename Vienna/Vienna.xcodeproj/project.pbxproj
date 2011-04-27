@@ -536,9 +536,6 @@
 				AAD264B70611E108005A27E4 /* CheckForUpdates.m */,
 				AA26F4C80604927300FE7994 /* Connect.h */,
 				AA26F4DA0604927300FE7994 /* Connect.m */,
-				61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */,
-				61CC8C1D13672D4F0049AECF /* sanitise_string.c */,
-				61CC8C1E13672D4F0049AECF /* sanitise_string.h */,
 				AA26F4D90604927300FE7994 /* ConnectProtocol.h */,
 				AA58392E063590110055BE1E /* Credentials.h */,
 				AA58392F063590110055BE1E /* Credentials.m */,
@@ -748,6 +745,9 @@
 			isa = PBXGroup;
 			children = (
 				32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */,
+				61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */,
+				61CC8C1E13672D4F0049AECF /* sanitise_string.h */,
+				61CC8C1D13672D4F0049AECF /* sanitise_string.c */,
 				61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
