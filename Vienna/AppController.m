@@ -2561,7 +2561,11 @@ int messageSortHandler(id i1, id i2, void * context)
 			++attrRangeIndex;
 		}
 	}
-	[messageFont release];
+// DJE deleted the next line. It causes a crash in vmware/general:1915,
+// which uses italic messages styles, when running on Leopard SDK without
+// garbage collection.  It works perfectly OK on Tiger SDK, for some
+// reason I do not know.
+//	[messageFont release];   **** deleted, we do not own this object ****
 	return attrMessageText;
 }
 
