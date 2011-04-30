@@ -592,12 +592,19 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_MessageListFont];
 	messageListFont = [NSUnarchiver unarchiveObjectWithData:fontData];
 	boldMessageListFont = [[NSFontManager sharedFontManager] convertWeight:YES ofFont:messageListFont];
+	[boldMessageListFont retain ];   // DJE This makes it work on Leopard without garbage collection
+	[messageListFont retain ];  // and this as well 
+
+
 // deprecated API was here DJE	
-//	height = [boldMessageListFont defaultLineHeightForFont];
+#if 0
+	height = [boldMessageListFont defaultLineHeightForFont];
+#else
 	// replacement here
 	NSLayoutManager *nslm = [[NSLayoutManager alloc] init];
 	height = (int) [ nslm defaultLineHeightForFont: boldMessageListFont ];
 	[ nslm release];
+#endif
 	[messageList setRowHeight:height + 3];
 }
 
