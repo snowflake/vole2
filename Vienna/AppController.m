@@ -183,7 +183,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	// Read some options
 	showThreading = [defaults boolForKey:MAPref_ShowThreading];
 	showPlainText = [defaults boolForKey:MAPref_ShowPlainText];
-	showWindowsCP = [defaults boolForKey:MAPref_ShowWindowsCP];
+	showWindowsCP =  YES ; // DJE [defaults boolForKey:MAPref_ShowWindowsCP];
 	showMugshots = [defaults boolForKey:MAPref_MugshotsEnabled];
 	hideIgnoredMessages = [defaults boolForKey:MAPref_HideIgnoredMessages];
 	reinstateThreading = NO;
@@ -3073,6 +3073,7 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)toggleWindowsCP:(id)sender
 {
+	return;  // DJE
 	showWindowsCP = !showWindowsCP;
 	[[NSUserDefaults standardUserDefaults] setBool:showWindowsCP forKey:MAPref_ShowWindowsCP];
 	if (currentSelectedRow != -1)
