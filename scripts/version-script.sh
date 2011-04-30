@@ -54,6 +54,7 @@ printf '"\\n"\n' >>${OF}
 printf '"Archs: %s\\n"\n' "${ARCHS}" >>${OF} 
 printf '"Build Style: %s\\n"\n' "${BUILD_STYLE}" >>${OF}
 printf '"Build Variants: %s\\n"\n' "${BUILD_VARIANTS}" >>${OF}
+printf '"Garbage collection: %s\\n"\n' "${GCC_ENABLE_OBJC_GC}" >>${OF}
 printf '"Debugging Symbols:%s\\n"\n' "${DEBUGGING_SYMBOLS}" >>${OF}
 printf '"Debug Information Format: %s\\n"\n' "${DEBUG_INFORMATION_FORMAT}" >>${OF}
 printf '"GCC Version: %s\\n"\n' "${GCC_VERSION}" >>${OF}
