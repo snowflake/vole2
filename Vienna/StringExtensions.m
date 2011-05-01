@@ -178,7 +178,8 @@
 		for (p = 0; p < length; ++p)
 			rcString[p] = cString[(length - p) - 1];
 		rcString[p] = '\0';
-		reversedString = [[[NSMutableString alloc] initWithCString:rcString] autorelease];
+		reversedString = [[[NSMutableString alloc] initWithCString:rcString
+														  encoding:NSWindowsCP1252StringEncoding] autorelease];
 		free(rcString);
 	}
 	return reversedString;
