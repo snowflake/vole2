@@ -47,7 +47,7 @@ fossil status  | \
 if [ $unchecked_files -ne 0 ]	
 then
 printf '"Warning: %d unchecked files (this is bad)\\n"\n' $unchecked_files >>${OF}
-printf '"         It means that the UUID does not reflect the state of the files used\\n"\n' >> ${OF}
+printf '"         It means that the checkout does not reflect the state of the files used\\n"\n' >> ${OF}
 printf '"         for this build.\\n"\n' >> ${OF}
 fi		
 printf '"\\n"\n' >>${OF}
