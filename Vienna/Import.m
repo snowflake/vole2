@@ -230,6 +230,7 @@
 			if ([line hasPrefix:@"!MF:"])
 			{
 				unsigned int index = 4;
+				read_flag = YES; // DJE
 				while (index < [line length])
 					switch ([line characterAtIndex:index++])
 					{
