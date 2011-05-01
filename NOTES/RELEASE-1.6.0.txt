@@ -21,6 +21,13 @@ We turn them into question marks.
 Convert all the uses of default character set (Mac OS Roman) to
 use Windows CP1252.
 
+When importing messages from a scratchpad, mark messages as 'unread'.
+This is a possible candidate for a user option in a future version.
+
+When blinking, retrieve all messages including those that have been
+withdrawn by user, moderator or system manager. This could be a user
+option in a later version.
+
 Remove much of the deprecated API.
 
 Update acronyms.lst, downloaded from CIX acronyms conference.
