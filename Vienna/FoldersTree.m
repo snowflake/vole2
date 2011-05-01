@@ -143,6 +143,8 @@
 	NSLayoutManager *nsl = [[ NSLayoutManager alloc] init];
 	height= (int) [ nsl defaultLineHeightForFont: boldCellFont];
 	[ nsl release];
+	[cellFont retain];  // DJE added
+	[boldCellFont retain]; // DJE added
 
 	[outlineView setRowHeight:height + 3];
 }
