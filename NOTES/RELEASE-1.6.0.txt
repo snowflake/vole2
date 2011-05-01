@@ -6,8 +6,9 @@ Make sure we retain fonts so as to avert a crash on Leopard and
 Snow Leopard versions. This did not seem to bother the Tiger version
 for some unexplained reason.
 
-Make sure not to prematurely release an object. This was causing a crash in
-messages which use styles. Only affected the Leopard and Snow Leopard builds.
+Make sure not to prematurely release an object. This was causing a 
+crash in messages which use styles. Only affected the Leopard and
+Snow Leopard builds.
 
 Fix the selectRow:byExtendingSelection system log message.
 
@@ -15,8 +16,8 @@ Fix a couple of system log messages. There are still a few left.
 
 Set marketing version to 1.6.0.
 
-Filter the undefined characters in Windows Code Page 1252 out of messages.
-We turn them into question marks.
+Filter the undefined characters in Windows Code Page 1252 out of
+messages. We turn them into question marks.
 
 Convert all the uses of default character set (Mac OS Roman) to
 use Windows CP1252.
