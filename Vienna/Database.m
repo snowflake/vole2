@@ -2628,7 +2628,10 @@ enum {
 	NSData * chardata = [[NSData alloc] initWithBytes:[messageText
 													   cStringUsingEncoding:NSWindowsCP1252StringEncoding]
 											   length:[messageText length]];
-	mactext = [[NSString alloc] initWithData: chardata encoding: NSISOLatin1StringEncoding];
+// this uses ISOLatin1, replacement uses CP1252, which makes this method rather pointless
+//	mactext = [[NSString alloc] initWithData: chardata encoding: NSISOLatin1StringEncoding];
+	mactext = [[NSString alloc] initWithData: chardata encoding: NSWindowsCP1252StringEncoding];
+
 	[chardata release];
 	
 	return mactext;
