@@ -1899,10 +1899,8 @@ abortLabel:
 
 		// Do the skip. This generally doesn't fail in a meaningful way
 		int skipCount = [[task actionData] intValue];
-		// dje - hea skip back leads to corrupt messages
-//		[self writeStringWithFormat:YES string:@"hea skip to back %d\n", skipCount];
-		// replace with
-		[self writeStringWithFormat:YES string:@"skip to back %d\n", skipCount];
+		// dje - hea skip back leads to corrupt messages - or does it. Backout the changes
+		[self writeStringWithFormat:YES string:@"hea skip to back %d\n", skipCount];
 		[self readAndScanForStrings:[NSArray arrayWithObjects:@"Rf:", nil] endOfFile:&endOfFile];
 
 		// Done. Now exit from the topic.
