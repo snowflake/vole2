@@ -3,6 +3,8 @@
 all: 
 	@echo read the makefile
 
+Development-release: NAME=dv
+Development-release: COMPATIBILITY=Unknown
 tiger-release: NAME=vt
 tiger-release: COMPATIBILITY=Tiger and later, Universal
 leopard-release: NAME=vl
@@ -13,15 +15,16 @@ SOURCE_FILES=Vienna.app RELEASE.html BUILD.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
 VERSION=`agvtool mvers -terse1`
 
-tiger leopard:
+tiger leopard Development:
 	echo $@
 #	xcodebuild -configuration $@ clean	
 #	xcodebuild -configuration $@
 
 
-tiger-release leopard-release: 
+tiger-release leopard-release Development-release: 
 	make $(subst -release,,$@)
 	echo $@
+	[ -d ${SOURCE_DIR} ]
 	echo '<html><head><title>Vienna build info</title></head>' > ${BUILD_INFO}
 	echo '<body><pre>' >> ${BUILD_INFO}
 	echo 'This file contains build information for Vienna ' \
@@ -32,7 +35,6 @@ tiger-release leopard-release:
 	$(SOURCE_DIR)/Vienna.app/Contents/MacOS/Vienna -d \
 		>> ${BUILD_INFO}
 	echo '</pre></body></html>' >> ${BUILD_INFO}
-	[ -d ${SOURCE_DIR} ]
 	cp ../NOTES/RELEASE.html ${SOURCE_DIR}
 	make -f make-dmg SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
@@ -43,7 +45,7 @@ tiger-release leopard-release:
 	gpg --no-armor --detach-sign "${NAME}-${VERSION}.dmg"
 	zip -0 --must-match ${NAME}-${VERSION}.zip README.html \
 		${NAME}-${VERSION}.dmg ${NAME}-${VERSION}.dmg.sig
-	sh buildcix.sh \
+	sh ../scripts/buildcix.sh \
  		$(SOURCE_DIR)/Vienna.app/Contents/MacOS/Vienna  \
 		${NAME}-${VERSION}.zip \
 		${NAME}-${VERSION}.cix \
