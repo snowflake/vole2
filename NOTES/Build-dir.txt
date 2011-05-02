@@ -1,7 +1,0 @@
-The build products directory is now two levels above the project directory.
-This stops it being clobbered by 'fossil clean'
-It also means that the Code Sense index stays built.
-
-The sole contents of the Vienna/build directory is now a small file describing
-the move.
-
