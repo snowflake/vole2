@@ -1859,7 +1859,11 @@ abortLabel:
 	[self sendStatusToDelegate:statusString];
 
 	[self writeLine: @"opt timeout 5 quit"];
-	[self writeStringWithFormat:YES string:@"macro pjc hea skip to back %@ tnext pjc\n", [task actionData]];
+	// DJE - hea skip back n leads to thousands of broken messages. Delete the hea
+	// [self writeStringWithFormat:YES string:@"macro pjc hea skip to back %@ tnext pjc\n", [task actionData]];
+	// replace with
+	[self writeStringWithFormat:YES string:@"macro pjc skip to back %@ tnext pjc\n", [task actionData]];
+
 	if ([self enterFolder:task])
 	{
 		int lastTimeout = [socket setTimeout:5];
@@ -1895,7 +1899,10 @@ abortLabel:
 
 		// Do the skip. This generally doesn't fail in a meaningful way
 		int skipCount = [[task actionData] intValue];
-		[self writeStringWithFormat:YES string:@"hea skip to back %d\n", skipCount];
+		// dje - hea skip back leads to corrupt messages
+//		[self writeStringWithFormat:YES string:@"hea skip to back %d\n", skipCount];
+		// replace with
+		[self writeStringWithFormat:YES string:@"skip to back %d\n", skipCount];
 		[self readAndScanForStrings:[NSArray arrayWithObjects:@"Rf:", nil] endOfFile:&endOfFile];
 
 		// Done. Now exit from the topic.
