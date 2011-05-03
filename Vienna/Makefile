@@ -8,19 +8,19 @@ Development-release: COMPATIBILITY=Unknown
 Development-release: STATUS=Experimental
 
 tiger-release: NAME=vt
-tiger-release: COMPATIBILITY=Tiger and later, Universal
+tiger-release: COMPATIBILITY=Tiger (10.4) and later, Universal
 tiger-release: STATUS=Stable - no known bugs at this time
 
 leopard-release: NAME=vl
-leopard-release: COMPATIBILITY=Leopard and later, Universal
+leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal
 leopard-release: STATUS=Experimental, may crash, needs testing
 
 snowleopard-release: NAME=vs
-snowleopard-release: COMPATIBILTY=Snow Leopard and later, Intel
+snowleopard-release: COMPATIBILTY=Snow Leopard (10.6) and later, Intel
 snowleopard-release: STATUS=Experimental, may crash, needs testing
 
 lion-release: NAME=vn
-lion-release: COMPATIBILITY=Lion and later, Intel
+lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
 
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
