@@ -53,6 +53,7 @@ tiger-release leopard-release snowleopard-release lion-release \
 		>> ${BUILD_INFO}
 	echo '</pre></body></html>' >> ${BUILD_INFO}
 	cp ../NOTES/RELEASE.html ${SOURCE_DIR}
+	rm -f template.dmg wc.dmg template.dmg.bz2
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
 		VERSION=${VERSION} clean
