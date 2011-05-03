@@ -32,6 +32,9 @@ if [ $unchecked_files -ne 0 ]
 	printf '"==== Checkout does not reflect build files ====\\n"\n' >>${OF}
 	fi
 printf '"\\n"\n' >>${OF}
+printf '"Version: %s\\n"\n' $(agvtool mvers -terse1) >> ${OF}
+printf '"\\n"\n' >>${OF}
+
 printf '"Build machine hostname: %s\\n"\n' `hostname -f` >> ${OF}
 printf '"Built by username: %s\\n\\n"\n' `whoami` >> ${OF}
 printf '"Build UUID: %s\\n"\n' "${build_uuid}" >> ${OF}
