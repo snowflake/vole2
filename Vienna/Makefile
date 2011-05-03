@@ -5,23 +5,37 @@ all:
 
 Development-release: NAME=dv
 Development-release: COMPATIBILITY=Unknown
+Development-release: STATUS=Experimental
+
 tiger-release: NAME=vt
 tiger-release: COMPATIBILITY=Tiger and later, Universal
+tiger-release: STATUS=Stable - no known bugs at this time
+
 leopard-release: NAME=vl
 leopard-release: COMPATIBILITY=Leopard and later, Universal
+leopard-release: STATUS=Experimental, may crash, needs testing
+
+snowleopard-release: NAME=vs
+snowleopard-release: COMPATIBILTY=Snow Leopard and later, Intel
+snowleopard-release: STATUS=Experimental, may crash, needs testing
+lion-release: NAME=vn
+lion-release: COMPATIBILITY=Lion and later, Intel
+lion-release: STATUS=Not yet available
 
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vienna.app RELEASE.html BUILD.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
 VERSION=`agvtool mvers -terse1`
 
-tiger leopard Development:
+tiger leopard snowleopard lion Development:
 	echo $@
+	rm -f XXXX-Tempfile.h
 #	xcodebuild -configuration $@ clean	
 #	xcodebuild -configuration $@
 
 
-tiger-release leopard-release Development-release: 
+tiger-release leopard-release snowleopard-release lion-release \
+			Development-release: 
 	make $(subst -release,,$@)
 	echo $@
 	[ -d ${SOURCE_DIR} ]
@@ -49,5 +63,6 @@ tiger-release leopard-release Development-release:
  		$(SOURCE_DIR)/Vienna.app/Contents/MacOS/Vienna  \
 		${NAME}-${VERSION}.zip \
 		${NAME}-${VERSION}.cix \
-		"Compatibility: ${COMPATIBILITY}"
+		"Compatibility: ${COMPATIBILITY}" \
+		"Status: ${STATUS}"
 	
