@@ -19,11 +19,12 @@ int main(int argc, const char *argv[])
 
 	if(argc==2){
 		if(!strcmp("-v",argv[1])){
-			printf("UUID: %s\n",source_code_fossil_uuid);
+			printf("Version: %s\n", marketing_version);
+			printf("Checkout: %s\n",source_code_fossil_uuid);
 			if(unchecked_files){
 				printf("Unchecked files: %d\n",unchecked_files);
 				printf("This is BAD!\n");
-				printf("The UUID does not reflect the state of the sources used for the build.\n");
+				printf("The checkoutdoes not reflect the state of the sources used for the build.\n");
 			}
 			exit(0);
 		} else if (!strcmp("-d",argv[1])) {
