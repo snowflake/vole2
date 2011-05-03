@@ -1,15 +1,20 @@
 <htmL><head><title>Release Notes</title></head>
+<!-- Please keep line lengths to below 74 chars, as this will be
+posted in vienna/files -->
+
 <body><pre>
 
 Release notes for version 1.6.0
 ===============================
 
-"Set cix back one day" will result in malformed messages in inactive topics.
-Replace "head skip to back 1" with "skip to back 1"
+"Set cix back one day" formerly resulted in malformed messages in
+inactive topics. Now replaced "head skip to back 1" with
+"skip to back 1". This means that large scratchpads may be produced.
 
-Show Windows Characters menu option is now always ON.
+Show Windows Characters menu option is now always ON. It never
+seemed to do anything useful before.
 
-Update to sqlite3.[ch] version 3.7.6.1  This is the database back-end.
+Update to SQLite3 version 3.7.6.1  This is the database back-end.
 
 Make sure we retain fonts so as to avert a crash on Leopard and
 Snow Leopard versions. This did not seem to bother the Tiger version
@@ -31,7 +36,9 @@ messages. We turn them into question marks.
 Convert all the uses of default character set (Mac OS Roman) to
 use Windows CP1252.
 
-When importing messages from a scratchpad, mark messages as 'unread'.
+When importing messages from a scratchpad, mark them as 'unread'.
+Scratchpads which have been exported from Ameol or Vienna, which use
+the !MF: convention at the start of each message, are not affected.
 This is a possible candidate for a user option in a future version.
 
 When blinking, retrieve all messages including those that have been
