@@ -53,10 +53,10 @@ tiger-release leopard-release snowleopard-release lion-release \
 		>> ${BUILD_INFO}
 	echo '</pre></body></html>' >> ${BUILD_INFO}
 	cp ../NOTES/RELEASE.html ${SOURCE_DIR}
-	make -f make-dmg SOURCE_DIR=${SOURCE_DIR} \
+	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
 		VERSION=${VERSION} clean
-	make -f make-dmg SOURCE_DIR=${SOURCE_DIR} \
+	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
 		VERSION=${VERSION}
 	gpg --no-armor --detach-sign "${NAME}-${VERSION}.dmg"
