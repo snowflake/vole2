@@ -6,6 +6,7 @@
 # $2 = name of zip file
 # $3 = name of file to write
 # $4 = compatibility note
+# $5 = status
 cat > $3  << XEOF
 New file $2
 
@@ -14,6 +15,7 @@ Description: Vienna off-line reader
 Hotlink to download: cixfile:vienna/files:$2
 Size: $(wc -c $2 | awk '{printf $1}') 
 Version: $(agvtool mvers -terse1)
+$5
 
 Contributor: devans
 Date: $(date '+%A %e %B %Y') 
