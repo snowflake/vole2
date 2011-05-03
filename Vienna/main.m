@@ -38,10 +38,11 @@ int main(int argc, const char *argv[])
 			exit(0);
  		} else if (!strcmp("-h", argv[1])){ // help requested
 			printf("Usage:\n");
+			printf("-h   Displays this help\n");
 			printf("-v   Display version (brief)\n");
 			printf("-d   Display version and build information (full)\n");
 			printf("-b   Display build UUID\n");
-			printf("-c   Display Fossil checkin\n");
+			printf("-c   Display Fossil checkout\n");
 			exit(1);   
 		}
 	}
