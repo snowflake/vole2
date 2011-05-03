@@ -31,8 +31,8 @@ VIENNA_APP=${SOURCE_DIR}/Vienna.app/Contents/MacOS/Vienna
 tiger leopard snowleopard lion Development:
 	echo $@
 	rm -f XXXX-Tempfile.h
-#	xcodebuild -configuration $@ clean	
-#	xcodebuild -configuration $@
+	xcodebuild -project Vienna -configuration $@ clean	
+	xcodebuild -project Vienna -configuration $@
 
 # where to put the saved releases
 ARCHIVE_DIR=~/Vienna-archive
