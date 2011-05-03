@@ -24,7 +24,7 @@ int main(int argc, const char *argv[])
 			if(unchecked_files){
 				printf("Unchecked files: %d\n",unchecked_files);
 				printf("This is BAD!\n");
-				printf("The checkoutdoes not reflect the state of the sources used for the build.\n");
+				printf("The checkout does not reflect the state of the sources used for the build.\n");
 			}
 			exit(0);
 		} else if (!strcmp("-d",argv[1])) {
