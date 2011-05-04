@@ -1788,7 +1788,9 @@ abortLabel:
 			NSString * line = [wrappedText objectAtIndex:wrapLineIndex];
 			if ([line isEqualToString:@"."])
 				line = [line stringByAppendingString:@" "];
-			[self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+			// DJE replaced
+			// [self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+			[self writeLineUsingEncoding:line encoding:NSWindowsCP1252StringEncoding];
 			[self readAndScanForStrings:[NSArray arrayWithObjects:@"input->", nil] endOfFile:&endOfFile];
 			++wrapLineIndex;
 		}
@@ -2134,7 +2136,10 @@ abortLabel:
 				// Write initial commands to join and create message
 				NSString *header1 = [NSString stringWithFormat:@"join %@\n", [message sender]];
 				NSString *header2;
-				NSData *header = [header1 dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+				// DJE replaced
+				//NSData *header = [header1 dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+				NSData *header = [header1 dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion:YES];
+
 				[fileHandle writeData: header];
 				
 				if ([message comment])
@@ -2145,7 +2150,10 @@ abortLabel:
 				{
 					header2 = @"say\n";
 				}
-				header = [header2 dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+				// DJE replaced
+				//header = [header2 dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+				header = [header2 dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion:YES];
+
 				[fileHandle writeData: header];
 
 				// Now send the message
@@ -2154,7 +2162,9 @@ abortLabel:
 				for (index = 0; index < countOfWrappedLines; ++index)
 				{
 					NSString *line = [wrappedMessageBody objectAtIndex:index];
-					NSData * msgData = [line dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+					// DJE replaced
+					//NSData * msgData = [line dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+					NSData * msgData = [line dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion:YES];
 
 					[fileHandle writeData:msgData];
 					[fileHandle writeData:nl];
@@ -2204,7 +2214,10 @@ abortLabel:
 						NSString * line = [wrappedMessageBody objectAtIndex:wrapLineIndex];
 						if ([line isEqualToString:@"."])
 							line = [line stringByAppendingString:@" "];
-						[self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+						// DJE Replaced
+						// [self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+						[self writeLineUsingEncoding:line encoding:NSWindowsCP1252StringEncoding];
+
 						[self readAndScanForStrings:[NSArray arrayWithObjects:@"input->", nil] endOfFile:&endOfFile];
 						++wrapLineIndex;
 					}
@@ -2250,7 +2263,9 @@ abortLabel:
 						NSString * line = [wrappedMessageBody objectAtIndex:wrapLineIndex];
 						if ([line isEqualToString:@"."])
 							line = [line stringByAppendingString:@" "];
-						[self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+						// DJE replaced
+						// [self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+						[self writeLineUsingEncoding:line encoding:NSWindowsCP1252StringEncoding];
 						++wrapLineIndex;
 					}
 					[self writeLine:@"."];
