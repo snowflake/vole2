@@ -77,7 +77,7 @@
 	[resumeX appendFormat:@"<email>%@</email>\n", [person emailAddress]];
 	[resumeX appendString:@"</resume>\n"];
 
-	// Update the database
+	// Update the database 
 	NSString * resumeInfo = [NSString stringWithFormat:@"%@\n%@", [person parsedInfo], resumeX];
 	[db updatePerson:[person shortName] data:resumeInfo];
 
@@ -146,7 +146,7 @@
 	[self parseResumeXFormat:newPerson];
 	
 	// Now return what we have so far.
-	return newPerson;
+	return [newPerson autorelease]; // DJE added autorelease
 }
 
 /* parseResumeXFormat
@@ -261,7 +261,7 @@
 		[filename replaceCharactersInRange: extension withString: @"jpg"];
 		image = [[NSImage alloc] initByReferencingFile: filename];
 	}		
-	return image;
+	return [image autorelease]; // DJE made into autorelease, other calls to this method must not release the object
 }
 
 /* findFullNameInAB
@@ -322,7 +322,7 @@
 			image = [[NSImage alloc] initWithData: [person imageData]];
 		}
 	}
-	return image;
+	return [image autorelease]; // DJE made into autorelease
 }
 
 /* setMugshotInAB
