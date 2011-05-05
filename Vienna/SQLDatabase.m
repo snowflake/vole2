@@ -146,7 +146,7 @@
 	if( !sqlResult )
 		sqlite3_free_table( results );
 	
-	return sqlResult;
+	return [sqlResult autorelease];
 }
 
 -(SQLResult*)performQueryWithFormat:(NSString*)inFormat, ...
