@@ -146,7 +146,7 @@
 	if( !sqlResult )
 		sqlite3_free_table( results );
 	
-	return [sqlResult autorelease];
+	return [sqlResult autorelease];  // DJE changed to autorelease
 }
 
 -(SQLResult*)performQueryWithFormat:(NSString*)inFormat, ...
