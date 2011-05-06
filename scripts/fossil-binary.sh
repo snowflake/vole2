@@ -10,4 +10,7 @@ sqlite3,*.icns,*.plist,*.a,*.o,*.lo,*.la,*.rtf,*.pbxproj,*.pch,\
 *.xml,*.pbxuser,*.mode1,*.perspective,*.scriptTerminology,\
 *.xcodeproj,*idx
 
+IGNORE=*.mode1,*.pbxuser,*.perspective,*.perspective3
+
 fossil setting binary-glob ${BINARIES}
+fossil setting ignore-glob ${IGNORE}
