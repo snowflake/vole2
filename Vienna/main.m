@@ -10,6 +10,8 @@
 #import <stdio.h>
 // XXXX-Tempfile has declarations which may be useful in other modules
 #import "XXXX-Tempfile.h"
+const char *sqlite3_libversion(void);
+const char *sqlite3_sourceid(void);
 
 int main(int argc, const char *argv[])
 {
@@ -29,6 +31,8 @@ int main(int argc, const char *argv[])
 			exit(0);
 		} else if (!strcmp("-d",argv[1])) {
 			printf("%s", buildinfo);
+			printf("SQLite version: %s\n",sqlite3_libversion());
+			printf("SQLite id: %s\n", sqlite3_sourceid());
 			exit(0);
 		} else if(!strcmp("-b", argv[1])){
 			printf("%s\n", build_uuid);
