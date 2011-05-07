@@ -38,7 +38,8 @@ printf '"\\n"\n' >>${OF}
 printf '"Build machine hostname: %s\\n"\n' `hostname -f` >> ${OF}
 printf '"Built by username: %s\\n\\n"\n' `whoami` >> ${OF}
 printf '"Build UUID: %s\\n"\n' "${build_uuid}" >> ${OF}
-builddate=`TZ=UTC date`
+printf '"Build ID: %s\\n"\n' "${BUILDID}" >> ${OF}
+builddate=`date`
 printf '"Built on: %s\\n\\n"\n' "$builddate"  >> ${OF}
 printf '"   === Version control status ===\\n"\n' >>${OF}
 fossil status  | \

@@ -23,6 +23,14 @@ lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
 
+Development: SHORT=DV
+tiger:	     SHORT=TG
+leopard:     SHORT=LP
+snowleopard: SHORT=SL
+lion:	     SHORT=LN
+
+SHORTDATE=`date '+%Y%m%d'`
+
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vienna.app RELEASE.html BUILD.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
@@ -32,7 +40,8 @@ tiger leopard snowleopard lion Development:
 	echo $@
 	rm -f XXXX-Tempfile.h
 	xcodebuild -project Vienna.xcodeproj  -configuration $@ clean	
-	xcodebuild -project Vienna.xcodeproj  -configuration $@
+	xcodebuild -project Vienna.xcodeproj  -configuration $@ \
+		BUILDID=${SHORT}-${SHORTDATE}
 
 # where to put the saved releases
 ARCHIVE_DIR=~/Vienna-archive
