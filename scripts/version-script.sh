@@ -83,6 +83,8 @@ printf '"Build Machine OSX Version Actual: %s\\n"\n' "${MAC_OS_X_VERSION_ACTUAL}
 printf '"Build Machine OSX Version Major: %s\\n"\n' "${MAC_OS_X_VERSION_MAJOR}" >>${OF}
 printf '"Build Machine OSX Version Minor: %s\\n"\n' "${MAC_OS_X_VERSION_MINOR}" >>${OF}
 printf '"Build Machine OSX Version: %s\\n"\n' "${PLATFORM_PRODUCT_BUILD_VERSION}" >> ${OF}
+echo '=== sw_vers ===' | printlines >> ${OF}
+sw_vers | printlines >> ${OF}
 echo '=== SQLite ===' | printlines >> ${OF}
 echo \; >>${OF}
 printf 'int unchecked_files = %d;\n' $unchecked_files >>${OF}
