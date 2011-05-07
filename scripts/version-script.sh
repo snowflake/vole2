@@ -31,7 +31,7 @@ echo 'char buildinfo[]=' >>${OF}
 unchecked_files=`fossil changes | wc -l`  
 
 printf '"Checkout identifying the source code\\n"\n' >> ${OF}
-printf '" used to generate this build of %s:\\n"\n' "$PRODUCT_NAME">>${OF}
+printf '" used in this build of %s:\\n"\n' "$PRODUCT_NAME">>${OF}
 uuid=Unknown
 if test -f ../manifest.uuid 
  then 
@@ -48,7 +48,7 @@ printf '"Version: %s\\n"\n' $(agvtool mvers -terse1) >> ${OF}
 printf '"\\n"\n' >>${OF}
 
 printf '"Build machine hostname: %s\\n"\n' `hostname -f` >> ${OF}
-printf '"Built by username: %s\\n\\n"\n' `whoami` >> ${OF}
+printf '"Built by username: %s\\n"\n' `whoami` >> ${OF}
 printf '"Build UUID: %s\\n"\n' "${build_uuid}" >> ${OF}
 printf '"Build ID: %s\\n"\n' "${BUILDID}" >> ${OF}
 builddate=`date`
