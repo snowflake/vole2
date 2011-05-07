@@ -53,7 +53,7 @@ printf '"Build UUID: %s\\n"\n' "${build_uuid}" >> ${OF}
 printf '"Build ID: %s\\n"\n' "${BUILDID}" >> ${OF}
 builddate=`date`
 printf '"Built on: %s\\n\\n"\n' "$builddate"  >> ${OF}
-printf '"   === Version control status ===\\n"\n' >>${OF}
+printf '"=== Version control status ===\\n"\n' >>${OF}
 fossil status  | printlines >> ${OF}
 if [ $unchecked_files -ne 0 ]	
 then
@@ -73,14 +73,17 @@ printf '"MacOSX Deployment Target: %s\\n"\n' "${MACOSX_DEPLOYMENT_TARGET}" >>${O
 printf '"Product Name: %s\\n"\n' "${PRODUCT_NAME}" >>${OF}
 printf '"SDK Root: %s\\n"\n' "${SDKROOT}" >>${OF}
 printf '"SDK Name: %s\\n"\n' "${SDK_NAME}" >>${OF}
+echo   '=== Xcode ===' | printlines >>${OF}
 printf '"Xcode Version Actual: %s\\n"\n' "${XCODE_VERSION_ACTUAL}" >>${OF}
 printf '"Xcode Version Major: %s\\n"\n' "${XCODE_VERSION_MAJOR}" >>${OF}
 printf '"Xcode Version Minor: %s\\n"\n' "${XCODE_VERSION_MINOR}" >>${OF}
 xcodebuild -version | printlines >> ${OF}
+echo '=== OS X ===' | printlines >> ${OF}
 printf '"Build Machine OSX Version Actual: %s\\n"\n' "${MAC_OS_X_VERSION_ACTUAL}" >>${OF}
 printf '"Build Machine OSX Version Major: %s\\n"\n' "${MAC_OS_X_VERSION_MAJOR}" >>${OF}
 printf '"Build Machine OSX Version Minor: %s\\n"\n' "${MAC_OS_X_VERSION_MINOR}" >>${OF}
 printf '"Build Machine OSX Version: %s\\n"\n' "${PLATFORM_PRODUCT_BUILD_VERSION}" >> ${OF}
+echo '=== SQLite ===' | printlines >> ${OF}
 echo \; >>${OF}
 printf 'int unchecked_files = %d;\n' $unchecked_files >>${OF}
 printf 'char source_code_fossil_uuid[]="%s";\n' $uuid >>${OF}
