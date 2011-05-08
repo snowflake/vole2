@@ -190,6 +190,7 @@
 		
 		while (!endOfFile && !stopImportFlag)
 		{
+	//		NSLog(@"raw line %@", line);  // DJE
 //			BOOL read_flag = YES;
 			BOOL read_flag = NO;  // dje changed from YES
 			BOOL marked_flag = NO;
@@ -311,7 +312,7 @@
 					}
 					if ([line isEqualToString:@"----------"])
 					{
-						messageBody = [buffer readTextOfSize:messageSize];
+						messageBody = [buffer readTextOfSize:messageSize -1]; // DJE changed, because withdrawn messages are 1 byte shorter than usual
 						hasMessage = YES;
 					}
 				}
@@ -323,7 +324,8 @@
 				//  - comment number
 				else if ([line hasPrefix:@">>>"])
 				{
-					NSScanner * scanner = [NSScanner scannerWithString:line];
+				//	NSLog(@"Line = %@", line); // DJE 
+					NSScanner * scanner = [NSScanner scannerWithString:line]; 
 					[scanner scanString:@">>>" intoString:nil];
 					[scanner scanUpToString:@" " intoString:&messagePath];
 					[scanner scanInt:&messageNumber];
@@ -352,7 +354,7 @@
 							messageDate = [NSCalendarDate calendarDate];
 						
 						// Read the message body using the size as a clue.
-						messageBody = [buffer readTextOfSize:messageSize];
+						messageBody = [buffer readTextOfSize:messageSize - 1]; // DJE, deal with ** Withdrawn by user ** messages which are one byte shorter
 						hasMessage = YES;
 					}
 				}
