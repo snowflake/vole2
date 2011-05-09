@@ -7,7 +7,7 @@
 
 BINARIES=*.tiff,*.jpeg,*.jpg,*.gif,*.nib,*.xib,*.tar,rz,sz,sqlite2,\
 sqlite3,*.icns,*.plist,*.a,*.o,*.lo,*.la,*.rtf,*.pbxproj,*.pch,\
-*.xml,*.pbxuser,*.mode1,*.perspective,*.scriptTerminology,\
+*.xml,*.pbxuser,*.mode1,*.perspective,*.perspectivev3,*.scriptTerminology,\
 *.xcodeproj,*idx
 
 IGNORE=*.mode1,*.pbxuser,*.perspective,*.perspectivev3
