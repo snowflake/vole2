@@ -19,8 +19,8 @@ You can use your OpenPGP utility (for example: GnuPG) to check the disk image
 against its cryptographic signature contained in the signature file. This
 step is completely optional.
 
-The required signing key can be found by searching the key servers for the key
-of dave.evans55@googlemail.com.	
+The key that was used to sign the disk image can be found by searching the key
+servers for the key of dave.evans55@googlemail.com.	
 
 GnuPG can be found at <a href="http://www.gnupg.org/">http://www.gnupg.org/</a>
 
