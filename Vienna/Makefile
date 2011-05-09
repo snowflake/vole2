@@ -34,7 +34,7 @@ SHORTDATE=`date '+%Y%m%d'`
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vienna.app RELEASE.html BUILD.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
-VERSION=`agvtool mvers -terse1`
+VERSION:=$(shell agvtool mvers -terse1)
 VIENNA_APP=${SOURCE_DIR}/Vienna.app/Contents/MacOS/Vienna
 tiger leopard snowleopard lion Development:
 	echo $@
