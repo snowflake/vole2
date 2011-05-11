@@ -312,6 +312,7 @@
 					}
 					if ([line isEqualToString:@"----------"])
 					{
+						if(messageSize < 2) messageSize++; // DJE added to compensate for decrement in next line
 						messageBody = [buffer readTextOfSize:messageSize -1]; // DJE changed, because withdrawn messages are 1 byte shorter than usual
 						hasMessage = YES;
 					}
@@ -354,6 +355,7 @@
 							messageDate = [NSCalendarDate calendarDate];
 						
 						// Read the message body using the size as a clue.
+						if (messageSize < 2) messageSize++; // DJE added, precomp messagesize
 						messageBody = [buffer readTextOfSize:messageSize - 1]; // DJE, deal with ** Withdrawn by user ** messages which are one byte shorter
 						hasMessage = YES;
 					}
