@@ -378,11 +378,13 @@
 						VMessage * message = [[VMessage alloc] initWithInfo:messageNumber];
 						[message setComment:messageComment];
 						[message setSender:userName];
+						NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc ] init ];  // DJE
 						NSMutableString *mb = [NSMutableString stringWithCapacity: [messageBody length] +1];
 						[mb appendString: messageBody];
 						[ mb appendString: @"\n" ]; // DJE added to compensate for reading 1 byte short
 				//		[message setText:messageBody];
 						[message setText:mb ]; // DJE
+						[ pool2 drain ]; // DJE
 						[message setDateFromDate:messageDate];
 						[message markRead:read_flag];
 						[message markPriority:author_flag];
