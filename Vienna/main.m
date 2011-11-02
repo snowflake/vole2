@@ -40,13 +40,23 @@ int main(int argc, const char *argv[])
 		} else if(!strcmp("-c", argv[1])){
 			printf("%s\n",source_code_fossil_uuid);
 			exit(0);
- 		} else if (!strcmp("-h", argv[1])){ // help requested
-			printf("Usage:\n");
-			printf("-h   Displays this help\n");
-			printf("-v   Display version (brief)\n");
-			printf("-d   Display version and build information (full)\n");
-			printf("-b   Display build UUID\n");
-			printf("-c   Display Fossil checkout\n");
+ 		} else if (!strcmp("-h", argv[1]) |
+			   !strcmp("-?", argv[1]) |
+			   !strcmp("--help",argv[1]) ) 
+			  { // help requested
+			printf("Usage:\n"
+			       "-h     Displays this help\n"
+			       "--help Displays this help\n"
+			       "-?     Displays this help\n"
+			       "-v     Display version (brief)\n"
+			       "-d     Display version and build information (full)\n"
+			       "-b     Display build UUID\n"
+			       "-c     Display Fossil checkout\n"
+			       "\n"
+			       "Warning: If you start Vienna without any of the\n"
+			       "         above options it will most likely start\n"
+			       "         in a strange mode. If so, you should\n"
+			       "         immediately quit Vienna.\n");
 			exit(1);   
 		}
 	}
