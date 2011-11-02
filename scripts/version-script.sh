@@ -2,7 +2,9 @@
 
 # This script is run by Xcode during the build phase to generate information about
 # the build in C header file format.  When run it produces a file which is included by main.m.
-# Copy and paste this file into into Xcodes script window.
+# Copy and paste this file into into Xcodes script window, or alternatively
+# source this file from a small script in Xcode which does not need to be 
+# changed much.
 
 # for finding Fossil
 PATH=$PATH:/usr/local/bin
