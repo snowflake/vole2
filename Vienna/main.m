@@ -55,7 +55,7 @@ int main(int argc, const char *argv[])
 			       "\n"
 			       "Warning: If you start Vienna without any of the\n"
 			       "         above options it will most likely start\n"
-			       "         in a strange mode. If so, you should\n"
+			       "         in a strange mode. Regardless, please\n"
 			       "         immediately quit Vienna.\n");
 			exit(1);   
 		}
