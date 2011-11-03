@@ -21,8 +21,14 @@ function printlines(){
 		done
 }
 
+function marketing_version(){
+# Older versions of agvtool within Xcode have a different format 
+# for the -terse option, and don't support the -terse1 option at all.
+# Use the lowest common denominator and process with an awk script.
 
-
+agvtool mvers  | tail -1 | tr '"' '%' |\
+     awk 'BEGIN { FS="%"} { printf("%s",$2)}' 
+}
 
 
 rm -f "${OF}"
@@ -47,7 +53,7 @@ if [ $unchecked_files -ne 0 ]
 	printf '"==== Checkout does not reflect build files ====\\n"\n' >>${OF}
 	fi
 printf '"\\n"\n' >>${OF}
-printf '"Version: %s\\n"\n' $(agvtool mvers -terse1) >> ${OF}
+printf '"Version: %s\\n"\n'  $(marketing_version) >> ${OF} 
 printf '"\\n"\n' >>${OF}
 
 printf '"Build machine hostname: %s\\n"\n' `hostname -f` >> ${OF}
@@ -93,8 +99,8 @@ echo \; >>${OF}
 printf 'int unchecked_files = %d;\n' $unchecked_files >>${OF}
 printf 'char source_code_fossil_uuid[]="%s";\n' $uuid >>${OF}
 printf 'char build_uuid[]="%s";\n' "${build_uuid}" >> ${OF}
-printf 'char marketing_version[]="%s";\n' \
-	 "$(agvtool mvers -terse1 | tr -d '\012' )" >> ${OF}
+printf 'char marketing_version[]="%s";\n' "$(marketing_version)" >> ${OF}
+
 if [ $unchecked_files -ne 0 ]
 	then 
 		echo ERROR files not checked into Fossil
