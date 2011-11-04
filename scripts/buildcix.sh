@@ -14,7 +14,7 @@ Filename: $2
 Description: Vienna off-line reader
 Hotlink to download: cixfile:vienna/files:$2
 Size: $(wc -c $2 | awk '{printf $1}') 
-Version: $(agvtool mvers -terse1)
+Version: $($1 -m)
 $5
 
 Contributor: devans

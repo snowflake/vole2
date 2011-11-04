@@ -34,8 +34,8 @@ SHORTDATE=`date '+%Y%m%d'`
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vienna.app RELEASE.html BUILD.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
-VERSION:=$(shell agvtool mvers -terse1)
 VIENNA_APP=${SOURCE_DIR}/Vienna.app/Contents/MacOS/Vienna
+VERSION=$(shell ${VIENNA_APP} -m)
 tiger leopard snowleopard lion Development:
 	echo $@
 	rm -f XXXX-Tempfile.h
@@ -50,6 +50,7 @@ tiger-release leopard-release snowleopard-release lion-release \
 			Development-release: 
 	make $(subst -release,,$@)
 	echo $@
+	echo ${VIENNA_APP}
 	[ -d ${SOURCE_DIR} ]
 	echo '<html><head><title>Vienna build info</title></head>' > ${BUILD_INFO}
 	echo '<body><pre>' >> ${BUILD_INFO}

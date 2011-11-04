@@ -20,7 +20,11 @@ int main(int argc, const char *argv[])
 	//      printf("== arg %d == %s\n", i, argv[i]);
 
 	if(argc==2){
-		if(!strcmp("-v",argv[1])){
+		if(!strcmp("-m", argv[1])){
+			printf("%s",marketing_version);
+			exit(0);
+			}
+		else	if(!strcmp("-v",argv[1])){
 			printf("Version: %s\n", marketing_version);
 			printf("Checkout: %s\n",source_code_fossil_uuid);
 			if(unchecked_files){
@@ -52,6 +56,7 @@ int main(int argc, const char *argv[])
 			       "-d     Display version and build information (full)\n"
 			       "-b     Display build UUID\n"
 			       "-c     Display Fossil checkout\n"
+			       "-m     Display marketing version for the build system\n"
 			       "\n"
 			       "Warning: If you start Vienna without any of the\n"
 			       "         above options it will most likely start\n"
