@@ -3,6 +3,33 @@
 posted in vienna/files -->
 
 <body><pre>
+Release notes for version 1.6.1
+===============================
+(released 2011-11-19)
+
+Vienna -> About Vienna box now displays a string (AA-YYYYMMDD)
+where YYYYMMDD is the date Vienna was built,
+and AA is a two letter code indicating the SDK used for the build,
+where TG = Tiger, LP = Leopard, SL = Snow Leopard, LN = Lion, and
+DV = Development (unspecified SDK)
+
+Version 1.6.0 turned on fetching withdrawn messages. This exposed an
+anomaly in the character count supplied by Cix, resulting in the next
+message in the scratchpad not being parsed correctly. Rather than trying
+to get Cix to change its system, instead I modified Vienna to cope.
+
+Fixed some memory leaks introduced by a debugging session related to
+font selection for messages which used message styles. There are
+still some more memory leaks needing fixing, but they won't affect you
+unless you don't have much memory and are leaving Vienna active
+for days on end. The rcommendation is to close Vienna down after each
+session.
+
+Fixed a bug in the handling of Windows CP1252 characters that
+are not in ISO-8859-1.
+
+Upgrade SQLite3 to 3.7.9
+
 Release notes for version 1.6.0
 ===============================
 (released 2011-05-03)
