@@ -10,24 +10,30 @@
 cat > $3  << XEOF
 New file $2
 
+[File]
 Filename: $2
-Description: Vienna off-line reader
 Hotlink to download: cixfile:vienna/files:$2
 Size: $(wc -c $2 | awk '{printf $1}') 
-Version: $($1 -m)
-$5
-
-Contributor: devans
-Date: $(date '+%A %e %B %Y') 
-
-$4
-Packaging: A zip file containing a disk image and an OpenPGP signature
 $(md5 $2)
 
+[Vienna]
+Description: Vienna off-line reader for Mac OS X only
+Version: $($1 -m)
+$4
+$5
+Packaging: A zip file containing a disk image and an OpenPGP signature
 Checkout: $( $1 -c)
 Build: $($1 -b)
 
-Notes:
+[Built by]
+Contributor: devans
+Date: $(date '+%A %e %B %Y') 
+
+[Warning]
+Windows and Linux users please note that this file is not much
+use to you.
+
+[Notes]
 $(lynx -dump ../NOTES/RELEASE.html)
 
 XEOF
