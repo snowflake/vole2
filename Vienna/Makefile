@@ -32,7 +32,7 @@ lion:	     SHORT=LN
 SHORTDATE=`date '+%Y%m%d'`
 
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
-SOURCE_FILES=Vienna.app RELEASE.html BUILD.html
+SOURCE_FILES=Vienna.app RELEASE.html BUILD.html INSTALL.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
 VIENNA_APP=${SOURCE_DIR}/Vienna.app/Contents/MacOS/Vienna
 VERSION=$(shell ${VIENNA_APP} -m)
@@ -63,6 +63,7 @@ tiger-release leopard-release snowleopard-release lion-release \
 		>> ${BUILD_INFO}
 	echo '</pre></body></html>' >> ${BUILD_INFO}
 	cp ../NOTES/RELEASE.html ${SOURCE_DIR}
+	cp ../NOTES/INSTALL.html ${SOURCE_DIR}
 	rm -f template.dmg wc.dmg template.dmg.bz2
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
