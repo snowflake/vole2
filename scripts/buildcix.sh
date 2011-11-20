@@ -15,6 +15,7 @@ Filename: $2
 Hotlink to download: cixfile:vienna/files:$2
 Size: $(wc -c $2 | awk '{printf $1}') 
 $(md5 $2)
+$(openssl sha1 $2)
 
 [Vienna]
 Description: Vienna off-line reader for Mac OS X only
