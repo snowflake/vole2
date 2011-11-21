@@ -16,7 +16,7 @@ leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal
 leopard-release: STATUS=Experimental, may crash, needs testing
 
 snowleopard-release: NAME=vs
-snowleopard-release: COMPATIBILTY=Snow Leopard (10.6) and later, Intel
+snowleopard-release: COMPATIBILITY=Snow Leopard (10.6) and later, Intel
 snowleopard-release: STATUS=Experimental, may crash, needs testing
 
 lion-release: NAME=vn
