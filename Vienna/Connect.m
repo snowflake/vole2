@@ -2128,7 +2128,7 @@ abortLabel:
 				// Write file and upload using Zmodem.
 				if (![[NSFileManager defaultManager] createFileAtPath:tempFilename contents:nil attributes:nil])
 				{
-					NSLog(@"Cannot create file %s for upload\n", tempFilename);
+					NSLog(@"Cannot create file %@ for upload\n", tempFilename);
 					continue;
 				}
 				NSFileHandle * fileHandle = [NSFileHandle fileHandleForWritingAtPath:tempFilename];
