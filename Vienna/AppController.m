@@ -4797,6 +4797,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		// Look in bundle
 		fileName = [[NSBundle mainBundle] pathForResource: @"acronyms.lst" ofType: @""];
 	}
+	// The acronyms.lst file is using CP1252 encoding. Luckily, the 
+	// BufferedFile class converts it to NSString internal encoding.
 	buffer = [[BufferedFile alloc] initWithPath: fileName];
 	if (buffer == nil)
 		return;
