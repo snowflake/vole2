@@ -1009,9 +1009,11 @@
 			files = (
 			);
 			inputPaths = (
+				A_FILE_WHICH_MUST_NOT_EXIST,
 			);
 			name = "Vers script";
 			outputPaths = (
+				"XXXX-Tempfile.h",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
