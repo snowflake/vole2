@@ -29,6 +29,12 @@ leopard:     SHORT=LP
 snowleopard: SHORT=SL
 lion:	     SHORT=LN
 
+Development:	DEVELOPER_DIR?=/Developer
+tiger:		DEVELOPER_DIR?=/Developer
+leopard:	DEVELOPER_DIR?=/Developer
+snowleopard:	DEVELOPER_DIR?=/Developer
+lion:		DEVELOPER_DIR?=/Developer
+
 SHORTDATE=`date '+%Y%m%d'`
 
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
@@ -39,9 +45,11 @@ VERSION=$(shell ${VIENNA_APP} -m)
 tiger leopard snowleopard lion Development:
 	echo $@
 	rm -f XXXX-Tempfile.h
-	xcodebuild -project Vienna.xcodeproj  -configuration $@ clean	
+	DEVELOPER_DIR=${DEVELOPER_DIR} \
+	xcodebuild -project Vienna.xcodeproj  -configuration $@ clean 
+	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project Vienna.xcodeproj  -configuration $@ \
-		BUILDID=${SHORT}-${SHORTDATE}
+		BUILDID=${SHORT}-${SHORTDATE} 
 
 # where to put the saved releases
 ARCHIVE_DIR=~/Vienna-archive
