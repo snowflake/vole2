@@ -44,7 +44,9 @@ routines GetProcessPID and GetProcessForPID routines declared in "Processes.h".
 #include <stdio.h>
 #include <sys/sysctl.h>
 
-typedef struct kinfo_proc kinfo_proc;
+#include "getBSDProcessTable.h"
+
+/* typedef struct kinfo_proc kinfo_proc; */
 
 /* static */
 int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
