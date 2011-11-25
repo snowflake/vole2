@@ -10,6 +10,10 @@
 		6176B758147F067200BB5841 /* CheckVienna.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B757147F067200BB5841 /* CheckVienna.h */; };
 		6176B75A147F069F00BB5841 /* CheckVienna.m in Sources */ = {isa = PBXBuildFile; fileRef = 6176B759147F069F00BB5841 /* CheckVienna.m */; };
 		6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6176B81A147FA24700BB5841 /* checkVienna.xib */; };
+		6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */; };
+		6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */; };
+		6176B93A1480196F00BB5841 /* getBSDProcessTable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B9391480196F00BB5841 /* getBSDProcessTable.c */; };
+		6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B93B1480197A00BB5841 /* getBSDProcessTable.h */; };
 		61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */; };
 		61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */; };
 		61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 61CC8C1D13672D4F0049AECF /* sanitise_string.c */; };
@@ -252,6 +256,10 @@
 		6176B757147F067200BB5841 /* CheckVienna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckVienna.h; sourceTree = "<group>"; };
 		6176B759147F069F00BB5841 /* CheckVienna.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckVienna.m; sourceTree = "<group>"; };
 		6176B81B147FA24700BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
+		6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testAnotherViennaIsRunning.h; sourceTree = "<group>"; };
+		6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testAnotherViennaIsRunning.c; sourceTree = "<group>"; };
+		6176B9391480196F00BB5841 /* getBSDProcessTable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getBSDProcessTable.c; sourceTree = "<group>"; };
+		6176B93B1480197A00BB5841 /* getBSDProcessTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getBSDProcessTable.h; sourceTree = "<group>"; };
 		61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XXXX-Tempfile.h"; sourceTree = "<group>"; };
 		61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string_private.h; sourceTree = "<group>"; };
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
@@ -758,7 +766,11 @@
 				61CC8C1E13672D4F0049AECF /* sanitise_string.h */,
 				61CC8C1D13672D4F0049AECF /* sanitise_string.c */,
 				61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */,
+				6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */,
+				6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+				6176B9391480196F00BB5841 /* getBSDProcessTable.c */,
+				6176B93B1480197A00BB5841 /* getBSDProcessTable.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -859,6 +871,8 @@
 				61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */,
 				61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */,
 				6176B758147F067200BB5841 /* CheckVienna.h in Headers */,
+				6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */,
+				6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,6 +1140,8 @@
 				CDD2C16B0BC4F0AE00E1CF06 /* sqlite3.c in Sources */,
 				61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */,
 				6176B75A147F069F00BB5841 /* CheckVienna.m in Sources */,
+				6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */,
+				6176B93A1480196F00BB5841 /* getBSDProcessTable.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

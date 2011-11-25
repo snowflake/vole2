@@ -10,6 +10,7 @@
 #import <stdio.h>
 // XXXX-Tempfile has declarations which may be useful in other modules
 #import "XXXX-Tempfile.h"
+#import "testAnotherViennaIsRunning.h"
 const char *sqlite3_libversion(void);
 const char *sqlite3_sourceid(void);
 
@@ -65,7 +66,7 @@ int main(int argc, const char *argv[])
 			exit(1);   
 		}
 	}
-	if(1){
+	if( testAnotherViennaIsRunning() == true ){
 		[NSApplication sharedApplication];
 		[NSBundle loadNibNamed:@"checkVienna" owner:NSApp];
 		[NSApp run];
