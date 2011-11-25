@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6176B758147F067200BB5841 /* CheckVienna.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B757147F067200BB5841 /* CheckVienna.h */; };
 		6176B75A147F069F00BB5841 /* CheckVienna.m in Sources */ = {isa = PBXBuildFile; fileRef = 6176B759147F069F00BB5841 /* CheckVienna.m */; };
-		6176B767147F0ACC00BB5841 /* checkVienna.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6176B765147F0ACC00BB5841 /* checkVienna.xib */; };
+		6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6176B81A147FA24700BB5841 /* checkVienna.xib */; };
 		61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */; };
 		61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */; };
 		61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 61CC8C1D13672D4F0049AECF /* sanitise_string.c */; };
@@ -251,7 +251,7 @@
 		32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vienna_Prefix.pch; sourceTree = "<group>"; };
 		6176B757147F067200BB5841 /* CheckVienna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckVienna.h; sourceTree = "<group>"; };
 		6176B759147F069F00BB5841 /* CheckVienna.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckVienna.m; sourceTree = "<group>"; };
-		6176B766147F0ACC00BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
+		6176B81B147FA24700BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
 		61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XXXX-Tempfile.h"; sourceTree = "<group>"; };
 		61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string_private.h; sourceTree = "<group>"; };
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
@@ -619,7 +619,6 @@
 				AA6E2A69064C6FAA00C7A6F9 /* Export.nib */,
 				AA7300C2067BF43400827E96 /* Browser.nib */,
 				AA9F3085081B69EE00D6EA23 /* RSSFeed.nib */,
-				6176B765147F0ACC00BB5841 /* checkVienna.xib */,
 				AAC504800828EB8E0089FF70 /* RSSSources.plist */,
 				AA2CE688081C3F3800D8FD8F /* Acknowledgements.rtf */,
 				AA680A4F068F331B004078F0 /* Action.tiff */,
@@ -674,6 +673,7 @@
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				AAD1E2CB0612908200D09905 /* MacPAD.url */,
+				6176B81A147FA24700BB5841 /* checkVienna.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -993,7 +993,7 @@
 				AAACC4CC082FA20A00DD3150 /* newRSSSubscription.tiff in Resources */,
 				AAACC4E4082FA52C00DD3150 /* newSmartFolder.tiff in Resources */,
 				CDCB46380B9B1D2A0004148E /* acronyms.lst in Resources */,
-				6176B767147F0ACC00BB5841 /* checkVienna.xib in Resources */,
+				6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,10 +1148,10 @@
 			name = MainMenu.nib;
 			sourceTree = "<group>";
 		};
-		6176B765147F0ACC00BB5841 /* checkVienna.xib */ = {
+		6176B81A147FA24700BB5841 /* checkVienna.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6176B766147F0ACC00BB5841 /* English */,
+				6176B81B147FA24700BB5841 /* English */,
 			);
 			name = checkVienna.xib;
 			sourceTree = "<group>";

@@ -65,5 +65,11 @@ int main(int argc, const char *argv[])
 			exit(1);   
 		}
 	}
-    return NSApplicationMain(argc, argv);
+	if(1){
+		[NSApplication sharedApplication];
+		[NSBundle loadNibNamed:@"checkVienna" owner:NSApp];
+		[NSApp run];
+	}		
+	else    return NSApplicationMain(argc, argv);
+	return 0;
 }
