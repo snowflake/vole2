@@ -11,9 +11,7 @@
 // XXXX-Tempfile has declarations which may be useful in other modules
 #import "XXXX-Tempfile.h"
 #import "testAnotherViennaIsRunning.h"
-const char *sqlite3_libversion(void);
-const char *sqlite3_sourceid(void);
-
+#import "sqlite3.h"
 int main(int argc, const char *argv[])
 {
 	// int i;
