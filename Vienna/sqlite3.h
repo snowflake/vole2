@@ -107,9 +107,9 @@ extern "C" {
 ** [sqlite3_libversion_number()], [sqlite3_sourceid()],
 ** [sqlite_version()] and [sqlite_source_id()].
 */
-#define SQLITE_VERSION        "3.7.9"
-#define SQLITE_VERSION_NUMBER 3007009
-#define SQLITE_SOURCE_ID      "2011-11-18 13:10:51 0b7edc44757660c8a5ae3b91cbcc3e6afd419b28"
+#define SQLITE_VERSION        "3.7.10"
+#define SQLITE_VERSION_NUMBER 3007010
+#define SQLITE_SOURCE_ID      "2011-11-25 21:51:03 ed0151ba8379a6c95304c9a8f9fe47e741fb80a3"
 
 /*
 ** CAPI3REF: Run-Time Library Version Numbers
@@ -2936,6 +2936,25 @@ SQLITE_API const char *sqlite3_sql(sqlite3_stmt *pStmt);
 ** changes to the content of the database files on disk.
 */
 SQLITE_API int sqlite3_stmt_readonly(sqlite3_stmt *pStmt);
+
+/*
+** CAPI3REF: Determine If A Prepared Statement Has Been Reset
+**
+** ^The sqlite3_stmt_busy(S) interface returns true (non-zero) if the
+** [prepared statement] S has been stepped at least once using 
+** [sqlite3_step(S)] but has not run to completion and/or has not 
+** been reset using [sqlite3_reset(S)].  ^The sqlite3_stmt_busy(S)
+** interface returns false if S is a NULL pointer.  If S is not a 
+** NULL pointer and is not a pointer to a valid [prepared statement]
+** object, then the behavior is undefined and probably undesirable.
+**
+** This interface can be used in combination [sqlite3_next_stmt()]
+** to locate all prepared statements associated with a database 
+** connection that are in need of being reset.  This can be used,
+** for example, in diagnostic routines to search for prepared 
+** statements that are holding a transaction open.
+*/
+SQLITE_API int sqlite3_stmt_busy(sqlite3_stmt*);
 
 /*
 ** CAPI3REF: Dynamically Typed Value Object
