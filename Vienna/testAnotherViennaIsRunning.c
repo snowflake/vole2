@@ -18,10 +18,9 @@
 #import "getBSDProcessTable.h"
 bool
 testAnotherViennaIsRunning(void){
-	unsigned int i;
 	bool retcode = false;
 	static kinfo_proc *p, *sv;
-	size_t   procCount;
+	size_t   i, procCount;
 	int result = GetBSDProcessList( &p, &procCount);
 	if(result == 0){
 		sv = p;
