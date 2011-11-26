@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6176B758147F067200BB5841 /* CheckVienna.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B757147F067200BB5841 /* CheckVienna.h */; };
-		6176B75A147F069F00BB5841 /* CheckVienna.m in Sources */ = {isa = PBXBuildFile; fileRef = 6176B759147F069F00BB5841 /* CheckVienna.m */; };
 		6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6176B81A147FA24700BB5841 /* checkVienna.xib */; };
 		6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */; };
 		6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */; };
@@ -253,8 +251,6 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vienna_Prefix.pch; sourceTree = "<group>"; };
-		6176B757147F067200BB5841 /* CheckVienna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckVienna.h; sourceTree = "<group>"; };
-		6176B759147F069F00BB5841 /* CheckVienna.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckVienna.m; sourceTree = "<group>"; };
 		6176B81B147FA24700BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
 		6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testAnotherViennaIsRunning.h; sourceTree = "<group>"; };
 		6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testAnotherViennaIsRunning.c; sourceTree = "<group>"; };
@@ -536,8 +532,6 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6176B759147F069F00BB5841 /* CheckVienna.m */,
-				6176B757147F067200BB5841 /* CheckVienna.h */,
 				CD4DF90208DD93C200D245E1 /* Logfile.h */,
 				CD4DF90308DD93C200D245E1 /* Logfile.m */,
 				AABFDC9F0609EA8100100A9B /* ActivityViewer.h */,
@@ -870,7 +864,6 @@
 				61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */,
 				61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */,
 				61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */,
-				6176B758147F067200BB5841 /* CheckVienna.h in Headers */,
 				6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */,
 				6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */,
 			);
@@ -1139,7 +1132,6 @@
 				CD4DF90508DD93C200D245E1 /* Logfile.m in Sources */,
 				CDD2C16B0BC4F0AE00E1CF06 /* sqlite3.c in Sources */,
 				61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */,
-				6176B75A147F069F00BB5841 /* CheckVienna.m in Sources */,
 				6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */,
 				6176B93A1480196F00BB5841 /* getBSDProcessTable.c in Sources */,
 			);
