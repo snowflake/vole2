@@ -51,8 +51,15 @@ tiger leopard snowleopard lion Development:
 	xcodebuild -project Vienna.xcodeproj  -configuration $@ \
 		BUILDID=${SHORT}-${SHORTDATE} 
 
+# Run the version of Xcode appropiate to the target
 tiger-go leopard-go snowleopard-go lion-go Development-go:
 	open ${DEVELOPER_DIR}/Applications/Xcode.app
+
+# Run the Vienna app from its build directory
+tiger-run leopard-run snowleopard-run lion-run Development-run:
+	open ../../Vienna-build/$(subst -run,,$@)/Vienna.app
+
+
 
 # where to put the saved releases
 ARCHIVE_DIR=~/Vienna-archive
