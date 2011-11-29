@@ -138,8 +138,14 @@
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_FolderFont];
 	cellFont = [NSUnarchiver unarchiveObjectWithData:fontData];
 	boldCellFont = [[NSFontManager sharedFontManager] convertWeight:YES ofFont:cellFont];
-	
-	height = [boldCellFont defaultLineHeightForFont];
+	// deprecated API was here DJE
+	//	height = [boldCellFont defaultLineHeightForFont];
+	NSLayoutManager *nsl = [[ NSLayoutManager alloc] init];
+	height= (int) [ nsl defaultLineHeightForFont: boldCellFont];
+	[ nsl release];
+	[cellFont retain];  // DJE added
+	[boldCellFont retain]; // DJE added
+
 	[outlineView setRowHeight:height + 3];
 }
 
@@ -208,8 +214,8 @@
  * Parses off a folder and returns the ID of the leaf node
  */
 -(int)folderFromPath:(int)parentId path:(NSString *)path
-{
-	const char * cString = [path cString];
+{// deprecated API was here DJE
+	const char * cString = [path cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	TreeNode * parentNode = [rootNode nodeFromID:parentId];
 	NSRange range;
 
@@ -285,8 +291,9 @@
 	[self expandToParent:node];
 	int rowIndex = [outlineView rowForItem:node];
 	if (rowIndex >= 0)
-	{
-		[outlineView selectRow:rowIndex byExtendingSelection:NO];
+		// DJE changed here to use an NSIndexSet
+	{	NSIndexSet *ind  =  [NSIndexSet indexSetWithIndex: rowIndex ];
+		[outlineView selectRowIndexes: ind byExtendingSelection:NO];
 		[outlineView scrollRowToVisible:rowIndex];
 		
 		// Now make the last folder of this parent visible, so the whole list of sub-folders
@@ -402,7 +409,9 @@
     {
 		// Select the row under the cursor if it isn't already selected
 		if ([outlineView numberOfSelectedRows] <= 1)
-			[outlineView selectRow:row byExtendingSelection:NO];
+			// DJE changed here to get rid of selectRow:byExtendingSelection log message 
+			[outlineView selectRowIndexes: [NSIndexSet indexSetWithIndex: row] 
+					 byExtendingSelection:NO];
     }
 }
 

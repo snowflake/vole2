@@ -190,6 +190,7 @@
 		
 		while (!endOfFile && !stopImportFlag)
 		{
+	//		NSLog(@"raw line %@", line);  // DJE
 //			BOOL read_flag = YES;
 			BOOL read_flag = NO;  // dje changed from YES
 			BOOL marked_flag = NO;
@@ -230,6 +231,7 @@
 			if ([line hasPrefix:@"!MF:"])
 			{
 				unsigned int index = 4;
+				read_flag = YES; // DJE
 				while (index < [line length])
 					switch ([line characterAtIndex:index++])
 					{
@@ -310,7 +312,8 @@
 					}
 					if ([line isEqualToString:@"----------"])
 					{
-						messageBody = [buffer readTextOfSize:messageSize];
+						if(messageSize < 2) messageSize++; // DJE added to compensate for decrement in next line
+						messageBody = [buffer readTextOfSize:messageSize -1]; // DJE changed, because withdrawn messages are 1 byte shorter than usual
 						hasMessage = YES;
 					}
 				}
@@ -322,7 +325,8 @@
 				//  - comment number
 				else if ([line hasPrefix:@">>>"])
 				{
-					NSScanner * scanner = [NSScanner scannerWithString:line];
+				//	NSLog(@"Line = %@", line); // DJE 
+					NSScanner * scanner = [NSScanner scannerWithString:line]; 
 					[scanner scanString:@">>>" intoString:nil];
 					[scanner scanUpToString:@" " intoString:&messagePath];
 					[scanner scanInt:&messageNumber];
@@ -351,7 +355,8 @@
 							messageDate = [NSCalendarDate calendarDate];
 						
 						// Read the message body using the size as a clue.
-						messageBody = [buffer readTextOfSize:messageSize];
+						if (messageSize < 2) messageSize++; // DJE added, precomp messagesize
+						messageBody = [buffer readTextOfSize:messageSize - 1]; // DJE, deal with ** Withdrawn by user ** messages which are one byte shorter
 						hasMessage = YES;
 					}
 				}
@@ -373,7 +378,13 @@
 						VMessage * message = [[VMessage alloc] initWithInfo:messageNumber];
 						[message setComment:messageComment];
 						[message setSender:userName];
-						[message setText:messageBody];
+						NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc ] init ];  // DJE
+						NSMutableString *mb = [NSMutableString stringWithCapacity: [messageBody length] +1];
+						[mb appendString: messageBody];
+						[ mb appendString: @"\n" ]; // DJE added to compensate for reading 1 byte short
+				//		[message setText:messageBody];
+						[message setText:mb ]; // DJE
+						[ pool2 drain ]; // DJE
 						[message setDateFromDate:messageDate];
 						[message markRead:read_flag];
 						[message markPriority:author_flag];

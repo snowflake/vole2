@@ -77,7 +77,7 @@
 	[resumeX appendFormat:@"<email>%@</email>\n", [person emailAddress]];
 	[resumeX appendString:@"</resume>\n"];
 
-	// Update the database
+	// Update the database 
 	NSString * resumeInfo = [NSString stringWithFormat:@"%@\n%@", [person parsedInfo], resumeX];
 	[db updatePerson:[person shortName] data:resumeInfo];
 
@@ -125,17 +125,20 @@
 		image = [self findMugshotFile:personName];
 		if (image && ![image isValid] && [personName length] > 8)
 		{
-			[image release];
+		// static analyser complains
+			//[image release];
 			image = [self findMugshotFile:[personName substringToIndex:8]];
 		}
 	}
 	if (image && ![image isValid])
 	{
-		[image release];
+		// static analyser complains
+		// [image release];
 		image = nil;
 	}
 	[newPerson setPicture:image];
-	[image release];
+// static analyser complains
+	// [image release];
 
 	// Parse the resumeX format. This will override our assumptions
 	// so this should be one of the last things we do.
@@ -143,7 +146,7 @@
 	[self parseResumeXFormat:newPerson];
 	
 	// Now return what we have so far.
-	return newPerson;
+	return [newPerson autorelease]; // DJE added autorelease
 }
 
 /* parseResumeXFormat
@@ -169,7 +172,14 @@
 			// better than NSScanner for the parsing).
 			NSMutableString * resumeText = [NSMutableString stringWithString:resumeXMLText];
 			[resumeText appendString:@"</resume>"];
-			NSData * data = [NSData dataWithBytes:[resumeText cString] length:[resumeText length]];
+			// deprecated API here DJE
+			//NSData * data = [NSData dataWithBytes:[resumeText cString] length:[resumeText length]];
+			// replacement here
+			NSData * data = [NSData 
+							 dataWithBytes:[resumeText 
+											cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+										   length:[resumeText length]];
+
 			XMLParser * xmlTree = [[XMLParser alloc] initWithData:data];
 			
 			// Get the resume block
@@ -251,7 +261,7 @@
 		[filename replaceCharactersInRange: extension withString: @"jpg"];
 		image = [[NSImage alloc] initByReferencingFile: filename];
 	}		
-	return image;
+	return [image autorelease]; // DJE made into autorelease, other calls to this method must not release the object
 }
 
 /* findFullNameInAB
@@ -312,7 +322,7 @@
 			image = [[NSImage alloc] initWithData: [person imageData]];
 		}
 	}
-	return image;
+	return [image autorelease]; // DJE made into autorelease
 }
 
 /* setMugshotInAB

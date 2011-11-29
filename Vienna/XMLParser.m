@@ -19,6 +19,7 @@
 
 #import "XMLParser.h"
 #import "StringExtensions.h"
+#import "sanitise_string.h"
 
 @interface XMLParser (Private)
 	-(id)initWithCFXMLTreeRef:(CFXMLTreeRef)treeRef;
@@ -269,7 +270,20 @@
 -(NSString *)xmlForTree
 {
 	NSData * data = (NSData *)CFXMLTreeCreateXMLData(kCFAllocatorDefault, tree);
-	NSString * xmlString = [NSString stringWithCString:[data bytes] length:[data length]];
+	// DJE deprecated API here
+	//	NSString * xmlString = [NSString stringWithCString:[data bytes] length:[data length]];
+	// replaced by
+	//  XXX does [data bytes ] return a read only pointer, thus the string cannot be sanitised?
+	size_t length = [ data length];
+	char *cp = malloc(length+1);
+	if(cp == NULL) return nil;
+	[data getBytes: (void *) cp length:length ];
+	*(cp +length) = '\0';
+	NSString *xmlString = [[[NSString alloc] initWithBytes: sanitise_string( cp ) 
+													length: length 
+												  encoding: NSWindowsCP1252StringEncoding] autorelease];
+	free(cp);
+	// end of new changes
 	CFRelease(data);
 	return xmlString;
 }
@@ -365,7 +379,13 @@
 		{
 			CFXMLTreeRef subTree = CFTreeGetChildAtIndex(tree, index);
 			CFDataRef valueData = CFXMLTreeCreateXMLData(NULL, subTree);
-			[valueString appendString:[NSString stringWithCString:(char *)CFDataGetBytePtr(valueData) length:CFDataGetLength(valueData)]];
+		//	DJE Deprecated API here
+		//	[valueString appendString:[NSString stringWithCString:(char *)CFDataGetBytePtr(valueData) length:CFDataGetLength(valueData)]];
+		//
+		// replaced by	
+			[valueString appendString:[[[NSString alloc] initWithBytes: sanitise_string((char *)CFDataGetBytePtr(valueData)) 
+																length:CFDataGetLength(valueData)
+															  encoding:	NSWindowsCP1252StringEncoding] autorelease]];
 			CFRelease(valueData);
 		}
 	}

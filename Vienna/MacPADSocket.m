@@ -146,7 +146,10 @@ enum {
         [self returnError:kMacPADResultMissingValues message:@"MacPAD.url file was not found"];
         return;
     }
-    NSString *contents = [NSString stringWithContentsOfFile:path];
+	// deprecated API was here DJE
+    NSString *contents = [NSString stringWithContentsOfFile:path
+												   encoding:NSWindowsCP1252StringEncoding
+													  error:NULL];
     if (contents == nil) {
         // The file can't be opened
         [self returnError:kMacPADResultMissingValues message:@"The MacPAD.url file can't be opened"];

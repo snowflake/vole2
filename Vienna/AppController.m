@@ -183,7 +183,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	// Read some options
 	showThreading = [defaults boolForKey:MAPref_ShowThreading];
 	showPlainText = [defaults boolForKey:MAPref_ShowPlainText];
-	showWindowsCP = [defaults boolForKey:MAPref_ShowWindowsCP];
+	showWindowsCP =  YES ; // DJE [defaults boolForKey:MAPref_ShowWindowsCP];
 	showMugshots = [defaults boolForKey:MAPref_MugshotsEnabled];
 	hideIgnoredMessages = [defaults boolForKey:MAPref_HideIgnoredMessages];
 	reinstateThreading = NO;
@@ -592,8 +592,19 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_MessageListFont];
 	messageListFont = [NSUnarchiver unarchiveObjectWithData:fontData];
 	boldMessageListFont = [[NSFontManager sharedFontManager] convertWeight:YES ofFont:messageListFont];
-	
+	[boldMessageListFont retain ];   // DJE This makes it work on Leopard without garbage collection
+	[messageListFont retain ];  // and this as well 
+
+
+// deprecated API was here DJE	
+#if 0
 	height = [boldMessageListFont defaultLineHeightForFont];
+#else
+	// replacement here
+	NSLayoutManager *nslm = [[NSLayoutManager alloc] init];
+	height = (int) [ nslm defaultLineHeightForFont: boldMessageListFont ];
+	[ nslm release];
+#endif
 	[messageList setRowHeight:height + 3];
 }
 
@@ -763,7 +774,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		VPerson * person = [personManager personFromPerson:[cixCredentials username]];
 		if (person == nil)
 			[db addTask:MA_TaskCode_GetResume actionData:[cixCredentials username] folderName:@"" orderCode:MA_OrderCode_GetResume];
-		[person release];
+		// static analyser complains
+		//[person release];
 	}
 
 	// Check for application updates silently
@@ -1579,8 +1591,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	else if (rowIndex == currentSelectedRow)
 		[self refreshMessageAtRow:rowIndex];
 	else
-	{
-		[messageList selectRow:rowIndex byExtendingSelection:NO];
+	{   // DJE changed here to use NSIndexSet
+		[messageList selectRowIndexes:[ NSIndexSet indexSetWithIndex: rowIndex] byExtendingSelection:NO];
 		[self centerSelectedRow];
 	}
 }
@@ -1760,7 +1772,8 @@ int messageSortHandler(id i1, id i2, void * context)
 			NSString * personName = [message sender];
 			VPerson * person = [personManager personFromPerson:personName];
 			[profileWindow setCurrentPerson:person];
-			[person release];
+			// static analyser complains
+			// [person release];
 		}
 	}
 }
@@ -1776,7 +1789,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	{
 		person = [personManager personFromPerson:[person shortName]];
 		[profileWindow setCurrentPerson:person];
-		[person release];
+		// static analyser complains 
+		// [person release];
 	}
 }
 
@@ -2179,7 +2193,8 @@ int messageSortHandler(id i1, id i2, void * context)
 
 	NSAttributedString * attrText = [self formatMessage:messageText usePlainText:showPlainText];
 	[[textView textStorage] setAttributedString:attrText];
-	[attrText release];
+	// static analyser complains
+	// [attrText release];
 	
 	[infoBarView update:theRecord database:db];
 	[self displayMugshot:theRecord];
@@ -2220,7 +2235,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		{
 			[mugshotView setImage:nil];
 		}
-		[person release];
+		// static analyser complains
+		// [person release];
 	}
 }
 
@@ -2308,7 +2324,12 @@ int messageSortHandler(id i1, id i2, void * context)
 	[underlineAttr setValue:[NSNumber numberWithInt:NSSingleUnderlineStyle] forKey:NSUnderlineStyleAttributeName];
 	
 	// If message text begins with <html> then we render as HTML only
-	NSData * chardata = [[NSData alloc] initWithBytes:[messageText cString] length:[messageText length]];
+	// Deprecated API was here DJE
+	// The messageText should have already been sanitised, otherwise expect a crash (DJE)
+	NSData * chardata = [[NSData alloc] 
+						 initWithBytes:[messageText
+										cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+						 length:[messageText length]];
 	if ([messageText hasPrefix:@"<HTML>"])
 	{
 		attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
@@ -2326,7 +2347,11 @@ int messageSortHandler(id i1, id i2, void * context)
 		@try 
 		{
 			mactext = [[NSString alloc] initWithData: chardata encoding: enc];
-			charptr = [mactext cString];
+			// deprecated API was here DJE
+		//	charptr = [mactext cString];
+			// replacement here
+			charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString: mactext];
 			messageText = mactext;
 		}
@@ -2334,7 +2359,11 @@ int messageSortHandler(id i1, id i2, void * context)
 		{
 			// Can't convert the string, display it as-is
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString:messageText];
-			charptr = [messageText cString];
+			// deprecated API was here DJE
+			//charptr = [messageText cString];
+			// replacement here
+			charptr = [messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+
 		}
 		[chardata autorelease];
 		[mactext autorelease];
@@ -2539,7 +2568,11 @@ int messageSortHandler(id i1, id i2, void * context)
 			++attrRangeIndex;
 		}
 	}
-	[messageFont release];
+// DJE deleted the next line. It causes a crash in vmware/general:1915,
+// which uses italic messages styles, when running on Leopard SDK without
+// garbage collection.  It works perfectly OK on Tiger SDK, for some
+// reason I do not know.
+//	[messageFont release];   **** deleted, we do not own this object ****
 	return attrMessageText;
 }
 
@@ -2854,10 +2887,12 @@ int messageSortHandler(id i1, id i2, void * context)
 		{
 			NSString *reply = [self makeReplyText];
 			msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:nodePath commentNumber:(int)comment initialText:reply];
-			[reply release];
+			// static analyser complains
+			// [reply release];
 		}
 		[[msgWindow window] makeKeyAndOrderFront:self];
-		[messageArray release];
+		// static analyser complains
+		// [messageArray release];
 
 		// Clean up on the way out.
 		[criteriaDictionary release];
@@ -2896,7 +2931,8 @@ int messageSortHandler(id i1, id i2, void * context)
 
 		// Clean up at the end
 		[mailURL release];
-		[person release];
+		// static analyser complains
+		// [person release];
 		[title release];
 	}
 }
@@ -3037,6 +3073,7 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)toggleWindowsCP:(id)sender
 {
+	return;  // DJE
 	showWindowsCP = !showWindowsCP;
 	[[NSUserDefaults standardUserDefaults] setBool:showWindowsCP forKey:MAPref_ShowWindowsCP];
 	if (currentSelectedRow != -1)
@@ -3803,7 +3840,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		NSString * personName = [message sender];
 		VPerson * person = [personManager personFromPerson:personName];
 		[profileWindow setCurrentPerson:person];
-		[person release];
+		// static analyser complains
+		// [person release];
 	}
 }
 
@@ -4709,7 +4747,11 @@ int messageSortHandler(id i1, id i2, void * context)
 		Folder * srcFolder = [db folderFromID:[thisMessage folderId]];
 		if (IsRSSFolder(srcFolder))
 		{
-			NSData * textData = [[NSData alloc] initWithBytes:[text cString] length:[text length]];
+			// deprecated API was hare DJE
+			NSData * textData = [[NSData alloc] 
+								 initWithBytes:[text
+												cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+								 length:[text length]];
 			NSAttributedString * attrString = [[NSAttributedString alloc] initWithHTML:textData documentAttributes:nil];
 			[newtext appendFormat: @"%@\n", [attrString string]];
 			[attrString release];
@@ -4755,6 +4797,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		// Look in bundle
 		fileName = [[NSBundle mainBundle] pathForResource: @"acronyms.lst" ofType: @""];
 	}
+	// The acronyms.lst file is using CP1252 encoding. Luckily, the 
+	// BufferedFile class converts it to NSString internal encoding.
 	buffer = [[BufferedFile alloc] initWithPath: fileName];
 	if (buffer == nil)
 		return;

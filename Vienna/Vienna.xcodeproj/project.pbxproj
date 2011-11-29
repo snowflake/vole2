@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6176B81A147FA24700BB5841 /* checkVienna.xib */; };
+		6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */; };
+		6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */; };
+		6176B93A1480196F00BB5841 /* getBSDProcessTable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B9391480196F00BB5841 /* getBSDProcessTable.c */; };
+		6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B93B1480197A00BB5841 /* getBSDProcessTable.h */; };
 		61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */; };
+		61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */; };
+		61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 61CC8C1D13672D4F0049AECF /* sanitise_string.c */; };
+		61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1E13672D4F0049AECF /* sanitise_string.h */; };
 		8D15AC290486D014006FF6A4 /* Vienna_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -243,7 +251,15 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vienna_Prefix.pch; sourceTree = "<group>"; };
+		6176B81B147FA24700BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
+		6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testAnotherViennaIsRunning.h; sourceTree = "<group>"; };
+		6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testAnotherViennaIsRunning.c; sourceTree = "<group>"; };
+		6176B9391480196F00BB5841 /* getBSDProcessTable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getBSDProcessTable.c; sourceTree = "<group>"; };
+		6176B93B1480197A00BB5841 /* getBSDProcessTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getBSDProcessTable.h; sourceTree = "<group>"; };
 		61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XXXX-Tempfile.h"; sourceTree = "<group>"; };
+		61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string_private.h; sourceTree = "<group>"; };
+		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
+		61CC8C1E13672D4F0049AECF /* sanitise_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Vienna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vienna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA056D6C0626105E0003B9F5 /* markAsFlagged.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = markAsFlagged.tiff; sourceTree = "<group>"; };
@@ -659,6 +675,7 @@
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				AAD1E2CB0612908200D09905 /* MacPAD.url */,
+				6176B81A147FA24700BB5841 /* checkVienna.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -739,8 +756,15 @@
 			isa = PBXGroup;
 			children = (
 				32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */,
+				61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */,
+				61CC8C1E13672D4F0049AECF /* sanitise_string.h */,
+				61CC8C1D13672D4F0049AECF /* sanitise_string.c */,
 				61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */,
+				6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */,
+				6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+				6176B9391480196F00BB5841 /* getBSDProcessTable.c */,
+				6176B93B1480197A00BB5841 /* getBSDProcessTable.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -838,6 +862,10 @@
 				CD4DF90408DD93C200D245E1 /* Logfile.h in Headers */,
 				CDD2C16C0BC4F0AE00E1CF06 /* sqlite3.h in Headers */,
 				61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */,
+				61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */,
+				61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */,
+				6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */,
+				6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,6 +1000,7 @@
 				AAACC4CC082FA20A00DD3150 /* newRSSSubscription.tiff in Resources */,
 				AAACC4E4082FA52C00DD3150 /* newSmartFolder.tiff in Resources */,
 				CDCB46380B9B1D2A0004148E /* acronyms.lst in Resources */,
+				6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,13 +1027,15 @@
 			files = (
 			);
 			inputPaths = (
+				A_FILE_WHICH_MUST_NOT_EXIST,
 			);
 			name = "Vers script";
 			outputPaths = (
+				"XXXX-Tempfile.h",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n# This script is run by Xcode during the build phase to generate information about\n# the build in C header file format.  When run it produces a file which is included by main.m.\n# Copy and paste this file into into Xcodes script window.\n\n# for finding Fossil\nPATH=$PATH:/usr/local/bin\n\nOF=XXXX-Tempfile.h\necho  Fossil checked-in files checking script\necho '// *** This file is automatically generated - do not edit ***' >${OF}\necho 'char buildinfo[]=' >>${OF}\n\nunchecked_files=`fossil changes | wc -l`  \n\nprintf '\"Unique identifier identifying the source code\\\\n\"\\n' >> ${OF}\nprintf '\" used to generate this build of %s:\\\\n\"\\n' \"$PRODUCT_NAME\">>${OF}\nuuid=Unknown\nif test -f ../manifest.uuid \n then \n  uuid=`cat ../manifest.uuid`\n fi\nprintf '\"%s\\\\n\"\\n'  \"$uuid\" >>${OF}\nif [ $unchecked_files -ne 0 ]\n\tthen\n\tprintf '\"Warning: unchecked files = %d\\\\n\"\\n' $unchecked_files >> ${OF}\n\tprintf '\"==== UUID does not reflect build files ====\\\\n\"\\n' >>${OF}\n\tfi\nprintf '\"\\\\n\"\\n' >>${OF}\nprintf '\"Build machine hostname: %s\\\\n\"\\n' `hostname -f` >> ${OF}\nprintf '\"Built by username: %s\\\\n\\\\n\"\\n' `whoami` >> ${OF}\nbuilddate=`TZ=UTC date`\nprintf '\"Built on: %s\\\\n\\\\n\"\\n' \"$builddate\"  >> ${OF}\nprintf '\"   === Version control status ===\\\\n\"\\n' >>${OF}\nfossil status  | \\\n\twhile read i\n\t\tdo\t\n\t\t\ti=`echo $i | tr -d '\"' `\n\t\t\tprintf '\"%s\\\\n\"\\n' \"$i\"\n\t\tdone  >> ${OF}\nif [ $unchecked_files -ne 0 ]\t\nthen\nprintf '\"Warning: %d unchecked files (this is bad)\\\\n\"\\n' $unchecked_files >>${OF}\nprintf '\"         It means that the UUID does not reflect the state of the files used\\\\n\"\\n' >> ${OF}\nprintf '\"         for this build.\\\\n\"\\n' >> ${OF}\nfi\t\t\nprintf '\"\\\\n\"\\n' >>${OF}\nprintf '\"Archs: %s\\\\n\"\\n' \"${ARCHS}\" >>${OF} \nprintf '\"Build Style: %s\\\\n\"\\n' \"${BUILD_STYLE}\" >>${OF}\nprintf '\"Build Variants: %s\\\\n\"\\n' \"${BUILD_VARIANTS}\" >>${OF}\nprintf '\"Debugging Symbols:%s\\\\n\"\\n' \"${DEBUGGING_SYMBOLS}\" >>${OF}\nprintf '\"Debug Information Format: %s\\\\n\"\\n' \"${DEBUG_INFORMATION_FORMAT}\" >>${OF}\nprintf '\"GCC Version: %s\\\\n\"\\n' \"${GCC_VERSION}\" >>${OF}\nprintf '\"MacOSX Deployment Target: %s\\\\n\"\\n' \"${MACOSX_DEPLOYMENT_TARGET}\" >>${OF}\nprintf '\"Build Machine OSX Version Actual: %s\\\\n\"\\n' \"${MAC_OS_X_VERSION_ACTUAL}\" >>${OF}\nprintf '\"Build Machine OSX Version Major: %s\\\\n\"\\n' \"${MAC_OS_X_VERSION_MAJOR}\" >>${OF}\nprintf '\"Build Machine OSX Version Minor: %s\\\\n\"\\n' \"${MAC_OS_X_VERSION_MINOR}\" >>${OF}\nprintf '\"Product Name: %s\\\\n\"\\n' \"${PRODUCT_NAME}\" >>${OF}\nprintf '\"SDK Root: %s\\\\n\"\\n' \"${SDKROOT}\" >>${OF}\nprintf '\"SDK Name: %s\\\\n\"\\n' \"${SDK_NAME}\" >>${OF}\nprintf '\"Xcode Version Actual: %s\\\\n\"\\n' \"${XCODE_VERSION_ACTUAL}\" >>${OF}\nprintf '\"Xcode Version Major: %s\\\\n\"\\n' \"${XCODE_VERSION_MAJOR}\" >>${OF}\nprintf '\"Xcode Version Minor: %s\\\\n\"\\n' \"${XCODE_VERSION_MINOR}\" >>${OF}\necho \\; >>${OF}\nprintf 'int unchecked_files = %d;\\n' $unchecked_files >>${OF}\nprintf 'char source_code_fossil_uuid[]=\"%s\";\\n' $uuid >>${OF}\nif [ $unchecked_files -ne 0 ]\n\tthen \n\t\techo ERROR files not checked into Fossil\n\t\texit 0\n\telse\n\t\texit 0\n\tfi\n";
+			shellScript = "#!/bin/sh\n\nPATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\n# modified to take the script\n. ../scripts/version-script.sh\n";
 		};
 		CDA3BDA408F18AB200D6393F /* ZModem script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1100,6 +1131,9 @@
 				AA55EB2A0870629A00D7DBFA /* SplitViewExtensions.m in Sources */,
 				CD4DF90508DD93C200D245E1 /* Logfile.m in Sources */,
 				CDD2C16B0BC4F0AE00E1CF06 /* sqlite3.c in Sources */,
+				61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */,
+				6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */,
+				6176B93A1480196F00BB5841 /* getBSDProcessTable.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,6 +1154,14 @@
 				2A37F4B7FDCFA73011CA2CEA /* English */,
 			);
 			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		6176B81A147FA24700BB5841 /* checkVienna.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6176B81B147FA24700BB5841 /* English */,
+			);
+			name = checkVienna.xib;
 			sourceTree = "<group>";
 		};
 		AA167A3F065834F60091365D /* ViennaApp.scriptTerminology */ = {
@@ -1293,7 +1335,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		AA503399085CFC6000BC203D /* Development */ = {
+		612867161372D31D001A4C25 /* leopard */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = macosx10.5;
+				SYMROOT = "../../Vienna-build";
+			};
+			name = leopard;
+		};
+		612867171372D31D001A4C25 /* leopard */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -1308,7 +1365,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = 4.0;
 				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
 				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
@@ -1325,7 +1382,211 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MDDirectory = MDImporter;
+				MDTarget = Vienna;
+				MDTargetApp = Vienna.app;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Vienna;
+				SDKROOT = macosx10.5;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = leopard;
+		};
+		616E7558147A6BE0000289C7 /* snowleopard */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx10.6;
+				SYMROOT = "../../Vienna-build";
+			};
+			name = snowleopard;
+		};
+		616E7559147A6BE0000289C7 /* snowleopard */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
+				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
+				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
+				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MDDirectory = MDImporter;
+				MDTarget = Vienna;
+				MDTargetApp = Vienna.app;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Vienna;
+				SDKROOT = macosx10.6;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = snowleopard;
+		};
+		6182572A137067B1001C37F9 /* tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx10.6;
+				SYMROOT = "../../Vienna-build";
+			};
+			name = tiger;
+		};
+		6182572B137067B1001C37F9 /* tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
+				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
+				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
+				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MDDirectory = MDImporter;
+				MDTarget = Vienna;
+				MDTargetApp = Vienna.app;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Vienna;
+				SDKROOT = macosx10.4;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = tiger;
+		};
+		AA503399085CFC6000BC203D /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
+				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
+				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
+				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
@@ -1374,6 +1635,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA503399085CFC6000BC203D /* Development */,
+				612867171372D31D001A4C25 /* leopard */,
+				616E7559147A6BE0000289C7 /* snowleopard */,
+				6182572B137067B1001C37F9 /* tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
@@ -1382,6 +1646,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA50339D085CFC6000BC203D /* Development */,
+				612867161372D31D001A4C25 /* leopard */,
+				616E7558147A6BE0000289C7 /* snowleopard */,
+				6182572A137067B1001C37F9 /* tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;

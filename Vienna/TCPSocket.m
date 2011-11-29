@@ -62,7 +62,17 @@
 	// check if we've got a raw IP address here and skip the
 	// DNS lookup if so.
 	struct hostent * hostentry;
-	hostentry = gethostbyname([address cString]);
+	// DJE depreacated API found here
+	//hostentry = gethostbyname([address cString]);
+	// DJE replace with
+	// cStringUsingEncoding will return NULL if address cannot be converted, resulting in a crash
+	// This should not happen as the address is defined in Connect.m
+	if( ![address canBeConvertedToEncoding:NSISOLatin1StringEncoding] )
+	{	NSLog(@"connection address cannot be converted to Latin1 %s line %d",__FILE__, __LINE__);
+		return NO;
+	}
+	hostentry = gethostbyname([address cStringUsingEncoding:NSISOLatin1StringEncoding]);
+
 	if (hostentry == NULL)
 	{
 		[self close];

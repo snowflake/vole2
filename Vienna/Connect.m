@@ -268,7 +268,8 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 	{
 		VPerson * person = [db retrievePerson:[credentials username]];
 		[task setActionData:[person info]];
-		[person release];
+		// static analyser complains 
+		// [person release];
 	}
 
 	// Handle RSS connections specially. Create a local array of all RSS sites
@@ -1787,7 +1788,9 @@ abortLabel:
 			NSString * line = [wrappedText objectAtIndex:wrapLineIndex];
 			if ([line isEqualToString:@"."])
 				line = [line stringByAppendingString:@" "];
-			[self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+			// DJE replaced
+			// [self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+			[self writeLineUsingEncoding:line encoding:NSWindowsCP1252StringEncoding];
 			[self readAndScanForStrings:[NSArray arrayWithObjects:@"input->", nil] endOfFile:&endOfFile];
 			++wrapLineIndex;
 		}
@@ -1858,7 +1861,11 @@ abortLabel:
 	[self sendStatusToDelegate:statusString];
 
 	[self writeLine: @"opt timeout 5 quit"];
-	[self writeStringWithFormat:YES string:@"macro pjc hea skip to back %@ tnext pjc\n", [task actionData]];
+	// DJE - hea skip back n leads to thousands of broken messages. Delete the hea
+	// [self writeStringWithFormat:YES string:@"macro pjc hea skip to back %@ tnext pjc\n", [task actionData]];
+	// replace with
+	[self writeStringWithFormat:YES string:@"macro pjc skip to back %@ tnext pjc\n", [task actionData]];
+
 	if ([self enterFolder:task])
 	{
 		int lastTimeout = [socket setTimeout:5];
@@ -1894,6 +1901,7 @@ abortLabel:
 
 		// Do the skip. This generally doesn't fail in a meaningful way
 		int skipCount = [[task actionData] intValue];
+		// dje - hea skip back leads to corrupt messages - or does it. Backout the changes
 		[self writeStringWithFormat:YES string:@"hea skip to back %d\n", skipCount];
 		[self readAndScanForStrings:[NSArray arrayWithObjects:@"Rf:", nil] endOfFile:&endOfFile];
 
@@ -2120,7 +2128,7 @@ abortLabel:
 				// Write file and upload using Zmodem.
 				if (![[NSFileManager defaultManager] createFileAtPath:tempFilename contents:nil attributes:nil])
 				{
-					NSLog(@"Cannot create file %s for upload\n", tempFilename);
+					NSLog(@"Cannot create file %@ for upload\n", tempFilename);
 					continue;
 				}
 				NSFileHandle * fileHandle = [NSFileHandle fileHandleForWritingAtPath:tempFilename];
@@ -2128,7 +2136,10 @@ abortLabel:
 				// Write initial commands to join and create message
 				NSString *header1 = [NSString stringWithFormat:@"join %@\n", [message sender]];
 				NSString *header2;
-				NSData *header = [header1 dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+				// DJE replaced
+				//NSData *header = [header1 dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+				NSData *header = [header1 dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion:YES];
+
 				[fileHandle writeData: header];
 				
 				if ([message comment])
@@ -2139,7 +2150,10 @@ abortLabel:
 				{
 					header2 = @"say\n";
 				}
-				header = [header2 dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+				// DJE replaced
+				//header = [header2 dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+				header = [header2 dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion:YES];
+
 				[fileHandle writeData: header];
 
 				// Now send the message
@@ -2148,7 +2162,9 @@ abortLabel:
 				for (index = 0; index < countOfWrappedLines; ++index)
 				{
 					NSString *line = [wrappedMessageBody objectAtIndex:index];
-					NSData * msgData = [line dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+					// DJE replaced
+					//NSData * msgData = [line dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+					NSData * msgData = [line dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion:YES];
 
 					[fileHandle writeData:msgData];
 					[fileHandle writeData:nl];
@@ -2198,7 +2214,10 @@ abortLabel:
 						NSString * line = [wrappedMessageBody objectAtIndex:wrapLineIndex];
 						if ([line isEqualToString:@"."])
 							line = [line stringByAppendingString:@" "];
-						[self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+						// DJE Replaced
+						// [self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+						[self writeLineUsingEncoding:line encoding:NSWindowsCP1252StringEncoding];
+
 						[self readAndScanForStrings:[NSArray arrayWithObjects:@"input->", nil] endOfFile:&endOfFile];
 						++wrapLineIndex;
 					}
@@ -2244,7 +2263,9 @@ abortLabel:
 						NSString * line = [wrappedMessageBody objectAtIndex:wrapLineIndex];
 						if ([line isEqualToString:@"."])
 							line = [line stringByAppendingString:@" "];
-						[self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+						// DJE replaced
+						// [self writeLineUsingEncoding:line encoding:NSISOLatin1StringEncoding];
+						[self writeLineUsingEncoding:line encoding:NSWindowsCP1252StringEncoding];
 						++wrapLineIndex;
 					}
 					[self writeLine:@"."];
@@ -2374,7 +2395,7 @@ abortLabel:
 	// - No paging in terminal
 	int recentCount = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_RecentOnJoin];
 
-	[self writeStringWithFormat:YES string:@"opt terse comp y ref y term pag 0 term width 300 edit v bit8 y recent %d u z d z q\n", recentCount];
+	[self writeStringWithFormat:YES string:@"opt missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent %d u z d z q\n", recentCount];
 	[self readAndScanForMainPrompt:&endOfFile];
 	if (endOfFile)
 		return MA_Connect_Aborted;
@@ -2562,7 +2583,9 @@ abortLabel:
 		if (bufferindex == MAX_LINE - 1)
 		{
 			linebuffer[bufferindex] = '\0';
-			[self sendActivityStringToDelegate:[NSString stringWithCString:linebuffer]];
+			// deprecated API was here DJE
+			[self sendActivityStringToDelegate:[NSString stringWithCString:linebuffer
+																  encoding:NSWindowsCP1252StringEncoding]];
 			bufferindex = 0;
 		}
 		if (ch != '\r')
@@ -2589,7 +2612,9 @@ abortLabel:
 		ch = [self readServiceChar:endOfFile];
 	}
 	linebuffer[bufferindex] = '\0';
-	[self sendActivityStringToDelegate:[NSString stringWithCString:linebuffer]];
+	// deprecated API was here DJE
+	[self sendActivityStringToDelegate:[NSString stringWithCString:linebuffer
+														  encoding:NSWindowsCP1252StringEncoding]];
 	
 	// Exit
 	free(matchbuffer);

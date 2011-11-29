@@ -36,9 +36,9 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1426</string>
+	<string>${BUILDID}</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5.14</string>
+	<string>1.6.2</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>

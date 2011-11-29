@@ -19,6 +19,7 @@
 //
 
 #import "BufferedFile.h"
+#import "sanitise_string.h"
 
 #define BF_LINE_MAX			128
 #define BF_STRING_MAX		256
@@ -89,7 +90,12 @@
 		if (count == BF_LINE_MAX-1)
 		{
 			lineBuffer[count] = '\0';
-			[lineString appendString:[NSString stringWithCString:lineBuffer]];
+			// Deprecated API here DJE
+	//		[lineString appendString:[NSString stringWithCString:lineBuffer]];
+			// replacement here
+			[lineString appendString:[NSString stringWithCString: sanitise_string(lineBuffer)
+														encoding:NSWindowsCP1252StringEncoding] ];
+
 			count = 0;
 		}
 		ch = [self readChar];
@@ -110,7 +116,11 @@
 	if (count)
 	{
 		lineBuffer[count] = '\0';
-		[lineString appendString:[NSString stringWithCString:lineBuffer]];
+		// deprecated API here DJE
+	//	[lineString appendString:[NSString stringWithCString:lineBuffer]];
+		// replacement here 
+		[lineString appendString:[NSString stringWithCString:sanitise_string(lineBuffer) encoding:NSWindowsCP1252StringEncoding]];
+
 	}
 	*endOfFile = (ch == 0);
 	return lineString;
@@ -135,7 +145,12 @@
 		if (count == BF_LINE_MAX-1)
 		{
 			textBuffer[count] = '\0';
-			[textString appendString:[NSString stringWithCString:textBuffer]];
+			// deprecated API here DJE
+//			[textString appendString:[NSString stringWithCString:textBuffer]];
+			// replacement here
+			[textString appendString:[NSString stringWithCString:sanitise_string(textBuffer)
+														encoding:NSWindowsCP1252StringEncoding]];
+
 			count = 0;
 		}
 		textSize -= charSize;
@@ -144,7 +159,12 @@
 	if (count)
 	{
 		textBuffer[count] = '\0';
-		[textString appendString:[NSString stringWithCString:textBuffer]];
+		// deprecated API here DJE
+//		[textString appendString:[NSString stringWithCString:textBuffer]];
+		// replacement here
+		[textString appendString:[NSString stringWithCString:sanitise_string(textBuffer)
+													encoding: NSWindowsCP1252StringEncoding]];
+
 	}
 	return textString;
 }

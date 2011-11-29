@@ -8,9 +8,10 @@
 
 #import "SQLDatabase.h"
 #import "SQLDatabasePrivate.h"
-
+#import "sanitise_string.h"
 @implementation SQLRow
 
+// #warning: more work is required in this file 
 -(id)initWithColumns:(char**)inColumns rowData:(char**)inRowData columns:(int)inColumnCount
 {
 	if( ![super init])
@@ -53,17 +54,26 @@
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	
-	return [NSString stringWithCString:mColumns[ inIndex ]];
+	// deprecated API was here DJE
+	//	return [NSString stringWithCString:mColumns[ inIndex ]];
+	//replacement here
+	return [NSString stringWithCString:mColumns[ inIndex ] encoding:NSWindowsCP1252StringEncoding];
+
 }
 
 -(NSString*)nameOfColumnAtIndexNoCopy:(int)inIndex
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	
-	return [[[NSString alloc] initWithCStringNoCopy:mColumns[ inIndex ] length:strlen( mColumns[ inIndex ]) freeWhenDone:NO] autorelease];
-}
+// deprecated API here DJE
+// #warning are there more initWithCStringNoCopy in the rest of the source?
+//	return [[[NSString alloc] initWithCStringNoCopy:mColumns[ inIndex ] length:strlen( mColumns[ inIndex ]) freeWhenDone:NO] autorelease];
+// replace with:
+	return /* DJE [ */ [[NSString alloc] initWithBytesNoCopy: sanitise_string( mColumns[ inIndex ] )
+												 length: strlen( mColumns[ inIndex ] )
+											   encoding: NSWindowsCP1252StringEncoding
+										   freeWhenDone: NO]/* autorelease DJE do we need this? ]  */;
+	}
 
 #pragma mark -
 
@@ -75,7 +85,11 @@
 		return nil;
 	
 	for( index = 0; index < mColumnCount; index++ )
-		if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		//deprecated API here DJE
+		//if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		// replacement here
+		if( strcmp( mColumns[ index ],
+				   [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
 			break;
 	
 	return [self stringForColumnAtIndex:index];
@@ -89,7 +103,10 @@
 		return nil;
 	
 	for( index = 0; index < mColumnCount; index++ )
-		if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		// deprecated API here DJE
+		//if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
+		// replcement here
+		if( strcmp( mColumns[ index ], [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
 			break;
 	
 	return [self stringForColumnAtIndexNoCopy:index];
@@ -102,16 +119,27 @@
 
 	if (mRowData[ inIndex ] == nil) // PJC
 		return @"";
+	// deprecated API here DJE
+	// return [NSString stringWithCString:mRowData[ inIndex ]];
+	// replacement here
+	return [NSString stringWithCString: sanitise_string(mRowData[ inIndex ])
+							  encoding:NSWindowsCP1252StringEncoding];
+
 	
-	return [NSString stringWithCString:mRowData[ inIndex ]];
 }
 
 -(NSString*)stringForColumnAtIndexNoCopy:(int)inIndex
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
-	
-	return [[[NSString alloc] initWithCStringNoCopy:mRowData[ inIndex ] length:strlen( mRowData[ inIndex ]) freeWhenDone:NO] autorelease];
+	//  deprecated API here
+	// 	return [[[NSString alloc] initWithCStringNoCopy:mRowData[ inIndex ] length:strlen( mRowData[ inIndex ]) freeWhenDone:NO] autorelease];
+	// replacement here
+	return /* DJE [ */ [[NSString alloc] initWithBytesNoCopy: sanitise_string(mRowData[ inIndex ])
+										   length: strlen( mRowData[ inIndex ])
+										 encoding: NSWindowsCP1252StringEncoding
+									 freeWhenDone: NO] /*autorelease  DJE ] */;
+
 }
 
 #pragma mark -

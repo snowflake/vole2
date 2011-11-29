@@ -29,6 +29,8 @@
 #include <unistd.h>
 #include <sys/uio.h>
 
+#import "sanitise_string.h"
+
 #define BF_LINE_MAX			128
 #define BF_STRING_MAX		256
 
@@ -127,7 +129,9 @@
 -(BOOL)sendString:(NSString *)stringToSend
 {
 	int length = [stringToSend length];
-	const char * stringBytes = (char *)[stringToSend cString];
+	
+	// DJE use CP1252 encoding
+	const char * stringBytes = (char *)[stringToSend cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	return [self sendBytes:stringBytes length:length];
 }
 
@@ -151,7 +155,9 @@
 		if (count == BF_LINE_MAX-1)
 		{
 			lineBuffer[count] = '\0';
-			[lineString appendString:[NSString stringWithCString:lineBuffer]];
+			// deprecated API was here
+			sanitise_string(lineBuffer);
+			[lineString appendString:[NSString stringWithCString:lineBuffer encoding: NSWindowsCP1252StringEncoding]];
 			count = 0;
 		}
 		*endOfFile = ![self readData:&ch length:sizeof(ch)];
@@ -172,7 +178,8 @@
 
 		lineBuffer[count++] = '\n';
 		lineBuffer[count] = '\0';
-		[lineString appendString:[NSString stringWithCString:lineBuffer]];
+		sanitise_string(lineBuffer);
+		[lineString appendString:[NSString stringWithCString:lineBuffer encoding:NSWindowsCP1252StringEncoding]];
 	}
 	return lineString;
 }
@@ -218,8 +225,16 @@
 		if ([self readData:data length:length])
 		{
 			*endOfFile = NO;
-			string = [NSString stringWithCString:data length:length]
-				;
+			// DJE depreated API here
+			// string = [NSString stringWithCString:data length:length]
+			//	;
+			// DJE Replace with:
+			sanitise_string(data);
+			string= [[[NSString alloc] initWithBytes:(data) 
+											  length:(length)
+											encoding:NSWindowsCP1252StringEncoding ] autorelease];
+			
+
 		}
 		free(data);
 	}
