@@ -65,9 +65,11 @@ int main(int argc, const char *argv[])
 		}
 	}
 	if( testAnotherViennaIsRunning() == true ){
+		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 		[NSApplication sharedApplication];
 		[NSBundle loadNibNamed:@"checkVienna" owner:NSApp];
 		[NSApp run];
+		[pool drain];
 	}		
 	else    return NSApplicationMain(argc, argv);
 	return 0;
