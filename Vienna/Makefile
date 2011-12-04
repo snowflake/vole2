@@ -46,9 +46,9 @@ tiger leopard snowleopard lion Development:
 	echo $@
 	rm -f XXXX-Tempfile.h
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-	xcodebuild -project Vienna.xcodeproj  -configuration $@ clean 
+	xcodebuild -project Vinkix.xcodeproj  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-	xcodebuild -project Vienna.xcodeproj  -configuration $@ \
+	xcodebuild -project Vinkix.xcodeproj  -configuration $@ \
 		BUILDID=${SHORT}-${SHORTDATE} 
 
 # Run the version of Xcode appropiate to the target
