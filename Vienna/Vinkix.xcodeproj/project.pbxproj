@@ -16,7 +16,7 @@
 		61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */; };
 		61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 61CC8C1D13672D4F0049AECF /* sanitise_string.c */; };
 		61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1E13672D4F0049AECF /* sanitise_string.h */; };
-		8D15AC290486D014006FF6A4 /* Vienna_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */; };
+		8D15AC290486D014006FF6A4 /* Vinkix_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Vinkix_Prefix.pch */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -250,7 +250,7 @@
 		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vienna_Prefix.pch; sourceTree = "<group>"; };
+		32DBCF750370BD2300C91783 /* Vinkix_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vinkix_Prefix.pch; sourceTree = "<group>"; };
 		6176B81B147FA24700BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
 		6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testAnotherViennaIsRunning.h; sourceTree = "<group>"; };
 		6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testAnotherViennaIsRunning.c; sourceTree = "<group>"; };
@@ -261,7 +261,7 @@
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
 		61CC8C1E13672D4F0049AECF /* sanitise_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D15AC370486D014006FF6A4 /* Vienna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vienna.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D15AC370486D014006FF6A4 /* Vinkix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vinkix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA056D6C0626105E0003B9F5 /* markAsFlagged.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = markAsFlagged.tiff; sourceTree = "<group>"; };
 		AA06ACC30630AEDE00C77D59 /* vienna.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = vienna.icns; sourceTree = "<group>"; };
 		AA1678880657BCD80091365D /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
@@ -503,7 +503,7 @@
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D15AC370486D014006FF6A4 /* Vienna.app */,
+				8D15AC370486D014006FF6A4 /* Vinkix.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -755,7 +755,7 @@
 		AAC5063C082A7A530089FF70 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32DBCF750370BD2300C91783 /* Vienna_Prefix.pch */,
+				32DBCF750370BD2300C91783 /* Vinkix_Prefix.pch */,
 				61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */,
 				61CC8C1E13672D4F0049AECF /* sanitise_string.h */,
 				61CC8C1D13672D4F0049AECF /* sanitise_string.c */,
@@ -801,7 +801,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D15AC290486D014006FF6A4 /* Vienna_Prefix.pch in Headers */,
+				8D15AC290486D014006FF6A4 /* Vinkix_Prefix.pch in Headers */,
 				AA26F4840604911B00FE7994 /* SQLDatabase.h in Headers */,
 				AA26F4860604911B00FE7994 /* SQLDatabasePrivate.h in Headers */,
 				AA26F4DD0604927300FE7994 /* BufferedFile.h in Headers */,
@@ -872,9 +872,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8D15AC270486D014006FF6A4 /* Vienna */ = {
+		8D15AC270486D014006FF6A4 /* Vinkix */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA503398085CFC6000BC203D /* Build configuration list for PBXNativeTarget "Vienna" */;
+			buildConfigurationList = AA503398085CFC6000BC203D /* Build configuration list for PBXNativeTarget "Vinkix" */;
 			buildPhases = (
 				61AD4D9211C94A770033534B /* Growl Extract */,
 				61AD4DD211C991280033534B /* Vers script */,
@@ -891,10 +891,10 @@
 			);
 			dependencies = (
 			);
-			name = Vienna;
+			name = Vinkix;
 			productInstallPath = "$(HOME)/Applications";
 			productName = Vienna;
-			productReference = 8D15AC370486D014006FF6A4 /* Vienna.app */;
+			productReference = 8D15AC370486D014006FF6A4 /* Vinkix.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -902,7 +902,7 @@
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vienna" */;
+			buildConfigurationList = AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vinkix" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -916,7 +916,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D15AC270486D014006FF6A4 /* Vienna */,
+				8D15AC270486D014006FF6A4 /* Vinkix */,
 			);
 		};
 /* End PBXProject section */
@@ -1363,7 +1363,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
+				GCC_PREFIX_HEADER = Vinkix_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = 4.0;
@@ -1396,7 +1396,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Vienna;
+				PRODUCT_NAME = Vinkix;
 				SDKROOT = macosx10.5;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1434,7 +1434,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
+				GCC_PREFIX_HEADER = Vinkix_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = 4.0;
@@ -1467,7 +1467,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Vienna;
+				PRODUCT_NAME = Vinkix;
 				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1508,7 +1508,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
+				GCC_PREFIX_HEADER = Vinkix_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = 4.0;
@@ -1541,7 +1541,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Vienna;
+				PRODUCT_NAME = Vinkix;
 				SDKROOT = macosx10.4;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1567,7 +1567,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Vienna_Prefix.pch;
+				GCC_PREFIX_HEADER = Vinkix_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = 4.0;
@@ -1600,7 +1600,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Vienna;
+				PRODUCT_NAME = Vinkix;
 				SDKROOT = macosx10.4;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1631,7 +1631,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA503398085CFC6000BC203D /* Build configuration list for PBXNativeTarget "Vienna" */ = {
+		AA503398085CFC6000BC203D /* Build configuration list for PBXNativeTarget "Vinkix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA503399085CFC6000BC203D /* Development */,
@@ -1642,7 +1642,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vienna" */ = {
+		AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vinkix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA50339D085CFC6000BC203D /* Development */,
