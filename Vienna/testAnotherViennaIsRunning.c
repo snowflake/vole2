@@ -30,7 +30,7 @@ testAnotherViennaIsRunning(void){
 				// it's us
 				continue;
 			}
-			if(	! strcmp("Vienna",p->kp_proc.p_comm)){
+			if(	! strcmp("Vinkix",p->kp_proc.p_comm)){
 				// Another process with our name 
 				retcode = true;
 				break;
