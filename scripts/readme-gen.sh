@@ -12,7 +12,7 @@ This zip archive contains 3 files:
 XEOF
 printf "%-20s %s\n" "README.html" "What you are reading now."
 printf "%-20s %s\n" "$1.dmg.sig" "A detached OpenPGP signature to check the disk image."
-printf "%-20s %s\n" "$1.dmg"     "A disk image containing Vienna."
+printf "%-20s %s\n" "$1.dmg"     "A disk image containing Vinkix."
 cat << X2EOF
 
 You can use your OpenPGP utility (for example: GnuPG) to check the disk image
