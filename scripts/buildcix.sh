@@ -17,7 +17,7 @@ Size: $(wc -c $2 | awk '{printf $1}')
 $(md5 $2)
 $(openssl sha1 $2)
 
-[Vienna]
+[Vinkix]
 Description: Vinkix off-line reader for Mac OS X only
              Vinkix was formerly known as Vienna
 Version: $($1 -m)
