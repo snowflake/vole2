@@ -75,7 +75,7 @@
 -(NSString *)getPasswordFromKeychain:(NSString *)theUsername
 {
 	// Deprecated API was here DJE
-	const char * cServiceName = [[NSString stringWithFormat:@"Vienna:%@", serviceName] 
+	const char * cServiceName = [[NSString stringWithFormat:@"Vinkix:%@", serviceName] 
 								 cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	// deprecated API was here dje
 	const char * cUsername = [username cStringUsingEncoding:NSWindowsCP1252StringEncoding];
@@ -121,7 +121,7 @@
 {
 	// Deprecated API was here DJE
 	const char * cServiceName = [[NSString 
-								  stringWithFormat:@"Vienna:%@", serviceName]
+								  stringWithFormat:@"Vinkix:%@", serviceName]
 								 cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	const char * cPassword = [newPassword cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	const char * cUsername = [username cStringUsingEncoding:NSWindowsCP1252StringEncoding];
