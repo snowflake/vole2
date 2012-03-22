@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Vienna</string>
+	<string>Vinkix</string>
 	<key>CFBundleIconFile</key>
 	<string>vienna.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -15,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
-	<string>Vnna</string>
+	<string>Vnkx</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>Vienna Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>Vienna Help</string>
+	<string>Vinkix Help</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -38,7 +38,7 @@
 	<key>CFBundleVersion</key>
 	<string>${BUILDID}</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.6.2</string>
+	<string>1.6.3</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>

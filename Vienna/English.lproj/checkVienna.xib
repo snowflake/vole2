@@ -12,8 +12,6 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="812"/>
-			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -43,7 +41,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="NSMenuItem" id="694149608">
 						<reference key="NSMenu" ref="649796088"/>
-						<string key="NSTitle">Vienna</string>
+						<string key="NSTitle">Vinkix</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="756751024">
@@ -56,7 +54,7 @@
 						</object>
 						<string key="NSAction">submenuAction:</string>
 						<object class="NSMenu" key="NSSubmenu" id="110575045">
-							<string key="NSTitle">Vienna</string>
+							<string key="NSTitle">Vinkix</string>
 							<object class="NSMutableArray" key="NSMenuItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMenuItem" id="1056857174">
@@ -71,7 +69,7 @@
 								</object>
 								<object class="NSMenuItem" id="632727374">
 									<reference key="NSMenu" ref="110575045"/>
-									<string key="NSTitle">Quit Vienna</string>
+									<string key="NSTitle">Quit Vinkix</string>
 									<string key="NSKeyEquiv">q</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -90,12 +88,12 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{626, 530}, {483, 228}}</string>
 				<int key="NSWTFlags">611844096</int>
-				<string key="NSWindowTitle">Vienna Alert</string>
+				<string key="NSWindowTitle">Vinkix Alert</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
-				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="253843814">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">301</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -132,7 +130,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="691011511">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Cannot start Vienna because another instance of Vienna is running.</string>
+								<string key="NSContents">Cannot start Vinkix because another instance of Vinkix is running.</string>
 								<reference key="NSSupport" ref="85848321"/>
 								<reference key="NSControlView" ref="555154667"/>
 								<object class="NSColor" key="NSBackgroundColor" id="1038905385">
@@ -141,7 +139,7 @@
 									<string key="NSColorName">controlColor</string>
 									<object class="NSColor" key="NSColor">
 										<int key="NSColorSpace">3</int>
-										<bytes key="NSWhite">MC42NjY2NjY2ODY1AA</bytes>
+										<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 									</object>
 								</object>
 								<object class="NSColor" key="NSTextColor" id="472054122">
@@ -164,7 +162,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="288911849">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">138413056</int>
-								<string key="NSContents">Please quit this and the other Vienna and try again.</string>
+								<string key="NSContents">Please quit this and the other Vinkix and try again.</string>
 								<reference key="NSSupport" ref="85848321"/>
 								<reference key="NSControlView" ref="85272091"/>
 								<reference key="NSBackgroundColor" ref="1038905385"/>
@@ -205,10 +203,9 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{483, 228}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
-				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -407,6 +404,8 @@
 					<string>811.IBPluginDependency</string>
 					<string>811.IBWindowTemplateEditedContentRect</string>
 					<string>811.NSWindowTemplate.visibleAtLaunch</string>
+					<string>811.windowTemplate.maxSize</string>
+					<string>811.windowTemplate.minSize</string>
 					<string>812.IBPluginDependency</string>
 					<string>813.IBPluginDependency</string>
 					<string>813.IBViewBoundsToFrameTransform</string>
@@ -442,6 +441,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{626, 530}, {483, 228}}</string>
 					<boolean value="YES"/>
+					<string>{1.79769e+308, 1.79769e+308}</string>
+					<string>{0, 0}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">

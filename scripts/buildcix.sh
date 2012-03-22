@@ -2,7 +2,7 @@
 
 # create a message to be placed in vienna/files describing the file
 
-# $1 = path to Vienna command
+# $1 = path to Vinkix command
 # $2 = name of zip file
 # $3 = name of file to write
 # $4 = compatibility note
@@ -17,8 +17,9 @@ Size: $(wc -c $2 | awk '{printf $1}')
 $(md5 $2)
 $(openssl sha1 $2)
 
-[Vienna]
-Description: Vienna off-line reader for Mac OS X only
+[Vinkix]
+Description: Vinkix off-line reader for Mac OS X only
+             Vinkix was formerly known as Vienna
 Version: $($1 -m)
 $4
 $5

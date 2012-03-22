@@ -16,7 +16,7 @@
 "%d subscriptions successfully imported" = "%d subscriptions successfully imported";
 "RSS Subscription Export Title" = "Export Completed";
 "%d subscriptions successfully exported" = "%d subscriptions successfully exported";
-"Growl description" = "%d new messages were retrieved by Vienna";
+"Growl description" = "%d new messages were retrieved by Vinkix";
 "Growl notification name" = "New Messages";
 "Growl notification title" = "New Messages";
 "Retrieving profile..." = "Retrieving profile...";
@@ -61,8 +61,8 @@
 "Skip back %@ messages in %@" = "Skip back %@ messages in %@";
 "Read new messages" = "Read new messages";
 "Connect Running" = "A connection is in progress";
-"Connect Running text" = "Do you want to stop the connection and close Vienna now?";
-"Your software is up to date" = "Your version of Vienna is up to date.";
+"Connect Running text" = "Do you want to stop the connection and close Vinkix now?";
+"Your software is up to date" = "Your version of Vinkix is up to date.";
 "Please try again later" = "Please try again later.";
 "Delete folder" = "Delete folder";
 "Delete folder text" = "Are you sure you want to delete %@? All messages in the folder will also be deleted.";
@@ -70,12 +70,12 @@
 "Delete smart folder text" = "Are you sure you want to delete smart folder '%@'? This will not delete the actual messages matched by the search.";
 "Delete folder status" = "Deleting folder '%@'...";
 "An update is now available" = "An update is now available";
-"Update available text" = "Version %@ of Vienna is available from:\n\n%@\n\nWould you like to download it now? If you choose not to download it now, you can download it later by choosing Check For Updates again.";
+"Update available text" = "Version %@ of Vinkix is available from:\n\n%@\n\nWould you like to download it now? If you choose not to download it now, you can download it later by choosing Check For Updates again.";
 "Simple download progress" = "%.1f%@ received";
 "Full download progress" = "%.1f%@ received (%d%% complete)";
 "Starting..." = "Starting...";
 "Downloading %@" = "Downloading %@";
-"An error occured during download." = "Vienna was unable to determine the cause of the error. Please contact technical support for assistance.";
+"An error occured during download." = "Vinkix was unable to determine the cause of the error. Please contact technical support for assistance.";
 "Download Failed" = "Sorry, but a problem occurred while downloading the update";
 "No more unread messages" = "No more unread messages";
 "No more unread body" = "There are no more unread messages in any conference.";
@@ -89,9 +89,9 @@
 "Description:%@\n" = "Description:%@\n";
 "%d items" = "%d items";
 "Empty" = "Empty";
-"Cannot create database folder" = "Sorry, but Vienna was unable to create the database folder";
-"Cannot create database folder text" = "Vienna was trying to create the folder '%@' but an error occurred. Check the permissions on the folders on the path specified.";
-"Unrecognised database format title" = "Sorry, but Vienna does not recognise the format of the database.db file.";
+"Cannot create database folder" = "Sorry, but Vinkix was unable to create the database folder";
+"Cannot create database folder text" = "Vinkix was trying to create the folder '%@' but an error occurred. Check the permissions on the folders on the path specified.";
+"Unrecognised database format title" = "Sorry, but Vinkix does not recognise the format of the database.db file.";
 "Unrecognised database format text" = "The database was probably created with version 0.6 or earlier. You will need to obtain version 0.7 to upgrade the database at %@ to the latest format.\n";
 "None" = "None";
 " (%d unread)" = " (%d unread)";

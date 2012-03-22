@@ -1,1 +1,35 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Untitled Document</title><style type="text/css"><!--.style1 {font-family: Verdana, Arial, Helvetica, sans-serif}.style3 {	font-family: Verdana, Arial, Helvetica, sans-serif;	font-weight: bold;	font-size: xx-large;}--></style></head><body><p><img src="images/Small-Vienna-Logo.jpg" width="64" height="60"><span class="style3">Frequently Asked Questions</span></p><p class="style1">Some of the frequently asked questions during the Vienna pre-release testing.</p><p class="style1">Q: I have both Parlance and Vienna on my machine. When I click a cix: link in Vienna, it always attempts to open the link with Parlance.</p><p class="style1">A: This is because Parlance is also registered as the default handler for cix: links. In the event of multiple applications registering to handle the same link type, the OS picks a winner. However it is possible to manually set the active handler via the Preferences. In Preferences, choose the CIX tab and set Vienna as the default CIX links handler.</p><p class="style1">Q: My database is rather large.</p><p class="style1">A: Vienna uses SQLite as the database engine and it can generate rather large databases. Future revisions of SQLite may improve on the storage usage although probably not dramatically. Note that SQLite does not automatically reduce the database size when you delete topics or conferences so you should consider running the Compact Database command from the File menu afterwards.</p><p class="style1">Q: How do message styles work?</p><p class="style1">A: Vienna automatically renders words or phrases between * characters in bold. Similarly it renders words or phrases between / in italics and _ as underlined. This is a CIX convention supported by most off-line readers.</p><p class="style1">To create text in bold when entering a message, simply surround the text with * characters. One restriction is that you cannot run styles across lines. So the start and end of the style character must appear on the same line otherwise the style will not be rendered. In addition, the end style must be followed by any of these characters: space, newline, tab, comma, full-stop, question mark, exclamation mark or closing parenthesis.</p><p class="style1">Q: Where do the mugshots pictures come from?</p><p class="style1">A: Mugshots live in ~/Library/Vienna/Mugshots. tif, bmp, gif and jpg files are valid and are searched in that order. if you prefix the name of a mugshot file with a conference name (eg. vienna-tykepenguin.jpg) then it will be shown only for that person in that conference</p><p class="style1">Q: What's all this 'connect'/'online'/'get' business. Just how to I get my messages?</p><p class "style1">A: Most of the time "Connect" will do what you want. it will update Cix and RSS messages at the same time. If you don't have a timed connection to cix then 'online' might suit you better as it posts messages as you send them. The other two options allow you to update cix and RSS feeds independently should you want to</p></body></html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+.style1 {font-family: Verdana, Arial, Helvetica, sans-serif}
+.style3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: xx-large;
+}
+-->
+</style>
+</head>
+
+<body>
+<p><img alt="Vienna logo" src="images/Small-Vienna-Logo.jpg" width="64" height="60"><span class="style3">Frequently Asked Questions</span></p>
+<p class="style1">Some of the frequently asked questions during the Vienna pre-release testing.</p>
+<p class="style1">Q: I have both Parlance and Vienna on my machine. When I click a cix: link in Vienna, it always attempts to open the link with Parlance.</p>
+<p class="style1">A: This is because Parlance is also registered as the default handler for cix: links. In the event of multiple applications registering to handle the same link type, the OS picks a winner. However it is possible to manually set the active handler via the Preferences. In Preferences, choose the CIX tab and set Vinkix as the default CIX links handler.</p>
+<p class="style1">Q: My database is rather large.</p>
+<p class="style1">A: Vinkix uses SQLite as the database engine and it can generate rather large databases. Future revisions of SQLite may improve on the storage usage although probably not dramatically. Note that SQLite does not automatically reduce the database size when you delete topics or conferences so you should consider running the Compact Database command from the File menu afterwards.</p>
+<p class="style1">Q: How do message styles work?</p>
+<p class="style1">A: Vinkix automatically renders words or phrases between * characters in bold. Similarly it renders words or phrases between / in italics and _ as underlined. This is a CIX convention supported by most off-line readers.</p>
+<p class="style1">To create text in bold when entering a message, simply surround the text with * characters. One restriction is that you cannot run styles across lines. So the start and end of the style character must appear on the same line otherwise the style will not be rendered. In addition, the end style must be followed by any of these characters: space, newline, tab, comma, full-stop, question mark, exclamation mark or closing parenthesis.</p>
+<p class="style1">Q: Where do the mugshots pictures come from?</p>
+<p class="style1">A: Mugshots live in ~/Library/Vienna/Mugshots. (this location
+may change in the future after the Vienna->Vinkix renaming process is complete) tif, bmp, gif and jpg files are valid and are searched in that order. if you prefix the name of a mugshot file with a conference name (eg. enquire_within-tykepenguin.jpg) then it will be shown only for that person in that conference</p>
+<p class="style1">Q: What's all this 'connect'/'online'/'get' business. Just how to I get my messages?</p>
+<p class="style1">A: Most of the time "Connect" will do what you want. it will update Cix and RSS messages at the same time. If you don't have a timed connection to cix then 'online' might suit you better as it posts messages as you send them. The other two options allow you to update cix and RSS feeds independently should you want to</p>
+</body>
+</html>
