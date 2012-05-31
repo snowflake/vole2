@@ -107,9 +107,9 @@ extern "C" {
 ** [sqlite3_libversion_number()], [sqlite3_sourceid()],
 ** [sqlite_version()] and [sqlite_source_id()].
 */
-#define SQLITE_VERSION        "3.7.12"
-#define SQLITE_VERSION_NUMBER 3007012
-#define SQLITE_SOURCE_ID      "2012-04-04 13:58:19 9e1e2fe2950bb96784413eae934314d95bce08e7"
+#define SQLITE_VERSION        "3.7.13"
+#define SQLITE_VERSION_NUMBER 3007013
+#define SQLITE_SOURCE_ID      "2012-05-31 13:10:49 70c419a434be77b042a23174483d6a411899eb5d"
 
 /*
 ** CAPI3REF: Run-Time Library Version Numbers
@@ -458,6 +458,7 @@ SQLITE_API int sqlite3_exec(
 #define SQLITE_LOCKED_SHAREDCACHE      (SQLITE_LOCKED |  (1<<8))
 #define SQLITE_BUSY_RECOVERY           (SQLITE_BUSY   |  (1<<8))
 #define SQLITE_CANTOPEN_NOTEMPDIR      (SQLITE_CANTOPEN | (1<<8))
+#define SQLITE_CANTOPEN_ISDIR          (SQLITE_CANTOPEN | (2<<8))
 #define SQLITE_CORRUPT_VTAB            (SQLITE_CORRUPT | (1<<8))
 #define SQLITE_READONLY_RECOVERY       (SQLITE_READONLY | (1<<8))
 #define SQLITE_READONLY_CANTLOCK       (SQLITE_READONLY | (2<<8))
@@ -477,6 +478,7 @@ SQLITE_API int sqlite3_exec(
 #define SQLITE_OPEN_EXCLUSIVE        0x00000010  /* VFS only */
 #define SQLITE_OPEN_AUTOPROXY        0x00000020  /* VFS only */
 #define SQLITE_OPEN_URI              0x00000040  /* Ok for sqlite3_open_v2() */
+#define SQLITE_OPEN_MEMORY           0x00000080  /* Ok for sqlite3_open_v2() */
 #define SQLITE_OPEN_MAIN_DB          0x00000100  /* VFS only */
 #define SQLITE_OPEN_TEMP_DB          0x00000200  /* VFS only */
 #define SQLITE_OPEN_TRANSIENT_DB     0x00000400  /* VFS only */
@@ -771,7 +773,7 @@ struct sqlite3_io_methods {
 **
 ** <li>[[SQLITE_FCNTL_PERSIST_WAL]]
 ** ^The [SQLITE_FCNTL_PERSIST_WAL] opcode is used to set or query the
-** persistent [WAL | Write AHead Log] setting.  By default, the auxiliary
+** persistent [WAL | Write Ahead Log] setting.  By default, the auxiliary
 ** write ahead log and shared memory files used for transaction control
 ** are automatically deleted when the latest connection to the database
 ** closes.  Setting persistent WAL mode causes those files to persist after
@@ -1547,7 +1549,7 @@ struct sqlite3_mem_methods {
 ** [SQLITE_USE_URI] symbol defined.
 **
 ** [[SQLITE_CONFIG_PCACHE]] [[SQLITE_CONFIG_GETPCACHE]]
-** <dt>SQLITE_CONFIG_PCACHE and SQLITE_CONFNIG_GETPCACHE
+** <dt>SQLITE_CONFIG_PCACHE and SQLITE_CONFIG_GETPCACHE
 ** <dd> These options are obsolete and should not be used by new code.
 ** They are retained for backwards compatibility but are now no-ops.
 ** </dl>
@@ -2574,18 +2576,20 @@ SQLITE_API void sqlite3_progress_handler(sqlite3*, int, int(*)(void*), void*);
 **     present, then the VFS specified by the option takes precedence over
 **     the value passed as the fourth parameter to sqlite3_open_v2().
 **
-**   <li> <b>mode</b>: ^(The mode parameter may be set to either "ro", "rw" or
-**     "rwc". Attempting to set it to any other value is an error)^. 
+**   <li> <b>mode</b>: ^(The mode parameter may be set to either "ro", "rw",
+**     "rwc", or "memory". Attempting to set it to any other value is
+**     an error)^. 
 **     ^If "ro" is specified, then the database is opened for read-only 
 **     access, just as if the [SQLITE_OPEN_READONLY] flag had been set in the 
 **     third argument to sqlite3_prepare_v2(). ^If the mode option is set to 
 **     "rw", then the database is opened for read-write (but not create) 
 **     access, as if SQLITE_OPEN_READWRITE (but not SQLITE_OPEN_CREATE) had 
 **     been set. ^Value "rwc" is equivalent to setting both 
-**     SQLITE_OPEN_READWRITE and SQLITE_OPEN_CREATE. ^If sqlite3_open_v2() is 
-**     used, it is an error to specify a value for the mode parameter that is 
-**     less restrictive than that specified by the flags passed as the third 
-**     parameter.
+**     SQLITE_OPEN_READWRITE and SQLITE_OPEN_CREATE.  ^If the mode option is
+**     set to "memory" then a pure [in-memory database] that never reads
+**     or writes from disk is used. ^It is an error to specify a value for
+**     the mode parameter that is less restrictive than that specified by
+**     the flags passed in the third parameter to sqlite3_open_v2().
 **
 **   <li> <b>cache</b>: ^The cache parameter may be set to either "shared" or
 **     "private". ^Setting it to "shared" is equivalent to setting the
@@ -4626,7 +4630,6 @@ SQLITE_API void *sqlite3_update_hook(
 
 /*
 ** CAPI3REF: Enable Or Disable Shared Pager Cache
-** KEYWORDS: {shared cache}
 **
 ** ^(This routine enables or disables the sharing of the database cache
 ** and schema data structures between [database connection | connections]
@@ -6014,7 +6017,7 @@ SQLITE_API int sqlite3_db_status(sqlite3*, int op, int *pCur, int *pHiwtr, int r
 ** database file in rollback mode databases. Any pages written as part of
 ** transaction rollback or database recovery operations are not included.
 ** If an IO or other error occurs while writing a page to disk, the effect
-** on subsequent SQLITE_DBSTATUS_CACHE_WRITE requests is undefined). ^The
+** on subsequent SQLITE_DBSTATUS_CACHE_WRITE requests is undefined.)^ ^The
 ** highwater mark associated with SQLITE_DBSTATUS_CACHE_WRITE is always 0.
 ** </dd>
 ** </dl>
