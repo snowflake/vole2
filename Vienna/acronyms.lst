@@ -1,5 +1,5 @@
 Ý
-[Acronyms.Lst Version 3.03 2012-03-18
+[Acronyms.Lst Version 3.04 2012-05-27
 [Compiled by p_elphick@cix.co.uk aka cotal@cotal.co.uk, and gidds@cix.co.uk]
 [This file is copyright and may not be re-distributed outside the CIX
 conferencing system without permission]
@@ -95,6 +95,8 @@ chatter
 1040STF	= Atari ST with 1MB RAM and FDD
 1040STFM	= Atari ST with 1MB RAM, FDD, and TV modulator
 1040STM	= Atari ST with 1MB RAM and TV modulator
+1080i	1080-line Interlaced (1920×1080)
+1080p	1080-line Progressive-scan (1920×1080)
 10BASE-F	10 Mbit/sec Baseband Fibre-optic (Ethernet)
 10BASE-FB	10 Mbit/sec Baseband Fibre Backbone (Ethernet)
 10BASE-FL	10 Mbit/sec Baseband Fibre-optic Link (Ethernet)
@@ -234,6 +236,7 @@ chatter
 5NF	Fifth Normal Form (databases)
 5PT	Piss-Poor Protoplasm, Poorly Put Together
 6NF	Sixth Normal Form (databases)
+720p	720-line Progressive-scan (1280×720)
 73	best wishes
 7DAW	Seven Days A Week
 86	stop
@@ -309,6 +312,7 @@ A46	road from Bath to Cleethorpes
 A47	road from Birmingham to Great Yarmouth
 A48	road from Gloucester via Worcester to Carmarthen
 A49	road from Ross-on-Wye to Bamber Bridge
+A4V	Acceptance for Value
 A5	road from London to Holyhead / 148×210mm (paper size)
 A50	road from Warrington to Leicester
 A51	road from Chester to Kinsbury
@@ -438,6 +442,7 @@ ABITHIWTITB	A Bird In The Hand Is Worth Two In The Bush
 ABL	American Basketball League
 ABLE	AirBorne Law Enforcement
 ABM	Anti-Ballistic Missile / Asynchronous Balanced Mode (HDLC) / Automated Banking Machine / Activity-Based Management
+ABN	Arsehole By Nature / Assumed Business Name / Australian Business Number / Advance Beneficiary Notice / Association of British Neurologists / AT&T Business Network
 ABNF	Augmented Backus-Naur Form
 ABoF&L	‘A Bit of Fry and Laurie’
 ABoFaL	‘A Bit of Fry and Laurie’
@@ -448,7 +453,7 @@ aBq	attobequerel (10^-18 bequerels)
 ABR	Average Bit-Rate (MP3 encoding) / Auto Baud-Rate detection / Area Border Router
 ABRC	Advisory Board for the Research Councils
 ABRSM	Associated Board of the Royal Schools of Music
-ABS	Anti-lock Braking System / Acrylonitrile Butadiene Styrene (plastic) / Automated Bond System
+ABS	Anti-lock Braking System / Acrylonitrile Butadiene Styrene (plastic) / Automated Bond System / American Bible Society
 ABSA	Association for Business Sponsorship of the Arts
 ABSL	Assistant Beaver Scout Leader
 ABT	about / A Bad Thing
@@ -464,6 +469,7 @@ AC/DC	Alternating Current/Direct Current
 ACA	Associate of the Institute of Chartered Accountants / American Canine Association
 ACAA	Associate of the Australian Institute of Cost Accountants
 ACACOAFTAL	Assistant Curator And Collector Of Acronyms For The Acronyms List
+ACAP	Automated Content Access Protocol
 ACARD	Advisory Council for Applied Research and Development
 ACARS	Aircraft Communications Addressing and Reporting System
 ACAS	Advisory, Conciliation, and Arbitration Service
@@ -488,6 +494,7 @@ AcDipEd	Academic Diploma in Education
 ACDS	Assistant Chief of Defence Staff
 ACDT	Apple Certified Desktop Technician / Australian Central Daylight Time (= UTC+10:30)
 ACE	Access Control Entity / Allied Command, Europe / Automatic Computing Engine / Advanced Computing Environment / American Council on Education / Association of Consulting Engineers / Artificial Conversational Entity
+ACEA	Association des Constructeurs Européens d'Automobiles (= European Automobile Manufacturers Association)
 ACELP	Algebraic Code-Excited Linear Prediction
 ACENVO	Association of Chief Executives of National Voluntary Organisation
 ACEVO	Association of Chief Executives of Voluntary Organisations
@@ -515,7 +522,7 @@ ACK	Acknowledge(d) / Amsterdam Compiler Kit
 ACL	Access Control List / Active Current Loop
 ACLB	Anthony Charles Lyton Blair (= ex-Prime Minster Tony Blair)
 ACLU	American Civil Liberties Union
-ACM	Association for Computing Machinery / Air Chief Marshal / Air Combat Manœuvring
+ACM	Association for Computing Machinery / Air Chief Marshal / Air Combat Manoeuvring
 ACMA	Associate of the Institute of Cost and Management Accountants
 ACMD	(UK) Advisory Council on the Misuse of Drugs
 ACME	Automated Classification of Medical Entities
@@ -565,7 +572,7 @@ ADD	Attention-Deficit Disorder / Analogue–Digital–Digital mastering
 ADDIE	Analyse, Design, Develop, Implement, and Evaluate
 ADEL	Webster's American Dictionary of the English Language
 ADEME	Assistant Director of Electrical and Mechanical Engineering
-ADF	Adapter Definition File (see MCA) / Audio Distribution Frame (cabling)
+ADF	Adapter Definition File (see MCA) / Audio Distribution Frame (cabling) / Automatic Document Feeder
 ADFS	Active Directory Federation Services / Advanced Disk Filing System / Advanced Distributed File-System / Apple DOS File-System
 ADGB	Air Defence of Great Britain
 ADGR	All Donations Gratefully Received
@@ -679,6 +686,7 @@ AFL	Academic Free Licence / Australian Football League / American Federation of 
 AFM	Air Force Medal
 AFN	All For Now / American Forces Network / Afghan Afghanis (ccy)
 AFNOR	Association Française de Normalisation (= French standards association)
+AFO	Authorised Firearm Officer
 AFoaL	A F*** of a Lot
 AFOM	Associate of the Faculty of Occupational Medicine
 AFP	Ameol File Protocol / Apple Filing Protocol / Adobe Flash Player / IBM Advanced Function Printing / Agence France-Presse (news agency) / American Free Press (newspaper) / Advertiser-Funded Programming (TV) / Australian/Argentine/Alaska Federal Police
@@ -704,7 +712,7 @@ AGCR	Advanced Gas-Cooled Reactor / Asymptotic Global Confidence Region
 AGD	Attorney-General's Department
 AGI	Adjusted Gross Income / Alliance Graphique Internationale (= international alliance of graphic artists and designers) / Associate Member of the Grocers' Institute
 AGICOA	Association de Gestion Internationale Collective des Oeuvres Audiovisuelles (= Association of International Collective Management of Audiovisual Works)
-AGKWE	And God/Goodness Knows What Else
+AGKWE	And Goodness/God Knows What Else
 AGL	Above Ground-Level
 AGM	Annual General Meeting
 AGN	again
@@ -976,6 +984,7 @@ AotC	‘Star Wars ep.2: Attack of the Clones’
 AoW	‘The Art of War’ (by Sun Tzu)
 AP	Associated Press / Atmospheric Pressure / Access Point / Accounts Payable / Apple Pie / Absolute (aka Perfect) Pitch / Armour-Piercing
 AP&C	All Praise And Credit
+APA	American Psychiatric Association
 aPa	attopascal (10^-18 pascals)
 APAC	All Praise And Credit / Asia and Pacific
 APAS	Androgynous Peripheral Attach/Assembly System (spacecraft docking)
@@ -988,6 +997,7 @@ APDS	Armour-Piercing Discarding-Sabot (ammunition) / Androgynous Peripheral Dock
 APEA	Affiliate Physical Education Association
 APEC	Asia-Pacific Economic Co-operation
 APEX	Association of Professional, Executive, Clerical, and Computer Staff
+APFS	Arts Projects For Schools Ltd (UK) / Afternoon Programmes Follow Shortly / Action Plan for Financial Services (EU) / Apparent Places of Fundamental Stars / Armour-Piercing Fin-Stabilised (ammunition)
 APFSDS	Armour-Piercing Fin-Stabilised Discarding-Sabot (ammunition)
 APFU	As Per F***ing Usual
 API	Application Programming Interface
@@ -1097,7 +1107,7 @@ ASCOT	Asset Swapped Convertible Option Transaction
 ASD	Armament Supply Department / Autism Spectrum Disorder
 ASDA	Asquith Dairies (merger of Asquith supermarkets with Associated Dairies & Farm Stores Ltd) Stores Ltd / Associate of Speech and Drama, Australia
 AsDB	Asian Development Bank
-ASEAN	Association of South-East Asian Nations
+ASEAN	Association of South-East-Asian Nations
 ASF	And So Forth / Apache Software Foundation / Advanced/Active Systems/Streaming Format (Windows Media)
 ASFA	Associate of the Institute of Shipping and Forwarding Agents
 ASG	Abstract Semantic Graph
@@ -1136,6 +1146,7 @@ ASPX	Active Server Page Extended (file)
 ASR	Air-Sea Rescue / Accelerated Share Repurchase / Asynchronous Signal Routine / Airport Surveillance Radar
 ASRAAM	Advanced Short-Range Air-to-Air Missile
 ASSC	Accounting Standards Steering Committee
+ASSK	Aung San Suu Kyi (Burmese opposition politician)
 AssocICE	Associate of the Institution of Civil Engineers
 ASSOL	Anti-Synthetic-Smell Organisation Limited
 ASSP	Application-Specific Standard Product
@@ -1230,7 +1241,7 @@ AUD	Australian Dollars
 AUDI	Accelerates Under Demonic Influence
 AUDIT	Alcohol-Use Disorders Identification Test
 AUEW	Amalgamated Union of Engineering Workers
-AUG	August
+AUG	August / Apple User Group / Augustus (title) / augment / Application User Group / Administrative Unit Group (IETF) / Add-ons and Upgrades / American Underwriters Group
 AUGUR	A Universal Generic User Repository
 AUI	Attachment Unit Interface
 AUM	Assets Under Management
@@ -1259,6 +1270,7 @@ aWb	attoweber (10^-18 webers)
 AWBA	Any Way But Always
 AWCIGO	And Where Can I Get One?
 AWDT	Australian Western Daylight Time (= UTC+9)
+AWE	Atomic Weapons Establishment
 AWeldI	Associate of the Welding Institute
 AWG	American Wire Gauge / Aruban florins (ccy)
 AWGN	Additive White Gaussian Noise
@@ -1269,9 +1281,9 @@ AWITNR	And When Is The Next Release?
 Awk	Aho, Weinberger, Kernighan (programming language)
 AWL	Advanced Wizarding Level
 AWLS	Advanced Wizarding Levels
-AWOL	Absent Without Leave
-AWRE	Atomic Weapons Research Establishment
-AWS	As We Speak
+AWOL	Absent Without Official Leave
+AWRE	Atomic Weapons Research Establishment (now AWE)
+AWS	As We Speak / Amazon Web Services
 AWST	Australian Western Standard Time (= UTC+8)
 AWT	Abstract Window Toolkit (Java) / Anthony Worrall Thompson (chef)
 AWYR	Awaiting Your Reply
@@ -1353,7 +1365,7 @@ BAD	Broken As Designed
 BADA	British Antique Dealers' Association
 BADD	Bikers Against Drunk Drivers
 BAEM	British Association for Accident and Emergency Medicine
-BAF	Brain Already Fried / British Athletic Federation (was AAA)
+BAF	Brain Already Fried / British Armed Forced / British Athletic Federation (was AAA)
 BAFO	British Air Forces Occupation
 BAFS	British Academy for Forensic Sciences
 BAFSEA	British Air Forces South East Asia
@@ -1526,12 +1538,12 @@ BFA	Bachelor of Fine Arts / British Fencing/Finswimming/Fireworks/Florist/Flybal
 BFaI	Brute Force and Ignorance
 BFAWU	(UK) Bakers, Food, and Allied Workers' Union
 BFBI	Brute Force and Bloody Ignorance
-BFBS	British Forces Broadcasting Service
+BFBS	British Forces Broadcasting Service / British and Foreign Bible Society
 BFD	Big F***ing Deal / Binary File Descriptor
 BFF	Best Friends Forever
 BFFE	Best Friends For Ever
 BFFL	Best Friends For Life
-BFG	Big Friendly Giant / Big F***ing Grin/Gun / Black Forest Gateau
+BFG	Big Friendly Giant / Big F***ing Grin/Gun / Black Forest Gateau / Big Fat Git
 BFH	Big F***ing Hammer
 BFI	Brute Force and Ignorance / British Film Institute / Bunch of F***ing Idiots
 BfIS	Bank for International Settlements
@@ -1566,6 +1578,7 @@ BGWM	Be Gentle With Me
 BH	Bloody Hell / Better Half / Business Highway / Black Horse / Bahrain (ISO code)
 Bh	bohrium
 BHA	British Hoteliers' Association (was BHRCA)
+BHAG	Big Hairy Audacious Goal
 BHB	Big Hairy Bollocks
 BHD	Bad Hair Day / Bahraini dinars / George Best Belfast City Airport
 BHF	British Heart Foundation
@@ -1605,7 +1618,7 @@ BIIBA	British Insurance and Investment Brokers' Association
 BIID	British Institute of Interior Design
 BIIK	Buggered If I Know
 BIK	Benefit In Kind
-BIL	Brother-In-Law
+BiL	Brother-in-Law
 BIM	British Institute of Management
 BIMBO	Buy-In Management Buy-Out
 BIN	Buy It Now / Bank Identification Number
@@ -1676,6 +1689,7 @@ BMG	Bertelsmann Music Group
 BMH	British Military Hospital
 BMI	Body Mass Index / Broadcast Music, Inc.
 BMJ	British Medical Journal
+BMO	Bring My Own
 BMOC	Big Man On Campus
 BMOTA	Bite Me On The Arse
 BMP	Bitmap (file) / Basic Multilingual Plane (Unicode)
@@ -1790,7 +1804,7 @@ BPSA	Baden-Powell Scout Association
 BPSK	Binary Phase-Shift Keying
 BQ	Bonaire, Saint Eustatius, and Saba (ISO code) / British Antarctic Territory (ISO code) (obs.)
 BQP	Bounded-error, Quantum, Polynomial-time (complexity)
-BR	Best Regards / British Rail / Brazil (ISO code)
+BR	Best Regards / British Rail / Branded Reseller / Brazil (ISO code)
 Br	bromine
 BRaD	British Rate and Data
 BRAS	Broadband Remote-Access Server
@@ -1802,6 +1816,7 @@ BRBM	Battlefield-Range Ballistic Missile
 BRCS	British Red Cross Society
 BRDC	British Racing Drivers' Club
 BRE	Basic Regular Expression / Building Research Establishment / Bachelor of Religious Education
+BREIN	Bescherming Rechten Entertainment Industrie Nederland (= Protection Rights for the Entertainment Industry of the Netherlands)
 BRGDS	Best Regards
 BRH	Be Right Here
 BRI	Basic Rate Interface (ISDN)
@@ -1854,7 +1869,7 @@ BSU	(UK) Britannia Staff Union
 BSV	Boot Sector Virus
 BSW	British Standard Whitworth (screw thread standard)
 BSWIS	Bruce Says What I Say
-BT	British Telecom / Bluetooth / Bittorrent / Blues and Twos / Before Thatcher / Betéti Társaság (= partnership co. in Hungary) / Bhutan (ISO code)
+BT	British Telecom / Bluetooth / Bittorrent / Blues and Twos / Been There / Before Thatcher / Betéti Társaság (= partnership co. in Hungary) / Bhutan (ISO code)
 Bt	Baronet
 Bt-Col	Brevet-Colonel
 BTA	But Then Again / But Thanks Anyway / By That Account / British Troops in Austria / British Tourist Authority / British Theatre Association
@@ -1986,9 +2001,9 @@ C	cool / carbon / 100 (Roman numeral)
 C&A	Clemens and August Brenninkmeijer (clothing store)
 C&B	Callard & Bowser / Crash and Burn
 C&C	Coffee and Cats (= liable to cause spat coffee and startled cats) / Command & Conquer (game) / Command and Control / Cantrell and Cochrane Group PLC / Contraction and Convergence
-C&D	Cease and Desist
+C&D	Cease and Desist / Click-and-Drag
 C&G	Chuckle and Grin / Cheltenham & Gloucester PLC / City and Guilds of London Institute (was CGLI)
-C&H	Calvin and Hobbes (comic strip)
+C&H	Calvin and Hobbes (comic strip) / Click-and-Hold
 C&MA	Christian and Ministry Alliance
 C&P	Cut/Copy-and-Paste
 C&S	Clean and Sober
@@ -1999,7 +2014,7 @@ C-of-E	Church of England
 C-SPAN	Cable-Satellite Public Affairs Network (US cable TV)
 C-UWB	Continuous-Pulse Ultra-Wide-Band (radio)
 C/O	in Care Of / Commanding Officer
-C/P/S	City or Country / Profession / marital Status
+C/P/S	City/Country, Profession, marital Status
 C0	917×1297mm (paper size)
 C1	648×917mm (paper size) / first century (1–100 AD)
 C10	28×40mm (paper size) / tenth century (901–1000 AD)
@@ -2146,7 +2161,7 @@ CaPD	Clear and Present Danger
 CAPEX	Capital Expenditure
 CAPS	CESG Assisted Products Scheme
 CAPSTAN	Can A Prick Stand Twice A Night
-CAPTCHA	Completely Automated Public Turing test to tell Computers and Humans Apart
+CAPTCHA	Completely-Automated Public Turing test to tell Computers and Humans Apart
 CAQ	Computer-Aided Quality Assurance
 CAQA	Computer-Aided Quality Assurance
 CAR	Central African Republic / Causal Analysis / Contents of the Address part of Register number (LISP)
@@ -2192,7 +2207,7 @@ CBAC	Context-Based Access Control
 CBC	Cipher-Block Chaining / Canadian Broadcasting Corp. / County Borough Council
 CBC-MAC	Cipher Block Chaining Message Authentication Code (cryptography)
 CBCMAC	Cipher Block Chaining Message Authentication Code (cryptography)
-CBD	Convention on Biological Diversity
+CBD	Cannot Be Denied / Cash Before Delivery / Convention on Biological Diversity / Central Business District / Component-Based Design/Development / Clinically Brain-Dead
 CBDO	Chief Business Development Officer
 CBDTPA	(US) Consumer Broadband and Digital TV Promotion Act (never enacted)
 CBE	Commander of the Order of the British Empire
@@ -2279,6 +2294,7 @@ CCSC	Central Consultants and Specialists Committee
 CCSID	Coded Character Set Identifier (IBM)
 CCT	Continuous Cosine Transform / Cocos Islands Time (= UTC+6:30)
 CCTA	(UK) Central Computer and Telecommunications Agency
+CCTL	Command Completion Time Limit (HD)
 ccTLD	Country Code Top-Level Domain
 CCTV	Closed-Circuit Television
 CCU	Correctional Custody Unit / Critical/Coronary Care Unit / Camera Control Unit
@@ -2288,27 +2304,38 @@ CCW	Carrying a Concealed Weapon
 CCY	Can't, Can You / currency
 CD	Compact Disc / Creative Director / Certificate of Deposit / Christian Democrat / Christmas Day / Canadian Forces Decoration / 400 (Roman numeral) / Democratic Republic of the Congo (ISO code)
 Cd	cadmium
+CD+G	Compact Disc + Graphics
 CD+V	Compact Disc Video
+CD-DA	Compact Disc — Digital Audio
+CD-E	Compact Disc — Erasable (now CD-RW)
+CD-I	Compact Disc — Interactive
 CD-MO	Compact Disc — Magneto-Optical
+CD-MRW	Compact Disc — Mount Ranier ReWritable
+CD-PROM	Compact Disc — Programmable Read-Only Medium
 CD-R	Compact Disc — Recordable
 CD-ROM	Compact Disc — Read-Only Medium
 CD-RW	Compact Disc — ReWritable
-CD-V	Compact Disc Video
-CDA	(US) Communications Decency Act, 1996 / Capital Dividend Account / College Diploma of Agriculture
+CD-V	Compact Disc — Video
+CD-WO	Compact Disc — Write Once
+CDA	Compact Disc Audio / (US) Communications Decency Act, 1996 / Capital Dividend Account / College Diploma of Agriculture / Clinical/Compound Document Architecture
+CDATA	Character Data (XML)
 CDC	(US) Centers for Disease Control and Prevention / Control Data Corp. / California Department of Corrections / Congress for Democratic Change / Community Development Corp. / Cult of the Dead Cow / Connected Device Configuration (Java ME) / Communications Device Class (USB) / Communications Daughter Card (mobile phones) / Combat Direction Centre (on an aircraft carrier)
 CDCA	(UK) Carers and Disabled Children Act 2000
 CDDA	Compact Disc Digital Audio
+CDDB	Compact Disc Database (now Gracenote Media Database)
 CDDI	Copper Distributed Data Interchange
 CDDL	Common Development and Distribution Licence (from Sun)
 CDDMWUR	Conference Decolyte and Director of Music To cix:wur
-CDE	Common Desktop Environment (Unix)
-CDF	Cumulative Distribution Function / Collider Detector at Fermilab / Combined Distribution Frame (cabling) / Clostridium Difficile / Channel Definition Format (XML) / Composite Document File (MS Office) / Compound Document Format (W3C) / Common Data Format (NASA) / Computational Document Format (Wolfram) / Congolese francs
+CDE	Common Desktop Environment (Unix) / Certified Directory Engineer (Novell) / Co-operative Development Environment (Oracle)
+CDF	Cumulative Distribution Function / Collider Detector at Fermilab / Combined/Central Distribution Frame (cabling) / Clostridium Difficile / Channel Definition Format (XML) / Composite Document File (MS Office) / Compound Document Format (W3C) / Common Data Format (NASA) / Computational Document Format (Wolfram) / Congolese francs
 CDFA	Certified Divorce Financial Analyst
 CDFI	Community Development Financial Institution
 CDFS	Compact Disc File-System (ISO9660)
 CDG	Charles De Gaulle
+CDGPS	Canadian Differential GPS
 CDI	Can't Do It / 401 (Roman numeral)
 CDIC	Canadian Deposit Insurance Corp.
+CDIP	Ceramic Dual In-line Package
 CDipAF	Certified Diploma in Accounting and Finance
 CDir	Chartered Director
 CDIWY	Couldn't Do It Without You
@@ -2328,18 +2355,18 @@ CDPU	Cash Distribution Per Unit
 CDR	Compact Disc — Recordable / commander / Climate Data Record / Call Detail Record / Crude Death Rate / Chinese Depositary Receipt / Contents of the Decrement part of Register number (LISP) / Constant Default Rate
 CDROM	Compact Disc — Read-Only Medium / Consumer Device Rendered Obsolete In Months
 CDRW	Compact Disc — ReWritable
-CDS	Chief of Defence Staff / Credit Default Swap
+CDS	Compact Disc Single / Chief of Defence Staff / Credit Default Swap
 CdS	cadmium sulphide
 CDSA	Common Data Security Architecture
 CDSC	Contingent Deferred Sales Charge
 CDT	Central Daylight Time (North America) (= UTC-5)
 CDTTB	Come Down To The Basement
 CDU	Control/Counter/Customer Display Unit / Christian Democratic Union (Germany, Ukraine)
-CDV	Compact Disc Video / 405 (Roman numeral)
+CDV	Compact Disc Video / Compressed Digital Video / 405 (Roman numeral)
 CE	Conference Exists / Common Era / Conformité Européene (EU safety inspection) / Covers Ears / Creative Editing / Crown Estate / Close Enough / Church of England / Civil Engineer / Chief Engineer
 Ce	cerium
 CEA	(US) Council of Economic Advisers / (US) Consumer Electronics Association
-CEC	Crown Estate Commissioners
+CEC	Consumer Electronics Control (HDMI 1.3) / Crown Estate Commissioners / Certified Executive Chef/Coach / Commission of the European Communities / Civil Engineering Corps (US Navy)
 CECB	Cewch E-Clec Bonws (= have a bonus e-clerk [?])
 CED	Collins English Dictionary
 CEDAW	Convention on the Elimination of All Forms of Discrimination Against Women
@@ -2423,7 +2450,7 @@ CFTC	Commonwealth Fund for Technical Co-operation
 CFV	Call For Vote
 CG	Conference Grammarian / Computer Graphics / Centre of Gravity / Commonwealth Games / Congo (ISO code)
 cg	centigram (1/100 grams)
-CGA	Colour Graphics Array/Adapter (320×200) / Computer Games Authoring / Country Gentlemen's Association
+CGA	Colour Graphics Array/Adapter (320×200) / Computer Games Authoring / Country Gentlemen's Association / Centre for the Global Agenda (WEF)
 CGAP	Consultative Group to Assist the Poor (consortium)
 CGC	Customer Gets Customer / Conspicuous Gallantry Cross
 CGE	Capital Gains tax Exposure
@@ -2584,6 +2611,7 @@ CISAS	Currently In Stock At Supplier
 CISAV	Currently In Stock At Vendor
 CISC	Complex Instruction Set Computer/Chip
 CISO	Chief Information Security Officer
+CISPA	(US) Cyber Intelligence Sharing and Protection Act
 CIST	Clipperton Island Standard Time (= UTC-8)
 CIT	Contradiction In Terms / Chartered Institute of Transport (now CILT)
 CITA	Case Is Towed Away
@@ -2711,6 +2739,7 @@ CNY	Chinese yuan (ccy)
 CNZM	Companion of the New Zealand Order of Merit
 CO	conference / company / Care Of / Commanding Officer / Certificate of Origin / Cabinet Office / Cache Owner / Colorado / Colombia (ISO code)
 Co	cobalt
+CO(NH2)2	carbamide (aka urea)
 Co-op	Co-operative
 CO2	carbon dioxide
 CO3	carbon trioxide
@@ -2796,7 +2825,7 @@ CPAL	Common Public Attribution Licence
 CPAN	Comprehensive Perl Archive Network
 CPAP	Constant Positive Airway Pressure
 CPB	Communist Party of Britain/Burma / Cardiopulmonary Bypass / Coded Picture Buffer / (US) Corporation for Public Broadcasting / Campbell Soup Company
-CPC	Cost Per Click / (Driver) Certificate of Professional Competence / Community Patent Convention / Communist Party of Canada/Chile/China/Cuba/Czechoslovakia / Conservative Political Centre
+CPC	Cost Per Click / (Driver) Certificate of Professional Competence / cetylpyridinium chloride / Community Patent Convention / Communist Party of Canada/Chile/China/Cuba/Czechoslovakia / Conservative Political Centre
 CPD	Continuing Professional Development
 CPDO	Constant-Proportion Debt Obligation
 CPE	Customer Premises Equipment / Common Professional Examination (of the Law Society)
@@ -3050,6 +3079,7 @@ D&D	Drunk and Disorderly / Dungeons and Dragons
 D&RFC	Duck and Run For Cover
 D&S	Domination and Submission
 D&T	Derry & Tom's
+D&V	Diarhhoea & Vomiting
 D-G	Director-General
 D-H	Diffie-Hellman (key exchange)
 D-VHS	Digital Video Home System
@@ -3157,7 +3187,7 @@ DB9	D-subminiature 9-pin connector (joysticks &c)
 DBA	Database Administrator / Doing Business As / Doctor of Business Administration / Design Business Association
 DBAG	Don't Blow A Gasket
 DBAI	Designed By An Idiot
-DBaN	Darik's Boot and Nuke
+DBaN	Darik's Boot and Nuke (HD wiping utility)
 DBAU	Doing Business As Usual
 DBBO	Difficult Bits By Others
 DBC	Design By Contract
@@ -3297,12 +3327,13 @@ DE9	D-subminiature 9-pin connector (joysticks &c)
 DEA	(US) Drug Enforcement Administration / (UK) Department of Economic Affairs (obs.) / Data Encryption Algorithm / Disposable Email Address / (UK) Digital Economy Act 2010
 DEB	Don't Even Bother / Dynamic Energy Budget / Digital European Backbone / Dietary Electrolyte Balance / Diethyl Benzene / Data Extent Block (IBM)
 DEBE	Does Everything But Eat
-DEC	Digital Equipment Corporation / Disasters Emergency Committee / December / decimal
+DEC	Digital Equipment Corporation / Disasters Emergency Committee / December / decimal / decade / decrease / deceased / decrescendo / Display Energy Certificate / Digital Engine Control / Drug Evaluation Committee / Digital Effects Control (photo)
 DECC	(UK) Department of Energy and Climate Change
 DECE	Digital Entertainment Content Ecosystem (consortium)
 DECT	Digital Enhanced Cordless Telecommunications
 DED	Dark-Emitting Diode (= a burned-out LED) / Disability Equality Duty / Doctor of Environmental Design
 DEd	Doctor of Education
+DEFCON	Defence readiness Condition (US military)
 DEFRA	(UK) Department for Environment, Food, and Rural Affairs
 DEGT	Don't Even Go There
 DEK	Donald Ervin Knuth
@@ -3392,6 +3423,7 @@ DHM	Diffie-Hellman-Merkle (key exchange)
 DHMO	Dihydrogen Monoxide
 DHMSA	Diploma in the History of Medicine (Society of Apothecaries)
 DHQ	District Headquarters
+DHR	(UN Universal) Declaration of Human Rights
 DHS	Die, Heretic Scum! / (US) Department of Homeland Security / Doctor of Health and Safety / Doctor of Hebrew Studies
 DHSS	(UK) Department of Health and Social Security (obs.)
 DHT	Distributed Hash Table / Discrete Hartley Transform / dihydrotestosterone
@@ -3748,7 +3780,7 @@ DStJ	Dame of Grace of the Order of St John of Jerusalem
 DSU	Data Service Unit
 dSv	decisievert (1/10 sieverts)
 DSW	Dick-Size War / Doctor of Social Work
-DT	Delirium Tremens
+DT	Delirium Tremens / Done That
 dT	decitesla (1/10 teslas)
 DTA	Don't Trust Anybody
 DTaM	Document Transfer and Manipulation (OSI)
@@ -3806,6 +3838,7 @@ DUST	Did You See That?
 DUYBOC	Don't Understand Your Banter Old Chap
 DV	Digital Video / Desktop Virtualisation / Deo Volente (= God willing) / DESQview / Déjà Vu / 505 (Roman numeral)
 dV	decivolt (1/10 volts)
+DVASG	De Vobis Apud Suebos Gloriamur (= we are boasting of you to the Swabians; cf. 2 Cor.9:2)
 DVB	Digital Video Broadcasting
 DVB-C	Digital Video Broadcasting over Cable
 DVB-CA	Digital Video Broadcasting — Conditional Access
@@ -3845,6 +3878,7 @@ DVDRAM	Digital Versatile Disc — Random-Access Memory
 DVDRW	Digital Versatile Disc — ReWritable
 DVDVR	Digital Versatile Disc — Video Recording
 DVFS	Director of Veterinary Field Services
+DVGA	Double-size Video Graphics Array (960×640)
 DVHD	Disc Versatile High Density (= VCDHD)
 DVHS	Digital Video Home System
 DVI	Digital Video Interface / Device-Independent (file format) / 506 (Roman numeral)
@@ -3861,6 +3895,7 @@ DVS	Director of Veterinary Services
 DVSc	Doctor of Veterinary Science
 DVSL	District Venture Scout Leader
 DVSM	Diploma of Veterinary State Medicine
+DVT	Deep-Vein Thrombosis
 DW	‘Doctor Who’ / ‘Discworld’ / Dream Weaver / Don't Worry / Darling/Dear Wife
 dW	deciwatt (1/10 watts)
 DWAF	Department of Water Affairs and Forestry (South Africa)
@@ -3869,6 +3904,8 @@ DWARF	Debug With Attributed Record Format
 dWb	deciweber (1/10 webers)
 DWBH	Don't Worry, Be Happy
 DWDM	Dense Wavelength-Division Multiplexing
+DWEF	Dead White European Female
+DWEM	Dead White European Male
 DWF	Divorced White Female
 DWG	Digital Waveguide (synthesis)
 DWI	Deal With It / Driving While Intoxicated / Drinking Water Inspectorate / Direct Water Injection / Disaster Welfare Inquiry
@@ -4103,6 +4140,7 @@ E290	carbon dioxide (acidity regulator)
 E296	malic acid (acidity regulator)
 E297	fumaric acid (acidity regulator)
 E2EG	Ear-to-Ear Grin
+E2R	Elizabeth the 2nd, Regina
 E3	280×400mm (envelope size)
 E300	ascorbic acid (aka Vitamin C, antioxidant)
 E301	sodium ascorbate (antioxidant)
@@ -4600,6 +4638,8 @@ EGy	exagray (10^18 grays)
 EH	Eastern Hemisphere / English Heritage / exahenry (10^18 henrys) / Western Sahara (ISO code)
 EHA	Ethernet Hardware Address (MAC address)
 EHF	Extremely-High Frequency / European Handball/Hockey/Humanist Federation / Extremely Hairy Football / Einkahlutafélag (= Ltd co. in Iceland)
+EHGO	Et Hoc Genus Omne (= and all that sort of thing)
+EHIC	European Health Insurance Card
 EHR	Electronic Health Record
 EHT	Extra-High Tension
 EHz	exahertz (10^18 hertz)
@@ -4614,6 +4654,7 @@ EIE	Enough Is Enough
 EIEIO	Enforce In-order Execution of Input/Output (PowerPC instruction)
 EiF	Exercise in Futility
 EIGRP	Enhanced Interior Gateway Routing Protocol
+EIIR	Elizabeth the Second, Regina
 EIL	English as an International Language
 EIRL	Empresa Individual de Responsabilidad Limitada (= Ltd co. in Chile)
 EIS	Educational Institute of Scotland
@@ -4650,6 +4691,7 @@ EMBO	European Molecular Biology Organisation
 EMDW	“Elementary, my dear Watson!”
 EME	ECB, Mask, ECB (disk encryption mode)
 EMEA	Europe, Middle East, and Africa
+EMERGCON	Emergency Condition (US military)
 EMF	Electro-Motive Force / Eclipse Modelling Framework
 EMFBI	Excuse Me For Butting In
 EMFJI	Excuse Me For Jumping In
@@ -4666,11 +4708,14 @@ EMS	Expanded Memory Specification / Expanded Memory System / Engine Management S
 EMSG	Email Message
 EMT	Emergency Medical Technician / Efficient Market Theory / East Midlands Trains Ltd
 EMU	European Monetary Union / Economic and Monetary Union / English Metric Unit (OOXML)
-EMV	Europay, MasterCard, and VISA (standard for chip cards)
+EMV	Europay, MasterCard, and VISA (chip card standard)
 EN	exanewton (10^18 newtons)
 EN(G)	Enrolled Nurse (General)
+ENB	English National Ballet
 ENC	Emperor's New Clothes
 ENE	East-North-East (67½°) / Eastern New England
+ENFJ	Extravert, Intuitive, Feeling, Judging (MBTI)
+ENFP	Extravert, Intuitive, Feeling, Perceiving (MBTI)
 EngD	Doctor of Engineering
 ENIAC	Electronic Numerical Integrator And Computer
 ENISA	European Network and Information Security Agency
@@ -4679,6 +4724,8 @@ ENQ	enquire
 ENS	École Normale Supérieure (Paris)
 ENSA	Entertainments National Services Association
 ENT	Ear, Nose, and Throat
+ENTJ	Extravert, Intuitive, Thinking, Judging (MBTI)
+ENTP	Extravert, Intuitive, Thinking, Perceiving (MBTI)
 ENTREE	European Network for Training and Research in Electrical Engineering
 ENWFC	England North West Film Commission
 EO	Electro-Optical
@@ -4735,9 +4782,12 @@ EQMM	‘Ellery Queen's Mystery Magazine’
 ER	Emergency Room / Elizabeth Regina (= Queen Elizabeth) / Eritrea (ISO code)
 Er	erbium
 ERA	Earned Run Average / Equal Rights Amendment (US, proposed) / Electrical Research Association
+ERB	Edgar Rice Burroughs / Embedded Ruby / Executive/Employee/Enlisted/Engineering Review Board / Exchange-Rate-Based (finance) / Extended Range Bass / Einstein-Rosen Bridge
+ERC	Error Recovery Control (HD)
 ERCIM	European Research Consortium for Informatics and Mathematics
 ERD	Entity Relationship Diagram / Eligible Rollover Distribution / Emergency Repair Disk / (Army) Emergency Reserve Decoration
 ERE	Extended Regular Expression
+ERF	Edwin Richard Foden Ltd (trucks)
 ERIC	Education Resources Information Centre / Estates Return Information Collection (NHS)
 ERM	(European) Exchange Rate Mechanism
 ERMA	Electronic Recording Machine, Accounting
@@ -4771,7 +4821,9 @@ ESD	Electrostatic Discharge
 ESDI	Enhanced Small Device Interface
 ESE	East-South-East (112½°) / Ever-So-Evil
 ESFD	Ex-Stock From Distributor
+ESFJ	Extravert, Sensing, Feeling, Judging (MBTI)
 ESFM	Ex-Stock From Manufacturer
+ESFP	Extravert, Sensing, Feeling, Perceiving (MBTI)
 ESFS	Ex-Stock From Supplier
 ESFV	Ex-Stock From Vendor
 ESL	English as a Second Language / Explorer Scout Leader / Electron-Stimulated Luminance
@@ -4782,6 +4834,7 @@ ESOL	English for Speakers of Other Languages
 ESOSL	Endless Snorts Of Stupid Laughter
 ESP	especially / Enhanced Serial Port / Extra-Sensory Perception / English for Special Purposes
 ESPACE	Exponential-Space (complexity)
+ESPN	Entertainment and Sports Programming Network (US cable TV)
 ESR	Eric Steven Raymond / Extended Support Release
 ESRB	Entertainment Software Rating Board
 ESRC	Economic and Social Research Council
@@ -4790,6 +4843,8 @@ ESS	Ex-Stock Supplier / Extended Service Set (Wi-Fi group)
 ESSIV	Encrypted Salt-Sector Initialisation Vector (disk encryption)
 EST	Eastern Standard Time (North America) (= UTC-5) / Electric Shock Therapy / Energy Savings Trust
 ESTA	Electronic System for Travel Authorization (US) / Entertainment Services and Technology Association
+ESTJ	Extravert, Sensing, Thinking, Judging (MBTI)
+ESTP	Extravert, Sensing, Thinking, Perceiving (MBTI)
 ESTS	Electronic Surveillance Technology Section (FBI)
 ESU	English-Speaking Union / Explorer Scout Unit
 ESV	English Standard Version (of the Bible)
@@ -4829,6 +4884,7 @@ EV-DO	Evolution-Data Optimised (CDMA2000)
 EVA	Extra-Vehicular Activity / Ethene vinyl acetate
 EVC	(VESA) Enhanced Video Connector
 EVD	Enhanced Versatile Disc
+EVGA	Extended Video Graphics Array (1024×768)
 EVP	Executive Vice President
 EW	exawatt (10^18 watts) / Estonia (ISO code) (now EE)
 EWb	exaweber (10^18 webers)
@@ -4954,6 +5010,7 @@ FAW	Football Association of Wales / Frequently-Asked Wish
 FAWC	For Anyone Who Cares
 FAWWRC	First Against the Wall When the Revolution Comes
 FB	Facebook / Files Busy / Fine Business
+FB2	FictionBook ebook file format
 FBA	Fellow of the British Academy / Fixed Block Architecture
 FBAA	Fellow of the British Acupuncture Association
 FBAE	Fellow of the British Academy of Experts (now FAE)
@@ -5092,7 +5149,7 @@ FEAL-6	Fast data Encipherment Algorithm with 6 rounds
 FEAL-8	Fast data Encipherment Algorithm with 8 rounds
 FEAL-N	Fast data Encipherment Algorithm with N rounds
 FEAL-NX	Fast data Encipherment Algorithm with N rounds and a 128-bit key
-FEB	February
+FEB	February / Federal Executive Board / Flight Evaluation Board / Front-End Board / Forward Edge of Battle
 FEBA	Forward Edge of Battle Area
 FEBU	Fellowship of European Boards of Urology
 FEC	Forward Error Correction
@@ -5181,14 +5238,16 @@ FGK&C	For God, King, And Country
 FGKaC	For God, King, And Country
 FGQ&C	For God, Queen, and Country
 FGQaC	For God, Queen, and Country
-FGS	For God's/Goodness' Sake / Fellow of the Geological Society
+FGS	For Goodness'/God's Sake / Fellow of the Geological Society
 FGSM	Fellow of the Guildhall School of Music and Drama
+FGW	First Great Western (UK railway)
 fGy	femtogray (10^-15 grays)
 FH	Floating Head
 fH	femtohenry (10^-15 henrys)
 FHA	Fellow of the Institute of Hospital Administrators
 FHC	Finsbury Health Centre
 FHCIMA	Fellow of the Hotel Catering and Institutional Management Association
+FHD	Full High-Definition (1920×1080)
 FHEA	Fellow of the Higher Education Academy
 FHEQ	Framework for Higher Education Qualifications
 FHFHFH	F*** Him, Feed Him Fish-Heads
@@ -5478,7 +5537,7 @@ FNX	thanks
 FNZIE	Fellow of the New Zealand Institution of Engineers
 FNZIM	Fellow of the New Zealand Institute of Management
 FNZSA	Fellow of the New Zealand Society of Accountants
-FO	F*** Off / Foreign Office / Faroe Islands (ISO code)
+FO	F*** Off / Foreign Office / First Officer / Faroe Islands (ISO code)
 FO&D	F*** Off and Die
 FOaD	F*** Off and Die / Fuse Off and Diode
 FoaF	Friend of a Friend
@@ -5550,6 +5609,7 @@ FPAA	Field-Programmable Analogue Array (IC)
 FPANZ	Fellow Public Accountant of New Zealand
 FPC	Family Practitioner Committee
 FPCA	Fellow of Practising and Commercial Accountants
+FPCON	Force Protection Condition (US military)
 FPCS	Fellow of the Property Consultants' Society
 FPEA	Fellow of the Physical Education Association
 FPGA	Field-Programmable Gate Array (IC)
@@ -5631,6 +5691,7 @@ FRG	Federal Republic of Germany
 FRGS	Fellow of the Royal Geographic Society
 FRHistS	Fellow of the Royal Historical Society
 FRHS	Fellow of the Royal Horticultural Society
+FRI	Fellow of the Royal Institution / Friday / Financial/Friends/Fisheries/Forest/Fidelity/Food Research Institute / Future Rent Increases / Functional Requirements Identification / Frequently-Requested Information
 FRIA	Fellow of the Royal Institute of Arbitrators
 FRIACO	Flat-Rate Internet-Access Call Origination
 FRIAS	Fellow of the Royal Incorporation of Architects in Scotland
@@ -5728,15 +5789,15 @@ FSX	Frankfurt Stock Exchange
 FT	‘Financial Times’ / Fairtrade
 fT	femtotesla (10^-15 teslas)
 FTA	Free To Air / From The Article / (UK) Fair Trading Act 1973
-FTAGH	Free To A Good Home
+FtaGH	Free to a Good Home
 FTAM	File Transfer, Access, and Management (OSI)
-FTAOD	For The Avoidance Of Doubt
-FTASB	Faster Than A Speeding Bullet
+FtAoD	For the Avoidance of Doubt
+FtaSB	Faster than a Speeding Bullet
 FTB	Far Too Busy / Finely-Textured Beef (recovered meat)
 FTBB	Far Too Busy, Bruce
 FTBNLY	Far Too Busy; Not Like You
 FTBOMH	From The Bottom Of My Heart
-FTBOTL	For The Benefit Of The Lurkers
+FtBotL	For the Benefit of the Lurkers
 FTBTC	Far Too Busy To Comment
 FTBTDOTLDYDFM	Far Too Busy To Die On The Lord's Day; You Die For Me
 FTBTPI	Far Too Busy To Prove It
@@ -5751,8 +5812,8 @@ FTDS	F*** The Dumb S***
 FTE	Full-Time Equivalent
 FTEG	Fined Two E-Groats
 FTES	Fined Two E-Shillings
-FTF	Face-To-Face / First To Find
-FTFF	For The Foreseeable Future
+FtF	Face-to-Face / First to Find
+FtFF	For the Foreseeable Future
 FTFY	Fixed That For You
 FTI	Far Too Idle / Fellow of the Textile Institute
 FTIA	Fellow of the Taxation Institute of Australia
@@ -5760,7 +5821,7 @@ FTIFTT	Far Too Innocent For This Topic
 FTII	Fellow of the Institute of Taxation
 FTitM	First Thing in the Morning
 FTL	Far Too Lazy/Late / Faster-Than-Light / For The Loss/Lulz
-FTLOG	For The Love Of God
+FtLoG	For the Love of God
 FTLTR	Far Too Lazy To Reply
 FTM	For That Matter
 FTMA	Far Too Many Acronyms / Fellow of the Telecommunications Managers' Association (now FCMA)
@@ -5768,8 +5829,8 @@ FTOYWDK	For Those Of You Who Don't Know
 FTP	File Transfer Protocol / Free-To-Play / F*** The Pope
 FTPBI	Failed To Put Brain In
 FTPO	For The Price Of
-FTPS	FTP Secure
-FTR	For The Record
+FTPS	File Transfer Protocol — Secure
+FtR	For the Record
 FTS	Full-Text Search / Fixin' To Start / Fellow of the Tourism Society / Free The Slaves
 FTSAATSFDNORUAOTDA	F*** These Stupid-Ass Acronyms, They're So F***in' Dumb, No One Really Uses Any Of Them, Dumb-Ass
 FTSE	Financial Times/Stock Exchange
@@ -5779,16 +5840,16 @@ FTSE350	Financial Times/Stock Exchange index of 350 top companies
 FTSME	Financial Times Smoke-and-Mirrors Exchange
 FTT	Financial Transaction Tax
 FTTB	For The Time Being / Fibre To The Basement
-FTTC	Fibre To The Cabinet
-FTTE	Fibre To the Telecom Enclosure
-FTTF	Falls Through The Floor
-FTTH	Fibre To The Home
-FTTK	Fibre To The Kerb
-FTTN	Fibre To The Node
-FTTP	Fibre To The Premises
-FTTT	From Time To Time
-FTV	Free To View
-FTW	For The Win / F*** The World
+FttC	Fibre to the Cabinet
+FtTE	Fibre to the Telecom Enclosure
+FTtF	Falls Through the Floor
+FttH	Fibre to the Home
+FttK	Fibre to the Kerb
+FttN	Fibre to the Node
+FttP	Fibre to the Premises
+FTtT	From Time to Time
+FtV	Free to View
+FtW	For the Win / F*** the World
 FTWQ	F***, That Was Quick
 FU	Follow-Up / F***ed-Up / Future Use
 FUA	Frequently-Used Acronym / F***ed-Up Again
@@ -5846,6 +5907,7 @@ FWOT	F***ing Waste Of Time
 FWS	Folding White Space
 FWTBT	For Whom The Bell Tolls
 FWTQ	F*** Was That Quick
+FWVGA	Full Side Video Graphics Array (854×480)
 FX	sound effects / Foreign Exchange / Metropolitan France (ISO code, reserved)
 Fx	Mozilla Firefox
 FXP	File Exchange Protocol
@@ -5884,6 +5946,7 @@ G2B	Going to Bed
 G2G	Got to Go / Good to Go
 G2GTAC	Got to Go Take A Crap
 G2GTAP	Got to Go Take A Pee
+G4S	Group 4 Securicor plc
 G4U	Good For You
 G4Y	Good For You
 G6	Group of 6 leading industrialised nations (France, Germany, Italy, Japan, UK, USA)
@@ -5925,7 +5988,7 @@ GB18030	Guojia Biaozhun (= National Standard) for Chinese language support
 GB2312	Guojia Biaozhun (= National Standard) for simplified Chinese characters
 GBA	Governing Bodies Association
 GBAS	Ground-Based Augmentation System
-GBE	Knight/Dame Grand Cross of the Order of the British Empire
+GBE	Knight/Dame Grand Cross of the Order of the British Empire / Government Business Enterprise
 GbE	Gigabit Ethernet
 GBF	Gay Best Friend
 GBH	Great Big Hug / Grievous Bodily Harm / Great British Holiday
@@ -6011,7 +6074,7 @@ GDNRVVF	Grinning, Ducking, And Running Very Very Fast
 GDOS	Graphics Device Operating System (Atari TOS)
 GDP	Gross Domestic Product
 GDPA	General Dental Practitioners' Association
-GDR	Grins, Ducks, Runs / German Democratic Republic (= former East Germany)
+GDR	Grins, Ducks, Runs / German Democratic Republic (= former East Germany) / Global Repertoire Database
 GDROM	Giga Disk Read-Only Memory
 GDS	Global Distribution System
 GDST	Girls' Day School Trust (was GPDST)
@@ -6024,6 +6087,7 @@ GEB	‘Gödel, Escher, Bach: an Eternal Golden Braid’
 GEC	General Electric Company / Group Executive Committee
 GECOS	General Comprehensive Operating System
 GED	Gender Equality Duty / Generalised Error Distribution / General Educational Development (tests, US/Canada)
+GEGL	Generic Graphics Library
 GEICO	(US) Government Employees Insurance Company
 GEL	Georgian laris (ccy)
 GEM	Graphical Environment Manager
@@ -6051,6 +6115,7 @@ GFN	Gone For Now / Good For Nothing
 GFoC	Great Firewall of China
 GFP	Generic Framing Procedure (networking)
 GFR	Grim File Reaper / Gas-cooled Fast Reactor
+GFS	Group 4 Securicor plc
 GFT	French Guiana Time (= UTC-3)
 GFTU	(UK) General Federation of Trade Unions
 GFU	General F***-Up / Good For You
@@ -6061,6 +6126,7 @@ GG	Good Game/Going / Gotta Go / Go, Girl / Google Groups / Governor-General / Gu
 Gg	gigagram (10^9 grams)
 GGC	Goo Goo Cluster
 GGG	giggle
+GGM	Goodness Gracious Me
 GGN	Gotta Go Now
 GGO	Genetisch Gemodificeerd Organisme (= Genetically-Modified Organism) / Galaxy Games On-line / Ground Glass Opacity
 GGOH	Got to Get Out of Here
@@ -6070,6 +6136,7 @@ GGUK	Girl Guiding UK
 GGy	gigagray (10^9 grays)
 GH	Getting Hard / gigahenry (10^9 henrys) / Ghana (ISO code)
 GHB	gamma-hydroxybutanoic acid
+GHG	Greenhouse Gas
 GHP	Good Hand, Partner
 GHQ	General Headquarters
 GHS	Ghanaian cedis (ccy)
@@ -6094,6 +6161,7 @@ GIRFO	Get It Right For Once
 GIRO	General Interbank Recurring Order / Garbage In, Rubbish Out
 GIS	Geographical Information System
 GIT	Gambier Island Time (= UTC-9)
+GITS	‘Ghost in the Shell’
 GIWIST	Gee, I Wish I'd Said That
 GIWYL	Guard It With Your Life
 GIYF	Google Is Your Friend
@@ -6103,7 +6171,7 @@ Gkat	gigakatal (10^9 katals)
 GKC	Gilbert Keith Chesterton
 GKN	Guest, Keen, and Nettlefolds PLC
 GKT	Guy's, King's College, and St Thomas' Hospitals Medical and Dental Schools
-GKW	God/Goodness Knows What
+GKW	Goodness/God Knows What
 GL	Good Luck / Grenade Launcher / Greenland (ISO code)
 GL&GH	Good Luck and Good Hunting
 GL;HF	Good Luck; Have Fun
@@ -6116,7 +6184,7 @@ GLB	Gay, Lesbian, Bisexual
 GLBP	Gateway Load-Balancing Protocol (Cisco)
 GLBT	Gay, Lesbian, Bisexual, Trans-gendered
 GLBTI	Gay, Lesbian, Bisexual, Trans-gendered, Intersex
-GLC	Greater London Council (obs.)
+GLC	Greater London Council (obs.) / Government-Linked Company
 GLF	Go Like F***
 GLG	Good-Looking Girl / Goofy Little Grin
 GLGH	Good Luck and Good Hunting
@@ -6164,7 +6232,7 @@ GNA	Glycol Nucleic Acid
 GNAS	Grand National Archery Society
 GNB	Good News Bible
 GNDN	Goes Nowhere Does Nothing
-GNER	Great North Eastern Railway
+GNER	Great North-Eastern Railway
 GNF	Guinean francs
 GNI	Gross National Income / Global Network Initiative
 GNOME	GNU Network Object Model Environment
@@ -6172,16 +6240,17 @@ GNP	Gross National Product
 GNSS	Global Navigation Satellite System
 GNU	GNU's Not Unix
 GNVQ	General National Vocational Qualification
+GNWR	Great North-Western Railway
 GO	Get Out / Grand Officier (de la Légion d'Honneur)
 GOAT	Go Away, Troll!
 GOB	Good Old Boy
 GOBO	Goes Before Optics (stage lighting)
-GOC	Good Old CIX / God's Own Country (Yorkshire) / General Officer Commanding
+GOC	Good Old CIX / God's Own Country (Yorkshire) / Government-Owned Corporation / General Officer Commanding
 GOC-in-C	General Officer Commanding-in-Chief
 GOD	Good Old Days
 GoF	Gang of Four
 GOI	Get Over It
-GOK	God/Goodness Only Knows
+GOK	Goodness/God Only Knows
 GOL	Giggling Out Loud
 GOM	Grumpy Old Man
 GOMF	Get Outta My Face
@@ -6261,15 +6330,16 @@ GSHIWMP	Giggling So Hard I Wet My Pants
 GSJ	Grade-Separated Junction
 GSK	GlaxoSmithKline plc / Goshi Kaisha (= Ltd partnership co. in Japan)
 GSL	Group Scout Leader
-GSM	Global System for Mobile (communication) / Group Scouters' Meeting / Grams per Square Metre / General Service Medal / Guildhall School of Music and Drama / Garrison Sergeant Major
+GSM	Global System for Mobile communications (was Groupe Spécial Mobile) / Group Scouters' Meeting / Grams per Square Metre / General Service Medal / Guildhall School of Music and Drama / Garrison Sergeant Major
 GSO	General Staff Officer
 GSOAS	Go Sit On A Snake
 GSoC	Google Summer of Code (programme)
 GSOH	Good Sense Of Humour / Good Salary, Own Home
 GSP	Groovy Server Pages (web server technology) / Generalised System of Preferences (WTO exemption) / Good Safety Practice / Grammar, Spelling, and Punctuation
 GST	Geoff Standard Tenner / Goods and Services Tax (Canada, Australia) / Ground System Test / South Georgia and the South Sandwich Islands (= UTC-2)
+GSV	Google StreetView
 GSv	gigasievert (10^9 sieverts)
-GT	Group Treasurer / Gill Tennant / Good Thinking / Go There / Greater Than / Gin and Tonic / G'wan Then / Gran Tourismo / Gross Tonnage / gigatesla (10^9 teslas) / Guatenaka (ISO code)
+GT	Group Treasurer / Gill Tennant / Good Thinking / Go There / Greater Than / Gin and Tonic / G'wan Then / Gran Tourismo (= Grand Touring) / Gross Tonnage / gigatesla (10^9 teslas) / Guatenaka (ISO code)
 GTA	Grand Theft Auto / Golden Toggle Award
 GTABO	Get That Arse Back On
 GtB	Go to Bed
@@ -6291,6 +6361,7 @@ GTGP	Got To Go Pee
 GTH	Go To Hell
 GTHBA	Good Times Had By All
 GTHI	Glad To Hear It
+GTI	Gran Tourismo Iniezione (= Grand Touring Injection) / Group Travel/Term Insurance / Ground Test Instruction / Global Temperature Increase / Genital Tract Infection
 GTJ	Go To Jail
 GTJGDTJDNPGDNCTHP	Go To Jail, Go Directly To Jail, Do Not Pass Go, Do Not Collect Two Hundred Pounds
 GTK+	GIMP Toolkit
@@ -6408,9 +6479,11 @@ HAHA	Having A Heart Attack
 HaK	Hugs and Kisses
 HAL	Hardware Abstraction Layer / see HAL9000 / Hackers At Large
 HAL9000	Heuristically-programmed Algorithmic computer (in ‘2001: A Space Odyssey’)
+HALE	High-Altitude, Long-Endurance (UAV)
 HALO	High-Altitude, Low-Opening (parachute jump)
 HAM	Amateur radio enthusiast
-HAMF	Have A Mouth-filler (aka gobstopper)
+HAMF	Have A Mouth-Filler (aka gobstopper)
+HAMR	Heat-Assisted Magnetic Recording
 HAND	Have A Nice Day
 HanGlyph	= Chinese-character description language based on TeX
 HAOC	Have An Of Course
@@ -6460,7 +6533,7 @@ HCP	Hexagonal Close-Packed (crystal structure)
 HCR	Health Care Reform / High Commission/er for Refugees
 HCSA	(UK) Hospital Consultants and Specialists Association
 HCV	Heavy Commercial Vehicle
-HD	Hard Disk / High Definition / High Density / Homeopathic ‘doctor’ / Hybrid Drive / Higher Diploma / Hyperactivity Disorder / Home Depot / Huntingdon's Disease / Holocaust Denial / Harley-Davidson / Highland Division / Home Defence / Honourable Discharge
+HD	Hard Disk / High Definition (1280×720) / High Density / Homeopathic ‘doctor’ / Hybrid Drive / Higher Diploma / Hyperactivity Disorder / Home Depot / Huntingdon's Disease / Holocaust Denial / Harley-Davidson / Highland Division / Home Defence / Honourable Discharge
 HD-DVD	High-Definition/Density Digital Versatile Disc
 HD-SDI	High-Definition Serial Digital Interface
 HDAS	Historical Dictionary of American Slang
@@ -6524,7 +6597,7 @@ hg	hectogram (100 grams)
 HGAC	Haven't Got A Clue
 HGAFC	Haven't Got A F***ing Clue
 HGC	(UK) Human Genetics Commission / Hercules Graphics Card
-HGDH	His or Her Grand Ducal Highness
+HGDH	His/Her Grand Ducal Highness
 HGEaW	Hello, Good Evening, and Welcome
 HGH	Human Growth Hormone
 HGTAC	Home Grown Timber Advisory Committee
@@ -6556,7 +6629,7 @@ HHtYaY	Happy Holidays to You and Yours
 HHVFNGABYBIAVHB	Ha Ha, Very Funny, Now Go And Boil Your Bum In A Very Hot Bath
 hHz	hectohertz (100 hertz)
 HI	Her Indoors / Hawaii / hydrogen iodide/hydroiodic acid
-HI&RH	His or Her Imperial and Royal Highness
+HI&RH	His/Her Imperial and Royal Highness
 HIA	Health Impact Assessment
 HIAB	Hydrauliska Industri AB (Finnish maker of cranes &c)
 HIB	Have I Been...?
@@ -6565,9 +6638,9 @@ HiFi	high-fidelity
 HIG	How's It Going? / Human Interface Guidelines
 HighCmmr	High Commissioner
 HIGNFY	Have I Got News For You
-HIH	Hope It Helps / His or Her Imperial Highness
+HIH	Hope It Helps / His/Her Imperial Highness
 HILIaCaCLO	Help, I Lapsed Into a Coma and Can't Log Off!
-HIllH	His or Her Illustrious Highness
+HIllH	His/Her Illustrious Highness
 HIM	His/Her Imperial Majesty
 HIMARS	High-Mobility Artillery Rocket System
 HIMAU	Have I Missed An Update?
@@ -6606,6 +6679,7 @@ HLA	Human Leukocyte Antigen / Hot Lesbian Action
 HLASM	High-Level Assembler
 HLAYK	Here's Looking At You, Kid!
 HLD	High-Level Design
+HLF	Heritage Lottery Fund (UK)
 HLI	Highland Light Infantry
 HLL	High-Level Language
 HLM	He Loves Me / Habitation à Loyer Modéré (= rent-controlled housing)
@@ -6622,6 +6696,7 @@ HMA	High Memory Area
 HMAGS	(UK) Her Majesty's Advocate-General for Scotland
 HMAS	His/Her Majesty's Australian Ship
 HMC	Headmasters' and Headmistresses' Conference / Hospital Management Committee / Historical Manuscripts Commission (now TNA)
+HMC&E	Her Majesty's Customs and Excise (now HMRC)
 HMCE	Her Majesty's Customs and Excise (now HMRC)
 HMCI	Her Majesty's Inspector of Schools In England
 HMCPSI	Her Majesty's Crown Prosecution Service Inspectorate
@@ -6672,7 +6747,7 @@ HO2CCHNH2CH2SH	cysteine
 HOA	Home-Owners' Association / Habitual Offender Laws / Horn Of Africa
 HOAS	Hold On A Sec
 HoC	House of Commons
-HoF	Hell of Funny
+HoF	Hell of Funny / House of Fraser
 HOIME	Here's One I Made Earlier
 HOIPE	Here's One I Prepared Earlier
 HOL	House Of Lords / Higher-Order Logic
@@ -6708,11 +6783,12 @@ HPUX	Hewlett-Packard Unix
 HPV	Human Papilloma Virus
 HQ	Headquarters / High-Quality
 HQ-VCD	High-Quality Video Compact Disc
+HQVGA	Half Quarter Video Graphics Array (240×160)
 HR	Human Resources (aka Personnel) / High Risk / High Resolution / Human Rights / Home Run / hour / here / Half-Rate encoding / Croatia (ISO code)
 HRA	(UK) Human Rights Act 1998
 HRCA	(UK) Human Reproductive Cloning Act 2001
 HRE	Holy Roman Empire
-HRH	His or Her Royal Highness
+HRH	His/Her Royal Highness
 HRHA	Honorary Member of the Royal Hibernian Academy
 HRHD	High-Resolution High-Definition (960×540)
 HRHDTV	High-Resolution High-Definition Television (960×540)
@@ -6732,6 +6808,7 @@ hS	hectosiemens (100 siemens)
 hs	hectosecond (100 seconds)
 HS1	High Speed One (railway from London to the Channel Tunnel)
 HS2	High Speed Two (railway from London to Birmingham)
+HSAS	(US) Homeland Security Advisory System
 HSB	Horizontal Scroll Bar / Hue, Saturation, Brightness
 HSBC	Hong-Kong and Shanghai Banking Corporation
 HSCSD	High-Speed Circuit-Switched Data
@@ -6740,7 +6817,7 @@ HSE	Health and Safety Executive / Hardware and Software Environment
 HSENI	Health and Safety Executive for Northern Ireland
 HSF	Human Spaceflight / Home Service Force (British Army) / High Sierra Format (CD-ROM) / Heat-Sink Fan / Heat Shock Factor
 HSGPS	High-Sensitivity Global Positioning System
-HSH	His or Her Serene Highness
+HSH	His/Her Serene Highness
 HSI	Hue, Saturation, Intensity / Hang Seng Index (of top Hong Kong companies)
 HSIBHHUB	Holy S***, It's Batman Holding His Utility Belt!
 HSIK	How Should I Know?
@@ -6759,6 +6836,7 @@ HSUPA	High-Speed Uplink Packet Access (3G HSPA)
 HSV	Hue, Saturation, Value / Herpes Simplex Virus
 hSv	hectosievert (100 sieverts)
 HSWIS	He Says What I Say
+HSXGA	Hex-Super-Extended Graphics Array (5120×4096)
 HT	High Tension / Hyper Threading / Hat Tip / Home Time / Handheld Transceiver / Haiti (ISO code)
 hT	hectotesla (100 teslas)
 HT&E	Here, There, And Everywhere
@@ -6786,6 +6864,7 @@ HtMF&IP	How to Make Friends and Influence People
 HtMFaIP	How to Make Friends and Influence People
 HTML	Hyper-Text Mark-up Language
 HTMLCATSOTD	Hyper-Text Mark-up Language Counters Are The Spawn Of The Devil
+HTMLZ	HTML file, Zipped
 HTR	High-Temperature Reactor
 HTSI	Hope That Sinks In
 HTT	Holier Than Thou / Hyper-Threading Technology (Intel)
@@ -6806,6 +6885,7 @@ HUM	Horny Unattached Male
 HUMINT	Human Intelligence gathering
 HURD	Hird of Unix-Replacing Daemons
 HUS	Hæmolytic-Uræmic Syndrome
+HUSXGA	Hex-Ultra-Extended Graphics Array (6400×4800)
 HUYA	Head Up Your Arse
 HV	High-Voltage / Health Visitor / Upper Volta (now Burkina Faso) (ISO code)
 hV	hectovolt (100 volts)
@@ -6813,6 +6893,7 @@ HVAC	Heating, Ventilating, and Air Conditioning / High-Voltage Alternating Curre
 HVCert	Health Visitors' Certificate
 HVD	High-Definition Versatile Disc / Holographic Versatile Disc
 HVDC	High-Voltage Direct Current
+HVGA	Half-size Video Graphics Array (380×320)
 HVJ	High Visibility Jacket
 HVP	Hydrolysed Vegetable Protein
 HVV	High Visibility Vest
@@ -6826,6 +6907,7 @@ HWISTKT	How Was I Supposed To Know That?
 HWM	Hopeless With Money
 HWMBI	He Who Must Be Ignored
 HWMNBN	He Who Must Not Be Named
+HWMO	He Who Must Obey
 HWOTOMBD	He Who Ought To Obey Me But Doesn't
 HWP	Height/Weight Proportional
 HWS(PEST)	Husband Wants Sex (Please Excuse Slow Typing)
@@ -6834,6 +6916,8 @@ HWUA	Head Way Up Arse
 HWV	Händel-Werke-Verzeichnis (= Handel Works Catalogue)
 HWY	Highway
 HWYK	How Would You Know?
+HXB	Hot Cross Bun
+HXGA	Hex-Extended Graphics Array (4096×3072)
 HYD	How Ya Doing?
 HYLMS	Hate You Like My Sister
 HYSLAAWUR	Hyper-Smirker, Leerer, and Assistant Acronymist to cix:wur
@@ -6856,9 +6940,9 @@ IA-64	Intel Architecture, 64-bit (Itanium)
 IA32	Intel Architecture, 32-bit (x86)
 IA64	Intel Architecture, 64-bit (Itanium)
 IAA	International Advertising Association
-IAAA	I Am An Accountant
+IAaA	I Am An Accountant
 IAAF	International Amateur Athletics Federation / International Association of Athletics Federations
-IAAL	I Am A Lawyer
+IAaL	I Am A Lawyer
 IAAMWE	I Am At My Wits' End
 IaaS	Infrastructure as a Service
 IAB	Internet Architecture Board / Brazilian Institute of Architects
@@ -6879,8 +6963,8 @@ IAFA	In As Far As
 IAFAIG	In As Far As It Goes
 IAFS	It's All right For Some
 IAG	It's All Good / I Am Gay
-IAGU	It's A Good 'Un
-IAGW	In A Good Way
+IaGU	It's a Good 'Un
+IaGW	In a Good Way
 IAH	In All Honesty
 IAICDTD	I'm Afraid I Can't Do That, Dave
 IAIL	I Am In Love
@@ -6893,22 +6977,22 @@ IAM	Institute of Advanced Motorists / Institute of Applied Mathematics / Institu
 IAMC	Indian Army Medical Corps
 IAMFI	I Ask Merely For Information
 IANA	I Am Not A... / Internet Assigned Numbers Authority
-IANAA	I Am Not An Accountant/Acronym
-IANAC	I Am Not A Crook
-IANAD	I Am Not A Doctor
-IANAE	I Am Not An Expert
-IANAEB	I Am Not An Expert, But...
-IANAEITA	I Am Not An Expert In This Area
-IANAFA	I Am Not A Financial Adviser
-IANAL	I Am Not A Lawyer
-IANALBIPOOTV	I Am Not A Lawyer, But I Play One On TV
-IANAM	I Am Not A Mod
-IANAN	I Am Not A Number!
-IANANIAAFM	I Am Not A Number!  I Am A Free Man!
-IANAP	I Am Not A Programmer
-IANAV	I Am Not A Vet
+IANaA	I Am Not An Accountant/Acronym
+IANaC	I Am Not A Crook
+IANaD	I Am Not A Doctor
+IANaE	I Am Not An Expert
+IANaEB	I Am Not An Expert, But...
+IANaEitA	I Am Not An Expert In This Area
+IANaFA	I Am Not A Financial Adviser
+IANaL	I Am Not A Lawyer
+IANaLBIPOoTV	I Am Not A Lawyer, But I Play One On TV
+IANaM	I Am Not A Mod
+IANaN	I Am Not A Number!
+IANaNIaaFM	I Am Not A Number!  I Am A Free Man!
+IANaP	I Am Not A Programmer
+IANaV	I Am Not A Vet
 IANS	It Ain't Necessarily So
-IANYM	In A New York Minute
+IaNYM	In A New York Minute
 IAO	Information Awareness Office (DARPA)
 IAOC	Indian Army Ordnance Corps
 IAOMS	International Association of Oral and Maxillo-Facial Surgeons
@@ -6990,7 +7074,7 @@ ICANN	Internet Corporation for Assigned Names and Numbers
 ICAO	(UN) International Civil Aviation Organisation
 ICAP	Internet Content Adaptation Protocol
 ICAS	Institute of Chartered Accountants of Scotland
-ICB	I Care Because / I Can't Believe
+ICB	I Care Because / I Can't Believe / Independent Commission on Banking
 ICBA	I Can't Be Arsed / It Could Be Arranged
 ICBALOTBNT	I Can Believe A Lot Of Things, But Not That
 ICBFD	Intercontinental Ballistic Flying Donkeys
@@ -7148,7 +7232,7 @@ IDW	I Don't Want
 IDWT	I Don't Want To
 IDWTTAI	I Don't Want To Talk About It
 IDWY	I Did Warn You
-IE	Id Est (= that is) / MS Internet Explorer / Info Evolution / Ireland (ISO code)
+IE	Id Est (= that is) / MS Internet Explorer / Indo-European / Info Evolution / Ireland (ISO code)
 IE1	MS Internet Explorer v1
 IE2	MS Internet Explorer v2
 IE3	MS Internet Explorer v3
@@ -7188,7 +7272,7 @@ IFC	Inside Front Cover / International Finance Corp.
 IFCC	International Federation of Clinical Chemistry and Laboratory Medicine
 IFD	Inflatable Flying Donkey(s)
 IFEH	Insert Favourite Expletive Here
-IFF	If and only If / Interchange File Format / Identification Friend or Foe
+IFF	If and only If / Interchange File Format / Identification: Friend or Foe
 IFFOR	International Foundation For On-line Responsibility
 IFGET	Insulated-Gate Field-Effect Transistor
 IFIP	International Federation for Information Processing
@@ -7469,7 +7553,9 @@ INC	Iraqi National Congress
 IND	I Never Do / I'm Not Dead / Immigration & Nationality Directorate (Home Office)
 INDY	I'm Not Dead Yet
 INES	International Nuclear and Radiological Event Scale
+INFJ	Introvert, Intuitive, Feeling, Judging (MBTI)
 InfoSec	Information Systems Security
+INFP	Introvert, Intuitive, Feeling, Perceiving (MBTI)
 INGSI	I'm Not Gonna Say It
 INGTPAATY	I'm Not Going To Pay Any Attention To You
 INGTSNA	I'm Not Going To Say “Never Again”
@@ -7492,7 +7578,9 @@ INSTRAW	International Research and Training Institute for the Advancement of Wom
 INT	I'll Never Tell
 IntCorps	Intelligence Corps
 INTERCAL	Compiler Language With No Pronounceable Acronym
+INTJ	Introvert, Intuitive, Thinking, Judging (MBTI)
 IntMarSec	International Maritime Security
+INTP	Introvert, Intuitive, Thinking, Perceiving (MBTI)
 INTSAT	I'm Not Totally Sure About This
 INV	Inverness Airport
 IO	British Indian Ocean Territory (ISO code)
@@ -7506,6 +7594,7 @@ IOKIYAR	It's OK If You Are Republican
 IOL	Intra-Ocular Lens / Institute for Outdoor Learning / Chartered Institute Of Linguists / Ireland On-Line
 IoM	Isle of Man
 IOMMU	Input/Output Memory-Management Unit
+IoP	Institute of Physics
 IOPS	Input/Output Operations per Second
 IOR	Interoperable Object Reference (CORBA)
 IOS	Internetwork Operating System (CISCO)
@@ -7535,6 +7624,7 @@ IPID	Interface Pointer Identifier (RPC)
 IPL	IBM Public Licence / Initial Program Load / Invisible Panty-Line / Interrupt Priority Level / Intense Pulsed Light
 IPLO	Irish People's Liberation Organisation
 IPM	Inquisition Post-Mortem / Institute of Personnel Management
+IPMI	Intelligent Platform Management Interface
 IPMP	Intellectual Property Management and Protection
 IPMS	Institute of Professionals, Managers, and Specialists (now part of Prospect)
 IPN	I'm Posting Naked / Instytut Pamieci Narodowej (Poland, = Institute of National Memory)
@@ -7570,6 +7660,7 @@ IRAS	Integrated Research Application System / Infra-Red Astronomical Satellite
 IRBM	Intra-Regional/Intermediate-Range Ballistic Missile
 IRC	Internet Relay Chat / Industrial Re-organisation Corporation
 IRCAM	Institut de Recherche et Coordination Acoustique/Musique
+IRD	Integrated Received and Decoder
 IrDA	Infra-red Data Association
 IRE	Indian Corps of Royal Engineers / Institute of Radio Engineers
 IRGTHKUDOAFC	I'd Rather Go To Hong Kong Upside Down On A Flying Carpet
@@ -7636,6 +7727,8 @@ ISE	Institute of Software Engineers / Irish Stock Exchange / International Stand
 ISEN	Internet Search Environment Number
 ISFE	I Speak From Experience!
 ISFET	Ion-Sensitive Field-Effect Transistor
+ISFJ	Introvert, Sensing, Feeling, Judging (MBTI)
+ISFP	Introvert, Sensing, Feeling, Perceiving (MBTI)
 ISHG	I Should Have Guessed
 ISI	Independent Schools Inspectorate / Islamic State of Iraq / International Statistical Institute
 ISID	International Society of Interior Design
@@ -7698,9 +7791,11 @@ IST	International Service Team / Irish Summer Time (= UTC+1) / Indian Standard T
 Ist	first (Roman numeral)
 ISTBC	I Stand To Be Corrected
 ISTC	International Standard Text Code
+ISTJ	Introvert, Sensing, Thinking, Judging (MBTI)
 ISTM	It Seems To Me
 ISTMIWCR	I'll Send The Men In White Coats Round
 ISTMT	It Seems To Me That
+ISTP	Introvert, Sensing, Thinking, Perceiving (MBTI)
 ISTR	I Seem To Remember/Recall
 IStructE	Institution of Structural Engineers
 ISTST	I Should Think So, Too
@@ -7722,6 +7817,7 @@ ITaAISBM	Is That an Acronym I See Before Me?
 ITaBOAF	Is This a Bug Or A Feature?
 ITaC	Is That a Challenge?
 ITaDISBM	Is That a Dagger I See Before Me?
+ITaF	Is That a Fact?
 ITAH	Is There Anybody Here?
 ITAL	In The Acronyms List
 ITaLY	I Trust and Love You
@@ -7926,7 +8022,7 @@ JCP	Java Community Process
 JCR	Junior Common Room
 JCS	Joint Chiefs of Staff
 JCUKEN	(= USSR keyboard layout)
-JD	Juris Doctor (= teacher of law)
+JD	Juris Doctor (= teacher of law) / Jury Duty
 JDAM	Joint Direct Attack Munition
 JDBC	Java Database Connectivity
 JDDIA	Just Don't Do It Again
@@ -8001,6 +8097,7 @@ JMOOC	Just My Opinion, Of Course
 JMPR	Joint FAO/WHO Meeting on Pesticide Residues
 JMS	Java Message Service / Joseph Michael Straczynski
 JMX	Java Management Extensions
+JNCO	Junior Non-Commissioned Officer
 JNDI	Java Naming and Directory Interface
 JNI	Java Native Invocation
 JNT	John Nathan-Turner
@@ -8039,6 +8136,7 @@ JSSC	Joint Services Staff College
 JSSE	Java Secure Socket Extension
 JST	Japan Standard Time (= UTC+9)
 JT	Just Teasing / John Thomas / Johnston Island (ISO code) (obs.)
+JTAC	(UK) Joint Terrorism Analysis Centre
 JTAG	Joint Test Action Group (access/debug port)
 JTAS	Journal of the Traveller's Aid Society
 JTC	Joint Technical Committee
@@ -8049,8 +8147,8 @@ JTS	Java Transaction Service
 JTYWLTKT	Just Thought You Would Like To Know That
 JTYWTK	Just Thought You Wanted To Know
 JUG	Java Users Group
-JUL	July
-JUN	June
+JUL	July / Julian date / Joint Univesity Libraries
+JUN	June / junior
 JUNET	Japanese Unix Network
 JV	Joint Venture
 JVC	Victor Company of Japan Ltd
@@ -8163,6 +8261,7 @@ KIT	Keep In Touch
 KitA	Kick in the Arse
 KitB	Kick in the Butt
 kJ	kilojoule (1000 joules)
+KJB	King James Bible (= KJV)
 KJS	KDE JavaScript (engine)
 KJStJ	Knight of Justice of the Order of St John of Jerusalem
 KJV	King James (Authorised) Version (of the Bible)
@@ -8185,11 +8284,13 @@ KMDF	Kernel-Mode Driver Framework (Windows)
 KMF	Comoro francs
 KMG	Kiss My Grits
 KMI	Keep Me Informed
+KML	Keyhole Markup Language (geographical annotation)
 KMN	Kesatria Mangku Negara (Malaysian decoration)
 KMnO4	potassium permanganate
 kmol	kilomole (1000 moles)
 KMP	Keep Me Posted
 KMSMA	Kiss My Shiny Metal Ass
+KMT	Kuomintang (= Chinese Nationalist Party)
 KMYF	Kiss Me, You Fool
 KN	Saint Kitts and Nevis (ISO code)
 kN	kilonewton (1000 newtons)
@@ -8222,6 +8323,7 @@ KPG	Kilometres Per Gallon
 KPH	Kilometres Per Hour / Keystrokes Per Hour
 KPI	Key Performance Indicator
 KPM	King's Police Medal
+KPMG	Klynveld Peat Marwick Goerdeler (accountants)
 KPN	Koninklijke PTT Nederland (Dutch telecomms provider)
 KPS	Kilometres Per Second
 KPW	North Korean won (ccy)
@@ -8273,6 +8375,7 @@ kWb	kiloweber (1000 webers)
 KWD	Kuwaiti dinars (ccy)
 KWIM	Know What I Mean?
 KWIMH	Know What I Mean, Henry?
+KWYM	Know What You Mean
 KY	K-Y Jelly / Kentucky / Cayman Islands (ISO code) / Kommandiittiyhtiö (= Ltd partnership co. in Finland)
 KYA	Know Your Audience
 KYC	Know Your Customer
@@ -8288,6 +8391,7 @@ L&B	Lo and Behold
 L&G	Legal & General Group PLC
 L&H	Love and Hugs
 L&K	Love and Kisses
+L&Y	Lancashire & Yorkshire railway
 L1	Lagrangian point 1 (directly between two masses)
 L10N	Localisation
 L2	Lagrangian point 2 (directly beyond the smaller mass)
@@ -8342,6 +8446,7 @@ LAS	London Ambulance Service / League of Arab States
 LASER	Light Amplification by Stimulated Emission of Radiation
 LAT	‘Los Angeles Times’ / latitude / Local Area Transport (DEC)
 LATA	Local-Access Transport Area (US telecoms)
+LATE	Local Authority Trading Enterprise
 LATIN	Lembaga Alam Tropika Indonesia (= Indonesian Institute of Tropical Nature)
 LAV	Light Armoured Vehicle / Leisure Activity Vehicle / Load Average
 LAX	Los Angeles International Airport
@@ -8370,7 +8475,7 @@ LC	Inductor-Capacitor / Saint Lucia (ISO code) / 90 (Roman numeral)
 LCARS	Library Computer Access/Retrieval System (Star Trek)
 LCAS	Link Capacity Adjustment Scheme
 LCB	Lying, Cheating Bastard / Lower Confidence Bound / Low-Carbon Building / London City Bond / Lancashire Cricket Board / London College of Business / London Children's Ballet / Line/Link/Log/Logic Control Block / Longitudinal Centre of Buoyancy
-LCC	London County Council (obs.) / Little C Compiler
+LCC	London Cycling Campaign / London County Council (obs.) / Little C Compiler
 LCD	Liquid-Crystal Display / Lord Chancellor's Department (obs.) / Lowest Common Denominator
 LCDS	London Contemporary Dance Studio
 LCDT	London Contemporary Dance Theatre
@@ -8382,7 +8487,8 @@ LCh	Licentiate in Surgery
 LCJ	Lord Chief Justice
 LCM	Least Common Multiple
 LCOS	Liquid-Crystal On Silicon
-LCP	Liquid Crystal Polymer / Licentiate of the College of Preceptors / London Classical Players
+LCP	Liquid-Crystal Polymer / Link Control Protocol / Least-Cost Path / Left-handed Circular Polarisation / Licentiate of the College of Preceptors / London Classical Players / London College of Printing / Long-Chain Polyunsaturated fatty acid / Local Community Planning / Lance-Corporal
+LCp	Lance-Corporal
 LCPK	London Communities' Priestess of Kink (= Mme Tytania)
 LCR	Light Carpet Rules (no staining substances, no shoes)
 LCST	Licentiate of the College of Speech Therapists
@@ -8423,6 +8529,7 @@ LENR	Low-Energy Nuclear Reactions (aka cold fusion)
 LEO	Low Earth Orbit / Lyons Electronic Office / Law Enforcement Officer
 LEP	Light-Emitting Polymer / Large Electron-Positron Collider (CERN) / Limited English Proficiency
 LEPRA	Leprosy Relief Association
+LERTCON	Alert Condition (US military)
 LETS	Local Exchange Trading System
 LEU	Lightly-Enriched Uranium
 LEZ	Low-Emission Zone
@@ -8495,6 +8602,7 @@ LILO	Last In, Last Out / Left In, Left Out / Linux Loader
 LIM	Lotus Intel Microsoft Expanded-Memory Specification
 LIMH	Laughing In My Head
 LINPACK	software library for linear algebra
+LINQ	Language Integrated Query (.NET framework)
 LINT	Line Islands Time (= UTC+14)
 LIOB	Licentiate of the Institute of Building
 LIRGAS	Like I Really Give A S***
@@ -8528,7 +8636,7 @@ LLCM(TD)	Licentiate of the London College of Music (Teacher's Diploma)
 LLD	Legum Doctor (= Doctor of Laws) / Low-Level Design / Ladder Logic Diagram
 LLF	Low-Level Format / Line Loss Factor
 LLFP	Long-Lived Fission Product
-LLI	Leg-Length Inequality
+LLI	Leg-Length Inequality / Low Latent Inhibition
 LLL	Low-Level programming Language / Life-Long Learning / Low-Level Lighting / Lurk, Listen, Learn / Licentiate in Laws
 LLLP	Limited-Liability Limited Partnership
 LLM	Master of Laws
@@ -8587,7 +8695,7 @@ LNK	Love 'n' Kisses
 LO	hello / Log Off/Out / Law and Order / Liquid Oxygen / Local Oscillator / Liaison/Loan Officer / Left/Lights Out / Lunar Orbit/er / Laser Optics / Local Optimisation / Learning Objective / Leader of the Opposition / London Overground / Legal/Law Office/r
 LoA	List of Acronyms / Love on Arrival
 LOAEL	Lowest-Observed-Adverse-Effect Level
-LoB	Load of Bollocks
+LOB	Load of Bollocks / Line of Business / Loss of Balance / Low-Order Bit/Byte / Large Object / Loaf of Bread
 LoC	Lines of Code / Loss of Consciousness
 LoCA	Loss-of-Coolant Accident
 LOCO	Low-Complexity Lossless Compression
@@ -8596,6 +8704,7 @@ LoEG	League of Extraordinary Gentlemen
 LoFAr	Low-Frequency Array (radio-telescope in Europe)
 LOFT	Line-Oriented Flight Training
 LoG	League of Gentlemen
+LOGOC	London Olympic Games Organising Committee
 LOHICA	Look Out, Here It Comes Again
 LoI	Lack of Interest
 LOIS	Laughing On the Inside
@@ -8649,6 +8758,7 @@ LR(0)	Left-to-right, Rightmost-derivation, with no look-ahead (parser)
 LR(1)	Left-to-right, Rightmost-derivation, with one look-ahead symbol (parser)
 LR-WPAN	Low-Rate Wireless Personal-Area Network
 LRAC	Long-Run Average Cost
+LRAD	Long-Range Acoustic Device
 LRAM	Licentiate of the Royal Academy of Music / Long-Range Attack Missile / Local/Low-power Random-Access Memory
 LRB	Liquid Rocket Booster / London Review of Books
 LRC	Linear Responsibility Chart
@@ -8661,7 +8771,7 @@ LRCS	Licentiate of the Royal College of Surgeons (of England)
 LRCSE	Licentiate of the Royal College of Surgeons of Edinburgh
 LRCSI	Licentiate of the Royal College of Surgeons in Ireland
 LRD	Liberian dollars
-LRF	Little Rubber Feet
+LRF	Little Rubber Feet / Librie Reader Format (= Sony ebook file format)
 LRFPS	Licentiate of the Royal Faculty of Physicians and Surgeons, Glasgow
 LRIBA	Licentiate of the Royal Institute of British Architects
 LRPS	Licentiate of the Royal Photographic Society
@@ -8843,6 +8953,7 @@ LèsL	Licencié ès Lettres
 M	medium (size) / minute / Mature audiences (US movie rating, now PG) / 1000 (Roman numeral)
 M$	Microsoft
 M&A	Mergers and Acquisitions
+M&B	Mills & Boon
 M&S	Marks & Spencer
 M&T	Mother and Toddler
 M&W	Mitchell and Webb
@@ -8968,7 +9079,7 @@ MAY	Mad About You / May
 MAYB	Mad About You, Baby
 MB	megabyte / Merci Beaucoup (= thanks) / Bachelor of Medicine / Medal of Bravery / maybe / Myers-Briggs / MacBook
 Mb	megabit
-MBA	Master of Business Administration
+MBA	Master of Business Administration / MacBook Air
 MBAC	Member of the British Association of Chemists
 MBAE	Member of the British Academy of Experts (now MAE)
 MBAOT	Member of the British Association of Occupational Therapists
@@ -8986,10 +9097,11 @@ MBitM	Much Binding in the Marsh
 MBKS	Member of the British Kinematograph Society
 MBMNB	May Be, May Not Be
 MBMNBWITY	Might Be, Might Not Be; What's It To You?
+MBNA	Maryland Bank National Association corp.
 MBO	Management Buy-Out / Must Be Obeyed
 MBORC	Matter Beyond Our Reasonable Control
 MBOU	Member of the British Ornithologists' Union
-MBP	MacBook Pro
+MBP	MacBook Pro / Mobipocket (ebook file format)
 MBPS	Megabits Per Second
 MBPsS	Member of the British Psychological Society
 MBq	megabequerel (10^6 bequerels)
@@ -9483,7 +9595,7 @@ MEd	Master of Education
 MEDAL	Macmillan English Dictionary for Advanced Learners
 MEETS	Many Expect Existential Transcendental Situations
 MEF	Mediterranean Expeditionary Force
-MEG	Mega Evil Grin
+MEG	Mega Evil Grin / magnetoencephalography
 MEGO	My Eyes Glaze Over
 MEI	Member of the Energy Institute
 MEIC	Member of the Engineering Institute of Canada
@@ -9908,6 +10020,7 @@ MMS	Multimedia Messaging Service / My Mother Said / Microsoft Media Server / Mas
 MMSA	Master of Midwifery of Society of Apothecaries
 MMTG	Makes My Teeth Grate
 MMTI	Makes My Teeth Itch
+MMTM	My Mate Told Me
 MMU	Memory Management Unit / Manned Manoeuvring Unit
 MMus	Master of Music
 MMV	2005 (Roman numeral)
@@ -9994,6 +10107,7 @@ Mn	manganese
 mN	millinewton (1/1000 newtons)
 MNC	Multi-National Corporation
 MND	Motor-Neurone Disease / A Midsummer-Night's Dream
+MNE	Mobile Network Enabler
 MNECInst	Member of the North East Coast Institution of Engineers and Shipbuilders
 MNF	My Noble Friend
 MNG	Multiple-image Network Graphics
@@ -10001,6 +10115,7 @@ MNI	Member of the Nautical Institute / many
 MNIAP	My Name Is Angus Prune
 MNIMC	My Name Is Michael Caine
 MNIMH	Member of the National Institute of Medical Herbalists
+MNO	Mobile Network Operator
 MnO2	manganese dioxide
 MNP	Microcom Network Protocol
 MNT	Medical Nutrition Therapy / Mongolian tugriks (ccy)
@@ -10027,6 +10142,7 @@ MoJ	(UK) Ministry of Justice
 MOLLE	Modular Lightweight Load-carrying Equipment
 MOM	Message-Oriented Middleware / Mind Over Matter
 MoMA	Museum of Modern Art
+MON	Middle Of Nowhere / Monday / monitor / monument / Mean Order Number / Master Of None / Multiservice Optical Networking
 MOND	Modified Newtonian Dynamics
 MONIAC	Monetary National Income Analogue Computer
 MOO	Matter Of Opinion / MUD, Object-Oriented
@@ -10126,8 +10242,8 @@ MRICS	Member of the Royal Institution of Chartered Surveyors
 MRIN	Member of the Royal Institute of Navigation
 MRINA	Member of the Royal Institution of Naval Architects
 MRIPHH	Member of the Royal Institute of Public Health and Hygiene
-MRL	Microsoft Reciprocal Licence
-MRLP	Monster Raving Loony Party (c/o The Dog and Partridge, Yateley, Hants)
+MRL	Microsoft Reciprocal Licence / Monster Raving Loony
+MRLP	Monster Raving Loony Party
 MRM	Maintenance Resource Management / Mechanically-Recovered/Reclaimed Meat
 mRNA	Messenger Ribonucleic Acid
 MRO	Member of the Register of Osteopaths / Medical Review Officer / Military Response Option / Mauritanian ouguiya (ccy)
@@ -10201,6 +10317,7 @@ MSRT	Malicious Software Removal Tool
 MSS	Member(s) of the Same Sex / manuscripts
 MSSCC	Member of the Scottish Society of Contamination Control
 MSSCLI	Microsoft Shared-Source Common Language Infrastructure
+MSSE	Mobile Shared-Spectrum Enabler
 MSSM	Minimal Supersymmetric Standard Model
 MSST	Member of the Society of Surveying Technicians (now RICS (Tech))
 MST	Minimal Spanning-Tree / Master of Sacred Theology / Mountain Standard Time (North America) (= UTC-7) / Malaysian Standard Time (= UTC+8) / Myanmar Standard Time (= UTC+6:30)
@@ -10240,7 +10357,7 @@ MTh	Master of Theology
 MTIA	Many Thanks In Anticipation
 MTMOI	Make The Most Of It
 MTO	Motor Transport Officer
-MTP	More Tea, Please
+MTP	More Tea, Please / Message Transfer Part (network protocol)
 MTPB	Mind The Poor Baby
 MTPF	Mind The Poor Font
 MTPI	Member of the Town Planning Institute
@@ -10282,6 +10399,8 @@ MVM	1995 (Roman numeral)
 MVMI	1996 (Roman numeral)
 MVMII	1997 (Roman numeral)
 MVMIII	1998 (Roman numeral)
+MVNE	Mobile Virtual Network Enabler
+MVNO	Mobile Virtual Network Operator
 MVO	Member of the Royal Victorian Order
 MVP	Most Valuable Professional
 MVR	Maldivian rufiyaa (ccy)
@@ -10475,6 +10594,7 @@ nC	nanocoulomb (10^-9 coulombs)
 NC-17	No Children aged 17 or under (US movie rating)
 NCA	Network Computing Architecture / Non-Compete Agreement / (UK) National Campaign for the Arts / (UK) National Care/Courier/Cricket/Caving Association / (UK) National Council on Archives / (US) National Cheerleaders Association / (US) National Command Authority / (US) National Conservation Area / New Classical Adventure (record label) / National Certificate of Agriculture
 NCAA	(US) National Collegiate Athletic Association
+NCAC	National Copyright Administration of the People's Republic of China
 NCB	No-Claims Bonus / (UK) National Coal Board / National Central Bank / (UK) National Children's Bureau / (US) National Co-operative Bank
 NCC	(UK) National Computing Centre / Network Control Centre / (UK) National Consumer Council (now part of Consumer Focus) / (Irish) National Chamber Choir / Norfolk/Northamptonshire/Northumberland/Nottinghamshire County Council
 NCCI	(UK) National Committee for Commonwealth Immigrants
@@ -10507,7 +10627,7 @@ NDA	Non-Disclosure Agreement / National Diploma in Agriculture
 NDAGB	National Darts Association of Great Britain
 NDak	North Dakota
 NDB	Non-Directional Beacon
-NDC	National Defence College
+NDC	National Defence College / National Distribution Centre
 NDD	National Diploma in Design
 NDE	Near-Death Experience
 NDF	Nodding-Dog Free
@@ -10637,6 +10757,7 @@ NH4NO3	ammonium nitrate
 NH4OH	ammonium hydroxide
 NHaNES	(US) National Health and Nutrition Examination Survey
 NHD	No He Didn't
+nHD	ninth High Definition (640×360)
 NHK	Nippon Housou Kyoukai (= Japan Broadcasting Corporation)
 NHL	(North American) National Hockey League
 NHM	Natural History Museum (London)
@@ -10746,6 +10867,7 @@ NM	Never Mind / Not Much / New Mexico / Nautical Mile
 nm	nanometre (10^-9 metres)
 NMCOT	Not My Cup Of Tea
 NMCU	National Meteorological Co-ordinating Unit Committee
+NME	‘New Musical Express’
 NMFJ	Not My F***ing Job
 NMH	Not Much Here
 NMI	No Middle Initial / Non-Maskable Interrupt / Nautical Mile
@@ -10769,6 +10891,7 @@ NNE	North-North-East (22½°)
 NNNNCCCN	New Norwegian Nextra Net CIX Conferencing Consulting Nut
 NNON	Neo-Natal Outreach Nurse
 NNOS	Neo-Natal Outreach Sister
+NNR	National Nature Reserve
 NNRTI	Non-Nucleoside Reverse-Transcriptase Inhibitor
 NNTP	Network News Transfer Protocol
 NNW	North-North-West (337½°)
@@ -10796,6 +10919,7 @@ NOM	No Offence Meant
 NOMFET	Nanoparticle Organic Memory Field-Effect Transistor
 NOMS	Not On My System
 NoNA	Nerd-On-Nerd Action
+NOOB	None Of Our Business / newbie
 NOP	No Operation
 NoPE	Not On Planet Earth
 NOR	Not-Or (logic gate)
@@ -10811,7 +10935,7 @@ NotT	None Of The Time
 NOTTOMH	Not Off The Top Of My Head
 NotW	‘News Of The World’
 NOUN	Not Old Uncle Nick
-NOV	November
+NOV	November / Notice Of Violation / Next Office Visit / No Obvious Value / Net Option Value / Non Obstante Veredicto (= notwithstanding the verdict)
 NOx	nitrogen oxides
 NOYB	None Of Your Business
 NOYDB	None Of Your Damn Business
@@ -10857,7 +10981,7 @@ NR	Not Rated (US movie label) / number / near / Nauru (ISO code)
 NRA	(US) National Rifle Association
 NRAAOTLD	No Reticular Activity Allowed On The Lord's Day
 NRAO	(US) National Radio Astronomy Observatory
-NRC	Not Recommended for Children
+NRC	Not Recommended for Children / (US) Nuclear Regulatory Commission / Northern Regional College (Northern Ireland) / National/Nuclear Research/Response Council/Centre / Noise Reduction Circuit/Coefficient
 NRDC	National Research Development Corporation
 NREM	Non-Rapid Eye Movement (sleep)
 NRES	(UK) National Research Ethics Service
@@ -10865,6 +10989,7 @@ NRI	Norepinephrine Re-uptake Inhibitor
 NRL	(Australia) National Rugby League
 NRN	No Reply Necessary / (US) National Radio Network
 NRPB	National Radiological Protection Board
+NRPE	Nagios Remote Plug-in Executor
 NRPN	Non-Registered Parameter Number (MIDI)
 NRSV	New Revised Standard Version (of the Bible)
 NRTA	(US) National Retired Teachers Association (now AARP) / National Retail Tenants Association
@@ -10876,6 +11001,7 @@ nS	nanosiemens (10^-9 siemens)
 ns	nanosecond (10^-9 seconds)
 NS&I	National Savings and Investments
 NSA	(US) National Security Agency / No Such Acronym / No Strings Attached
+NSABB	(US) National Science Advisory Board for Biosecurity
 NSAID	Non-Steroidal Anti-Inflammatory Drug
 NSD	NearSite Dial
 NSDAP	Nationalsozialistische Deutsche Arbeiterpartei (= National Socialist German Workers' Party, aka Nazi Party)
@@ -11083,7 +11209,7 @@ OCII	Of Course It Is
 OCN	Open College Network
 OCONUS	Outside the Continental United States (of America)
 OCP	Over-Current Protection
-OCR	Optical Character Recognition / Oxford and Cambridge and RSA Examination Board
+OCR	Optical Character Recognition / Original Cast Recording / Oxford and Cambridge and RSA Examination Board
 OCS	Open-Crotch Shot / Official Conference Smirker / Officer Cadet School
 OCSP	On-line Certificate Status Protocol
 OCT	October / octal / Overseas Countries and Territories
@@ -11113,6 +11239,7 @@ OED2	Oxford English Dictionary, 2nd edition (1989)
 OED3	Oxford English Dictionary, 3nd edition (expected 2037)
 OEEC	Organisation for European Economic Co-operation (now OECD)
 OEIC	Open-Ended Investment Company
+OEIS	On-line Encyclopædia of Integer Sequences
 OEM	Original Equipment Manufacturer
 OEO	Organisational Email Option
 OER	Officers' Emergency Reserve
@@ -11132,6 +11259,7 @@ OFFOB	Office For Old Berks
 OFFS	Oh, For F***'s Sake
 OFGAS	(UK) Office of Gas Supply
 OFGEM	(UK) Office of Gas and Electricity Markets
+OFGS	Oh, For Goodness'/God's Sake
 OFH	Order of the Flying Hedgehog / One For Himself
 OFIS	On Floor, In Stitches
 OFLC	Office of Film and Literature Classification (Australia, New Zealand)
@@ -11142,6 +11270,7 @@ OFO	Open File Option / Oh, F*** Off / Out F***ing Off
 OFS	One-Finger Salute / Orange Free State / Output Field Separator
 OFSTED	(UK) Office For Standards in Education, Children's Services, and Skills
 OFT	(UK) Office of Fair Trading / Operator Finger Trouble
+OFTAL	One For The Acronyms List
 OFTC	Open and Free Technology Community
 OFTWOAD	Oh For The Wings Of A Dove
 OFWAT	(UK) Water Services Regulation Authority
@@ -11158,12 +11287,13 @@ OH	Other Half / Over Here / Overhead / Ohio
 OHCHR	(UN) Office of the High Commissioner for Human Rights
 OHF	Opinbert Hlutafélag (= government-owned co. in Iceland)
 OHG	Offene Handelsgesellschaft (= partnership co. in Germany)
-OHMIGAWD	Oh my God/Gosh/Goodness
+OHMIGAWD	Oh my God
 OIC	Oh, I See / Officer In Charge / Organisation of Islamic Co-operation / Options Industry Council
 OICWYM	Oh, I See What You Mean
 OICWYMN	Oh, I See What You Mean Now
 OID	Object Identifier
 OIE	World Organisation for Animal Health
+OIGIG	Once It's Gone, It's Gone
 OIML	Organisation Internationale de Métrologie Légale (= International Organisation of Legal Metrology)
 OIRA	Official Irish Republican Army / (US) Office of Information and Regulatory Affairs
 OIRTR	Oi!  I Resent That Remark
@@ -11200,7 +11330,7 @@ OMD	Orchestral Manoeuvres in the Dark (band)
 OMDB	Over My Dead Body
 OMF	Object Module Format
 OMFG	Oh My F***ing God!
-OMG	Oh My God/Gosh/Goodness! / Object Management Group
+OMG	Oh My Goodness/God! / Object Management Group
 OMGIFOS	“Oh My God, It's Full Of Stars!”
 OMIK	Open Mouth, Insert Keyboard
 OMKC	On My Knees, Crying
@@ -11211,6 +11341,7 @@ OMO	Open-Market Operation (finance)
 OMPF	Official Military Personnel File
 OMR	Omani rials (ccy)
 OMRI	Order of Merit of the Italian Republic
+OMRL	Official Monster Raving Looney party
 OMRLP	Official Monster Raving Looney Party
 OMS	Over My Shoulder / Oracle Management Server / Open Media Commons / Open Music System / Orbital Manoeuvring System / Order Management System
 OMST	Omsk Time (= UTC+6)
@@ -11267,11 +11398,12 @@ OoI	Out Of Interest
 OOK	On/Off Keying
 OoL	Out Of Line
 OOM	Out Of Memory / Object-Oriented Methodology
-OoMPR	Out Of My Price Range
+OomPHoCiOA	One of my Pet Hates on Cix is Obscure Acronyms
+OoMPR	Out of My Price Range
 OOO	Out Of Order/Office / Ogi Ogi Ogi / Openoffice.org / Obshchestvo s Ogranichennoy Otvetstvennostyu (= Ltd co. in Russia)
 OOo	OpenOffice.org
 OoOE	Out-of-Order Execution
-OOOOOA	Out Of One, Out Of All
+OoOOoA	Out Of One, Out Of All
 OOP	Out Of Production/Print / Object-Oriented Programming
 OoS	Out Of Sight/Stock
 OOSE	Object-Oriented Software Engineering
@@ -11280,11 +11412,11 @@ OoT	Out Of Town
 OotB	Out Of The Box/Blue
 OOTC	Obligatory On-Topic Comment
 OotCT	Out Of The Coffin, Thinking
-OOTD	One Of These Days
+OoTD	One Of These Days
 OotGUMotU	One Of The Great Unsolved Mysteries Of The Universe
 OotQ	Out Of The Question
-OOTT	One Of Those Things
-OOTW	Out Of The Window / Out Of This World
+OoTT	One Of Those Things
+OoTW	Out Of The Window / Out Of This World
 OOXML	Microsoft Office ‘Open’ XML (format)
 OP	Original Post(er) / operator / Operating Procedure/Profit / Out of Print / Opposite Prompt (= stage right) / Observation Post / Ordinis Prædicatorum (= Order of Preachers, aka Dominicans)
 OP&TD	One Person And Their Dog
@@ -11311,9 +11443,10 @@ OPSI	Office of Public Sector Information (now TNA)
 OQF	Ordnance, Quick Firing
 OQL	Object Query Language
 OQR	Officer Qualification Record
-OR	Oregon / Order of Roraima (Guyana)
+OR	Oh Really? / Operating Room / Olympic Record / Operations Research / Oregon / Order of Roraima (Guyana)
 ORB	Object Request Broker (CORBA)
 ORD	Chicago O'Hare International Airport
+ORG	Open Rights Group
 ORLY	oh really?
 ORM	Object-Relational Mapping
 ORN	Oh Really, Now?
@@ -11350,14 +11483,14 @@ OSPF	Open Shortest Path First (routing protocol)
 OSR	OEM Service Release
 OSRD	Office of Scientific Research and Development
 OSS	Open-Source Software / Office of Strategic Services (now CIA) / Open Sound System / Operations Support System
-OST	Official Soundtrack / Office of Science and Technology
+OST	Original Soundtrack / Office of Science and Technology
 OSTG	Open Source Technology Group
 OStJ	Officer of the Order of St John of Jerusalem
 OSU	Officially-Sanctioned User
 OSW	On-Site Warranty / Official Scrabble Words lexicon
 OT	On-Topic / Off-Topic / Old Testament (of the Bible) / OpenType (font) / Old-Timer / Occupational Therapy/ist
 OT1H	On The One Hand
-OTA	Off Topic Again / Over-The-Air
+OTA	Off Topic Again / Over-The-Air / Oliver Twist Applies ("Please, sir, can I have some more?")
 OTB	Over The Board
 OTBE	Overtaken By Events
 OTC	On The Contrary / Over-The-Counter / Officers' Training Corps
@@ -11448,6 +11581,7 @@ OÜ	Osaühing (= Ltd co. in Estonia)
 P	phosphorus / Polynomial-time (complexity) / pence
 P&D	(VESA) Plug and Display (video connector)
 P&G	Procter & Gamble Co.
+P&H	Press-and-Hold
 P&I	Protection and Indemnity
 P&L	Profit and Loss
 P&O	Peninsular and Oriental Steam Navigation Company
@@ -11577,7 +11711,7 @@ PCTW	PC Tools for Windows
 PCV	Passenger-Carrying Vehicle / Pressure Control Valve / Product Category Volume / Police Community Volunteer / Positive Crankcase Ventilation
 PCW	‘Personal Computer World’
 PCYLIHOONL	Please Cross Your Legs, I Have Only One Nail Left
-PD	Public Domain / Potential Difference (voltage) / Parkinson's Disease / Personal/Professional Development / Police Department / Phase Distortion (synthesis) / Production Diary
+PD	Public Domain / Potential Difference (voltage) / Parkinson's Disease / Personal/Professional Development / Police Department / Phase Distortion (synthesis) / Production Diary / Preventative Detention
 Pd	palladium
 PDA	Personal Digital Assistant / Public Display of Affection / Public Disservice Announcement / Push-Down Automaton
 PDB	Protein Data Bank / Chess Problem Database Server / President's Daily Brief / Palm Database format (esp. containing ebook text)
@@ -11621,7 +11755,7 @@ PEBCaK	Problem Exists Between Chair and Keyboard
 PEBK&C	Problem Exists Between Keyboard and Chair
 PEBKaC	Problem Exists Between Keyboard and Chair
 PEC	Photoelectrochemical
-PED	Penguin English Dictionary
+PED	Penguin English Dictionary / Personal Electronic Device
 PEEC	Public Establishment with Economic Characteristics (co. in Cambodia)
 PEG	Price/Earnings/Growth (stock metric) / Parsing Expression Grammar / poly-ethylene glycol (= poly-ethene diol)
 PEGI	Pan-European Game Information
@@ -11711,6 +11845,7 @@ PHD	Push Here, Dummy / Philosophiæ Doctor (= Doctor of Philosophy) / Piled Highe
 PhD	Philosophiæ Doctor (= Doctor of Philosophy)
 PHitC	Put Her in the Crèche
 PhL	Licentiate of Philosophy
+PHOSITA	Person Having Ordinary Skill In The Art (patent law)
 PHOT	Phoenix Island Time (= UTC+13)
 PHP	PHP Hypertext Preprocessor / Philippine pesos
 PHPBB	PHP Bulletin Board
@@ -11736,9 +11871,10 @@ PICS	Platform for Internet Content Selection
 PID	Process/Program Identifier / Physical Interface Device / Proportional-Integral-Derivative / Pelvic Inflammatory Disease / Political Intelligence Department
 PIE	Position-Independent Executable / Proto-Indo-European
 PIFOP	Punishment Is For Other People
+PIG	Pipeline Inspection Gauge
 PII	Personally-Identifiable Information
 PIK	Glasgow Prestwick Airport
-PIL	Parent(s)-In-Law
+PiL	Parent(s)-in-Law
 PILON	Pay In Lieu Of Notice
 PIM	Personal Information Manager
 PIMP	Peeing In My Pants
@@ -11792,6 +11928,7 @@ PLC	Public Limited Company / Programmable Logic Controller / Power-Line Communic
 plc	Public Limited Company
 PLD	Programmable Logic Device
 PLDM	Periodic Limb Movement Disorder
+PLINQ	Parallel Language Integrated Query (.NET)
 PLLC	Professional Limited-Liability Company
 PLM	Product Lifecycle Management
 Plm	petalumen (10^15 lumens)
@@ -11838,8 +11975,9 @@ PMJI	Pardon My Jumping In
 PMJIB	Pardon My Jumping In, But...
 PMK	Pot, Meet Kettle
 PMKA	Pot-Meet-Kettle Alert
-PML	Pissed Myself Laughing
+PML	Pissed Myself Laughing / Paper Markup Language / Progressive Multifocal Leukoencephalopathy / Possible Maximum Loss / Pseudo-Maximum-Likelihood
 PMLCF	Pete McLeod Lemon Chicken Friday
+PMLZ	PML file, Zipped
 PMM	POST Memory Manager
 PMMA	Poly-methyl methacrylate (aka Perspex, Plexiglas)
 PMN	Panglima Mangku Negara (Malaysia)
@@ -11930,7 +12068,7 @@ PPD	Prepaid
 PPE	Philosophy, Politics, and Economics / Personal Protective Equipment / Piss-Poor Executives / Porcine Proliferative Enteropathy / Purple People-Eater / Power Processor Element (Cell) / Power Plant, Electric
 PPERA	(UK) Political Parties, Elections, and Referendums Act 2000
 PPFM	Principles and Practices of Financial Management
-PPI	Pixels Per Inch / Payment Protection Insurance / Producer-input Price Indices
+PPI	Pixels Per Inch / Payment Protection Insurance / Parallel Port Interface / Printed Postage Impression / Protected Personal Information / Property Price Index / Player Performance Index / Public Policy Initiative/Institute / Public-Private Initiative/Infrastructure / Producer-input Price Indices / Phonographic Performance (Ireland) Ltd
 PPL	people / Public Performance Licence / Private Pilot's Licence / Plane-Polarised Light / Pre-Paid Legal (services) / Phonographic Performance Ltd (UK) / Pink Panther Land
 PPM	Pulse-Position Modulation / Parts Per Million / Pages Per Minute / Public Performance Measure
 PPN	Programmer Project Number
@@ -11958,7 +12096,7 @@ Pr	praseodymium
 PR-STV	Proportional Representation through the Single Transferable Vote
 PRA	Participatory Rural Appraisal / President of the Royal Academy
 PRAM	Parameter Random-Access Memory (Mac) / Phase-Change Random-Access Memory / Parallel Random-Access Machine
-PRAT	Please Register Acronym(s) Today (in cix:acronyms/ameol)
+PRAT	Please Register Acronym(s) Today
 PRBS	Pseudo-Random Binary Sequence
 PRC	People's Republic of China / Palm Resource (file) / Post Romam Conditam (= since the founding of the city (of Rome)) / Popular Resistance Committee / Presbyterian Reformed Church / Protestant Reformed Churches in America / Practical Reserve Capacity / Process file-system
 PRCA	Public Relations Consultants Association
@@ -11985,9 +12123,11 @@ pS	picosiemens (10¯¹² siemens)
 ps	picosecond (10¯¹² seconds)
 PS/2	Personal System/2
 PS2	PlayStation 2
+PS3	PlayStation 3
 PSA	Public-Service Announcement / Public Show of Affection / Prostate-Specific Antigen / Property Services Agency / (UK) Postal Services Act 2000 / Pressure-Sensitive Adhesive / Professional Services Automation / President of the Society of Antiquaries
 PSAP	Public-Safety Answering Point
 PSB	The Pet Shop Boys (band)
+PSBL	Passive Spam Block List
 PSC	Personal Services Company / (UK) Postal Services Commission
 PSCSI	Parallel SCSI
 PSD	Petty Session Division
@@ -12069,6 +12209,7 @@ PVD	Post-Viral Depression / Peripheral Vascular Disease
 PVG	Physical Volume Group
 PVI	Positive Volume Index (finance)
 PVM	Parallel Virtual Machine
+PVNO	Private Virtual Network Operator
 PVOH	polyvinyl alcohol
 PVR	Personal Video Recorder
 PVS	Persistent Vegetative State
@@ -12135,6 +12276,7 @@ QEII	Queen Elizabeth the Second
 QEMM	Quarterdeck Expanded-Memory Manager
 QFE	atmospheric pressure and altitude (aviation radio code) / Quick Fix Engineering / Quad Fast Ethernet / Quoted For Emphasis
 QFF	barometric pressure (aviation radio code)
+QFHD	Quad Full High Definition (3840×2160)
 QFP	Quad Flat Package
 QFS	Quick File-System (Sun)
 QFSM	Queen's Fire Service Medal for Distinguished Service
@@ -12142,6 +12284,7 @@ QFT	Quoted For Truth / Quantum Field Theory
 QFU	magnetic bearing of runway (aviation radio code)
 QGM	Queen's Gallantry Medal
 QHC	Honorary Chaplain to The Queen
+qHD	Quarter High Definition (960×540)
 QHDS	Honorary Dental Surgeon to The Queen
 QHNS	Honorary Nursing Sister to The Queen
 QHP	Honorary Physician to The Queen
@@ -12240,6 +12383,7 @@ QUF	received distress signal (radio code)
 QUJ	true bearing to (radio code)
 QUM	normal working resumed (radio code)
 QV	Quod Vide (= concerning) / Queen Victoria
+QVGA	Quarter Video Graphics Array (160×120)
 QVRM	Queen's Volunteer Reserves Medal
 QVT	Query/View/Transformation
 QWERTY	(= keyboard layout)
@@ -12264,6 +12408,8 @@ R3	BBC Radio 3
 R3HD	BBC Radio 3 High-Definition
 R4	BBC Radio 4
 R4E	BBC Radio 4 Extra
+R4FM	BBC Radio 4 FM
+R4LW	BBC Radio 4 Long-Wave
 R4X	BBC Radio 4 Extra
 R5	BBC Radio Five Live
 R5L	BBC Radio Five Live
@@ -12361,7 +12507,7 @@ RAUBM	Replies As Usual By Mail
 RAuxAF	Royal Auxiliary Air Force
 RAVC	Royal Army Veterinary Corps
 RAW	Rules As Written / Robert Anton Wilson
-RB	Restricted Byway / Rifle Brigade / Bolivia/Botswana (ISO code) (now BO/BW)
+RB	RocketBook (ebook file format) / Ruby file / Restricted Byway / Rifle Brigade / Bolivia/Botswana (ISO code) (now BO/BW)
 Rb	rubidium
 RBA	Royal Society of British Artists
 RBAC	Rôle-Based Access Control
@@ -12428,7 +12574,7 @@ RDA	Recommended Daily Amount / Royal Defence Academy / Regional Development Agen
 RDAT	Rotating-head Digital Audio Tape
 RDB	Relational Database
 RDBMS	Relational Database Management System
-RDC	Rural District Council/lor
+RDC	Rural District Council/lor / Regional Distribution Centre
 RDED	Rio Declaration on Environment and Development
 RDF	Resource Description Framework / Radio Direction Finding / Reality Distortion Field / Royal Dublin Fusiliers
 RDI	Royal Designer for Industry (RSA)
@@ -12437,12 +12583,13 @@ RDOS	Real-time Disk Operating System
 RDP	Remote Desktop Protocol
 RDS	Remote Data Services / Random Dot Stereogram / Royal Dublin Society
 RDV	Recommended Daily Value
-RE	regarding / Regular Expression / Royal Engineers / Réunion (ISO code)
+RE	regarding / Regular Expression / Royal Engineers / Religious Education / Réunion (ISO code)
 Re	rhenium
 REACT	Remote Electronically-Activated Control Technology
 REAPER	Rapid Environment for Audio Production, Engineering, and Recording
 REC	Research Ethics Committee
 RED	Race Equality Duty
+REDCON	Readiness Condition (US military)
 REDoS	Regular Expression Denial of Service
 REFAL	Recursive Functions Algorithmic Language
 RegEx	Regular Expression
@@ -12466,7 +12613,7 @@ RET	Réunion Time (= UTC+4)
 RETI	Return from Interrupt
 REXMAN	Relax, Experiment, and read your owner's Manual
 REXX	Restructured Extended Executor (IBM programming language)
-RF	Radio Frequency / Right/Rear-Facing / Royal Fusiliers
+RF	Radio Frequency / Right/Rear-Facing / Royalty-Free / Royal Fusiliers
 Rf	rutherfordium
 RFA	Request For Amendment/Applicants / Renewable Fuels Association / Restricted Free Agent / Royal Field Artillery / Royal Fleet Auxiliary / Radio-Frequency Ablation / Ready For Anything / (UK) Renewable Fuels Agency
 RFB	Remote Frame-Buffer
@@ -12569,6 +12716,7 @@ RIMA	Reversible Inhibitor of Monoamine oxidase A
 RIMM	Rambus In-line Memory Module
 RIN	Royal Indian Navy
 RINA	Royal Institute of Naval Architects
+rINN	Recommended International Non-proprietary Name
 RINVR	Royal Indian Navy Volunteer Reserve
 RIO	Right In One
 RIOP	Royal Institute of Oil Painters
@@ -12785,8 +12933,10 @@ RotLA	Raiders of the Lost Ark
 RotLC	Raider of the Lost Case
 ROTM	Right On The Money
 ROTNR	Roll On The Next Release
+ROTP	(UK) Representation of the People Act (1832, 1867… 1991, 1993, 2000)
 RotS	‘Star Wars ep.3: Revenge of the Sith’
-ROUGOL	RISC OS User Group Of London
+RoU	Republic of Uruguay
+ROUGoL	RISC OS User Group Of London
 RoUS	Rodents of Unusual Size (I don't believe they exist)
 ROV	Remotely-Operated Vehicle
 RoW	Right of Way / Rest of World
@@ -13021,7 +13171,7 @@ SAARU	Secondary Attitude Air Data Reference Unit
 SaaS	Software as a Service
 SAATB	Soprano, Alto, Alto, Tenor, Bass
 SAB	Soprano, Alto, Baritone/Bass / Socidedad Anónima Bursátil (= co. in Mexico)
-SABAM	Société d'Auteurs Belge — Belgische Auteurs Maatschappij (= Belgian Society of Authors)
+SABAM	Société d'Auteurs Belge — Belgische Auteurs Maatschappij (= Belgian Society of Authors)
 SABENA	Société Anonyme Belge d'Exploitation de la Navigation Aérienne (= Belgian company for exploiting aerial navigation) / Such A Bloody Experience, Never Again
 SABRE	Semi-Automatic Business-Related Environment (computer reservation system) / Society for All British and Irish Road Enthusiasts
 SABU	Self-Adjusting Balls-Up
@@ -13082,7 +13232,7 @@ SASO	Senior Air Staff Officer
 SASRE	Surrogate Aunty to Sally Rowan Elphick
 SAST	South African Standard Time (= UTC+2)
 SASU	Société par Actions Simplifiée Unipersonnelle (= single-member simplified joint-stock co. in France)
-SAT	Standard Attainment Test / Scholastic Aptitude/Assessment Test / Soprano, Alto, Tenor / Senior Member of the Association of Accounting Technicians
+SAT	Standard Attainment Test / Scholastic Aptitude/Assessment Test / Soprano, Alto, Tenor / Senior Member of the Association of Accounting Technicians / Saturday
 SATA	Serial ATA
 SATB	Soprano, Alto, Tenor, Bass
 SATBB	Soprano, Alto, Tenor, Baritone/Bass, Bass
@@ -13141,6 +13291,7 @@ SCAP	Supreme Commander of the Allied Powers (= Gen. Douglas MacArthur) / Securit
 SCAR	Scientific Committee for Antarctic Research / Salisbury Coalition Against Racism / Sub-Calibre Aircraft Rocket / Super-Cheap Auto Racing / SOF Combat Assault Rifle / Spur Central Apparatus Room (BBC news)
 SCART	Syndicat français des Constructeurs d'Appareils Radiorécepteurs et Téléviseurs
 SCC	Small Claims Court / Serial Communication Controller / Sirius Cybernetics Corporation / Shropshire/Somerset/Staffordshire/Suffolk/Surrey County Council / Sheffield/Southampton/Swansea City Council / ‘Terminator: The Sarah Connor Chronicles’ / Small, Cheap Computer / Société Commerciale Canadienne (= PLC in Canada)
+SCCP	Signalling Connection Control Part (network protocol)
 SCCS	Source Code Control System
 SCD	Sickle-Cell Disease / Doctor of Science
 ScD	Doctor of Science
@@ -13216,7 +13367,7 @@ SE	Second Edition / Search Engine / South-East (135°) / Single-Ended / Sweden (I
 Se	selenium
 SEA	Self-Extracting Archive
 SEAC	South East Asia Command
-SEAL	Semantics-directed Environment Adaptation Language
+SEAL	Sea, Air, Land (US Navy special forces) / Social and Emotional Aspects of Learning (UK education) / Simulated Evolution and Learning / Semantics-directed Environment Adaptation Language
 SEAN	Association of South East Asian Nations
 SEATAG	South East Asia Trade Advisory Group
 SEATO	South East Asia Treaty Organisation
@@ -13252,7 +13403,7 @@ SETI	Search for Extra-Terrestrial Intelligence
 SETID	Ping Set Identifier
 SF	Science/Speculative Fiction / Surfer-Friendly / San Francisco / Sinn Féin / SourceForge / Street Fighter (video game) / Special Forces / Sameignarfélag (= partnership co. in Iceland) / Statsforetak (= state co. in Norway) / Sociedade Fechada (= private co. in Portugal) / Finland (ISO code) (now FI)
 SF&F	Science Fiction and Fantasy
-SFA	Scottish Football Association / Sweet Fanny Adams / Sweet F***-All / Securities and Futures Authority
+SFA	Scottish Football Association / Sweet Fanny Adams/F***-All / Securities and Futures Authority / Small Furry Animal
 SFAIAA	So Far As I Am Aware
 SFAICT	So Far As I Can Tell
 SFAIK	So Far As I Know
@@ -13268,7 +13419,7 @@ SFLA	Stupid Four-Letter Acronym
 SFLC	Software Freedom Law Center
 SFLOC	Stony-Faced Look Of Contempt
 SFM	Sustainable Forest Management
-SFO	(UK) Serious Fraud Office
+SFO	(UK) Serious Fraud Office / Specialist Firearm Officer
 SFP	Small Form-factor Pluggable
 SFPD	San Francisco Police Department
 SFR	Sodium-cooled Fast Reactor
@@ -13359,7 +13510,7 @@ SIGSOFT	Special Interest Group on Software Engineering (ACM)
 SII	So It Is
 SIIC	See If I Care
 SIIN	Stuffed If I Know!
-SIL	Sister-In-Law / Son-In-Law
+SiL	Sister-in-Law / Son-in-Law
 SILLIAC	Sydney version of the Illinois Automatic Computer
 SILOP	Sorry I'm Late On Parade
 SILP64	64-bit Shorts, Integers, Long Integers, and Pointers (data model)
@@ -13459,15 +13610,17 @@ SMDR	Station Message Detail Recording
 SME	Small-to-Medium Enterprise / Subject-Matter Expert / School of Military Engineering
 SMEF	Serious Massive Existence Failure
 SMEM	Send Me an Email
+SMETANA	Self-Modifying, Extremely Tiny Automaton Application (programming language)
 SMF	Standard MIDI File / Single-Mode Fibre-optic
 SMG	Sub-Machine Gun / Senior Management Group (UN) / Sequential Manual Gearbox (BMW) / Sarah Michelle Gellar
 SMH	‘Sydney Morning Herald’
-SMI	Sergeant Major Instructor
+SMI	Sergeant Major Instructor / Support for Mortgage Interest
 SMIDSY	Sorry, Mate, I Didn't See You
 SMIEEE	Senior Member of the Institute of Electrical and Electronic Engineers
 SMIL	Synchronised Multimedia Integration Language
 SMIM	Send Me an Instant Message
 SMIME	Secure, Multi-purpose Internet Mail Extensions
+SMITH	Self-Modifying Indecent Turing Hack (programming language)
 SML	Standard ML (computer language)
 SMLT	Split Multi-Link Trunking (networking)
 SMM	System Management Mode
@@ -13488,7 +13641,7 @@ SMPTE	Society of Motion Picture and Television Engineers
 SMR	Small, Modular Reactor
 SMS	Short Message Service / System Management Server
 SMT	Simultaneous Multi-Threading / Shiver My Timbers / Surface-Mount Technology
-SMTH	Sorry Must Try Harder
+SMTH	Sorry, Must Try Harder
 SMTP	Simple Mail Transfer Protocol
 SMTP-AUTH	Authenticated Simple Mail Transfer Protocol
 SMWS	Scotch Malt Whisky Society
@@ -13499,10 +13652,11 @@ SNAC	Sitting Naked At Computer
 SNAFU	Situation Normal: All F***ed-Up
 SNAG	Sensitive New-Age Guy
 SNAP	SubNet Access Protocol
+SNB	Swiss National Bank / Shanda Bambook (ebook file format) / Strictly Non-Blocking / See Notes Below
 SNC	= partnership co. in France &c
 SNCF	Société National des Chemins de Fer Français
-SNCO	Staff Non-Commissioned Officer
-SNCOIC	Staff Non-Commissioned Officer In Charge
+SNCO	Staff/Senior Non-Commissioned Officer
+SNCOIC	Staff/Senior Non-Commissioned Officer In Charge
 SNDRI	Serotonin-Norepinephrine-Dopamine Re-uptake Inhibitor (antidepressant)
 SNEP	Syndicat National de l'Édition Phonographique
 SNERT	Snotty-Nosed Egotistical Rude Teenager
@@ -13523,7 +13677,7 @@ snRNA	Small Nuclear Ribonucleic Acid
 SNTP	Simple Network Time Protocol
 SNTS	Society for New Testament Studies
 SNTV	Single Non-Transferable Vote
-SO	Significant Other / Second Operator / Smoking Outdoors / Special Operations / Scotland Office / Staff Officer / Stack Overflow / Somalia (ISO code)
+SO	Significant Other / Second Officer/Operator / Smoking Outdoors / Special Operations / Scotland Office / Staff Officer / Stack Overflow / Somalia (ISO code)
 SO-DIMM	Small-Outline Dual In-line Memory Module
 SO2	sulphur dioxide
 SO3	sulphur trioxide
@@ -13532,15 +13686,15 @@ SOAP	Seems Okay At Present / Simple Object-Access Protocol
 SOAS	School of Oriental and African Studies (London)
 SOB	Son of a Bitch / Standard Operational Bullshit / Sexually-Oriented Business
 SoBoH	Slap on Back of Head
-SOC	Save Our Curate / System-On-a-Chip / State of Charge
+SOC	Save Our Curate / System-On-a-Chip / State of Charge / State-Owned Company
 SoC	System-on-a-Chip / State of Charge
 SOCA	(UK) Serious Organised Crime Agency
 SoCal	Southern California
-SOCO	Scenes Of Crime Officer
+SOCO	Scenes-Of-Crime Officer
 SOCOM	US Special Operations Command
 SOD	Save Our Deacon / Sudden Oak Death
 SODIMM	Small-Outline Dual In-line Memory Module
-SOE	Standard Operating Environment / Special Operations Executive (UK WW2)
+SOE	Standard Operating Environment / State-Owned Enterprise / Special Operations Executive (UK WW2)
 SOED	Shorter Oxford English Dictionary
 SOF	Silly Old Fart/Fool / Start Of Frame / Special Operations Forces
 SOFC	Solid-Oxide Fuel Cell
@@ -13594,7 +13748,7 @@ SoWS	Students of Women Studies
 SOX	Simple Outline XML / (US) Sarbanes-Oxley Act, 2002 / Sound Exchange (audio editor) / Schema for Object-Oriented XML
 SOx	(US) Sarbanes-Oxley Act, 2002 / Sulphur Oxides
 SoX	Sound Exchange (audio editor)
-SP	Service Pack / Starting Price (Information, Gen) / Service Policeman / sorry for bad Spelling / Sole Proprietorship co. / Scottish Parliament / sub-prime
+SP	Service Pack / Service Provider / Starting Price (Information, Gen) / Service Policeman / sorry for bad Spelling / Sole Proprietorship co. / Scottish Parliament / sub-prime
 SP1	Service Pack 1
 SP2	Service Pack 2
 SP3	Service Pack 3
@@ -13641,6 +13795,7 @@ SPQR	Senatus Populusque Romanus (= the Senate and the people of Rome)
 SPR	Symmetric Phase Recording
 SPRL	Société Privée à Responsabilité Limitée (= Ltd co. in Belgium)
 SPRLU	Société Privée à Responsabilité Limitée Unipersonnelle (= single-member company in Belgium)
+SPS	SharePoint Portal Server / Social and Political Sciences / Switch-mode Power Supply / Samples Per Second / Software Preservation Society / Small Penis Syndrome / Single Payment Scheme (CAP) / Sewage Pumping Station / Super Proton Synchrotron (CERN) / sine prole superstite (= without surviving children)
 SPSO	Senior Personnel Staff Officer
 SPST	Same Place, Same Time / Single-Pole, Single-Throw (switch)
 SPT	Signal Post Telephone
@@ -13654,6 +13809,7 @@ SPZOO	Spólka Z Ograniczona Odpowiedzialnoscia (= Ltd co. in Poland)
 SQA	Software Quality Assurance
 Sqdn-Ldr	Squadron Leader
 SQL	Structured Query Language (relational databases)
+SQUID	Superconducting Quantum Interference Device
 SR	Special Reserve / Southern Railway / Southern Region / Service Release / Suriname (ISO code)
 Sr	strontium
 SR0	900×1280mm (paper size)
@@ -13696,6 +13852,7 @@ SSAJB	Stamped Self-Addressed Jiffy Bag
 SSATB	Soprano, Soprano, Alto, Tenor, Bass
 SSB	Smiling Sweetly Back / Single-Sideband (transmission) / Secret Service Bureau (later MI5)
 SSBI	Single-Scope Background Investigation
+SSBN	Ship, Submersible, Ballistic missile, Nuclear-powered
 SSC	Same-Sex Couple / Solicitor of the Supreme Court (Scotland) / Short Service Commission
 SSD	Solid-State Drive / Software Specification Document
 SSDD	Same S***, Different Day
@@ -13769,6 +13926,7 @@ START	Strategic Arms Reduction Treaty
 STASI	Staatssicherheitsdienst (GDR, = State Security, aka MfS)
 STB	Simply The Best / Set-Top Box / Spin The Bottle / Sacræ Theologiæ Baccalaureus (= Bachelor of Sacred Theology) / Soprano, Tenor, Bass / Should That Be
 STBC	Space-Time Block Code / ‘Star Trek: Bridge Commander’ (game) / Stockton-on-Tees Borough Council
+STBI	Sorry To Butt In
 STBN&L	Some Time Between Now and Later
 STBNaL	Some Time Between Now and Later / St Boniface's Nativity at Latest
 STBY	Sucks To Be You
@@ -13818,6 +13976,7 @@ SUB	Students Union Building
 SUCDIC	Situation Under Control, Dickheads In Charge
 SUFID	Screwing Up Face In Disgust
 SUL	Stiff Upper Lip
+SUN	Sunday / Shipping Unit Number
 SUNOILTY	Shut Up, No-One Is Listening To You
 SUNY	State University of New York
 SUP	what'S UP?
@@ -13834,7 +13993,7 @@ SV	El Salvador (ISO code)
 SVAGC	Silicon Valley Association of General Counsel
 SVC	Scalable Video Coding
 SVCD	Super Video Compact Disc
-SVD	Structured VLSI Design
+SVD	Structured VLSI Design / Singular Value Decomposition
 SVDD	Speed Violation Detection Deterrent
 SVF	Spam and Virus Filter / Simple/Serial Vector Format / State Variable Filter
 SVG	Scalable Vector Graphics
@@ -14021,6 +14180,7 @@ TBIB	The Bitch Is Back
 TBM	Tactical/Theatre Ballistic Missile
 TBMCS	Theatre Battle Management Core Systems
 TBNT	Thanks, But No Thanks
+TBO	The Bloody Olympics / To Be Ordered / Total Benefits of Ownership / Time Between Order/Overhaul/Opportunities
 TBONTB	To Be Or Not To Be
 TBPC	To Be Politically Correct
 TBq	terabequerel (10¹² bequerels)
@@ -14029,6 +14189,7 @@ TBR	To Be Recorded/Read/Released/Reviewed/Resolved/Revised/Renamed/Recommended/R
 TBS	To Be Serious / Telenor Business Solutions
 TBSF	To Be Signed For
 TBT	Technology-Based Training
+TBTF	Too Big To Fail
 TBW	That Blasted Woman / ‘The Burkiss Way’
 TBWI	That Ball Was In
 TBYB	Try Before You Buy
@@ -14059,7 +14220,7 @@ TCP	Transmission Control Protocol / trichlorophenol
 TCP/IP	Transmission Control Protocol over Internet Protocol
 TCPA	Trusted Computing Platform Alliance
 TCQ	Tagged Command Queuing
-TCR	Tottenham Court Road
+TCR	Tottenham Court Road / Text Compression for Reader (ebook file format)
 TCS	Traction Control System
 TCSEC	Trusted Computer System Evaluation Criteria
 TCTCBN	The Cooking That Cannot Be Named
@@ -14073,6 +14234,7 @@ TD-SCDMA	Time-Division Synchronous Code-Division Multiple Access
 TDA	(UK) Trades Descriptions Act 1968
 TDAEG	That Deserves An E-Groat
 TDB	The Dog's Bollocks
+TDC	Threat, Duress, or Coercion
 TDD	The Dog's Dead / Test-Driven Development / Time-Division Duplex
 TDE	Total Domestic Expenditure
 TDEA	Triple Data Encryption Algorithm (= 3DES)
@@ -14085,7 +14247,7 @@ TDNMS	That Does Not Make Sense
 TDO	Total Domestic Output / Temporary Detention Order / Type Descriptor Object / Typed/Transaction Data Object / Transmitted Data Out
 TDOA	Time Differential Of Arrival (telecoms)
 TDP	Thermal Design Power / Tivoli Data Protection / Tag Distribution Protocol (Cisco) / Tierce de Picardie / Thermal Depolymerisation
-TDR	Test Detail Record / Telecommunications for Disaster Relief
+TDR	Test Detail Record / Telecommunications for Disaster Relief / Totally Drug-Resistant
 TDTM	Talk Dirty To Me
 TDV	= additional liability co. in Ukraine
 TE	The End / Tennessee
@@ -14100,6 +14262,7 @@ TEI	Terminal Equipment Identifier / Text Encoding Initiative
 TELCO	Telephone Company
 TEM	Territorial Efficiency Medal / Transmission Electron Microscope
 TEng(CEI)	Technician Engineer (Council of Engineering Institutions)
+TENS	Transcutaneous Electrical Nerve Stimulation
 TEOC	The End Of Civilisation
 TEOCAWKI	The End Of Civilisation As We Know It
 TEOTU	The End Of The Universe
@@ -14167,7 +14330,7 @@ TFWBWY	The Force Will Be With You
 TFWBWYA	The Force Will Be With You, Always
 TFX	traffic
 TFYL	The Formidable/Fine Young Lady
-TG	Thank God/Goodness / Togo (ISO code)
+TG	Thank Goodness/God / Togo (ISO code)
 Tg	teragram (10¹² grams)
 TG&TG	The Great and The Good
 TG4	Teilifís na Gaeilge Ceathair (= Irish TV Channel 4)
@@ -14175,18 +14338,19 @@ TGA/GA	The Guide Association
 TGAFP	There Goes A Flying Pig
 TGAL	Think Globally, Act Locally
 TGatG	The Great and the Good
-TGFT	Thank God/Goodness For That
-TGFTCL	Thank God/Goodness For The Chat Line
-TGIF	Thank God/Goodness It's Friday
+TGFT	Thank Goodness/God For That
+TGFTCL	Thank Goodness/God For The Chat Line
+TGIF	Thank Goodness/God It's Friday
 TGSE	Teaching Grandma to Suck Eggs
 TGSM	The Great Silent Majority
 TGT	That's Great — Terrific
-TGTF	Thank God/Goodness Tomorrow's Friday
+TGTF	Thank Goodness/God Tomorrow's Friday
 TGTP	There Goes The Planet
 TGTSE	Teaching Grandma To Suck Eggs
 TGV	Train à Grande Vitesse (= high-speed train) / Test Generation with Verification
 TGWU	Transport and General Workers' Union
 TGy	teragray (10¹² grays)
+TGZ	Tar, GZipped (archive file format)
 TH	Troop Helper / terahenry (10¹² henrys) / Thailand (ISO code)
 Th	thorium
 THA	Thailand Standard Time (= UTC+7)
@@ -14208,6 +14372,7 @@ THRUSH	Technological Hierarchy for the Removal of Undesirables and the Subjugati
 ThSchol	Scholar of Theology
 THT	Terrence Higgins Trust
 THTH	Too Hot To Handle
+THU	Thursday / Transitional Housing Unit / The Hague University
 THX	thanks
 THz	terahertz (10¹² hertz)
 TI	Texas Instruments, Inc. / Tourist Information
@@ -14284,6 +14449,7 @@ TLC	Tender Loving Care
 TLD	Top-Level Domain
 TLDR	Too Long; Didn't Read
 TLDTOTS	The Long Dark Tea-time Of The Soul
+TLER	Time-Limited Error Recovery (HD)
 TLF	Troop Leadership Forum
 TLG	The Living God
 TLGO	The List Goes On
@@ -14317,6 +14483,7 @@ TMK	To My Knowledge
 TMM	Tell Me More
 TMML	That Made Me Laugh / Total Madness Mailing List / Teaching Material Mark-up Language / Turing Machine Mark-up Language
 TMMTMM	Tell Me More, Tell Me More
+TMNT	Teenage Mutant Ninja Turtles
 Tmol	teramole (10¹² moles)
 TMOTCO	The Man On The Clapham Omnibus
 TMP	temporary
@@ -14423,6 +14590,7 @@ TPTCIT	The Powers That Cocked It Up
 TPTW	The Powers That Were
 TPU	Thermoplastic Polyurethane
 TPWL	The Poor Wee Lad
+TPZ	Topaz (ebook format)
 TQM	Total Quality Management
 TR	Turkey (ISO code)
 TRAM	Tractor, Rubber-tyred, Articulated steering, Multi-purpose
@@ -14498,7 +14666,7 @@ TTG	Time To Go
 TTGL	Thank The Good Lord
 TTGOC	The True God's Own Country (= Yorkshire)
 TTGOCOD	The True God's Own Country Of Durham
-TTI	Time To Intercept/Impact / Transmission Time Interval / Traffic and Travel Information / Toyota Technological Institute / Texas Transportation Institute / Transfusion-Transmitted Infection / Time Temperature Indicator / Teeny Tiny Island (= England)
+TTI	Time To Intercept/Impact / Transmission Time Interval / Traffic and Travel Information / Toyota Technological Institute / Texas Transportation Institute / Transfusion-Transmitted Infection / Time Temperature Indicator / Teeny Tiny Island (= UK)
 TTL	Transistor-Transistor Logic / Time To Live / Through The Lens
 TTL4N	That's The Lot For Now
 TTLAISTDMTV	That's The Longest Acronym I've Seen That Doesn't Mention The Vampire
@@ -14531,6 +14699,7 @@ TU	Thank You / Trade Union
 TUB	Tikroji ukine bendrija (= partnership co. in Lithuania)
 TUC	Trades Union Congress
 TUCOWS	The Ultimate Collection Of Winsock Software
+TUE	Total User Experience / Therapeutic Use Exemption / Tuesday / Trusted User Engine / Technische Universiteit Eindhoven (= Eindhoven University of Technology) / Traité sur l'Union Européenne (= Treaty on European Union)
 TUFD	The User File Died
 TUG	TeX Users Group
 TUI	Text/Terminal User Interface
@@ -14639,6 +14808,7 @@ UAL	United Air Lines, Inc.
 UAPitA	you're A Pain in the Arse
 UAR	United Arab Republic
 UART	Universal Asynchronous Receiver/Transmitter
+UASC	Unnecessary Attempt to Sound Clever
 UAT	User Acceptance Testing
 UATWLG	you Are The Weakest Link, Goodbye
 UAU	Universities' Athletic Union
@@ -14651,7 +14821,7 @@ UBE	Unsolicited Bulk Email
 UBMW	Ugly Bag of Mostly Water
 UBoMW	Ugly Bag of Mostly Water
 UBR	Universal Broadband Router (= CMTS coupled with a router)
-UBS	Union Bank of Switzerland
+UBS	Union Bank of Switzerland / United Bible Societies
 UBYA	Unbalanced Yet Again
 UC	University College
 UCAC	Undeb Cenedlaethol Athrawon Cymru (= National Union of Teachers of Wales)
@@ -14719,6 +14889,7 @@ UGC	University Grants Committee
 UGX	Ugandan shillings
 UH	Unit Helper
 UHAMPDAICM5P	You Have A Multiple Personality Disorder And I Claim My 5 Pounds
+UHD	Ultra-High Definition (7680×4320)
 UHDTV	Ultra-High-Definition Television
 UHDV	Ultra-High-Definition Video
 UHF	Ultra-High Frequency (radio)
@@ -14782,6 +14953,7 @@ UNCLE	Unified Nuclear Coalition of Latvian Emigrants / United Network Command fo
 UNCRC	United Nations Convention on the Rights of the Child
 UNCTaD	United Nations Conference on Trade and Development
 UNDG	United Nations Development Group
+UNDHR	United Nations (Universal) Declaration of Human Rights
 UNDP	United Nations Development Programme
 UNDRC	United Nations Declaration of the Rights of the Child
 UNEP	United Nations Environment Programme
@@ -14816,6 +14988,7 @@ UNRRA	United Nations Relief and Rehabilitation Administration
 UNRWA	United Nations Relief and Works Agency for Palestine Refugees in the Near East
 UNSC	United Nations Security Council
 UNSCOM	United Nations Special Commission
+UNUDHR	United Nations Universal Declaration of Human Rights
 UNWTO	United Nations World Tourism Organisation
 UOK	You Okay?
 UOM$	You Owe Me Money
@@ -14836,6 +15009,7 @@ URA	Usual Reticulatory Activities
 URAQT	You Are A Cutie!
 URAS	You Are A Star!
 URC	United Reformed Church
+URE	Unrecoverable Read Error
 URI	Uniform Resource Identifier (URL or URN)
 URISC	Ultimate Reduced-Instruction-Set Computer
 URL	Uniform Resource Locator
@@ -14863,7 +15037,7 @@ USCWAP	Up S*** Creek Without A Paddle
 USD	United States dollars
 USDAW	(UK) Union of Shop, Distributive, and Allied Workers
 USE	(hypothetical) United States of Europe
-USG	Under-Secretary-General
+USG	Under-Secretary-General / United States Government
 USGS	United States Geological Survey
 USM	Unlisted Securities Market
 USMC	United States Marine Corps / United States Military College
@@ -14918,6 +15092,7 @@ UUUC	United Ulster Unionist Coalition
 UV	Ultra-Violet / Unpleasant Visual
 UVC	Universal Virtual Computer
 UVF	Ulster Volunteer Force
+UVGA	Ultra Video Graphics Array (800×600)
 UVP	Under-Voltage Protection
 UW	you're Welcome
 UWB	Ultra-Wide-Band (radio)
@@ -14925,6 +15100,7 @@ UWE	University of the West of England (Bristol)
 UWIST	University of Wales Institute of Science and Technology
 UWTTISBOYFGD	Understand What The Thread Is About Before Opening Your Fat Gob, Dick-head!
 UX	User Experience / United Express (airline)
+UXB	Unexploded Bomb
 UXGA	Ultra-Extended Graphics Array (1600×1200)
 UY	Uruguay (ISO code)
 UYA	Up Your Anode
@@ -15000,6 +15176,7 @@ VET	Venezuelan Standard Time (= UTC-4:30)
 VETLA	Very Enhanced TLA
 VFAT	Virtual File Allocation Table (file-system)
 VFC	Very Fast Class (modem)
+VFD	Vacuum Fluorescent Display
 VFM	Value For Money
 VFO	Variable-Frequency Oscillator
 VFR	Visual Flight Rules (aviation)
@@ -15041,6 +15218,7 @@ VIT	Vertical Interval Test (signal)
 VITA	VMEbus International Trade Association / Volunteer Income Tax Assistance Programme (US) / Volunteers in Technical Assistance / Views, Inventory, Transformation, and Artefacts
 VITC	Vertical Interval Time-Code (SMPTE) / vitamin C
 VIth	sixth (Roman numeral)
+VIVA	Vegetarians International Voice for Animals
 VLA	Very Large Array (radio-telescope in New Mexico)
 VLAN	Virtual Local-Area Network
 VLAT	Vladivostok Time (= UTC+10)
@@ -15061,7 +15239,7 @@ VMC	Visual Meteorological Conditions (aviation)
 VME	VERSAmodule Eurocard (bus)
 VMEbus	VERSAmodule Eurocard Bus
 VMH	Victoria Medal of Honour (Royal Horticultural Society)
-VMHRotH	Very Many Happy Returns of the Day
+VMHRotD	Very Many Happy Returns of the Day
 VMI	Very Much Indeed
 VMS	Variable-Message Sign / Virtual Memory System (OS, now OpenVMS) / VoiceMail System / Video Messaging Service (3G) / Vendor/Visitor/Visual Management System
 VMSM	Voluntary Medical Services Medal
@@ -15071,6 +15249,7 @@ VN	Vietnam (ISO code)
 VNA	Very Naughty Acronym
 VNC	Virtual Network Computing
 VND	Vietnamese dong (ccy)
+VNO	Virtual Network Operator
 VO	Veterinary Officer
 VOC	Vote Of Confidence / Volatile Organic Compound / Voice Of the Customer / Voltage, Open-Circuit / Voice-Over Credits / Vitium Organicum Cordis (= heart defect)
 VOD	Video On Demand
@@ -15078,7 +15257,9 @@ VOF	Vennootschap Onder Firma (= partnership co. in Belgium &c)
 VOGAD	Voice-Operated Gain-Adjusting Device
 VoIP	Voice over Internet Protocol
 VOK	Vomit On Keyboard
+VOR	Voice of Reason / Voice-Operated Recorder / VHF Omnidirectional Radio-range / Vestibular-Ocular Reflex / Vehicle Off-Road / Visual Operating Restrictoin
 VOS	= partnership co. in Slovakia
+VOSA	(UK) Vehicle and Operator Services Agency
 VP	Visitor Parking / Vice-President / Venerable Peewheet
 VPD	Virtual Private Database / Vapour Phase Decomposition / Vapour-Pressure Deficit / Vancouver Police Department
 VPG	Verray Parfit Gentilbat
@@ -15179,7 +15360,7 @@ WADBPISNB	Working As Designed, But Perhaps It Should Not Be
 WADR	With All Due Respect
 WAE	Working As Expected
 WAEF	When All Else Fails
-WAF	Wife Acceptance Factor
+WAF	Wife Acceptance Factor / Web Application Firewall/Framework / Workers Autonomous Federation (China) / World Architecture Festival / ‘Weather and Forecasting’ (US journal)
 WAFGI	What A F***ing Good Idea
 WAFLOL	With A F***ing Lot Of Luck
 WAFS	Wide-Area File Services
@@ -15222,6 +15403,7 @@ WaSHiTO	Wait and See How it Turns Out
 WASM	Watcom Assembler
 WASP	White Anglo-Saxon Protestant / Wireless Aerial Surveillance Platform
 WAT	West Africa Time (= UTC+1)
+WATCHCON	Watch Condition (US military)
 WATNR	Will Add To Next Release
 WATO	‘The World At One’
 WATP	We Aim To Please / What A Terrible Pun
@@ -15265,10 +15447,11 @@ WCF	Windows Communication Foundation (API) / World Curling/Croquet Federation / 
 WCI	Wheel-Chair Impossible
 WCIGT	Why Couldn't I Guess That?
 WCL	World Confederation of Labour
+WCML	West-Coast Main Line
 WCP	Wheel Chair Possible, consult host
 WCPCH	Wheel Chair Possible, Consult Host
 WCPGW	What Could Possibly Go Wrong?
-WCS	Web Conferencing System
+WCS	Web Conferencing System / Worst-Case Scenario / Weapons Control System / Water Cooling System / World Cup Soccer / Woulda, Coulda, Shoulda
 WCTYBTWHTKY	We Could Tell You, But Then We'd Have To Kill You
 WCUWTELANIGTKWTM	Who Came Up With Those Eleven Letter Acronyms?  Nobody Is Going To Know What They Mean
 WCWYLYHSD	What Colour Would You Like Your Heretic Swine Dyed?
@@ -15312,6 +15495,7 @@ WEA	Workers' Educational Association
 WEB	World-wide English Bible
 WebDAV	WWW Distributed Authoring and Versioning
 WEC	Wicked Evil Cackle
+WED	World Environment Day / Whatever, Dude / ‘Where Eagles Dare’ / Wednesday / Wind Energy Development / Walter Elias Disney / Western European Daylight time (= UTC+1)
 WEDT	Western European Daylight Time (= UTC+1)
 WEEE	Waste, Electrical and Electronic Equipment (directive)
 WEEED	Waste, Electrical and Electronic Equipment Directive
@@ -15380,10 +15564,14 @@ WHST	What He Said, Too
 WHSTS	What He Said They Said
 WHSWS	What He Said We Said
 WHSWURS	What He Said Wicked Uncle Richard Said
+WHSXGA	Wide Hex-Super-Extended Graphics Array (6400×4096)
+WHSXGA	Wide Hex-Super-Extended Graphics Array (6400×4096)
 WHSYS	What He Said You Said
 WHTGTDWI	What Has That Got To Do With It?
+WHUXGA	Wide Hex-Ultra-Extended Graphics Array (7680×4800)
 WHWWH	“Well, he would, wouldn't he?”
-WHY	What Have You?
+WHXGA	Wide Hex-Extended Graphics Array (5120×3200)
+WHY	What Have You
 WHYD	What Have You Done?
 WI	What If...? / Women's Institute / Wisconsin / West Indies
 Wi-Fi	Wireless Fidelity
@@ -15467,8 +15655,9 @@ WMA	Whale Meat Again / Windows Media Audio (file format)
 WMAWFLHWEP	Wearing My Anorak With Fur-Lined Hood With Exceptional Pride
 WMBC	Wholesale Broadband Managed Connect (BT) / West Midlands Bridge/Bird Club / West Malling Baptist Church / Woodbridge Model Boat Club / Windsor and Maidenhead Borough Council / Wigan Metropolitan Borough Council / Windsor Memorial Baptist Church
 WMC	Windows Media Centre / Wales Millennium Centre / Working Men's Club / World Methodist Council
-WMD	Weapon(s) of Mass Destruction / Weapon(s) of Messy Droppings
+WMD	Weapon of Mass Destruction / Weapon of Messy Droppings
 WMF	Windows Meta-File / Well-Meaning Friend
+WMG	Warner Music Group
 WMI	Windows Management Instrumentation
 WML	Wireless Mark-up Language
 WMMOWS	Wash My Mouth Out With Soap
@@ -15508,8 +15697,8 @@ WOLF	Witless One-Line Follow-up
 WOLoG	Without Loss of Generality
 WoM	Word of Mouth / Wake-on-Modem
 WoMBaT	Waste of Money, Brains, and Time
-WoMD	Weapons of Mass Destruction
-WoMM	Weapons of Mass Murder
+WoMD	Weapon of Mass Destruction
+WoMM	Weapon of Mass Murder
 WOOF	Working weekend On Organic Farms
 WOPaMaNLaCS	Waves Order Papers and Makes a Noise Like a Constipated Sheep
 WoR	Wake-on-Ring
@@ -15519,7 +15708,7 @@ WOSB	War Office Selection Board
 WoT	White on Tint / War on Terror
 WoT&M	Waste of Time and Money
 WoTaM	Waste of Time and Money
-WOW	Whining Old Woman
+WOW	Whining Old Woman / World of Warcraft (MMORPG)
 WOWF	Witless One-Word Follow-up
 WP	Word Processor / WordPress / WordPerfect / Warsaw Pact / Wikipedia / Washington Post / waypoint / White Paper / White Phosphorus (munition) / Wrong Planet/Person / World Peace / White Power / What Principles?
 WP7	Windows Phone 7 (OS)
@@ -15531,6 +15720,8 @@ WPB	Waste-Paper Basket
 WPF	Windows Presentation Foundation / WebSphere Partition Facility / Wolf Preservation Foundation / World Population Foundation / World Puzzle Federation
 WPM	Words Per Minute
 WPS	Wi-Fi Protected Set-up
+WQHD	Wide Quad High-Definition (2560×1440)
+WQVGA	Wide Quarter Video Graphics Array (384–432×240)
 WR&TGAS	Who Really and Truly Gives A S***?
 WRAC	Women's Royal Army Corps
 WRAF	Women's Royal Air Force (was WAAF)
@@ -15553,6 +15744,7 @@ WSJ	‘The Wall Street Journal’
 WSLS	Win Some, Lose Some
 WSN	Wirth Syntax Notation
 WSO	Worthing Symphony Orchestra
+WSOGMM	Whole Sort Of General Mish Mash
 WSS	What She Said / Widescreen Signalling (TV signal)
 WSS2	What She Said, Too
 WSSHS	What She Said He Said
@@ -15567,9 +15759,10 @@ WSSYS	What She Said You Said
 WST	Samoan tala (ccy)
 WSTOTC	Won't Somebody Think Of The Children?
 WSW	West-South-West (247½°)
-WSXGA+	Widescreen Super Extended Graphics Array Plus (1680×1050)
+WSXGA+	Widescreen Super-Extended Graphics Array Plus (1680×1050)
 WT	What/Who The...? / Without Thinking / Wishful Thinking
 WTAS	What They All Said
+WTASWBKO	What They All Said, With Brass Knobs On
 WTAWS	What They All Will Say
 WTB	Want To Buy
 WTBC	Won't That Be Confusing
@@ -15656,6 +15849,7 @@ WUSB	Wireless Universal Serial Bus
 WUTB	Water Under The Bridge
 WUWH	Wish You Were Here
 WUWT	What's Up With That?
+WUXGA	Widescreen Ultra-Extended Graphics Array (1920×1200)
 WV	Microsoft Windows Vista / West Virginia
 WVa	West Virginia (USA)
 WVBKO	With Very Big Knobs On
@@ -15696,6 +15890,8 @@ WWYD	What Would You Do?
 WWYGRTI	When Will You Get Round To It?
 WWYL	When Will You Learn?
 WX	weather
+WXGA	Wide Extended Graphics Array (usu. TV 1366×768, monitor 1280×800)
+WXGA+	Wide Extended Graphics Array Plus (1440×900)
 WXP	Microsoft Windows XP
 WY	Wyoming
 WYBMADIITY	Will You Buy Me A Double If I Tell You?
@@ -15792,6 +15988,9 @@ Xe	xenon
 XEX	XOR, Encrypt, XOR (disk encryption mode)
 XFCE	a desktop environment (originally XForms Common Environment)
 XGA	Extended Graphics Array (1024×768)
+XGA+	Extended Graphics Array Plus (1152×864)
+XGA+	Extended Graphics Array Plus (1152×864)
+XGA-2	Extended Graphics Array 2 (1024×768)
 XGMII	10 Gbit/sec Media-Independent Interface
 XGXS	10 Gbit/sec Extended Sublayer
 XH	Ex-Husband
@@ -16343,6 +16542,7 @@ zN	zeptonewton (10¯²¹ newtons)
 ZnCl	zinc chloride
 ZnO	zinc oxide
 ZNT	ZiffNet
+ZOMG	(common mistyping of OMG = Oh My Goodness/God!)
 ZOPE	Z Object Publishing Environment
 ZOPFAN	Zone Of Peace, Freedom, And Neutrality
 ZPa	zettapascal (10²¹ pascals)
@@ -16400,7 +16600,7 @@ ZYWRLE	Zlib YUV Wavelet Run-Length Encoding
 µWb	microweber (10^-6 webers)
 ÜÜ	Usaldusühing (= Ltd partnership co. in Estonia)
 
-[Acronyms.Lst Version 3.03 2012-03-18
+[Acronyms.Lst Version 3.04 2012-05-27
 [Compiled by p_elphick@cix.co.uk aka cotal@cotal.co.uk, and gidds@cix.co.uk]
 [This file is copyright and may not be re-distributed outside the CIX
 conferencing system without permission]
