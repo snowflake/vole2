@@ -1,0 +1,12 @@
+In Xcode, when doing a project rename from Vinkix to Vole,
+Xcode crashes with some Assertion failed errors.
+
+Work around:
+
+Xcode->Project->Rename.
+
+Deselect the Application icon in the list of renaming tasks. Xcode
+now does not crash.
+
+Then edit the project file manually and change Vinkix to Vole.
+
