@@ -239,7 +239,7 @@
 												<object class="NSButtonCell" key="NSCell" id="823697280">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">0</int>
-													<string key="NSContents">Go into Online mode when starting Vinkix</string>
+													<string key="NSContents">Go into Online mode when starting Vole</string>
 													<reference key="NSSupport" ref="580185503"/>
 													<reference key="NSControlView" ref="56324403"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -290,7 +290,7 @@
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="580185503"/>
-													<string key="NSPlaceholderString">~/Library/Vinkix/Mugshots</string>
+													<string key="NSPlaceholderString">~/Library/Vole/Mugshots</string>
 													<reference key="NSControlView" ref="154718086"/>
 													<bool key="NSDrawsBackground">YES</bool>
 													<object class="NSColor" key="NSBackgroundColor" id="978021320">
@@ -365,7 +365,7 @@
 												<object class="NSButtonCell" key="NSCell" id="981424674">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">0</int>
-													<string key="NSContents">Check for newer versions of Vinkix on start up</string>
+													<string key="NSContents">Check for newer versions of Vole on start up</string>
 													<reference key="NSSupport" ref="580185503"/>
 													<reference key="NSControlView" ref="18374706"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -5245,6 +5245,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
 					<string key="className">FirstResponder</string>
+					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">:</string>
 						<string key="NS.object.0">id</string>
