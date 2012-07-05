@@ -30,6 +30,9 @@ testAnotherViennaIsRunning(void){
 				// it's us
 				continue;
 			}
+			/* We test for both Vinkix and Vole.
+			 * Do NOT delete Vinkix here !!!!!!!
+			 */
 			if(	(! strcmp("Vinkix",p->kp_proc.p_comm)) || 
 				(! strcmp("Vole", p->kp_proc.p_comm)) ){
 				// Another process with our name 
