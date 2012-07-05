@@ -2,7 +2,7 @@
 
 # create a message to be placed in vienna/files describing the file
 
-# $1 = path to Vinkix command
+# $1 = path to Vole command
 # $2 = name of zip file
 # $3 = name of file to write
 # $4 = compatibility note
@@ -17,9 +17,9 @@ Size: $(wc -c $2 | awk '{printf $1}')
 $(md5 $2)
 $(openssl sha1 $2)
 
-[Vinkix]
-Description: Vinkix off-line reader for Mac OS X only
-             Vinkix was formerly known as Vienna
+[Vole]
+Description: Vole off-line reader for Mac OS X only
+             Vole was formerly known as Vienna or Vinkix
 Version: $($1 -m)
 $4
 $5
