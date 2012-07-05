@@ -1,4 +1,4 @@
-# Makefile for Vinkix
+# Makefile for Vole
 # Copyright (C) 2011 David Evans
 
 all: 
@@ -39,17 +39,17 @@ lion lion-go: 			DEVELOPER_DIR?=/Developer
 SHORTDATE=`date '+%Y%m%d'`
 
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
-SOURCE_FILES=Vinkix.app RELEASE.html BUILD.html INSTALL.html
+SOURCE_FILES=Vole.app RELEASE.html BUILD.html INSTALL.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
-VIENNA_APP=${SOURCE_DIR}/Vinkix.app/Contents/MacOS/Vinkix
+VIENNA_APP=${SOURCE_DIR}/Vole.app/Contents/MacOS/Vole
 VERSION=$(shell ${VIENNA_APP} -m)
 tiger leopard snowleopard lion Development:
 	echo $@
 	rm -f XXXX-Tempfile.h
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-	xcodebuild -project Vinkix.xcodeproj  -configuration $@ clean 
+	xcodebuild -project Vole.xcodeproj  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-	xcodebuild -project Vinkix.xcodeproj  -configuration $@ \
+	xcodebuild -project Vole.xcodeproj  -configuration $@ \
 		BUILDID=${SHORT}-${SHORTDATE} 
 
 # Run the version of Xcode appropiate to the target
@@ -58,7 +58,7 @@ tiger-go leopard-go snowleopard-go lion-go Development-go:
 
 # Run the Vienna app from its build directory
 tiger-run leopard-run snowleopard-run lion-run Development-run:
-	open ../../Vienna-build/$(subst -run,,$@)/Vinkix.app
+	open ../../Vienna-build/$(subst -run,,$@)/Vole.app
 
 
 
@@ -71,9 +71,9 @@ tiger-release leopard-release snowleopard-release lion-release \
 	echo $@
 	echo ${VIENNA_APP}
 	[ -d ${SOURCE_DIR} ]
-	echo '<html><head><title>Vinkix build info</title></head>' > ${BUILD_INFO}
+	echo '<html><head><title>Vole build info</title></head>' > ${BUILD_INFO}
 	echo '<body><pre>' >> ${BUILD_INFO}
-	echo 'This file contains build information for Vinkix ' \
+	echo 'This file contains build information for Vole ' \
 		>> ${BUILD_INFO}
 	echo "version ${VERSION}" >> ${BUILD_INFO}
 	echo '==========================================================================' \
