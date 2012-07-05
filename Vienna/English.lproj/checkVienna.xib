@@ -12,6 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="812"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -86,21 +87,21 @@
 			<object class="NSWindowTemplate" id="668814989">
 				<int key="NSWindowStyleMask">17</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{626, 530}, {483, 228}}</string>
+				<string key="NSWindowRect">{{626, 529}, {531, 229}}</string>
 				<int key="NSWTFlags">611844096</int>
 				<string key="NSWindowTitle">Vole Alert</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
-				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="253843814">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">301</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSButton" id="57667541">
 							<reference key="NSNextResponder" ref="253843814"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{367, 22}, {96, 32}}</string>
+							<string key="NSFrame">{{367, 23}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="253843814"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="3727444">
@@ -124,13 +125,13 @@
 						<object class="NSTextField" id="555154667">
 							<reference key="NSNextResponder" ref="253843814"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{30, 152}, {430, 17}}</string>
+							<string key="NSFrame">{{30, 153}, {461, 17}}</string>
 							<reference key="NSSuperview" ref="253843814"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="691011511">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Cannot start Vole because another instance of Vole is running.</string>
+								<string key="NSContents">Cannot start Vole because another instance of Vole or Vinkix is running.</string>
 								<reference key="NSSupport" ref="85848321"/>
 								<reference key="NSControlView" ref="555154667"/>
 								<object class="NSColor" key="NSBackgroundColor" id="1038905385">
@@ -139,7 +140,7 @@
 									<string key="NSColorName">controlColor</string>
 									<object class="NSColor" key="NSColor">
 										<int key="NSColorSpace">3</int>
-										<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+										<bytes key="NSWhite">MC42NjY2NjY2ODY1AA</bytes>
 									</object>
 								</object>
 								<object class="NSColor" key="NSTextColor" id="472054122">
@@ -156,13 +157,13 @@
 						<object class="NSTextField" id="85272091">
 							<reference key="NSNextResponder" ref="253843814"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{79, 112}, {332, 17}}</string>
+							<string key="NSFrame">{{79, 113}, {332, 17}}</string>
 							<reference key="NSSuperview" ref="253843814"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="288911849">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">138413056</int>
-								<string key="NSContents">Please quit this and the other Vole and try again.</string>
+								<string key="NSContents">Please quit both Apps and try again.</string>
 								<reference key="NSSupport" ref="85848321"/>
 								<reference key="NSControlView" ref="85272091"/>
 								<reference key="NSBackgroundColor" ref="1038905385"/>
@@ -184,7 +185,7 @@
 									<string>NeXT TIFF v4.0 pasteboard type</string>
 								</object>
 							</object>
-							<string key="NSFrame">{{30, 27}, {70, 72}}</string>
+							<string key="NSFrame">{{30, 28}, {70, 72}}</string>
 							<reference key="NSSuperview" ref="253843814"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="801000912">
@@ -202,10 +203,11 @@
 							<bool key="NSEditable">YES</bool>
 						</object>
 					</object>
-					<string key="NSFrameSize">{483, 228}</string>
+					<string key="NSFrameSize">{531, 229}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
-				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -437,9 +439,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{23, 794}, {245, 183}}</string>
-					<string>{{626, 530}, {483, 228}}</string>
+					<string>{{626, 256}, {531, 229}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{626, 530}, {483, 228}}</string>
+					<string>{{626, 256}, {531, 229}}</string>
 					<boolean value="YES"/>
 					<string>{1.79769e+308, 1.79769e+308}</string>
 					<string>{0, 0}</string>
