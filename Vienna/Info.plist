@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Vinkix</string>
+	<string>Vole</string>
 	<key>CFBundleIconFile</key>
 	<string>vienna.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -19,7 +19,7 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>Vienna Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>Vinkix Help</string>
+	<string>Vole Help</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
