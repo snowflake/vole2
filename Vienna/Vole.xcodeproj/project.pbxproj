@@ -261,7 +261,7 @@
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
 		61CC8C1E13672D4F0049AECF /* sanitise_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D15AC370486D014006FF6A4 /* Vinkix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vinkix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D15AC370486D014006FF6A4 /* Vole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA056D6C0626105E0003B9F5 /* markAsFlagged.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = markAsFlagged.tiff; sourceTree = "<group>"; };
 		AA06ACC30630AEDE00C77D59 /* vienna.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = vienna.icns; sourceTree = "<group>"; };
 		AA1678880657BCD80091365D /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
@@ -503,7 +503,7 @@
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D15AC370486D014006FF6A4 /* Vinkix.app */,
+				8D15AC370486D014006FF6A4 /* Vole.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -894,7 +894,7 @@
 			name = Vole;
 			productInstallPath = "$(HOME)/Applications";
 			productName = Vienna;
-			productReference = 8D15AC370486D014006FF6A4 /* Vinkix.app */;
+			productReference = 8D15AC370486D014006FF6A4 /* Vole.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1396,7 +1396,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Vinkix;
+				PRODUCT_NAME = Vole;
 				SDKROOT = macosx10.5;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1467,7 +1467,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Vinkix;
+				PRODUCT_NAME = Vole;
 				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1545,7 +1545,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Vinkix;
+				PRODUCT_NAME = Vole;
 				SDKROOT = macosx10.4;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1604,7 +1604,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
-				PRODUCT_NAME = Vinkix;
+				PRODUCT_NAME = Vole;
 				SDKROOT = macosx10.4;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
