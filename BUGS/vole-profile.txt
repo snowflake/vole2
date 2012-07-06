@@ -1,0 +1,4 @@
+1.6.3. and earlier
+
+Anything to do with Preferences/Profile causes a crash for Vole
+started as a new user.
