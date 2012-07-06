@@ -16,7 +16,7 @@ build_uuid=$(uuidgen | tr -d '\012')
 function printlines(){
 	while read i
 		do	
-			i=`echo $i | sed 's/"/\\\\"/g'`
+			i=`echo "$i" | sed 's/"/\\\\"/g'`
 			printf '"%s\\n"\n' "$i"
 		done
 }
