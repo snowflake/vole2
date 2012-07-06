@@ -105,4 +105,9 @@ tiger-release leopard-release snowleopard-release lion-release \
 	cp ${NAME}-${VERSION}.zip \
 		${ARCHIVE_DIR}/${NAME}-${VERSION}-`${VIENNA_APP}  -b`.zip
 
+releasenotes:
+	[ -f ~/mac/sources-mine/vole/RELEASES ]
+	cat ~/mac/sources-mine/vole/RELEASES | \
+		awk -f ../scripts/makereleaseindex.awk | \
+		fossil wiki commit RINOTES
 
