@@ -31,6 +31,9 @@ Build: $($1 -b)
 Contributor: devans
 Date: $(date '+%A %e %B %Y') 
 
+Release and Installation notes for all versions are available from
+http://chiselapp.com/user/vinkix/repository/olrcix/wiki/RINOTES
+
 [Warning]
 Windows and Linux users please note that this file is not much
 use to you.
