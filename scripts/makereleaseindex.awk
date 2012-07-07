@@ -11,7 +11,9 @@ END    {
 	{
 	printf "<h1>Version %s</h1>\n", $1
 	printf "[/doc/RELEASE-%s/NOTES/RELEASE.html|Release notes]<br>\n", $1
-	printf "[/doc/RELEASE-%s/NOTES/INSTALL.html|Install notes]\n", $1
+	if (! match( $1,/^1.6.0$/) && ! match($1,/^1.6.1$/)){
+	 printf "[/doc/RELEASE-%s/NOTES/INSTALL.html|Install notes]\n", $1
+	 }
 	printf "\n\n"
 	}
 
