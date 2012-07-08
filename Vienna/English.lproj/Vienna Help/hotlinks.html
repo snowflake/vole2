@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>No title yet</title>
+<title>Cix Hotlinks</title>
 <style type="text/css">
 <!--
 .style1 {	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -16,8 +16,28 @@
 </head>
 
 <body>
-<p><img alt="small Vienna logo" src="images/Small-Vienna-Logo.jpg" width="64" height="60"> <span class="style4">Skeleton</span></p>
+<p><img alt="small Vienna logo" src="images/Small-Vienna-Logo.jpg" width="64" height="60"> <span class="style4">Cix Hotlinks</span></p>
 <p class="style2"><br>
+
+<dl>
+<dt><tt>cix:&lt;number&gt;</tt><dt>
+<dd class="style2">
+<br>Selects message <tt>&lt;number&gt;</tt> in the current topic.<br></dd>
+<br>
+
+<dt><tt>cix:&lt;topic&gt;:&lt;number&gt;</tt></dt>
+<dd class="style2"><br>Selects message <tt>&lt;number&gt;</tt>
+in topic &lt;topic&gt; which is another topic of the current conference.</dd>
+<br>
+
+<dt><tt>cix:/&lt;topic&gt;:&lt;number&gt;</tt></dt>
+<dd class="style2"><br>Same as above</dd>
+<br>
+
+ *   cix:<folder> ................... Selects the first topic in the specified conference.
+ *   cix:<folder>/<folder> .......... Parses the path to the folder and selects the last message in the folder.
+ */
+<dl>
 
 </body>
 </html>
