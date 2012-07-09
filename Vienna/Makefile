@@ -9,11 +9,11 @@ Development-release: COMPATIBILITY=Unknown
 Development-release: STATUS=Experimental
 
 tiger-release: NAME=vt
-tiger-release: COMPATIBILITY=Tiger (10.4) and later, Universal
-tiger-release: STATUS=Stable - no known bugs at this time
+tiger-release: COMPATIBILITY=Tiger (10.4) and later, Universal.
+tiger-release: STATUS=Usable but see Release Notes for a couple of bugs.
 
 leopard-release: NAME=vl
-leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal
+leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal.
 leopard-release: STATUS=Experimental, may crash, needs testing
 
 snowleopard-release: NAME=vs
