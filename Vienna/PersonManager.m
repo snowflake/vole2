@@ -146,7 +146,10 @@
 	[self parseResumeXFormat:newPerson];
 	
 	// Now return what we have so far.
-	return [newPerson autorelease]; // DJE added autorelease
+	return newPerson;		// DJE added autorelease,
+							// but this leads to a Crash
+							// when creating a Profile
+							// in a new database - reported by ceebee@cix
 }
 
 /* parseResumeXFormat
