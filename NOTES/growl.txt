@@ -1,0 +1,13 @@
+Growl frameworks
+================
+
+Vienna/growl0.7.4.tar
+	is for Tiger. It does not support garbage collection.
+
+growl/growl-1.2.3.tgz
+	is for Leopard (10.5) and Snow Leopard(10.6). It supports
+	garbage collection.
+
+script/growl-extract.sh
+	is called by the Growl extract script in xcodeproj.
+
