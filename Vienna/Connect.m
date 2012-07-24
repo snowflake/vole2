@@ -907,7 +907,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 		match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"Topicname:", nil] endOfFile:&endOfFile];
 		[self writeLine:topicName];
 
-		match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"FLIST) (y/n) ? ", @"already exists", nil] endOfFile:&endOfFile];
+		match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"FLIST) (y/n)? ", @"already exists", nil] endOfFile:&endOfFile];
 		if (match == 0)
 		{
 			[self writeLine:hasFlist];
