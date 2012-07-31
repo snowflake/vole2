@@ -194,7 +194,11 @@
 {
 	NSMutableArray * arrayOfLines = [NSMutableArray array];
 	// deprecated API was here, changed by DJE
-	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+	NSData  * newData = [ self dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion: YES];
+//	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+	const char *cString = (const char *)malloc([newData length] + 1);
+	const char *tempBuff= cString;  /* free tempBuff later */
+	[ newData getBytes: cString length: [newData length]];
 	const char * lineStart;
 	int lineLength;
 	int indexOfEndOfLastWord;
@@ -264,7 +268,7 @@
 		[arrayOfLines addObject:[[[NSString alloc ] initWithBytes:lineStart 
 														   length:lineLength
 														 encoding: NSWindowsCP1252StringEncoding ] autorelease]];
-
+	free(tempBuff);
 	return arrayOfLines;
 }
 @end
