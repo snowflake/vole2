@@ -65,7 +65,8 @@ EOFBBB
 
 
 
-echo 'Stage 4 of 6. Run the SQL script from stage 3 to update unread counts in folders.'
+echo 'Stage 4 of 6. Run the SQL script from stage 3 to update unread counts'
+echo '              in folders.'
 sqlite3 < /tmp/run.$$.sql "${database}"
 [ -z "${SCRIPT_DEBUG}" ] && rm -f /tmp/run.$$.sql
 
@@ -76,7 +77,8 @@ printf 'SELECT folder_id asc, count(*) FROM  messages WHERE priority_flag=1 AND 
     |  awk 'BEGIN {FS="|" } { printf("UPDATE folders  SET priority_unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }'  > /tmp/run2.$$.sql
 
 
-echo 'Stage 6 of 6. Run the SQL script from stage 5 to update priority unread counts in folders.'
+echo 'Stage 6 of 6. Run the SQL script from stage 5 to update priority unread'
+echo '              counts in folders.'
 sqlite3 < /tmp/run2.$$.sql "${database}"
 [ -z "${SCRIPT_DEBUG}" ] && rm -f /tmp/run2.$$.sql
 
