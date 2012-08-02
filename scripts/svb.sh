@@ -3,7 +3,7 @@
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion=1.0
+scriptversion=1.1
 database="${HOME}/Library/Vienna/database3.db"
 
 # 0 - message unread, 1 = message read
@@ -39,7 +39,7 @@ fi
 echo 'Stage 1 of 4. Set read/unread.'
 
 printf "BEGIN TRANSACTION; UPDATE messages SET read_flag = %s WHERE (date - strftime('%%s','%s %s')) %s 0 ; COMMIT;" \
-    "${read_flag}" "${date}" "${time}" "${compare}"  | sqlite3 ${database}
+    "${read_flag}" "${date}" "${time}" "${compare}"  | sqlite3 "${database}"
 
 echo 'Stage 2 of 4. Set folders unread count to zero.'
 echo 'UPDATE folders SET unread_count=0 ; ' | sqlite3 "${database}"
