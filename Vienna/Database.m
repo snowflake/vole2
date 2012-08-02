@@ -2388,13 +2388,15 @@ enum {
 			// them if not.
 			if (unread_count != [folder unreadCount])
 			{
-				NSLog(@"Fixing unread count for %@ (%d on folder versus %d in messages)", [folder name], [folder unreadCount], unread_count);
+				NSLog(@"Fixing unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d",
+					  [folder name], [folder unreadCount], unread_count, [folder itemId], [folder parentId] );
 				[self setFolderUnreadCount:folder adjustment:(unread_count - [folder unreadCount])];
 				[self flushFolder:folderId];
 			}
 			if (priority_unread_count != [folder priorityUnreadCount])
 			{
-				NSLog(@"Fixing priority unread count for %@ (%d on folder versus %d in messages)", [folder name], [folder priorityUnreadCount], priority_unread_count);
+				NSLog(@"Fixing priority unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d",
+					  [folder name], [folder priorityUnreadCount], priority_unread_count, [folder itemId], [folder parentId]);
 				countOfPriorityUnread += priority_unread_count - [folder priorityUnreadCount];
 				[folder setPriorityUnreadCount:priority_unread_count];
 				[self flushFolder:folderId];
@@ -2734,13 +2736,15 @@ enum {
 			{
 				if (unread_count != [folder unreadCount])
 				{
-					NSLog(@"Fixing unread count for %@ (%d on folder versus %d in messages)", [folder name], [folder unreadCount], unread_count);
+					NSLog(@"Fixing unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d", 
+						  [folder name], [folder unreadCount], unread_count, [folder itemId], [folder parentId]);
 					[self setFolderUnreadCount:folder adjustment:(unread_count - [folder unreadCount])];
 					[self flushFolder:folderId];
 				}
 				if (priority_unread_count != [folder priorityUnreadCount])
 				{
-					NSLog(@"Fixing priority unread count for %@ (%d on folder versus %d in messages)", [folder name], [folder priorityUnreadCount], priority_unread_count);
+					NSLog(@"Fixing priority unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d", 
+						  [folder name], [folder priorityUnreadCount], priority_unread_count, [folder itemId], [folder parentId]);
 					countOfPriorityUnread += priority_unread_count - [folder priorityUnreadCount];
 					[folder setPriorityUnreadCount:priority_unread_count];
 					[self flushFolder:folderId];
