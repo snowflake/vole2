@@ -3,7 +3,7 @@
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion=1.2
+scriptversion=1.3
 database="${HOME}/Library/Vienna/database3.db"
 
 # 0 - message unread, 1 = message read
