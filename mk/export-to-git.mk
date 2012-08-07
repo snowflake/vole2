@@ -1,4 +1,4 @@
-# export the repository to git
+# export the repository to git.
 
 dir=../../vole-git
 marks=/tmp/marks
