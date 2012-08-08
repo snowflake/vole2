@@ -6,3 +6,11 @@ references to them.
 The source code for Vole is in the Vienna directory. It is simply
 too painful to rename it as Fossil does not know about directory versioning.
 
+Requirements to run:
+
+      Mac OS X Tiger or later.
+
+Requirements to build:
+
+      Xcode 3.2
+
