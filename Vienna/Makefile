@@ -30,11 +30,11 @@ leopard:     SHORT=LP
 snowleopard: SHORT=SL
 lion:	     SHORT=LN
 
-Development Development-go:	DEVELOPER_DIR?=/Developer
-tiger tiger-go:			DEVELOPER_DIR?=/Developer
-leopard leopard-go:		DEVELOPER_DIR?=/Developer
-snowleopard snowleopard-go:	DEVELOPER_DIR?=/Developer
-lion lion-go: 			DEVELOPER_DIR?=/Developer
+# Development Development-go:	DEVELOPER_DIR?=/Developer
+tiger tiger-release tiger-go:	DEVELOPER_DIR?=/Developer 
+leopard leopard-release leopard-go: 	DEVELOPER_DIR?=/Developer
+snowleopard snowleopard-release snowleopard-go:	DEVELOPER_DIR?=/Developer
+lion lion-release lion-go: 			DEVELOPER_DIR?=/Developer
 
 SHORTDATE=`date '+%Y%m%d'`
 
@@ -69,7 +69,8 @@ ARCHIVE_DIR=~/Vienna-archive
 
 tiger-release leopard-release snowleopard-release lion-release \
 			Development-release: 
-	make $(subst -release,,$@)
+	DEVELOPER_DIR=${DEVELOPER_DIR} \
+		make $(subst -release,,$@)
 	echo $@
 	echo ${VIENNA_APP}
 	[ -d ${SOURCE_DIR} ]
