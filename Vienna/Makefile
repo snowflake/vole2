@@ -43,6 +43,8 @@ SOURCE_FILES=Vole.app RELEASE.html BUILD.html INSTALL.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
 VIENNA_APP=${SOURCE_DIR}/Vole.app/Contents/MacOS/Vole
 VERSION=$(shell ${VIENNA_APP} -m)
+PATH=${DEVELOPER_DIR}/usr/bin:/usr/local/bin:/usr/bin:/bin
+
 tiger leopard snowleopard lion Development:
 	echo $@
 	rm -f XXXX-Tempfile.h

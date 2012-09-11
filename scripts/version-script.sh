@@ -7,7 +7,7 @@
 # changed much.
 
 # for finding Fossil
-PATH=$PATH:/usr/local/bin
+PATH=$SYSTEM_DEVELOPER_BIN_DIR:$PATH:/usr/local/bin
 
 OF=XXXX-Tempfile.h
 echo  Fossil checked-in files checking script
