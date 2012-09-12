@@ -57,7 +57,7 @@ int main(int argc, const char *argv[])
 			       "-c     Display Fossil checkout\n"
 			       "-m     Display marketing version for the build system\n"
 			       "\n"
-			       "Warning: If you start Vienna without any of the\n"
+			       "Warning: If you start Vole without any of the\n"
 			       "         above options it will most likely start\n"
 			       "         in a strange mode. Regardless, please\n"
 			       "         immediately quit Vienna.\n");
