@@ -306,7 +306,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	[currentPerson release];
 	currentPerson = [personManager personFromPerson:[credentials username]];
 	if (currentPerson != nil)
-	{
+	{	[ currentPerson retain ];  // DJE added 2012-09-21
 		if ([currentPerson name] != nil)
 			[profileFullName setStringValue:[currentPerson name]];
 		if ([currentPerson emailAddress] != nil)

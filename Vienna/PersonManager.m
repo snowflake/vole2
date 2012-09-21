@@ -146,11 +146,12 @@
 	[self parseResumeXFormat:newPerson];
 	
 	// Now return what we have so far.
-	return newPerson;		// DJE added autorelease,
+	return [newPerson autorelease];		// DJE added autorelease,
 							// but this leads to a Crash
 							// when creating a Profile
 							// in a new database - reported by ceebee@cix
-}
+							// ( Should retain in Preferences controller )
+	}
 
 /* parseResumeXFormat
  * Locate and parse the resumeX format from the resume text.
