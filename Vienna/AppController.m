@@ -41,6 +41,7 @@
 #import "Growl/GrowlDefines.h"
 #import "WebKit/WebPreferences.h"
 #import "SystemConfiguration/SCNetworkReachability.h"
+#import "LogRect.h"
 
 // Non-class function used for sorting
 int messageSortHandler(id item1, id item2, void * context);
@@ -1746,6 +1747,7 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(void)refreshMessageAtRow:(int)theRow
 {
+//	NSLog(@"RefreshmessageAtRow called for row %d",theRow);
 	requestedMessage = 0;
 	if (theRow < 0)
 		[textView setString:@""];
@@ -1756,7 +1758,7 @@ int messageSortHandler(id i1, id i2, void * context)
 
 		// Make sure we start at the top
 		[textView scrollRangeToVisible:NSMakeRange(0, 1)];
-		[textView setNeedsDisplayInRect: NSMakeRect(1,0,0,0) avoidAdditionalLayout: YES];
+		[textView setNeedsDisplayInRect: NSMakeRect(1,0,0,0) avoidAdditionalLayout: NO /* dje here was YES*/];
 
 		// Add this to the backtrack list
 		if (!isBacktracking)
@@ -2018,8 +2020,10 @@ int messageSortHandler(id i1, id i2, void * context)
 			// point though.
 			//
 			preVisible = [textView visibleRect];
+		//		LogRect(@"Previsible", preVisible);
 			[textView pageDown:self];
 			postVisible = [textView visibleRect];
+		//		LogRect(@"PostVisible", postVisible);
 			if (NSEqualRects(preVisible, postVisible))
 				[self viewNextUnread:self];
 			return YES;
