@@ -14,7 +14,7 @@ New file $2
 Filename: $2
 Hotlink to download: cixfile:vienna/files:$2
 Size: $(wc -c $2 | awk '{printf $1}') 
-$(md5 $2)
+$(/sbin/md5 $2)
 $(openssl sha1 $2)
 
 [Vole]
@@ -26,6 +26,7 @@ $5
 Packaging: A zip file containing a disk image and an OpenPGP signature
 Checkout: $( $1 -c)
 Build: $($1 -b)
+$(dwarfdump --uuid $1 | awk '{ print $1, $2, $3 }')
 
 [Built by]
 Contributor: devans
@@ -39,7 +40,7 @@ Windows and Linux users please note that this file is not much
 use to you.
 
 [Notes]
-$(lynx -dump ../NOTES/RELEASE.html)
+$(/opt/local/bin/lynx -dump ../NOTES/RELEASE.html)
 
 XEOF
 

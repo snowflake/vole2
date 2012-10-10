@@ -93,7 +93,7 @@ tiger-release leopard-release snowleopard-release lion-release \
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
 		VERSION=${VERSION}
-	gpg --no-armor --detach-sign "${NAME}-${VERSION}.dmg"
+	/opt/local/bin/gpg --no-armor --detach-sign "${NAME}-${VERSION}.dmg"
 	sh ../scripts/readme-gen.sh "${NAME}-${VERSION}" > README.html
 	zip -0 --must-match ${NAME}-${VERSION}.zip README.html \
 		${NAME}-${VERSION}.dmg ${NAME}-${VERSION}.dmg.sig
