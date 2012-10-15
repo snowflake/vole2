@@ -2024,8 +2024,13 @@ int messageSortHandler(id i1, id i2, void * context)
 			[textView pageDown:self];
 			postVisible = [textView visibleRect];
 		//		LogRect(@"PostVisible", postVisible);
+#if 0
+// DJE
+// The next 2 lines have been #if'ed out
+// to fix the scrolling bug where the message view scrolls down too far.
 			if (NSEqualRects(preVisible, postVisible))
 				[self viewNextUnread:self];
+#endif
 			return YES;
 			}
 	}
