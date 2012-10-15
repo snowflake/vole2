@@ -1860,7 +1860,7 @@ abortLabel:
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Setting CIX back in %@ days", nil), [task actionData]];
 	[self sendStatusToDelegate:statusString];
 
-	[self writeLine: @"opt timeout 5 quit"];
+	[self writeLine: @"opt timeout 10 quit"];
 	// DJE - hea skip back n leads to thousands of broken messages. Delete the hea
 	// [self writeStringWithFormat:YES string:@"macro pjc hea skip to back %@ tnext pjc\n", [task actionData]];
 	// replace with
@@ -2395,7 +2395,7 @@ abortLabel:
 	// - No paging in terminal
 	int recentCount = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_RecentOnJoin];
 
-	[self writeStringWithFormat:YES string:@"opt timeout 3 missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent %d u z d z q\n", recentCount];
+	[self writeStringWithFormat:YES string:@"opt timeout 6 missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent %d u z d z q\n", recentCount];
 	[self readAndScanForMainPrompt:&endOfFile];
 	if (endOfFile)
 		return MA_Connect_Aborted;
