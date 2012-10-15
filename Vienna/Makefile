@@ -10,7 +10,7 @@ Development-release: STATUS=Experimental
 
 tiger-release: NAME=vt
 tiger-release: COMPATIBILITY=Tiger (10.4) and later, Universal.
-tiger-release: STATUS=Usable but see Release Notes for a couple of bugs.
+tiger-release: STATUS=Recommended for everyone.
 
 leopard-release: NAME=vl
 leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal.
