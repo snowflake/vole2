@@ -83,6 +83,8 @@ tiger-release leopard-release snowleopard-release lion-release \
 		>> ${BUILD_INFO}
 	${VIENNA_APP} -d \
 		>> ${BUILD_INFO}
+	echo '=== Executable UUIDs ===' >> ${BUILD_INFO}
+	dwarfdump --uuid ${VIENNA_APP} | awk '{ print $$1, $$2, $$3 }' >> ${BUILD_INFO}
 	echo '</pre></body></html>' >> ${BUILD_INFO}
 	cp ../NOTES/RELEASE.html ${SOURCE_DIR}
 	cp ../NOTES/INSTALL.html ${SOURCE_DIR}
