@@ -35,6 +35,13 @@ Date: $(date '+%A %e %B %Y')
 Release and Installation notes for all versions are available from
 http://chiselapp.com/user/vinkix/repository/olrcix/wiki/RINOTES
 
+[OpenPGP verification]
+The disk image contained in the zip file is signed with an OpenPGP key.
+The key can be obtained from the SKS keyservers.
+Key ID: 0xC87001EA
+Key fingerprint = 261B D1C6 DCEF 9281 7495  A9B5 7C5F 87B6 C870 01EA
+uid David Evans <dave.evans55@googlemail.com>
+
 [Warning]
 Windows and Linux users please note that this file is not much
 use to you.
