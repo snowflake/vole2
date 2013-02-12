@@ -1481,7 +1481,7 @@ abortLabel:
 	int categoryId = -1;
 
 	// Remove old (well, all!) entries
-	[self performSelectorOnMainThread:@selector(cleanForumsList:) withObject:nil waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(cleanForumsList) withObject:nil waitUntilDone:YES];
 			
 	// Issue the version of the command that also retrieves the last access date
 	[self sendStatusToDelegate:NSLocalizedString(@"Retrieving conferences list", nil)];

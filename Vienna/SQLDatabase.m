@@ -134,6 +134,10 @@
 	}
 	[ ls getBytes: qs length: [ls length]];
 	result = sqlite3_get_table( mDatabase, qs , &results, &rows, &columns, NULL );
+#if 0
+	NSLog(@"-------- SQL Query --------");
+	NSLog(@"%s\n", qs);
+#endif	
 	free(qs);
 	// end of replacement
 	if( result != SQLITE_OK )

@@ -2993,8 +2993,10 @@ enum {
  */
 -(void)cleanBrowserTables
 {
+	NSLog(@"Start cleaning browswer tables");
 	[self executeSQL:@"delete from forums"];
 	[self executeSQL:@"delete from categories"];
+	NSLog(@"End cleaning browser tables");
 }
 
 
