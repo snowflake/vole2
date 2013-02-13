@@ -1,0 +1,230 @@
+This log illustrates joining conferences
+M:opt timeout 6 missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent 20 u z d z q
+The timeout has been set to 6 mins
+M:join easy_japanese
+You are not registered in 'easy_japanese'. Would you like to register  (y/n)? Y
+Joining easy_japanese/lessons (F) 20 new message(s).
+Rf:quit
+M:sh easy_japanese
+Moderator (s)   dyl, dlucas.
+Created:       Oct 11 11:06 95
+--------------------------------
+lessons         lessons in Japanese
+
+M:join hard_drive
+You are not registered in 'hard_drive'. Would you like to register  (y/n)? Y
+Topics are: 'chatter', 'conner', 'fujitsu', 'future_domain', 'ibm', 'maxtor', 'micropolis', 'miniscribe', 'quantum', 'seagate', 'western_digita'.
+Topic? quit
+M:sh hard_drive
+Moderator (s)   pgravestock, ebutcher.
+Created:       Apr 16 17:46 94
+--------------------------------
+chatter         Chatter.....
+conner          Technical specifications and jumper settings for conner drives
+fujitsu         Technical specifications + jumper settings for Fujitsu hardware
+future_domain   Technical specifications and jumper settings for FD drives
+ibm             Jumper settings for IMB drives
+maxtor          Technical specifications and jumper settings for Maxtor drives
+micropolis      Technical specifications & jumper settings for Micropolis drive
+miniscribe      BIOS settings for Miniscribe drives
+quantum         Quantum Corp Products
+seagate         Technical specifications and jumper settings for Seagate drives
+western_digita  Technical specifications and jumper settings for Western Digital drives / cards
+
+The purpose of the hard_drive conference is to be a central reference 
+point for all questions, queries and answers regarding the use of hard 
+drives, such as cmos and jumper settings. As far as I am aware, there is 
+no presence (official or otherwise) with anyone connected with the 
+various companies who make hard drives.
+
+Vendors may post prices if requested, but please don't turn my conference 
+into a n advert bill board.
+
+The conference is broken down into two kinds of topic, the chatter topic 
+where all the questions can be asked (and a flist for disk utilities), 
+and the other topics for : 
+        
+        Conner
+        Fujitsu
+        Future Domain        
+        Maxtor
+        Micropolis
+        Miniscribe
+        Quantum
+        Seagate
+        Western Digital
+
+which are read only, and are full of files containing cmos and jumper 
+settings. If you can't find the information you need in the various 
+flists, we would all be grateful if you could upload or post the info 
+when you do find it, so we can keep the flists uptodate.
+
+Your moderators are
+
+Paul Gravestock (pgravestock)   - Moderator, who claims no special 
+                                  knowledge about hard drives, I just saw 
+                                  the need for this conference.
+
+Adrian Harris   (saracen)       - Co mod.  Support Manager for the 
+                                  Computer Services Section of           
+                                  Educational Services at Reading College 
+                                  of Arts and Technology.
+
+Edmund(eddie)Butcher (ebutcher) - Co mod.  currently working for Ashmount 
+                                  Research ( Why not try WigWam?:-) 
+                                  and I love getting mail.
+
+Oh yes, trademarks and the like are copyright of the various companies 
+who own them etc.
+M:join hi-fi
+You are not registered in 'hi-fi'. Would you like to register  (y/n)? Y
+Topics are: '2hi-fi', '2speakers', 'amplifiers', 'bring-buy', 'buy_direct', 'cd', 'digest', 'diy', 'dvda_sacd', 'hi-fi', 'loony', 'magazines', 'md_dcc', 'records', 'reviews', 'speakers', 'streaming', 'tape', 'tuners', 'turntables', 'valves'.
+Topic? quit
+M:sh hi-fi
+Moderator (s)   mtaylor.
+Created:       Oct 28 07:27 90
+--------------------------------
+2hi-fi          General hi-fi
+2speakers       Speakers, headphones etc.
+amplifiers      
+bring-buy       For sale and wanted section
+buy_direct      Experiences buying equipment direct from the manufacturer
+cd              
+digest          All About the Hi-Fi Conference
+diy             The place to discuss the things you do to your equipment!
+dvda_sacd       To discuss the new DVD-A and SACD formats
+hi-fi           The place to talk about your trials and errors
+loony           Do you believe in Beltism, etc,.
+magazines       Those latest gems from the media
+md_dcc          To discuss DCC and MD formats
+records         Buy,Sell,Hunt..
+reviews         To post reviews of your favourite music
+speakers        
+streaming       For all streaming and computer related music playing
+tape            
+tuners          
+turntables      
+valves          Tubes, Bottles and things that glow in the dark
+
+The hi-fi conference is for all lovers of music 
+reproduction in the home.  Come join the wide 
+ranging discussions whether they be high end 
+components, boom boxes, MP3 v MiniDisc, in-car 
+entertainment or the latest performance of 
+Beethoven's Ninth.
+M:join high_horse
+You are not registered in 'high_horse'. Would you like to register  (y/n)? Y
+Topics are: '1.banned', '1.chatter', '1.discuss', '1.general', '1.politics', '1.rants', '1.war'.
+Topic? quit
+M:sh high_horse
+Moderator (s)   scroucher.
+Created:       Mar 29 17:12 03
+--------------------------------
+1.banned        If you're in this list don't post messages.
+1.chatter       
+1.discuss       Discuss only authorised subjects
+1.general       General chat
+1.politics      General political diatribe
+1.rants         No replies here please!
+1.war           War related chat
+
+M:join html
+You are not registered in 'html'. Would you like to register  (y/n)? Y
+Topics are: '10general', '11general', '12general', '13general', '14general', '15general', '16general', '1accessibility', '1resources', '2asp', '7general', '8general', '9general', 'ajax', 'announce', 'asp', 'books.training', 'cgi', 'cms', 'css', 'editors', 'examples', 'files', 'furniture', 'html5', 
+'jobs+adverts', 'php', 'seo', 'xhtml'.
+Topic? quit
+M:sh html
+Moderator (s)   aj, mcbrown, strum, twood, p_elphick.
+Created:       Feb 23 19:35 95
+--------------------------------
+10general       General continued
+11general       general continued
+12general       Continuation of 11 general
+13general       12 general - continued
+14general       
+15general       More general stuff
+16general       
+1accessibility  For the discussion of website accessibility issues.
+1resources      For links and/or references to important web resources.
+2asp            asp - continued
+7general        Conrinuation from 6general
+8general        General - part 8
+9general        general - continued
+ajax            For the description of Asynchronous 
+announce        for moderatorial announcements
+asp             
+books.training  Information on HTML training courses, books and other aids
+cgi             For discussion on CGI, what it is and what it's used for...
+cms             For discussion of content management systems and frameworks.
+css             Cascading Style Sheets
+editors         Read-only topic containing descriptions of HTML editors
+examples        to upload and discuss your masterpieces (and failures!)
+files           for holding editors, utilities, style guides etc
+furniture       HTML page furniture - lines, icons, backgrounds, door knobs etc
+html5           Fo HTML5 bits & discussion
+jobs+adverts    For posting Jobs (offered & wanted) and Adverts of any kind...
+php             as requested in thread cix:html/6general#501
+seo             Search engine optimisation discussion
+xhtml           Discussion on XHTML
+
+The html conference has been created to discuss the varied 
+issues 
+relating to the generation of WWW pages using the hypertext 
+markup 
+language.  
+
+This is an open conference and everyone is welcome.  
+M:join humanist
+You are not registered in 'humanist'. Would you like to register  (y/n)? Y
+Topics are: '2chatter', '2newsline', '2superstition', '3chatter', '3newsline', '3superstition', '4chatter', '4newsline', '4superstition', '5chatter', '5newsline', '5superstition', '6chatter', '6newsline', '7chatter', '7newsline', '8newsline', 'arnold', 'chatter', 'files', 'newsline', 
+'superstition'.
+Topic? quit
+M:sh humanist
+Moderator (s)   johndunedin, guy.
+Created:       Apr 24 22:44 95
+--------------------------------
+2chatter        more chatter
+2newsline       More NSS Newslines
+2superstition   More Bible Studies And Sermons...
+3chatter        more wurdz ...
+3newsline       NSS Newsline
+3superstition   More fairy tales...
+4chatter        Wordz o' wisdom...
+4newsline       
+4superstition   O ye of little faith...
+5chatter        Mair wordz...
+5newsline       NSS Newsline
+5superstition   The lions continue their snack...
+6chatter        Another refuge for the chattering classes...
+6newsline       More NSS Newslines
+7chatter        Son of 6chatter
+7newsline       National Secular Society Newsline
+8newsline       NSS Newsline
+arnold          Carapace, pincers, and plastic seam
+chatter         chatter
+files           files on humanism
+newsline        National Secular Society's Weekly Newletter
+superstition    For bible studies and sermons...
+
+Morals without Religion was the name of a radio series by the late Margaret Knight 
+in the 50's.  It caused a massive outcry amongst superstitionists at the time.
+
+Nevertheless, it's a good description of Humanism.
+M:join icuknet
+You are not registered in 'icuknet'. Would you like to register  (y/n)? Y
+Topics are: 'announcements', 'connectivity', 'files', 'general', 'hosting', 'products', 'resellers', 'support', 'telecoms'.
+Topic? quit
+M:sh icuknet
+Moderator (s)   icuknet, pbarnett, lesliecostar, todonovan, nhiggins, plydon, markconstant, mat, shaundon.
+Created:       Jan 27 17:10 04
+--------------------------------
+announcements   Announcements on service status will go here
+connectivity    56K, ISDN, Anytime and ADSL discussions
+files           Conference related files
+general         General Chatter and Points
+hosting         Discussion of ICUK's hosting services
+products        Product List and Guides
+resellers       Topic for Reseller Hosting customers.
+support         Support topic for users
+telecoms        Discussion of the CPS Telecom services
+
