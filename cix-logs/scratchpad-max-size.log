@@ -1,0 +1,16 @@
+This log illustrates the error messages when the scratchpad size limit
+is exceeded during file readall.
+
+Note: there is a control-G in in the error message.
+
+
+general         The principal discussion are
+
+For doscussion of Zyxel routers, firewalls etc
+M:file read all
+............................................................................................................................................You have reached the maximum size of your scratchpad.
+
+No more unread
+Hit <RETURN> for next
+Scratchpad is 4036333 bytes.
+Rf:by
