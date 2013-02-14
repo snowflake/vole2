@@ -1,0 +1,9 @@
+# This log illustrates posting to a read-only topic of which
+# you are not a member.
+Joining enquire_within/3finance 0 new message(s).
+READ ONLY
+R:say
+Read-Only topic.
+No more unread
+Hit <RETURN> for next
+R:bye

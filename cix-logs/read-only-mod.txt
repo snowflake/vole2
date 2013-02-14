@@ -1,0 +1,9 @@
+# this illustrates posting a message in a Read Only topic you moderate
+M:join vienna/announce
+Joining vienna/announce 0 new message(s).
+READ ONLY
+R:say
+TITLE: this is a test
+Enter message. End with '.<CR>'
+.
+A:?
