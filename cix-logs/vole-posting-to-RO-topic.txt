@@ -1,0 +1,52 @@
+# This log illustrates Vole 1.6.4 posting to a R/O topic where it is
+# not the moderator.
+# Note: Vole fails to kill the scratchpad after the failed say.
+
+M:opt timeout 6 missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent 2 u z d z q
+The timeout has been set to 6 mins
+M:checkpoint
+Message pointers saved
+M:store
+Message pointers stored
+M:killsc
+Scratchpad Deleted
+M:j enquire_within/3finance
+Joining enquire_within/3finance 0 new message(s).
+READ ONLY
+Rf:edit
+Editing SCRATCHPAD
+Begin entering your text. When you are finished
+go to a new line type a period and press the enter key
+input->test
+input->
+input->this is a test, please delete
+input->.
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> x
+3 line(s)
+Edit complete.
+Rf:say
+Read-Only topic.
+No more unread
+Hit <RETURN> for next
+Rf:q
+M:restore
+Message pointers restored
+M:file read all
+....
+Scratchpad is 13314 bytes.
+M:show scratchpad
+test
+
+this is a test, please delete
+Checking for conference activity.
+Joining electronics/needorhave 1 new message(s).
+>>>electronics/needorhave 1100 frix(197)14feb13 12:50 c1099
+There won't be a next time: I am triple checking my orders now, and then 
+leaving them for a day just in case.
+
+Although, having said that, I just wound up with a pack of 560K instead 
+of 560R :(
+
+
