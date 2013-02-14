@@ -1,0 +1,78 @@
+# this log illustrates posting to a r/o topic, then posting another
+# message to a r/w topic.
+# The posting to the r/o topic fails, but it leaves text in the scratchpad.
+# This confuses and fails the posting to the r/w topic.
+
+
+CIX Version 3.4.3 of Aug 12 2005 running on Thu Feb 14 13:58:33 2013
+Copyright (c) CoSy Conferencing System, University of Guelph, 1984
+Portions copyright (c) Compulink Information eXchange Ltd, 1985-1999
+You are on line: 3 
+Nickname? (Enter 'new' for new user) devans
+Password: 
+You have 1 mail message(s) in your in-basket.
+There are 1 unread mail message(s).
+You are a member of 259 conference(s).
+Feb 14 13:58 13
+Max scratchsize during file has been set to 4000000 bytes
+Max messagesize during file has been set to 1000000 bytes
+Macro defined.
+No timeout.
+M:opt timeout 6 missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent 2 u z d z q
+The timeout has been set to 6 mins
+M:checkpoint
+Message pointers saved
+M:store
+Message pointers stored
+M:killsc
+Scratchpad Deleted
+M:j enquire_within/3finance
+Joining enquire_within/3finance 0 new message(s).
+READ ONLY
+Rf:edit
+Editing SCRATCHPAD
+Begin entering your text. When you are finished
+go to a new line type a period and press the enter key
+input->test
+input->
+input->this is a test, please delete
+input->.
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> x
+3 line(s)
+Edit complete.
+Rf:say
+Read-Only topic.
+No more unread
+Hit <RETURN> for next
+Rf:j enquire_within/3finance
+Joining enquire_within/3finance 0 new message(s).
+READ ONLY
+Rf:edit
+Editing SCRATCHPAD
+3 lines existing in file
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> this is a test, posting in r/o enquire_within/3finance
+?unknown command
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> this is a test
+?unknown command
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> .
+   3 ->this is a test, please delete
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> x
+3 line(s)
+Edit complete.
+Rf:say
+Read-Only topic.
+No more unread
+Hit <RETURN> for next
+Rf:j dje_cix/newtopic2
+Joining dje_cix/newtopic2 0 new message(s).
+Rf:
