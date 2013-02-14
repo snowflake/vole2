@@ -251,8 +251,8 @@ echo 'Initialisation finished'
 echo
 echo "Welcome Cix user ${cixnick}"
 echo
-sql_add_participants devans
-sql_add_participants fred
+#sql_add_participants devans
+#sql_add_participants fred
 all_flag=0;
 while true
 do
@@ -308,7 +308,7 @@ fi
 
 echo 'Stage 1 of 6. Set read/unread.'
 
-set_read_flags
+set_read_flags | sqlite3 "${database}"
 
 echo 'Stage 2 of 6. Set folders unread count and priority_unread_count to zero.'
 echo 'UPDATE folders SET unread_count=0, priority_unread_count=0 ; ' | sqlite3 "${database}"
