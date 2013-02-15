@@ -1,10 +1,15 @@
-head	1.42;
+head	1.43;
 access;
 symbols;
 locks
-	davidevans:1.42; strict;
+	davidevans:1.43; strict;
 comment	@# @;
 
+
+1.43
+date	2013.02.15.16.30.19;	author davidevans;	state Exp;
+branches;
+next	1.42;
 
 1.42
 date	2013.02.15.16.07.24;	author davidevans;	state Exp;
@@ -222,9 +227,9 @@ desc
 @
 
 
-1.42
+1.43
 log
-@add message counting option.
+@add cix note about new options list, parti and count.
 @
 text
 @#!/bin/sh
@@ -232,7 +237,7 @@ text
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion='$Revision: 1.41 $'
+scriptversion='$Revision: 1.42 $'
 database="${HOME}/Library/Vienna/database3.db"
 FILE_STAGE1="/tmp/svb-stage1.sql"
 shortname="svb"
@@ -510,6 +515,10 @@ selected topics within a conference, or selected conferences or all
 conferences. The status can be set to read before a specified
 date, or unread after a specified date.
 
+${shortname} also has some utility functions to obtain
+a list of conferences or participants and also a 
+count of the number of topics in the message base.
+
 For discussion and usage of ${shortname}, please join
 vienna/set_vole_back cix:vienna/set_vole_back
 BUILDEOF
@@ -692,6 +701,18 @@ sqlite3 < /tmp/run2.$$.sql "${database}"
 
 echo 'Finished with no errors.'
 echo
+@
+
+
+1.42
+log
+@add message counting option.
+@
+text
+@d6 1
+a6 1
+scriptversion='$Revision: 1.41 $'
+d284 4
 @
 
 

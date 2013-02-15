@@ -3,7 +3,7 @@
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion='$Revision: 1.42 $'
+scriptversion='$Revision: 1.43 $'
 database="${HOME}/Library/Vienna/database3.db"
 FILE_STAGE1="/tmp/svb-stage1.sql"
 shortname="svb"
@@ -280,6 +280,10 @@ read or unread. It can set the status for messages in a topic or
 selected topics within a conference, or selected conferences or all
 conferences. The status can be set to read before a specified
 date, or unread after a specified date.
+
+${shortname} also has some utility functions to obtain
+a list of conferences or participants and also a 
+count of the number of topics in the message base.
 
 For discussion and usage of ${shortname}, please join
 vienna/set_vole_back cix:vienna/set_vole_back
