@@ -1,2 +1,11 @@
 For usage of the svb.sh script, please join
 the vienna/set-vole-back topic
+
+Basic usage:
+
+sh svb.sh help
+
+OR
+
+sh svb.sh setback
+
