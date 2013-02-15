@@ -1,10 +1,15 @@
-head	1.41;
+head	1.42;
 access;
 symbols;
 locks
-	davidevans:1.41; strict;
+	davidevans:1.42; strict;
 comment	@# @;
 
+
+1.42
+date	2013.02.15.16.07.24;	author davidevans;	state Exp;
+branches;
+next	1.41;
 
 1.41
 date	2013.02.15.15.45.10;	author davidevans;	state Exp;
@@ -217,9 +222,9 @@ desc
 @
 
 
-1.41
+1.42
 log
-@add help, conferences list, participants list, minor tweaks
+@add message counting option.
 @
 text
 @#!/bin/sh
@@ -227,7 +232,7 @@ text
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion='$Revision: 1.40 $'
+scriptversion='$Revision: 1.41 $'
 database="${HOME}/Library/Vienna/database3.db"
 FILE_STAGE1="/tmp/svb-stage1.sql"
 shortname="svb"
@@ -548,8 +553,14 @@ version   Displays version
 list      List all conferences/topics known to Vole
 parti     List all participants known to Vole
 setback   Set Vole Back, sets or unsets read status of messages
-
+count     Count messages in the message base
 HELP_EOF
+
+}
+################# count_messages ##############
+function count_messages(){
+echo 'Please wait - counting messages' > /dev/stderr
+echo 'select count() from messages;' | sqlite3 "${database}"
 
 }
 ############################ begining of main code #######################
@@ -558,9 +569,10 @@ HELP_EOF
 	 ( cixfile ) buildcix ; exit 0 ;;
          ( list )    list_confs ; exit 0 ;;
 	 ( parti )   list_parti ; exit 0 ;;
-         ( help  )   givehelp   ; exit ;;
+         ( help  )   givehelp   ; exit 0 ;;
 	 ( setback )  ;;
-         ( * )       givehelp   ; exit ;;
+	 ( count )   count_messages ; exit 0 ;;
+         ( * )       givehelp   ; exit 0 ;;
 	 esac
 
 echo
@@ -680,6 +692,27 @@ sqlite3 < /tmp/run2.$$.sql "${database}"
 
 echo 'Finished with no errors.'
 echo
+@
+
+
+1.41
+log
+@add help, conferences list, participants list, minor tweaks
+@
+text
+@d6 1
+a6 1
+scriptversion='$Revision: 1.40 $'
+d327 2
+d330 5
+a334 1
+HELP_EOF
+d343 1
+a343 1
+         ( help  )   givehelp   ; exit ;;
+d345 2
+a346 1
+         ( * )       givehelp   ; exit ;;
 @
 
 

@@ -3,7 +3,7 @@
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion='$Revision: 1.41 $'
+scriptversion='$Revision: 1.42 $'
 database="${HOME}/Library/Vienna/database3.db"
 FILE_STAGE1="/tmp/svb-stage1.sql"
 shortname="svb"
@@ -324,8 +324,14 @@ version   Displays version
 list      List all conferences/topics known to Vole
 parti     List all participants known to Vole
 setback   Set Vole Back, sets or unsets read status of messages
-
+count     Count messages in the message base
 HELP_EOF
+
+}
+################# count_messages ##############
+function count_messages(){
+echo 'Please wait - counting messages' > /dev/stderr
+echo 'select count() from messages;' | sqlite3 "${database}"
 
 }
 ############################ begining of main code #######################
@@ -334,9 +340,10 @@ HELP_EOF
 	 ( cixfile ) buildcix ; exit 0 ;;
          ( list )    list_confs ; exit 0 ;;
 	 ( parti )   list_parti ; exit 0 ;;
-         ( help  )   givehelp   ; exit ;;
+         ( help  )   givehelp   ; exit 0 ;;
 	 ( setback )  ;;
-         ( * )       givehelp   ; exit ;;
+	 ( count )   count_messages ; exit 0 ;;
+         ( * )       givehelp   ; exit 0 ;;
 	 esac
 
 echo
