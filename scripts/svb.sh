@@ -3,7 +3,7 @@
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion='$Revision: 1.44 $'
+scriptversion='$Revision: 1.45 $'
 database="${HOME}/Library/Vienna/database3.db"
 FILE_STAGE1="/tmp/svb-stage1.sql"
 shortname="svb"
@@ -83,10 +83,7 @@ sql_finalise
 ## print the Mac software version
 function sw_version() {
 sw_vers | awk '{print "--", $1, $2;}'
-
 }
-
-
 ###########################
 
 function sql_initialise(){
@@ -179,7 +176,6 @@ if [ -z $(get_conf "${1}" ) ]
 then
 printf 'Conference %s does not exist in the database\n' "${1}"
 suggest_conf "${1}"
-echo
 return 1
 else
 return 0

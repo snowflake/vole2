@@ -1,10 +1,15 @@
-head	1.44;
+head	1.45;
 access;
 symbols;
 locks
-	davidevans:1.44; strict;
+	davidevans:1.45; strict;
 comment	@# @;
 
+
+1.45
+date	2013.02.15.17.26.37;	author davidevans;	state Exp;
+branches;
+next	1.44;
 
 1.44
 date	2013.02.15.16.35.35;	author davidevans;	state Exp;
@@ -232,9 +237,9 @@ desc
 @
 
 
-1.44
+1.45
 log
-@correct a few errors in the cixfile function.
+@*** empty log message ***
 @
 text
 @#!/bin/sh
@@ -242,7 +247,7 @@ text
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion='$Revision: 1.43 $'
+scriptversion='$Revision: 1.44 $'
 database="${HOME}/Library/Vienna/database3.db"
 FILE_STAGE1="/tmp/svb-stage1.sql"
 shortname="svb"
@@ -322,10 +327,7 @@ sql_finalise
 ## print the Mac software version
 function sw_version() {
 sw_vers | awk '{print "--", $1, $2;}'
-
 }
-
-
 ###########################
 
 function sql_initialise(){
@@ -418,7 +420,6 @@ if [ -z $(get_conf "${1}" ) ]
 then
 printf 'Conference %s does not exist in the database\n' "${1}"
 suggest_conf "${1}"
-echo
 return 1
 else
 return 0
@@ -705,6 +706,24 @@ sqlite3 < /tmp/run2.$$.sql "${database}"
 [ -z "${SCRIPT_DEBUG}" ] && rm -f /tmp/run2.$$.sql
 
 echo 'Finished with no errors.'
+echo
+@
+
+
+1.44
+log
+@correct a few errors in the cixfile function.
+@
+text
+@d6 1
+a6 1
+scriptversion='$Revision: 1.43 $'
+a85 1
+
+a86 2
+
+
+a178 1
 echo
 @
 
