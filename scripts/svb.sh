@@ -3,8 +3,9 @@
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion=1.35
+scriptversion='$Revision: 1.39 $'
 database="${HOME}/Library/Vienna/database3.db"
+shortname="svb"
 
 # this directory is also referenced below
 tempdb="/tmp/svb.db"
@@ -234,9 +235,51 @@ BEGIN { FS=":" ; exitcode = 1 }
 END { exit exitcode } 
 '
 }
+############### buildcix ##############
+# Posting for vienna/files describing the file
+function buildcix() {
+zipfile="${shortname}-$(shortversion).zip"
+cat << BUILDEOF
+
+Filename: ${zipfile}
+Hotlink to download: cixfile:vienna/files:${zipfile}
+Size: $(wc -c ${zipfile} | awk '{printf $1}')
+$(/sbin/md5 ${zipfile} )
+
+Version: $(shortversion)
+Contributor: devans
+Date: $(date '+%A %e %B %Y')
+
+Description:
+
+svb stands for Set Vole Back
+
+It also works with Vinkix and Vienna.
+
+${shortname} is a command line script for setting message status to
+read or unread. It can set the status for messages in a topic or
+selected topics within a conference, or selected conferences or all
+conferences. The status can be set to read before a specified
+date, or unread after a specified date.
+
+For discussion and usage of ${shortname}, please join
+vienna/set_vole_back cix:vienna/set_vole_back
+BUILDEOF
+
+}
+############### short version ##############
+
+function shortversion() {
+echo "${scriptversion}" | awk '{printf "%s", $2;}'
+}
 ############################ begining of main code #######################
+	case $1 in 
+	 ( version ) shortversion ; exit 0 ;;
+	 ( cixfile ) buildcix ; exit 0 ;;
+	 esac
+
 echo
-echo 'Set Vole/Vinkix/Vienna message base back, version' "${scriptversion}"
+echo 'Set Vole/Vinkix/Vienna message base back, ' "${scriptversion}"
 echo 
 
 if [ -z "${cixnick}" ]
@@ -308,7 +351,7 @@ fi
 
 echo 'Stage 1 of 6. Set read/unread.'
 
-set_read_flags | sqlite3 "${database}"
+set_read_flags | tee /tmp/svb-stage1.sql |sqlite3 "${database}"
 
 echo 'Stage 2 of 6. Set folders unread count and priority_unread_count to zero.'
 echo 'UPDATE folders SET unread_count=0, priority_unread_count=0 ; ' | sqlite3 "${database}"

@@ -1,0 +1,1260 @@
+head	1.39;
+access;
+symbols;
+locks
+	davidevans:1.39; strict;
+comment	@# @;
+
+
+1.39
+date	2013.02.14.23.45.38;	author davidevans;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2013.02.14.18.59.08;	author davidevans;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2013.02.14.18.29.16;	author davidevans;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2013.02.14.18.27.28;	author davidevans;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2012.08.04.17.08.59;	author davidevans;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2012.08.04.11.46.38;	author davidevans;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2012.08.03.21.31.01;	author davidevans;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2012.08.03.21.09.15;	author davidevans;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2012.08.03.20.52.43;	author davidevans;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2012.08.03.17.52.51;	author davidevans;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2012.08.03.17.17.50;	author davidevans;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2012.08.03.16.35.18;	author davidevans;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2012.08.03.15.58.15;	author davidevans;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2012.08.03.15.24.12;	author davidevans;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2012.08.03.14.44.52;	author davidevans;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2012.08.03.14.34.31;	author davidevans;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2012.08.03.14.00.34;	author davidevans;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2012.08.03.13.54.50;	author davidevans;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2012.08.03.13.03.30;	author davidevans;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2012.08.03.12.33.34;	author davidevans;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2012.08.03.12.08.13;	author davidevans;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2012.08.03.12.04.21;	author davidevans;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2012.08.03.11.23.35;	author davidevans;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2012.08.03.11.15.07;	author davidevans;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2012.08.03.11.02.14;	author davidevans;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2012.08.03.10.42.58;	author davidevans;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2012.08.03.10.19.26;	author davidevans;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2012.08.03.09.22.18;	author davidevans;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2012.08.03.00.16.50;	author davidevans;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2012.08.02.23.58.06;	author davidevans;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2012.08.02.23.21.58;	author davidevans;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2012.08.02.22.59.12;	author davidevans;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2012.08.02.22.28.16;	author davidevans;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2012.08.02.21.44.07;	author davidevans;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2012.08.02.21.14.17;	author davidevans;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2012.08.02.20.53.19;	author davidevans;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2012.08.02.14.46.42;	author davidevans;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2012.08.02.14.05.38;	author davidevans;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2012.08.02.13.40.27;	author davidevans;	state Exp;
+branches;
+next	;
+
+
+desc
+@script not working yet
+@
+
+
+1.39
+log
+@release version
+@
+text
+@#!/bin/sh
+
+# script to mark messages as read before a date, or as unread after a date
+
+set -e
+scriptversion='$Revision: 1.38 $'
+database="${HOME}/Library/Vienna/database3.db"
+shortname="svb"
+
+# this directory is also referenced below
+tempdb="/tmp/svb.db"
+
+# 0 - message unread, 1 = message read
+read_flag=0
+
+voleid="uk.co.opencommunity.vienna"
+cixnick="$(defaults read ${voleid} Username)"
+
+function initialise_conference_list(){
+cat << EOFXXX | sqlite3 "${database}" 
+-- initialise conference list.
+ attach '${tempdb}' as cf;
+drop table if exists cf.folder_list;
+create table cf.folder_list(action_id integer primary key);
+
+
+drop table if exists cf.confs_temp;
+create table cf.confs_temp(conf_id, conf_name);
+
+insert into confs_temp(conf_id, conf_name) select folder_id, foldername from
+	folders where parent_id = 4;
+
+drop table if exists cf.confs;
+create table cf.confs(conf_name,topic_name,topic_id);
+
+insert into cf.confs(conf_name,topic_name,topic_id)
+	select confs_temp.conf_name,foldername, folder_id 
+	from confs_temp, folders
+	where 	folders.parent_id = confs_temp.conf_id ;
+
+drop table if exists cf.cixen;
+create table cf.cixen( cixen unique);
+insert or replace into cf.cixen(cixen)
+        select sender from messages group by sender;
+drop table if exists cf.parti;
+create table cf.parti(parti unique);
+EOFXXX
+
+}
+# end of function #
+########################### update_list ########
+function update_list(){
+if [ -z "${1}" ]
+then
+exit
+fi
+printf 'insert or replace into folder_list (action_id) select topic_id from confs where \047%s\047 = conf_name;'  "${1}"  \
+	| sqlite3 "${tempdb}" 
+
+}
+# end of function update_list #
+#############################
+function list_folders(){
+printf 'select action_id from folder_list;' | sqlite3 "${tempdb}"
+}
+#############################
+function list_participants(){
+sqlite3 "${tempdb}" 'select parti from parti order by parti;'
+}
+
+#### start of function set_read_flags
+
+function set_read_flags(){
+sql_initialise
+sql_topics
+sql_participants
+sql_finalise
+}
+##### end of function set_read_flags
+###########################
+
+function sql_initialise(){
+printf '\055- sql.initialise\n'
+printf 'BEGIN TRANSACTION;\nUPDATE messages SET read_flag = %s\n' "${read_flag}"
+printf '  WHERE ( (date - strftime(\047%%s\047,\047%s %s\047)) %s 0 )\n' \
+ 	"${date}" "${time}" "${compare}"
+printf '\n\055- end of sql.initialise\n'
+}
+###########################
+function sql_topics(){
+printf '\055- sql.topics\n'
+if [ ! -z "$(list_folders)" ]
+then
+  list_folders | sql_clause "folder_id" 0
+fi
+printf '\055- end of sql.topics\n'
+}
+###########################
+function sql_participants(){
+printf '\055- sql_participants\n'
+if [ ! -z "$(list_participants)" ]
+then
+list_participants | sql_clause "sender" 1
+fi
+printf '\055- end of sql_participants\n'
+}
+##########################
+function sql_finalise(){
+printf ';\nCOMMIT;\n'
+}
+
+##########################
+function sql_clause(){
+# two arguments - the comparison object and the type (integer = 0, string = 1)
+awk -v co=$1 -v type=$2 '
+BEGIN { print "AND (" }
+END { print ")" }
+{
+       if(count++ > 0) printf("OR ");
+	if (type == 0)
+	       printf "%s = %s\n", co, $1
+	else 
+		printf "%s = \047%s\047\n", co, $1 
+}
+'
+}
+####################
+function sql_add_participants(){
+# one argument - the participant to add
+[ -z "${1}" ] && return
+printf 'insert or replace into parti(parti) values(\047%s\047);' "${1}" | sqlite3 "${tempdb}"
+}
+#####################
+function suggest_conf(){
+# one argument - the name of a conference to try and match
+echo 'Here are some suggestions:'
+st=$(/bin/echo  -n "${1}" | cut -b 1-2)
+
+printf "select conf_name from confs where conf_name like \047%s%%\047 group by conf_name order by conf_name;" "${st}" \
+ |	sqlite3 "${tempdb}" | cols
+
+}
+#######################
+function suggest_topic(){
+# two arguments, conf and topic
+echo Topic list for conference: "${1}"
+printf 'select topic_name from confs where conf_name = \047%s\047 group by topic_name order by topic_name;' "${1}" \
+	| sqlite3 "${tempdb}" | cols
+}
+#####################
+function get_conf(){
+# look up conference in the database, conference is the first argument
+printf "select conf_name from confs where conf_name = \047%s\047 limit 1;" \
+   "${1}" | sqlite3 "${tempdb}" 
+}
+######################
+function search_conf_list(){
+# one argument - the name of the conference to search for
+if [ -z $(get_conf "${1}" ) ] 
+then
+printf 'Conference %s does not exist in the database\n' "${1}"
+suggest_conf "${1}"
+echo
+return 1
+else
+return 0
+fi
+}
+##########################
+function cols(){
+# columnate stdin to stdout
+awk '{
+printf( "%-14.14s ", $1);
+if(count++ == 4) {count=0; printf("\n") }
+}
+END { printf("\n"); }'
+}
+#################################
+function add_topics(){
+# add topics for a conference. $1 = name of conference
+#
+while true
+do
+  printf 'Enter a topic for conference \047%s\047 or all or done : ' "${1}"
+  read topic
+  topic=$(strip "${topic}")
+  [ -z "${topic}" ] && continue;
+  case "${topic}" in
+      ( all  ) update_list "${1}" ; return 0 ;;
+      ( done ) return 0 ;;
+  esac
+  if topic_exists "${1}" "${topic}"
+  then
+	add_new_topic "${1}" "${topic}"
+  else
+        suggest_topic "${1}"
+  fi
+done
+}
+########## add new topic ########
+function add_new_topic(){
+# two arguments, conference and topic
+printf 'insert or replace into folder_list(action_id) select topic_id from confs where \047%s\047 = conf_name and \047%s\047 = topic_name ;' "${1}" "${2}" | sqlite3 "${tempdb}"
+}
+########### topic_exists ##########
+function topic_exists(){
+# two arguments, conf and topic
+topiclist=$(printf 'select * from confs where \047%s\047 = conf_name and \047%s\047 = topic_name ;'   "${1}" "${2}" | sqlite3 "${tempdb}" )
+[ ! -z "${topiclist}" ]
+}
+
+############## strip ###############
+function strip(){
+# strip evil apostrophes and quotation marks from $1
+/bin/echo -n "${1}" | tr -d '\047\042' 
+}
+############# valid_date #############
+# test date on stdin
+function valid_date() {
+awk '
+BEGIN { FS="-"; exitcode = 1 }
+/^[12][0-9][0-9][0-9]-[01][0-9]-[0-3][0-9]$/
+# avoid 1970 as it may not work if localtime is selected. -ve value 
+{ if ( $1 >= 1971 && $1 < 2100 && $2 >= 1 && $2 <= 12 && $3 >= 1 && $3 <= 31 ) exitcode = 0; }
+  
+END { exit exitcode }
+'
+}
+################ valid time #############
+# test valid time on stdin
+function valid_time() {
+awk '
+BEGIN { FS=":" ; exitcode = 1 }
+/^[0-2][0-9]:[0-5][0-9]$/ { if ( $1 <= 23) exitcode = 0 }
+END { exit exitcode } 
+'
+}
+############### buildcix ##############
+# Posting for vienna/files describing the file
+function buildcix() {
+zipfile="${shortname}-$(shortversion).zip"
+cat << BUILDEOF
+
+Filename: ${zipfile}
+Hotlink to download: cixfile:vienna/files:${zipfile}
+Size: $(wc -c ${zipfile} | awk '{printf $1}')
+$(/sbin/md5 ${zipfile} )
+
+Version: $(shortversion)
+Contributor: devans
+Date: $(date '+%A %e %B %Y')
+
+Description:
+
+svb stands for Set Vole Back
+
+It also works with Vinkix and Vienna.
+
+${shortname} is a command line script for setting message status to
+read or unread. It can set the status for messages in a topic or
+selected topics within a conference, or selected conferences or all
+conferences. The status can be set to read before a specified
+date, or unread after a specified date.
+
+For discussion and usage of ${shortname}, please join
+vienna/set_vole_back cix:vienna/set_vole_back
+BUILDEOF
+
+}
+############### short version ##############
+
+function shortversion() {
+echo "${scriptversion}" | awk '{printf "%s", $2;}'
+}
+############################ begining of main code #######################
+	case $1 in 
+	 ( version ) shortversion ; exit 0 ;;
+	 ( cixfile ) buildcix ; exit 0 ;;
+	 esac
+
+echo
+echo 'Set Vole/Vinkix/Vienna message base back, ' "${scriptversion}"
+echo 
+
+if [ -z "${cixnick}" ]
+then 
+  echo 'Unable to determine your Cix nickname. Sorry, quiting now.'
+  echo
+  exit 1
+fi
+echo 'Please wait while I initialise a database ...'
+initialise_conference_list
+echo 'Initialisation finished'
+echo
+echo "Welcome Cix user ${cixnick}"
+echo
+#sql_add_participants devans
+#sql_add_participants fred
+all_flag=0;
+while true
+do
+  read -p 'Please enter a conference name, or all or done : ' cf
+  cf=$(strip "${cf}")
+
+  case "${cf}" in
+	( done ) break ;;
+	( all )  all_flag=1 ; break ;;
+  esac 
+  if [ ! -z "${cf}" ]
+  then	
+    if search_conf_list "${cf}"
+    then
+ #     update_list "${cf}"
+       add_topics "${cf}"
+    fi
+  fi
+done
+while true
+	do
+	  read -p 'Please enter date in format YYYY-MM-DD : ' date
+	  date=$(strip "${date}" )
+	  if ( echo "${date}" | valid_date )
+		then 
+		break; fi
+done
+while true
+	do
+	  read -p 'Please enter time in format HH:MM      : ' time
+	  time=$(strip "${time}" )
+	  if(echo "${time}" | valid_time) then break; fi
+done
+echo
+echo
+echo 'Please enter R to mark messages read before date'
+echo 'or U to mark messsages unread after date.'
+echo
+read -p 'Please choose R/U : ' ru
+echo
+case "${ru}" in
+	[Rr] ) read_flag=1 ;;
+	[Uu] ) read_flag=0 ;;
+	*    ) echo 'Nothing to do, quiting'; exit 0 ;;
+esac
+
+if [ ${read_flag} -eq 0 ]
+then
+  compare='>='
+else
+  compare='<='
+fi
+
+echo 'Stage 1 of 6. Set read/unread.'
+
+set_read_flags | tee /tmp/svb-stage1.sql |sqlite3 "${database}"
+
+echo 'Stage 2 of 6. Set folders unread count and priority_unread_count to zero.'
+echo 'UPDATE folders SET unread_count=0, priority_unread_count=0 ; ' | sqlite3 "${database}"
+
+echo 'Stage 3 of 6. Recalculate folders unread count.'
+cat << EOFBBB > /tmp/run.$$.sql
+$(sqlite3 ${database}   'SELECT folder_id asc, count() FROM  messages WHERE read_flag = 0 GROUP BY folder_id  ;' | awk 'BEGIN {FS="|" } { printf("UPDATE folders  SET unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }' )
+EOFBBB
+
+
+
+echo 'Stage 4 of 6. Run the SQL script from stage 3 to update unread counts'
+echo '              in folders.'
+sqlite3 < /tmp/run.$$.sql "${database}"
+[ -z "${SCRIPT_DEBUG}" ] && rm -f /tmp/run.$$.sql
+
+echo 'Stage 5 of 6. Recalculate folders priority unread count.'
+
+printf 'SELECT folder_id asc, count(*) FROM  messages WHERE priority_flag=1 AND read_flag = 0 GROUP BY folder_id  ;'  \
+    |  sqlite3 "${database}" \
+    |  awk 'BEGIN {FS="|" } { printf("UPDATE folders  SET priority_unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }'  > /tmp/run2.$$.sql
+
+
+echo 'Stage 6 of 6. Run the SQL script from stage 5 to update priority unread'
+echo '              counts in folders.'
+sqlite3 < /tmp/run2.$$.sql "${database}"
+[ -z "${SCRIPT_DEBUG}" ] && rm -f /tmp/run2.$$.sql
+
+echo 'Finished with no errors.'
+echo
+@
+
+
+1.38
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+scriptversion='$Revision: 1.37 $'
+d8 1
+d238 37
+d277 2
+a278 1
+	 ( version ) echo "${scriptversion}" | awk '{printf "%s", $2;}'; exit 0 ;;
+@
+
+
+1.37
+log
+@display the version string.
+@
+text
+@d6 1
+a6 1
+scriptversion='$Revision: 1.36 $'
+d238 4
+@
+
+
+1.36
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+scriptversion='$Revision:$'
+d239 1
+a239 1
+echo 'Set Vole/Vinkix/Vienna message base back, version' "${scriptversion}"
+@
+
+
+1.35
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+scriptversion=1.35
+d254 2
+a255 2
+sql_add_participants devans
+sql_add_participants fred
+d311 1
+a311 1
+set_read_flags
+@
+
+
+1.34
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+scriptversion=1.4
+@
+
+
+1.33
+log
+@disallow 1970 year in date entry.
+@
+text
+@d56 1
+a56 1
+printf 'insert or replace into folder_list (action_id) select topic_id from confs where %c%s%c = conf_name;' \' "${1}" \' \
+d113 1
+a113 1
+# twoarguments - the comparison object and the type (integer = 0, string = 1)
+@
+
+
+1.32
+log
+@add time validation
+@
+text
+@d221 3
+a223 2
+/^[12][0-9][0-9][0-9]-[01][0-9]-[0-3][0-9]$/ 
+{ if ( $1 >= 1970 && $1 < 2100 && $2 >= 1 && $2 <= 12 && $3 >= 1 && $3 <= 31 ) exitcode = 0; }
+@
+
+
+1.31
+log
+@add date validation
+@
+text
+@d220 1
+a220 1
+BEGIN { FS="-" }
+d222 1
+a222 1
+{ if ( $1 >= 1970 && $1 < 2100 && $2 >= 1 && $2 <= 12 && $3 >= 1 && $3 <= 31 ) exitcode = 1; }
+d224 10
+a233 1
+END { if (exitcode == 1 ) exit 0 ; else exit 1; }
+a235 3
+
+
+
+d282 6
+a287 3
+read -p 'Please enter time in format HH:MM      : ' time
+time=$(strip "${time}" )
+
+@
+
+
+1.30
+log
+@*** empty log message ***
+@
+text
+@d216 13
+d268 8
+a275 2
+
+read -p 'Please enter date in format YYYY-MM-DD : ' date
+d277 1
+a277 1
+
+@
+
+
+1.29
+log
+@almost working, runs ok
+@
+text
+@d21 1
+a21 1
+ attach '/tmp/svb.db' as cf;
+@
+
+
+1.28
+log
+@works
+@
+text
+@d142 7
+@
+
+
+1.27
+log
+@broken, syntax error at line 201
+@
+text
+@d194 1
+d200 2
+a201 2
+#topiclist=$(printf 'select * from confs where \047%s\047 = conf_name and \047%s\047 = topic_name ;'   "${1}" "${2}" | sqlite3 "${tempdb})"
+#printf ${topiclist}
+@
+
+
+1.26
+log
+@*** empty log message ***
+@
+text
+@d193 2
+a194 3
+function add_new_topic() {
+printf 'insert or replace into folder_list(action_id) select topic_id from confs where \047%s\047 = conf_name and \047%s\047 = topic_name ;'\
+	 "${1}" "${2}" | sqlite3 ${tempdb}
+d199 2
+a200 3
+topiclist=$(printf 'select * from confs where \047%s\047 = conf_name and \047%s\047 = topic_name ;' \
+    "${1}" "${2}" | sqlite3 "${tempdb}"
+printf ${topiclist}
+d202 1
+@
+
+
+1.25
+log
+@*** empty log message ***
+@
+text
+@d179 11
+d191 12
+a202 1
+
+d207 1
+a207 1
+/bin/echo -n "${1}" | tr -d \\047\\042 
+a305 3
+
+
+
+@
+
+
+1.24
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+scriptversion=1.3
+d178 1
+a178 1
+  topic=$(strip)
+d185 1
+a185 1
+/bin/echo -n "${1}" | tr -d \047\042 
+d212 1
+@
+
+
+1.23
+log
+@*** empty log message ***
+@
+text
+@d50 1
+a50 1
+
+d135 1
+a135 1
+echo 'here are some suggestions'
+d155 1
+d170 10
+d181 6
+a186 1
+
+d211 1
+a211 1
+
+d220 2
+a221 1
+      update_list "${cf}"
+@
+
+
+1.22
+log
+@*** empty log message ***
+@
+text
+@d139 1
+a139 1
+ |	sqlite3 /tmp/svb.db | cols
+d142 6
+d155 1
+@
+
+
+1.21
+log
+@*** empty log message ***
+@
+text
+@d134 3
+d138 2
+a141 1
+
+d145 1
+a145 1
+if [ -z "$(get_conf "${1}" ) ] 
+d153 12
+@
+
+
+1.20
+log
+@*** empty log message ***
+@
+text
+@d128 1
+a128 1
+# one argument - the pacticipant to add
+d132 2
+d136 1
+d138 11
+d179 4
+a182 2
+    update_list "${cf}"
+    echo Topics selected so far: $(list_folders | wc -l)
+@
+
+
+1.19
+log
+@*** empty log message ***
+@
+text
+@d110 1
+a111 3
+
+
+
+d119 4
+a122 1
+       printf "%s = %s\n", co, $1
+d126 7
+d152 2
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@d8 2
+d11 1
+d19 1
+a19 1
+cat << EOFXXX | sqlite3 "${database}"
+d21 1
+a21 1
+attach '/tmp/svb.db' as cf;
+@
+
+
+1.17
+log
+@*** empty log message ***
+@
+text
+@d81 1
+a81 1
+printf '  WHERE ( (date - strftime(\055%%s\055,\055%s %s\055)) %s 0 )\n' \
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@a78 1
+return
+d80 3
+a82 2
+printf 'BEGIN TRANSACTION;\n UPDATE messages SET read_flag = %s WHERE ( (date - strftime('%%s','%s %s')) %s 0 )\n' \
+    "${read_flag}" "${date}" "${time}" "${compare}"
+d118 1
+a118 1
+#       printf "folder_id = %s\n", co
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d58 1
+a58 1
+
+d62 4
+a65 1
+
+d79 1
+d81 1
+a81 1
+printf 'BEGIN TRANSACTION; UPDATE messages SET read_flag = %s WHERE ( (date - strftime('%%s','%s %s')) %s 0 )\n' \
+d109 2
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@d42 1
+a42 1
+crate table cf.parti(parti unique);
+d67 4
+a70 4
+sql.initialise
+sql.topics
+sql.participants
+sql.finalise
+d75 2
+a76 2
+function sql.initialise(){
+printf '-- sql.initialise\n'
+d79 1
+a79 1
+printf '-- end of sql.initialise\n'
+d82 3
+a84 3
+function sql.topics(){
+printf '-- sql.topics\n'
+if [ ! -z "$(list folders)" ]
+d86 1
+a86 1
+  list_folders | sql.clause "folder_id" 0
+d88 1
+a88 1
+printf '-- end of sql.topics\n'
+d91 2
+a92 2
+function sql.participants(){
+printf '-- sql.participants\n'
+d95 1
+a95 1
+list_participants | sql.clause "sender" 1
+d97 1
+a97 1
+printf '-- end of sql.participants\n'
+d100 2
+a101 2
+function sql.finalise(){
+printf ';\nCOMMIT;'\n'
+d105 1
+a105 1
+function sql.clause(){
+d112 1
+a112 2
+	;
+printf "folder_id = %s\n", co
+@
+
+
+1.13
+log
+@broken
+@
+text
+@d36 1
+a37 1
+
+d41 2
+d69 1
+a69 1
+#sql.participants
+d72 1
+d84 4
+a87 1
+list_folders | sql.clause "folder_id"
+d93 4
+a96 1
+list_participants | sql.clause "sender"
+d99 16
+a114 1
+
+a115 5
+	{ # process folder_ids now
+	if(count==0) print "AND ("
+	if(count > 0) printf("OR ");
+	count++;
+printf "folder_id = %s\n", $1
+a116 4
+' | sqlite3 "${database}"
+
+}
+##### end of function set_read_flags
+@
+
+
+1.12
+log
+@add cixen to temporary database.
+@
+text
+@d65 31
+a95 17
+if [ "${all_flag}" -eq 1 ]
+then
+printf "BEGIN TRANSACTION; UPDATE messages SET read_flag = %s WHERE (date - strftime('%%s','%s %s')) %s 0 ; COMMIT;" \
+    "${read_flag}" "${date}" "${time}" "${compare}"  | sqlite3 "${database}"
+return
+fi
+[ -z "$(list_folders)" ] && return
+# we have at least one folder to process
+list_folders | awk -v rf="${read_flag}" -v dt="${date}" -v tm="${time}" -v cf="${compare}" '
+BEGIN { printf "BEGIN TRANSACTION;\nUPDATE messages SET read_flag = %s\n", rf ;
+        printf "WHERE ( ( date - strftime(%c%%s%c, %c%s %s%c)) %s 0 ) AND (\n", 39,39,39,dt,tm,39,cf;
+#                                           ^^ There really are 2 %%  there. 
+}
+END { printf ");\nCOMMIT;\n" }
+{ # process folder_ids now
+if(count > 0) printf("OR ");
+count++;
+@
+
+
+1.11
+log
+@display topics selected so far.
+@
+text
+@d36 1
+d38 3
+d90 1
+a90 1
+
+d101 1
+d103 2
+a104 1
+
+@
+
+
+1.10
+log
+@seems to be working to set flags in individual conferences.
+@
+text
+@d113 1
+@
+
+
+1.9
+log
+@seem to be producing the right sql.
+@
+text
+@d71 2
+a72 2
+        printf "WHERE ( date - strftime(%c%%s%c, %c %s %s %c)) %s 0 AND (\n", 39,39,39,dt,tm,39,cf;
+#                                         ^^ There really are 2 %%  there. 
+d80 1
+a80 5
+'
+
+
+
+
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d70 9
+a78 3
+BEGIN { printf "BEGIN TRANSACTION\n; UPDATE messages SET read_flag = %s\n", rf ;
+printf "WHERE ( date - strftime(%c%%s%c, %c %s %s %c)) %s 0 AND (\n", 39,39,39,dt,tm,39,cf;
+
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d68 12
+a79 1
+echo $(list_folders)
+@
+
+
+1.6
+log
+@sort of working.
+@
+text
+@d53 20
+d88 14
+a101 4
+
+read -p 'Please enter a conference name, or all : ' cf
+update_list "${cf}"
+
+d129 1
+a129 2
+printf "BEGIN TRANSACTION; UPDATE messages SET read_flag = %s WHERE (date - strftime('%%s','%s %s')) %s 0 ; COMMIT;" \
+    "${read_flag}" "${date}" "${time}" "${compare}"  | sqlite3 "${database}"
+@
+
+
+1.5
+log
+@broken
+@
+text
+@d19 4
+d47 1
+a47 1
+printf 'select topic_id from confs where %c%s%c = conf_name;' \' "${1}" \' \
+d69 2
+a70 2
+read -p 'Please enter a conference name, or "all" : ' cf
+update_list( "${cf} )
+@
+
+
+1.4
+log
+@current checkout 63787ec6
+@
+text
+@d8 1
+a8 1
+
+d15 34
+d60 1
+d64 5
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+scriptversion=1.2
+d68 2
+a69 1
+echo 'Stage 4 of 6. Run the SQL script from stage 3 to update unread counts in folders.'
+d80 2
+a81 1
+echo 'Stage 6 of 6. Run the SQL script from stage 5 to update priority unread counts in folders.'
+@
+
+
+1.2
+log
+@Priority messages have their own flag, priority_flag. It does not depend
+on the sender.
+@
+text
+@d70 1
+a70 1
+#rm -f /tmp/run.$$.sql
+d81 1
+a81 1
+#rm -f /tmp/run2.$$.sql
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d74 1
+a74 1
+printf 'SELECT folder_id asc, count(*) FROM  messages WHERE sender = %c%s%c AND read_flag = 0 GROUP BY folder_id  ;' \' "${cixnick}" \' \
+@
