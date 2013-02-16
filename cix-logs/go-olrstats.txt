@@ -1,0 +1,13 @@
+# This is a scratchpad obtained by "go olrstats"
+
+cix.feedback
+open
+7 Aug 97
+matsims mat robert sjc tcash slodge apn
+504
+2
+14844
+16 Feb 13
+stats,5861,-1,12 Jan 12,0,0,3.69
+2stats,8983,-1,16 Feb 13,2,14,6.75
+ENDCONFSTAT cix.feedback

@@ -1,0 +1,36 @@
+### This is the output from "go confstats"
+
+Joining cix.feedback/2stats 0 new message(s).
+TOPIC FULL
+READ ONLY
+R:go confstats
+Confstat V1.3 (for support, mail support@compulink.co.uk)
+You are in the cix.feedback conference, doing stat on this conference.
+
+
+Conference Information
+======================
+Conference:          cix.feedback
+Status:              open
+Created:             7 Aug 97
+Moderators:           matsims mat robert sjc tcash slodge apn
+Nr of Participants:  504
+Nr of Topics:        2
+Nr of Messages:      14844
+Last Message:        16 Feb 13
+
+Press <CR> for information on Topics (this may take some time) or q to quit: 
+
+
+Topics Information
+==================
+Please wait a moment...
+
+
+Topic           Msgs    Files    Last Msg  1 day  7 days  Meg
+stats           5861      -1    12 Jan 12     0       0   3.69
+2stats          8983      -1    16 Feb 13     2      14   6.75
+R:bye
+There is unread Mail, do you really want to quit ? (y/n)? Yy
+devans, you have been online 0:39 on line 5
+Goodbye from CIX     !!!HANGUP NOW!!!
