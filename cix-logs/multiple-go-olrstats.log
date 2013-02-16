@@ -1,0 +1,43 @@
+CONFSTAT FAILED bni
+vienna
+open
+14 Mar 4
+devans
+82
+7
+2361
+16 Feb 13
+announce,84,-1,14 Feb 13,0,2,0.08
+files,16,10,15 Feb 13,2,3,0.01
+chatter,2200,-1,14 Feb 13,0,7,0.80
+sandpit,23,-1,2 Aug 12,0,0,0.01
+sandpit_files,5,3,11 Jul 12,0,0,0.00
+bugs,24,-1,16 Feb 13,4,5,0.01
+set_vole_back,9,-1,16 Feb 13,5,9,0.01
+ENDCONFSTAT vienna
+cix.support
+open
+5 Jun 97
+rikki asalmon alan mat rlc icuknet alanheyes
+1802
+17
+49736
+16 Feb 13
+support,5277,-1,5 Feb 8,0,0,1.90
+announce,7,-1,7 Sep 12,0,0,0.01
+6conferencing,2505,-1,25 May 5,0,0,0.82
+ameol.faq,79,-1,11 Dec 12,0,0,0.12
+conf.faq,9,-1,28 Nov 8,0,0,0.03
+2ameol,4279,-1,10 Nov 10,0,0,1.63
+1ameol,4636,-1,24 Dec 5,0,0,1.82
+online,5001,-1,12 Jan 13,0,0,1.79
+3ameol,5058,-1,26 Sep 8,0,0,1.92
+2support,5843,-1,9 Dec 10,0,0,1.80
+files,62,242,22 Jan 13,0,0,0.05
+4ameol,5215,-1,11 Feb 11,0,0,1.86
+cixforums,1983,-1,11 Feb 13,0,5,0.54
+3support,3732,-1,16 Feb 13,1,36,1.25
+5ameol,5045,-1,11 Feb 13,0,2,1.83
+webmail,618,-1,14 Feb 13,0,8,0.18
+6ameol,387,-1,16 Feb 13,7,12,0.12
+ENDCONFSTAT cix.support
