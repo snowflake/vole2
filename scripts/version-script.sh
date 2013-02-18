@@ -116,6 +116,25 @@ printf 'char source_code_fossil_uuid[]="%s";\n' $uuid >>${OF}
 printf 'char build_uuid[]="%s";\n' "${build_uuid}" >> ${OF}
 printf 'char marketing_version[]="%s";\n' "$(marketing_version)" >> ${OF}
 
+cat >> ${OF} << BUILD_INFO_EOF
+
+/* vole_build_info is for appending Vole information to
+ * messages posted in the vienna conference 
+ */
+char vole_build_info[]=
+"[Build]\n"
+"${PRODUCT_NAME}: $(marketing_version) ${BUILDID}\n"
+"Ckout: $(fossil status | awk '/checkout/ { print $2,$3,$4,$5}' )\n"
+"Unchecked files: $(echo ${unchecked_files})\n"
+"Build UUID: ${build_uuid}\n"
+"SDK Root: ${SDKROOT}\n"
+"Architectures: ${ARCHS}\n"
+"Build Date: ${builddate}\n"
+"Built by user: ${USER}\n"
+;
+BUILD_INFO_EOF
+
+
 if [ $unchecked_files -ne 0 ]
 	then 
 		echo ERROR files not checked into Fossil
