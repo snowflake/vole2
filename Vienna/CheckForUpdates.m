@@ -28,6 +28,16 @@
  */
 -(void)checkForUpdate:(NSWindow *)window showUI:(BOOL)showUI
 {
+	// dje added 20/02/2013 to give a simple alert.
+	// One day we might do this differently.
+	NSAlert * alert = [[ NSAlert alloc] init];
+	[alert addButtonWithTitle:@"OK"];
+	[alert setInformativeText:@"To check for updates, please join the Cix vienna conference."];
+	[alert runModal];
+	return;
+	// end of dje additons
+	
+	
 	// Initialize UI
 	if (showUI)
 	{
