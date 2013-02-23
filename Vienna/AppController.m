@@ -4798,7 +4798,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	NSString *fileName = [@"~/Library/Vienna/acronyms.lst" stringByExpandingTildeInPath];
 	BOOL foundCommon = NO;
 	BOOL endOfFile = NO;
-
+	NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 	// Look for the acronyms file in ~/Library, or in the bundle if not found. This
 	// allows the user to override the supplied file easily.
 	if (![[NSFileManager defaultManager] isReadableFileAtPath: fileName])
@@ -4812,11 +4812,17 @@ int messageSortHandler(id i1, id i2, void * context)
 	if (buffer == nil)
 		return;
 		
-	acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 4000];
+	acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 16000];
 	
 	NSString * line = [buffer readLine:&endOfFile];
 	while (!endOfFile)
 	{			
+		if([line hasPrefix:@"[Acronyms.Lst Version"])
+		{
+			acronymsVersion = [ NSString stringWithFormat:@"%@]", line];
+			line = [buffer readLine:&endOfFile];
+			continue;
+		}
 		if ([line isEqualToString: @"[common]"])
 			foundCommon = YES;
 
@@ -4829,12 +4835,27 @@ int messageSortHandler(id i1, id i2, void * context)
 		NSScanner * scanner = [NSScanner scannerWithString: line];
 		NSString *acronym;
 		NSString *expansion;
+
 		
 		[scanner scanUpToString:@"\t" intoString: &acronym];
 		[scanner scanUpToString:@"" intoString: &expansion];
-		[acronymDictionary setObject: expansion forKey: acronym];
+		if ( ! ((acronym == nil) || ( expansion == nil) ) ) 
+			[acronymDictionary setObject: expansion forKey: acronym];
 		
 		line = [buffer readLine:&endOfFile];
+	}
+	// append our special acronyms at the end of the dictionary
+	NSString * voleAcronyms[]={ @"Vole", @"VOLE", @"vole"}; // keys to lookup
+	size_t i;
+	NSString * version = [NSString stringWithFormat:@"%@ / %@",@"Small, cute, furry mammal / Vienna Off-Line Environment\n", acronymsVersion];  
+	for (i = 0; i< sizeof(voleAcronyms) / sizeof(NSString *); i++){
+		NSString * current = [ acronymDictionary valueForKey:voleAcronyms[i] ];
+		if (current == nil) { // not in dict, so just use our version
+			[acronymDictionary setObject:version forKey:voleAcronyms[i] ];
+		}
+		else { // already in dict, so append our special acronym to the current string.
+			[ acronymDictionary setObject: [ NSString stringWithFormat:@"%@ / %@", current, version] forKey:voleAcronyms[i]  ];
+		}
 	}
 	[buffer release];
 }
