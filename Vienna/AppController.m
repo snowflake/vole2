@@ -133,7 +133,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		appName = [fileAttributes objectForKey:@"CFBundleName"];
 	}
 	if (appName == nil)
-		appName = @"Vienna";
+		appName = @"Vole";  // DJE 23/02/2013
 	
 	[self readAcronyms];
 	
