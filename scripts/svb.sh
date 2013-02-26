@@ -3,7 +3,7 @@
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion='$Revision: 1.45 $'
+scriptversion='$Revision: 1.46 $'
 database="${HOME}/Library/Vienna/database3.db"
 FILE_STAGE1="/tmp/svb-stage1.sql"
 shortname="svb"
@@ -439,10 +439,11 @@ echo 'UPDATE folders SET unread_count=0, priority_unread_count=0 ; ' | sqlite3 "
 
 echo 'Stage 3 of 6. Recalculate folders unread count.'
 cat << EOFBBB > /tmp/run.$$.sql
+-- stage 3 on $(date)
+BEGIN TRANSACTION;
 $(sqlite3 ${database}   'SELECT folder_id asc, count() FROM  messages WHERE read_flag = 0 GROUP BY folder_id  ;' | awk 'BEGIN {FS="|" } { printf("UPDATE folders  SET unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }' )
+COMMIT;
 EOFBBB
-
-
 
 echo 'Stage 4 of 6. Run the SQL script from stage 3 to update unread counts'
 echo '              in folders.'
@@ -450,10 +451,10 @@ sqlite3 < /tmp/run.$$.sql "${database}"
 [ -z "${SCRIPT_DEBUG}" ] && rm -f /tmp/run.$$.sql
 
 echo 'Stage 5 of 6. Recalculate folders priority unread count.'
-
+echo '-- stage 5' on $(date) > /tmp/run2.$$.sql
 printf 'SELECT folder_id asc, count(*) FROM  messages WHERE priority_flag=1 AND read_flag = 0 GROUP BY folder_id  ;'  \
     |  sqlite3 "${database}" \
-    |  awk 'BEGIN {FS="|" } { printf("UPDATE folders  SET priority_unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }'  > /tmp/run2.$$.sql
+    |  awk 'BEGIN {FS="|"; print "BEGIN TRANSACTION;" } END {print "COMMIT;"}         { printf("UPDATE folders  SET priority_unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }'  >> /tmp/run2.$$.sql
 
 
 echo 'Stage 6 of 6. Run the SQL script from stage 5 to update priority unread'
