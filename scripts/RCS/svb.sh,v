@@ -1,10 +1,15 @@
-head	1.45;
+head	1.46;
 access;
 symbols;
 locks
-	davidevans:1.45; strict;
+	davidevans:1.46; strict;
 comment	@# @;
 
+
+1.46
+date	2013.02.26.15.39.48;	author davidevans;	state Exp;
+branches;
+next	1.45;
 
 1.45
 date	2013.02.15.17.26.37;	author davidevans;	state Exp;
@@ -237,9 +242,9 @@ desc
 @
 
 
-1.45
+1.46
 log
-@*** empty log message ***
+@add some BEGIN TRANSACTION; COMMIT blocks. add some comments in the SQL.
 @
 text
 @#!/bin/sh
@@ -247,7 +252,7 @@ text
 # script to mark messages as read before a date, or as unread after a date
 
 set -e
-scriptversion='$Revision: 1.44 $'
+scriptversion='$Revision: 1.45 $'
 database="${HOME}/Library/Vienna/database3.db"
 FILE_STAGE1="/tmp/svb-stage1.sql"
 shortname="svb"
@@ -683,10 +688,11 @@ echo 'UPDATE folders SET unread_count=0, priority_unread_count=0 ; ' | sqlite3 "
 
 echo 'Stage 3 of 6. Recalculate folders unread count.'
 cat << EOFBBB > /tmp/run.$$.sql
+-- stage 3 on $(date)
+BEGIN TRANSACTION;
 $(sqlite3 ${database}   'SELECT folder_id asc, count() FROM  messages WHERE read_flag = 0 GROUP BY folder_id  ;' | awk 'BEGIN {FS="|" } { printf("UPDATE folders  SET unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }' )
+COMMIT;
 EOFBBB
-
-
 
 echo 'Stage 4 of 6. Run the SQL script from stage 3 to update unread counts'
 echo '              in folders.'
@@ -694,10 +700,10 @@ sqlite3 < /tmp/run.$$.sql "${database}"
 [ -z "${SCRIPT_DEBUG}" ] && rm -f /tmp/run.$$.sql
 
 echo 'Stage 5 of 6. Recalculate folders priority unread count.'
-
+echo '-- stage 5' on $(date) > /tmp/run2.$$.sql
 printf 'SELECT folder_id asc, count(*) FROM  messages WHERE priority_flag=1 AND read_flag = 0 GROUP BY folder_id  ;'  \
     |  sqlite3 "${database}" \
-    |  awk 'BEGIN {FS="|" } { printf("UPDATE folders  SET priority_unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }'  > /tmp/run2.$$.sql
+    |  awk 'BEGIN {FS="|"; print "BEGIN TRANSACTION;" } END {print "COMMIT;"}         { printf("UPDATE folders  SET priority_unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }'  >> /tmp/run2.$$.sql
 
 
 echo 'Stage 6 of 6. Run the SQL script from stage 5 to update priority unread'
@@ -707,6 +713,28 @@ sqlite3 < /tmp/run2.$$.sql "${database}"
 
 echo 'Finished with no errors.'
 echo
+@
+
+
+1.45
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+scriptversion='$Revision: 1.44 $'
+d442 2
+d445 1
+a447 2
+
+
+d454 1
+a454 1
+
+d457 1
+a457 1
+    |  awk 'BEGIN {FS="|" } { printf("UPDATE folders  SET priority_unread_count=%s WHERE folder_id=%s ;\n",$2,$1); }'  > /tmp/run2.$$.sql
 @
 
 
