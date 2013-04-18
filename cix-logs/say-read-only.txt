@@ -1,0 +1,41 @@
+M:checkpoint
+Message pointers saved
+M:store
+Message pointers stored
+M:killsc
+Scratchpad Deleted
+M:j cix.support/6conferencing
+Joining cix.support/6conferencing 0 new message(s).
+READ ONLY
+Rf:edit
+Editing SCRATCHPAD
+Begin entering your text. When you are finished
+go to a new line type a period and press the enter key
+input->windows_7 stats
+input->
+input->Has the stats gathering program that generates
+input->cix:cix.feedback/2stats:9104 had a fit?
+input->
+input->557 messages in one day in windows_7. I
+input->see only about 6 messages in the last 3 days.
+input->.
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> x
+7 line(s)
+Edit complete.
+Rf:say
+Read-Only topic.
+No more unread
+Hit <RETURN> for next
+Rf:j cix.support/3support
+Joining cix.support/3support 0 new message(s).
+Rf:edit
+Editing SCRATCHPAD
+7 lines existing in file
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> windows_7 stats
+Available commands are:
+e(x)it (a)ppend (c)lear (d)elete (h)elp (l)ist (q)uit (s)ubstitute
+Command-> 
