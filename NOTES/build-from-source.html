@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>Building Vole from source</title>
+<meta name="generator" content=
+"HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.10), see www.w3.org">
+</head>
+<body>
+<pre>
+
+Directory layout:
+================
+~/Vienna-source
+~/Vienna-source/Vienna-build   ( created automatically during the build)
+~/Vienna-source/xxx            ( git clone into this directory or move an 
+                               ( already cloned directory here
+
+Example:
+
+$ cd ~/Vienna-source
+$ git clone https://github.com/snowflake/vole.git xxx 
+
+Xcode
+=====
+
+Install Xcode 3.2.6 into /Xcode3.2.6 or install it into /Developer
+and then move it to /Xcode3.2.6
+
+Build
+=====
+
+We use a command line build
+
+This assumes you are using /bin/sh (bash)
+
+$ cd ~/Vienna-source/xxx/Vienna
+
+$ DEVELOPER_DIR=/Xcode3.2.6 make tiger
+
+The build takes 30 seconds or so.
+
+The build result will be in ~/Vienna-source/Vienna-build/tiger as
+Vole.app
+
+Run it using the Makefile thus:
+
+$ make tiger-run
+
+
+</pre>
+</body>
+</html>
