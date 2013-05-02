@@ -93,6 +93,11 @@ printf '"Garbage collection: %s\\n"\n' "${GCC_ENABLE_OBJC_GC}" >>${OF}
 printf '"Debugging Symbols:%s\\n"\n' "${DEBUGGING_SYMBOLS}" >>${OF}
 printf '"Debug Information Format: %s\\n"\n' "${DEBUG_INFORMATION_FORMAT}" >>${OF}
 printf '"GCC Version: %s\\n"\n' "${GCC_VERSION}" >>${OF}
+
+# the next two lines are tricky
+printf '#ifdef __VERSION__\n"GCC: " __VERSION__ "\\n" \n#endif\n' >>${OF}
+printf '#ifdef __clang_version__\n"Clang: " __clang_version__ "\\n" \n#endif\n' >>${OF}
+
 printf '"MacOSX Deployment Target: %s\\n"\n' "${MACOSX_DEPLOYMENT_TARGET}" >>${OF}
 printf '"Product Name: %s\\n"\n' "${PRODUCT_NAME}" >>${OF}
 printf '"SDK Root: %s\\n"\n' "${SDKROOT}" >>${OF}
