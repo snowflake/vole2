@@ -75,10 +75,12 @@ Date: $(date '+%A %e %B %Y')
 ***********************************************************************
 To avoid disappointment and a wasted download, please check the 
 Minimum OS X Required and Runs On fields above to make sure
-that Vole will be compatible with your system.
+that this download of Vole will be compatible with your system.
  
 Previous versions of Vole/Vinkix/Vienna were compatible with everything
-from Tiger upwards. This is no longer the case.
+from Tiger upwards. This is no longer the case. We will probably
+have several versions of Vole available optimised for different
+systems.  
 ***********************************************************************
 
 [Notes]
