@@ -11,14 +11,27 @@ Development-release: STATUS=Experimental
 tiger-release: NAME=vt
 tiger-release: COMPATIBILITY=Tiger (10.4) and later, Universal.
 tiger-release: STATUS=Recommended for everyone.
+tiger-release tiger: MOSXDT=10.4
+# archs must be given in the order ppc i386 x86_64
+tiger-release tiger: ARCHS=ppc i386
+tiger-release tiger: SDK_NAME=macosx10.4
 
 leopard-release: NAME=vl
 leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal.
 leopard-release: STATUS=Experimental, may crash, needs testing
+leopard-release leopard: MOSXDT=10.5
+# archs must be given in the order ppc i386 x86_64
+leopard-release leopard: ARCHS=ppc i386 x86_64
+leopard-release leopard: SDK_NAME=macosx10.5
 
 snowleopard-release: NAME=vs
 snowleopard-release: COMPATIBILITY=Snow Leopard (10.6) and later, Intel
 snowleopard-release: STATUS=Experimental, may crash, needs testing
+snowleopard-release snowleopard: MOSXDT=10.5
+# archs must be given in the order ppc i386 x86_64
+snowleopard-release snowleopard: ARCHS=ppc i386 x86_64
+snowleopard-release snowleopard: SDK_NAME=macosx10.6
+
 
 lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
@@ -52,7 +65,9 @@ tiger leopard snowleopard lion Development:
 	xcodebuild -project Vole.xcodeproj  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project Vole.xcodeproj  -configuration $@ \
-		BUILDID=${SHORT}-${SHORTDATE} 
+		BUILDID=${SHORT}-${SHORTDATE} \
+		ARCHS="${ARCHS}" SDK_NAME="${SDK_NAME}" \
+		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}"
 
 # Run the version of Xcode appropiate to the target
 tiger-go leopard-go snowleopard-go lion-go Development-go:
@@ -104,7 +119,11 @@ tiger-release leopard-release snowleopard-release lion-release \
 		${NAME}-${VERSION}.zip \
 		${NAME}-${VERSION}.cix \
 		"Compatibility: ${COMPATIBILITY}" \
-		"Status: ${STATUS}"
+		"Status: ${STATUS}" \
+		"${MOSXDT}" \
+		"${ARCHS}" \
+		"${SDK_NAME}"
+
 	sh ../scripts/yesno.sh "Do you want to archive this build y/n : "
 	[ -d ${ARCHIVE_DIR} ]
 	cp ${NAME}-${VERSION}.zip \
