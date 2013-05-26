@@ -130,10 +130,13 @@ tiger-release leopard-release snowleopard-release lion-release \
 	[ -d ${ARCHIVE_DIR} ]
 	cp ${NAME}-${VERSION}.zip \
 		${ARCHIVE_DIR}/${NAME}-${VERSION}-`${VIENNA_APP}  -b`.zip
-
+.PHONY: releasenotes
 releasenotes:
 	[ -f ~/mac/sources-mine/vole/RELEASES ]
 	cat ~/mac/sources-mine/vole/RELEASES | \
 		awk -f ../scripts/makereleaseindex.awk | \
 		fossil wiki commit RINOTES
 
+.PHONY: validate-help
+validate-help:
+	/opt/local/bin/gmake -f ../mk/validate-html.mk validate
