@@ -60,6 +60,8 @@ PATH=${DEVELOPER_DIR}/usr/bin:/usr/local/bin:/usr/bin:/bin
 
 tiger leopard snowleopard lion Development:
 	echo $@
+	[ XX${DEVELOPER_DIR} != XX ]
+	[ -d ${DEVELOPER_DIR} ] 
 	rm -f XXXX-Tempfile.h
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project Vole.xcodeproj  -configuration $@ clean 
