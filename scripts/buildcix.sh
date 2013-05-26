@@ -43,13 +43,38 @@ printf "%s%s%s\n" "${ppc}" "${i32}" "${i64}"
 printf "Native Intel-64-bit: %s" $native
 }
 ##### end of function #####
+function sandpit_warning(){
+if [ $sandpit = sandpit ]
+then
+cat <<SPEOF
+[warning]
+This release of Vole is in the Sandpit for good reason. It is for 
+testing. It could be unstable or crash. Some features may not be fully
+working. We have put a reasonable amount of work into making it run
+properly but it is impossible to predict all possible usage scenarios.
+If you see something not working as it should, please report it
+in the sandpit topic.
+SPEOF
+fi
+}
+#####
+
+sandpit=NotSet
+while [ $sandpit = NotSet ]
+do 
+  read -p 'Is this release for the Sandpit? (y/n): ' rel
+  case $rel in
+      [Yy] ) sandpit=sandpit ; break ;;
+      [Nn] ) sandpit=files ; break ;;
+  esac
+done
 
 cat > $3  << XEOF
 New file $2
 
 [File]
 Filename: $2
-Hotlink to download: cixfile:vienna/files:$2
+Hotlink to download: cixfile:vienna/${sandpit}:$2
 Size: $(wc -c $2 | awk '{printf $1}') 
 $(/sbin/md5 $2)
 $(openssl sha1 $2)
@@ -82,6 +107,8 @@ from Tiger upwards. This is no longer the case. We will probably
 have several versions of Vole available optimised for different
 systems.  
 ***********************************************************************
+
+$(sandpit_warning)
 
 [Notes]
 $(/opt/local/bin/lynx -dump ../NOTES/RELEASE.html)
