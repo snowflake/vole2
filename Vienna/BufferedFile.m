@@ -95,7 +95,7 @@
 			// replacement here
 			[lineString appendString:[NSString stringWithCString: sanitise_string(lineBuffer)
 														encoding:NSWindowsCP1252StringEncoding] ];
-
+			// XXX The acronyms loader depends on CP1252 encoding !!!
 			count = 0;
 		}
 		ch = [self readChar];
