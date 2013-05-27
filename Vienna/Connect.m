@@ -2080,7 +2080,10 @@ abortLabel:
 			
 			needStore = NO;
 		}
-		// DJE changed to kill scratchpad for every iteration.
+		// DJE changed to kill scratchpad for every iteration. This
+		// is a fix for the problem of posting into a read-only topic
+		// which leaves a scratchpad containing the failed message.
+		// XXX more work needed on this.
 		[self writeLine:@"q killsc"];
 		[self readAndScanForMainPrompt:&endOfFile];
 		// Join the topic.
