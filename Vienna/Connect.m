@@ -2077,11 +2077,12 @@ abortLabel:
 			[self readAndScanForMainPrompt:&endOfFile];
 			[self writeLine:@"store"];
 			[self readAndScanForMainPrompt:&endOfFile];
-			[self writeLine:@"killsc"];
-			[self readAndScanForMainPrompt:&endOfFile];
+			
 			needStore = NO;
 		}
-		
+		// DJE changed to kill scratchpad for every iteration.
+		[self writeLine:@"q killsc"];
+		[self readAndScanForMainPrompt:&endOfFile];
 		// Join the topic.
 		// Handle the case where the topic is not present
 		[self writeStringWithFormat:YES string:@"j %@\n", [message sender]];
@@ -2287,11 +2288,12 @@ abortLabel:
 	}
 
 	// Exit from posting in topics back to the main prompt
-	if (isInTopic)
-	{
-		[self writeLine:@"q"];
+	// DJE changed
+	//	if (isInTopic)
+	//	{
+		[self writeLine:@"q killsc"];
 		[self readAndScanForMainPrompt:&endOfFile];
-	}
+	//	}
 	
 	// Restore our message pointers back to the point before we
 	// started posting.
