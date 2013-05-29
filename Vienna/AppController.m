@@ -4794,28 +4794,27 @@ int messageSortHandler(id i1, id i2, void * context)
 
 -(void)readAcronyms
 {
-	BufferedFile * buffer;
-	NSString *fileName = [@"~/Library/Vienna/acronyms.lst" stringByExpandingTildeInPath];
-	BOOL foundCommon = NO;
-	BOOL endOfFile = NO;
-	NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
-	// Look for the acronyms file in ~/Library, or in the bundle if not found. This
-	// allows the user to override the supplied file easily.
-	if (![[NSFileManager defaultManager] isReadableFileAtPath: fileName])
-	{
-		// Look in bundle
-		fileName = [[NSBundle mainBundle] pathForResource: @"acronyms.lst" ofType: @""];
-	}
+	// DJE modified here, 29 May 2013
 	// The acronyms.lst file is using CP1252 encoding. Luckily, the 
 	// BufferedFile class converts it to NSString internal encoding.
-	buffer = [[BufferedFile alloc] initWithPath: fileName];
-	if (buffer == nil)
-		return;
-		
-	acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 16000];
-	
-	NSString * line = [buffer readLine:&endOfFile];
-	while (!endOfFile)
+
+	BufferedFile * buffer = nil;
+	NSString *fileName = [@"~/Library/Application Support/Vole/acronyms.lst" stringByExpandingTildeInPath];
+	BOOL foundCommon = NO;
+	BOOL endOfFile = NO;
+	BOOL foundFile = NO;
+	NSString * line;
+	NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
+
+	// Look for the acronyms file in ~/Library.
+	if ([[NSFileManager defaultManager] isReadableFileAtPath: fileName]) {
+		foundFile = YES;
+		buffer = [[BufferedFile alloc] initWithPath: fileName];
+	}
+	acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 20000];
+
+	if(buffer) line = [buffer readLine:&endOfFile];
+	while (foundFile && buffer && !endOfFile)
 	{			
 		if([line hasPrefix:@"[Acronyms.Lst Version"])
 		{
