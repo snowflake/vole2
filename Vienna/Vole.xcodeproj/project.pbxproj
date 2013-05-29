@@ -216,7 +216,6 @@
 		CDC85C6B07FC7BD9001CD23A /* TCPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC85C6907FC7BD9001CD23A /* TCPSocket.m */; };
 		CDC85CFA0802B2BD001CD23A /* Socket.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC85CF80802B2BD001CD23A /* Socket.h */; };
 		CDC85CFB0802B2BD001CD23A /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC85CF90802B2BD001CD23A /* Socket.m */; };
-		CDCB46380B9B1D2A0004148E /* acronyms.lst in Resources */ = {isa = PBXBuildFile; fileRef = CDCB46370B9B1D2A0004148E /* acronyms.lst */; };
 		CDD2C16B0BC4F0AE00E1CF06 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = CDD2C1690BC4F0AE00E1CF06 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-Wno-sign-compare -Wno-missing-prototypes -Wno-uninitialized"; }; };
 		CDD2C16C0BC4F0AE00E1CF06 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2C16A0BC4F0AE00E1CF06 /* sqlite3.h */; };
 /* End PBXBuildFile section */
@@ -458,7 +457,6 @@
 		CDC85C6907FC7BD9001CD23A /* TCPSocket.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TCPSocket.m; sourceTree = "<group>"; };
 		CDC85CF80802B2BD001CD23A /* Socket.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Socket.h; sourceTree = "<group>"; };
 		CDC85CF90802B2BD001CD23A /* Socket.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Socket.m; sourceTree = "<group>"; };
-		CDCB46370B9B1D2A0004148E /* acronyms.lst */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = acronyms.lst; sourceTree = "<group>"; };
 		CDD2C1690BC4F0AE00E1CF06 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
 		CDD2C16A0BC4F0AE00E1CF06 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -609,7 +607,6 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CDCB46370B9B1D2A0004148E /* acronyms.lst */,
 				AAA826B707713CC2005F5D24 /* ProfileWindow.nib */,
 				AA7585BD0662D39200B04481 /* MissingMessagesProgress.nib */,
 				AAB7C4D40659C1A000421EAE /* MissingMessages.nib */,
@@ -1006,7 +1003,6 @@
 				AAC504810828EB8E0089FF70 /* RSSSources.plist in Resources */,
 				AAACC4CC082FA20A00DD3150 /* newRSSSubscription.tiff in Resources */,
 				AAACC4E4082FA52C00DD3150 /* newSmartFolder.tiff in Resources */,
-				CDCB46380B9B1D2A0004148E /* acronyms.lst in Resources */,
 				6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
