@@ -80,7 +80,7 @@ $(/sbin/md5 $2)
 $(openssl sha1 $2)
 
 [Vole]
-Description: Vole off-line reader for Mac OS X only
+Description: Vole off-line reader for Mac OS X only.
              Vole was formerly known as Vienna or Vinkix
 Version: $($1 -m)
 $(list_minimum_osx)
