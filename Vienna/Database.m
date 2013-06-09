@@ -2996,11 +2996,8 @@ enum {
 	//	NSLog(@"Start cleaning browswer tables");
 	[self executeSQL:@"delete from forums"];
 	[self executeSQL:@"delete from categories"];
-	[forumArray release];  // Invalidate the caches
-	[categoryArray release];
-	// get new empty caches
-	forumArray = [[NSMutableDictionary  dictionary] retain];
-	categoryArray = [[NSMutableDictionary dictionary] retain];
+	[forumArray removeAllObjects];  // Invalidate the caches
+	[categoryArray removeAllObjects];
 	initializedForumArray = NO; // This also applies to categoryArray
 	//	NSLog(@"End cleaning browser tables");
 }
