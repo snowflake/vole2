@@ -273,6 +273,25 @@
 	return [name caseInsensitiveCompare:[otherObject name]];
 }
 
+/* topLevelFolderCompare
+ * Returns the result of comparing two items (top level only).
+ * Put CIX Conferencing last, always.
+ */
+-(NSComparisonResult)topLevelFolderCompare:(Folder *)otherObject
+{
+NSString * cixConfs = @"CIX Conferences";
+
+	if ([name caseInsensitiveCompare:[otherObject name]] == NSOrderedSame)
+		return NSOrderedSame;
+	else if ( [ name caseInsensitiveCompare:cixConfs] == NSOrderedSame )
+		return NSOrderedDescending;
+	else if ([ [ otherObject name] caseInsensitiveCompare:cixConfs] == NSOrderedSame)
+		return NSOrderedAscending;
+	else
+		return [name caseInsensitiveCompare:[otherObject name]];
+}
+
+
 /* objectSpecifier
  */
 -(NSScriptObjectSpecifier *)objectSpecifier

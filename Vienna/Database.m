@@ -2148,7 +2148,8 @@ enum {
 				[newArray addObject:item];
 		}
 	}
-	return (parentId == -1) ? newArray : [newArray sortedArrayUsingSelector:@selector(folderCompare:)];
+	return (parentId == -1) ? [newArray sortedArrayUsingSelector:@selector(topLevelFolderCompare:)] : 
+		[newArray sortedArrayUsingSelector:@selector(folderCompare:)];
 }
 
 /* initPersonArray

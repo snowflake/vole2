@@ -64,4 +64,5 @@
 -(void)deleteMessage:(int)messageId;
 -(void)markFolderEmpty;
 -(NSComparisonResult)folderCompare:(Folder *)otherObject;
+-(NSComparisonResult)topLevelFolderCompare:(Folder *)otherObject;
 @end
