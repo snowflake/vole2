@@ -25,6 +25,11 @@
 #import "SSHSocket.h"
 #import "TCPSocket.h"
 #import "RichXMLParser.h"
+// required for sleep(3)
+#import <unistd.h>
+
+extern char * cixLocation_cstring; // in main.m, used for name of the service
+
 
 // Conditional lock variables
 #define NO_DATA		0
@@ -2324,18 +2329,25 @@ abortLabel:
 	usingSSH = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_ConnectionType];
 	
 	cixAbortFlag = NO;
-
+	// DJE changes here.
+	NSString * cixLocation = [ NSString stringWithUTF8String: cixLocation_cstring ]; // in main.m
+	[cixLocation retain];  // DJE - need a retain here otherwise we get a crash. This needs
+						   // investigating as I can't see why at the moment. This is probably a memory leak
+			
+	
+	
 	if (usingSSH)
 	{
-		[self sendStatusToDelegate:NSLocalizedString(@"Connecting to service using SSH", nil)];
-		socket = [[SSHSocket alloc] initWithAddress:@"cix.compulink.co.uk" port:22];		
+		[self sendStatusToDelegate: [NSString stringWithFormat: @"Connecting to service %@ using ssh", cixLocation ] ];
+		socket = [[SSHSocket alloc] initWithAddress:cixLocation port:22];		
 	}
 	else
 	{
-		[self sendStatusToDelegate:NSLocalizedString(@"Connecting to service using telnet", nil)];
-		socket = [[TCPSocket alloc] initWithAddress:@"cix.compulink.co.uk" port:23];
+		[self sendStatusToDelegate: [NSString stringWithFormat: @"Connecting to service %@ using telnet", cixLocation ] ];
+		socket = [[TCPSocket alloc] initWithAddress:cixLocation port:23];
 	}
-	
+	// [ cixLocation release ]; // DJE XXX don't do this (see above)
+	sleep(5);
 	if (![socket connect])
 		return MA_Connect_ServiceUnavailable;
 

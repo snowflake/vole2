@@ -46,6 +46,10 @@
 // Non-class function used for sorting
 int messageSortHandler(id item1, id item2, void * context);
 
+extern char * cixLocation_cstring; // in main.m
+extern int cixbetaflag; // in main.m
+extern char * volecixbetaname;
+
 static NSString * MA_DefaultDatabaseName = @"~/Library/Vienna/database3.db";
 static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 
@@ -1060,7 +1064,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	BOOL okay;
 	SCNetworkConnectionFlags status;
 	
-	success = SCNetworkCheckReachabilityByName("cix.compulink.co.uk", &status);
+	success = SCNetworkCheckReachabilityByName(cixLocation_cstring, &status); //cixLocation_cstring is in main.m
 	okay = success && (status & kSCNetworkFlagsReachable) && 
 		!(status & kSCNetworkFlagsConnectionRequired);
 	
@@ -2754,6 +2758,28 @@ int messageSortHandler(id i1, id i2, void * context)
 	[searchFolder loadCriteria:mainWindow folderId:folderId];
 }
 
+-(int)checkBeta
+// Check if we are using the beta server and alert the user (added 2013-10-15)
+
+{
+//	NSLog(@"checkbeta");
+	
+	NSString *infotext  = [NSString stringWithFormat: @"Using the Cix beta server at %s. To disable this and to use the normal server"
+						   ", remove the file \"%s\" from"
+						   " your home folder and restart Vole.",cixLocation_cstring, volecixbetaname];
+	if(cixbetaflag) {  // We are using the cix beta server
+		NSAlert * askUserAlert = [NSAlert alertWithMessageText:@"Cix Beta"
+												 defaultButton:@"Continue"
+											   alternateButton:@"Abort Connect"
+												   otherButton:nil
+									 informativeTextWithFormat:infotext];
+		if ([askUserAlert runModal] != NSAlertDefaultReturn){
+			return 1;
+		}
+	}
+	return 0;
+}
+
 /* getMessages
  * Get new messages from the service.
  */
@@ -2762,7 +2788,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	if ([connect isProcessing])
 		[connect abortConnect];
 	else
-	{
+	{ 
+		if( [self checkBeta ] == 1) return;
 		if ([self beginConnect: MA_ConnectMode_Both])
 		{
 			batchConnect = YES;
@@ -2799,6 +2826,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		[connect abortConnect];
 	else
 	{
+		if ([self checkBeta ] == 1 ) return;
 		if ([self beginConnect: MA_ConnectMode_Cix])
 		{
 			batchConnect = YES;
