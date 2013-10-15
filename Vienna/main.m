@@ -14,9 +14,9 @@
 #import "sqlite3.h"
 #import <stdlib.h>
 #import <unistd.h>
-char * cixLocation_cstring = "cix.compulink.co.uk";
-char * betaserver = "v4.conferencing.co.uk";
-char * volecixbetaname = "volecixbeta";
+char * cixLocation_cstring = "cix.compulink.co.uk"; // Normal server
+char * betaserver = "v4.conferencing.co.uk"; // alternate beta server
+char * volecixbetaname = "volecixbeta"; // name of a file in $HOME folder to activate the beta server
 int cixbetaflag=0;  // set to 1 if using cix beta
 
 int main(int argc, const char *argv[])
@@ -86,8 +86,8 @@ int main(int argc, const char *argv[])
 // test for using the beta server
 	char * home = getenv("HOME");
 	if( home == NULL) {
-		NSLog(@"main.c: HOME = %s", home);
 		home="nohome";
+		NSLog(@"main.c: HOME = %s", home);
 	}
 	else {
 		char *volecixbeta;
