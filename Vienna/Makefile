@@ -137,6 +137,7 @@ releasenotes:
 		awk -f ../scripts/makereleaseindex.awk | \
 		fossil wiki commit RINOTES
 
+# validate-help requires Macports: gmake opensp html
 .PHONY: validate-help
 validate-help:
 	/opt/local/bin/gmake -f ../mk/validate-html.mk validate
