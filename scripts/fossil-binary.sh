@@ -15,5 +15,11 @@ IGNORE=*.mode1,*.pbxuser,*.perspective,*.perspectivev3,\
 *.xcworkspacedata,*.xcuserstate,*.xcsettings,*.xcscheme,\
 *management.plist
 
+# the next two settings are now overidden by the .fossil-settings/ files
 fossil setting binary-glob ${BINARIES}
 fossil setting ignore-glob ${IGNORE}
+
+mkdir -p ../.fossil-settings
+echo "${IGNORE}" > ../.fossil-settings/ignore-glob
+echo "${BINARIES}" > ../.fossil-settings/binary-glob
+
