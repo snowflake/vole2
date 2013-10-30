@@ -11,7 +11,9 @@ sqlite3,*.icns,*.plist,*.a,*.o,*.lo,*.la,*.rtf,*.pbxproj,*.pch,\
 *.xml,*.pbxuser,*.mode1,*.perspective,*.perspectivev3,*.scriptTerminology,\
 *.xcodeproj,*idx
 
-IGNORE=*.mode1,*.pbxuser,*.perspective,*.perspectivev3
+IGNORE=*.mode1,*.pbxuser,*.perspective,*.perspectivev3,\
+*.xcworkspacedata,*.xcuserstate,*.xcsettings,*.xcscheme,\
+xschememanagement.plist
 
 fossil setting binary-glob ${BINARIES}
 fossil setting ignore-glob ${IGNORE}
