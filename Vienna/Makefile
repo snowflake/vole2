@@ -4,6 +4,10 @@
 all: 
 	@echo read the makefile
 
+# set up appropiate developer dirs, can be changed in environment
+DEVELOPER_DIR_XC3?= /Xcode3.2.6
+DEVELOPER_DIR_XC5?= /Applications/Xcode.app/Contents/Developer
+
 Development-release: NAME=dv
 Development-release: COMPATIBILITY=Unknown
 Development-release: STATUS=Experimental
@@ -14,6 +18,7 @@ tiger-release: STATUS=Recommended for everyone.
 tiger-release tiger: MOSXDT=10.4
 # archs must be given in the order ppc i386 x86_64
 tiger-release tiger: ARCHS=ppc i386
+tiger-release tiger: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 tiger-release tiger: SDK_NAME=macosx10.4
 
 leopard-release: NAME=vl
@@ -22,6 +27,7 @@ leopard-release: STATUS=Experimental, may crash, needs testing
 leopard-release leopard: MOSXDT=10.5
 # archs must be given in the order ppc i386 x86_64
 leopard-release leopard: ARCHS=ppc i386 x86_64
+leopard-release leopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 leopard-release leopard: SDK_NAME=macosx10.5
 
 snowleopard-release: NAME=vs
@@ -30,8 +36,16 @@ snowleopard-release: STATUS=Experimental, may crash, needs testing
 snowleopard-release snowleopard: MOSXDT=10.5
 # archs must be given in the order ppc i386 x86_64
 snowleopard-release snowleopard: ARCHS=ppc i386 x86_64
+snowleopard-release snowleopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 snowleopard-release snowleopard: SDK_NAME=macosx10.6
 
+mavericks-release: NAME=vv
+mavericks-release: COMPATIBILITY=Tiger and Later, Intel
+mavericks-release: STATUS=Experimental, needs testing
+mavericks-release mavericks: MOSXDT=10.4
+mavericks-release mavericks: ARCHS=i386
+mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
+mavericks-release mavericks: SDK_NAME=macosx10.9
 
 lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
@@ -42,12 +56,12 @@ tiger:	     SHORT=TG
 leopard:     SHORT=LP
 snowleopard: SHORT=SL
 lion:	     SHORT=LN
-
+mavericks:   SHORT=MV
 # Development Development-go:	DEVELOPER_DIR?=/Developer
-tiger tiger-release tiger-go:	DEVELOPER_DIR?=/Developer 
-leopard leopard-release leopard-go: 	DEVELOPER_DIR?=/Developer
-snowleopard snowleopard-release snowleopard-go:	DEVELOPER_DIR?=/Developer
-lion lion-release lion-go: 			DEVELOPER_DIR?=/Developer
+# tiger tiger-release tiger-go:	DEVELOPER_DIR?=/Developer 
+# leopard leopard-release leopard-go: 	DEVELOPER_DIR?=/Developer
+# snowleopard snowleopard-release snowleopard-go:	DEVELOPER_DIR?=/Developer
+# lion lion-release lion-go: 			DEVELOPER_DIR?=/Developer
 
 SHORTDATE=`date '+%Y%m%d'`
 
@@ -58,7 +72,7 @@ VIENNA_APP=${SOURCE_DIR}/Vole.app/Contents/MacOS/Vole
 VERSION=$(shell sh ../scripts/getversion.sh )
 PATH=${DEVELOPER_DIR}/usr/bin:/usr/local/bin:/usr/bin:/bin
 
-tiger leopard snowleopard lion Development:
+tiger leopard snowleopard lion Development mavericks:
 	echo $@
 	[ XX${DEVELOPER_DIR} != XX ]
 	[ -d ${DEVELOPER_DIR} ] 
