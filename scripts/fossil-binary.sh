@@ -9,10 +9,11 @@ BINARIES=*.tiff,*.jpeg,*.jpg,*.gif,*.nib,*.xib,\
 *.tar,*.tar.gz,*.tgz,rz,sz,sqlite2,\
 sqlite3,*.icns,*.plist,*.a,*.o,*.lo,*.la,*.rtf,*.pbxproj,*.pch,\
 *.xml,*.pbxuser,*.mode1,*.perspective,*.perspectivev3,*.scriptTerminology,\
-*.xcodeproj,*idx
+*.xcodeproj,*idx,*.xcworkspacedata,*.xcuserstate,*.xcsettings,*.xcscheme,\
+*management.plist
 
 IGNORE=*.mode1,*.pbxuser,*.perspective,*.perspectivev3,\
-*.xcworkspacedata,*.xcuserstate,*.xcsettings,*.xcscheme,\
+*.xcuserstate,*.xcsettings,*.xcscheme,\
 *management.plist
 
 # the next two settings are now overidden by the .fossil-settings/ files
