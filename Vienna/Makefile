@@ -155,3 +155,8 @@ releasenotes:
 .PHONY: validate-help
 validate-help:
 	/opt/local/bin/gmake -f ../mk/validate-html.mk validate
+
+.PHONY: export-git
+export-git:	# export fossil repo to git
+	make -C ../mk -f export-to-git.mk  all push
+
