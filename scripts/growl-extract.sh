@@ -15,7 +15,7 @@ rm -rf Growl.framework
 
 case ${SDK_NAME} in
 	( macosx10.4      ) tar xvf growl0.7.4.tar            ;;
-	( macosx10.5|macosx10.6|macosx10.7|macosx10.8 ) 
+	( macosx10.5|macosx10.6|macosx10.7|macosx10.8|macosx10.9 ) 
 				tar xvzf ../growl/growl-1.2.3.tgz ;;
 	 * ) echo "Error: Growl Extract: unknown SDK ${SDK_NAME}"; exit 1 ;;
 	esac
