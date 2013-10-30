@@ -22,4 +22,7 @@ fossil setting ignore-glob ${IGNORE}
 mkdir -p ../.fossil-settings
 echo "${IGNORE}" > ../.fossil-settings/ignore-glob
 echo "${BINARIES}" > ../.fossil-settings/binary-glob
+touch ../.fossil-settings/ignore-glob.no-warn
+touch ../.fossil-settings/binary-glob.no-warn
+fossil add ../.fossil-settings/*
 
