@@ -1,7 +1,11 @@
+DEVELOPER_DIR=/Xcode3.2.6
+PATH=${DEVELOPER_DIR}/usr/bin:/usr/bin:/bin
+xcb=DEVELOPER_DIR=${DEVELOPER_DIR} xcodebuild
+
 all:
 
 build: clean
-	xcodebuild -sdk macosx10.4 -configuration Debug \
+	${xcb} -sdk macosx10.4 -configuration Debug \
 	ARCHS='i386 ppc' ONLY_ACTIVE_ARCH=NO MACOSX_DEPLOYMENT_TARGET=10.4 \
 	GCC_VERSION=4.0
 release:	build
@@ -11,6 +15,6 @@ release:	build
 
 
 clean:
-	xcodebuild -configuration Debug clean
-	xcodebuild -configuration Release clean
+	${xcb} -configuration Debug clean
+	${xcb} -configuration Release clean
 
