@@ -13,7 +13,7 @@ sqlite3,*.icns,*.plist,*.a,*.o,*.lo,*.la,*.rtf,*.pbxproj,*.pch,\
 
 IGNORE=*.mode1,*.pbxuser,*.perspective,*.perspectivev3,\
 *.xcworkspacedata,*.xcuserstate,*.xcsettings,*.xcscheme,\
-xschememanagement.plist
+xcschememanagement.plist
 
 fossil setting binary-glob ${BINARIES}
 fossil setting ignore-glob ${IGNORE}
