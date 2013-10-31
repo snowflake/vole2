@@ -56,9 +56,7 @@ echo '// *** Do not check this file into Fossil. ***' >>${OF}
 echo 'char buildinfo[]=' >>${OF}
 
 unchecked_files=`fossil changes | wc -l`  
-
-printf '"Checkout identifying the source code\\n"\n' >> ${OF}
-printf '" used in this build of %s:\\n"\n' "$PRODUCT_NAME">>${OF}
+printf '"Fossil manifest.uuid: " ' >>${OF}
 uuid=Unknown
 if test -f ../manifest.uuid 
  then 
@@ -92,6 +90,8 @@ printf '"\\n"\n' >>${OF}
 printf '"Archs: %s\\n"\n' "${ARCHS}" >>${OF} 
 printf '"Build Style: %s\\n"\n' "${BUILD_STYLE}" >>${OF}
 printf '"Build Variants: %s\\n"\n' "${BUILD_VARIANTS}" >>${OF}
+printf '"Configuration: %s\\n"\n'  "${CONFIGURATION}"  >>${OF}
+printf '"Project File Path: %s\\n"\n' "${PROJECT_FILE_PATH}" >>${OF}
 printf '"Garbage collection: %s\\n"\n' "${GCC_ENABLE_OBJC_GC}" >>${OF}
 printf '"Debugging Symbols:%s\\n"\n' "${DEBUGGING_SYMBOLS}" >>${OF}
 printf '"Debug Information Format: %s\\n"\n' "${DEBUG_INFORMATION_FORMAT}" >>${OF}
