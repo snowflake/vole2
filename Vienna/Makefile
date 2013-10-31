@@ -109,7 +109,7 @@ tiger-run leopard-run snowleopard-run lion-run \
 ARCHIVE_DIR=~/Vienna-archive
 
 tiger-release leopard-release snowleopard-release lion-release \
-			Development-release: 
+		mountainlion-release mavericks-release Development-release: 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 		make $(subst -release,,$@)
 	echo $@
