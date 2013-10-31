@@ -105,6 +105,7 @@ printf '"MacOSX Deployment Target: %s\\n"\n' "${MACOSX_DEPLOYMENT_TARGET}" >>${O
 printf '"Product Name: %s\\n"\n' "${PRODUCT_NAME}" >>${OF}
 printf '"SDK Root: %s\\n"\n' "${SDKROOT}" >>${OF}
 printf '"SDK Name: %s\\n"\n' "${SDK_NAME}" >>${OF}
+printf '"SDK Product Build Version: %s\\n"\n' "${SDK_PRODUCT_BUILD_VERSION}" >> ${OF}
 echo   '=== Xcode ===' | printlines >>${OF}
 printf '"Xcode Version Actual: %s\\n"\n' "${XCODE_VERSION_ACTUAL}" >>${OF}
 printf '"Xcode Version Major: %s\\n"\n' "${XCODE_VERSION_MAJOR}" >>${OF}
