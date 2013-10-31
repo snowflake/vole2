@@ -51,12 +51,13 @@ lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
 
-Development: SHORT=DV
-tiger:	     SHORT=TG
-leopard:     SHORT=LP
-snowleopard: SHORT=SL
-lion:	     SHORT=LN
-mavericks:   SHORT=MV
+Development: SHORT=DV SN=0
+tiger:	     SHORT=TG SN=4
+leopard:     SHORT=LP SN=5
+snowleopard: SHORT=SL SN=6
+lion:	     SHORT=LN SN=7
+mountainlion:SHORT=ML SN=8
+mavericks:   SHORT=MV SN=9
 # Development Development-go:	DEVELOPER_DIR?=/Developer
 # tiger tiger-release tiger-go:	DEVELOPER_DIR?=/Developer 
 # leopard leopard-release leopard-go: 	DEVELOPER_DIR?=/Developer
@@ -81,7 +82,7 @@ tiger leopard snowleopard lion Development mavericks:
 	xcodebuild -project Vole.xcodeproj  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project Vole.xcodeproj  -configuration $@ \
-		BUILDID=${SHORT}-${SHORTDATE} \
+		BUILDID=${SHORTDATE}.${SN} \
 		ARCHS="${ARCHS}" SDK_NAME="${SDK_NAME}" \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}"
 
