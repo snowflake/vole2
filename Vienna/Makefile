@@ -51,13 +51,21 @@ lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
 
-Development: SHORT=DV SN=0
-tiger:	     SHORT=TG SN=4
-leopard:     SHORT=LP SN=5
-snowleopard: SHORT=SL SN=6
-lion:	     SHORT=LN SN=7
-mountainlion:SHORT=ML SN=8
-mavericks:   SHORT=MV SN=9
+Development: SHORT=DV 
+Development: SN=0
+tiger:	     SHORT=TG 
+Tiger:       SN=4
+leopard:     SHORT=LP 
+leopard:     SN=5
+snowleopard: SHORT=SL
+snowleopard: SN=6
+lion:	     SHORT=LN 
+lion:	     SN=7
+mountainlion:SHORT=ML
+mountainlion:SN=8
+mavericks:   SHORT=MV
+mavericks:   SN=9
+
 # Development Development-go:	DEVELOPER_DIR?=/Developer
 # tiger tiger-release tiger-go:	DEVELOPER_DIR?=/Developer 
 # leopard leopard-release leopard-go: 	DEVELOPER_DIR?=/Developer
@@ -91,7 +99,8 @@ tiger-go leopard-go snowleopard-go lion-go Development-go:
 	open ${DEVELOPER_DIR}/Applications/Xcode.app
 
 # Run the Vienna app from its build directory
-tiger-run leopard-run snowleopard-run lion-run Development-run:
+tiger-run leopard-run snowleopard-run lion-run \
+	mountainlion-run mavericks-run Development-run:
 	open ../../Vienna-build/$(subst -run,,$@)/Vole.app
 
 
