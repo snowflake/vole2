@@ -124,7 +124,7 @@ printf 'int unchecked_files = %d;\n' $unchecked_files >>${OF}
 printf 'char source_code_fossil_uuid[]="%s";\n' $uuid >>${OF}
 printf 'char build_uuid[]="%s";\n' "${build_uuid}" >> ${OF}
 printf 'char marketing_version[]="%s";\n' "$(marketing_version)" >> ${OF}
-
+printf 'char build_short_id[]="%s";\n' "${BUILDID}" >> ${OF}
 cat >> ${OF} << BUILD_INFO_EOF
 
 /* vole_build_info is for appending Vole information to

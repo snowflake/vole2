@@ -50,6 +50,11 @@ int main(int argc, const char *argv[])
 			printf("%s\n", build_uuid);
 			exit(0);
 		}
+		if(!strcmp("-z", argv[1])){
+			printf("%s\n", build_short_id);
+			exit(0);
+		}
+
 		if(!strcmp("-c", argv[1])){
 			printf("%s\n",source_code_fossil_uuid);
 			exit(0);
@@ -65,6 +70,7 @@ int main(int argc, const char *argv[])
 			       "-v     Display version (brief)\n"
 			       "-d     Display version and build information (full)\n"
 			       "-b     Display build UUID\n"
+			       "-z     Display short build ID\n"
 			       "-c     Display Fossil checkout\n"
 			       "-m     Display marketing version for the build system\n"
 			       "\n"

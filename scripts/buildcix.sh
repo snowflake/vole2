@@ -10,10 +10,10 @@
 # $6 = deployment target (10.4 10.5 etc)
 # $7 = build archs (ppc i386 x86_64)
 # $8 = SDK (macosx10.4 etc )
-
 deploy="${6}"
 archs="${7}"
 sdk="${8}"
+shortbuild="${9}"
 
 function list_minimum_osx(){
 printf "Minumum OS X required: "
@@ -91,6 +91,7 @@ Packaging: A zip file containing a disk image and an OpenPGP signature
 SDK: ${sdk}
 Checkout: $( $1 -c)
 Build: $($1 -b)
+Short Build: $( $1 -z)
 $(dwarfdump --uuid $1 | awk '{ print $1, $2, $3 }')
 
 [Built by]

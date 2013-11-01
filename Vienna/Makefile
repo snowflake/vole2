@@ -8,6 +8,12 @@ all:
 DEVELOPER_DIR_XC3?= /Xcode3.2.6
 DEVELOPER_DIR_XC5?= /Applications/Xcode.app/Contents/Developer
 
+BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
+		mavericks
+RELEASES:= 	Development-release tiger-release leopard-release \
+		snowleopard-release lion-release mountain-release \
+		mavericks-release
+
 Development-release: NAME=dv
 Development-release: COMPATIBILITY=Unknown
 Development-release: STATUS=Experimental
@@ -43,6 +49,7 @@ mavericks-release: NAME=vv
 mavericks-release: COMPATIBILITY=Tiger and Later, Intel
 mavericks-release: STATUS=Experimental, needs testing
 mavericks-release mavericks: MOSXDT=10.4
+# archs must be given in the order ppc i386 x86_64
 mavericks-release mavericks: ARCHS=i386
 mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
 mavericks-release mavericks: SDK_NAME=macosx10.9
@@ -51,20 +58,20 @@ lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
 
-Development: SHORT=DV 
-Development: SN=0
-tiger:	     SHORT=TG 
-tiger:       SN=4
-leopard:     SHORT=LP 
-leopard:     SN=5
-snowleopard: SHORT=SL
-snowleopard: SN=6
-lion:	     SHORT=LN 
-lion:	     SN=7
-mountainlion:SHORT=ML
-mountainlion:SN=8
-mavericks:   SHORT=MV
-mavericks:   SN=9
+#Development: SHORT=DV 
+Development Development-release:  SN=0
+#tiger:	     SHORT=TG 
+tiger tiger-release:              SN=4
+#leopard:     SHORT=LP 
+leopard leopard-release:          SN=5
+#snowleopard: SHORT=SL
+snowleopard snowleopard-release:  SN=6
+#lion:	     SHORT=LN 
+lion lion-release:	          SN=7
+#mountainlion:SHORT=ML
+mountainlion mountainlion-release:SN=8
+#mavericks:   SHORT=MV
+mavericks mavericks-release:      SN=9
 
 # Development Development-go:	DEVELOPER_DIR?=/Developer
 # tiger tiger-release tiger-go:	DEVELOPER_DIR?=/Developer 
@@ -72,7 +79,7 @@ mavericks:   SN=9
 # snowleopard snowleopard-release snowleopard-go:	DEVELOPER_DIR?=/Developer
 # lion lion-release lion-go: 			DEVELOPER_DIR?=/Developer
 
-SHORTDATE=`date '+%Y%m%d'`
+${BUILDS}: SHORTDATE:=$(shell date '+%Y%m%d.%H%M%S')
 
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vole.app RELEASE.html BUILD.html INSTALL.html
@@ -81,7 +88,7 @@ VIENNA_APP=${SOURCE_DIR}/Vole.app/Contents/MacOS/Vole
 VERSION=$(shell sh ../scripts/getversion.sh )
 PATH=${DEVELOPER_DIR}/usr/bin:/usr/local/bin:/usr/bin:/bin
 
-tiger leopard snowleopard lion Development mavericks:
+${BUILDS}:
 	echo $@
 	[ XX${DEVELOPER_DIR} != XX ]
 	[ -d ${DEVELOPER_DIR} ] 
@@ -90,12 +97,12 @@ tiger leopard snowleopard lion Development mavericks:
 	xcodebuild -project Vole.xcodeproj  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project Vole.xcodeproj  -configuration $@ \
-		BUILDID=${SHORTDATE}.${SN} \
+		BUILDID="${SHORTDATE}.${SN}" \
 		ARCHS="${ARCHS}" SDK_NAME="${SDK_NAME}" \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}"
 
 # Run the version of Xcode appropiate to the target
-tiger-go leopard-go snowleopard-go lion-go Development-go:
+tiger-go leopard-go snowleopard-go:
 	open ${DEVELOPER_DIR}/Applications/Xcode.app
 
 # Run the Vienna app from its build directory
@@ -108,8 +115,7 @@ tiger-run leopard-run snowleopard-run lion-run \
 # where to put the saved releases
 ARCHIVE_DIR=~/Vienna-archive
 
-tiger-release leopard-release snowleopard-release lion-release \
-		mountainlion-release mavericks-release Development-release: 
+${RELEASES}:
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 		make $(subst -release,,$@)
 	echo $@
@@ -149,11 +155,11 @@ tiger-release leopard-release snowleopard-release lion-release \
 		"${MOSXDT}" \
 		"${ARCHS}" \
 		"${SDK_NAME}"
-
 	sh ../scripts/yesno.sh "Do you want to archive this build y/n : "
 	[ -d ${ARCHIVE_DIR} ]
 	cp ${NAME}-${VERSION}.zip \
 		${ARCHIVE_DIR}/${NAME}-${VERSION}-`${VIENNA_APP}  -b`.zip
+
 .PHONY: releasenotes
 releasenotes:
 	[ -f ~/mac/sources-mine/vole/RELEASES ]
