@@ -20,6 +20,9 @@
 	<string>Vienna Help</string>
 	<key>CFBundleHelpBookName</key>
 	<string>Vole Help</string>
+	<!-- LSMinumimSystemVersion added 2013-11-02 DJE -->
+	<key>LSMinimumSystemVersion</key>
+        <string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
