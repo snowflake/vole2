@@ -48,7 +48,7 @@ snowleopard-release snowleopard: SDK_NAME=macosx10.6
 mavericks-release: NAME=vv
 mavericks-release: COMPATIBILITY=Tiger and Later, Intel
 mavericks-release: STATUS=Experimental, needs testing
-mavericks-release mavericks: MOSXDT=10.4
+mavericks-release mavericks: MOSXDT=10.7
 # archs must be given in the order ppc i386 x86_64
 mavericks-release mavericks: ARCHS=i386
 mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
