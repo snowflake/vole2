@@ -6,7 +6,7 @@
 # I don't know what to do about Vienna Help idx in the Vienna Help directory.
 
 BINARIES=*.tiff,*.jpeg,*.jpg,*.gif,*.nib,*.xib,\
-*.tar,*.tar.gz,*.tgz,rz,sz,sqlite2,\
+*.tar,*.tar.gz,*.tgz,*.zip,rz,sz,sqlite2,\
 sqlite3,*.icns,*.plist,*.a,*.o,*.lo,*.la,*.rtf,*.pbxproj,*.pch,\
 *.xml,*.pbxuser,*.mode1,*.perspective,*.perspectivev3,*.scriptTerminology,\
 *.xcodeproj,*idx,*.xcworkspacedata,*.xcuserstate,*.xcsettings,*.xcscheme,\
