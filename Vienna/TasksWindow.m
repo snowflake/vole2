@@ -105,6 +105,9 @@
 -(void)handleClick:(id)sender
 {
 	int selectedColumn = [tasksList clickedColumn];
+    if (selectedColumn < 0) return; // Column does  not exist, must be on a blank row
+                                    // (DJE added to fix exception)
+                                    // Fixes cix:vienna/bugs:49
 	NSTableColumn * column = [[tasksList tableColumns] objectAtIndex:selectedColumn];
 	NSString * identifier = [column identifier];
 
