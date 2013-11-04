@@ -43,7 +43,7 @@
 	// and it's tough to make assumptions about how to capitalize a localized string.
 	int todayNum = [[NSCalendarDate calendarDate] dayOfCommonEra];
 	int myNum = [self dayOfCommonEra];
-
+    
 	if (myNum == todayNum)
 	{
 		theDate = NSLocalizedString(@"Today", nil);
@@ -65,7 +65,7 @@
 	// If the time is 12.00 then replace with Noon or Midnight as appropriate.
 	// (See http://www.coolquiz.com/trivia/explain/docs/time.asp for an explanation)
 	NSString * theTime;
-
+    
 	if ([self hourOfDay] == 12 && [self minuteOfHour] == 0)
 	{
 		theTime = NSLocalizedString(@"Noon", nil);
@@ -77,10 +77,16 @@
 	else
 	{
 		// Use the user's preferred time format but strip off the seconds.
-		NSMutableString * outputFormat = [NSMutableString stringWithString:[defaults objectForKey:@"NSTimeFormatString"]];
+#if 0
+        // This breaks on Mavericks - or does it?
+		NSMutableString * outputFormat = [NSMutableString stringWithString:[defaults objectForKey:NSTimeFormatString]];
 		[outputFormat replaceOccurrencesOfString:@":%S" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [outputFormat length])];
+#else
+#warning FIXME get the user defaults for preferred time format (DJE)
+        NSString * outputFormat = @"%H:%M";
+#endif
 		theTime = [self descriptionWithCalendarFormat:outputFormat];
-	}
+    }
 	return [NSString stringWithFormat:@"%@ at %@", theDate, theTime];
 }
 @end
