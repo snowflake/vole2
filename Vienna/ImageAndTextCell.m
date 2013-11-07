@@ -118,7 +118,7 @@
             imageFrame.origin.y += ceil((cellFrame.size.height + imageFrame.size.height) / 2);
         else
             imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
-#if 0
+#if 1
         // deprecated API in 10.8 (DJE)
         [image compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
 #else
