@@ -118,8 +118,16 @@
             imageFrame.origin.y += ceil((cellFrame.size.height + imageFrame.size.height) / 2);
         else
             imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
-		
+#if 0
+        // deprecated API in 10.8 (DJE)
         [image compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
+#else
+        // replacement
+        [image drawAtPoint:imageFrame.origin
+                  fromRect:NSZeroRect
+                 operation:NSCompositeSourceOver
+                  fraction:1.0];
+#endif 
     }
     [super drawWithFrame:cellFrame inView:controlView];
 }
