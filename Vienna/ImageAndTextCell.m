@@ -113,12 +113,19 @@
         }
         imageFrame.origin.x += 3;
         imageFrame.size = imageSize;
-		
+#if 0
+        /*
+         * What is this block doing? I found that if I replaced the deprecated
+         * API immediately below this block, I needed to disable this block as well,
+         * otherwise the icons were displaced from the text and were cropped
+         * randomly. (DJE)
+         */
         if ([controlView isFlipped])
             imageFrame.origin.y += ceil((cellFrame.size.height + imageFrame.size.height) / 2);
         else
             imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
-#if 1
+#endif
+#if 0
         // deprecated API in 10.8 (DJE)
         [image compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
 #else
