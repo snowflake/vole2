@@ -34,4 +34,5 @@
 -(void)setParentId:(int)newParentId;
 -(void)setName:(NSString *)name;
 -(NSComparisonResult)categoryCompare:(Category *)otherObject;
+-(id)initWithName:(NSString *)newName;
 @end
