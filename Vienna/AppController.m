@@ -2948,7 +2948,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		NSMutableString * title;
 
 		if ([[NSMutableString class] instancesRespondToSelector:@selector(stringByAddingPercentEscapesUsingEncoding:)])
-			title = [[[theRecord title] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding] retain];
+			title = [[NSMutableString alloc]  // DJE modified fix to cure assigning NSMUtable string from NSString warning
+                        initWithString:[[theRecord title] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding] ];
 		else
 		{
 			title = [[NSMutableString alloc] initWithString:[theRecord title]];

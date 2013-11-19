@@ -43,4 +43,6 @@
 -(IBAction)saveAsDraft:(id)sender;
 -(IBAction)sendMessage:(id)sender;
 -(IBAction)signatureSelected:(id)sender;
+
+-(BOOL)windowShouldClose:(NSNotification *)notification;
 @end
