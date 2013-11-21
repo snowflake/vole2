@@ -19,6 +19,7 @@
 //
 
 #import <AppKit/AppKit.h>
+#import "Vole.h"
 #import "Database.h"
 
 @interface MissingMessagesController : NSWindowController {

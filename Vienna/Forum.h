@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 #define MA_Closed_Conference		0
 #define MA_Open_Conference			1

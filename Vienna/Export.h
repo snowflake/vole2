@@ -19,6 +19,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Vole.h"
+
 #import "Database.h"
 #import "AppController.h"
 

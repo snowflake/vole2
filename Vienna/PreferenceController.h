@@ -20,6 +20,7 @@
 
 #import <AppKit/AppKit.h>
 #import <ApplicationServices/ApplicationServices.h>
+#import "Vole.h"
 #import "Credentials.h"
 #import "VPerson.h"
 

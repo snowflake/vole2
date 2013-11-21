@@ -19,6 +19,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
+
 
 @interface BackTrackArray : NSObject {
 	NSMutableArray * array;

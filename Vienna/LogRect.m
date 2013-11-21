@@ -11,7 +11,6 @@
 /*
  * Log the origin and size of an NSRect */
 
-#import <Cocoa/Cocoa.h>
 #import "LogRect.h"
 
 void LogRect(NSString * comment, NSRect rect){

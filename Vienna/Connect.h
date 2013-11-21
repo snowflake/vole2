@@ -19,6 +19,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
+
 #import "Database.h"
 #import "Socket.h"
 #import "Credentials.h"

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 #import "SQLDatabase.h"
 
 @interface SQLDatabase (Private)

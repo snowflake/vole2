@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 // Tasks codes
 // Note: MA_TaskCode_NoTask is a sentinel.

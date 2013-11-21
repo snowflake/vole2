@@ -19,6 +19,8 @@
 //
 
 #import <AppKit/AppKit.h>
+#import "Vole.h"
+
 #import "Database.h"
 #import "TableViewExtensions.h"
 #import "Join.h"

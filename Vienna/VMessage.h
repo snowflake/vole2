@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 extern NSString * MA_Column_MessageId;
 extern NSString * MA_Column_MessageTitle;

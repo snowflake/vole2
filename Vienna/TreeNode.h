@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 #import "Folder.h"
 
 // Predefined node IDs. These must always be > 0

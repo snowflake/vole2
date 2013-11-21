@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 #import "Database.h"
 
 @interface SearchFolder : NSWindowController {

@@ -19,6 +19,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
+
 #import "AppController.h"
 #import "MacPADSocket.h"
 

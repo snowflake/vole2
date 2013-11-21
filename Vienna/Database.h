@@ -19,6 +19,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
+
 #import "SQLDatabase.h"
 #import "Folder.h"
 #import "Forum.h"

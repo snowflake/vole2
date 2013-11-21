@@ -18,6 +18,7 @@
 // 
 
 #import <Cocoa/Cocoa.h>
+#import "Vole.h"
 #import "Folder.h"
 
 @interface RSSFolder : NSObject {

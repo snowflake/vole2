@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 // Some day we'll put something useful in here.
 // Not today though.

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 // Result codes
 typedef enum MacPADResultCode {

@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 @interface NSMutableString (MutableStringExtensions)
 	-(void)replaceString:(NSString *)source withString:(NSString *)dest;

@@ -19,6 +19,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Vole.h"
 #import "TableViewExtensions.h"
 
 @interface MessageListView : ExtendedTableView

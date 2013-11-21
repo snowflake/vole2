@@ -19,6 +19,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
+
 
 @interface ActivityViewer : NSWindowController {
 	IBOutlet NSTextView * textView;

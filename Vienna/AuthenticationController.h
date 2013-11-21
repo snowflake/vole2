@@ -19,6 +19,7 @@
 //
 
 #import <AppKit/AppKit.h>
+#import "Vole.h"
 #import "Credentials.h"
 
 @interface AuthenticationController : NSWindowController {

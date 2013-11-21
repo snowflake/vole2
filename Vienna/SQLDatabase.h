@@ -8,6 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 #import "sqlite3.h"
 
 @class SQLResult;

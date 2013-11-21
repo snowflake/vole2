@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 @interface Signatures : NSObject {
 	NSMutableDictionary * signatures;

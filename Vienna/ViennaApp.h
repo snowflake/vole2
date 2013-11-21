@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 #import "Folder.h"
 
 @interface ViennaApp : NSApplication {

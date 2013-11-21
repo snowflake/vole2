@@ -16,6 +16,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 /* Enum of valid criteria operators
  */

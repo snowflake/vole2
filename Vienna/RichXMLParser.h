@@ -18,6 +18,7 @@
 //  limitations under the License.
 
 #import <Cocoa/Cocoa.h>
+#import "Vole.h"
 #import "XMLParser.h"
 
 @interface FeedItem : NSObject {

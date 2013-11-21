@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vole.h"
 
 #define MA_FieldType_Integer	1
 #define MA_FieldType_Date		2

@@ -19,6 +19,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Vole.h"
 
 @interface NSSplitView (SplitViewExtensions)
 	-(void)storeLayoutWithName:(NSString *)name;
