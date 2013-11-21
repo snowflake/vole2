@@ -113,7 +113,8 @@
     [[popupMenu cell] setMenuItem:item];
     [item release];
     [popupMenu setPreferredEdge:NSMinXEdge];
-    [[[popupMenu menu] menuRepresentation] setHorizontalEdgePadding:0.0];
+    // menuRepresenatation is deprecated, so next line is commented out. (DJE)
+    //  [[[popupMenu menu] menuRepresentation] setHorizontalEdgePadding:0.0];
 }
 
 /* handleFolderFontChange
