@@ -449,7 +449,9 @@
 {
 	NSOpenPanel * panel = [NSOpenPanel openPanel];
 	NSArray * fileTypes = [NSArray arrayWithObjects:@"txt", @"text", @"opml", NSFileTypeForHFSTypeCode('TEXT'), nil];
-	
+	// The next method, beginSheetForDirectory, is deprecated, but the replacement
+    // uses blocks, which are not available <10.6, so leave as is for the
+    // moment. (DJE)
 	[panel beginSheetForDirectory:nil
 							 file:nil
 							types:fileTypes
