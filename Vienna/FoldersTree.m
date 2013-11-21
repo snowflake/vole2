@@ -104,7 +104,7 @@
 	// Configure the popup menu button
 	[popupMenu setMenu:folderMenu];
     [[popupMenu cell] setUsesItemFromMenu:NO];
-    [[popupMenu cell] setBezelStyle:NSSmallIconButtonBezelStyle];
+    [[popupMenu cell] setBezelStyle:NSRegularSquareBezelStyle]; // DJE changed
     //[[popupMenu cell] setArrowPosition:NSPopUpArrowAtBottom];
     NSMenuItem * item = [[NSMenuItem allocWithZone:[self zone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
     [item setImage:[NSImage imageNamed:@"Action.tiff"]];
