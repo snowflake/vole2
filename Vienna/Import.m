@@ -61,6 +61,9 @@
 	
 	// Initialize UI
 	if (!importSheet)
+        // loadNibNamed:owner is deprecated in 10,8, but the replacement
+        // is only available in 10.8 and later, so leave as is for the
+        // moment (DJE)
 		[NSBundle loadNibNamed:@"Import" owner:self];
 	
 	[stopButton setEnabled:YES];
