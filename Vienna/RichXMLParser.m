@@ -288,8 +288,8 @@
 	BOOL success = YES;
 	
 	// Iterate through the channel items
-	int count = [feedTree countOfChildren];
-	int index;
+	NSInteger count = [feedTree countOfChildren];
+	NSInteger index;
 	
 	for (index = 0; index < count; ++index)
 	{
@@ -347,8 +347,8 @@
 	items = [[NSMutableArray alloc] initWithCapacity:10];
 	
 	// Iterate through the channel items
-	int count = [feedTree countOfChildren];
-	int index;
+	NSInteger count = [feedTree countOfChildren];
+	NSInteger index;
 	
 	for (index = 0; index < count; ++index)
 	{
@@ -360,8 +360,8 @@
 		if ([nodeName isEqualToString:@"item"])
 		{
 			FeedItem * newItem = [[FeedItem alloc] init];
-			int itemCount = [subTree countOfChildren];
-			int itemIndex;
+			NSInteger itemCount = [subTree countOfChildren];
+			NSInteger itemIndex;
 			
 			for (itemIndex = 0; itemIndex < itemCount; ++itemIndex)
 			{
@@ -446,8 +446,8 @@
 	items = [[NSMutableArray alloc] initWithCapacity:10];
 	
 	// Iterate through the atom items
-	int count = [feedTree countOfChildren];
-	int index;
+	NSInteger count = [feedTree countOfChildren];
+	NSInteger index;
 	
 	for (index = 0; index < count; ++index)
 	{
@@ -488,8 +488,8 @@
 		if ([nodeName isEqualToString:@"entry"])
 		{
 			FeedItem * newItem = [[FeedItem alloc] init];
-			int itemCount = [subTree countOfChildren];
-			int itemIndex;
+			NSInteger itemCount = [subTree countOfChildren];
+			NSInteger itemIndex;
 			
 			for (itemIndex = 0; itemIndex < itemCount; ++itemIndex)
 			{

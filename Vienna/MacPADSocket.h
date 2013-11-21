@@ -29,7 +29,7 @@ typedef enum MacPADResultCode {
     NSString        *_productPageURL;
     NSMutableString *_buffer;
     NSArray         *_productDownloadURLs;
-    int             _contentLength;
+    NSInteger             _contentLength;
     BOOL            _headersReceived;
     BOOL            _statusReceived;
     id              _delegate;
@@ -54,7 +54,7 @@ typedef enum MacPADResultCode {
 -(void)processDictionary:(NSDictionary *)dict;
 -(NSComparisonResult)compareVersion:(NSString *)versionA toVersion:(NSString *)versionB;
 -(NSArray *)splitVersion:(NSString *)version;
--(int)getCharType:(NSString *)character;
+-(NSInteger)getCharType:(NSString *)character;
 @end
 
 // Constant strings

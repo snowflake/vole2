@@ -129,13 +129,14 @@
 	countOfMessages = 0;
 	countOfFolders = 0;
 	skipBackValue = 0;
+#warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
 	requiredFirstMessage = UINT_MAX;
 
 	if ([fillBackToSpecific state] == NSOnState)
-		requiredFirstMessage = [messageNumber intValue];
+		requiredFirstMessage = [messageNumber integerValue];
 
 	if ([skipBack state] == NSOnState)
-		skipBackValue = [skipBackCount intValue];
+		skipBackValue = [skipBackCount integerValue];
 	
 	// Dismiss the options sheet.
 	[missingMessagesWindow orderOut:sender];
@@ -188,6 +189,7 @@
  */
 -(void)updateProgressText:(NSString *)folderName
 {
+#warning 64BIT: Check formatting arguments
 	NSString * text = [NSString stringWithFormat:@"%@ (%d messages in %d tasks)", folderName, countOfMessages, countOfTasks];
 	[progressInfo setStringValue:text];
 	[progressBar setDoubleValue:countOfFolders];	
@@ -251,6 +253,7 @@
 			VTask * task = [[VTask alloc] init];
 			[task setActionCode:MA_TaskCode_SkipBack];
 			[task setOrderCode:MA_OrderCode_SkipBack];
+#warning 64BIT: Check formatting arguments
 			[task setActionData:[NSString stringWithFormat:@"%d", skipBackValue]];
 			[task setFolderName:folderName];
 			[self performSelectorOnMainThread:@selector(addFileMessageTask:) withObject:task waitUntilDone:YES];
@@ -262,25 +265,28 @@
 			[self performSelectorOnMainThread:@selector(getMessagesForFolder:) withObject:folder waitUntilDone:YES];
 			if ([messagesArray count] > 0)
 			{
-				unsigned int firstMessageNumber;
-				unsigned int nextMessageNumber;
-				unsigned int count;
+				NSUInteger firstMessageNumber;
+				NSUInteger nextMessageNumber;
+				NSUInteger count;
 				
+#warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
 				if (requiredFirstMessage == UINT_MAX)
-					firstMessageNumber = (unsigned int)[[messagesArray objectAtIndex:0] intValue];
+					firstMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:0] integerValue];
 				else
 					firstMessageNumber = requiredFirstMessage;
 				nextMessageNumber = firstMessageNumber;
 				
 				for (count = 0; count < [messagesArray count] && !stopScanFlag; ++count)
 				{
-					unsigned int thisMessageNumber = (unsigned int)[[messagesArray objectAtIndex:count] intValue];
+					NSUInteger thisMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:count] integerValue];
 					if (thisMessageNumber != nextMessageNumber && thisMessageNumber > firstMessageNumber)
 					{
 						NSMutableString * rangeString;
 						
+#warning 64BIT: Check formatting arguments
 						rangeString = [NSMutableString stringWithFormat:@"%d", nextMessageNumber];
 						if (nextMessageNumber < thisMessageNumber - 1)
+#warning 64BIT: Check formatting arguments
 							[rangeString appendFormat:@"-%d", thisMessageNumber - 1];
 
 						// Keep a running total of the number of missing messages

@@ -31,24 +31,24 @@
 	NSString * name;
 	NSString * title;
 	NSString * sqlField;
-	int type;
-	int tag;
-	int width;
+	NSInteger type;
+	NSInteger tag;
+	NSInteger width;
 	BOOL visible;
 }
 
 -(void)setName:(NSString *)newName;
 -(void)setTitle:(NSString *)newTitle;
 -(void)setSqlField:(NSString *)newSqlField;
--(void)setType:(int)newType;
--(void)setTag:(int)newTag;
+-(void)setType:(NSInteger)newType;
+-(void)setTag:(NSInteger)newTag;
 -(void)setVisible:(BOOL)flag;
--(void)setWidth:(int)newWidth;
+-(void)setWidth:(NSInteger)newWidth;
 -(NSString *)name;
 -(NSString *)title;
 -(NSString *)sqlField;
--(int)tag;
--(int)type;
--(int)width;
+-(NSInteger)tag;
+-(NSInteger)type;
+-(NSInteger)width;
 -(BOOL)visible;
 @end

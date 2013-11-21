@@ -27,7 +27,7 @@
 	NSDate * lastUpdate;
 }
 -(id)initWithId:(Folder *)folder subscriptionURL:(NSString *)url update:(NSDate *)update;
--(int)folderId;
+-(NSInteger)folderId;
 -(Folder *)folder;
 -(NSString *)subscriptionURL;
 -(void)setSubscriptionURL:(NSString *)newFeedURL;

@@ -59,10 +59,10 @@
  * be terminated by any of \r, \n or \0. A maximum of maxChars are
  * returned.
  */
--(NSString *)firstLineWithMaximumCharacters:(unsigned int)maxChars allowEmpty:(BOOL)allowEmpty
+-(NSString *)firstLineWithMaximumCharacters:(NSUInteger)maxChars allowEmpty:(BOOL)allowEmpty
 {
-	unsigned int indexOfLastWord;
-	unsigned int indexOfChr;
+	NSUInteger indexOfLastWord;
+	NSUInteger indexOfChr;
 	BOOL hasNonEmptyChars;
 	unichar ch;
 	NSRange r;
@@ -112,7 +112,7 @@
  */
 -(NSString *)secondAndSubsequentLines
 {
-	unsigned int length = [self length];
+	NSUInteger length = [self length];
 	unichar ch = 0;
 	NSRange r;
 
@@ -139,10 +139,10 @@
  * Returns the index of the first occurrence of the specified character after
  * the starting index.
  */
--(int)indexOfCharacterInString:(char)ch afterIndex:(int)startIndex
+-(NSInteger)indexOfCharacterInString:(char)ch afterIndex:(NSInteger)startIndex
 {
-	int length = [self length];
-	int index;
+	NSInteger length = [self length];
+	NSInteger index;
 
 	if (startIndex < length - 1)
 		for (index = startIndex; index < length; ++index)
@@ -172,8 +172,8 @@
 
 	if (rcString != nil)
 	{
-		int length = strlen(cString);
-		int p;
+		NSInteger length = strlen(cString);
+		NSInteger p;
 		
 		for (p = 0; p < length; ++p)
 			rcString[p] = cString[(length - p) - 1];
@@ -190,7 +190,7 @@
  * column.
  */
 // This method is only used by Connect.m
--(NSMutableArray *)rewrapString:(int)wrapColumn
+-(NSMutableArray *)rewrapString:(NSInteger)wrapColumn
 {
 	NSMutableArray * arrayOfLines = [NSMutableArray array];
 	// deprecated API was here, changed by DJE
@@ -201,8 +201,8 @@
 	[ newData getBytes: cString length: [newData length]];
 	tempBuff[ [newData length]] = '\0';
 	const char * lineStart;
-	int lineLength;
-	int indexOfEndOfLastWord;
+	NSInteger lineLength;
+	NSInteger indexOfEndOfLastWord;
 	BOOL inSpace;
 
 	lineLength = 0;

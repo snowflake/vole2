@@ -24,12 +24,12 @@
 
 @interface BackTrackArray : NSObject {
 	NSMutableArray * array;
-	int queueIndex;
+	NSInteger queueIndex;
 }
 
 -(BOOL)isAtStartOfQueue;
 -(BOOL)isAtEndOfQueue;
--(void)addToQueue:(int)folderId messageNumber:(int)messageNumber;
--(BOOL)nextItemAtQueue:(int *)folderId messageNumber:(int *)messageNumber;
--(BOOL)previousItemAtQueue:(int *)folderId messageNumber:(int *)messageNumber;
+-(void)addToQueue:(NSInteger)folderId messageNumber:(NSInteger)messageNumber;
+-(BOOL)nextItemAtQueue:(NSInteger *)folderId messageNumber:(NSInteger *)messageNumber;
+-(BOOL)previousItemAtQueue:(NSInteger *)folderId messageNumber:(NSInteger *)messageNumber;
 @end

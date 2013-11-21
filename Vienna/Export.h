@@ -41,8 +41,8 @@
 	NSString * messageText;
 	BOOL exportRunning;
 	BOOL stopExportFlag;
-	int countOfFolders;
-	int lastFolderId;
+	NSInteger countOfFolders;
+	NSInteger lastFolderId;
 }
 
 // Action handlers

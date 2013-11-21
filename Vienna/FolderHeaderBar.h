@@ -28,11 +28,11 @@
 	IBOutlet NSTextField * smallFolderName;
 	IBOutlet NSTextField * folderDescription;
 	Folder * currentFolder;
-	int folderCount;
+	NSInteger folderCount;
 }
 
 // Public functions
 -(void)refreshForCurrentFolder;
--(void)setFolderCount:(int)newCount;
--(void)setCurrentFolder:(Database *)db folderId:(int)folderId;
+-(void)setFolderCount:(NSInteger)newCount;
+-(void)setCurrentFolder:(Database *)db folderId:(NSInteger)folderId;
 @end

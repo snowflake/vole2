@@ -27,10 +27,10 @@
 #define MA_Empty_Conference			3
 
 @interface Forum : NSObject {
-	int nodeId;
-	int categoryId;
-	int status;
-	int folderId;
+	NSInteger nodeId;
+	NSInteger categoryId;
+	NSInteger status;
+	NSInteger folderId;
 	NSDate * lastActiveDate;
 	NSString * name;
 	NSString * description;
@@ -40,18 +40,18 @@
 -(id)initWithName:(NSString *)newName;
 
 // Accessor functions
--(int)nodeId;
--(int)categoryId;
--(int)status;
--(int)folderId;
+-(NSInteger)nodeId;
+-(NSInteger)categoryId;
+-(NSInteger)status;
+-(NSInteger)folderId;
 -(NSDate *)lastActiveDate;
 -(NSString *)name;
 -(NSString *)description;
 
--(void)setNodeId:(int)newNodeId;
--(void)setCategoryId:(int)newCategoryId;
--(void)setStatus:(int)newStatus;
--(void)setFolderId:(int)newFolderId;
+-(void)setNodeId:(NSInteger)newNodeId;
+-(void)setCategoryId:(NSInteger)newCategoryId;
+-(void)setStatus:(NSInteger)newStatus;
+-(void)setFolderId:(NSInteger)newFolderId;
 -(void)setLastActiveDate:(NSDate *)newLastActiveDate;
 -(void)setName:(NSString *)newName;
 -(void)setDescription:(NSString *)newDescription;

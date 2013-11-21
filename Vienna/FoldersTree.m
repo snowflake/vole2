@@ -131,7 +131,7 @@
  */
 -(void)setFolderListFont
 {
-	int height;
+	NSInteger height;
 
 	[cellFont release];
 	[boldCellFont release];
@@ -142,7 +142,7 @@
 	// deprecated API was here DJE
 	//	height = [boldCellFont defaultLineHeightForFont];
 	NSLayoutManager *nsl = [[ NSLayoutManager alloc] init];
-	height= (int) [ nsl defaultLineHeightForFont: boldCellFont];
+	height= (NSInteger) [ nsl defaultLineHeightForFont: boldCellFont];
 	[ nsl release];
 	[cellFont retain];  // DJE added
 	[boldCellFont retain]; // DJE added
@@ -181,9 +181,9 @@
 
 	while ((folder = [enumerator nextObject]) != nil)
 	{
-		int itemId = [folder itemId];
+		NSInteger itemId = [folder itemId];
 		NSArray * listOfSubFolders = [db arrayOfFolders:itemId];
-		int count = [listOfSubFolders count];
+		NSInteger count = [listOfSubFolders count];
 		TreeNode * subNode;
 
 		subNode = [[TreeNode alloc] init:node folder:folder canHaveChildren:(count > 0)];
@@ -196,7 +196,7 @@
  * Returns an array that contains the specified folder and all
  * sub-folders.
  */
--(NSArray *)folders:(int)folderId
+-(NSArray *)folders:(NSInteger)folderId
 {
 	NSMutableArray * array = [NSMutableArray array];
 	TreeNode * node = [rootNode nodeFromID:folderId];
@@ -214,7 +214,7 @@
 /* folderFromPath
  * Parses off a folder and returns the ID of the leaf node
  */
--(int)folderFromPath:(int)parentId path:(NSString *)path
+-(NSInteger)folderFromPath:(NSInteger)parentId path:(NSString *)path
 {// deprecated API was here DJE
 	const char * cString = [path cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 	TreeNode * parentNode = [rootNode nodeFromID:parentId];
@@ -260,7 +260,7 @@
 /* updateFolder
  * Redraws a folder node
  */
--(void)updateFolder:(int)folderId recurseToParents:(BOOL)recurseToParents
+-(void)updateFolder:(NSInteger)folderId recurseToParents:(BOOL)recurseToParents
 {
 	TreeNode * node = [rootNode nodeFromID:folderId];
 	if (node != nil)
@@ -282,7 +282,7 @@
 /* selectFolder
  * Move the selection to the specified folder.
  */
--(BOOL)selectFolder:(int)folderId
+-(BOOL)selectFolder:(NSInteger)folderId
 {
 	TreeNode * node = [rootNode nodeFromID:folderId];
 	if (!node)
@@ -290,7 +290,7 @@
 
 	// Walk up to our parent
 	[self expandToParent:node];
-	int rowIndex = [outlineView rowForItem:node];
+	NSInteger rowIndex = [outlineView rowForItem:node];
 	if (rowIndex >= 0)
 		// DJE changed here to use an NSIndexSet
 	{	NSIndexSet *ind  =  [NSIndexSet indexSetWithIndex: rowIndex ];
@@ -326,7 +326,7 @@
  * Finds the ID of the next folder after currentFolderId that has
  * unread messages.
  */
--(int)nextFolderWithUnread:(int)currentFolderId isPriority:(BOOL)priorityFlag
+-(NSInteger)nextFolderWithUnread:(NSInteger)currentFolderId isPriority:(BOOL)priorityFlag
 {
 	TreeNode * thisNode = [rootNode nodeFromID:currentFolderId];
 	TreeNode * node = thisNode;
@@ -367,7 +367,7 @@
  * folder has no children, it returns itself. If the folderId is
  * invalid, it returns -1.
  */
--(int)firstChildFolder:(int)folderId
+-(NSInteger)firstChildFolder:(NSInteger)folderId
 {
 	TreeNode * thisNode = [rootNode nodeFromID:folderId];
 	if (thisNode != nil)
@@ -389,7 +389,7 @@
 /* actualSelection
  * Returns the node ID of the selected row in the tree.
  */
--(int)actualSelection
+-(NSInteger)actualSelection
 {
 	if ([outlineView numberOfSelectedRows] > 0)
 	{
@@ -405,7 +405,7 @@
 {
 	// Find the row under the cursor when the user clicked
 	NSEvent * theEvent = [nc object];
-	int row = [outlineView rowAtPoint:[outlineView convertPoint:[theEvent locationInWindow] fromView:nil]];
+	NSInteger row = [outlineView rowAtPoint:[outlineView convertPoint:[theEvent locationInWindow] fromView:nil]];
 	if (row >= 0)
     {
 		// Select the row under the cursor if it isn't already selected
@@ -451,7 +451,7 @@
  */
 -(void)handleFolderDeleted:(NSNotification *)nc
 {
-	int folderId = [(NSNumber *)[nc object] intValue];
+	NSInteger folderId = [(NSNumber *)[nc object] integerValue];
 	TreeNode * thisNode = [rootNode nodeFromID:folderId];
 	TreeNode * nextNode;
 
@@ -486,7 +486,7 @@
  */
 -(void)handleFolderUpdate:(NSNotification *)nc
 {
-	int folderId = [(NSNumber *)[nc object] intValue];
+	NSInteger folderId = [(NSNumber *)[nc object] integerValue];
 	[self updateFolder:folderId recurseToParents:YES];
 }
 
@@ -498,7 +498,7 @@
 	Folder * newFolder = (Folder *)[nc object];
 	NSAssert(newFolder, @"Somehow got a NULL folder object here");
 
-	int parentId = [newFolder parentId];
+	NSInteger parentId = [newFolder parentId];
 	TreeNode * node = (parentId == -1) ? rootNode : [rootNode nodeFromID:parentId];
 	if (![node canHaveChildren])
 		[node setCanHaveChildren:YES];
@@ -572,7 +572,7 @@
 /* numberOfChildrenOfItem
  * Returns the number of children belonging to the specified item
  */
--(int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+-(NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
 	TreeNode * node = (TreeNode *)item;
 	if (node == nil)
@@ -583,7 +583,7 @@
 /* child
  * Returns the child at the specified offset of the item
  */
--(id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
+-(id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
 	TreeNode * node = (TreeNode *)item;
 	if (node == nil)
@@ -600,8 +600,10 @@
 	if (node != nil)
 	{
 		if ([[node folder] childUnreadCount])
+#warning 64BIT: Check formatting arguments
 			return [NSString stringWithFormat:@"%d unread messages", [[node folder] childUnreadCount]];
 		if (([[node folder] permissions] == MA_ReadOnly_Folder) && [[node folder] unreadCount] > 0)
+#warning 64BIT: Check formatting arguments
 			return [NSString stringWithFormat:@"%d unread messages", [[node folder] unreadCount]];
 	}
 	return nil;
@@ -620,8 +622,10 @@
 	if (node == nil)
 		node = rootNode;
 	if (([[node folder] permissions] == MA_ReadWrite_Folder) && [[node folder] messageCount] > 0)
+#warning 64BIT: Check formatting arguments
 		return ([NSString stringWithFormat:@"%@ (%d)", [node nodeName], [[node folder] messageCount]]);
 	if (!IsSearchFolder([node folder]) && [[node folder] unreadCount])
+#warning 64BIT: Check formatting arguments
 		return ([NSString stringWithFormat:@"%@ (%d)", [node nodeName], [[node folder] unreadCount]]);
 	return [node nodeName];
 }
@@ -669,7 +673,7 @@
  * Caled when some text is being dragged over us, we have to decide whether
  * we want it or not
  */
--(NSDragOperation)outlineView:(NSOutlineView*)olv validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(int)index
+-(NSDragOperation)outlineView:(NSOutlineView*)olv validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
 {
 	TreeNode * node = item;
 
@@ -684,7 +688,7 @@
  * Here's where we accept the drop operation. 
  * Note: this could actually be text dropped from (eg) TextEdit, not just internal messages.
  */
--(BOOL)outlineView:(NSOutlineView*)olv acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(int)index
+-(BOOL)outlineView:(NSOutlineView*)olv acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
 	NSPasteboard *pboard = [info draggingPasteboard];
 	TreeNode * node = item;
@@ -702,7 +706,7 @@
 	[message setText:text];
 
 	// Then pass it to db
-	int messageNum = [db addMessage:MA_Outbox_NodeID message:message wasNew:nil];
+	NSInteger messageNum = [db addMessage:MA_Outbox_NodeID message:message wasNew:nil];
 	if (messageNum != -1)
 		[message setNumber:messageNum];
 

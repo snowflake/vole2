@@ -167,7 +167,7 @@
 {
 	updateTitle = NSLocalizedString(@"Your software is up to date", nil);
 	updateStatus = NSLocalizedString(@"Please try again later", nil);
-	updateAvailable = [[[aNotification userInfo] objectForKey:MacPADErrorCode] intValue] == kMacPADResultNewVersion;
+	updateAvailable = [[[aNotification userInfo] objectForKey:MacPADErrorCode] integerValue] == kMacPADResultNewVersion;
 	[self doneUpdateCheck];
 }
 
@@ -206,7 +206,9 @@
 		[self runOKAlertSheet:[checkUpdates updateTitle] text:[checkUpdates updateStatus]];
 	else
 	{
+#warning 64BIT: Check formatting arguments
 		NSString * bodyText = [NSString stringWithFormat:NSLocalizedString(@"Update available text", nil), [checkUpdates latestVersion], [checkUpdates updateURL]];
+#warning 64BIT: Check formatting arguments
 		NSBeginAlertSheet(NSLocalizedString(@"An update is now available", nil),
 						  NSLocalizedString(@"Install Update", nil),
 						  NSLocalizedString(@"Do Not Install", nil),
@@ -222,7 +224,7 @@
 /* doUpdateSelection
  * Handle the response from the sheet.
  */
--(void)doUpdateSelection:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)doUpdateSelection:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	if (returnCode == NSAlertDefaultReturn)
 	{
@@ -240,7 +242,7 @@
 /* beginUpdate
  * Here's where we kick off the update if the user OK'd the save panel.
  */
--(void)savePanelDidEnd:(NSSavePanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)savePanelDidEnd:(NSSavePanel *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	if (returnCode == NSOKButton)
 	{

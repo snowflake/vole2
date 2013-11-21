@@ -61,7 +61,7 @@
 /* unreadCount
  * Return the number of unread messages.
  */
--(int)unreadCount
+-(NSInteger)unreadCount
 {
 	Database * db = [[self delegate] database];
 	Folder * rootFolder = [db folderFromID:[db conferenceNodeID]];
@@ -80,7 +80,7 @@
 /* checkFrequency
  * Return the frequency with which we check for new messages
  */
--(int)checkFrequency
+-(NSInteger)checkFrequency
 {
 	return [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_CheckFrequency];
 }
@@ -88,7 +88,7 @@
 /* setCheckFrequency
  * Updates the check frequency and then updates the preferences.
  */
--(void)setCheckFrequency:(int)newFrequency
+-(void)setCheckFrequency:(NSInteger)newFrequency
 {
 	[self internalSetCheckFrequency:newFrequency];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_PreferencesUpdated" object:nil];
@@ -97,7 +97,7 @@
 /* internalSetCheckFrequency
  * Updates the check frequency.
  */
--(void)internalSetCheckFrequency:(int)newFrequency
+-(void)internalSetCheckFrequency:(NSInteger)newFrequency
 {
 	[[NSUserDefaults standardUserDefaults] setInteger:newFrequency forKey:MAPref_CheckFrequency];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_CheckFrequencyChange" object:nil];

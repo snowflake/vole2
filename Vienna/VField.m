@@ -59,12 +59,12 @@
 	sqlField = newSqlField;
 }
 
--(void)setType:(int)newType
+-(void)setType:(NSInteger)newType
 {
 	type = newType;
 }
 
--(void)setTag:(int)newTag
+-(void)setTag:(NSInteger)newTag
 {
 	tag = newTag;
 }
@@ -74,7 +74,7 @@
 	visible = flag;
 }
 
--(void)setWidth:(int)newWidth
+-(void)setWidth:(NSInteger)newWidth
 {
 	width = newWidth;
 }
@@ -94,17 +94,17 @@
 	return sqlField;
 }
 
--(int)tag
+-(NSInteger)tag
 {
 	return tag;
 }
 
--(int)type
+-(NSInteger)type
 {
 	return type;
 }
 
--(int)width
+-(NSInteger)width
 {
 	return width;
 }
@@ -116,6 +116,7 @@
 
 -(NSString *)description
 {
+#warning 64BIT: Check formatting arguments
 	return [NSString stringWithFormat:@"('%@', title='%@', sqlField='%@', tag=%d, width=%d, visible=%d)", name, title, sqlField, tag, width, visible];
 }
 

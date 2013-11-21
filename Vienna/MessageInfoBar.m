@@ -61,6 +61,7 @@
 
 		NSMutableAttributedString * infoBarString = [[NSMutableAttributedString alloc] init];
 
+#warning 64BIT: Check formatting arguments
 		NSString * messageNumber = [NSString stringWithFormat:@"%d", [message messageId]];
 		NSString * senderName = [message sender];
 		NSString * messageDate = [[[message date] dateWithCalendarFormat:nil timeZone:nil] friendlyDescription];
@@ -86,6 +87,7 @@
 
 		if ([message comment])
 		{
+#warning 64BIT: Check formatting arguments
 			NSString * commentNumber = [NSString stringWithFormat:@"%d", [message comment]];
 			NSAttributedString * commentLabel = [[NSAttributedString alloc] initWithString:NSLocalizedString(@". Comment to message ", nil) attributes:normalDict];
 			NSAttributedString * commentPart = [[NSAttributedString alloc] initWithString:commentNumber attributes:boldDict];

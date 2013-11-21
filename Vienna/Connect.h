@@ -58,12 +58,12 @@ enum {
 	NSString * pushedLine;
 	Socket * socket;
 	Database * db;
-	int lastTopicId;
+	NSInteger lastTopicId;
 	BOOL online;
-	int taskRunningCount;
+	NSInteger taskRunningCount;
 	BOOL usingSSH;
-	int connectMode;
-	unsigned int messagesCollected;
+	NSInteger connectMode;
+	NSUInteger messagesCollected;
 	NSMutableArray * messagesToPost;
 	NSArray * rssArray;
 	NSMutableArray * tasksArray;
@@ -81,19 +81,19 @@ enum {
 -(void)processOfflineTasks;
 -(void)processSingleTask:(VTask *)task;
 -(BOOL)isProcessing;
--(unsigned int)messagesCollected;
--(int)connectToService;
+-(NSUInteger)messagesCollected;
+-(NSInteger)connectToService;
 -(void)setDelegate:(id)newDelegate;
 -(void)setDatabase:(Database *)database;
 -(void)connectThread:(NSObject *)object;
 -(void)markMessagePosted:(VMessage *)message;
 -(void)updateLastFolder:(NSNumber *)number;
 -(void)stopCIXConnectThread;
--(void)setMode:(int)newMode;
+-(void)setMode:(NSInteger)newMode;
 
 // Delegate interfaces
 -(void)sendActivityStringToDelegate:(NSString *)string;
 -(void)sendStatusToDelegate:(NSString *)statusString;
 -(void)sendStartConnectToDelegate;
--(void)sendEndConnectToDelegate:(int)result;
+-(void)sendEndConnectToDelegate:(NSInteger)result;
 @end

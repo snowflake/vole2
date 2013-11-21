@@ -34,7 +34,7 @@
 }
 
 // Init functions
--(id)initNewMessage:(Database *)db recipient:(NSString *)recipient commentNumber:(int)commentNumber initialText:(NSString *)initialText;
+-(id)initNewMessage:(Database *)db recipient:(NSString *)recipient commentNumber:(NSInteger)commentNumber initialText:(NSString *)initialText;
 -(id)initMessageFromMessage:(Database *)theDb message:(VMessage *)message;
 
 // Accessors

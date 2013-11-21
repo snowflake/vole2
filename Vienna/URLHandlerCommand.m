@@ -49,10 +49,11 @@
 		messageNumber = -1;
 		[scanner scanUpToString:@":" intoString:&folderPath];
 		if ([scanner scanString:@":" intoString:nil])
+#warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 			[scanner scanInt:&messageNumber];
 		else
 		{
-			if ((messageNumber = [folderPath intValue]) > 0)
+			if ((messageNumber = [folderPath integerValue]) > 0)
 				folderPath = nil;
 		}
 

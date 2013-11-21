@@ -22,13 +22,13 @@
 #import "Vole.h"
 
 @interface Logfile : NSObject {
-	int maxVersions;
+	NSInteger maxVersions;
 	NSString *baseName;
 	NSFileHandle * logfileHandle;
 }
 
--(id)initWithName:(NSString *)filename versions:(int)versions;
--(void)write:(char *)text length:(int)len;
+-(id)initWithName:(NSString *)filename versions:(NSInteger)versions;
+-(void)write:(char *)text length:(NSInteger)len;
 -(void)close;
 
 

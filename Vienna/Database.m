@@ -25,7 +25,7 @@
 // Private functions
 @interface Database (Private)
 	-(void)verifyThreadSafety;
-	-(int)topLevelFolderByName:(NSString *)wantedName;
+	-(NSInteger)topLevelFolderByName:(NSString *)wantedName;
 	-(void)executeSQL:(NSString *)sqlStatement;
 	-(void)executeSQLWithFormat:(NSString *)sqlStatement, ...;
 	-(NSString *)folderPathNameHelper:(Folder *)folder;
@@ -129,7 +129,7 @@ enum {
 	if (results && [results rowCount])
 	{
 		NSString * versionString = [[results rowAtIndex:0] stringForColumn:@"version"];
-		databaseVersion = [versionString intValue];
+		databaseVersion = [versionString integerValue];
 	}
 	// static analyser complains
 	// [results release];
@@ -296,6 +296,7 @@ enum {
 {
 	va_list arguments;
 	va_start(arguments, sqlStatement);
+#warning 64BIT: Check formatting arguments
 	NSString * query = [[NSString alloc] initWithFormat:sqlStatement arguments:arguments];
 	SQLResult * result = [sqlDatabase performQuery:query];
 	[query release];
@@ -328,7 +329,7 @@ enum {
 /* addField
  * Add the specified field to our fields array.
  */
--(void)addField:(NSString *)name title:(NSString *)title type:(int)type tag:(int)tag sqlField:(NSString *)sqlField visible:(BOOL)visible width:(int)width
+-(void)addField:(NSString *)name title:(NSString *)title type:(NSInteger)type tag:(NSInteger)tag sqlField:(NSString *)sqlField visible:(BOOL)visible width:(NSInteger)width
 {
 	VField * field = [[VField alloc] init];
 	if (field != nil)
@@ -376,7 +377,7 @@ enum {
 /* databaseVersion
  * Return the database version.
  */
--(int)databaseVersion
+-(NSInteger)databaseVersion
 {
 	return databaseVersion;
 }
@@ -474,9 +475,9 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				int itemId = [[row stringForColumn:@"item_id"] intValue];
-				int categoryId = [[row stringForColumn:@"category_id"] intValue];
-				int status = [[row stringForColumn:@"status"] intValue];
+				NSInteger itemId = [[row stringForColumn:@"item_id"] integerValue];
+				NSInteger categoryId = [[row stringForColumn:@"category_id"] integerValue];
+				NSInteger status = [[row stringForColumn:@"status"] integerValue];
 				NSString * name = [row stringForColumn:@"name"];
 				NSString * description = [row stringForColumn:@"description"];
 				NSDate * lastActiveDate = [NSDate dateWithTimeIntervalSince1970:[[row stringForColumn:@"last_date"] doubleValue]];
@@ -501,15 +502,15 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				int categoryId = [[row stringForColumn:@"category_id"] intValue];
-				int parentId = [[row stringForColumn:@"parent_id"] intValue];
+				NSInteger categoryId = [[row stringForColumn:@"category_id"] integerValue];
+				NSInteger parentId = [[row stringForColumn:@"parent_id"] integerValue];
 				NSString * name = [row stringForColumn:@"name"];
 				
 				Category * category = [[Category alloc] initWithName:name];
 				[category setCategoryId:categoryId];
 				[category setParentId:parentId];
 				[category setName:name];
-				[categoryArray setObject:category forKey:[NSNumber numberWithInt:categoryId]];
+				[categoryArray setObject:category forKey:[NSNumber numberWithInteger:categoryId]];
 				[category release];
 			}
 		}
@@ -522,7 +523,7 @@ enum {
 /* arrayOfCategories
  * Returns an NSArray of all categories with the specified parent.
  */
--(NSArray *)arrayOfCategories:(int)parentId
+-(NSArray *)arrayOfCategories:(NSInteger)parentId
 {
 	// Prime the cache
 	if (initializedForumArray == NO)
@@ -546,7 +547,7 @@ enum {
 /* arrayOfForums
  * Returns an NSArray of all forums with the specified category.
  */
--(NSArray *)arrayOfForums:(int)status inCategory:(int)categoryId
+-(NSArray *)arrayOfForums:(NSInteger)status inCategory:(NSInteger)categoryId
 {
 	// Prime the cache
 	if (initializedForumArray == NO)
@@ -573,7 +574,7 @@ enum {
 /* findCategory
  * Finds the specified category in the children of the given parent category.
  */
--(Category *)findCategory:(int)parentId name:(NSString *)name
+-(Category *)findCategory:(NSInteger)parentId name:(NSString *)name
 {
 	NSEnumerator * enumerator = [categoryArray objectEnumerator];
 	Category * category = nil;
@@ -589,7 +590,7 @@ enum {
 /* addCategory
  * Adds a new forum category
  */
--(int)addCategory:(Category *)newCategory
+-(NSInteger)addCategory:(Category *)newCategory
 {
 	// Prime the cache
 	[self initForumArray];
@@ -604,7 +605,7 @@ enum {
 		[newCategory setCategoryId:[category categoryId]];
 	else
 	{
-		int newItemId;
+		NSInteger newItemId;
 
 		// Preprocess the name to make it SQL-friendly
 		NSString * preparedName = [SQLDatabase prepareStringForQuery:[newCategory name]];
@@ -622,7 +623,7 @@ enum {
 
 		// Add this new category to our internal cache
 		[newCategory setCategoryId:newItemId];
-		[categoryArray setObject:newCategory forKey:[NSNumber numberWithInt:newItemId]];
+		[categoryArray setObject:newCategory forKey:[NSNumber numberWithInteger:newItemId]];
 		// staic analyser complains
 		// [results release];
 	}
@@ -634,7 +635,7 @@ enum {
  * name, description and forum ID (which is the ID of the forum category to which
  * this forum belongs).
  */
--(int)addForum:(Forum *)newForum
+-(NSInteger)addForum:(Forum *)newForum
 {
 	// Prime the cache
 	[self initForumArray];
@@ -676,7 +677,7 @@ enum {
 	}
 	else
 	{
-		int newItemId;
+		NSInteger newItemId;
 
 		// Add a new row into the forums table.
 		SQLResult * results = [sqlDatabase performQueryWithFormat:
@@ -705,12 +706,12 @@ enum {
  * Add a new folder given its full path. If any folder on the path is missing, it is
  * automatically created. All parent folders are created as empty folders by default.
  */
--(int)addFolderByPath:(int)parentId path:(NSString *)path
+-(NSInteger)addFolderByPath:(NSInteger)parentId path:(NSString *)path
 {
 	NSArray * pathComponents = [path componentsSeparatedByString:@"/"];
-	int count = [pathComponents count];
-	int folderId = parentId;
-	int index;
+	NSInteger count = [pathComponents count];
+	NSInteger folderId = parentId;
+	NSInteger index;
 	
 	if (count < 1)
 		return -1;
@@ -746,13 +747,13 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				int folderId = [[row stringForColumn:@"folder_id"] intValue];
+				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
 				NSString * url = [row stringForColumn:@"feed_url"];
 				NSDate * update = [NSDate dateWithTimeIntervalSince1970:[[row stringForColumn:@"last_update"] doubleValue]];
 
 				Folder * folder = [self folderFromID:folderId];
 				RSSFolder * rssFolder = [[RSSFolder alloc] initWithId:folder subscriptionURL:url update:update];
-				[rssFeedArray setObject:rssFolder forKey:[NSNumber numberWithInt:folderId]];
+				[rssFeedArray setObject:rssFolder forKey:[NSNumber numberWithInteger:folderId]];
 				[rssFolder release];
 			}
 		}
@@ -806,19 +807,19 @@ enum {
  * Returns the RSSFolder corresponding to the specified folder ID
  * or Nil otherwise.
  */
--(RSSFolder *)rssFolderFromId:(int)folderId
+-(RSSFolder *)rssFolderFromId:(NSInteger)folderId
 {
 	// Prime the cache
 	if (initializedRSSArray == NO)
 		[self initRSSArray];
-	return [rssFeedArray objectForKey:[NSNumber numberWithInt:folderId]];
+	return [rssFeedArray objectForKey:[NSNumber numberWithInteger:folderId]];
 }
 
 /* setRSSFeedLastUpdate
  * Sets the date when the RSS feed was last updated. The flushFolder function must be
  * called for the parent folder to flush this to the database.
  */
--(void)setRSSFeedLastUpdate:(int)folderId lastUpdate:(NSDate *)lastUpdate
+-(void)setRSSFeedLastUpdate:(NSInteger)folderId lastUpdate:(NSDate *)lastUpdate
 {
 	// Exit now if we're read-only
 	if (readOnly)
@@ -828,7 +829,7 @@ enum {
 	if (initializedRSSArray == NO)
 		[self initRSSArray];
 	
-	RSSFolder * folder = [rssFeedArray objectForKey:[NSNumber numberWithInt:folderId]];
+	RSSFolder * folder = [rssFeedArray objectForKey:[NSNumber numberWithInteger:folderId]];
 	if (folder != nil)
 		[folder setLastUpdate:lastUpdate];
 }
@@ -836,7 +837,7 @@ enum {
 /* setRSSFolderFeed
  * Change the URL of the feed on the specified RSS folder subscription.
  */
--(BOOL)setRSSFolderFeed:(int)folderId subscriptionURL:(NSString *)url
+-(BOOL)setRSSFolderFeed:(NSInteger)folderId subscriptionURL:(NSString *)url
 {
 	// Exit now if we're read-only
 	if (readOnly)
@@ -846,7 +847,7 @@ enum {
 	if (initializedRSSArray == NO)
 		[self initRSSArray];
 	
-	RSSFolder * folder = [rssFeedArray objectForKey:[NSNumber numberWithInt:folderId]];
+	RSSFolder * folder = [rssFeedArray objectForKey:[NSNumber numberWithInteger:folderId]];
 	if (folder != nil && ![[folder subscriptionURL] isEqualToString:url])
 	{
 		NSString * preparedURL = [SQLDatabase prepareStringForQuery:url];
@@ -862,14 +863,14 @@ enum {
  * Add an RSS Feed folder and return the ID of the new folder. One distinction is that
  * RSS folder names need not be unique within the parent
  */
--(int)addRSSFolder:(NSString *)feedName subscriptionURL:(NSString *)url
+-(NSInteger)addRSSFolder:(NSString *)feedName subscriptionURL:(NSString *)url
 {
-	int parentId = [self rssNodeID];
+	NSInteger parentId = [self rssNodeID];
 	if (parentId == -1)
 		return -1;
 	
 	// Add the feed URL to the RSS feed table
-	int folderId = [self addFolder:parentId folderName:feedName permissions:MA_RSS_Folder mustBeUnique:NO];
+	NSInteger folderId = [self addFolder:parentId folderName:feedName permissions:MA_RSS_Folder mustBeUnique:NO];
 	if (folderId != -1)
 	{
 		NSString * preparedURL = [SQLDatabase prepareStringForQuery:url];
@@ -886,7 +887,7 @@ enum {
 		// Add this new folder to our internal cache
 		Folder * folder = [self folderFromID:folderId];
 		RSSFolder * itemPtr = [[[RSSFolder alloc] initWithId:folder subscriptionURL:url update:lastUpdate] autorelease];
-		[rssFeedArray setObject:itemPtr forKey:[NSNumber numberWithInt:folderId]];
+		[rssFeedArray setObject:itemPtr forKey:[NSNumber numberWithInteger:folderId]];
 		// static analyser complains
 		// [results release];
 	}
@@ -896,7 +897,7 @@ enum {
 /* addFolder
  * Create a new folder under the specified parent and give it the requested name and permissions.
  */
--(int)addFolder:(int)parentId folderName:(NSString *)name permissions:(int)permissions mustBeUnique:(BOOL)mustBeUnique
+-(NSInteger)addFolder:(NSInteger)parentId folderName:(NSString *)name permissions:(NSInteger)permissions mustBeUnique:(BOOL)mustBeUnique
 {
 	Folder * itemPtr = nil;
 
@@ -918,7 +919,7 @@ enum {
 
 	// Here we create the folder anew.
 	NSString * preparedName = [SQLDatabase prepareStringForQuery:name];
-	int newItemId;
+	NSInteger newItemId;
 
 	// OK, it's not in the database so create it. Then cache the ID so that we don't
 	// need to hit the database next time.
@@ -936,7 +937,7 @@ enum {
 
 	// Add this new folder to our internal cache
 	itemPtr = [[[Folder alloc] initWithId:newItemId parentId:parentId name:name permissions:permissions] autorelease];
-	[foldersArray setObject:itemPtr forKey:[NSNumber numberWithInt:newItemId]];
+	[foldersArray setObject:itemPtr forKey:[NSNumber numberWithInteger:newItemId]];
 
 	// Send a notification when new folders are added
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FolderAdded" object:itemPtr];
@@ -948,7 +949,7 @@ enum {
 /* conferenceNodeID;
  * Returns the ID of the conference node.
  */
--(int)conferenceNodeID
+-(NSInteger)conferenceNodeID
 {
 	return MA_Conference_NodeID;
 }
@@ -956,7 +957,7 @@ enum {
 /* rssNodeID
  * Returns the ID of the RSS folder node
  */
--(int)rssNodeID
+-(NSInteger)rssNodeID
 {
 	if (cachedRSSNodeID == -1)
 		cachedRSSNodeID = [self topLevelFolderByName:@"RSS Subscriptions"];
@@ -967,7 +968,7 @@ enum {
  * Returns the ID of a top level folder (a folder under root) given its
  * unique name.
  */
--(int)topLevelFolderByName:(NSString *)wantedName
+-(NSInteger)topLevelFolderByName:(NSString *)wantedName
 {
 	NSEnumerator * enumerator = [foldersArray objectEnumerator];
 	Folder * item;
@@ -984,7 +985,7 @@ enum {
  * Delete the specified folder. This function should be called from within a
  * transaction wrapper since it can be very SQL intensive.
  */
--(BOOL)wrappedDeleteFolder:(int)folderId
+-(BOOL)wrappedDeleteFolder:(NSInteger)folderId
 {
 	NSArray * arrayOfChildFolders = [self arrayOfFolders:folderId];
 	NSEnumerator * enumerator = [arrayOfChildFolders objectEnumerator];
@@ -996,7 +997,7 @@ enum {
 
 	// Adjust unread and priority unread counts on parents
 	folder = [self folderFromID:folderId];
-	int adjustment = -[folder unreadCount];
+	NSInteger adjustment = -[folder unreadCount];
 	while ([folder parentId] != -1)
 	{
 		folder = [self folderFromID:[folder parentId]];
@@ -1016,7 +1017,7 @@ enum {
 	if (IsRSSFolder(folder))
 	{
 		[self executeSQLWithFormat:@"delete from rss_feeds where folder_id=%d", folderId];
-		[rssFeedArray removeObjectForKey:[NSNumber numberWithInt:folderId]];
+		[rssFeedArray removeObjectForKey:[NSNumber numberWithInteger:folderId]];
 	}
 
 	// For a search folder, the next line is a no-op but it helpfully takes care of the case where a
@@ -1026,12 +1027,12 @@ enum {
 	[self executeSQLWithFormat:@"delete from folder_descriptions where folder_id=%d", folderId];
 
 	// Send a notification when the folder is deleted
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FolderDeleted" object:[NSNumber numberWithInt:folderId]];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FolderDeleted" object:[NSNumber numberWithInteger:folderId]];
 
 	// Remove from the folders array. Do this after we send the notification
 	// so that the notification handlers don't fail if they try to dereference the
 	// folder.
-	[foldersArray removeObjectForKey:[NSNumber numberWithInt:folderId]];
+	[foldersArray removeObjectForKey:[NSNumber numberWithInteger:folderId]];
 	return YES;
 }
 
@@ -1039,7 +1040,7 @@ enum {
  * Delete the specified folder. If the folder has any children, delete them too. Also delete
  * all messages associated with the folder. Then send a notification that the folder went bye-bye.
  */
--(BOOL)deleteFolder:(int)folderId
+-(BOOL)deleteFolder:(NSInteger)folderId
 {
 	BOOL result;
 
@@ -1056,7 +1057,7 @@ enum {
 /* setFolderName
  * Renames the specified folder.
  */
--(BOOL)setFolderName:(int)folderId newName:(NSString *)newName
+-(BOOL)setFolderName:(NSInteger)folderId newName:(NSString *)newName
 {
 	// Exit now if we're read-only
 	if (readOnly)
@@ -1080,7 +1081,7 @@ enum {
 
 		// Send a notification that the folder has changed. It is the responsibility of the
 		// notifiee that they work out that the name is the part that has changed.
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:folderId]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
 	}
 	return YES;
 }
@@ -1088,7 +1089,7 @@ enum {
 /* setFolderDescription
  * Sets the folder description both in the internal structure and in the folder_description table.
  */
--(BOOL)setFolderDescription:(int)folderId newDescription:(NSString *)newDescription
+-(BOOL)setFolderDescription:(NSInteger)folderId newDescription:(NSString *)newDescription
 {
 	// Exit now if we're read-only
 	if (readOnly)
@@ -1116,7 +1117,7 @@ enum {
 
 		// Send a notification that the folder has changed. It is the responsibility of the
 		// notifiee that they work out that the description is the part that has changed.
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:folderId]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
 	}
 	return YES;
 }
@@ -1124,7 +1125,7 @@ enum {
 /* setFolderLink
  * Sets the folder's associated URL link in both in the internal structure and in the folder_description table.
  */
--(BOOL)setFolderLink:(int)folderId newLink:(NSString *)newLink
+-(BOOL)setFolderLink:(NSInteger)folderId newLink:(NSString *)newLink
 {
 	// Exit now if we're read-only
 	if (readOnly)
@@ -1152,7 +1153,7 @@ enum {
 		
 		// Send a notification that the folder has changed. It is the responsibility of the
 		// notifiee that they work out that the link is the part that has changed.
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:folderId]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
 	}
 	return YES;
 }
@@ -1160,15 +1161,15 @@ enum {
 /* folderFromID
  * Retrieve a Folder given it's ID.
  */
--(Folder *)folderFromID:(int)wantedId
+-(Folder *)folderFromID:(NSInteger)wantedId
 {
-	return [foldersArray objectForKey:[NSNumber numberWithInt:wantedId]];
+	return [foldersArray objectForKey:[NSNumber numberWithInteger:wantedId]];
 }
 
 /* folderFromIDAndName
  * Retrieve a Folder given it's parent ID and its own name.
  */
--(Folder *)folderFromIDAndName:(int)wantedParentId name:(NSString *)wantedName
+-(Folder *)folderFromIDAndName:(NSInteger)wantedParentId name:(NSString *)wantedName
 {
 	NSEnumerator * enumerator = [foldersArray objectEnumerator];
 	Folder * item;
@@ -1184,7 +1185,7 @@ enum {
 /* folderPathName
  * Returns the full path of the specified folder.
  */
--(NSString *)folderPathName:(int)folderId
+-(NSString *)folderPathName:(NSInteger)folderId
 {
 	Folder * folder = [self folderFromID:folderId];
 	
@@ -1219,7 +1220,7 @@ enum {
 /* countOfPriorityUnread
  * Returns the total number of unread priority messages.
  */
--(int)countOfPriorityUnread
+-(NSInteger)countOfPriorityUnread
 {
 	return countOfPriorityUnread;
 }
@@ -1228,7 +1229,7 @@ enum {
  * A counterpart to addMessage but which takes a folder path and creates
  * the folders as needed.
  */
--(int)addMessageToFolder:(int)folderId path:(NSString *)path message:(VMessage *)message raw:(BOOL)raw wasNew:(BOOL *)wasNew;
+-(NSInteger)addMessageToFolder:(NSInteger)folderId path:(NSString *)path message:(VMessage *)message raw:(BOOL)raw wasNew:(BOOL *)wasNew;
 {
 	// Parse off the folder path
 	folderId = [self addFolderByPath:folderId path:path];
@@ -1261,7 +1262,7 @@ enum {
 
 // Return the name of the folder where the metadata file is kept. These
 // are divided by (vienna) folder numbers to avoid large, slow directory searches.
--(NSString *)createSpotlightFolder:(int)folderId message:(int)messageId
+-(NSString *)createSpotlightFolder:(NSInteger)folderId message:(NSInteger)messageId
 {
 	NSString *shortCachePath = @"~/Library/Caches/Metadata/Vienna/";
 	NSString *cachePath = [shortCachePath stringByExpandingTildeInPath];
@@ -1269,18 +1270,20 @@ enum {
 	
 	[[NSFileManager defaultManager] createDirectoryAtPath: cachePath attributes: nil];
 
+#warning 64BIT: Check formatting arguments
 	folderCachePath = [NSString stringWithFormat: @"%@/%04d", cachePath, folderId];
 	[[NSFileManager defaultManager] createDirectoryAtPath: folderCachePath attributes: nil];
 
 	return folderCachePath;
 }
 
--(void)addSpotlightMetadata:(int)messageId folder:(int)folderId sender:(NSString *)senderName date:(NSDate *)date text:(NSString *)text
+-(void)addSpotlightMetadata:(NSInteger)messageId folder:(NSInteger)folderId sender:(NSString *)senderName date:(NSDate *)date text:(NSString *)text
 {
 	NSString *folderPath = [self createSpotlightFolder: folderId message: messageId];
 
 	Folder *folder = [self folderFromID: folderId];
     Folder *parentFolder = [self folderFromID: [folder parentId]];	
+#warning 64BIT: Check formatting arguments
 	NSString *cixURL = [NSString stringWithFormat: @"cix:%@/%@:%d", [parentFolder name], [folder name], messageId];
 	NSString *displayName = [NSString stringWithFormat: @"%@ %@", cixURL, senderName];
 
@@ -1303,6 +1306,7 @@ enum {
 		[NSArray arrayWithObjects: senderName, nil], @"kMDItemAuthors",
 		nil, nil];
 
+#warning 64BIT: Check formatting arguments
 	NSString *mdFilename = [NSString stringWithFormat: @"%@/%06d.cixurl", folderPath, messageId];
 	[attribsDict writeToFile: mdFilename atomically: YES];
 	
@@ -1318,9 +1322,10 @@ enum {
 	[[NSFileManager defaultManager] changeFileAttributes: fileAttr atPath: mdFilename];
 }
 
--(void)removeSpotlightMetadata:(int)messageId folder:(int)folderId
+-(void)removeSpotlightMetadata:(NSInteger)messageId folder:(NSInteger)folderId
 {
 	NSString *folderPath = [self createSpotlightFolder: folderId message: messageId];
+#warning 64BIT: Check formatting arguments
 	NSString *mdFilename = [NSString stringWithFormat: @"%@/%06d.cixurl", folderPath, messageId];
 	
 	[[NSFileManager defaultManager] removeFileAtPath: mdFilename handler:nil];
@@ -1331,7 +1336,7 @@ enum {
  * message that was added or updated or -1 if we couldn't add the message for
  * some reason.
  */
--(int)addMessage:(int)folderID message:(VMessage *)message wasNew:(BOOL *)wasNew
+-(NSInteger)addMessage:(NSInteger)folderID message:(VMessage *)message wasNew:(BOOL *)wasNew
 {
 	// Exit now if we're read-only
 	if (readOnly)
@@ -1358,8 +1363,8 @@ enum {
 		NSString * messageTitle = [[message messageData] objectForKey:MA_Column_MessageTitle]; 
 		NSDate * messageDate = [[message messageData] objectForKey:MA_Column_MessageDate];
 		NSString * userName = [[message messageData] objectForKey:MA_Column_MessageFrom];
-		int messageNumber = [message messageId];
-		int commentNumber = [message comment];
+		NSInteger messageNumber = [message messageId];
+		NSInteger commentNumber = [message comment];
 		BOOL marked_flag = [message isFlagged];
 		BOOL read_flag = [message isRead];
 		BOOL priority_flag = [message isPriority];
@@ -1379,7 +1384,7 @@ enum {
 		NSTimeInterval interval = [messageDate timeIntervalSince1970];
 
 		// Unread count adjustment factor
-		int adjustment = 0;
+		NSInteger adjustment = 0;
 		
 		// Fix title and message body so they're acceptable to SQL
 		NSString * preparedMessageTitle = [SQLDatabase prepareStringForQuery:messageTitle];
@@ -1401,7 +1406,7 @@ enum {
 		if (messageNumber == MA_MsgID_RSSNew)
 		{
 			NSArray * msgs = [folder messages];
-			int count = [msgs count];
+			NSInteger count = [msgs count];
 
 			messageNumber = MA_MsgID_New;
 			while (--count >= 0)
@@ -1453,7 +1458,7 @@ enum {
 			if (results && [results rowCount])
 			{
 				SQLRow * row = [results rowAtIndex:0];
-				messageNumber = [[row stringForColumn:@"max(message_id)"] intValue];
+				messageNumber = [[row stringForColumn:@"max(message_id)"] integerValue];
 			}
 			// analyser complains
 			// [results release];
@@ -1565,7 +1570,7 @@ enum {
 /* deleteMessage
  * Deletes a message from the specified folder
  */
--(BOOL)deleteMessage:(int)folderId messageNumber:(int)messageNumber
+-(BOOL)deleteMessage:(NSInteger)folderId messageNumber:(NSInteger)messageNumber
 {
 	Folder * folder = [self folderFromID:folderId];
 	if (folder != nil)
@@ -1617,14 +1622,14 @@ enum {
 /* flushFolder
  * Updates the unread count for a folder in the database
  */
--(void)flushFolder:(int)folderId
+-(void)flushFolder:(NSInteger)folderId
 {
 	Folder * folder = [self folderFromID:folderId];
 
 	if ([folder isUnreadCountChanged] && !IsSearchFolder(folder))
 	{
-		int unreadCount = [folder unreadCount];
-		int priorityUnreadCount = [folder priorityUnreadCount];
+		NSInteger unreadCount = [folder unreadCount];
+		NSInteger priorityUnreadCount = [folder priorityUnreadCount];
 
 		// Verify we're on the right thread
 		[self verifyThreadSafety];
@@ -1633,7 +1638,7 @@ enum {
 		[folder resetUnreadCountChanged];
 		
 		// If this is an RSS folder, flush the last update
-		RSSFolder * rssFolder = (RSSFolder *)[rssFeedArray objectForKey:[NSNumber numberWithInt:folderId]];
+		RSSFolder * rssFolder = (RSSFolder *)[rssFeedArray objectForKey:[NSNumber numberWithInteger:folderId]];
 		if (rssFolder != nil)
 		{
 			NSTimeInterval interval = [[rssFolder lastUpdate] timeIntervalSince1970];
@@ -1665,10 +1670,10 @@ enum {
 
 			while ((row = [enumerator nextObject]))
 			{
-				int taskId = [[row stringForColumn:@"task_id"] intValue];
-				int orderCode = [[row stringForColumn:@"order_code"] intValue];
-				int actionCode = [[row stringForColumn:@"action_code"] intValue];
-				int resultCode = [[row stringForColumn:@"result_code"] intValue];
+				NSInteger taskId = [[row stringForColumn:@"task_id"] integerValue];
+				NSInteger orderCode = [[row stringForColumn:@"order_code"] integerValue];
+				NSInteger actionCode = [[row stringForColumn:@"action_code"] integerValue];
+				NSInteger resultCode = [[row stringForColumn:@"result_code"] integerValue];
 				NSString * actionData = [row stringForColumn:@"action_data"];
 				NSString * folderName = [row stringForColumn:@"folder_name"];
 				NSString * resultString = [row stringForColumn:@"result_data"];
@@ -1730,14 +1735,14 @@ enum {
 /* findTask
  * Locates an existing task in the array of tasks that match the requested action code and data.
  */
--(VTask *)findTask:(int)wantedActionCode wantedActionData:(NSString *)wantedActionData
+-(VTask *)findTask:(NSInteger)wantedActionCode wantedActionData:(NSString *)wantedActionData
 {
 	// Prime the cache
 	if (initializedTasksArray == NO)
 		[self initTasksArray];
 	
-	int index;
-	for (index = 0; index < (int)[tasksArray count]; ++index)
+	NSInteger index;
+	for (index = 0; index < (NSInteger)[tasksArray count]; ++index)
 	{
 		VTask * theTask = [tasksArray objectAtIndex:index];
 		if ([theTask actionCode] == wantedActionCode && [[theTask actionData] isEqualToString:wantedActionData])
@@ -1749,13 +1754,13 @@ enum {
 /* clearTasks
  * Remove tasks with the specified flag from the tasks list.
  */
--(void)clearTasks:(int)resultCode;
+-(void)clearTasks:(NSInteger)resultCode;
 {
 	// Exit now if we're read-only
 	if (readOnly)
 		return;
 
-	int index;
+	NSInteger index;
 	for (index = [tasksArray count] - 1; index >= 0; --index)
 	{
 		if ([[tasksArray objectAtIndex:index] resultCode] == resultCode)
@@ -1831,7 +1836,7 @@ enum {
 /* addTask
  * Add a task to the Tasks list. 
  */
--(VTask *)addTask:(int)actionCode actionData:(NSString *)actionData folderName:(NSString *)folderName orderCode:(int)orderCode
+-(VTask *)addTask:(NSInteger)actionCode actionData:(NSString *)actionData folderName:(NSString *)folderName orderCode:(NSInteger)orderCode
 {
 	NSAssert(actionData != nil, @"actionData cannot be nil. Use an empty string instead");
 	NSAssert(folderName != nil, @"folderName cannot be nil. Use an empty string instead");
@@ -1861,8 +1866,8 @@ enum {
 	// at it, find the before code so we set insertIndex appropriately
 	// if we need to insert anything.
 	NSEnumerator * enumerator = [tasksArray objectEnumerator];
-	int insertIndex = [tasksArray count];
-	int itemIndex = 0;
+	NSInteger insertIndex = [tasksArray count];
+	NSInteger itemIndex = 0;
 	VTask * theTask;
 
 	while ((theTask = [enumerator nextObject]) != nil)
@@ -1911,7 +1916,7 @@ enum {
 		return nil;
 	
 	// Quick way of getting the last autoincrement primary key value (the task_id).
-	int newTaskId = [sqlDatabase lastInsertRowId];
+	NSInteger newTaskId = [sqlDatabase lastInsertRowId];
 	[task setTaskId:newTaskId];
 	[tasksArray insertObject:task atIndex:insertIndex];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_TaskAdded" object:task];
@@ -1959,10 +1964,10 @@ enum {
 			while ((row = [enumerator nextObject]))
 			{
 				NSString * search_string = [row stringForColumn:@"search_string"];
-				int folderId = [[row stringForColumn:@"folder_id"] intValue];
+				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
 				
 				VCriteriaTree * criteriaTree = [[VCriteriaTree alloc] initWithString:search_string];
-				[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInt:folderId]];
+				[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInteger:folderId]];
 				[criteriaTree release];
 			}
 		}
@@ -1976,10 +1981,10 @@ enum {
  * Retrieve the search folder criteria string for the specified folderId. Returns nil if
  * folderId is not a search folder.
  */
--(VCriteriaTree *)searchStringForSearchFolder:(int)folderId
+-(VCriteriaTree *)searchStringForSearchFolder:(NSInteger)folderId
 {
 	[self initSearchFoldersArray];
-	return [searchFoldersArray objectForKey:[NSNumber numberWithInt:folderId]];
+	return [searchFoldersArray objectForKey:[NSNumber numberWithInteger:folderId]];
 }
 
 /* createSearchFolder
@@ -1995,7 +2000,7 @@ enum {
 		[self updateSearchFolder:[itemPtr itemId] withFolder:folderName withQuery:criteriaTree];
 	else
 	{
-		int folderId = [self addFolder:-1 folderName:folderName permissions:MA_Search_Folder mustBeUnique:YES];
+		NSInteger folderId = [self addFolder:-1 folderName:folderName permissions:MA_Search_Folder mustBeUnique:YES];
 		if (folderId == -1)
 			success = NO;
 		else
@@ -2005,10 +2010,10 @@ enum {
 			
 			NSString * preparedQueryString = [SQLDatabase prepareStringForQuery:[criteriaTree string]];
 			[self executeSQLWithFormat:@"insert into search_folders (folder_id, search_string) values (%d, '%@')", folderId, preparedQueryString];
-			[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInt:folderId]];
+			[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInteger:folderId]];
 
 			NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-			[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:folderId]];
+			[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
 		}
 	}
 	return success;
@@ -2017,7 +2022,7 @@ enum {
 /* updateSearchFolder
  * Updates the search string for the specified folder.
  */
--(BOOL)updateSearchFolder:(int)folderId withFolder:(NSString *)folderName withQuery:(VCriteriaTree *)criteriaTree
+-(BOOL)updateSearchFolder:(NSInteger)folderId withFolder:(NSString *)folderName withQuery:(VCriteriaTree *)criteriaTree
 {
 	Folder * folder = [self folderFromID:folderId];
 	if (![[folder name] isEqualToString:folderName])
@@ -2029,10 +2034,10 @@ enum {
 	// Update the search folder string
 	NSString * preparedQueryString = [SQLDatabase prepareStringForQuery:[criteriaTree string]];
 	[self executeSQLWithFormat:@"update search_folders set search_string='%@' where folder_id=%d", preparedQueryString, folderId];
-	[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInt:folderId]];
+	[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInteger:folderId]];
 	
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:folderId]];
+	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
 	return YES;
 }
 
@@ -2063,11 +2068,11 @@ enum {
 			while ((row = [enumerator nextObject]))
 			{
 				NSString * name = [row stringForColumn:@"foldername"];
-				int newItemId = [[row stringForColumn:@"folder_id"] intValue];
-				int newParentId = [[row stringForColumn:@"parent_id"] intValue];
-				int unreadCount = [[row stringForColumn:@"unread_count"] intValue];
-				int priorityUnreadCount = [[row stringForColumn:@"priority_unread_count"] intValue];
-				int permissions = [[row stringForColumn:@"permissions"] intValue];
+				NSInteger newItemId = [[row stringForColumn:@"folder_id"] integerValue];
+				NSInteger newParentId = [[row stringForColumn:@"parent_id"] integerValue];
+				NSInteger unreadCount = [[row stringForColumn:@"unread_count"] integerValue];
+				NSInteger priorityUnreadCount = [[row stringForColumn:@"priority_unread_count"] integerValue];
+				NSInteger permissions = [[row stringForColumn:@"permissions"] integerValue];
 				
 				// This code has a potential bug.
 				// We assume that the parent folder id always gets returned ahead of the
@@ -2096,7 +2101,7 @@ enum {
 						parentFolder = [self folderFromID:[parentFolder parentId]];
 					}
 				}
-				[foldersArray setObject:folder forKey:[NSNumber numberWithInt:newItemId]];
+				[foldersArray setObject:folder forKey:[NSNumber numberWithInteger:newItemId]];
 			}
 		}
 		// static analyser complains 
@@ -2111,7 +2116,7 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				int folderId = [[row stringForColumn:@"folder_id"] intValue];
+				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
 				NSString * descriptiontext = [row stringForColumn:@"description"];
 				NSString * linktext = [row stringForColumn:@"link"];
 				Folder * folder = [self folderFromID:folderId];
@@ -2130,7 +2135,7 @@ enum {
 /* arrayOfFolders
  * Returns an NSArray of all folders with the specified parent.
  */
--(NSArray *)arrayOfFolders:(int)parentId
+-(NSArray *)arrayOfFolders:(NSInteger)parentId
 {
 	// Prime the cache
 	if (initializedFoldersArray == NO)
@@ -2177,7 +2182,7 @@ enum {
 			{
 				NSString * name = [row stringForColumn:@"name"];
 				NSString * info = [row stringForColumn:@"info"];
-				int personId = [[row stringForColumn:@"person_id"] intValue];
+				NSInteger personId = [[row stringForColumn:@"person_id"] integerValue];
 
 				VPerson * person = [[VPerson alloc] init];
 				[person setPersonId:personId];
@@ -2256,7 +2261,7 @@ enum {
 	// We build up one big SQL condition string based on the
 	// information requested in the dictionary.
 	NSString * sqlConditionList = @"";
-	int numberOfClauses = 0;
+	NSInteger numberOfClauses = 0;
 
 	while ((column = [enumerator nextObject]) != nil)
 	{
@@ -2269,7 +2274,7 @@ enum {
 			NSEnumerator * enumerator = [folderList objectEnumerator];
 			NSString * sqlPart = @"";
 			NSString * value;
-			int countOfItems = 0;
+			NSInteger countOfItems = 0;
 
 			while ((value = [enumerator nextObject]) != nil)
 			{
@@ -2302,9 +2307,9 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				int messageId = [[row stringForColumn:@"message_id"] intValue];
-				int folderId = [[row stringForColumn:@"folder_id"] intValue];
-				int commentId = [[row stringForColumn:@"comment_id"] intValue];
+				NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
+				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
+				NSInteger commentId = [[row stringForColumn:@"comment_id"] integerValue];
 				NSString * title = [row stringForColumn:@"title"];
 				NSString * senderName = [row stringForColumn:@"sender"];
 				NSString * guid = [row stringForColumn:@"sender"];
@@ -2339,7 +2344,7 @@ enum {
 	// Exit now if we're already initialized
 	if ([folder messageCount] == -1)
 	{
-		int folderId = [folder itemId];
+		NSInteger folderId = [folder itemId];
 		SQLResult * results;
 
 		// Initialize to indicate that the folder array is valid.
@@ -2352,16 +2357,16 @@ enum {
 		if (results && [results rowCount])
 		{
 			NSEnumerator * enumerator = [results rowEnumerator];
-			int unread_count = 0;
-			int priority_unread_count = 0;
+			NSInteger unread_count = 0;
+			NSInteger priority_unread_count = 0;
 			SQLRow * row;
 
 			while ((row = [enumerator nextObject]) != nil)
 			{
-				int messageId = [[row stringForColumn:@"message_id"] intValue];
-				BOOL read_flag = [[row stringForColumn:@"read_flag"] intValue];
-				BOOL priority_flag = [[row stringForColumn:@"priority_flag"] intValue];
-				BOOL ignored_flag = [[row stringForColumn:@"ignored_flag"] intValue];
+				NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
+				BOOL read_flag = [[row stringForColumn:@"read_flag"] integerValue];
+				BOOL priority_flag = [[row stringForColumn:@"priority_flag"] integerValue];
+				BOOL ignored_flag = [[row stringForColumn:@"ignored_flag"] integerValue];
 				NSString * title = [row stringForColumn:@"title"];
 				NSString * sender = [row stringForColumn:@"sender"];
 
@@ -2389,6 +2394,7 @@ enum {
 			// them if not.
 			if (unread_count != [folder unreadCount])
 			{
+#warning 64BIT: Check formatting arguments
 				NSLog(@"Fixing unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d",
 					  [folder name], [folder unreadCount], unread_count, [folder itemId], [folder parentId] );
 				[self setFolderUnreadCount:folder adjustment:(unread_count - [folder unreadCount])];
@@ -2396,6 +2402,7 @@ enum {
 			}
 			if (priority_unread_count != [folder priorityUnreadCount])
 			{
+#warning 64BIT: Check formatting arguments
 				NSLog(@"Fixing priority unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d",
 					  [folder name], [folder priorityUnreadCount], priority_unread_count, [folder itemId], [folder parentId]);
 				countOfPriorityUnread += priority_unread_count - [folder priorityUnreadCount];
@@ -2412,7 +2419,7 @@ enum {
 /* releaseMessages
  * Free up the memory used to cache copies of the messages in the specified folder.
  */
--(void)releaseMessages:(int)folderId
+-(void)releaseMessages:(NSInteger)folderId
 {
 	Folder * folder = [self folderFromID:folderId];
 	[folder clearMessages];
@@ -2421,7 +2428,7 @@ enum {
 /* arrayOfChildMessages
  * Returns the specified message and all messages that are child messages.
  */
--(NSArray *)arrayOfChildMessages:(int)folderId messageId:(int)messageId
+-(NSArray *)arrayOfChildMessages:(NSInteger)folderId messageId:(NSInteger)messageId
 {
 	Folder * folder = [self folderFromID:folderId];
 	NSMutableArray * newArray = [NSMutableArray array];
@@ -2447,11 +2454,11 @@ enum {
  * of child messages for the specified message. It is SLOW. This is the sort of code that really needs
  * to be replaced by maintaining a proper set of parent index pointers on every message.
  */
--(void)buildArrayOfChildMessages:(NSMutableArray *)newArray folder:(Folder *)folder messageId:(int)messageId searchIndex:(unsigned int)searchIndex
+-(void)buildArrayOfChildMessages:(NSMutableArray *)newArray folder:(Folder *)folder messageId:(NSInteger)messageId searchIndex:(NSUInteger)searchIndex
 {
 	NSArray * messagesArray = [folder messages];
 	BOOL isSorted = YES;
-	int largestID = 0;
+	NSInteger largestID = 0;
 
 	while (searchIndex < [messagesArray count])
 	{
@@ -2476,13 +2483,13 @@ enum {
 	NSString * sqlString = @"";
 	NSEnumerator * enumerator = [criteriaTree criteriaEnumerator];
 	VCriteria * criteria;
-	int count = 0;
+	NSInteger count = 0;
 
 	while ((criteria = [enumerator nextObject]) != nil)
 	{
 		VField * field = [self fieldByTitle:[criteria field]];
 		NSAssert1(field != nil, @"VCriteria field %@ does not have an associated database field", [criteria field]);
-		int type = [field type];
+		NSInteger type = [field type];
 
 		NSString * operatorString = nil;
 		NSString * valueString = nil;
@@ -2551,12 +2558,14 @@ enum {
 					// milliseconds. So we need to translate this to a range for this to make sense.
 					NSCalendarDate * startDate = [NSCalendarDate dateWithString:[criteria value] calendarFormat:@"%d/%m/%y"];
 					NSCalendarDate * endDate = [startDate dateByAddingYears:0 months:0 days:1 hours:0 minutes:0 seconds:0];
+#warning 64BIT: Check formatting arguments
 					operatorString = [NSString stringWithFormat:@">=%f and %@<%f", [startDate timeIntervalSince1970], [field sqlField], [endDate timeIntervalSince1970]];
 					valueString = @"";
 				}
 				else
 				{
 					NSCalendarDate * theDate = [NSCalendarDate dateWithString:[criteria value] calendarFormat:@"%d/%m/%y"];
+#warning 64BIT: Check formatting arguments
 					valueString = [NSString stringWithFormat:@"%f", [theDate timeIntervalSince1970]];
 				}
 				break;
@@ -2571,6 +2580,7 @@ enum {
 		if (count++ > 0)
 			sqlString = [sqlString stringByAppendingString:@" and "];
 		sqlString = [sqlString stringByAppendingString:[field sqlField]];
+#warning 64BIT: Check formatting arguments
 		sqlString = [sqlString stringByAppendingFormat:operatorString, valueString];
 	}
 	return sqlString;
@@ -2580,7 +2590,7 @@ enum {
  * Retrieves a sorted array of NSNumber objects representing the message numbers in the
  * specified folder.
  */
--(NSArray *)arrayOfMessagesNumbers:(int)folderId
+-(NSArray *)arrayOfMessagesNumbers:(NSInteger)folderId
 {
 	Folder * folder = [self folderFromID:folderId];
 	NSMutableArray * newArray = [NSMutableArray array];
@@ -2596,7 +2606,7 @@ enum {
 
 			while ((message = [enumerator nextObject]) != nil)
 			{
-				[newArray addObject:[NSNumber numberWithInt:[message messageId]]];
+				[newArray addObject:[NSNumber numberWithInteger:[message messageId]]];
 			}
 		}
 		else
@@ -2614,8 +2624,8 @@ enum {
 
 				while ((row = [enumerator nextObject]) != nil)
 				{
-					int messageId = [[row stringForColumn:@"message_id"] intValue];
-					[newArray addObject:[NSNumber numberWithInt:messageId]];
+					NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
+					[newArray addObject:[NSNumber numberWithInteger:messageId]];
 				}
 			}
 			// static analyser complains
@@ -2644,12 +2654,12 @@ enum {
  * Retrieves an array containing all messages (except for text) for the
  * current folder. This info is always cached.
  */
--(NSArray *)arrayOfMessages:(int)folderId filterString:(NSString *)filterString withoutIgnored:(BOOL)withoutIgnored sorted:(BOOL *)sorted
+-(NSArray *)arrayOfMessages:(NSInteger)folderId filterString:(NSString *)filterString withoutIgnored:(BOOL)withoutIgnored sorted:(BOOL *)sorted
 {
 	Folder * folder = [self folderFromID:folderId];
 	NSMutableArray * newArray = [NSMutableArray array];
-	int unread_count = 0;
-	int priority_unread_count = 0;
+	NSInteger unread_count = 0;
+	NSInteger priority_unread_count = 0;
 	*sorted = YES;
 
 	if (folder != nil)
@@ -2660,6 +2670,7 @@ enum {
 		[folder clearMessages];
 		
 		if ([filterString isNotEqualTo:@""])
+#warning 64BIT: Check formatting arguments
 			filterClause = [NSString stringWithFormat:@" and text like '%%%@%%'", filterString];
 
 		if (withoutIgnored)
@@ -2673,27 +2684,27 @@ enum {
 		else
 		{
 			[self initSearchFoldersArray];
-			VCriteriaTree * searchString = [searchFoldersArray objectForKey:[NSNumber numberWithInt:folderId]];
+			VCriteriaTree * searchString = [searchFoldersArray objectForKey:[NSNumber numberWithInteger:folderId]];
 			results = [sqlDatabase performQueryWithFormat:@"select * from messages where %@%@", [self criteriaToSQL:searchString], filterClause];
 		}
 
 		if (results && [results rowCount])
 		{
 			NSEnumerator * enumerator = [results rowEnumerator];
-			int lastMessageId = -1;
+			NSInteger lastMessageId = -1;
 			SQLRow * row;
 
 			while ((row = [enumerator nextObject]) != nil)
 			{
-				int messageId = [[row stringForColumn:@"message_id"] intValue];
-				int commentId = [[row stringForColumn:@"comment_id"] intValue];
-				int messageFolderId = [[row stringForColumn:@"folder_id"] intValue];
+				NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
+				NSInteger commentId = [[row stringForColumn:@"comment_id"] integerValue];
+				NSInteger messageFolderId = [[row stringForColumn:@"folder_id"] integerValue];
 				NSString * messageTitle = [row stringForColumn:@"title"];
 				NSString * messageSender = [row stringForColumn:@"sender"];
-				BOOL read_flag = [[row stringForColumn:@"read_flag"] intValue];
-				BOOL marked_flag = [[row stringForColumn:@"marked_flag"] intValue];
-				BOOL priority_flag = [[row stringForColumn:@"priority_flag"] intValue];
-				BOOL ignored_flag = [[row stringForColumn:@"ignored_flag"] intValue];
+				BOOL read_flag = [[row stringForColumn:@"read_flag"] integerValue];
+				BOOL marked_flag = [[row stringForColumn:@"marked_flag"] integerValue];
+				BOOL priority_flag = [[row stringForColumn:@"priority_flag"] integerValue];
+				BOOL ignored_flag = [[row stringForColumn:@"ignored_flag"] integerValue];
 				NSString * guid = [row stringForColumn:@"rss_guid"];
 				NSDate * messageDate = [NSDate dateWithTimeIntervalSince1970:[[row stringForColumn:@"date"] doubleValue]];
 
@@ -2737,6 +2748,7 @@ enum {
 			{
 				if (unread_count != [folder unreadCount])
 				{
+#warning 64BIT: Check formatting arguments
 					NSLog(@"Fixing unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d", 
 						  [folder name], [folder unreadCount], unread_count, [folder itemId], [folder parentId]);
 					[self setFolderUnreadCount:folder adjustment:(unread_count - [folder unreadCount])];
@@ -2744,6 +2756,7 @@ enum {
 				}
 				if (priority_unread_count != [folder priorityUnreadCount])
 				{
+#warning 64BIT: Check formatting arguments
 					NSLog(@"Fixing priority unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d", 
 						  [folder name], [folder priorityUnreadCount], priority_unread_count, [folder itemId], [folder parentId]);
 					countOfPriorityUnread += priority_unread_count - [folder priorityUnreadCount];
@@ -2764,7 +2777,7 @@ enum {
  * Mark all messages in the folder and sub-folders read. This should be called
  * within a transaction since it is SQL intensive.
  */
--(void)wrappedMarkFolderRead:(int)folderId
+-(void)wrappedMarkFolderRead:(NSInteger)folderId
 {
 	NSArray * arrayOfChildFolders = [self arrayOfFolders:folderId];
 	NSEnumerator * enumerator = [arrayOfChildFolders objectEnumerator];
@@ -2783,7 +2796,7 @@ enum {
 		SQLResult * results = [sqlDatabase performQueryWithFormat:@"update messages set read_flag=1 where folder_id=%d", folderId];
 		if (results)
 		{
-			int count = [folder unreadCount];
+			NSInteger count = [folder unreadCount];
 			if ([folder messageCount] > 0)
 			{
 				NSArray * messages = [folder messages];
@@ -2806,7 +2819,7 @@ enum {
 /* markFolderRead
  * Mark all messages in the specified folder read
  */
--(void)markFolderRead:(int)folderId
+-(void)markFolderRead:(NSInteger)folderId
 {
 	[self beginTransaction];
 	[self wrappedMarkFolderRead:folderId];
@@ -2816,7 +2829,7 @@ enum {
 /* markFolderLocked
  * Mark the specified folder locked.
  */
--(void)markFolderLocked:(int)folderId isLocked:(BOOL)isLocked
+-(void)markFolderLocked:(NSInteger)folderId isLocked:(BOOL)isLocked
 {
 	Folder * folder = [self folderFromID:folderId];
 	if (folder != nil)
@@ -2832,7 +2845,7 @@ enum {
 /* markMessageRead
  * Marks a message as read or unread.
  */
--(void)markMessageRead:(int)folderId messageId:(int)messageId isRead:(BOOL)isRead
+-(void)markMessageRead:(NSInteger)folderId messageId:(NSInteger)messageId isRead:(BOOL)isRead
 {
 	Folder * folder = [self folderFromID:folderId];
 	if (folder != nil)
@@ -2850,7 +2863,7 @@ enum {
 			SQLResult * results = [sqlDatabase performQueryWithFormat:@"update messages set read_flag=%d where folder_id=%d and message_id=%d", isRead, folderId, messageId];
 			if (results)
 			{
-				int adjustment = (isRead ? -1 : 1);
+				NSInteger adjustment = (isRead ? -1 : 1);
 
 				[message markRead:isRead];
 				[self setFolderUnreadCount:folder adjustment:adjustment];
@@ -2868,9 +2881,9 @@ enum {
 
 /* setFolderUnreadCount
  */
--(void)setFolderUnreadCount:(Folder *)folder adjustment:(int)adjustment
+-(void)setFolderUnreadCount:(Folder *)folder adjustment:(NSInteger)adjustment
 {
-	int unreadCount = [folder unreadCount];
+	NSInteger unreadCount = [folder unreadCount];
 	[folder setUnreadCount:unreadCount + adjustment];
 	
 	// Update childUnreadCount for our parent. Since we're just working
@@ -2885,7 +2898,7 @@ enum {
 /* markMessageFlagged
  * Marks a message as flagged or unflagged.
  */
--(void)markMessageFlagged:(int)folderId messageId:(int)messageId isFlagged:(BOOL)isFlagged
+-(void)markMessageFlagged:(NSInteger)folderId messageId:(NSInteger)messageId isFlagged:(BOOL)isFlagged
 {
 	[self verifyThreadSafety];
 	[self executeSQLWithFormat:@"update messages set marked_flag=%d where folder_id=%d and message_id=%d", isFlagged, folderId, messageId];
@@ -2894,7 +2907,7 @@ enum {
 /* markMessageIgnored
  * Marks a message as ignored or not ignored.
  */
--(void)markMessageIgnored:(int)folderId messageId:(int)messageId isIgnored:(BOOL)isIgnored
+-(void)markMessageIgnored:(NSInteger)folderId messageId:(NSInteger)messageId isIgnored:(BOOL)isIgnored
 {
 	[self verifyThreadSafety];
 	[self executeSQLWithFormat:@"update messages set ignored_flag=%d where folder_id=%d and message_id=%d", isIgnored, folderId, messageId];
@@ -2904,7 +2917,7 @@ enum {
  * Marks a message as priority or normal. If the message is unread then we adjust the folder
  * priority unread count up or down as appropriate.
  */
--(void)markMessagePriority:(int)folderId messageId:(int)messageId isPriority:(BOOL)isPriority
+-(void)markMessagePriority:(NSInteger)folderId messageId:(NSInteger)messageId isPriority:(BOOL)isPriority
 {
 	Folder * folder = [self folderFromID:folderId];
 	if (folder != nil)
@@ -2915,7 +2928,7 @@ enum {
 		VMessage * message = [folder messageFromID:messageId];
 		if (message != nil && isPriority != [message isPriority])
 		{
-			int adjustment = (isPriority ? 1 : -1);
+			NSInteger adjustment = (isPriority ? 1 : -1);
 
 			// Verify we're on the right thread
 			[self verifyThreadSafety];
@@ -2963,7 +2976,7 @@ enum {
 /* messageText
  * Retrieve the text of the specified message.
  */
--(NSString *)messageText:(int)folderId messageId:(int)messageId
+-(NSString *)messageText:(NSInteger)folderId messageId:(NSInteger)messageId
 {
 	SQLResult * results;
 	NSString * text;
@@ -2974,7 +2987,7 @@ enum {
 	results = [sqlDatabase performQueryWithFormat:@"select text from messages where folder_id=%d and message_id=%d", folderId, messageId];
 	if (results && [results rowCount] > 0)
 	{
-		int lastRow = [results rowCount] - 1;
+		NSInteger lastRow = [results rowCount] - 1;
 		text = [[results rowAtIndex:lastRow] stringForColumn:@"text"];
 	}
 	else

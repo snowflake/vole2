@@ -23,10 +23,10 @@
 
 @interface FolderView : NSOutlineView {
 	BOOL useTooltips;
-	int dragRow;
+	NSInteger dragRow;
 }
 
--(int)dragRow;
+-(NSInteger)dragRow;
 -(void)setEnableTooltips:(BOOL)flag;
 -(void)keyDown:(NSEvent *)theEvent;
 -(void)buildTooltips;

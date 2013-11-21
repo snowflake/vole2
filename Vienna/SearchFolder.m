@@ -70,12 +70,12 @@ static NSString * defaultField = @"Read";
 /* loadCriteria
  * Loads the criteria for the specified folder.
  */
--(void)loadCriteria:(NSWindow *)window folderId:(int)folderId
+-(void)loadCriteria:(NSWindow *)window folderId:(NSInteger)folderId
 {
 	Folder * folder = [db folderFromID:folderId];
 	if (folder != nil)
 	{
-		int index = 0;
+		NSInteger index = 0;
 
 		[self initSearchSheet:[folder name]];
 		searchFolderId = folderId;
@@ -203,7 +203,7 @@ static NSString * defaultField = @"Read";
  */
 -(IBAction)removeCurrentCriteria:(id)sender
 {
-	int index = [arrayOfViews indexOfObject:[sender superview]];
+	NSInteger index = [arrayOfViews indexOfObject:[sender superview]];
 	NSAssert(index >= 0 && index < totalCriteria, @"Got an out of bounds index of view in superview");
 	[self removeCriteria:index];
 	[self resizeSearchWindow];
@@ -214,7 +214,7 @@ static NSString * defaultField = @"Read";
  */
 -(IBAction)addNewCriteria:(id)sender
 {
-	int index = [arrayOfViews indexOfObject:[sender superview]];
+	NSInteger index = [arrayOfViews indexOfObject:[sender superview]];
 	NSAssert(index >= 0 && index < totalCriteria, @"Got an out of bounds index of view in superview");
 	[self addDefaultCriteria:index + 1];
 	[self resizeSearchWindow];
@@ -224,7 +224,7 @@ static NSString * defaultField = @"Read";
  * Add a new default criteria row. For this we use the static defaultField declared at
  * the start of this source and the default operator for that field, and an empty value.
  */
--(void)addDefaultCriteria:(int)index
+-(void)addDefaultCriteria:(NSInteger)index
 {
 	[self initForField:defaultField inRow:searchCriteriaView];
 	[fieldNamePopup selectItemWithTitle:defaultField];
@@ -312,7 +312,7 @@ static NSString * defaultField = @"Read";
 	va_start(arguments, popUpButton);
 	CriteriaOperator operator;
 
-	while ((operator = va_arg(arguments, int)) != 0)
+	while ((operator = va_arg(arguments, NSInteger)) != 0)
 	{
 		NSString * operatorString = NSLocalizedString([VCriteria stringFromOperator:operator], nil);
 		[popUpButton addItemWithTitle:operatorString];
@@ -326,7 +326,7 @@ static NSString * defaultField = @"Read";
 -(IBAction)doSave:(id)sender
 {
 	NSString * folderName = [searchFolderName stringValue];
-	unsigned int c;
+	NSUInteger c;
 
 	// Build the criteria string
 	VCriteriaTree * criteriaTree = [[VCriteriaTree alloc] init];
@@ -407,7 +407,7 @@ static NSString * defaultField = @"Read";
  */
 -(void)removeAllCriteria
 {
-	int c;
+	NSInteger c;
 
 	NSArray * subviews = [searchCriteriaSuperview subviews];
 	for (c = [subviews count] - 1; c >= 0; --c)
@@ -422,10 +422,10 @@ static NSString * defaultField = @"Read";
 /* removeCriteria
  * Remove the criteria at the specified index.
  */
--(void)removeCriteria:(int)index
+-(void)removeCriteria:(NSInteger)index
 {
-	int rowHeight = [searchCriteriaView frame].size.height;
-	int c;
+	NSInteger rowHeight = [searchCriteriaView frame].size.height;
+	NSInteger c;
 
 	// Remove the view from the parent view
 	NSAssert(totalCriteria > 0, @"Attempting to remove the last criteria!");
@@ -457,12 +457,12 @@ static NSString * defaultField = @"Read";
  * Add a new criteria clause. Before calling this function, initialise the
  * searchView with the settings to be added.
  */
--(void)addCriteria:(unsigned int)index
+-(void)addCriteria:(NSUInteger)index
 {
 	NSData * archRow;
 	NSView * previousRow = nil;
-	int rowHeight = [searchCriteriaView frame].size.height;
-	unsigned int c;
+	NSInteger rowHeight = [searchCriteriaView frame].size.height;
+	NSUInteger c;
 
 	// Disable remove button if this is the first criteria
 	[removeCriteriaButton setEnabled:index > 0];
@@ -514,8 +514,8 @@ static NSString * defaultField = @"Read";
 	newFrame = searchWindowFrame;
 	if (totalCriteria > 0)
 	{
-		int rowHeight = [searchCriteriaView frame].size.height;
-		int newHeight = newFrame.size.height + rowHeight * (totalCriteria - 1);
+		NSInteger rowHeight = [searchCriteriaView frame].size.height;
+		NSInteger newHeight = newFrame.size.height + rowHeight * (totalCriteria - 1);
 		newFrame.origin.y += newFrame.size.height;
 		newFrame.origin.y -= newHeight;
 		newFrame.size.height = newHeight;

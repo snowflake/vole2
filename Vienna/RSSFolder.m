@@ -39,7 +39,7 @@
 /* folderId
  * Return the ID of the folder to which this subscription belongs.
  */
--(int)folderId
+-(NSInteger)folderId
 {
 	return [folder itemId];
 }

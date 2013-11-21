@@ -53,7 +53,7 @@
 	TreeNode * nextChild;
 	NSMutableArray * children;
 	Folder * folder;
-	int nodeId;
+	NSInteger nodeId;
 	BOOL canHaveChildren;
 }
 
@@ -61,7 +61,7 @@
 -(void)setParentNode:(TreeNode *)parent;
 -(void)setNextChild:(TreeNode *)child;
 -(void)setFolder:(Folder *)newFolder;
--(TreeNode *)itemAtIndex:(int)index;
+-(TreeNode *)itemAtIndex:(NSInteger)index;
 -(TreeNode *)parentNode;
 -(TreeNode *)nextChild;
 -(TreeNode *)firstChild;
@@ -70,11 +70,11 @@
 -(void)removeChild:(TreeNode *)child;
 -(NSString *)nodeName;
 -(TreeNode *)childByName:(NSString *)childName;
--(TreeNode *)nodeFromID:(int)n;
+-(TreeNode *)nodeFromID:(NSInteger)n;
 -(Folder *)folder;
--(int)nodeId;
--(void)setNodeId:(int)n;
--(int)countOfChildren;
+-(NSInteger)nodeId;
+-(void)setNodeId:(NSInteger)n;
+-(NSInteger)countOfChildren;
 -(void)setCanHaveChildren:(BOOL)childflag;
 -(BOOL)canHaveChildren;
 @end

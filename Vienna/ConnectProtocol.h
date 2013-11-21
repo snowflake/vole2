@@ -24,5 +24,5 @@
 	-(void)endConnect:(id)sender;
 	-(void)taskStatus:(BOOL)finished;
 	-(void)activityString:(NSString *)string;
-	-(BOOL)canPostMessage:(int)folderId messageNumber:(int)messageNumber;
+	-(BOOL)canPostMessage:(NSInteger)folderId messageNumber:(NSInteger)messageNumber;
 @end

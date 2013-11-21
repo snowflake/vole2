@@ -47,7 +47,7 @@
 	return self;
 }
 
--(id)initWithAddress:(NSString *)theAddress port:(int)thePort
+-(id)initWithAddress:(NSString *)theAddress port:(NSInteger)thePort
 {
 	if ((self = [super init]) != nil)
 	{
@@ -89,7 +89,7 @@
  */
 -(int)setTimeout:(int)newTimeout
 {
-	int oldTimeout = timeout;
+	NSInteger oldTimeout = timeout;
 	timeout = newTimeout;
 	return oldTimeout;
 }
@@ -104,6 +104,7 @@
 	BOOL sendResult;
 
 	va_start(arguments, format);
+#warning 64BIT: Check formatting arguments
 	stringToSend = [[NSString alloc] initWithFormat:format arguments:arguments];
 	sendResult = [self sendString:stringToSend];
 	[stringToSend release];
@@ -128,7 +129,7 @@
  */
 -(BOOL)sendString:(NSString *)stringToSend
 {
-	int length = [stringToSend length];
+	NSInteger length = [stringToSend length];
 	
 	// DJE use CP1252 encoding
 	const char * stringBytes = (char *)[stringToSend cStringUsingEncoding:NSWindowsCP1252StringEncoding];
@@ -144,9 +145,10 @@
 {
 	NSMutableString * lineString = [NSMutableString stringWithCapacity:BF_STRING_MAX];
 	char lineBuffer[BF_LINE_MAX];
-	int count;
+	NSInteger count;
 	char ch;
 
+#warning 64BIT: Inspect use of sizeof
 	*endOfFile = ![self readData:&ch length:sizeof(ch)];
 	count = 0;
 	while (!*endOfFile && ch != 0x0D && ch != 0x0A)
@@ -160,6 +162,7 @@
 			[lineString appendString:[NSString stringWithCString:lineBuffer encoding: NSWindowsCP1252StringEncoding]];
 			count = 0;
 		}
+#warning 64BIT: Inspect use of sizeof
 		*endOfFile = ![self readData:&ch length:sizeof(ch)];
 	}
 
@@ -167,11 +170,13 @@
 	if (!*endOfFile) {
 		if (ch == 0x0D)
 		{
+#warning 64BIT: Inspect use of sizeof
 			if ([self readData:&ch length:sizeof(ch)] && ch != 0x0A)
 				[self unreadChar:ch];
 		}
 		else if (ch == 0x0A)
 		{
+#warning 64BIT: Inspect use of sizeof
 			if ([self readData:&ch length:sizeof(ch)] && ch != 0x0D)
 				[self unreadChar:ch];
 		}
@@ -192,6 +197,7 @@
 {
 	char ch;
 	
+#warning 64BIT: Inspect use of sizeof
 	if ([self readData:&ch length:sizeof(ch)])
 	{
 		*endOfFile = NO;
@@ -262,8 +268,8 @@
  */
 -(BOOL)sendBytes:(const char *)data length:(int)length
 {
-	int bytesWritten = 0;
-	int bytesSoFar = 0;
+	NSInteger bytesWritten = 0;
+	NSInteger bytesSoFar = 0;
 
 	while (bytesSoFar < length)
 	{
@@ -273,7 +279,7 @@
 			{
 				fd_set fdset;
 				struct timeval timeStruct;
-				int value;
+				NSInteger value;
 
 				FD_ZERO(&fdset);
 				FD_SET(fd, &fdset);
@@ -326,8 +332,8 @@
 -(BOOL)readData:(char *)dataBlock length:(int)length
 {
 	BOOL endOfFile = NO;
-	int bytesReadSoFar = 0;
-	int bytesRead;
+	NSInteger bytesReadSoFar = 0;
+	NSInteger bytesRead;
 
 	if (pushedChar)
 	{
@@ -344,7 +350,7 @@
 			{
 				fd_set fdset;
 				struct timeval timeStruct;
-				int value;
+				NSInteger value;
 
 				FD_ZERO(&fdset);
 				FD_SET(fd, &fdset);
@@ -382,7 +388,7 @@
 
 -(void)setNonBlocking:(BOOL)yesno;
 {
-	int blockFlag = yesno==YES?1:0;
+	NSInteger blockFlag = yesno==YES?1:0;
 	
 	if (ioctl(fd, FIONBIO, &blockFlag))
 		NSLog(@"Failed to set socket to %sblocking\n", blockFlag?"":"non");

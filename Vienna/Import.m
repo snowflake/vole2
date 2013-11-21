@@ -96,12 +96,13 @@
  */
 -(void)addRetrievedMessage:(NSArray *)messageDataArray
 {
+#warning 64BIT: Check formatting arguments
 	NSAssert1([messageDataArray count] == 2, @"messageDataArray has wrong number of entries. Was %d. Should be 2.", [messageDataArray count]);
 	VMessage * message = [messageDataArray objectAtIndex:0];
 	NSString * messagePath = [messageDataArray objectAtIndex:1];
 	
 	[db addMessageToFolder:[db conferenceNodeID] path:messagePath message:message raw:YES wasNew:nil];
-	[self updateLastFolder:[NSNumber numberWithInt:[message folderId]]];
+	[self updateLastFolder:[NSNumber numberWithInteger:[message folderId]]];
 }
 
 /* updateLastFolder
@@ -111,13 +112,13 @@
  */
 -(void)updateLastFolder:(NSNumber *)number
 {
-	int topicId = [number intValue];
+	NSInteger topicId = [number integerValue];
 	if (topicId != lastTopicId && lastTopicId != -1)
 	{
 		[db flushFolder:lastTopicId];
 		[db releaseMessages:lastTopicId];
 		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:lastTopicId]];
+		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:lastTopicId]];
 	}
 	lastTopicId = topicId;
 }
@@ -128,7 +129,7 @@
 {
 	[progressBar setIndeterminate:NO];
 	[progressBar setMinValue:0.0];
-	[progressBar setMaxValue:[max intValue]];
+	[progressBar setMaxValue:[max integerValue]];
 }
 
 /* updateProgressText
@@ -143,7 +144,7 @@
  */
 -(void)updateProgressValue:(NSNumber *)progressValue
 {
-	[progressBar setDoubleValue:[progressValue intValue]];	
+	[progressBar setDoubleValue:[progressValue integerValue]];	
 }
 
 /* stopImport
@@ -185,7 +186,7 @@
 	
     pool = [[NSAutoreleasePool alloc] init];
 	buffer = [[BufferedFile alloc] initWithPath:importFilename];
-	[self performSelectorOnMainThread:@selector(initializeProgress:) withObject:[NSNumber numberWithInt:[buffer fileSize]] waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(initializeProgress:) withObject:[NSNumber numberWithInteger:[buffer fileSize]] waitUntilDone:YES];
 	if (buffer != nil)
 	{
 		BOOL endOfFile;
@@ -233,7 +234,7 @@
 			//
 			if ([line hasPrefix:@"!MF:"])
 			{
-				unsigned int index = 4;
+				NSUInteger index = 4;
 				read_flag = YES; // DJE
 				while (index < [line length])
 					switch ([line characterAtIndex:index++])
@@ -253,7 +254,7 @@
 			}
 			else if ([line hasPrefix:@"!S4:"])
 			{
-				unsigned int index = 4;
+				NSUInteger index = 4;
 				while (index < [line length])
 					switch ([line characterAtIndex:index++])
 					{
@@ -272,8 +273,10 @@
 					int messageSize;
 					
 					[scanner scanString:@"Memo #" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&messageNumber];
 					[scanner scanString:@"(" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&messageSize];
 					messageBody = [buffer readTextOfSize:messageSize];
 				}
@@ -289,10 +292,12 @@
 					NSScanner * scanner = [NSScanner scannerWithString:line];
 					[scanner scanUpToString:@" " intoString:&messagePath];
 					[scanner scanString:@"#" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&messageNumber];
 					[scanner scanString:@", from " intoString:nil];
 					[scanner scanUpToString:@"," intoString:&userName];
 					[scanner scanString:@", " intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&messageSize];
 					[scanner scanString:@"chars, " intoString:nil];
 					[scanner scanUpToString:@"" intoString:&messageDateString];
@@ -308,6 +313,7 @@
 					scanner = [NSScanner scannerWithString:line];
 					if ([scanner scanString:@"Comment to " intoString:nil])
 					{
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 						[scanner scanInt:&messageComment];
 						line = [buffer readLine:&endOfFile];
 						if (endOfFile)
@@ -332,18 +338,25 @@
 					NSScanner * scanner = [NSScanner scannerWithString:line]; 
 					[scanner scanString:@">>>" intoString:nil];
 					[scanner scanUpToString:@" " intoString:&messagePath];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&messageNumber];
 					[scanner scanUpToString:@"(" intoString:&userName];
 					[scanner scanString:@"(" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&messageSize];
 					[scanner scanString:@")" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&day];
 					[scanner scanUpToCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:&monthName];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&year];
+//#warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&hour];
 					[scanner scanString:@":" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&minute];
 					[scanner scanString:@"c" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 					[scanner scanInt:&messageComment];					
 					
 					// Convert the date and time into something we can work with
@@ -352,6 +365,7 @@
 					{
 						if (year >= 100)
 							year -= 100;
+// #warning 64BIT: Check formatting arguments
 						messageDateString = [NSString stringWithFormat:@"%d%@%d %d:%d", day, monthName, year, hour, minute];
 						messageDate = [NSCalendarDate dateWithString:messageDateString calendarFormat:@"%d%b%y %H:%M"];
 						if (messageDate == nil)
@@ -373,7 +387,7 @@
 					{
 						// Update progress
 						NSString * progressString = [NSString stringWithFormat:@"Reading %@", messagePath];
-						NSNumber * progressValue = [NSNumber numberWithInt:[buffer readSoFar]];
+						NSNumber * progressValue = [NSNumber numberWithInteger:[buffer readSoFar]];
 						[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressString waitUntilDone:YES];
 						[self performSelectorOnMainThread:@selector(updateProgressValue:) withObject:progressValue waitUntilDone:YES];
 						
@@ -399,7 +413,7 @@
 					else
 					{
 						NSString * progressString = [NSString stringWithFormat:@"Skipping %@", messagePath];
-						NSNumber * progressValue = [NSNumber numberWithInt:[buffer readSoFar]];
+						NSNumber * progressValue = [NSNumber numberWithInteger:[buffer readSoFar]];
 						[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressString waitUntilDone:YES];
 						[self performSelectorOnMainThread:@selector(updateProgressValue:) withObject:progressValue waitUntilDone:YES];
 					}
@@ -408,7 +422,7 @@
 		}
 			[buffer close];
 	}
-		[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInt:-1] waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInteger:-1] waitUntilDone:YES];
 		[buffer release];
 		[pool release];
 		[self performSelectorOnMainThread:@selector(stopImport:) withObject:nil waitUntilDone:NO];
@@ -464,7 +478,7 @@
 /* importOpenPanelDidEnd
  * Called when the user completes the Import open panel
  */
--(void)importOpenPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)importOpenPanelDidEnd:(NSOpenPanel *)panel returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	if (returnCode == NSOKButton)
 	{
@@ -486,11 +500,11 @@
 /* importSubscriptionGroup
  * Import one group of an OPML subscription tree.
  */
--(int)importSubscriptionGroup:(XMLParser *)tree
+-(NSInteger)importSubscriptionGroup:(XMLParser *)tree
 {
-	int countImported = 0;
-	int count = [tree countOfChildren];
-	int index;
+	NSInteger countImported = 0;
+	NSInteger count = [tree countOfChildren];
+	NSInteger index;
 	
 	for (index = 0; index < count; ++index)
 	{
@@ -506,7 +520,7 @@
 		{
 			if ([db rssFolderFromURL:feedURL] == nil)
 			{
-				int folderId = [db addRSSFolder:feedTitle subscriptionURL:feedURL];
+				NSInteger folderId = [db addRSSFolder:feedTitle subscriptionURL:feedURL];
 				if (feedDescription != nil)
 					[db setFolderDescription:folderId newDescription:feedDescription];
 				++countImported;
@@ -528,10 +542,11 @@
 	
 	// Some OPML feeds organise exported subscriptions by groups. We can't yet handle those
 	// so flatten the groups as we import.
-	int countImported = [self importSubscriptionGroup:bodyTree];
+	NSInteger countImported = [self importSubscriptionGroup:bodyTree];
 	
 	// Announce how many we successfully imported
-	NSString * successString = [NSString stringWithFormat:NSLocalizedString(@"%d subscriptions successfully imported", nil), countImported];
+#warning 64BIT: Check formatting arguments
+	NSString * successString = [NSString stringWithFormat:NSLocalizedString(@"%ld subscriptions successfully imported", nil), (long int)countImported];
 	NSRunAlertPanel(NSLocalizedString(@"RSS Subscription Import Title", nil), successString, NSLocalizedString(@"OK", nil), nil, nil);
 	
 	// Finished

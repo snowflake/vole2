@@ -23,17 +23,17 @@
 // Private functions
 @interface Browser (Private)
 	-(void)refreshBrowser:(id)sender;
-	-(void)refreshTasksList:(int)category withFilter:(NSString *)filter;
+	-(void)refreshTasksList:(NSInteger)category withFilter:(NSString *)filter;
 	-(void)showSortDirection;
 	-(void)setSortColumnIdentifier:(NSString *)str;
 	-(void)sortForums;
 @end
 
 NSString * categoryNames[] = { @"All", @"Open", @"Closed" };
-int categoryValues[] = { MA_All_Conferences, MA_Open_Conference, MA_Closed_Conference };
+NSInteger categoryValues[] = { MA_All_Conferences, MA_Open_Conference, MA_Closed_Conference };
 #define countOfCategories 3
 
-int forumSortHandler(Forum * item1, Forum * item2, void * context);
+NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
 
 @implementation Browser
 
@@ -113,11 +113,13 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context);
 /* toolTipForTableColumn
  * Return the tooltip for the specified row and column.
  */
--(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
+-(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 {
 	Forum * forum = [currentArrayOfForums objectAtIndex:rowIndex];
+#warning 64BIT: Check formatting arguments
 	NSMutableString * tooltipString = [NSMutableString stringWithFormat:NSLocalizedString(@"Name: %@\n", nil), [forum name]];
 	if ([[forum description] length] > 0)
+#warning 64BIT: Check formatting arguments
 		[tooltipString appendFormat:NSLocalizedString(@"Description:%@\n", nil), [forum description]];
 	if ([forum status] == MA_Empty_Conference)
 		[tooltipString appendString:NSLocalizedString(@"This conference has no topics", nil)];
@@ -127,6 +129,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context);
 	{
 		NSString * outputFormat = [[NSUserDefaults standardUserDefaults] objectForKey:@"NSShortDateFormatString"];
 		NSCalendarDate * date = [[forum lastActiveDate] dateWithCalendarFormat:nil timeZone:nil];
+#warning 64BIT: Check formatting arguments
 		[tooltipString appendFormat:NSLocalizedString(@"Last message posted on %@", nil), [date descriptionWithCalendarFormat:outputFormat]];
 	}
 	return tooltipString;
@@ -172,11 +175,11 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context);
 /* numberOfRowsInColumn (delegate)
  * Returns the number of rows in the specified column of the browser.
  */
--(int)browser:(NSBrowser *)browser numberOfRowsInColumn:(int)column
+-(NSInteger)browser:(NSBrowser *)browser numberOfRowsInColumn:(NSInteger)column
 {
 	if (column == 0)
 		return countOfCategories;
-	if ((int)[arrayOfCategories count] >= column)
+	if ((NSInteger)[arrayOfCategories count] >= column)
 		return [[arrayOfCategories objectAtIndex:column - 1] count];
 	return 0;
 }
@@ -184,7 +187,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context);
 /* willDisplayCell (delegate)
  * Called by the browser to provide the value for the cell at the specified row and column.
  */
--(void)browser:(NSBrowser *)browser willDisplayCell:(id)cell atRow:(int)row column:(int)column
+-(void)browser:(NSBrowser *)browser willDisplayCell:(id)cell atRow:(NSInteger)row column:(NSInteger)column
 {
 	if (column == 0)
 		[cell setStringValue:categoryNames[row]];
@@ -201,12 +204,12 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 -(IBAction)browserSingleClick:(id)sender
 {
-	int column = [browserList selectedColumn];
-	int categoryId = -2;
+	NSInteger column = [browserList selectedColumn];
+	NSInteger categoryId = -2;
 
 	if (column == 0)
 	{
-		int row = [browserList selectedRowInColumn:column];
+		NSInteger row = [browserList selectedRowInColumn:column];
 		if (row >= 0 && row < countOfCategories && currentCategory != categoryValues[row])
 		{
 			currentCategory = categoryValues[row];
@@ -218,7 +221,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context);
 	else
 	{
 		// Get the selected category
-		int row = [browserList selectedRowInColumn:column];
+		NSInteger row = [browserList selectedRowInColumn:column];
 		NSArray * categories = [arrayOfCategories objectAtIndex:column - 1];
 		Category * category = [categories objectAtIndex:row];
 		categoryId = [category categoryId];
@@ -231,7 +234,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context);
 	if (categoryId >= -1)
 	{
 		NSArray * array = [db arrayOfCategories:categoryId];
-		while ((int)[arrayOfCategories count] > column)
+		while ((NSInteger)[arrayOfCategories count] > column)
 			[arrayOfCategories removeObjectAtIndex:column];
 		[arrayOfCategories insertObject:array atIndex:column];
 		[browserList reloadColumn:column+1];
@@ -256,7 +259,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context);
 /* forumSortHandler
  * Compares two Forum objects.
  */
-int forumSortHandler(Forum * item1, Forum * item2, void * context)
+NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
 {
 	Browser * app = (Browser *)context;
 	if ([app->sortColumnIdentifier isEqualToString:@"name"])
@@ -277,7 +280,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context)
 /* numberOfRowsInTableView [datasource]
  * Datasource for the table view. Return the total number of rows we'll display.
  */
--(int)numberOfRowsInTableView:(NSTableView *)aTableView
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	return [currentArrayOfForums count];
 }
@@ -285,7 +288,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context)
 /* refreshTable
  * Refreshes the table from the database.
  */
--(void)refreshTasksList:(int)category withFilter:(NSString *)filter
+-(void)refreshTasksList:(NSInteger)category withFilter:(NSString *)filter
 {
 	[progressBar startAnimation:self];
 	[statusString setStringValue:NSLocalizedString(@"Loading browser list...", nil)];
@@ -316,6 +319,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context)
 	
 	[self sortForums];
 	
+#warning 64BIT: Check formatting arguments
 	NSString * status = [NSString stringWithFormat:NSLocalizedString(@"%d items", nil), [currentArrayOfForums count]];
 	[statusString setStringValue:status];
 	[progressBar stopAnimation:self];
@@ -346,8 +350,8 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(void)joinFolder:(id)sender
 {
-	int selectedRow = [forumList selectedRow];
-	if (selectedRow >= 0 && selectedRow < (int)[currentArrayOfForums count])
+	NSInteger selectedRow = [forumList selectedRow];
+	if (selectedRow >= 0 && selectedRow < (NSInteger)[currentArrayOfForums count])
 	{
 		Forum * forum = [currentArrayOfForums objectAtIndex:selectedRow];
 		if (!joinWindow)
@@ -360,7 +364,7 @@ int forumSortHandler(Forum * item1, Forum * item2, void * context)
  * Called by the table view to obtain the object at the specified column and row. This is
  * called often so it needs to be fast.
  */
--(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+-(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	NSString * identifier = [aTableColumn identifier];
 	Forum * forum = [currentArrayOfForums objectAtIndex:rowIndex];

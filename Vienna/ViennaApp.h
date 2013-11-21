@@ -26,9 +26,9 @@
 }
 -(void)handleGetMessages:(NSScriptCommand *)name;
 -(NSString *)applicationVersion;
--(int)checkFrequency;
--(void)setCheckFrequency:(int)newFrequency;
--(void)internalSetCheckFrequency:(int)newFrequency;
+-(NSInteger)checkFrequency;
+-(void)setCheckFrequency:(NSInteger)newFrequency;
+-(void)internalSetCheckFrequency:(NSInteger)newFrequency;
 -(NSColor *)quoteColour;
 -(void)setQuoteColour:(NSColor *)newQuoteColour;
 -(void)internalSetQuoteColour:(NSColor *)newQuoteColour;
@@ -41,6 +41,6 @@
 -(Folder *)currentFolder;
 -(NSArray *)folders;
 -(BOOL)isConnecting;
--(int)unreadCount;
+-(NSInteger)unreadCount;
 @end
 

@@ -102,8 +102,8 @@
 
 	Database * db;
 	BOOL sortedFlag;
-	int currentFolderId;
-	int currentSelectedRow;
+	NSInteger currentFolderId;
+	NSInteger currentSelectedRow;
 	BOOL showThreading;
 	BOOL reinstateThreading;
 	BOOL showPlainText;
@@ -121,14 +121,14 @@
 	NSFont * boldMessageListFont;
 	NSImage * originalIcon;
 	NSString * sortColumnIdentifier;
-	int sortDirection;
-	int sortColumnTag;
+	NSInteger sortDirection;
+	NSInteger sortColumnTag;
 	NSArray * allColumns;
 	ExtDateFormatter * extDateFormatter;
 	Connect * connect;
 	NSTimer * checkTimer;
-	int lastCountOfPriorityUnread;
-	int progressCount;
+	NSInteger lastCountOfPriorityUnread;
+	NSInteger progressCount;
 	NSString * statusText;
 	Credentials * cixCredentials;
 	PersonManager * personManager;
@@ -136,7 +136,7 @@
 	BOOL isOnlineMode;
 	BOOL batchConnect;
 	BOOL growlAvailable;
-	int requestedMessage;
+	NSInteger requestedMessage;
 	NSString * appName;
 	NSMutableDictionary *acronymDictionary;
 }
@@ -233,22 +233,22 @@
 -(void)handleIgnoredColourChange:(NSNotification *)note;
 -(void)handleCheckFrequencyChange:(NSNotification *)note;
 -(void)handleFolderUpdate:(NSNotification *)nc;
--(void)handleCIXLink:(NSString *)folderPath messageNumber:(int)messageNumber;
+-(void)handleCIXLink:(NSString *)folderPath messageNumber:(NSInteger)messageNumber;
 -(void)handleCIXFileLink:(NSString *)folderPath file:(NSString *)filename;
 -(void)handleRSSLink:(NSString *)linkPath;
 -(void)handlePersonUpdate:(NSNotification *)note;
 
 // Message selection functions
--(BOOL)scrollToMessage:(int)number;
+-(BOOL)scrollToMessage:(NSInteger)number;
 -(void)selectFirstUnreadInFolder;
 -(void)selectFirstUnreadPriorityInFolder;
--(void)makeRowSelectedAndVisible:(int)rowIndex;
--(BOOL)viewNextUnreadInCurrentFolder:(int)currentRow isPriority:(BOOL)priorityFlag;
+-(void)makeRowSelectedAndVisible:(NSInteger)rowIndex;
+-(BOOL)viewNextUnreadInCurrentFolder:(NSInteger)currentRow isPriority:(BOOL)priorityFlag;
 -(void)selectNextRootMessage;
 -(void)selectPreviousRootMessage;
--(void)offerToRetrieveMessage:(int)messageId fromFolderId:(int)folderId;
--(void)offerToRetrieveMessage:(int)messageId fromFolderPath:(NSString *)folderPath;
--(void)retrieveMessage:(int)messageId fromFolder:(NSString *)folderPath;
+-(void)offerToRetrieveMessage:(NSInteger)messageId fromFolderId:(NSInteger)folderId;
+-(void)offerToRetrieveMessage:(NSInteger)messageId fromFolderPath:(NSString *)folderPath;
+-(void)retrieveMessage:(NSInteger)messageId fromFolder:(NSString *)folderPath;
 
 // General functions
 -(void)initSortMenu;
@@ -256,28 +256,28 @@
 -(void)updateHTMLDict;
 -(NSAttributedString *)formatMessage:(NSString *)messageText usePlainText:(BOOL)usePlainText;
 -(void)threadMessages;
--(void)setMainWindowTitle:(int)folderId;
+-(void)setMainWindowTitle:(NSInteger)folderId;
 -(void)refreshFolder:(BOOL)reloadData;
--(BOOL)selectFolderAndMessage:(int)folderId messageNumber:(int)messageNumber;
--(void)selectFolderWithFilter:(int)newFolderId searchFilter:(NSString *)searchFilter;
+-(BOOL)selectFolderAndMessage:(NSInteger)folderId messageNumber:(NSInteger)messageNumber;
+-(void)selectFolderWithFilter:(NSInteger)newFolderId searchFilter:(NSString *)searchFilter;
 -(void)updateMessageText;
--(NSArray *)markedMessageRange:(unsigned int)flags;
+-(NSArray *)markedMessageRange:(NSUInteger)flags;
 -(void)markFlaggedByArray:(NSArray *)messageArray flagged:(BOOL)flagged;
 -(void)markIgnoredByArray:(NSArray *)messageArray ignoreFlag:(BOOL)ignoreFlag;
 -(void)markPriorityByArray:(NSArray *)messageArray priorityFlag:(BOOL)priorityFlag;
 -(void)getMessagesOnTimer:(NSTimer *)aTimer;
--(void)doConfirmedDelete:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+-(void)doConfirmedDelete:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 -(void)markCurrentRead;
 -(BOOL)validateCommonToolbarAndMenuItems:(SEL)theAction validateFlag:(BOOL *)validateFlag;
--(BOOL)canPostMessage:(int)folderId messageNumber:(int)messageNumber;
--(MessageWindow *)messageWindowWithAttributes:(int)folderId messageNumber:(int)messageNumber;
+-(BOOL)canPostMessage:(NSInteger)folderId messageNumber:(NSInteger)messageNumber;
+-(MessageWindow *)messageWindowWithAttributes:(NSInteger)folderId messageNumber:(NSInteger)messageNumber;
 -(BOOL)closeAllMessageWindows;
 -(void)centerSelectedRow;
--(void)refreshMessageAtRow:(int)theRow;
--(BOOL)beginConnect:(int)connectMode;
+-(void)refreshMessageAtRow:(NSInteger)theRow;
+-(BOOL)beginConnect:(NSInteger)connectMode;
 -(Database *)database;
 -(PersonManager *)personManager;
--(int)currentFolderId;
+-(NSInteger)currentFolderId;
 -(NSArray *)folders;
 -(NSString *)appName;
 -(BOOL)isConnecting;
@@ -294,7 +294,7 @@
 
 // Message list helper functions
 -(void)initTableView;
--(void)showColumnsForFolder:(int)folderId;
+-(void)showColumnsForFolder:(NSInteger)folderId;
 -(void)setTableViewFont;
 -(void)sortByIdentifier:(NSString *)columnName;
 -(void)showSortDirection;
@@ -303,11 +303,11 @@
 -(void)runOKAlertSheet:(NSString *)titleString text:(NSString *)bodyText, ...;
 -(void)updateVisibleColumns;
 -(void)saveTableSettings;
--(int)tagFromIdentifier:(NSString *)identifier;
+-(NSInteger)tagFromIdentifier:(NSString *)identifier;
 -(void)selectMessageAfterReload;
 -(void)markReadByArray:(NSArray *)messageArray readFlag:(BOOL)readFlag;
 -(void)displayMugshot:(VMessage *)theRecord;
--(void)resizeMugshotView:(int)height;
+-(void)resizeMugshotView:(NSInteger)height;
 
 //Required NSToolbar delegate methods
 -(NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;    

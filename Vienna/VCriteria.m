@@ -78,11 +78,11 @@
 +(CriteriaOperator)operatorFromString:(NSString *)string
 {
 	NSArray * operatorArray = [VCriteria arrayOfOperators];
-	unsigned int index;
+	NSUInteger index;
 	
 	for (index = 0; index < [operatorArray count]; ++index)
 	{
-		CriteriaOperator op = [[operatorArray objectAtIndex:index] intValue];
+		CriteriaOperator op = [[operatorArray objectAtIndex:index] integerValue];
 		if ([string isEqualToString:[VCriteria stringFromOperator:op]])
 			return op;
 	}
@@ -95,18 +95,18 @@
 +(NSArray *)arrayOfOperators
 {
 	return [NSArray arrayWithObjects:
-		[NSNumber numberWithInt:MA_CritOper_Is],
-		[NSNumber numberWithInt:MA_CritOper_IsNot],
-		[NSNumber numberWithInt:MA_CritOper_IsAfter],
-		[NSNumber numberWithInt:MA_CritOper_IsBefore],
-		[NSNumber numberWithInt:MA_CritOper_IsOnOrAfter],
-		[NSNumber numberWithInt:MA_CritOper_IsOnOrBefore],
-		[NSNumber numberWithInt:MA_CritOper_Contains],
-		[NSNumber numberWithInt:MA_CritOper_NotContains],
-		[NSNumber numberWithInt:MA_CritOper_IsLessThan],
-		[NSNumber numberWithInt:MA_CritOper_IsLessThanOrEqual],
-		[NSNumber numberWithInt:MA_CritOper_IsGreaterThan],
-		[NSNumber numberWithInt:MA_CritOper_IsGreaterThanOrEqual],
+		[NSNumber numberWithInteger:MA_CritOper_Is],
+		[NSNumber numberWithInteger:MA_CritOper_IsNot],
+		[NSNumber numberWithInteger:MA_CritOper_IsAfter],
+		[NSNumber numberWithInteger:MA_CritOper_IsBefore],
+		[NSNumber numberWithInteger:MA_CritOper_IsOnOrAfter],
+		[NSNumber numberWithInteger:MA_CritOper_IsOnOrBefore],
+		[NSNumber numberWithInteger:MA_CritOper_Contains],
+		[NSNumber numberWithInteger:MA_CritOper_NotContains],
+		[NSNumber numberWithInteger:MA_CritOper_IsLessThan],
+		[NSNumber numberWithInteger:MA_CritOper_IsLessThanOrEqual],
+		[NSNumber numberWithInteger:MA_CritOper_IsGreaterThan],
+		[NSNumber numberWithInteger:MA_CritOper_IsGreaterThanOrEqual],
 		nil];
 }
 
@@ -115,6 +115,7 @@
  */
 -(NSString *)string
 {
+#warning 64BIT: Check formatting arguments
 	return [NSString stringWithFormat:@"<criteria field='%@'><operator>%d</operator><value>%@</value></criteria>", field, operator, value];
 }
 
@@ -207,7 +208,7 @@
 
 		XMLParser * xmlTree = [[XMLParser alloc] initWithData:data];
 		XMLParser * criteriaGroup = [xmlTree treeByName:@"criteriagroup"];
-		int index = 0;
+		NSInteger index = 0;
 
 		if (criteriaGroup != nil)
 			while (index < [criteriaGroup countOfChildren])
@@ -219,7 +220,7 @@
 				
 				VCriteria * newCriteria = [[VCriteria alloc] init];
 				[newCriteria setField:fieldName];
-				[newCriteria setOperator:[operator intValue]];
+				[newCriteria setOperator:[operator integerValue]];
 				[newCriteria setValue:value];
 				[self addCriteria:newCriteria];
 				[newCriteria release];
@@ -255,7 +256,7 @@
 -(NSString *)string
 {
 	NSString * criteriaString = @"<criteriagroup>";
-	unsigned int index;
+	NSUInteger index;
 	
 	for (index = 0; index < [criteriaTree count]; ++index)
 	{

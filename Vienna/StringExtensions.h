@@ -28,10 +28,10 @@
 @interface NSString (StringExtensions)
 	-(NSString *)firstLine;
 	-(NSString *)firstNonBlankLine;
-	-(NSString *)firstLineWithMaximumCharacters:(unsigned int)maxChars allowEmpty:(BOOL)allowEmpty;
+	-(NSString *)firstLineWithMaximumCharacters:(NSUInteger)maxChars allowEmpty:(BOOL)allowEmpty;
 	-(NSString *)secondAndSubsequentLines;
-	-(NSMutableArray *)rewrapString:(int)wrapColumn;
+	-(NSMutableArray *)rewrapString:(NSInteger)wrapColumn;
 	-(NSString *)reversedString;
-	-(int)indexOfCharacterInString:(char)ch afterIndex:(int)startIndex;
+	-(NSInteger)indexOfCharacterInString:(char)ch afterIndex:(NSInteger)startIndex;
 	-(BOOL)hasCharacter:(char)ch;
 @end

@@ -35,9 +35,9 @@
 	Join * joinWindow;
 	NSArray * currentArrayOfForums;
 	NSMutableArray * arrayOfCategories;
-	int currentCategory;
-	int sortDirection;
-	int selectedCategory;
+	NSInteger currentCategory;
+	NSInteger sortDirection;
+	NSInteger selectedCategory;
 	NSString * sortColumnIdentifier;
 	Database * db;
 }

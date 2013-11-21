@@ -39,7 +39,7 @@
 	IBOutlet NSButton * stopButton;
 	BOOL stopImportFlag;
 	BOOL importRunning;
-	int lastTopicId;
+	NSInteger lastTopicId;
 }
 
 // Action handlers

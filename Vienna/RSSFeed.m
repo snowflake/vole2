@@ -118,7 +118,7 @@
 /* editRSSSubscription
  * Edit an existing RSS subscription.
  */
--(void)editRSSSubscription:(NSWindow *)window folderId:(int)folderId
+-(void)editRSSSubscription:(NSWindow *)window folderId:(NSInteger)folderId
 {
 	[self loadRSSFeedBundle];
 
@@ -161,6 +161,7 @@
 		NSDictionary * itemDict = [sourcesDict valueForKey:key];
 		NSString * linkName = [itemDict valueForKey:@"LinkTemplate"];
 		if (linkName != nil)
+#warning 64BIT: Check formatting arguments
 			feedURLString = [NSString stringWithFormat:linkName, feedURLString];
 	}
 

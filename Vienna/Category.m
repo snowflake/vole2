@@ -37,7 +37,7 @@
 /* categoryId
  * Return the category ID.
  */
--(int)categoryId
+-(NSInteger)categoryId
 {
 	return categoryId;
 }
@@ -45,7 +45,7 @@
 /* parentId
  * Return the category's parent ID.
  */
--(int)parentId
+-(NSInteger)parentId
 {
 	return parentId;
 }
@@ -61,7 +61,7 @@
 /* setCategoryId
  * Set the category ID.
  */
--(void)setCategoryId:(int)newCategoryId
+-(void)setCategoryId:(NSInteger)newCategoryId
 {
 	categoryId = newCategoryId;
 }
@@ -69,7 +69,7 @@
 /* setParentId
  * Set the category's parent ID.
  */
--(void)setParentId:(int)newParentId
+-(void)setParentId:(NSInteger)newParentId
 {
 	parentId = newParentId;
 }

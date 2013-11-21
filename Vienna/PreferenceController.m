@@ -68,7 +68,9 @@ NSString * MAPref_LibraryFolder = @"LibraryFolder";
 
 // List of available font sizes. I picked the ones that matched
 // Mail but you easily could add or remove from the list as needed.
-int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64 };
+NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64 };
+#warning 64BIT: Inspect use of sizeof
+#warning 64BIT: Inspect use of sizeof
 #define countOfAvailableFontSizes  (sizeof(availableFontSizes)/sizeof(availableFontSizes[0]))
 
 // Private functions
@@ -129,7 +131,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
  */
 -(NSString *)stringFromPascalString:(const unsigned char *)pascalString
 {
-	int pStringLength = (int)(unsigned char)*(pascalString);
+	NSInteger pStringLength = (NSInteger)(unsigned char)*(pascalString);
 	// deprecated API was here DJE
 //	return [NSString stringWithCString:(char *)pascalString + 1 length:pStringLength];
 	// replcement here
@@ -154,7 +156,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	[password setStringValue:savedPassword];
 
 	// Set the recent on join count
-	[recentCount setIntValue:[defaults integerForKey:MAPref_RecentOnJoin]];
+	[recentCount setIntegerValue:[defaults integerForKey:MAPref_RecentOnJoin]];
 	
 	// Set the quote colour info
 	[quoteColour setColor:[NSApp quoteColour]];
@@ -191,7 +193,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	[connectionType selectItemAtIndex:[defaults integerForKey:MAPref_ConnectionType]];
 		
 	// Number of log versions to keep
-	[logVersions setIntValue:[defaults integerForKey:MAPref_LogVersions]];
+	[logVersions setIntegerValue:[defaults integerForKey:MAPref_LogVersions]];
 	
 	// Mugshots prefs
 	[enableMugshots setState:[defaults boolForKey:MAPref_MugshotsEnabled] ? NSOnState : NSOffState];
@@ -236,6 +238,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 		{
 			NSString * defaultHandler = nil;
 			BOOL onTheList = NO;
+#warning 64BIT: Inspect use of long
 			long size;
 			ICAttr attr;
 
@@ -258,7 +261,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 				[linksHandler removeAllItems];
 				if (ICGetPref(internetConfigHandler, kICHelperList "cix", &attr, specList, &size) == noErr)
 				{
-					int c;
+					NSInteger c;
 					for (c = 0; c < specList->numberOfItems; ++c)
 					{
 						ICAppSpec * spec = &specList->appSpecs[c];
@@ -368,7 +371,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	NSMenuItem * selectedItem = [connectionType selectedItem];
 	if (selectedItem != nil)
 	{
-		int conType = [selectedItem tag];
+		NSInteger conType = [selectedItem tag];
 		[[NSUserDefaults standardUserDefaults] setInteger:conType forKey:MAPref_ConnectionType];
 	}
 }
@@ -377,7 +380,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 */
 -(IBAction)changeLogVersions:(id)sender
 {
-	int versions = [logVersions intValue];
+	NSInteger versions = [logVersions integerValue];
 	[[NSUserDefaults standardUserDefaults] setInteger:versions forKey:MAPref_LogVersions];
 }
 
@@ -387,13 +390,14 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 -(void)setDefaultLinksHandler:(NSString *)newHandler creatorCode:(OSType)creatorCode
 {
 	ICAppSpec spec;
-	int attr = 0;
+	NSInteger attr = 0;
 
 	spec.fCreator = creatorCode;
 	// Make a Pascal string.
 	// deprecated API was here DJE
 	memcpy(&spec.name[1], [newHandler cStringUsingEncoding:NSWindowsCP1252StringEncoding], [newHandler length]);
 	spec.name[0] = [newHandler length];
+#warning 64BIT: Inspect use of sizeof
 	ICSetPref(internetConfigHandler, kICHelper "cix", attr, &spec, sizeof(spec));
 }
 
@@ -401,7 +405,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
  * Datasource for the table view. Return the total number of signatures in the
  * arrayOfSignatures array.
  */
--(int)numberOfRowsInTableView:(NSTableView *)aTableView
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	return [arrayOfSignatures count];
 }
@@ -410,7 +414,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
  * Called by the table view to obtain the object at the specified column and row. This is
  * called often so it needs to be fast.
  */
--(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+-(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	return [arrayOfSignatures objectAtIndex:rowIndex];
 }
@@ -420,7 +424,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
  */
 -(void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
-	int row = [signaturesList selectedRow];
+	NSInteger row = [signaturesList selectedRow];
 	[deleteSignatureButton setEnabled:(row >= 0)];
 	[editSignatureButton setEnabled:(row >= 0)];
 }
@@ -438,10 +442,10 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	[control addItemsWithTitles:availableFonts];
 	[control selectItemWithTitle:[font fontName]];
 
-	unsigned int i;
+	NSUInteger i;
 	for (i = 0; i < countOfAvailableFontSizes; ++i)
-		[sizeControl addItemWithObjectValue:[NSNumber numberWithInt:availableFontSizes[i]]];
-	[sizeControl setFloatValue:[font pointSize]];
+		[sizeControl addItemWithObjectValue:[NSNumber numberWithInteger:availableFontSizes[i]]];
+	[sizeControl setDoubleValue:[font pointSize]];
 }
 
 /* changeQuoteColour
@@ -477,7 +481,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	if (sender == messageListFont || sender == messageListFontSize)
 	{
 		NSString * newFontName = [messageListFont titleOfSelectedItem];
-		float newFontSize = [messageListFontSize floatValue];
+		CGFloat newFontSize = [messageListFontSize doubleValue];
 
 		NSFont * msgListFont = [NSFont fontWithName:newFontName size:newFontSize];
 		[[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:msgListFont] forKey:MAPref_MessageListFont];
@@ -486,7 +490,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	else if (sender == messageFont || sender == messageFontSize)
 	{
 		NSString * newFontName = [messageFont titleOfSelectedItem];
-		float newFontSize = [messageFontSize floatValue];
+		CGFloat newFontSize = [messageFontSize doubleValue];
 		
 		NSFont * msgFont = [NSFont fontWithName:newFontName size:newFontSize];
 		[[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:msgFont] forKey:MAPref_MessageFont];
@@ -495,7 +499,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	else if (sender == plainTextFont || sender == plainTextFontSize)
 	{
 		NSString * newFontName = [plainTextFont titleOfSelectedItem];
-		float newFontSize = [plainTextFontSize floatValue];
+		CGFloat newFontSize = [plainTextFontSize doubleValue];
 	
 		NSFont * msgFont = [NSFont fontWithName:newFontName size:newFontSize];
 		[[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:msgFont] forKey:MAPref_PlainTextFont];
@@ -504,7 +508,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	else if (sender == folderFont || sender == folderFontSize)
 	{
 		NSString * newFontName = [folderFont titleOfSelectedItem];
-		float newFontSize = [folderFontSize floatValue];
+		CGFloat newFontSize = [folderFontSize doubleValue];
 		
 		NSFont * fldrFont = [NSFont fontWithName:newFontName size:newFontSize];
 		[[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:fldrFont] forKey:MAPref_FolderFont];
@@ -518,7 +522,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
  */
 -(IBAction)changeCheckFrequency:(id)sender
 {
-	int newFrequency = [[checkFrequency selectedItem] tag];
+	NSInteger newFrequency = [[checkFrequency selectedItem] tag];
 	[NSApp internalSetCheckFrequency:newFrequency];
 }
 
@@ -527,7 +531,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
  */
 -(IBAction)changeRecentCount:(id)sender
 {
-	int newCount = [recentCount intValue];
+	NSInteger newCount = [recentCount integerValue];
 	[[NSUserDefaults standardUserDefaults] setInteger:newCount forKey:MAPref_RecentOnJoin];
 }
 
@@ -661,7 +665,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
  * Called when the Edit Signature sheet is dismissed. The returnCode is NSOKButton if the Save
  * button was pressed, or NSCancelButton otherwise.
  */
--(void)signatureSheetEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)signatureSheetEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	if (returnCode == NSOKButton)
 	{
@@ -682,7 +686,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 		[defaultSignature addItemWithTitle:title];
 
 		// Select the newly added signature for convenience.
-		int row = [arrayOfSignatures indexOfObject:title];
+		NSInteger row = [arrayOfSignatures indexOfObject:title];
 		[signaturesList selectRow:row byExtendingSelection:NO];
 		
 		// Give all open message windows a chance to refresh their signature drop down list.
@@ -753,11 +757,11 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 {
 	NSNumber * boolFlag = [NSNumber numberWithBool:[sender state] == NSOnState];
 	[[NSUserDefaults standardUserDefaults] setObject:boolFlag forKey:MAPref_MugshotsEnabled];
-	[mugshotFolder setEnabled: [boolFlag intValue]];
-	[mugshotFolderBrowse setEnabled: [boolFlag intValue]];
+	[mugshotFolder setEnabled: [boolFlag integerValue]];
+	[mugshotFolderBrowse setEnabled: [boolFlag integerValue]];
 
 	// Notify of the change
-	if ([boolFlag intValue] == 0)
+	if ([boolFlag integerValue] == 0)
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_MugshotsFolderChanged" object:nil];
 	else
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_MugshotsFolderChanged" object:mugshotsFolderName];
@@ -781,7 +785,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
  * Called when the browser panel is dismissed. If the user selected OK, preserve the new
  * mugshot folder path.
  */
--(void)browsePanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)context
+-(void)browsePanelDidEnd:(NSOpenPanel *)panel returnCode:(NSInteger)returnCode contextInfo:(void *)context
 {
 	if (returnCode == NSOKButton)
 	{
@@ -839,7 +843,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 	[[NSUserDefaults standardUserDefaults] setObject:newFolder forKey:MAPref_DownloadFolder];
 }
 
--(void)downloadPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)context
+-(void)downloadPanelDidEnd:(NSOpenPanel *)panel returnCode:(NSInteger)returnCode contextInfo:(void *)context
 {
 	if (returnCode == NSOKButton)
 	{
@@ -906,7 +910,7 @@ int availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64
 
 /* resumeSheetEnd
  */
--(void)resumeSheetEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)resumeSheetEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	if (returnCode == NSOKButton)
 	{

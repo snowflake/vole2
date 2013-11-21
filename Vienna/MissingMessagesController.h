@@ -38,11 +38,11 @@
 	Database * db;
 	BOOL stopScanFlag;
 	BOOL scanRunning;
-	int countOfTasks;
-	int countOfMessages;
-	int countOfFolders;
-	unsigned int skipBackValue;
-	unsigned int requiredFirstMessage;
+	NSInteger countOfTasks;
+	NSInteger countOfMessages;
+	NSInteger countOfFolders;
+	NSUInteger skipBackValue;
+	NSUInteger requiredFirstMessage;
 	NSArray * arrayOfFolders;
 	NSArray * messagesArray;	
 }

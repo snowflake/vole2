@@ -24,21 +24,21 @@
 @interface BufferedFile : NSObject {
 	NSFileHandle * fileHandle;
 	NSData * buffer;
-	int bytesInBuffer;
-	int bufferIndex;
+	NSInteger bytesInBuffer;
+	NSInteger bufferIndex;
 	char pushedChar;
-	int readSoFar;
-	int fileSize;
+	NSInteger readSoFar;
+	NSInteger fileSize;
 }
 
 -(id)initWithPath:(NSString *)filePath;
 -(id)initWithFileHandle:(NSFileHandle *)h;
--(int)readSoFar;
--(int)fileSize;
+-(NSInteger)readSoFar;
+-(NSInteger)fileSize;
 -(NSString *)readLine:(BOOL *)endOfFile;
--(NSString *)readTextOfSize:(int)textSize;
+-(NSString *)readTextOfSize:(NSInteger)textSize;
 -(char)readChar;
--(char)readUnixChar:(int *)charSizePtr;
+-(char)readUnixChar:(NSInteger *)charSizePtr;
 -(void)unreadChar:(char)ch;
 -(void)close;
 @end

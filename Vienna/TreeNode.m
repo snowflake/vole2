@@ -29,7 +29,7 @@
 {
 	if ((self = [super init]) != nil)
 	{
-		int folderId = (theFolder ? [theFolder itemId] : MA_Root_NodeID);
+		NSInteger folderId = (theFolder ? [theFolder itemId] : MA_Root_NodeID);
 		[self setFolder:theFolder];
 		[self setParentNode:parent];
 		[self setCanHaveChildren:childflag];
@@ -57,7 +57,7 @@
 	if (IsSearchFolder([child folder]))
 	{
 		NSEnumerator * enumerator = [children objectEnumerator];
-		int insertIndex = 0;
+		NSInteger insertIndex = 0;
 
 		while ((forwardChild = [enumerator nextObject]) != nil)
 		{
@@ -80,7 +80,7 @@
 	else
 	{
 		NSString * ourChildName = [[child folder] name];
-		unsigned int insertIndex = 0;
+		NSUInteger insertIndex = 0;
 
 		if ([children count] > 0)
 			forwardChild = [children objectAtIndex:0];
@@ -138,7 +138,7 @@
  * Searches down from the current node to find the node that
  * has the given ID.
  */
--(TreeNode *)nodeFromID:(int)n
+-(TreeNode *)nodeFromID:(NSInteger)n
 {
 	NSEnumerator * enumerator = [children objectEnumerator];
 	TreeNode * node;
@@ -213,7 +213,7 @@
 /* setNodeId
  * Sets a node's unique Id.
  */
--(void)setNodeId:(int)n
+-(void)setNodeId:(NSInteger)n
 {
 	nodeId = n;
 }
@@ -221,7 +221,7 @@
 /* nodeId
  * Returns the node's ID
  */
--(int)nodeId
+-(NSInteger)nodeId
 {
 	return nodeId;
 }
@@ -254,7 +254,7 @@
 /* countOfChildren
  * Returns the number of direct child nodes of this node
  */
--(int)countOfChildren
+-(NSInteger)countOfChildren
 {
 	return [children count];
 }
@@ -281,7 +281,7 @@
 /* itemAtIndex
  * Returns the item from the child collection at the specified index
  */
--(TreeNode *)itemAtIndex:(int)index
+-(TreeNode *)itemAtIndex:(NSInteger)index
 {
 	return (TreeNode *)[children objectAtIndex:index];
 }
@@ -291,6 +291,7 @@
  */
 -(NSString *)description
 {
+#warning 64BIT: Check formatting arguments
 	return [NSString stringWithFormat:@"%@ (Parent=%d, Sibling=%d, # of children=%d)", [folder name], parentNode, nextChild, [children count]];
 }
 

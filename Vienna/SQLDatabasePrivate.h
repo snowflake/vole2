@@ -14,15 +14,15 @@
 @end
 
 @interface SQLResult (Private)
--(id)initWithTable:(char**)inTable rows:(int)inRows columns:(int)inColumns;
+-(id)initWithTable:(char**)inTable rows:(NSInteger)inRows columns:(NSInteger)inColumns;
 @end
 
 @interface SQLRowEnumerator : NSEnumerator
 {
 	SQLResult*	mResult;
-	int			mPosition;
+	NSInteger			mPosition;
 	IMP			mRowAtIndexMethod;
-	int			(*mRowCountMethod)(SQLResult*, SEL);
+	NSInteger			(*mRowCountMethod)(SQLResult*, SEL);
 }
 
 -(id)initWithResult:(SQLResult*)inResult;
@@ -30,6 +30,6 @@
 @end
 
 @interface SQLRow (Private)
--(id)initWithColumns:(char**)inColumns rowData:(char**)inRowData columns:(int)inColumnCount;
+-(id)initWithColumns:(char**)inColumns rowData:(char**)inRowData columns:(NSInteger)inColumnCount;
 -(BOOL)valid;
 @end

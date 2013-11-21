@@ -12,7 +12,7 @@
 @implementation SQLRow
 
 // #warning: more work is required in this file 
--(id)initWithColumns:(char**)inColumns rowData:(char**)inRowData columns:(int)inColumnCount
+-(id)initWithColumns:(char**)inColumns rowData:(char**)inRowData columns:(NSInteger)inColumnCount
 {
 	if( ![super init])
 		return nil;
@@ -43,14 +43,14 @@
 
 #pragma mark -
 
--(int)columnCount
+-(NSInteger)columnCount
 {
 	return mColumnCount;
 }
 
 #pragma mark -
 
--(NSString*)nameOfColumnAtIndex:(int)inIndex
+-(NSString*)nameOfColumnAtIndex:(NSInteger)inIndex
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
@@ -61,7 +61,7 @@
 
 }
 
--(NSString*)nameOfColumnAtIndexNoCopy:(int)inIndex
+-(NSString*)nameOfColumnAtIndexNoCopy:(NSInteger)inIndex
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
@@ -79,7 +79,7 @@
 
 -(NSString*)stringForColumn:(NSString*)inColumnName
 {
-	int index;
+	NSInteger index;
 	
 	if( ![self valid])
 		return nil;
@@ -97,7 +97,7 @@
 
 -(NSString*)stringForColumnNoCopy:(NSString*)inColumnName
 {
-	int index;
+	NSInteger index;
 	
 	if( ![self valid])
 		return nil;
@@ -112,7 +112,7 @@
 	return [self stringForColumnAtIndexNoCopy:index];
 }
 
--(NSString*)stringForColumnAtIndex:(int)inIndex
+-(NSString*)stringForColumnAtIndex:(NSInteger)inIndex
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
@@ -128,7 +128,7 @@
 	
 }
 
--(NSString*)stringForColumnAtIndexNoCopy:(int)inIndex
+-(NSString*)stringForColumnAtIndexNoCopy:(NSInteger)inIndex
 {
 	if( inIndex >= mColumnCount || ![self valid])
 		return nil;
@@ -147,7 +147,7 @@
 -(NSString*)description
 {
 	NSMutableString*	string = [NSMutableString string];
-	int					column;
+	NSInteger					column;
 	
 	for( column = 0; column < mColumnCount; column++ )
 	{

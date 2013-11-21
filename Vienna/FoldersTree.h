@@ -45,12 +45,12 @@
 -(Database *)database;
 -(void)reloadDatabase;
 -(FolderView *)outlineView;
--(void)updateFolder:(int)folderId recurseToParents:(BOOL)recurseToParents;
--(BOOL)selectFolder:(int)folderId;
--(int)actualSelection;
+-(void)updateFolder:(NSInteger)folderId recurseToParents:(BOOL)recurseToParents;
+-(BOOL)selectFolder:(NSInteger)folderId;
+-(NSInteger)actualSelection;
 -(BOOL)isFolderExpanded:(TreeNode *)node;
--(int)nextFolderWithUnread:(int)currentFolderId isPriority:(BOOL)priorityFlag;
--(int)firstChildFolder:(int)folderId;
--(NSArray *)folders:(int)folderId;
--(int)folderFromPath:(int)rootNode path:(NSString *)path;
+-(NSInteger)nextFolderWithUnread:(NSInteger)currentFolderId isPriority:(BOOL)priorityFlag;
+-(NSInteger)firstChildFolder:(NSInteger)folderId;
+-(NSArray *)folders:(NSInteger)folderId;
+-(NSInteger)folderFromPath:(NSInteger)rootNode path:(NSString *)path;
 @end

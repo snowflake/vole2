@@ -41,8 +41,8 @@ extern char * cixLocation_cstring; // in main.m, used for name of the service
 typedef struct
 {
 	NSString * folderPath;
-	unsigned int permissions;
-	unsigned int mask;
+	NSUInteger permissions;
+	NSUInteger mask;
 	VMessage * message;
 	NSDate * lastUpdate;
 } ThreadFolderData;
@@ -50,7 +50,7 @@ typedef struct
 // Structure for encapsulating RSS folder update info
 typedef struct
 {
-	int folderId;
+	NSInteger folderId;
 	NSString * folderPath;
 	NSDate * lastUpdate;
 	NSString * title;
@@ -74,10 +74,10 @@ typedef struct
 	-(BOOL)writeString:(BOOL)echo string:(NSString *)string;
 	-(BOOL)writeLineUsingEncoding:(NSString *)string encoding:(NSStringEncoding)encoding;
 	-(char)readServiceChar:(BOOL *)endOfFile;
-	-(int)collectScratchpad;
+	-(NSInteger)collectScratchpad;
 	-(void)readAndScanForMainPrompt:(BOOL *)endOfFile;
-	-(int)readAndScanForStrings:(NSArray *)stringsToScan endOfFile:(BOOL *)endOfFile;
-	-(int)getMessages:(VTask *)task;
+	-(NSInteger)readAndScanForStrings:(NSArray *)stringsToScan endOfFile:(BOOL *)endOfFile;
+	-(NSInteger)getMessages:(VTask *)task;
 	-(void)postMessages:(VTask *)task;
 	-(void)resignFolder:(VTask *)task;
 	-(void)joinFolder:(VTask *)task;
@@ -99,7 +99,7 @@ typedef struct
 @end
 
 // Static functions
-int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
+NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 
 @implementation Connect
 
@@ -180,7 +180,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 /* setMode
  * Both / RSS or Cix
  */
--(void)setMode:(int)newMode
+-(void)setMode:(NSInteger)newMode
 {
 	connectMode = newMode;
 }
@@ -218,7 +218,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 /* messagesCollected
  * Return the number of messages collected in the last connect.
  */
--(unsigned int)messagesCollected
+-(NSUInteger)messagesCollected
 {
 	return messagesCollected;
 }
@@ -228,6 +228,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
  */
 -(NSString *)serviceString
 {
+#warning 64BIT: Check formatting arguments
 	return [NSString stringWithFormat:@"%@:%d", [socket address], [socket port]];
 }
 
@@ -354,7 +355,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 -(void)markMessagePosted:(VMessage *)message
 {
 	[db deleteMessage:MA_Outbox_NodeID messageNumber:[message messageId]];
-	[self updateLastFolder:[NSNumber numberWithInt:MA_Outbox_NodeID]];
+	[self updateLastFolder:[NSNumber numberWithInteger:MA_Outbox_NodeID]];
 }
 
 /* taskCompleted
@@ -383,12 +384,12 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
  */
 -(void)updateLastFolder:(NSNumber *)number
 {
-	int topicId = [number intValue];
+	NSInteger topicId = [number integerValue];
 	if (topicId != lastTopicId && lastTopicId != -1)
 	{
 		[db flushFolder:lastTopicId];
 		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:lastTopicId]];
+		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:lastTopicId]];
 	}
 	lastTopicId = topicId;
 }
@@ -406,19 +407,19 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 		BOOL wasNew;
 
 		[db addMessageToFolder:[db conferenceNodeID] path:threadData->folderPath message:threadData->message raw:NO wasNew:&wasNew];
-		[self updateLastFolder:[NSNumber numberWithInt:[threadData->message folderId]]];
+		[self updateLastFolder:[NSNumber numberWithInteger:[threadData->message folderId]]];
 		if (wasNew)
 			++messagesCollected;
 	}
 	else
 	{
-		int folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData->folderPath];
+		NSInteger folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData->folderPath];
 		if (folderId != -1)
 		{
 			if (threadData->mask & MA_LockedFolder)
 			{
 				[db markFolderLocked:folderId isLocked:(threadData->permissions & MA_LockedFolder) == MA_LockedFolder];
-				[self updateLastFolder:[NSNumber numberWithInt:folderId]];
+				[self updateLastFolder:[NSNumber numberWithInteger:folderId]];
 			}
 		}
 	}
@@ -430,11 +431,11 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 -(void)addRSSMessageToDatabase:(NSData *)data
 {
 	ThreadFolderData * threadData = (ThreadFolderData *)[data bytes];
-	int folderId = [threadData->message folderId];
+	NSInteger folderId = [threadData->message folderId];
 	BOOL wasNew;
 
 	[db addMessage:folderId message:threadData->message wasNew:&wasNew];
-	[self updateLastFolder:[NSNumber numberWithInt:folderId]];
+	[self updateLastFolder:[NSNumber numberWithInteger:folderId]];
 	if (wasNew)
 		++messagesCollected;
 }	
@@ -462,7 +463,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 -(void)updateFolder:(NSData *)data
 {
 	CIXFolderUpdateData * threadData = (CIXFolderUpdateData *)[data bytes];
-	int folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData->folderPath];
+	NSInteger folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData->folderPath];
 	if (folderId != -1)
 		[db setFolderDescription:folderId newDescription:threadData->description];
 }
@@ -532,10 +533,10 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 /* sendEndConnectToDelegate
  * Calls the delegate function advising it that a connect has ended
  */
--(void)sendEndConnectToDelegate:(int)result
+-(void)sendEndConnectToDelegate:(NSInteger)result
 {
 	if (delegate != nil && taskRunningCount == 0)
-		[delegate performSelectorOnMainThread:@selector(endConnect:) withObject:[NSNumber numberWithInt:result] waitUntilDone:YES];
+		[delegate performSelectorOnMainThread:@selector(endConnect:) withObject:[NSNumber numberWithInteger:result] waitUntilDone:YES];
 }
 
 /* sendStatusToDelegate
@@ -555,12 +556,12 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 {
 	NSAutoreleasePool * pool;
 	VTask * task = (VTask *)object;
-	int result = MA_Connect_Success;
+	NSInteger result = MA_Connect_Success;
 
 	// Init
     pool = [[NSAutoreleasePool alloc] init];
 	isRSSThreadRunning = YES;
-	int taskResult = MA_Connect_Success;
+	NSInteger taskResult = MA_Connect_Success;
 	NSString * taskData = @"";
 
 	// Communicate that a task has started.
@@ -588,6 +589,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 		BOOL isUntitledFeed = [[[rssFolder folder] name] isEqualToString:@"(Untitled Feed)"];
 
 		// Send status
+#warning 64BIT: Check formatting arguments
 		NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Updating subscription from '%@'", nil), [[rssFolder folder] name]];
 		[self sendStatusToDelegate:statusString];
 
@@ -607,6 +609,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 			// If the untitled feed now has a title, change the status
 			if (isUntitledFeed && feedTitle != nil)
 			{
+#warning 64BIT: Check formatting arguments
 				NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Updating subscription from '%@'", nil), feedTitle];
 				[self sendStatusToDelegate:statusString];
 			}
@@ -631,14 +634,15 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 			while ((newsItem = [itemEnumerator nextObject]) && !rssAbortFlag)
 			{
 				NSDate * messageDate = [newsItem date];
-				int msgFlag = MA_MsgID_New;
+				NSInteger msgFlag = MA_MsgID_New;
 				NSString * guid = [newsItem guid];
 				
 				// If the article doesn't have a GUID then synthesize one.
 				// This code nicked from Steve's Vienna2 RefreshManager.m
 				if (guid == nil || [guid isEqualToString:@""])
 				{
-					guid = [NSString stringWithFormat:@"%d-%@-%@", [rssFolder folderId], [newsItem link], [newsItem title]];
+#warning 64BIT: Check formatting arguments
+					guid = [NSString stringWithFormat:@"%ld-%@-%@", (long int)[rssFolder folderId], [newsItem link], [newsItem title]];
 					[newsItem setGuid: guid];
 				}
 
@@ -718,6 +722,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 				threadData.mask = 0;
 				threadData.message = message;
 				[self performSelectorOnMainThread:@selector(addRSSMessageToDatabase:)
+#warning 64BIT: Inspect use of sizeof
 									   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 									waitUntilDone:YES];
 			}
@@ -731,6 +736,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 			threadData.description = feedDescription;
 			threadData.link = feedLink;
 			[self performSelectorOnMainThread:@selector(updateRSSFolder:)
+#warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 								waitUntilDone:YES];
 		}
@@ -745,7 +751,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 	[task setResultString:taskData];
 
 	// Refresh UI when we're done.
-	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInt:-1] waitUntilDone:NO];
+	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInteger:-1] waitUntilDone:NO];
 	[self performSelectorOnMainThread:@selector(taskCompleted:) withObject:task waitUntilDone:YES];
 
 	// Let caller know the result.
@@ -763,7 +769,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context);
 /* messageDateSortHandler
  * Compares two VMessages and returns their chronological order
  */
-int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
+NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 {
 	return [[item1 date] compare:[item2 date]];
 }
@@ -772,8 +778,9 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 -(BOOL)setModerator:(VTask *)task
 {
 	BOOL endOfFile;
-	int match;
+	NSInteger match;
 
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Moderating '%@'", nil), [task folderName]];
 	[self sendStatusToDelegate:statusString];
 		
@@ -803,7 +810,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 	if ([self setModerator: task])
 	{
 		BOOL endOfFile;
-		int match;
+		NSInteger match;
 		
 		[self writeStringWithFormat:YES string:@"add part %@\n", [task actionData]];
 		match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"Mod:", nil] endOfFile:&endOfFile];
@@ -820,7 +827,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 	if ([self setModerator: task])
 	{
 		BOOL endOfFile;
-		int match;
+		NSInteger match;
 		
 		[self writeStringWithFormat:YES string:@"rem part %@\n", [task actionData]];
 		match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"Mod:", nil] endOfFile:&endOfFile];
@@ -837,7 +844,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 	if ([self setModerator: task])
 	{
 		BOOL endOfFile;
-		int match;
+		NSInteger match;
 		
 		// Extract topic name from conference/topic
 		NSString * folderName = [task folderName];
@@ -868,7 +875,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 	if ([self setModerator: task])
 	{
 		BOOL endOfFile;		
-		int match;
+		NSInteger match;
 		
 		[self writeStringWithFormat:YES string:@"comod %@\n", [task actionData]];
 		match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"Mod:", nil] endOfFile:&endOfFile];
@@ -884,7 +891,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 	if ([self setModerator: task])
 	{
 		BOOL endOfFile;
-		int match;
+		NSInteger match;
 		
 		[self writeStringWithFormat:YES string:@"exmod %@\n", [task actionData]];
 		match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"Mod:", nil] endOfFile:&endOfFile];
@@ -901,7 +908,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 	if ([self setModerator: task])
 	{
 		BOOL endOfFile;
-		int match;
+		NSInteger match;
 		NSArray *listItems = [[task actionData] componentsSeparatedByString:@":"];
 		NSString *topicName = [listItems objectAtIndex:0];
 		NSString *hasFlist = [listItems objectAtIndex:1];
@@ -946,12 +953,12 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 }
 
 // Send a file via Zmodem
--(int)zmodemSend:(NSString *)fileName;
+-(NSInteger)zmodemSend:(NSString *)fileName;
 {
 	NSTask *zmTask;
 	NSFileHandle *fh;
 	NSString *execFile = [[NSBundle mainBundle] pathForAuxiliaryExecutable: @"sz"];
-	int status;
+	NSInteger status;
 	
 	// Can't find 
 	if (execFile == nil) {
@@ -982,12 +989,12 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 
 
 // Receive a file via Zmodem
--(int)zmodemReceive:(NSString *)downloadFolder;
+-(NSInteger)zmodemReceive:(NSString *)downloadFolder;
 {
 	NSTask *zmTask;
 	NSFileHandle *fh;
 	NSString *execFile = [[NSBundle mainBundle] pathForAuxiliaryExecutable: @"rz"];
-	int status;
+	NSInteger status;
 	
 	// Can't find 
 	if (execFile == nil) {
@@ -1019,9 +1026,10 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 -(void)downloadFile:(VTask *)task
 {
 	BOOL endOfFile;
-	int match;
+	NSInteger match;
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Downloading '%@/%@'", nil), [task folderName], [task actionData]];
 	[self sendStatusToDelegate:statusString];
 	
@@ -1036,7 +1044,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 	}
 	else
 	{
-		int status;
+		NSInteger status;
 		NSString *downloadFolder;
 		
 		// Download mugshots into the mugshots folder if asked to do so
@@ -1071,11 +1079,12 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 -(void)uploadFile:(VTask *)task
 {
 	BOOL endOfFile;
-	int match;
+	NSInteger match;
 	
 	// Check file exists so we don't have to cope with a Zmodem error
 	if (![[NSFileManager defaultManager] isReadableFileAtPath: [task actionData]])
 	{
+// #warning 64BIT: Check formatting arguments
 		NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Can't open %@ to upload", nil), [task actionData]];
 		[self sendStatusToDelegate:statusString];
 		[task setResultCode:MA_TaskResult_Failed];
@@ -1083,6 +1092,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 		return;
 	}
 	
+#warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"uploading %@ to %@", nil), [task actionData], [task folderName]];
 	[self sendStatusToDelegate:statusString];
 	
@@ -1098,7 +1108,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 	}
 	else
 	{
-		int status;
+		NSInteger status;
 		
 		status = [self zmodemSend: [task actionData]];
 		if (status == 0)
@@ -1132,9 +1142,9 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 -(void)connectThread:(NSObject *)object
 {
 	NSAutoreleasePool * pool;
-	int result = MA_Connect_Success;
+	NSInteger result = MA_Connect_Success;
 	VTask * task;
-	unsigned int index;
+	NSUInteger index;
 
     pool = [[NSAutoreleasePool alloc] init];
 	index = 0;
@@ -1295,12 +1305,12 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 /* getMessages
  * Read all new messages from the service.
  */
--(int)getMessages:(VTask *)task
+-(NSInteger)getMessages:(VTask *)task
 {
 	BOOL endOfFile;
-	int result = MA_Connect_Success;
+	NSInteger result = MA_Connect_Success;
 	NSString * taskData = @"";
-	int taskResult = MA_TaskResult_Succeeded;
+	NSInteger taskResult = MA_TaskResult_Succeeded;
 	BOOL needRecovery = [[NSUserDefaults standardUserDefaults] boolForKey:MAPref_Recovery];
 
 	// Set recovery depending on last state. Do this now in case the app or machine crashes
@@ -1340,10 +1350,10 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 /* collectScratchpad
  * Get the contents of the scratchpad and parse.
  */
--(int)collectScratchpad
+-(NSInteger)collectScratchpad
 {
 	BOOL endOfFile;
-	int result = MA_Connect_Success;
+	NSInteger result = MA_Connect_Success;
 	BOOL isReadOnly = NO;
 
 	// Remember current folder path because some Joining actions are split
@@ -1367,6 +1377,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 			threadData.mask = MA_LockedFolder;
 			threadData.message = nil;
 			[self performSelectorOnMainThread:@selector(addToDatabase:)
+// #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)] 
 								waitUntilDone:YES];
 		}
@@ -1386,6 +1397,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 			threadData.mask = MA_LockedFolder;
 			threadData.message = nil;
 			[self performSelectorOnMainThread:@selector(addToDatabase:)
+// #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)] 
 								waitUntilDone:YES];
 		}
@@ -1398,20 +1410,24 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 			NSDate * messageDate;
 			int messageNumber;
 			int messageComment;
-			unsigned int messageSize;
+			int messageSize;
 			
 			messageComment = 0;
 			NSScanner * scanner = [NSScanner scannerWithString:line];
 			[scanner scanString:@">>>" intoString:nil];
 			[scanner scanUpToString:@" " intoString:&messagePath];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 			[scanner scanInt:&messageNumber];
 			[scanner scanUpToString:@"(" intoString:&userName];
 			[scanner scanString:@"(" intoString:nil];
-			[scanner scanInt:(int *)&messageSize];
+//#warning 64BIT: Inspect pointer casting
+//#warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+			[scanner scanInt:&messageSize];
 			[scanner scanString:@")" intoString:nil];
 			[scanner scanUpToString:@" " intoString:&messageDateString];
 			[scanner scanUpToString:@" " intoString:&messageTimeString];
 			[scanner scanString:@"c" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 			[scanner scanInt:&messageComment];					
 			
 			// Convert the date and time into something we can work with
@@ -1419,13 +1435,13 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 			
 			// Read the message body using the size as a clue.
 			NSMutableString * messageBody;
-			unsigned int messageSoFar = 0;
+			int messageSoFar = 0;
 			
 			messageBody = [[NSMutableString alloc] initWithCapacity:1024];
 			while (messageSoFar < messageSize)
 			{
 				NSString * line = [self readLine:&endOfFile];
-				if ([line length] + messageSoFar > messageSize)
+				if ( (int)[line length] + messageSoFar > messageSize)
 				{
 					// We read too far and the count on the message
 					// was broken.
@@ -1451,6 +1467,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 			threadData.mask = 0;
 			threadData.message = message;
 			[self performSelectorOnMainThread:@selector(addToDatabase:)
+#warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 								waitUntilDone:YES];
 			
@@ -1465,7 +1482,7 @@ int messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 abortLabel:
 	if (cixAbortFlag)
 		result = MA_Connect_Aborted;
-	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInt:-1] waitUntilDone:NO];
+	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInteger:-1] waitUntilDone:NO];
 	
 	// Blow away the scratchpad if everything went fine
 	if (result == MA_Connect_Success)
@@ -1483,7 +1500,7 @@ abortLabel:
 {
 	BOOL endOfFile;
 	unsigned int count = 0;
-	int categoryId = -1;
+	NSInteger categoryId = -1;
 
 	// Remove old (well, all!) entries
 	[self performSelectorOnMainThread:@selector(cleanForumsList) withObject:nil waitUntilDone:YES];
@@ -1496,7 +1513,7 @@ abortLabel:
 	[self readAndScanForMainPrompt:&endOfFile];	
 
 	// Gobble up the incoming stream.
-	int lastTimeout = [socket setTimeout:2];
+	NSInteger lastTimeout = [socket setTimeout:2];
 	[self writeLine:@"show scratchpad"];
 	NSString * line = [self readLine:&endOfFile];
 	while (!endOfFile)
@@ -1520,7 +1537,7 @@ abortLabel:
 			// the date of the last access or "Closed" if the conference is
 			// closed.
 			NSRange range = [description rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet] options:NSBackwardsSearch];
-			int length = [description length];
+			NSInteger length = [description length];
 			if (range.location != NSNotFound)
 			{
 				datePart = [description substringWithRange:NSMakeRange(range.location + 1, (length - range.location) - 1)];
@@ -1533,7 +1550,7 @@ abortLabel:
 			}
 			
 			NSDate * lastActiveDate;
-			int status;
+			NSInteger status;
 			if ([datePart isEqualToString:@"NoTopics"])
 			{
 				// For closed conferences we'll probably get the last active date IF we're a member
@@ -1566,6 +1583,7 @@ abortLabel:
 			// Show running count for actual conferences (not comments)
 			if ((++count % 100) == 0)
 			{
+// #warning 64BIT: Check formatting arguments
 				NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Retrieving conferences list: %u items", nil), count];
 				[self sendStatusToDelegate:statusString];
 			}
@@ -1616,9 +1634,10 @@ abortLabel:
 {
 	NSString * folderName = [task folderName];
 	BOOL endOfFile;
-	int match;
+	NSInteger match;
 
 	// Tell the user what we're up to
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Resigning from '%@'", nil), folderName];
 	[self sendStatusToDelegate:statusString];
 
@@ -1642,6 +1661,7 @@ abortLabel:
 	NSString * folderName = [task folderName];
 	
 	// Tell the user what we're up to
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Joining '%@'", nil), folderName];
 	[self sendStatusToDelegate:statusString];
 	
@@ -1670,7 +1690,7 @@ abortLabel:
 	NSString * folderName = [task folderName];
 	BOOL success;
 	BOOL endOfFile;
-	int match;
+	NSInteger match;
 
 	[self writeStringWithFormat:YES string:@"join %@\n", folderName];
 	match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"No conference", @"Couldn't find topic", @"Topic? ", @"register  (y/n)?", @"Rf:", @"is closed", nil] endOfFile:&endOfFile];
@@ -1757,6 +1777,7 @@ abortLabel:
 			threadData.folderPath = [NSString stringWithFormat:@"%@/%@", folderName, topicName];
 			threadData.description = topicDescription;
 			[self performSelectorOnMainThread:@selector(updateFolder:)
+// #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 								waitUntilDone:YES];
 		}
@@ -1786,7 +1807,7 @@ abortLabel:
 	if ([self readAndScanForStrings:[NSArray arrayWithObjects:@"input->", nil] endOfFile:&endOfFile] == 0)
 	{
 		NSArray * wrappedText = [[task actionData] rewrapString:74];
-		unsigned int wrapLineIndex = 0;
+		NSUInteger wrapLineIndex = 0;
 		
 		while (wrapLineIndex < [wrappedText count])
 		{
@@ -1817,13 +1838,14 @@ abortLabel:
 	BOOL endOfFile;
 
 	// Tell the user what we're up to
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Retrieving resume for '%@'", nil), [task actionData]];
 	[self sendStatusToDelegate:statusString];
 
 	// Collect the resume
 	[self writeStringWithFormat:YES string:@"sh res %@\n", [task actionData]];
 
-	int lastTimeout = [socket setTimeout:2];
+	NSInteger lastTimeout = [socket setTimeout:2];
 	NSString * line = [self readLine:&endOfFile];
 
 	// Make sure this is a valid resume. Valid CIX resumes always start with the
@@ -1859,9 +1881,10 @@ abortLabel:
  */
 -(void)setCIXBack:(VTask *)task
 {
-	int taskResult = MA_TaskResult_Failed;
+	NSInteger taskResult = MA_TaskResult_Failed;
 
 	// Tell the user what we're up to
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Setting CIX back in %@ days", nil), [task actionData]];
 	[self sendStatusToDelegate:statusString];
 
@@ -1873,7 +1896,7 @@ abortLabel:
 
 	if ([self enterFolder:task])
 	{
-		int lastTimeout = [socket setTimeout:5];
+		NSInteger lastTimeout = [socket setTimeout:5];
 
 		[self writeLine: @"file pjc"];
 		[self collectScratchpad];
@@ -1894,6 +1917,7 @@ abortLabel:
 	BOOL endOfFile;
 
 	// Tell the user what we're up to
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Skipping back in '%@'", nil), [task folderName]];
 	[self sendStatusToDelegate:statusString];
 	
@@ -1901,11 +1925,11 @@ abortLabel:
 	// Now join the topic or conference
 	if ([self enterFolder:task])
 	{
-		int taskResult = MA_TaskResult_Succeeded;
+		NSInteger taskResult = MA_TaskResult_Succeeded;
 		NSString * taskData = @"";
 
 		// Do the skip. This generally doesn't fail in a meaningful way
-		int skipCount = [[task actionData] intValue];
+		NSInteger skipCount = [[task actionData] integerValue];
 		// dje - hea skip back leads to corrupt messages - or does it. Backout the changes
 		[self writeStringWithFormat:YES string:@"hea skip to back %d\n", skipCount];
 		[self readAndScanForStrings:[NSArray arrayWithObjects:@"Rf:", nil] endOfFile:&endOfFile];
@@ -1926,11 +1950,13 @@ abortLabel:
 -(void)withdrawMessage:(VTask *)task
 {
 	NSString * folderName = [task folderName];
-	int messageNumber = [[task actionData] intValue];
+	NSInteger messageNumber = [[task actionData] integerValue];
 	BOOL endOfFile;
 	
 	// Tell the user what we're up to
-	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Withdrawing message %d from '%@'", nil), messageNumber, folderName];
+// #warning 64BIT: Check formatting arguments
+	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Withdrawing message %ld from '%@'", nil),
+                               (long int)messageNumber, folderName];
 	[self sendStatusToDelegate:statusString];
 	
 	// Go into the topic
@@ -1938,8 +1964,8 @@ abortLabel:
 	if ([self enterFolder:task])
 	{
 		NSString * taskData = @"";
-		int taskResult;
-		int match;
+		NSInteger taskResult;
+		NSInteger match;
 
 		[self writeStringWithFormat:YES string:@"withdraw %d\n", messageNumber];
 		if ((match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"Rf:", @"You did not", @"No such message", nil] endOfFile:&endOfFile]) == 0)
@@ -1947,11 +1973,13 @@ abortLabel:
 		else if (match == 1)
 		{
 			taskResult = MA_TaskResult_Failed;
+#warning 64BIT: Check formatting arguments
 			taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"You did not originate %d\n", nil), messageNumber];
 		}
 		else
 		{
 			taskResult = MA_TaskResult_Failed;
+#warning 64BIT: Check formatting arguments
 			taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"No such message %d\n", nil), messageNumber];
 		}
 
@@ -1974,6 +2002,7 @@ abortLabel:
 	BOOL endOfFile;
 	
 	// Tell the user what we're up to
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Retrieving messages from '%@'", nil), folderName];
 	[self sendStatusToDelegate:statusString];
 
@@ -1982,7 +2011,7 @@ abortLabel:
 	if ([self enterFolder:task])
 	{
 		NSString * taskData;
-		int taskResult;
+		NSInteger taskResult;
 
 		// Assume we'll succeed
 		taskData = @"";
@@ -1995,21 +2024,26 @@ abortLabel:
 		while (![scanner isAtEnd])
 		{
 			NSString * rangeString;
-			int firstNumber;
-			int lastNumber;
+			int     firstNumber;
+			int     lastNumber;
 
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 			[scanner scanInt:&firstNumber];
 			if (![scanner scanString:@"-" intoString:nil])
+// #warning 64BIT: Check formatting arguments
 				rangeString = [NSString stringWithFormat:@"file %d", firstNumber];
 			else
 			{
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 				[scanner scanInt:&lastNumber];
+// #warning 64BIT: Check formatting arguments
 				rangeString = [NSString stringWithFormat:@"file %d to %d", firstNumber, lastNumber];
 			}
 			[self writeLine:rangeString];
 			if ([self readAndScanForStrings:[NSArray arrayWithObjects:@"Rf:", @"No such message", nil] endOfFile:&endOfFile] == 1)
 			{
 				taskResult = MA_TaskResult_Failed;
+// #warning 64BIT: Check formatting arguments
 				taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"No message %d\n", nil), firstNumber];
 			}
 			[scanner scanString:@"," intoString:nil];
@@ -2021,7 +2055,7 @@ abortLabel:
 		[self readAndScanForMainPrompt:&endOfFile];
 		
 		// Now collect the messages
-		int lastTimeout = [socket setTimeout:2];
+		NSInteger lastTimeout = [socket setTimeout:2];
 		[self collectScratchpad];
 		[socket setTimeout:lastTimeout];
 
@@ -2033,7 +2067,7 @@ abortLabel:
 
 -(BOOL)hasHighBitChars:(NSMutableArray *)text
 {
-	unsigned int index, charindex;
+	NSUInteger index, charindex;
 	
 	for (index = 0; index < [text count]; ++index)
 	{
@@ -2055,7 +2089,7 @@ abortLabel:
 	NSEnumerator * enumerator = [messagesToPost objectEnumerator];
 	VMessage * message;
 	NSString * taskData;
-	int taskResult;
+	NSInteger taskResult;
 	BOOL needStore;
 	BOOL endOfFile;
 	BOOL isInTopic;
@@ -2069,7 +2103,7 @@ abortLabel:
 	// Loop for every message
 	while ((message = [enumerator nextObject]) != nil)
 	{
-		int match;
+		NSInteger match;
 
 		// If we need to checkpoint, do it now.
 		// Why? Because on CIX, posting a message advances us past that message so we
@@ -2097,6 +2131,7 @@ abortLabel:
 		match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"Rf:", @"No conference", nil] endOfFile:&endOfFile];
 		if (match == 1)
 		{
+// #warning 64BIT: Check formatting arguments
 			taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"No conference '%@'\n", nil), [message sender]];
 			taskResult = MA_TaskResult_Failed;
 		}
@@ -2107,15 +2142,16 @@ abortLabel:
 
 			// Rewrap the text so we break at column 74
 			NSMutableArray * wrappedMessageBody = [[message text] rewrapString:74];
-			unsigned int countOfWrappedLines = [wrappedMessageBody count];
+			NSUInteger countOfWrappedLines = [wrappedMessageBody count];
 			NSString * firstLineOfMessage = countOfWrappedLines ? [wrappedMessageBody objectAtIndex:0] : @"";
-			unsigned int wrapLineIndex = 0;
+			NSUInteger wrapLineIndex = 0;
 
+// #warning 64BIT: Check formatting arguments
 			NSString * sendString = [NSString stringWithFormat:NSLocalizedString(@"Posting '%@'", nil), firstLineOfMessage];
 			[self sendStatusToDelegate:sendString];
 
 			// Check for entirely blank bodies
-			unsigned int index;
+			NSUInteger index;
 			for (index = 0; index < countOfWrappedLines; ++index)
 			{
 				NSString * line = [wrappedMessageBody objectAtIndex:wrapLineIndex];
@@ -2153,7 +2189,8 @@ abortLabel:
 				
 				if ([message comment])
 				{
-					header2 = [NSString stringWithFormat:@"comment %d\n", [message comment]];
+#warning 64BIT: Check formatting arguments
+					header2 = [NSString stringWithFormat:@"comment %ld\n", (long int)[message comment]];
 				}
 				else
 				{
@@ -2258,6 +2295,7 @@ abortLabel:
 				match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"'.<CR>'", @"Read-Only topic.", nil] endOfFile:&endOfFile];
 				if (match == 1)
 				{
+// #warning 64BIT: Check formatting arguments
 					taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"Topic '%@' is read-only\n", nil), [message sender]];
 					taskResult = MA_TaskResult_Failed;
 				}
@@ -2320,10 +2358,10 @@ abortLabel:
  * Open a socket and connect to the service. Perform the initial
  * authentication and login protocol.
  */
--(int)connectToService
+-(NSInteger)connectToService
 {
 	BOOL endOfFile;
-	int match;
+	NSInteger match;
 
 	// Current connection types are only 0=telnet, 1=SSH
 	usingSSH = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_ConnectionType];
@@ -2352,7 +2390,7 @@ abortLabel:
 		return MA_Connect_ServiceUnavailable;
 
 	// Initialise log file
-	int logVersions = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_LogVersions];
+	NSInteger logVersions = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_LogVersions];
 	if (logVersions)
 		[socket setLogFile: @"connect" versions: logVersions];
 
@@ -2378,6 +2416,7 @@ abortLabel:
 		return MA_Connect_Aborted;
 	
 	// Send username
+// #warning 64BIT: Check formatting arguments
 	[self sendStatusToDelegate:[NSString stringWithFormat:NSLocalizedString(@"Logging in as user %@", nil), [self username]]];
 	[self writeLine:[self username]];
 	match = [self readAndScanForStrings:[NSArray arrayWithObjects:@"word: ", @"user) ", nil] endOfFile:&endOfFile];
@@ -2410,7 +2449,7 @@ abortLabel:
 	// - Compact header format on messages
 	// - Terse output (M: instead of Main:, etc)
 	// - No paging in terminal
-	int recentCount = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_RecentOnJoin];
+	NSInteger recentCount = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_RecentOnJoin];
 
 	[self writeStringWithFormat:YES string:@"opt timeout 6 missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent %d u z d z q\n", recentCount];
 	[self readAndScanForMainPrompt:&endOfFile];
@@ -2488,6 +2527,7 @@ abortLabel:
 	BOOL result;
 
 	va_start(arguments, string);
+#warning 64BIT: Check formatting arguments
 	formattedString = [[NSString alloc] initWithFormat:NSLocalizedString(string, nil) arguments:arguments];
 	result = [self writeString:echo string:formattedString];
 	[formattedString release];
@@ -2555,21 +2595,21 @@ abortLabel:
  * the array. If we match, we return the index of the matching
  * string.
  */
--(int)readAndScanForStrings:(NSArray *)stringsToScan endOfFile:(BOOL *)endOfFile
+-(NSInteger)readAndScanForStrings:(NSArray *)stringsToScan endOfFile:(BOOL *)endOfFile
 {
-	int count = [stringsToScan count];
+	NSInteger count = [stringsToScan count];
 	NSMutableArray * scanStrings = [[NSMutableArray alloc] initWithCapacity:count];
-	int matchIndex = NSNotFound;
+	NSInteger matchIndex = NSNotFound;
 	
 	// Make a copy of the array but with all
 	// the strings reversed.
-	int longestLength = 0;
-	int c;
+	NSInteger longestLength = 0;
+	NSInteger c;
 
 	for (c = 0; c < count; ++c)
 	{
 		NSString * reversedString = [[stringsToScan objectAtIndex:c] reversedString];
-		int length;
+		NSInteger length;
 
 		[scanStrings addObject:reversedString];
 		if ((length = [reversedString length]) > longestLength)
@@ -2586,7 +2626,7 @@ abortLabel:
 	// the strings in the array where X is the length of the shortest
 	// string in the array.
 	char linebuffer[MAX_LINE];
-	int bufferindex = 0;
+	NSInteger bufferindex = 0;
 	char ch;
 
 	ch = [self readServiceChar:endOfFile];
@@ -2669,9 +2709,9 @@ enum {
  */
 -(char)readServiceChar:(BOOL *)endOfFile
 {
-	int state;
-	int optcode;
-	int optaction;
+	NSInteger state;
+	NSInteger optcode;
+	NSInteger optaction;
 	unsigned char ch;
 	
 	if (usingSSH)

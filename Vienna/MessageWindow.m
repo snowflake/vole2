@@ -31,8 +31,8 @@
 	-(void)setMessageFont;
 	-(void)updateTitle;
 	-(NSString *)textRestyledForPosting;
-	-(void)saveToFolder:(int)folderId;
-	-(void)removeFromFolder:(int)folderId;
+	-(void)saveToFolder:(NSInteger)folderId;
+	-(void)removeFromFolder:(NSInteger)folderId;
 	-(void)insertSignature:(NSString *)signatureTitle;
 	-(void)reloadSignaturesList;
 @end
@@ -42,7 +42,7 @@
 /* initNewMessage
  * Create a new message window.
  */
--(id)initNewMessage:(Database *)theDb recipient:(NSString *)recipient commentNumber:(int)commentNumber initialText:(NSString *)initialText
+-(id)initNewMessage:(Database *)theDb recipient:(NSString *)recipient commentNumber:(NSInteger)commentNumber initialText:(NSString *)initialText
 {
 	db = theDb;
 	message = [[VMessage alloc] initWithInfo:MA_MsgID_New];
@@ -81,8 +81,8 @@
 	[messageWindow setDelegate:self];
 
 	// Set the current message text
-	int messageNumber = [message messageId];
-	int folderId = [message folderId];
+	NSInteger messageNumber = [message messageId];
+	NSInteger folderId = [message folderId];
 	if (messageNumber != MA_MsgID_New)
 	{
 		NSString * messageText = [db messageText:folderId messageId:messageNumber];
@@ -98,6 +98,7 @@
 		[subjectLine setEnabled:NO];
 		[messageWindow setInitialFirstResponder:textView];
 		
+#warning 64BIT: Check formatting arguments
 		NSString * commentSubject = [NSString stringWithFormat:@"Comment to message %d", [message comment]];
 		[subjectLine setStringValue:commentSubject];
 		if ([message text])
@@ -167,7 +168,7 @@
 -(void)reloadSignaturesList
 {
 	NSArray * arrayOfSignatures = [[Signatures defaultSignatures] signatureTitles];
-	unsigned int index;
+	NSUInteger index;
 	
 	[signaturesList removeAllItems];
 	[signaturesList addItemWithTitle:@"None"];
@@ -250,7 +251,7 @@
 	[[self window] orderFront:self];
 	if ([messageWindow isDocumentEdited])
 	{
-		int returnCode;
+		NSInteger returnCode;
 
 		returnCode = NSRunAlertPanel(NSLocalizedString(@"Message not saved", nil),
 									 NSLocalizedString(@"Message not saved text", nil),
@@ -316,9 +317,9 @@
 /* saveToFolder
  * Saves the current message to the specified folder
  */
--(void)saveToFolder:(int)folderId
+-(void)saveToFolder:(NSInteger)folderId
 {
-	int messageNumber;
+	NSInteger messageNumber;
 
 	// Set the text into the message
 	if ([message comment] == 0)
@@ -335,7 +336,7 @@
 		[message setNumber:messageNumber];
 
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:folderId]];
+	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
 
 	[messageWindow setDocumentEdited:NO];
 }
@@ -343,13 +344,13 @@
 /* removeFromFolder
  * Removes the current message from the specified folder.
  */
--(void)removeFromFolder:(int)folderId
+-(void)removeFromFolder:(NSInteger)folderId
 {
 	if ([message folderId] == folderId)
 	{
 		[db deleteMessage:folderId messageNumber:[message messageId]];
 		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInt:folderId]];
+		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
 		[message setNumber:MA_MsgID_New];
 	}
 }
