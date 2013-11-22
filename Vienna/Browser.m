@@ -116,10 +116,10 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
 -(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 {
 	Forum * forum = [currentArrayOfForums objectAtIndex:rowIndex];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSMutableString * tooltipString = [NSMutableString stringWithFormat:NSLocalizedString(@"Name: %@\n", nil), [forum name]];
 	if ([[forum description] length] > 0)
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		[tooltipString appendFormat:NSLocalizedString(@"Description:%@\n", nil), [forum description]];
 	if ([forum status] == MA_Empty_Conference)
 		[tooltipString appendString:NSLocalizedString(@"This conference has no topics", nil)];
@@ -129,7 +129,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
 	{
 		NSString * outputFormat = [[NSUserDefaults standardUserDefaults] objectForKey:@"NSShortDateFormatString"];
 		NSCalendarDate * date = [[forum lastActiveDate] dateWithCalendarFormat:nil timeZone:nil];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		[tooltipString appendFormat:NSLocalizedString(@"Last message posted on %@", nil), [date descriptionWithCalendarFormat:outputFormat]];
 	}
 	return tooltipString;
@@ -319,8 +319,8 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
 	
 	[self sortForums];
 	
-#warning 64BIT: Check formatting arguments
-	NSString * status = [NSString stringWithFormat:NSLocalizedString(@"%d items", nil), [currentArrayOfForums count]];
+// #warning 64BIT: Check formatting arguments
+	NSString * status = [NSString stringWithFormat:NSLocalizedString(@"%ld items", nil),(long) [currentArrayOfForums count]];
 	[statusString setStringValue:status];
 	[progressBar stopAnimation:self];
 }

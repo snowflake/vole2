@@ -129,8 +129,8 @@
 	countOfMessages = 0;
 	countOfFolders = 0;
 	skipBackValue = 0;
-#warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
-	requiredFirstMessage = UINT_MAX;
+// #warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
+	requiredFirstMessage = NSUIntegerMax;   // was UINT_MAX;
 
 	if ([fillBackToSpecific state] == NSOnState)
 		requiredFirstMessage = [messageNumber integerValue];
@@ -253,8 +253,8 @@
 			VTask * task = [[VTask alloc] init];
 			[task setActionCode:MA_TaskCode_SkipBack];
 			[task setOrderCode:MA_OrderCode_SkipBack];
-#warning 64BIT: Check formatting arguments
-			[task setActionData:[NSString stringWithFormat:@"%d", skipBackValue]];
+// #warning 64BIT: Check formatting arguments
+			[task setActionData:[NSString stringWithFormat:@"%ld", (long)skipBackValue]];
 			[task setFolderName:folderName];
 			[self performSelectorOnMainThread:@selector(addFileMessageTask:) withObject:task waitUntilDone:YES];
 			[task release];
@@ -269,8 +269,8 @@
 				NSUInteger nextMessageNumber;
 				NSUInteger count;
 				
-#warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
-				if (requiredFirstMessage == UINT_MAX)
+// #warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
+				if (requiredFirstMessage == NSUIntegerMax)
 					firstMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:0] integerValue];
 				else
 					firstMessageNumber = requiredFirstMessage;
