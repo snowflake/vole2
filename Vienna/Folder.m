@@ -167,7 +167,7 @@
 -(VMessage *)messageFromID:(NSInteger)messageId
 {
 	NSAssert(isMessages, @"Folder's cache of messages should be initialized before messageFromID can be used");
-	return [messages objectForKey:[NSNumber numberWithInteger:messageId]];
+	return [messages objectForKey:[NSNumber numberWithLong:(long)messageId]];
 }
 
 /* messages
@@ -238,7 +238,7 @@
  */
 -(void)addMessage:(VMessage *)newMessage
 {
-	[messages setObject:newMessage forKey:[NSNumber numberWithInteger:[newMessage messageId]]];
+	[messages setObject:newMessage forKey:[NSNumber numberWithLong:(long)[newMessage messageId]]];
 	isMessages = YES;
 }
 
@@ -247,7 +247,7 @@
 -(void)deleteMessage:(NSInteger)messageId
 {
 	NSAssert(isMessages, @"Folder's cache of messages should be initialized before deleteMessage can be used");
-	[messages removeObjectForKey:[NSNumber numberWithInteger:messageId]];
+	[messages removeObjectForKey:[NSNumber numberWithLong:(long)messageId]];
 }
 
 /* markFolderEmpty

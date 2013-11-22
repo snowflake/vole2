@@ -355,7 +355,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 -(void)markMessagePosted:(VMessage *)message
 {
 	[db deleteMessage:MA_Outbox_NodeID messageNumber:[message messageId]];
-	[self updateLastFolder:[NSNumber numberWithInteger:MA_Outbox_NodeID]];
+	[self updateLastFolder:[NSNumber numberWithLong:(long)MA_Outbox_NodeID]];
 }
 
 /* taskCompleted
@@ -389,7 +389,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	{
 		[db flushFolder:lastTopicId];
 		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:lastTopicId]];
+		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)lastTopicId]];
 	}
 	lastTopicId = topicId;
 }
@@ -407,7 +407,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		BOOL wasNew;
 
 		[db addMessageToFolder:[db conferenceNodeID] path:threadData->folderPath message:threadData->message raw:NO wasNew:&wasNew];
-		[self updateLastFolder:[NSNumber numberWithInteger:[threadData->message folderId]]];
+		[self updateLastFolder:[NSNumber numberWithLong:(long)[threadData->message folderId]]];
 		if (wasNew)
 			++messagesCollected;
 	}
@@ -419,7 +419,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			if (threadData->mask & MA_LockedFolder)
 			{
 				[db markFolderLocked:folderId isLocked:(threadData->permissions & MA_LockedFolder) == MA_LockedFolder];
-				[self updateLastFolder:[NSNumber numberWithInteger:folderId]];
+				[self updateLastFolder:[NSNumber numberWithLong:(long)folderId]];
 			}
 		}
 	}
@@ -435,7 +435,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	BOOL wasNew;
 
 	[db addMessage:folderId message:threadData->message wasNew:&wasNew];
-	[self updateLastFolder:[NSNumber numberWithInteger:folderId]];
+	[self updateLastFolder:[NSNumber numberWithLong:(long)folderId]];
 	if (wasNew)
 		++messagesCollected;
 }	
@@ -536,7 +536,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 -(void)sendEndConnectToDelegate:(NSInteger)result
 {
 	if (delegate != nil && taskRunningCount == 0)
-		[delegate performSelectorOnMainThread:@selector(endConnect:) withObject:[NSNumber numberWithInteger:result] waitUntilDone:YES];
+		[delegate performSelectorOnMainThread:@selector(endConnect:) withObject:[NSNumber numberWithLong:(long)result] waitUntilDone:YES];
 }
 
 /* sendStatusToDelegate
@@ -751,7 +751,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[task setResultString:taskData];
 
 	// Refresh UI when we're done.
-	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInteger:-1] waitUntilDone:NO];
+	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithLong:(long)-1] waitUntilDone:NO];
 	[self performSelectorOnMainThread:@selector(taskCompleted:) withObject:task waitUntilDone:YES];
 
 	// Let caller know the result.
@@ -1482,7 +1482,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 abortLabel:
 	if (cixAbortFlag)
 		result = MA_Connect_Aborted;
-	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInteger:-1] waitUntilDone:NO];
+	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithLong:(long)-1] waitUntilDone:NO];
 	
 	// Blow away the scratchpad if everything went fine
 	if (result == MA_Connect_Success)

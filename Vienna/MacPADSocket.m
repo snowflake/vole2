@@ -257,7 +257,7 @@ enum {
 -(void)returnError:(MacPADResultCode)code message:(NSString *)msg
 {
     NSNumber *yesno = [NSNumber numberWithBool:(code == kMacPADResultNewVersion)];
-    NSNumber *errorCode = [NSNumber numberWithInteger:code];
+    NSNumber *errorCode = [NSNumber numberWithLong:(long)code];
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:yesno, MacPADNewVersionAvailable,
                                                 msg, MacPADErrorMessage, errorCode, MacPADErrorCode, nil];
     if (code == 0 || code == 5) {

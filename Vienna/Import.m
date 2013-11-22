@@ -102,7 +102,7 @@
 	NSString * messagePath = [messageDataArray objectAtIndex:1];
 	
 	[db addMessageToFolder:[db conferenceNodeID] path:messagePath message:message raw:YES wasNew:nil];
-	[self updateLastFolder:[NSNumber numberWithInteger:[message folderId]]];
+	[self updateLastFolder:[NSNumber numberWithLong:(long)[message folderId]]];
 }
 
 /* updateLastFolder
@@ -118,7 +118,7 @@
 		[db flushFolder:lastTopicId];
 		[db releaseMessages:lastTopicId];
 		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:lastTopicId]];
+		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)lastTopicId]];
 	}
 	lastTopicId = topicId;
 }
@@ -186,7 +186,7 @@
 	
     pool = [[NSAutoreleasePool alloc] init];
 	buffer = [[BufferedFile alloc] initWithPath:importFilename];
-	[self performSelectorOnMainThread:@selector(initializeProgress:) withObject:[NSNumber numberWithInteger:[buffer fileSize]] waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(initializeProgress:) withObject:[NSNumber numberWithLong:(long)[buffer fileSize]] waitUntilDone:YES];
 	if (buffer != nil)
 	{
 		BOOL endOfFile;
@@ -387,7 +387,7 @@
 					{
 						// Update progress
 						NSString * progressString = [NSString stringWithFormat:@"Reading %@", messagePath];
-						NSNumber * progressValue = [NSNumber numberWithInteger:[buffer readSoFar]];
+						NSNumber * progressValue = [NSNumber numberWithLong:(long)[buffer readSoFar]];
 						[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressString waitUntilDone:YES];
 						[self performSelectorOnMainThread:@selector(updateProgressValue:) withObject:progressValue waitUntilDone:YES];
 						
@@ -413,7 +413,7 @@
 					else
 					{
 						NSString * progressString = [NSString stringWithFormat:@"Skipping %@", messagePath];
-						NSNumber * progressValue = [NSNumber numberWithInteger:[buffer readSoFar]];
+						NSNumber * progressValue = [NSNumber numberWithLong:(long)[buffer readSoFar]];
 						[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressString waitUntilDone:YES];
 						[self performSelectorOnMainThread:@selector(updateProgressValue:) withObject:progressValue waitUntilDone:YES];
 					}
@@ -422,7 +422,7 @@
 		}
 			[buffer close];
 	}
-		[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithInteger:-1] waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithLong:(long)-1] waitUntilDone:YES];
 		[buffer release];
 		[pool release];
 		[self performSelectorOnMainThread:@selector(stopImport:) withObject:nil waitUntilDone:NO];

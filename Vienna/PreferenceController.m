@@ -444,7 +444,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 
 	NSUInteger i;
 	for (i = 0; i < countOfAvailableFontSizes; ++i)
-		[sizeControl addItemWithObjectValue:[NSNumber numberWithInteger:availableFontSizes[i]]];
+		[sizeControl addItemWithObjectValue:[NSNumber numberWithLong:(long)availableFontSizes[i]]];
 	[sizeControl setDoubleValue:[font pointSize]];
 }
 

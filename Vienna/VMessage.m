@@ -140,7 +140,7 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
  */
 -(void)setFolderId:(NSInteger)newFolderId
 {
-	[messageData setObject:[NSNumber numberWithInteger:newFolderId] forKey:MA_Column_MessageFolderId];
+	[messageData setObject:[NSNumber numberWithLong:(long)newFolderId] forKey:MA_Column_MessageFolderId];
 }
 
 /* setLastChildMessage
@@ -154,14 +154,14 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
  */
 -(void)setNumber:(NSInteger)newMessageId
 {
-	[messageData setObject:[NSNumber numberWithInteger:newMessageId] forKey:MA_Column_MessageId];
+	[messageData setObject:[NSNumber numberWithLong:(long)newMessageId] forKey:MA_Column_MessageId];
 }
 
 /* setComment
  */
 -(void)setComment:(NSInteger)newMessageComment
 {
-	[messageData setObject:[NSNumber numberWithInteger:newMessageComment] forKey:MA_Column_MessageComment];
+	[messageData setObject:[NSNumber numberWithLong:(long)newMessageComment] forKey:MA_Column_MessageComment];
 }
 
 /* markPriority

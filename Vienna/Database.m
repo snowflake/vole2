@@ -510,7 +510,7 @@ enum {
 				[category setCategoryId:categoryId];
 				[category setParentId:parentId];
 				[category setName:name];
-				[categoryArray setObject:category forKey:[NSNumber numberWithInteger:categoryId]];
+				[categoryArray setObject:category forKey:[NSNumber numberWithLong:(long)categoryId]];
 				[category release];
 			}
 		}
@@ -623,7 +623,7 @@ enum {
 
 		// Add this new category to our internal cache
 		[newCategory setCategoryId:newItemId];
-		[categoryArray setObject:newCategory forKey:[NSNumber numberWithInteger:newItemId]];
+		[categoryArray setObject:newCategory forKey:[NSNumber numberWithLong:(long)newItemId]];
 		// staic analyser complains
 		// [results release];
 	}
@@ -753,7 +753,7 @@ enum {
 
 				Folder * folder = [self folderFromID:folderId];
 				RSSFolder * rssFolder = [[RSSFolder alloc] initWithId:folder subscriptionURL:url update:update];
-				[rssFeedArray setObject:rssFolder forKey:[NSNumber numberWithInteger:folderId]];
+				[rssFeedArray setObject:rssFolder forKey:[NSNumber numberWithLong:(long)folderId]];
 				[rssFolder release];
 			}
 		}
@@ -812,7 +812,7 @@ enum {
 	// Prime the cache
 	if (initializedRSSArray == NO)
 		[self initRSSArray];
-	return [rssFeedArray objectForKey:[NSNumber numberWithInteger:folderId]];
+	return [rssFeedArray objectForKey:[NSNumber numberWithLong:(long)folderId]];
 }
 
 /* setRSSFeedLastUpdate
@@ -829,7 +829,7 @@ enum {
 	if (initializedRSSArray == NO)
 		[self initRSSArray];
 	
-	RSSFolder * folder = [rssFeedArray objectForKey:[NSNumber numberWithInteger:folderId]];
+	RSSFolder * folder = [rssFeedArray objectForKey:[NSNumber numberWithLong:(long)folderId]];
 	if (folder != nil)
 		[folder setLastUpdate:lastUpdate];
 }
@@ -847,7 +847,7 @@ enum {
 	if (initializedRSSArray == NO)
 		[self initRSSArray];
 	
-	RSSFolder * folder = [rssFeedArray objectForKey:[NSNumber numberWithInteger:folderId]];
+	RSSFolder * folder = [rssFeedArray objectForKey:[NSNumber numberWithLong:(long)folderId]];
 	if (folder != nil && ![[folder subscriptionURL] isEqualToString:url])
 	{
 		NSString * preparedURL = [SQLDatabase prepareStringForQuery:url];
@@ -887,7 +887,7 @@ enum {
 		// Add this new folder to our internal cache
 		Folder * folder = [self folderFromID:folderId];
 		RSSFolder * itemPtr = [[[RSSFolder alloc] initWithId:folder subscriptionURL:url update:lastUpdate] autorelease];
-		[rssFeedArray setObject:itemPtr forKey:[NSNumber numberWithInteger:folderId]];
+		[rssFeedArray setObject:itemPtr forKey:[NSNumber numberWithLong:(long)folderId]];
 		// static analyser complains
 		// [results release];
 	}
@@ -937,7 +937,7 @@ enum {
 
 	// Add this new folder to our internal cache
 	itemPtr = [[[Folder alloc] initWithId:newItemId parentId:parentId name:name permissions:permissions] autorelease];
-	[foldersArray setObject:itemPtr forKey:[NSNumber numberWithInteger:newItemId]];
+	[foldersArray setObject:itemPtr forKey:[NSNumber numberWithLong:(long)newItemId]];
 
 	// Send a notification when new folders are added
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FolderAdded" object:itemPtr];
@@ -1017,7 +1017,7 @@ enum {
 	if (IsRSSFolder(folder))
 	{
 		[self executeSQLWithFormat:@"delete from rss_feeds where folder_id=%d", folderId];
-		[rssFeedArray removeObjectForKey:[NSNumber numberWithInteger:folderId]];
+		[rssFeedArray removeObjectForKey:[NSNumber numberWithLong:(long)folderId]];
 	}
 
 	// For a search folder, the next line is a no-op but it helpfully takes care of the case where a
@@ -1027,12 +1027,12 @@ enum {
 	[self executeSQLWithFormat:@"delete from folder_descriptions where folder_id=%d", folderId];
 
 	// Send a notification when the folder is deleted
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FolderDeleted" object:[NSNumber numberWithInteger:folderId]];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FolderDeleted" object:[NSNumber numberWithLong:(long)folderId]];
 
 	// Remove from the folders array. Do this after we send the notification
 	// so that the notification handlers don't fail if they try to dereference the
 	// folder.
-	[foldersArray removeObjectForKey:[NSNumber numberWithInteger:folderId]];
+	[foldersArray removeObjectForKey:[NSNumber numberWithLong:(long)folderId]];
 	return YES;
 }
 
@@ -1081,7 +1081,7 @@ enum {
 
 		// Send a notification that the folder has changed. It is the responsibility of the
 		// notifiee that they work out that the name is the part that has changed.
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)folderId]];
 	}
 	return YES;
 }
@@ -1117,7 +1117,7 @@ enum {
 
 		// Send a notification that the folder has changed. It is the responsibility of the
 		// notifiee that they work out that the description is the part that has changed.
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)folderId]];
 	}
 	return YES;
 }
@@ -1153,7 +1153,7 @@ enum {
 		
 		// Send a notification that the folder has changed. It is the responsibility of the
 		// notifiee that they work out that the link is the part that has changed.
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)folderId]];
 	}
 	return YES;
 }
@@ -1163,7 +1163,7 @@ enum {
  */
 -(Folder *)folderFromID:(NSInteger)wantedId
 {
-	return [foldersArray objectForKey:[NSNumber numberWithInteger:wantedId]];
+	return [foldersArray objectForKey:[NSNumber numberWithLong:(long)wantedId]];
 }
 
 /* folderFromIDAndName
@@ -1638,7 +1638,7 @@ enum {
 		[folder resetUnreadCountChanged];
 		
 		// If this is an RSS folder, flush the last update
-		RSSFolder * rssFolder = (RSSFolder *)[rssFeedArray objectForKey:[NSNumber numberWithInteger:folderId]];
+		RSSFolder * rssFolder = (RSSFolder *)[rssFeedArray objectForKey:[NSNumber numberWithLong:(long)folderId]];
 		if (rssFolder != nil)
 		{
 			NSTimeInterval interval = [[rssFolder lastUpdate] timeIntervalSince1970];
@@ -1967,7 +1967,7 @@ enum {
 				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
 				
 				VCriteriaTree * criteriaTree = [[VCriteriaTree alloc] initWithString:search_string];
-				[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInteger:folderId]];
+				[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithLong:(long)folderId]];
 				[criteriaTree release];
 			}
 		}
@@ -1984,7 +1984,7 @@ enum {
 -(VCriteriaTree *)searchStringForSearchFolder:(NSInteger)folderId
 {
 	[self initSearchFoldersArray];
-	return [searchFoldersArray objectForKey:[NSNumber numberWithInteger:folderId]];
+	return [searchFoldersArray objectForKey:[NSNumber numberWithLong:(long)folderId]];
 }
 
 /* createSearchFolder
@@ -2010,10 +2010,10 @@ enum {
 			
 			NSString * preparedQueryString = [SQLDatabase prepareStringForQuery:[criteriaTree string]];
 			[self executeSQLWithFormat:@"insert into search_folders (folder_id, search_string) values (%d, '%@')", folderId, preparedQueryString];
-			[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInteger:folderId]];
+			[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithLong:(long)folderId]];
 
 			NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-			[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
+			[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)folderId]];
 		}
 	}
 	return success;
@@ -2034,10 +2034,10 @@ enum {
 	// Update the search folder string
 	NSString * preparedQueryString = [SQLDatabase prepareStringForQuery:[criteriaTree string]];
 	[self executeSQLWithFormat:@"update search_folders set search_string='%@' where folder_id=%d", preparedQueryString, folderId];
-	[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithInteger:folderId]];
+	[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithLong:(long)folderId]];
 	
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
+	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)folderId]];
 	return YES;
 }
 
@@ -2101,7 +2101,7 @@ enum {
 						parentFolder = [self folderFromID:[parentFolder parentId]];
 					}
 				}
-				[foldersArray setObject:folder forKey:[NSNumber numberWithInteger:newItemId]];
+				[foldersArray setObject:folder forKey:[NSNumber numberWithLong:(long)newItemId]];
 			}
 		}
 		// static analyser complains 
@@ -2608,7 +2608,7 @@ enum {
 
 			while ((message = [enumerator nextObject]) != nil)
 			{
-				[newArray addObject:[NSNumber numberWithInteger:[message messageId]]];
+				[newArray addObject:[NSNumber numberWithLong:(long)[message messageId]]];
 			}
 		}
 		else
@@ -2627,7 +2627,7 @@ enum {
 				while ((row = [enumerator nextObject]) != nil)
 				{
 					NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
-					[newArray addObject:[NSNumber numberWithInteger:messageId]];
+					[newArray addObject:[NSNumber numberWithLong:(long)messageId]];
 				}
 			}
 			// static analyser complains
@@ -2686,7 +2686,7 @@ enum {
 		else
 		{
 			[self initSearchFoldersArray];
-			VCriteriaTree * searchString = [searchFoldersArray objectForKey:[NSNumber numberWithInteger:folderId]];
+			VCriteriaTree * searchString = [searchFoldersArray objectForKey:[NSNumber numberWithLong:(long)folderId]];
 			results = [sqlDatabase performQueryWithFormat:@"select * from messages where %@%@", [self criteriaToSQL:searchString], filterClause];
 		}
 

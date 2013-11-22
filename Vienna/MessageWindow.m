@@ -336,7 +336,7 @@
 		[message setNumber:messageNumber];
 
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
+	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)folderId]];
 
 	[messageWindow setDocumentEdited:NO];
 }
@@ -350,7 +350,7 @@
 	{
 		[db deleteMessage:folderId messageNumber:[message messageId]];
 		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithInteger:folderId]];
+		[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)folderId]];
 		[message setNumber:MA_MsgID_New];
 	}
 }

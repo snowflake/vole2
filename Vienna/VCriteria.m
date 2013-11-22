@@ -95,18 +95,18 @@
 +(NSArray *)arrayOfOperators
 {
 	return [NSArray arrayWithObjects:
-		[NSNumber numberWithInteger:MA_CritOper_Is],
-		[NSNumber numberWithInteger:MA_CritOper_IsNot],
-		[NSNumber numberWithInteger:MA_CritOper_IsAfter],
-		[NSNumber numberWithInteger:MA_CritOper_IsBefore],
-		[NSNumber numberWithInteger:MA_CritOper_IsOnOrAfter],
-		[NSNumber numberWithInteger:MA_CritOper_IsOnOrBefore],
-		[NSNumber numberWithInteger:MA_CritOper_Contains],
-		[NSNumber numberWithInteger:MA_CritOper_NotContains],
-		[NSNumber numberWithInteger:MA_CritOper_IsLessThan],
-		[NSNumber numberWithInteger:MA_CritOper_IsLessThanOrEqual],
-		[NSNumber numberWithInteger:MA_CritOper_IsGreaterThan],
-		[NSNumber numberWithInteger:MA_CritOper_IsGreaterThanOrEqual],
+		[NSNumber numberWithLong:(long)MA_CritOper_Is],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsNot],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsAfter],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsBefore],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsOnOrAfter],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsOnOrBefore],
+		[NSNumber numberWithLong:(long)MA_CritOper_Contains],
+		[NSNumber numberWithLong:(long)MA_CritOper_NotContains],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsLessThan],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsLessThanOrEqual],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsGreaterThan],
+		[NSNumber numberWithLong:(long)MA_CritOper_IsGreaterThanOrEqual],
 		nil];
 }
 

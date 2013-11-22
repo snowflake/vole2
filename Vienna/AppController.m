@@ -74,7 +74,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 {
 	// Set the preference defaults
 	NSMutableDictionary * defaultValues = [NSMutableDictionary dictionary];
-	NSNumber * cachedFolderID = [NSNumber numberWithInteger:MA_Conference_NodeID];
+	NSNumber * cachedFolderID = [NSNumber numberWithLong:(long)MA_Conference_NodeID];
 	NSData * msgListFont = [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Lucida Grande" size:12.0]];
 	NSData * folderFont = [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Helvetica" size:12.0]];
 	NSData * messageFont = [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Helvetica" size:14.0]];
@@ -100,18 +100,18 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[defaultValues setObject:quoteColourAsData forKey:MAPref_QuoteColour];
 	[defaultValues setObject:priorityColourAsData forKey:MAPref_PriorityColour];
 	[defaultValues setObject:ignoredColourAsData forKey:MAPref_IgnoredColour];
-	[defaultValues setObject:[NSNumber numberWithInteger:1] forKey:MAPref_SortDirection];
+	[defaultValues setObject:[NSNumber numberWithLong:(long)1] forKey:MAPref_SortDirection];
 	[defaultValues setObject:MA_Column_MessageId forKey:MAPref_SortColumn];
-	[defaultValues setObject:[NSNumber numberWithInteger:0] forKey:MAPref_CheckFrequency];
+	[defaultValues setObject:[NSNumber numberWithLong:(long)0] forKey:MAPref_CheckFrequency];
 	[defaultValues setObject:NSLocalizedString(@"None", nil) forKey:MAPref_DefaultSignature];
 	[defaultValues setObject:[NSArray arrayWithObjects:nil] forKey:MAPref_MessageColumns];
-	[defaultValues setObject:[NSNumber numberWithInteger:100] forKey:MAPref_RecentOnJoin];
+	[defaultValues setObject:[NSNumber numberWithLong:(long)100] forKey:MAPref_RecentOnJoin];
 	[defaultValues setObject:boolYes forKey:MAPref_AutoCollapseFolders];
 	[defaultValues setObject:boolNo forKey:MAPref_OnlineMode];
 	[defaultValues setObject:boolNo forKey:MAPref_Recovery];
 	[defaultValues setObject:boolYes forKey:MAPref_MugshotsEnabled];
 	[defaultValues setObject:MA_DefaultMugshotsFolder forKey:MAPref_MugshotsFolder];
-	[defaultValues setObject:[NSNumber numberWithInteger:MUGSHOTS_DEFAULT_SIZE] forKey:MAPref_MugshotsSize];
+	[defaultValues setObject:[NSNumber numberWithLong:(long)MUGSHOTS_DEFAULT_SIZE] forKey:MAPref_MugshotsSize];
 	[defaultValues setObject:@"~/" forKey:MAPref_DownloadFolder];
 	[defaultValues setObject:boolYes forKey:MAPref_DetectMugshotDownload];
 	[defaultValues setObject:@"~/Library/Vienna" forKey:MAPref_LibraryFolder];
@@ -295,7 +295,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[webPrefs setStandardFontFamily:[messageFont familyName]];
 	[webPrefs setDefaultFontSize:(NSInteger)[messageFont pointSize]];
 	
-	[htmlDict setObject:[NSNumber numberWithInteger:1] forKey:@"UseWebKit"];
+	[htmlDict setObject:[NSNumber numberWithLong:(long)1] forKey:@"UseWebKit"];
 	[htmlDict setObject:webPrefs forKey:@"WebPreferences"];
 	[webPrefs release];
 }
@@ -571,7 +571,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	{
 		[dataArray addObject:[field name]];
 		[dataArray addObject:[NSNumber numberWithBool:[field visible]]];
-		[dataArray addObject:[NSNumber numberWithInteger:[field width]]];
+		[dataArray addObject:[NSNumber numberWithLong:(long)[field width]]];
 	}
 
 	// Save these to the preferences
@@ -916,7 +916,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 			NSString * bodyText = NSLocalizedString(@"Offer to retrieve message text", nil);
 			
 			// Package up the message and folder numbers to the context info
-			NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithInteger:messageId], folderPath, nil] retain];
+			NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil] retain];
 #warning 64BIT: Check formatting arguments
 			NSBeginAlertSheet(titleText,
 							  NSLocalizedString(@"Retrieve", nil),
@@ -942,7 +942,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSString * bodyText = [NSString stringWithFormat:NSLocalizedString(@"Offer to join and retrieve message text", nil), folderPath];
 	
 	// Package up the message and folder numbers to the context info
-	NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithInteger:messageId], folderPath, nil] retain];	
+	NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil] retain];	
 #warning 64BIT: Check formatting arguments
 	NSBeginAlertSheet(titleText,
 					  NSLocalizedString(@"Join", nil),
@@ -2196,7 +2196,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		showMugshots = NO;
 	}
 	[self resizeMugshotView:height];
-	[defaults setObject:[NSNumber numberWithInteger:height] forKey:MAPref_MugshotsSize];
+	[defaults setObject:[NSNumber numberWithLong:(long)height] forKey:MAPref_MugshotsSize];
 	[personManager setMugshotFolder:tmp];
 
 	// if the window has been newly open (or the folder changed) then refresh the mugshot display
@@ -2343,7 +2343,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	
 	NSMutableDictionary * underlineAttr = [NSMutableDictionary dictionary];
 	[underlineAttr setValue:messageFont forKey:NSFontAttributeName];
-	[underlineAttr setValue:[NSNumber numberWithInteger:NSSingleUnderlineStyle] forKey:NSUnderlineStyleAttributeName];
+	[underlineAttr setValue:[NSNumber numberWithLong:(long)NSSingleUnderlineStyle] forKey:NSUnderlineStyleAttributeName];
 	
 	// If message text begins with <html> then we render as HTML only
 	// Deprecated API was here DJE
