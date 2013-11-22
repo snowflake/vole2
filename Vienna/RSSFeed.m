@@ -161,7 +161,7 @@
 		NSDictionary * itemDict = [sourcesDict valueForKey:key];
 		NSString * linkName = [itemDict valueForKey:@"LinkTemplate"];
 		if (linkName != nil)
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 			feedURLString = [NSString stringWithFormat:linkName, feedURLString];
 	}
 
