@@ -189,8 +189,8 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
  */
 -(NSString *)description
 {
-#warning 64BIT: Check formatting arguments
-	return [NSString stringWithFormat:@"Message ID %u", [self messageId]];
+// #warning 64BIT: Check formatting arguments
+	return [NSString stringWithFormat:@"Message ID %ld", (long)[self messageId]];
 }
 
 /* dealloc

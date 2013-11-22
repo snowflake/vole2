@@ -37,7 +37,7 @@
 	return self;
 }
 
--(void)write:(char *)text length:(NSInteger)len;
+-(void)write:(char *)text length:(NSInteger)len
 {
 	if (maxVersions == 0)
 		return;

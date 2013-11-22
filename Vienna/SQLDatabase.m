@@ -129,7 +129,7 @@
 	NSData  *ls = [ inQuery dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion: YES];
 	char *qs = calloc( [ls length] +1, 1);
 	if(qs == NULL){
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		NSLog(@"calloc failed at %s %d",__FILE__, __LINE__);
 		return nil;
 	}
@@ -165,7 +165,7 @@
 	
 	va_start( arguments, inFormat );
 	
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	query = [[NSString alloc] initWithFormat:inFormat arguments:arguments];
 	sqlResult = [self performQuery:query];
 	[query release];

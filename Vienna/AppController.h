@@ -142,6 +142,7 @@
 }
 
 // Menu action items
+-(IBAction)getMessages:(id)sender;
 -(IBAction)showPreferencePanel:(id)sender;
 -(IBAction)getMessages:(id)sender;
 -(IBAction)getRSSMessages:(id)sender;

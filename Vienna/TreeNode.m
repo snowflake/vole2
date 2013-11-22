@@ -291,8 +291,9 @@
  */
 -(NSString *)description
 {
-#warning 64BIT: Check formatting arguments
-	return [NSString stringWithFormat:@"%@ (Parent=%d, Sibling=%d, # of children=%d)", [folder name], parentNode, nextChild, [children count]];
+// #warning 64BIT: Check formatting arguments
+	return [NSString stringWithFormat:@"%@ (Parent=%ld, Sibling=%ld, # of children=%lu)",
+            [folder name], (long)parentNode, (long)nextChild, (unsigned long)[children count]];
 }
 
 /* dealloc

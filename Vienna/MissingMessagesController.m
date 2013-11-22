@@ -189,8 +189,8 @@
  */
 -(void)updateProgressText:(NSString *)folderName
 {
-#warning 64BIT: Check formatting arguments
-	NSString * text = [NSString stringWithFormat:@"%@ (%d messages in %d tasks)", folderName, countOfMessages, countOfTasks];
+// #warning 64BIT: Check formatting arguments
+	NSString * text = [NSString stringWithFormat:@"%@ (%ld messages in %ld tasks)", folderName, (long)countOfMessages, (long)countOfTasks];
 	[progressInfo setStringValue:text];
 	[progressBar setDoubleValue:countOfFolders];	
 }

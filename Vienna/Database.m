@@ -296,7 +296,7 @@ enum {
 {
 	va_list arguments;
 	va_start(arguments, sqlStatement);
-#warning 64BIT: Check formatting arguments
+//#warning 64BIT: Check formatting arguments
 	NSString * query = [[NSString alloc] initWithFormat:sqlStatement arguments:arguments];
 	SQLResult * result = [sqlDatabase performQuery:query];
 	[query release];
@@ -1270,8 +1270,8 @@ enum {
 	
 	[[NSFileManager defaultManager] createDirectoryAtPath: cachePath attributes: nil];
 
-#warning 64BIT: Check formatting arguments
-	folderCachePath = [NSString stringWithFormat: @"%@/%04d", cachePath, folderId];
+// #warning 64BIT: Check formatting arguments
+	folderCachePath = [NSString stringWithFormat: @"%@/%04ld", cachePath, (long)folderId];
 	[[NSFileManager defaultManager] createDirectoryAtPath: folderCachePath attributes: nil];
 
 	return folderCachePath;
@@ -1283,8 +1283,8 @@ enum {
 
 	Folder *folder = [self folderFromID: folderId];
     Folder *parentFolder = [self folderFromID: [folder parentId]];	
-#warning 64BIT: Check formatting arguments
-	NSString *cixURL = [NSString stringWithFormat: @"cix:%@/%@:%d", [parentFolder name], [folder name], messageId];
+//#warning 64BIT: Check formatting arguments
+	NSString *cixURL = [NSString stringWithFormat: @"cix:%@/%@:%ld", [parentFolder name], [folder name],(long)messageId];
 	NSString *displayName = [NSString stringWithFormat: @"%@ %@", cixURL, senderName];
 
 	// Only do this for CiX messages. Not much point
@@ -1306,8 +1306,8 @@ enum {
 		[NSArray arrayWithObjects: senderName, nil], @"kMDItemAuthors",
 		nil, nil];
 
-#warning 64BIT: Check formatting arguments
-	NSString *mdFilename = [NSString stringWithFormat: @"%@/%06d.cixurl", folderPath, messageId];
+// #warning 64BIT: Check formatting arguments
+	NSString *mdFilename = [NSString stringWithFormat: @"%@/%06ld.cixurl", folderPath, (long)messageId];
 	[attribsDict writeToFile: mdFilename atomically: YES];
 	
 	// Make it a finder-openable URL file, and fake the creation date.
@@ -1325,8 +1325,8 @@ enum {
 -(void)removeSpotlightMetadata:(NSInteger)messageId folder:(NSInteger)folderId
 {
 	NSString *folderPath = [self createSpotlightFolder: folderId message: messageId];
-#warning 64BIT: Check formatting arguments
-	NSString *mdFilename = [NSString stringWithFormat: @"%@/%06d.cixurl", folderPath, messageId];
+// #warning 64BIT: Check formatting arguments
+	NSString *mdFilename = [NSString stringWithFormat: @"%@/%06ld.cixurl", folderPath, (long)messageId];
 	
 	[[NSFileManager defaultManager] removeFileAtPath: mdFilename handler:nil];
 }
@@ -2395,16 +2395,18 @@ enum {
 			if (unread_count != [folder unreadCount])
 			{
 #warning 64BIT: Check formatting arguments
-				NSLog(@"Fixing unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d",
-					  [folder name], [folder unreadCount], unread_count, [folder itemId], [folder parentId] );
+				NSLog(@"Fixing unread count for %@ (%ld on folder versus %ld in messages) for folder_id %ld, parent %ld",
+					  [folder name], (long)[folder unreadCount],
+                      (long)unread_count, (long)[folder itemId],(long)[folder parentId] );
 				[self setFolderUnreadCount:folder adjustment:(unread_count - [folder unreadCount])];
 				[self flushFolder:folderId];
 			}
 			if (priority_unread_count != [folder priorityUnreadCount])
 			{
-#warning 64BIT: Check formatting arguments
-				NSLog(@"Fixing priority unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d",
-					  [folder name], [folder priorityUnreadCount], priority_unread_count, [folder itemId], [folder parentId]);
+// #warning 64BIT: Check formatting arguments
+				NSLog(@"Fixing priority unread count for %@ (%ld on folder versus %ld in messages) for folder_id %ld, parent %ld",
+					  [folder name], (long)[folder priorityUnreadCount],(long) priority_unread_count,
+                      (long)[folder itemId], (long) [folder parentId]);
 				countOfPriorityUnread += priority_unread_count - [folder priorityUnreadCount];
 				[folder setPriorityUnreadCount:priority_unread_count];
 				[self flushFolder:folderId];
