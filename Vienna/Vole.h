@@ -76,3 +76,29 @@ typedef unsigned int   NSUInteger;
 #endif // defined(__LP64__) || defined(NS_BUILD_32_LIKE_64)
 #endif // NSINTEGER_DEFINED
 
+// This is from CGBase.h
+#ifndef CGFLOAT_DEFINED
+#include <stdbool.h>
+#include <stddef.h>
+#include <float.h>
+/* Definition of `CGFLOAT_TYPE', `CGFLOAT_IS_DOUBLE', `CGFLOAT_MIN', and
+   `CGFLOAT_MAX'. */
+
+#if defined(__LP64__) && __LP64__
+# define CGFLOAT_TYPE double
+# define CGFLOAT_IS_DOUBLE 1
+# define CGFLOAT_MIN DBL_MIN
+# define CGFLOAT_MAX DBL_MAX
+#else
+# define CGFLOAT_TYPE float
+# define CGFLOAT_IS_DOUBLE 0
+# define CGFLOAT_MIN FLT_MIN
+# define CGFLOAT_MAX FLT_MAX
+#endif
+
+/* Definition of the `CGFloat' type and `CGFLOAT_DEFINED'. */
+
+typedef CGFLOAT_TYPE CGFloat;
+#define CGFLOAT_DEFINED 1
+
+#endif // CGFLOAT_DEFINED
