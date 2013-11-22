@@ -456,7 +456,8 @@ enum {
 {
     if ([character isEqualToString:@"."]) {
         return kPeriodType;
-    } else if ([character isEqualToString:@"0"] || [character integerValue] != 0) {
+// #warning 64BIT
+    } else if ([character isEqualToString:@"0"] || [character intValue] != 0) {
         return kNumberType;
     } else {
         return kStringType;

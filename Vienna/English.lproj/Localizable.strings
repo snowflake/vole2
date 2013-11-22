@@ -46,7 +46,7 @@
 "Smart Folder" = "Smart Folder";
 "Delete selected message" = "Are you sure you want to permanently delete the selected articles?";
 "Delete selected message text" = "This operation cannot be undone.";
-"Infobar Format" = "%d messages";
+"Infobar Format" = "%ld messages";
 "Cancel" = "Cancel";
 "OK" = "OK";
 "From" = "From";

@@ -46,15 +46,15 @@
 	// Note that [currentFolder messageCount] returns -1 if it hasn't cached
 	// the messages for the folder yet. This is OK.
 	if (folderCount <= 0)
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		countString = [NSString stringWithFormat:NSLocalizedString(@"No messages", nil)];
 	else
 	{
-#warning 64BIT: Check formatting arguments
-		countString = [NSString stringWithFormat:NSLocalizedString(@"Infobar Format", nil), folderCount];
+// #warning 64BIT: Check formatting arguments
+		countString = [NSString stringWithFormat:NSLocalizedString(@"Infobar Format", nil), (long)folderCount];
 		if (currentFolder && [currentFolder unreadCount] && !IsSearchFolder(currentFolder))
-#warning 64BIT: Check formatting arguments
-			countString = [countString stringByAppendingFormat:NSLocalizedString(@" (%d unread)", nil), [currentFolder unreadCount]];
+// #warning 64BIT: Check formatting arguments
+			countString = [countString stringByAppendingFormat:NSLocalizedString(@" (%ld unread)", nil), (long) [currentFolder unreadCount]];
 	}
 	[unreadCount setStringValue:countString];
 }
