@@ -142,9 +142,9 @@
 }
 
 // Menu action items
--(IBAction)getMessages:(id)sender;
 -(IBAction)showPreferencePanel:(id)sender;
--(IBAction)getMessages:(id)sender;
+// #warning 64BIT DJE deleted next line - multiple getMessages found
+// -(IBAction)getMessages:(id)sender;
 -(IBAction)getRSSMessages:(id)sender;
 -(IBAction)getCixMessages:(id)sender;
 -(IBAction)newMessage:(id)sender;

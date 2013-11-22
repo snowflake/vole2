@@ -68,7 +68,7 @@
 	// cStringUsingEncoding will return NULL if address cannot be converted, resulting in a crash
 	// This should not happen as the address is defined in Connect.m
 	if( ![address canBeConvertedToEncoding:NSISOLatin1StringEncoding] )
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	{	NSLog(@"connection address cannot be converted to Latin1 %s line %d",__FILE__, __LINE__);
 		return NO;
 	}
@@ -83,12 +83,12 @@
 	// Now initiate the connection
 	struct sockaddr_in server;
 
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 	bzero(&server, sizeof(server));
 	server.sin_family = hostentry->h_addrtype;
 	memcpy((char *)&server.sin_addr, hostentry->h_addr, hostentry->h_length);
 	server.sin_port = htons(port);
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 	if (connect(fd, (struct sockaddr *)&server, sizeof(server)) < 0)
 	{
 		[self close];
