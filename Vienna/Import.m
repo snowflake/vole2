@@ -96,8 +96,8 @@
  */
 -(void)addRetrievedMessage:(NSArray *)messageDataArray
 {
-#warning 64BIT: Check formatting arguments
-	NSAssert1([messageDataArray count] == 2, @"messageDataArray has wrong number of entries. Was %d. Should be 2.", [messageDataArray count]);
+// #warning 64BIT: Check formatting arguments
+	NSAssert1([messageDataArray count] == 2, @"messageDataArray has wrong number of entries. Was %ld. Should be 2.", (long)[messageDataArray count]);
 	VMessage * message = [messageDataArray objectAtIndex:0];
 	NSString * messagePath = [messageDataArray objectAtIndex:1];
 	
@@ -112,7 +112,8 @@
  */
 -(void)updateLastFolder:(NSNumber *)number
 {
-	NSInteger topicId = [number integerValue];
+// #warning 64BIT DJE
+	NSInteger topicId = (NSInteger)[number intValue];
 	if (topicId != lastTopicId && lastTopicId != -1)
 	{
 		[db flushFolder:lastTopicId];
@@ -129,7 +130,8 @@
 {
 	[progressBar setIndeterminate:NO];
 	[progressBar setMinValue:0.0];
-	[progressBar setMaxValue:[max integerValue]];
+// #warning  64bit dje
+	[progressBar setMaxValue:[max intValue]];
 }
 
 /* updateProgressText
@@ -144,7 +146,8 @@
  */
 -(void)updateProgressValue:(NSNumber *)progressValue
 {
-	[progressBar setDoubleValue:[progressValue integerValue]];	
+// #warning 64BIT dje
+	[progressBar setDoubleValue:[progressValue doubleValue]];	
 }
 
 /* stopImport
@@ -545,7 +548,7 @@
 	NSInteger countImported = [self importSubscriptionGroup:bodyTree];
 	
 	// Announce how many we successfully imported
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSString * successString = [NSString stringWithFormat:NSLocalizedString(@"%ld subscriptions successfully imported", nil), (long int)countImported];
 	NSRunAlertPanel(NSLocalizedString(@"RSS Subscription Import Title", nil), successString, NSLocalizedString(@"OK", nil), nil, nil);
 	

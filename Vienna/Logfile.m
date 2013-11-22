@@ -70,18 +70,18 @@
 	NSFileManager *fm = [NSFileManager defaultManager];
 
 	// Get rid of oldest version;
-#warning 64BIT: Check formatting arguments
-	NSString *oldNum = [NSString stringWithFormat:@"%03d", maxVersions];
+// #warning 64BIT: Check formatting arguments
+	NSString *oldNum = [NSString stringWithFormat:@"%03ld", (long)maxVersions];
 	oldVersion = [self makeFilename: oldNum];
 	[fm removeFileAtPath: oldVersion handler:nil];
 		
     // Move the rest up
 	for (i=maxVersions-1; i>0; i--)
 	{
-#warning 64BIT: Check formatting arguments
-		NSString *oldNum = [NSString stringWithFormat:@"%03d", i];
-#warning 64BIT: Check formatting arguments
-		NSString *newNum = [NSString stringWithFormat:@"%03d", i+1];
+// #warning 64BIT: Check formatting arguments
+		NSString *oldNum = [NSString stringWithFormat:@"%03ld",(long) i];
+// #warning 64BIT: Check formatting arguments
+		NSString *newNum = [NSString stringWithFormat:@"%03ld",(long) i+1];
 		
 		oldVersion = [self makeFilename: oldNum];
 		newVersion = [self makeFilename: newNum];

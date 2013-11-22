@@ -82,7 +82,7 @@
 	
 	for (index = 0; index < [operatorArray count]; ++index)
 	{
-		CriteriaOperator op = [[operatorArray objectAtIndex:index] integerValue];
+		CriteriaOperator op = [[operatorArray objectAtIndex:index] intValue];
 		if ([string isEqualToString:[VCriteria stringFromOperator:op]])
 			return op;
 	}
@@ -115,8 +115,8 @@
  */
 -(NSString *)string
 {
-#warning 64BIT: Check formatting arguments
-	return [NSString stringWithFormat:@"<criteria field='%@'><operator>%d</operator><value>%@</value></criteria>", field, operator, value];
+// #warning 64BIT: Check formatting arguments
+	return [NSString stringWithFormat:@"<criteria field='%@'><operator>%ld</operator><value>%@</value></criteria>", field, (long)operator, value];
 }
 
 /* setField
@@ -220,7 +220,7 @@
 				
 				VCriteria * newCriteria = [[VCriteria alloc] init];
 				[newCriteria setField:fieldName];
-				[newCriteria setOperator:[operator integerValue]];
+				[newCriteria setOperator:[operator intValue]];
 				[newCriteria setValue:value];
 				[self addCriteria:newCriteria];
 				[newCriteria release];

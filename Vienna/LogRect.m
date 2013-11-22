@@ -13,7 +13,7 @@
 #import "LogRect.h"
 
 void LogRect(NSString * comment, NSRect rect){
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSLog(@"%@:  origin x: %f y: %f, size width: %f height %f",
 		  comment, (double)rect.origin.x, (double)rect.origin.y, (double)rect.size.width, (double)rect.size.height);
 	

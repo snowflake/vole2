@@ -356,8 +356,8 @@ enum {
         if (typeA == typeB) {
             // Same type; we can compare
             if (typeA == kNumberType) {
-                intA = [partA integerValue];
-                intB = [partB integerValue];
+                intA = [partA intValue];
+                intB = [partB intValue];
                 if (intA > intB) {
                     return NSOrderedAscending;
                 } else if (intA < intB) {
