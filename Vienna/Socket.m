@@ -104,7 +104,7 @@
 	BOOL sendResult;
 
 	va_start(arguments, format);
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	stringToSend = [[NSString alloc] initWithFormat:format arguments:arguments];
 	sendResult = [self sendString:stringToSend];
 	[stringToSend release];
@@ -148,7 +148,7 @@
 	NSInteger count;
 	char ch;
 
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 	*endOfFile = ![self readData:&ch length:sizeof(ch)];
 	count = 0;
 	while (!*endOfFile && ch != 0x0D && ch != 0x0A)
@@ -162,7 +162,7 @@
 			[lineString appendString:[NSString stringWithCString:lineBuffer encoding: NSWindowsCP1252StringEncoding]];
 			count = 0;
 		}
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 		*endOfFile = ![self readData:&ch length:sizeof(ch)];
 	}
 
@@ -170,13 +170,13 @@
 	if (!*endOfFile) {
 		if (ch == 0x0D)
 		{
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 			if ([self readData:&ch length:sizeof(ch)] && ch != 0x0A)
 				[self unreadChar:ch];
 		}
 		else if (ch == 0x0A)
 		{
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 			if ([self readData:&ch length:sizeof(ch)] && ch != 0x0D)
 				[self unreadChar:ch];
 		}
@@ -197,7 +197,7 @@
 {
 	char ch;
 	
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 	if ([self readData:&ch length:sizeof(ch)])
 	{
 		*endOfFile = NO;
