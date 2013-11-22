@@ -60,7 +60,7 @@
 	// mysterious.
 	if (![[NSFileManager defaultManager] createFileAtPath:pathToFile contents:nil attributes:nil])
 	{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		NSBeginCriticalAlertSheet (NSLocalizedString(@"Cannot open export file message", nil),
 								  NSLocalizedString(@"OK", nil),
 								  nil,
@@ -125,7 +125,7 @@
 	BOOL isSorted;
 	
 	NSString * folderPath = [db folderPathName:[folder itemId]];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSString * progressText = [NSString stringWithFormat:NSLocalizedString(@"Retrieving messages from %@", nil), folderPath];
 	[self updateProgressText:progressText];
 	
@@ -160,7 +160,7 @@
 	NSAutoreleasePool * pool;
     pool = [[NSAutoreleasePool alloc] init];
 	
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSString * progressText = [NSString stringWithFormat:NSLocalizedString(@"Opening '%@'", nil), exportFilename];
 	[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressText waitUntilDone:YES];
 	
@@ -200,13 +200,13 @@
 		NSString * folderPath = [db folderPathName:[theMessage folderId]];
 		NSCalendarDate * theDate = [[theMessage date] dateWithCalendarFormat:nil timeZone:nil];
 		NSString * dateString = [theDate descriptionWithCalendarFormat:@"%d%b%y %H:%M"];
-#warning 64BIT: Check formatting arguments
-		NSString * commentString = [theMessage comment] > 0 ? [NSString stringWithFormat:@" c%d", [theMessage comment]] : @"";
+// #warning 64BIT: Check formatting arguments
+		NSString * commentString = [theMessage comment] > 0 ? [NSString stringWithFormat:@" c%ld",(long) [theMessage comment]] : @"";
 		
 		// Only report progress on change of folder
 		if ([theMessage folderId] != lastFolderId)
 		{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 			NSString * progressText = [NSString stringWithFormat:NSLocalizedString(@"Exporting from %@", nil), folderPath];
 			[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressText waitUntilDone:YES];
 			lastFolderId = [theMessage folderId];
@@ -226,13 +226,13 @@
 		if ([theMessage isFlagged])
 			[msgStatus appendString:@"M"];
 		
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		NSString * msgText = [NSString stringWithFormat:@"%@\n>>>%@ %d %@(%d)%@%@\n%@\n",
 			msgStatus,
 			folderPath,
-			[theMessage messageId],
+			(long)[theMessage messageId],
 			[theMessage sender],
-			size,
+			(long)size,
 			dateString,
 			commentString,
 			messageText];
@@ -368,7 +368,7 @@
 	// Now write the complete XML to the file
 	if (![[NSFileManager defaultManager] createFileAtPath:exportFileName contents:nil attributes:nil])
 	{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		NSBeginCriticalAlertSheet (NSLocalizedString(@"Cannot open export file message", nil),
 								  NSLocalizedString(@"OK", nil),
 								  nil,
@@ -389,8 +389,8 @@
 	}
 
 	// Announce how many we successfully imported
-#warning 64BIT: Check formatting arguments
-	NSString * successString = [NSString stringWithFormat:NSLocalizedString(@"%d subscriptions successfully exported", nil), countExported];
+// warning 64BIT: Check formatting arguments
+	NSString * successString = [NSString stringWithFormat:NSLocalizedString(@"%ld subscriptions successfully exported", nil), (long)countExported];
 	NSRunAlertPanel(NSLocalizedString(@"RSS Subscription Export Title", nil), successString, NSLocalizedString(@"OK", nil), nil, nil);
 	
 	// Clean up at the end

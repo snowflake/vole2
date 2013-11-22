@@ -457,7 +457,8 @@
 			NSString * stringToAppend;
 			
 			if ([entityString characterAtIndex:1] == '#' && entityRange.length > 3)
-				stringToAppend = [NSString stringWithFormat:@"%c", [[entityString substringFromIndex:2] integerValue]];
+// #warning 64BIT dje
+				stringToAppend = [NSString stringWithFormat:@"%c", [[entityString substringFromIndex:2] intValue]];
 			else
 			{
 				if ([entityString isEqualTo:@"&lt;"])				stringToAppend = @"<";
