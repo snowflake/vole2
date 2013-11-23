@@ -69,8 +69,8 @@ NSString * MAPref_LibraryFolder = @"LibraryFolder";
 // List of available font sizes. I picked the ones that matched
 // Mail but you easily could add or remove from the list as needed.
 NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 48, 64 };
-#warning 64BIT: Inspect use of sizeof
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 #define countOfAvailableFontSizes  (sizeof(availableFontSizes)/sizeof(availableFontSizes[0]))
 
 // Private functions
@@ -156,7 +156,8 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	[password setStringValue:savedPassword];
 
 	// Set the recent on join count
-	[recentCount setIntegerValue:[defaults integerForKey:MAPref_RecentOnJoin]];
+	// #warning 64BIT dje integerValue -> intValue
+	[recentCount setIntValue:[defaults integerForKey:MAPref_RecentOnJoin]];
 	
 	// Set the quote colour info
 	[quoteColour setColor:[NSApp quoteColour]];
@@ -193,7 +194,8 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	[connectionType selectItemAtIndex:[defaults integerForKey:MAPref_ConnectionType]];
 		
 	// Number of log versions to keep
-	[logVersions setIntegerValue:[defaults integerForKey:MAPref_LogVersions]];
+	// #warning 64BIT dje integerValue -> intValue
+	[logVersions setIntValue:[defaults integerForKey:MAPref_LogVersions]];
 	
 	// Mugshots prefs
 	[enableMugshots setState:[defaults boolForKey:MAPref_MugshotsEnabled] ? NSOnState : NSOffState];
@@ -238,7 +240,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 		{
 			NSString * defaultHandler = nil;
 			BOOL onTheList = NO;
-#warning 64BIT: Inspect use of long
+// #warning 64BIT: Inspect use of long -its OK (DJE)
 			long size;
 			ICAttr attr;
 
@@ -380,7 +382,8 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 */
 -(IBAction)changeLogVersions:(id)sender
 {
-	NSInteger versions = [logVersions integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger versions = [logVersions intValue];
 	[[NSUserDefaults standardUserDefaults] setInteger:versions forKey:MAPref_LogVersions];
 }
 
@@ -397,7 +400,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	// deprecated API was here DJE
 	memcpy(&spec.name[1], [newHandler cStringUsingEncoding:NSWindowsCP1252StringEncoding], [newHandler length]);
 	spec.name[0] = [newHandler length];
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 	ICSetPref(internetConfigHandler, kICHelper "cix", attr, &spec, sizeof(spec));
 }
 
@@ -531,7 +534,8 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)changeRecentCount:(id)sender
 {
-	NSInteger newCount = [recentCount integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger newCount = [recentCount intValue];
 	[[NSUserDefaults standardUserDefaults] setInteger:newCount forKey:MAPref_RecentOnJoin];
 }
 
@@ -757,11 +761,14 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 {
 	NSNumber * boolFlag = [NSNumber numberWithBool:[sender state] == NSOnState];
 	[[NSUserDefaults standardUserDefaults] setObject:boolFlag forKey:MAPref_MugshotsEnabled];
-	[mugshotFolder setEnabled: [boolFlag integerValue]];
-	[mugshotFolderBrowse setEnabled: [boolFlag integerValue]];
+	// #warning 64BIT dje integerValue -> intValue
+	[mugshotFolder setEnabled: [boolFlag intValue]];
+	// #warning 64BIT dje integerValue -> intValue
+	[mugshotFolderBrowse setEnabled: [boolFlag intValue]];
 
 	// Notify of the change
-	if ([boolFlag integerValue] == 0)
+	// #warning 64BIT dje integerValue -> intValue
+	if ([boolFlag intValue] == 0)
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_MugshotsFolderChanged" object:nil];
 	else
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_MugshotsFolderChanged" object:mugshotsFolderName];
