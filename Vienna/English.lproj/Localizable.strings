@@ -16,7 +16,7 @@
 "%d subscriptions successfully imported" = "%d subscriptions successfully imported";
 "RSS Subscription Export Title" = "Export Completed";
 "%d subscriptions successfully exported" = "%d subscriptions successfully exported";
-"Growl description" = "%d new messages were retrieved by Vole";
+"Growl description" = "%ld new messages were retrieved by Vole";
 "Growl notification name" = "New Messages";
 "Growl notification title" = "New Messages";
 "Retrieving profile..." = "Retrieving profile...";

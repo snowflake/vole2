@@ -627,7 +627,7 @@
 // #warning 64BIT: Check formatting arguments
 		return ([NSString stringWithFormat:@"%@ (%ld)", [node nodeName], (long)[[node folder] messageCount]]);
 	if (!IsSearchFolder([node folder]) && [[node folder] unreadCount])
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		return ([NSString stringWithFormat:@"%@ (%ld)", [node nodeName], (long)[[node folder] unreadCount]]);
 	return [node nodeName];
 }

@@ -1258,7 +1258,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 {
 	[db addTask:MA_TaskCode_FileDownload actionData:filename folderName:folderPath orderCode:MA_OrderCode_FileDownload];
 	
-#warning 64BIT: Check formatting arguments
+//#warning 64BIT: Check formatting arguments
 	NSString *statusString = [NSString stringWithFormat:NSLocalizedString(@"'%@:%@' marked for download", nil),folderPath, filename];
 
 	[self setStatusMessage:statusString];
@@ -1292,7 +1292,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleFolderUpdate:(NSNotification *)nc
 {
-	NSInteger folderId = [(NSNumber *)[nc object] integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger folderId = [(NSNumber *)[nc object] intValue];
 	if (folderId == currentFolderId)
 	{
 		[self setMainWindowTitle:folderId];
@@ -1647,7 +1648,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 {
 	NSTableColumn * tableColumn = [[notification userInfo] objectForKey:@"NSTableColumn"];
 	VField * field = [db fieldByIdentifier:[tableColumn identifier]];
-	NSInteger oldWidth = [[[notification userInfo] objectForKey:@"NSOldWidth"] integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger oldWidth = [[[notification userInfo] objectForKey:@"NSOldWidth"] intValue];
 
 	if (oldWidth != [tableColumn width])
 	{
@@ -1744,8 +1746,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	if ([[aTableColumn identifier] isEqualToString:MA_Column_MessageId])
 	{
 		if ([theRecord comment] && [theRecord level] == 0 && currentFolderId != MA_Outbox_NodeID && currentFolderId != MA_Draft_NodeID && showThreading)
-#warning 64BIT: Check formatting arguments
-			return [NSString stringWithFormat:@"...%d", [theRecord messageId]];
+// #warning 64BIT: Check formatting arguments
+			return [NSString stringWithFormat:@"...%ld", (long)[theRecord messageId]];
 	}
     return [[theRecord messageData] objectForKey:[aTableColumn identifier]];
 }
@@ -2907,12 +2909,12 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		// If not there, look for an existing reply in the outbox folder
 		// If a reply is found in either place, look for an open window.
 		NSMutableDictionary * criteriaDictionary = [[NSMutableDictionary alloc] init];
-#warning 64BIT: Check formatting arguments
-		NSString * commentString = [NSString stringWithFormat:@"%d", comment];
-#warning 64BIT: Check formatting arguments
-		NSString * outBoxFolder = [NSString stringWithFormat:@"%d", MA_Outbox_NodeID];
-#warning 64BIT: Check formatting arguments
-		NSString * draftFolder = [NSString stringWithFormat:@"%d", MA_Draft_NodeID];
+// #warning 64BIT: Check formatting arguments
+		NSString * commentString = [NSString stringWithFormat:@"%ld", (long) comment];
+// #warning 64BIT: Check formatting arguments
+		NSString * outBoxFolder = [NSString stringWithFormat:@"%ld",(long) MA_Outbox_NodeID];
+// #warning 64BIT: Check formatting arguments
+		NSString * draftFolder = [NSString stringWithFormat:@"%ld", (long) MA_Draft_NodeID];
 
 		[criteriaDictionary setObject:[NSArray arrayWithObjects:commentString, nil] forKey:MA_Column_MessageComment];
 		[criteriaDictionary setObject:[NSArray arrayWithObjects:outBoxFolder, draftFolder, nil] forKey:MA_Column_MessageFolderId];
@@ -2997,7 +2999,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 -(IBAction)deleteMessage:(id)sender
 {
 	if (currentSelectedRow >= 0)
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		NSBeginCriticalAlertSheet (NSLocalizedString(@"Delete selected message", nil),
 								  NSLocalizedString(@"Delete", nil),
 								  NSLocalizedString(@"Cancel", nil),
@@ -3026,7 +3028,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[db beginTransaction];
 		while ((rowIndex = [enumerator nextObject]) != nil)
 		{
-			VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[rowIndex integerValue]];
+			// #warning 64BIT DJE integerValue -> intValue
+			VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[rowIndex intValue]];
 			if (![theRecord isRead])
 				needFolderRedraw = YES;
 			if ([db deleteMessage:[theRecord folderId] messageNumber:[theRecord messageId]])
@@ -3036,8 +3039,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			// FUTURE: if we're the moderator of this conference, withdraw it too.
 			if ([[cixCredentials username] isEqualToString:[theRecord sender]])
 			{
-#warning 64BIT: Check formatting arguments
-				NSString * messageString = [NSString stringWithFormat:@"%d", [theRecord messageId]];
+// #warning 64BIT: Check formatting arguments
+				NSString * messageString = [NSString stringWithFormat:@"%ld", (long)[theRecord messageId]];
 				NSString * folderPath = [db folderPathName:[theRecord folderId]];
 
 				[db addTask:MA_TaskCode_WithdrawMessage actionData:messageString folderName:folderPath orderCode:MA_OrderCode_WithdrawMessage];
@@ -3482,7 +3485,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	// Get the full path of the folder
 	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSString * alertBody = [NSString stringWithFormat:NSLocalizedString(@"Toggle Topic %@?", nil), folderPath];
 
 	// Get confirmation first
@@ -3631,7 +3634,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		NSNumber * rowIndex;
 		
 		while ((rowIndex = [enumerator nextObject]) != nil)
-			[newArray addObject:[currentArrayOfMessages objectAtIndex:[rowIndex integerValue]]];
+// #warning 64BIT DJE integerValue -> intValue
+			[newArray addObject:[currentArrayOfMessages objectAtIndex:[rowIndex intValue]]];
 		messageArray = [newArray retain];
 		[newArray release];
 	}
@@ -3931,8 +3935,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 	else
 	{
-#warning 64BIT: Check formatting arguments
-		url = [NSString stringWithFormat:@"cix:%@:%d",[db folderPathName:[thisMessage folderId]], [thisMessage messageId]];
+// #warning 64BIT: Check formatting arguments
+		url = [NSString stringWithFormat:@"cix:%@:%ld",[db folderPathName:[thisMessage folderId]], (long)[thisMessage messageId]];
 	}
 
 	NSPasteboard *pb = [NSPasteboard generalPasteboard];
@@ -3985,8 +3989,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 -(IBAction)deleteFolder:(id)sender
 {
 	NSInteger folderId = [foldersTree actualSelection];
-#warning 64BIT: Check formatting arguments
-	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to delete a built-in folder %d", folderId);
+//#warning 64BIT: Check formatting arguments
+	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to delete a built-in folder %ld", (long) folderId);
 	
 	// Get the full path of the folder we're deleting.
 	NSString * folderPath = [db folderPathName:folderId];
@@ -4000,19 +4004,19 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	
 	if (IsSearchFolder(folder))
 	{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		alertBody = [NSString stringWithFormat:NSLocalizedString(@"Delete smart folder text", nil), folderPath];
 		alertTitle = NSLocalizedString(@"Delete smart folder", nil);
 	}
 	else if (IsRSSFolder(folder))
 	{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		alertBody = [NSString stringWithFormat:NSLocalizedString(@"Delete RSS feed text", nil), [folder name]];
 		alertTitle = NSLocalizedString(@"Delete RSS feed", nil);
 	}
 	else
 	{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		alertBody = [NSString stringWithFormat:NSLocalizedString(@"Delete folder text", nil), folderPath];
 		alertTitle = NSLocalizedString(@"Delete folder", nil);
 	}
@@ -4028,7 +4032,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[db addTask:MA_TaskCode_ResignFolder actionData:@"" folderName:folderPath orderCode:MA_OrderCode_ResignFolder];
 	
 	// Create a status string
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSString * deleteStatusMsg = [NSString stringWithFormat:NSLocalizedString(@"Delete folder status", nil), folderPath];
 	
 	// Now call the database to delete the folder.
@@ -4048,8 +4052,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 -(IBAction)resignFolder:(id)sender
 {
 	NSInteger folderId = [foldersTree actualSelection];
-#warning 64BIT: Check formatting arguments
-	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to resign from a built-in folder %d", folderId);
+// #warning 64BIT: Check formatting arguments
+	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to resign from a built-in folder %ld", (long)folderId);
 	
 	// Get the full path of the folder we're deleting.
 	NSString * folderPath = [db folderPathName:folderId];
@@ -4138,7 +4142,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)endConnect:(NSNumber *)resultCode
 {
-	NSInteger result = [resultCode integerValue];
+// #warning 64BIT DJE integerValue -> intValue
+	NSInteger result = [resultCode intValue];
 	switch (result)
 	{
 		case MA_Connect_Success: {
@@ -4148,8 +4153,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			{
 				NSNumber * defaultValue = [NSNumber numberWithBool:YES];
 				NSNumber * stickyValue = [NSNumber numberWithBool:NO];
-#warning 64BIT: Check formatting arguments
-				NSString * msgText = [NSString stringWithFormat:NSLocalizedString(@"Growl description", nil), [connect messagesCollected]];
+#warning 64BIT: Check formatting arguments (DJE: Growl description now has a %ld)
+				NSString * msgText = [NSString stringWithFormat:NSLocalizedString(@"Growl description", nil), (long) [connect messagesCollected]];
 
 				NSDictionary *aNuDict = [NSDictionary dictionaryWithObjectsAndKeys:
 					NSLocalizedString(@"Growl notification name", nil), GROWL_NOTIFICATION_NAME,
