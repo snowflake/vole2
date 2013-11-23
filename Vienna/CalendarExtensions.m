@@ -82,7 +82,7 @@
 		NSMutableString * outputFormat = [NSMutableString stringWithString:[defaults objectForKey:NSTimeFormatString]];
 		[outputFormat replaceOccurrencesOfString:@":%S" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [outputFormat length])];
 #else
-#warning FIXME get the user defaults for preferred time format (DJE)
+// #warning FIXME get the user defaults for preferred time format (DJE)
         NSString * outputFormat = @"%H:%M";
 #endif
 		theTime = [self descriptionWithCalendarFormat:outputFormat];

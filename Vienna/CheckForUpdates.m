@@ -167,7 +167,8 @@
 {
 	updateTitle = NSLocalizedString(@"Your software is up to date", nil);
 	updateStatus = NSLocalizedString(@"Please try again later", nil);
-	updateAvailable = [[[aNotification userInfo] objectForKey:MacPADErrorCode] integerValue] == kMacPADResultNewVersion;
+// #warning 64BIT  DJE intValue used
+	updateAvailable = [[[aNotification userInfo] objectForKey:MacPADErrorCode] intValue] == kMacPADResultNewVersion;
 	[self doneUpdateCheck];
 }
 
@@ -206,9 +207,9 @@
 		[self runOKAlertSheet:[checkUpdates updateTitle] text:[checkUpdates updateStatus]];
 	else
 	{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		NSString * bodyText = [NSString stringWithFormat:NSLocalizedString(@"Update available text", nil), [checkUpdates latestVersion], [checkUpdates updateURL]];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		NSBeginAlertSheet(NSLocalizedString(@"An update is now available", nil),
 						  NSLocalizedString(@"Install Update", nil),
 						  NSLocalizedString(@"Do Not Install", nil),

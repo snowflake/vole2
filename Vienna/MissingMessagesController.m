@@ -133,10 +133,12 @@
 	requiredFirstMessage = NSUIntegerMax;   // was UINT_MAX;
 
 	if ([fillBackToSpecific state] == NSOnState)
-		requiredFirstMessage = [messageNumber integerValue];
+// #warning 64BIT dje check this  ( using intValue instead of integerValue)
+		requiredFirstMessage = [messageNumber intValue];
 
 	if ([skipBack state] == NSOnState)
-		skipBackValue = [skipBackCount integerValue];
+// #warning 64Bit DJE check this ( using intValue instead of integerValue)		
+		skipBackValue = [skipBackCount intValue];
 	
 	// Dismiss the options sheet.
 	[missingMessagesWindow orderOut:sender];
@@ -271,23 +273,25 @@
 				
 // #warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
 				if (requiredFirstMessage == NSUIntegerMax)
-					firstMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:0] integerValue];
+// #warning 64BIT DJE using intValue instead of integerValue
+					firstMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:0] intValue];
 				else
 					firstMessageNumber = requiredFirstMessage;
 				nextMessageNumber = firstMessageNumber;
 				
 				for (count = 0; count < [messagesArray count] && !stopScanFlag; ++count)
 				{
-					NSUInteger thisMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:count] integerValue];
+// #warning 64BIT DJE using intValue instead of integerValue
+					NSUInteger thisMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:count] intValue];
 					if (thisMessageNumber != nextMessageNumber && thisMessageNumber > firstMessageNumber)
 					{
 						NSMutableString * rangeString;
 						
-#warning 64BIT: Check formatting arguments
-						rangeString = [NSMutableString stringWithFormat:@"%d", nextMessageNumber];
+// #warning 64BIT: Check formatting arguments
+						rangeString = [NSMutableString stringWithFormat:@"%ld", (long)nextMessageNumber];
 						if (nextMessageNumber < thisMessageNumber - 1)
-#warning 64BIT: Check formatting arguments
-							[rangeString appendFormat:@"-%d", thisMessageNumber - 1];
+// #warning 64BIT: Check formatting arguments
+							[rangeString appendFormat:@"-%ld",(long) thisMessageNumber - 1];
 
 						// Keep a running total of the number of missing messages
 						countOfMessages += thisMessageNumber - nextMessageNumber;

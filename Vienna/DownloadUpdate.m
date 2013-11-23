@@ -112,14 +112,14 @@
     if (expectedLength != NSURLResponseUnknownLength)
 	{
         CGFloat percentComplete = (bytesReceived / (CGFloat)expectedLength) * 100.0;
-#warning 64BIT: Check formatting arguments
-		NSString * progress = [NSString stringWithFormat:NSLocalizedString(@"Full download progress", nil), unitsValue, unitString, (NSInteger)percentComplete];
+// #warning 64BIT: Check formatting arguments -changed to long for percentComplete.  This code is never used as we don't have an update server, so nevever tested
+		NSString * progress = [NSString stringWithFormat:NSLocalizedString(@"Full download progress", nil), unitsValue, unitString, (long)percentComplete];
 		[progressString setStringValue:progress];
 		[progressBar setDoubleValue:percentComplete];
 	}
 	else
 	{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments (OK -DJE)
 		NSString * progress = [NSString stringWithFormat:NSLocalizedString(@"Simple download progress", nil), unitsValue, unitString];
 		[progressString setStringValue:progress];
     }
@@ -151,7 +151,7 @@
         errorDescription = NSLocalizedString(@"An error occured during download.", nil);
 	else
 		errorDescription = [NSString stringWithFormat:@"The download failed because: %@.", [error localizedDescription]];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
     NSBeginAlertSheet(NSLocalizedString(@"Download Failed", nil), nil, nil, nil, [self window], nil, nil, nil, nil, errorDescription);
 
     [download release];

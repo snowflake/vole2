@@ -116,8 +116,8 @@
 
 -(NSString *)description
 {
-#warning 64BIT: Check formatting arguments
-	return [NSString stringWithFormat:@"('%@', title='%@', sqlField='%@', tag=%d, width=%d, visible=%d)", name, title, sqlField, tag, width, visible];
+// #warning 64BIT: Check formatting arguments
+	return [NSString stringWithFormat:@"('%@', title='%@', sqlField='%@', tag=%ld, width=%ld, visible=%ld)", name, title, sqlField, (long)tag, (long)width, (long)visible];
 }
 
 -(void)dealloc

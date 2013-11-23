@@ -72,7 +72,7 @@
 "An update is now available" = "An update is now available";
 "Update available text" = "Version %@ of Vole is available from:\n\n%@\n\nWould you like to download it now? If you choose not to download it now, you can download it later by choosing Check For Updates again.";
 "Simple download progress" = "%.1f%@ received";
-"Full download progress" = "%.1f%@ received (%d%% complete)";
+"Full download progress" = "%.1f%@ received (%ld%% complete)";
 "Starting..." = "Starting...";
 "Downloading %@" = "Downloading %@";
 "An error occured during download." = "Vole was unable to determine the cause of the error. Please contact technical support for assistance.";

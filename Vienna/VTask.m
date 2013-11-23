@@ -149,7 +149,7 @@
 	va_list arguments;
 	
 	va_start(arguments, format);
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	formattedString = [[NSString alloc] initWithFormat:format arguments:arguments];
 	[self setResultString:formattedString];
 	[formattedString release];
@@ -231,8 +231,8 @@
  */
 -(NSString *)description
 {
-#warning 64BIT: Check formatting arguments
-	return [NSString stringWithFormat:@"(code=%d, data='%@', order=%d, result=%d, resultData='%@')", actionCode, actionData, orderCode, resultCode, resultString];
+// #warning 64BIT: Check formatting arguments
+	return [NSString stringWithFormat:@"(code=%ld, data='%@', order=%ld, result=%ld, resultData='%@')", (long)actionCode, actionData, (long)orderCode, (long)resultCode, resultString];
 }
 
 /* taskCompare

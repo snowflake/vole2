@@ -196,11 +196,11 @@
 	// deprecated API was here, changed by DJE
 	NSData  * newData = [ self dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion: YES];
 //	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
-	const char *cString = (const char *)malloc([newData length] + 1);
+	char *cString = (char *)malloc([newData length] + 1);
 	char *tempBuff= cString;  /* free tempBuff later */
 	[ newData getBytes: cString length: [newData length]];
 	tempBuff[ [newData length]] = '\0';
-	const char * lineStart;
+	char * lineStart;
 	NSInteger lineLength;
 	NSInteger indexOfEndOfLastWord;
 	BOOL inSpace;
