@@ -228,7 +228,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(NSString *)serviceString
 {
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	return [NSString stringWithFormat:@"%@:%d", [socket address], [socket port]];
 }
 
@@ -589,7 +589,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		BOOL isUntitledFeed = [[[rssFolder folder] name] isEqualToString:@"(Untitled Feed)"];
 
 		// Send status
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Updating subscription from '%@'", nil), [[rssFolder folder] name]];
 		[self sendStatusToDelegate:statusString];
 
@@ -609,7 +609,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			// If the untitled feed now has a title, change the status
 			if (isUntitledFeed && feedTitle != nil)
 			{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 				NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Updating subscription from '%@'", nil), feedTitle];
 				[self sendStatusToDelegate:statusString];
 			}
@@ -641,7 +641,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 				// This code nicked from Steve's Vienna2 RefreshManager.m
 				if (guid == nil || [guid isEqualToString:@""])
 				{
-#warning 64BIT: Check formatting arguments
+//#warning 64BIT: Check formatting arguments
 					guid = [NSString stringWithFormat:@"%ld-%@-%@", (long int)[rssFolder folderId], [newsItem link], [newsItem title]];
 					[newsItem setGuid: guid];
 				}
@@ -722,7 +722,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 				threadData.mask = 0;
 				threadData.message = message;
 				[self performSelectorOnMainThread:@selector(addRSSMessageToDatabase:)
-#warning 64BIT: Inspect use of sizeof
+//#warning 64BIT: Inspect use of sizeof
 									   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 									waitUntilDone:YES];
 			}

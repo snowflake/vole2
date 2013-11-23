@@ -283,7 +283,7 @@ enum {
  */
 -(void)executeSQL:(NSString *)sqlStatement
 {
-	SQLResult * result = [sqlDatabase performQuery:sqlStatement];
+	/* SQLResult * result = */ [sqlDatabase performQuery:sqlStatement];
 	// static analyser complains
 	// [result release];
 }
@@ -2394,7 +2394,7 @@ enum {
 			// them if not.
 			if (unread_count != [folder unreadCount])
 			{
-#warning 64BIT: Check formatting arguments
+//#warning 64BIT: Check formatting arguments
 				NSLog(@"Fixing unread count for %@ (%ld on folder versus %ld in messages) for folder_id %ld, parent %ld",
 					  [folder name], (long)[folder unreadCount],
                       (long)unread_count, (long)[folder itemId],(long)[folder parentId] );
@@ -2560,14 +2560,14 @@ enum {
 					// milliseconds. So we need to translate this to a range for this to make sense.
 					NSCalendarDate * startDate = [NSCalendarDate dateWithString:[criteria value] calendarFormat:@"%d/%m/%y"];
 					NSCalendarDate * endDate = [startDate dateByAddingYears:0 months:0 days:1 hours:0 minutes:0 seconds:0];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 					operatorString = [NSString stringWithFormat:@">=%f and %@<%f", [startDate timeIntervalSince1970], [field sqlField], [endDate timeIntervalSince1970]];
 					valueString = @"";
 				}
 				else
 				{
 					NSCalendarDate * theDate = [NSCalendarDate dateWithString:[criteria value] calendarFormat:@"%d/%m/%y"];
-#warning 64BIT: Check formatting arguments
+//#warning 64BIT: Check formatting arguments
 					valueString = [NSString stringWithFormat:@"%f", [theDate timeIntervalSince1970]];
 				}
 				break;
@@ -2582,7 +2582,7 @@ enum {
 		if (count++ > 0)
 			sqlString = [sqlString stringByAppendingString:@" and "];
 		sqlString = [sqlString stringByAppendingString:[field sqlField]];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 		sqlString = [sqlString stringByAppendingFormat:operatorString, valueString];
 	}
 	return sqlString;
@@ -2672,7 +2672,7 @@ enum {
 		[folder clearMessages];
 		
 		if ([filterString isNotEqualTo:@""])
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 			filterClause = [NSString stringWithFormat:@" and text like '%%%@%%'", filterString];
 
 		if (withoutIgnored)
@@ -2750,9 +2750,13 @@ enum {
 			{
 				if (unread_count != [folder unreadCount])
 				{
-#warning 64BIT: Check formatting arguments
-					NSLog(@"Fixing unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d", 
-						  [folder name], [folder unreadCount], unread_count, [folder itemId], [folder parentId]);
+//#warning 64BIT: Check formatting argumen
+                    NSLog(@"Fixing unread count for %@ (%ld on folder versus %ld in messages) for folder_id %ld, parent %ld",
+						  [folder name],
+                          (long)[folder unreadCount],
+                          (long)unread_count,
+                          (long)[folder itemId],
+                          (long)[folder parentId]);
 					[self setFolderUnreadCount:folder adjustment:(unread_count - [folder unreadCount])];
 					[self flushFolder:folderId];
 				}

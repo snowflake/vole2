@@ -49,7 +49,7 @@
 		messageNumber = -1;
 		[scanner scanUpToString:@":" intoString:&folderPath];
 		if ([scanner scanString:@":" intoString:nil])
-#warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+//#warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
 			[scanner scanInt:&messageNumber];
 		else
 		{

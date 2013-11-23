@@ -122,7 +122,7 @@ typedef struct{
 	}
 	data.folderId = folderId;
 	data.messageNumber = messageNumber;
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 	dataItem = [[NSData alloc] initWithBytes:&data length:sizeof(data)];
 	[array addObject:dataItem];
 	[dataItem release];
