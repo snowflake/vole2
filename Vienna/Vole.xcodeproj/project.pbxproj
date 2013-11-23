@@ -18,6 +18,7 @@
 		61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */; };
 		61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 61CC8C1D13672D4F0049AECF /* sanitise_string.c */; };
 		61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1E13672D4F0049AECF /* sanitise_string.h */; };
+		61DB07E418412FC80037DCE7 /* Vole.h in Headers */ = {isa = PBXBuildFile; fileRef = 61DB07E318412FC80037DCE7 /* Vole.h */; };
 		8D15AC290486D014006FF6A4 /* Vole_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Vole_Prefix.pch */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -207,6 +208,7 @@
 		CD004B2C08AC9249007129B0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004B2B08AC9249007129B0 /* SystemConfiguration.framework */; };
 		CD2BE9D207F863BE000056B7 /* SSHSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2BE9D007F863BE000056B7 /* SSHSocket.h */; };
 		CD2BE9D307F863BE000056B7 /* SSHSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2BE9D107F863BE000056B7 /* SSHSocket.m */; };
+		CD3F61C607466DE700BAE165 /* unread.tiff in Resources */ = {isa = PBXBuildFile; fileRef = CD3F61C507466DE600BAE165 /* unread.tiff */; };
 		CD3F61D807466F5700BAE165 /* nextunread.tiff in Resources */ = {isa = PBXBuildFile; fileRef = CD3F61D707466F5700BAE165 /* nextunread.tiff */; };
 		CD3F627D0748A54A00BAE165 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD3F627C0748A54A00BAE165 /* AddressBook.framework */; };
 		CD4DF90408DD93C200D245E1 /* Logfile.h in Headers */ = {isa = PBXBuildFile; fileRef = CD4DF90208DD93C200D245E1 /* Logfile.h */; };
@@ -262,6 +264,7 @@
 		61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string_private.h; sourceTree = "<group>"; };
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
 		61CC8C1E13672D4F0049AECF /* sanitise_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string.h; sourceTree = "<group>"; };
+		61DB07E318412FC80037DCE7 /* Vole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vole.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Vole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA056D6C0626105E0003B9F5 /* markAsFlagged.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = markAsFlagged.tiff; sourceTree = "<group>"; };
@@ -767,6 +770,7 @@
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 				6176B9391480196F00BB5841 /* getBSDProcessTable.c */,
 				6176B93B1480197A00BB5841 /* getBSDProcessTable.h */,
+				61DB07E318412FC80037DCE7 /* Vole.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -869,6 +873,7 @@
 				6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */,
 				6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */,
 				6110660816243A7000E9E654 /* LogRect.h in Headers */,
+				61DB07E418412FC80037DCE7 /* Vole.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,9 +910,6 @@
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0460;
-			};
 			buildConfigurationList = AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vole" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -992,6 +994,7 @@
 				AA958C350686855B00F293F1 /* joinFolder.tiff in Resources */,
 				AA680A51068F331B004078F0 /* Action.tiff in Resources */,
 				AA6BC5B80694C5F400A3460D /* lockedFolder.tiff in Resources */,
+				CD3F61C607466DE700BAE165 /* unread.tiff in Resources */,
 				CD3F61D807466F5700BAE165 /* nextunread.tiff in Resources */,
 				AAFB92DF0752E6E90029E5AC /* resume.tiff in Resources */,
 				AA21F4520753053500503F58 /* CHANGES in Resources */,
@@ -1340,32 +1343,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		61608EFD1822A3A60055EA84 /* mavericks */ = {
+		612867161372D31D001A4C25 /* leopard */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
 					ppc,
 					i386,
 				);
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				GCC_ENABLE_OBJC_GC = required;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = macosx10.5;
 				SYMROOT = "../../Vienna-build";
 			};
-			name = mavericks;
+			name = leopard;
 		};
-		61608EFE1822A3A60055EA84 /* mavericks */ = {
+		612867171372D31D001A4C25 /* leopard */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1374,7 +1375,7 @@
 				GCC_PREFIX_HEADER = Vole_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.0;
 				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
 				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
 				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
@@ -1390,43 +1391,53 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				MDDirectory = MDImporter;
 				MDTarget = Vienna;
 				MDTargetApp = Vienna.app;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.5;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
-					"-Wall",
-					"-Wextra",
 				);
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = mavericks;
+			name = leopard;
 		};
-		AA503399085CFC6000BC203D /* Development */ = {
+		616E7558147A6BE0000289C7 /* snowleopard */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx10.6;
+				SYMROOT = "../../Vienna-build";
+			};
+			name = snowleopard;
+		};
+		616E7559147A6BE0000289C7 /* snowleopard */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1435,7 +1446,7 @@
 				GCC_PREFIX_HEADER = Vole_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = 4.0;
 				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
 				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
 				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
@@ -1451,28 +1462,164 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				MDDirectory = MDImporter;
 				MDTarget = Vienna;
 				MDTargetApp = Vienna.app;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
-					"-Wall",
-					"-Wextra",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = snowleopard;
+		};
+		6182572A137067B1001C37F9 /* tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx10.6;
+				SYMROOT = "../../Vienna-build";
+			};
+			name = tiger;
+		};
+		6182572B137067B1001C37F9 /* tiger */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Vole_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"SQLITE_WITHOUT_ZONEMALLOC=1",
+					__DEBUG__,
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
+				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
+				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
+				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MDDirectory = MDImporter;
+				MDTarget = Vienna;
+				MDTargetApp = Vienna.app;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Vole;
+				SDKROOT = macosx10.4;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = tiger;
+		};
+		AA503399085CFC6000BC203D /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Vole_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
+				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
+				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
+				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MDDirectory = MDImporter;
+				MDTarget = Vienna;
+				MDTargetApp = Vienna.app;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Vole;
+				SDKROOT = macosx10.4;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
@@ -1486,12 +1633,10 @@
 					ppc,
 					i386,
 				);
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.6;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = Development;
@@ -1503,19 +1648,23 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA503399085CFC6000BC203D /* Development */,
-				61608EFE1822A3A60055EA84 /* mavericks */,
+				612867171372D31D001A4C25 /* leopard */,
+				616E7559147A6BE0000289C7 /* snowleopard */,
+				6182572B137067B1001C37F9 /* tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = mavericks;
+			defaultConfigurationName = Development;
 		};
 		AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vole" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA50339D085CFC6000BC203D /* Development */,
-				61608EFD1822A3A60055EA84 /* mavericks */,
+				612867161372D31D001A4C25 /* leopard */,
+				616E7558147A6BE0000289C7 /* snowleopard */,
+				6182572A137067B1001C37F9 /* tiger */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = mavericks;
+			defaultConfigurationName = Development;
 		};
 /* End XCConfigurationList section */
 	};
