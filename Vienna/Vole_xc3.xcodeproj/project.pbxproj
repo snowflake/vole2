@@ -18,6 +18,7 @@
 		61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */; };
 		61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 61CC8C1D13672D4F0049AECF /* sanitise_string.c */; };
 		61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1E13672D4F0049AECF /* sanitise_string.h */; };
+		61DB08271841313D0037DCE7 /* Vole.h in Headers */ = {isa = PBXBuildFile; fileRef = 61DB08261841313D0037DCE7 /* Vole.h */; };
 		8D15AC290486D014006FF6A4 /* Vole_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Vole_Prefix.pch */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -263,6 +264,7 @@
 		61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string_private.h; sourceTree = "<group>"; };
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
 		61CC8C1E13672D4F0049AECF /* sanitise_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string.h; sourceTree = "<group>"; };
+		61DB08261841313D0037DCE7 /* Vole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vole.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Vole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA056D6C0626105E0003B9F5 /* markAsFlagged.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = markAsFlagged.tiff; sourceTree = "<group>"; };
@@ -768,6 +770,7 @@
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 				6176B9391480196F00BB5841 /* getBSDProcessTable.c */,
 				6176B93B1480197A00BB5841 /* getBSDProcessTable.h */,
+				61DB08261841313D0037DCE7 /* Vole.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */,
 				6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */,
 				6110660816243A7000E9E654 /* LogRect.h in Headers */,
+				61DB08271841313D0037DCE7 /* Vole.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,7 +910,7 @@
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vole-temp" */;
+			buildConfigurationList = AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vole_xc3" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -1651,7 +1655,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vole-temp" */ = {
+		AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vole_xc3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA50339D085CFC6000BC203D /* Development */,
