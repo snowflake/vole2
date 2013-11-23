@@ -47,7 +47,7 @@
 NSInteger messageSortHandler(id item1, id item2, void * context);
 
 extern char * cixLocation_cstring; // in main.m
-extern NSInteger cixbetaflag; // in main.m
+extern int cixbetaflag; // in main.m
 extern char * volecixbetaname;
 
 static NSString * MA_DefaultDatabaseName = @"~/Library/Vienna/database3.db";
