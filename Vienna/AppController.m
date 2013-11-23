@@ -845,7 +845,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)endGotoMessage:(id)sender
 {
-	NSInteger messageNumber = [gotoNumber integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger messageNumber = [gotoNumber intValue];
 
 	[gotoWindow orderOut:sender];
 	[NSApp endSheet:gotoWindow returnCode:1];
@@ -913,13 +914,13 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 			[self retrieveMessage:messageId fromFolder:folderPath];
 		else
 		{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments (This string is not in localizablestrings
 			NSString * titleText = [NSString stringWithFormat:NSLocalizedString(@"Offer to retrieve message title", nil), messageId];
 			NSString * bodyText = NSLocalizedString(@"Offer to retrieve message text", nil);
 			
 			// Package up the message and folder numbers to the context info
 			NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil] retain];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 			NSBeginAlertSheet(titleText,
 							  NSLocalizedString(@"Retrieve", nil),
 							  NSLocalizedString(@"Cancel", nil),
@@ -938,14 +939,14 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)offerToRetrieveMessage:(NSInteger)messageId fromFolderPath:(NSString *)folderPath
 {
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSString * titleText = [NSString stringWithFormat:NSLocalizedString(@"Offer to join and retrieve message title", nil), folderPath];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSString * bodyText = [NSString stringWithFormat:NSLocalizedString(@"Offer to join and retrieve message text", nil), folderPath];
 	
 	// Package up the message and folder numbers to the context info
 	NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil] retain];	
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSBeginAlertSheet(titleText,
 					  NSLocalizedString(@"Join", nil),
 					  NSLocalizedString(@"Cancel", nil),
@@ -967,7 +968,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	{
 		NSAssert(contextArray != nil, @"Got a nil context array");
 		NSAssert([contextArray count] == 2, @"Context array is the wrong size");
-		NSInteger messageId = [[contextArray objectAtIndex:0] integerValue];
+		// #warning 64BIT dje integerValue -> intValue
+		NSInteger messageId = [[contextArray objectAtIndex:0] intValue];
 		NSString * folderPath = [contextArray objectAtIndex:1];
 		[self retrieveMessage:messageId fromFolder:folderPath];
 	}
@@ -979,8 +981,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)retrieveMessage:(NSInteger)messageId fromFolder:(NSString *)folderPath
 {
-#warning 64BIT: Check formatting arguments
-	NSString * messageString = [NSString stringWithFormat:@"%d", messageId];
+// #warning 64BIT: Check formatting arguments
+	NSString * messageString = [NSString stringWithFormat:@"%ld", messageId];
 	[db addTask:MA_TaskCode_FileMessages actionData:messageString folderName:folderPath orderCode:MA_OrderCode_FileMessages];
 	
 	// If we're in online mode, make a note of the requested message so we can select it
