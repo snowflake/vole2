@@ -53,7 +53,8 @@
 			[scanner scanInt:&messageNumber];
 		else
 		{
-			if ((messageNumber = [folderPath integerValue]) > 0)
+			// #warning 64BIT dje integerValue -> intValue
+			if ((messageNumber = [folderPath intValue]) > 0)
 				folderPath = nil;
 		}
 
