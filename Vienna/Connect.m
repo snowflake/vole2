@@ -384,7 +384,9 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)updateLastFolder:(NSNumber *)number
 {
-	NSInteger topicId = [number integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger topicId = [number intValue];
 	if (topicId != lastTopicId && lastTopicId != -1)
 	{
 		[db flushFolder:lastTopicId];
@@ -736,7 +738,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			threadData.description = feedDescription;
 			threadData.link = feedLink;
 			[self performSelectorOnMainThread:@selector(updateRSSFolder:)
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 								waitUntilDone:YES];
 		}
@@ -1092,7 +1094,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		return;
 	}
 	
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"uploading %@ to %@", nil), [task actionData], [task folderName]];
 	[self sendStatusToDelegate:statusString];
 	
@@ -1467,7 +1469,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			threadData.mask = 0;
 			threadData.message = message;
 			[self performSelectorOnMainThread:@selector(addToDatabase:)
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 								waitUntilDone:YES];
 			
@@ -1929,7 +1931,8 @@ abortLabel:
 		NSString * taskData = @"";
 
 		// Do the skip. This generally doesn't fail in a meaningful way
-		NSInteger skipCount = [[task actionData] integerValue];
+		// #warning 64BIT dje integerValue -> intValue
+		NSInteger skipCount = [[task actionData] intValue];
 		// dje - hea skip back leads to corrupt messages - or does it. Backout the changes
 		[self writeStringWithFormat:YES string:@"hea skip to back %d\n", skipCount];
 		[self readAndScanForStrings:[NSArray arrayWithObjects:@"Rf:", nil] endOfFile:&endOfFile];
@@ -1950,7 +1953,8 @@ abortLabel:
 -(void)withdrawMessage:(VTask *)task
 {
 	NSString * folderName = [task folderName];
-	NSInteger messageNumber = [[task actionData] integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger messageNumber = [[task actionData] intValue];
 	BOOL endOfFile;
 	
 	// Tell the user what we're up to
@@ -1973,14 +1977,14 @@ abortLabel:
 		else if (match == 1)
 		{
 			taskResult = MA_TaskResult_Failed;
-#warning 64BIT: Check formatting arguments
-			taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"You did not originate %d\n", nil), messageNumber];
+// #warning 64BIT: Check formatting arguments
+			taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"You did not originate %ld\n", nil), (long)messageNumber];
 		}
 		else
 		{
 			taskResult = MA_TaskResult_Failed;
-#warning 64BIT: Check formatting arguments
-			taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"No such message %d\n", nil), messageNumber];
+// #warning 64BIT: Check formatting arguments
+			taskData = [taskData stringByAppendingFormat:NSLocalizedString(@"No such message %ld\n", nil), (long)messageNumber];
 		}
 
 		// Done. Now exit from the topic.
@@ -2189,7 +2193,7 @@ abortLabel:
 				
 				if ([message comment])
 				{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 					header2 = [NSString stringWithFormat:@"comment %ld\n", (long int)[message comment]];
 				}
 				else
@@ -2527,7 +2531,7 @@ abortLabel:
 	BOOL result;
 
 	va_start(arguments, string);
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	formattedString = [[NSString alloc] initWithFormat:NSLocalizedString(string, nil) arguments:arguments];
 	result = [self writeString:echo string:formattedString];
 	[formattedString release];
