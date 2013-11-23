@@ -4153,7 +4153,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			{
 				NSNumber * defaultValue = [NSNumber numberWithBool:YES];
 				NSNumber * stickyValue = [NSNumber numberWithBool:NO];
-#warning 64BIT: Check formatting arguments (DJE: Growl description now has a %ld)
+// #warning 64BIT: Check formatting arguments (DJE: Growl description now has a %ld)
 				NSString * msgText = [NSString stringWithFormat:NSLocalizedString(@"Growl description", nil), (long) [connect messagesCollected]];
 
 				NSDictionary *aNuDict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -4207,9 +4207,9 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	va_list arguments;
 
 	va_start(arguments, bodyText);
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	fullBodyText = [[NSString alloc] initWithFormat:NSLocalizedString(bodyText, nil) arguments:arguments];
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 	NSBeginAlertSheet(NSLocalizedString(titleString, nil),
 					  NSLocalizedString(@"OK", nil),
 					  nil,
@@ -4799,7 +4799,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	for (msgnum = 0; msgnum < [rows count]; msgnum++)
 	{
 		// Get the message ID being dragged
-		NSInteger rowIndex = [[rows objectAtIndex: msgnum] integerValue];
+		// #warning 64BIT DJE integerValue -> intValue
+		NSInteger rowIndex = [[rows objectAtIndex: msgnum] intValue];
 		VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
 
 		// Can't drag from pseudo folders.
@@ -4831,22 +4832,24 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		}
 		else if ([thisMessage comment])
 		{
-#warning 64BIT: Check formatting arguments
-			[newtext appendFormat: @"**COPIED FROM: >>>%@ %d %@(%d)%@ c%d\n%@\n", 
+// #warning 64BIT: Check formatting arguments
+			[newtext appendFormat: @"**COPIED FROM: >>>%@ %ld %@(%ld)%@ c%ld\n%@\n", 
 								[db folderPathName:[thisMessage folderId]],
-								[thisMessage messageId],  [thisMessage sender],
-								[text length],
+								(long)[thisMessage messageId],
+							    [thisMessage sender],
+								(long)[text length],
 								[dateFormatter descriptionWithCalendarFormat: @"%d%b%y %H:%M"], 
-								[thisMessage comment],
+								(long)[thisMessage comment],
 								text];
 		}
 		else
 		{
-#warning 64BIT: Check formatting arguments
+// #warning 64BIT: Check formatting arguments
 			[newtext appendFormat: @"**COPIED FROM: >>>%@ %d %@(%d)%@\n%@\n", 
 								[db folderPathName:[thisMessage folderId]],
-								[thisMessage messageId],  [thisMessage sender],
-								[text length],
+								(long)[thisMessage messageId],
+			                    [thisMessage sender],
+								(long)[text length],
 								[dateFormatter descriptionWithCalendarFormat: @"%d%b%y %H:%M"],  
 								text];
 		}
@@ -4912,7 +4915,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	NSString * voleAcronyms[]={ @"Vole", @"VOLE", @"vole"}; // keys to lookup
 	size_t i;
 	NSString * version = [NSString stringWithFormat:@"%@ / %@",@"Small, cute, furry mammal / Vienna Off-Line Environment\n", acronymsVersion];  
-#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 	for (i = 0; i< sizeof(voleAcronyms) / sizeof(NSString *); i++){
 		NSString * current = [ acronymDictionary valueForKey:voleAcronyms[i] ];
 		if (current == nil) { // not in dict, so just use our version
