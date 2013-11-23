@@ -119,12 +119,15 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
 -(BOOL)isFlagged				{ return markedFlag; }
 -(BOOL)isPriority				{ return priorityFlag; }
 -(NSInteger)level						{ return level; }
--(NSInteger)folderId					{ return [[messageData objectForKey:MA_Column_MessageFolderId] integerValue]; }
+// #warning 64BIT dje integerValue -> intValue
+-(NSInteger)folderId					{ return [[messageData objectForKey:MA_Column_MessageFolderId] intValue]; }
 -(VMessage *)lastChildMessage	{ return lastChildMessage; }
 -(NSString *)sender				{ return [messageData objectForKey:MA_Column_MessageFrom]; }
--(NSInteger)messageId					{ return [[messageData objectForKey:MA_Column_MessageId] integerValue]; }
+// #warning 64BIT dje integerValue -> intValue
+-(NSInteger)messageId					{ return [[messageData objectForKey:MA_Column_MessageId] intValue]; }
 -(NSString *)title				{ return [messageData objectForKey:MA_Column_MessageTitle]; }
--(NSInteger)comment					{ return [[messageData objectForKey:MA_Column_MessageComment] integerValue]; }
+// #warning 64BIT dje integerValue -> intValue
+-(NSInteger)comment					{ return [[messageData objectForKey:MA_Column_MessageComment] intValue]; }
 -(NSString *)text				{ return [messageData objectForKey:MA_Column_MessageText]; }
 -(NSString *)guid				{ return [messageData objectForKey:MA_Column_MessageGuid]; }
 -(NSDate *)date					{ return [messageData objectForKey:MA_Column_MessageDate]; }

@@ -98,8 +98,8 @@
 		[subjectLine setEnabled:NO];
 		[messageWindow setInitialFirstResponder:textView];
 		
-#warning 64BIT: Check formatting arguments
-		NSString * commentSubject = [NSString stringWithFormat:@"Comment to message %d", [message comment]];
+//#warning 64BIT: Check formatting arguments
+		NSString * commentSubject = [NSString stringWithFormat:@"Comment to message %ld",(long) [message comment]];
 		[subjectLine setStringValue:commentSubject];
 		if ([message text])
 			[textView setString: [message text]];

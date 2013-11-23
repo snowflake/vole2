@@ -129,7 +129,8 @@ enum {
 	if (results && [results rowCount])
 	{
 		NSString * versionString = [[results rowAtIndex:0] stringForColumn:@"version"];
-		databaseVersion = [versionString integerValue];
+		// #warning 64BIT dje integerValue -> intValue
+		databaseVersion = [versionString intValue];
 	}
 	// static analyser complains
 	// [results release];
@@ -298,7 +299,7 @@ enum {
 	va_start(arguments, sqlStatement);
 //#warning 64BIT: Check formatting arguments
 	NSString * query = [[NSString alloc] initWithFormat:sqlStatement arguments:arguments];
-	SQLResult * result = [sqlDatabase performQuery:query];
+	/* SQLResult * result = */  [sqlDatabase performQuery:query];
 	[query release];
 	// static analyser complains
 	// [result release];
@@ -475,9 +476,11 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				NSInteger itemId = [[row stringForColumn:@"item_id"] integerValue];
-				NSInteger categoryId = [[row stringForColumn:@"category_id"] integerValue];
-				NSInteger status = [[row stringForColumn:@"status"] integerValue];
+// #warning 64BIT dje integerValue -> intValue
+
+				NSInteger itemId = [[row stringForColumn:@"item_id"] intValue];
+				NSInteger categoryId = [[row stringForColumn:@"category_id"] intValue];
+				NSInteger status = [[row stringForColumn:@"status"] intValue];
 				NSString * name = [row stringForColumn:@"name"];
 				NSString * description = [row stringForColumn:@"description"];
 				NSDate * lastActiveDate = [NSDate dateWithTimeIntervalSince1970:[[row stringForColumn:@"last_date"] doubleValue]];
@@ -502,8 +505,10 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				NSInteger categoryId = [[row stringForColumn:@"category_id"] integerValue];
-				NSInteger parentId = [[row stringForColumn:@"parent_id"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+
+				NSInteger categoryId = [[row stringForColumn:@"category_id"] intValue];
+				NSInteger parentId = [[row stringForColumn:@"parent_id"] intValue];
 				NSString * name = [row stringForColumn:@"name"];
 				
 				Category * category = [[Category alloc] initWithName:name];
@@ -747,7 +752,9 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+
+				NSInteger folderId = [[row stringForColumn:@"folder_id"] intValue];
 				NSString * url = [row stringForColumn:@"feed_url"];
 				NSDate * update = [NSDate dateWithTimeIntervalSince1970:[[row stringForColumn:@"last_update"] doubleValue]];
 
@@ -1458,7 +1465,8 @@ enum {
 			if (results && [results rowCount])
 			{
 				SQLRow * row = [results rowAtIndex:0];
-				messageNumber = [[row stringForColumn:@"max(message_id)"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+				messageNumber = [[row stringForColumn:@"max(message_id)"] intValue];
 			}
 			// analyser complains
 			// [results release];
@@ -1670,10 +1678,12 @@ enum {
 
 			while ((row = [enumerator nextObject]))
 			{
-				NSInteger taskId = [[row stringForColumn:@"task_id"] integerValue];
-				NSInteger orderCode = [[row stringForColumn:@"order_code"] integerValue];
-				NSInteger actionCode = [[row stringForColumn:@"action_code"] integerValue];
-				NSInteger resultCode = [[row stringForColumn:@"result_code"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+
+				NSInteger taskId = [[row stringForColumn:@"task_id"] intValue];
+				NSInteger orderCode = [[row stringForColumn:@"order_code"] intValue];
+				NSInteger actionCode = [[row stringForColumn:@"action_code"] intValue];
+				NSInteger resultCode = [[row stringForColumn:@"result_code"] intValue];
 				NSString * actionData = [row stringForColumn:@"action_data"];
 				NSString * folderName = [row stringForColumn:@"folder_name"];
 				NSString * resultString = [row stringForColumn:@"result_data"];
@@ -1964,7 +1974,8 @@ enum {
 			while ((row = [enumerator nextObject]))
 			{
 				NSString * search_string = [row stringForColumn:@"search_string"];
-				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+				NSInteger folderId = [[row stringForColumn:@"folder_id"] intValue];
 				
 				VCriteriaTree * criteriaTree = [[VCriteriaTree alloc] initWithString:search_string];
 				[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithLong:(long)folderId]];
@@ -2068,11 +2079,12 @@ enum {
 			while ((row = [enumerator nextObject]))
 			{
 				NSString * name = [row stringForColumn:@"foldername"];
-				NSInteger newItemId = [[row stringForColumn:@"folder_id"] integerValue];
-				NSInteger newParentId = [[row stringForColumn:@"parent_id"] integerValue];
-				NSInteger unreadCount = [[row stringForColumn:@"unread_count"] integerValue];
-				NSInteger priorityUnreadCount = [[row stringForColumn:@"priority_unread_count"] integerValue];
-				NSInteger permissions = [[row stringForColumn:@"permissions"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+				NSInteger newItemId = [[row stringForColumn:@"folder_id"] intValue];
+				NSInteger newParentId = [[row stringForColumn:@"parent_id"] intValue];
+				NSInteger unreadCount = [[row stringForColumn:@"unread_count"] intValue];
+				NSInteger priorityUnreadCount = [[row stringForColumn:@"priority_unread_count"] intValue];
+				NSInteger permissions = [[row stringForColumn:@"permissions"] intValue];
 				
 				// This code has a potential bug.
 				// We assume that the parent folder id always gets returned ahead of the
@@ -2116,7 +2128,8 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+				NSInteger folderId = [[row stringForColumn:@"folder_id"] intValue];
 				NSString * descriptiontext = [row stringForColumn:@"description"];
 				NSString * linktext = [row stringForColumn:@"link"];
 				Folder * folder = [self folderFromID:folderId];
@@ -2182,7 +2195,8 @@ enum {
 			{
 				NSString * name = [row stringForColumn:@"name"];
 				NSString * info = [row stringForColumn:@"info"];
-				NSInteger personId = [[row stringForColumn:@"person_id"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+				NSInteger personId = [[row stringForColumn:@"person_id"] intValue];
 
 				VPerson * person = [[VPerson alloc] init];
 				[person setPersonId:personId];
@@ -2307,9 +2321,10 @@ enum {
 			
 			while ((row = [enumerator nextObject]))
 			{
-				NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
-				NSInteger folderId = [[row stringForColumn:@"folder_id"] integerValue];
-				NSInteger commentId = [[row stringForColumn:@"comment_id"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+				NSInteger messageId = [[row stringForColumn:@"message_id"] intValue];
+				NSInteger folderId = [[row stringForColumn:@"folder_id"] intValue];
+				NSInteger commentId = [[row stringForColumn:@"comment_id"] intValue];
 				NSString * title = [row stringForColumn:@"title"];
 				NSString * senderName = [row stringForColumn:@"sender"];
 				NSString * guid = [row stringForColumn:@"sender"];
@@ -2363,10 +2378,11 @@ enum {
 
 			while ((row = [enumerator nextObject]) != nil)
 			{
-				NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
-				BOOL read_flag = [[row stringForColumn:@"read_flag"] integerValue];
-				BOOL priority_flag = [[row stringForColumn:@"priority_flag"] integerValue];
-				BOOL ignored_flag = [[row stringForColumn:@"ignored_flag"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+				NSInteger messageId = [[row stringForColumn:@"message_id"] intValue];
+				BOOL read_flag = [[row stringForColumn:@"read_flag"] intValue];
+				BOOL priority_flag = [[row stringForColumn:@"priority_flag"] intValue];
+				BOOL ignored_flag = [[row stringForColumn:@"ignored_flag"] intValue];
 				NSString * title = [row stringForColumn:@"title"];
 				NSString * sender = [row stringForColumn:@"sender"];
 
@@ -2626,7 +2642,8 @@ enum {
 
 				while ((row = [enumerator nextObject]) != nil)
 				{
-					NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
+					// #warning 64BIT dje integerValue -> intValue
+					NSInteger messageId = [[row stringForColumn:@"message_id"] intValue];
 					[newArray addObject:[NSNumber numberWithLong:(long)messageId]];
 				}
 			}
@@ -2698,15 +2715,16 @@ enum {
 
 			while ((row = [enumerator nextObject]) != nil)
 			{
-				NSInteger messageId = [[row stringForColumn:@"message_id"] integerValue];
-				NSInteger commentId = [[row stringForColumn:@"comment_id"] integerValue];
-				NSInteger messageFolderId = [[row stringForColumn:@"folder_id"] integerValue];
+				// #warning 64BIT dje integerValue -> intValue
+				NSInteger messageId = [[row stringForColumn:@"message_id"] intValue];
+				NSInteger commentId = [[row stringForColumn:@"comment_id"] intValue];
+				NSInteger messageFolderId = [[row stringForColumn:@"folder_id"] intValue];
 				NSString * messageTitle = [row stringForColumn:@"title"];
 				NSString * messageSender = [row stringForColumn:@"sender"];
-				BOOL read_flag = [[row stringForColumn:@"read_flag"] integerValue];
-				BOOL marked_flag = [[row stringForColumn:@"marked_flag"] integerValue];
-				BOOL priority_flag = [[row stringForColumn:@"priority_flag"] integerValue];
-				BOOL ignored_flag = [[row stringForColumn:@"ignored_flag"] integerValue];
+				BOOL read_flag = [[row stringForColumn:@"read_flag"] intValue];
+				BOOL marked_flag = [[row stringForColumn:@"marked_flag"] intValue];
+				BOOL priority_flag = [[row stringForColumn:@"priority_flag"] intValue];
+				BOOL ignored_flag = [[row stringForColumn:@"ignored_flag"] intValue];
 				NSString * guid = [row stringForColumn:@"rss_guid"];
 				NSDate * messageDate = [NSDate dateWithTimeIntervalSince1970:[[row stringForColumn:@"date"] doubleValue]];
 
@@ -2762,9 +2780,9 @@ enum {
 				}
 				if (priority_unread_count != [folder priorityUnreadCount])
 				{
-#warning 64BIT: Check formatting arguments
-					NSLog(@"Fixing priority unread count for %@ (%d on folder versus %d in messages) for folder_id %d, parent %d", 
-						  [folder name], [folder priorityUnreadCount], priority_unread_count, [folder itemId], [folder parentId]);
+// #warning 64BIT: Check formatting arguments
+					NSLog(@"Fixing priority unread count for %@ (%ld on folder versus %ld in messages) for folder_id %ld, parent %ld", 
+						  [folder name], (long)[folder priorityUnreadCount], (long)priority_unread_count, (long) [folder itemId], (long) [folder parentId]);
 					countOfPriorityUnread += priority_unread_count - [folder priorityUnreadCount];
 					[folder setPriorityUnreadCount:priority_unread_count];
 					[self flushFolder:folderId];
