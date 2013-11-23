@@ -1229,7 +1229,7 @@ enum {
  * A counterpart to addMessage but which takes a folder path and creates
  * the folders as needed.
  */
--(NSInteger)addMessageToFolder:(NSInteger)folderId path:(NSString *)path message:(VMessage *)message raw:(BOOL)raw wasNew:(BOOL *)wasNew;
+-(NSInteger)addMessageToFolder:(NSInteger)folderId path:(NSString *)path message:(VMessage *)message raw:(BOOL)raw wasNew:(BOOL *)wasNew
 {
 	// Parse off the folder path
 	folderId = [self addFolderByPath:folderId path:path];
@@ -1754,7 +1754,7 @@ enum {
 /* clearTasks
  * Remove tasks with the specified flag from the tasks list.
  */
--(void)clearTasks:(NSInteger)resultCode;
+-(void)clearTasks:(NSInteger)resultCode
 {
 	// Exit now if we're read-only
 	if (readOnly)

@@ -256,7 +256,7 @@
 }
 
 // Can't connect a base socket type
--(BOOL)connect;
+-(BOOL)connect
 {
 	return NO;
 }
@@ -386,7 +386,7 @@
 	return !endOfFile;
 }
 
--(void)setNonBlocking:(BOOL)yesno;
+-(void)setNonBlocking:(BOOL)yesno
 {
 	NSInteger blockFlag = yesno==YES?1:0;
 	

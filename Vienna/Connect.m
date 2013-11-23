@@ -482,7 +482,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
--(void)cleanForumsList;
+-(void)cleanForumsList
 {
 	[db cleanBrowserTables];
 }
@@ -953,7 +953,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 }
 
 // Send a file via Zmodem
--(NSInteger)zmodemSend:(NSString *)fileName;
+-(NSInteger)zmodemSend:(NSString *)fileName
 {
 	NSTask *zmTask;
 	NSFileHandle *fh;
@@ -989,7 +989,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 
 
 // Receive a file via Zmodem
--(NSInteger)zmodemReceive:(NSString *)downloadFolder;
+-(NSInteger)zmodemReceive:(NSString *)downloadFolder
 {
 	NSTask *zmTask;
 	NSFileHandle *fh;

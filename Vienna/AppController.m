@@ -1655,7 +1655,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 /* doViewColumn
  * Toggle whether or not a specified column is visible.
  */
--(void)doViewColumn:(id)sender;
+-(void)doViewColumn:(id)sender
 {
 	NSMenuItem * menuItem = (NSMenuItem *)sender;
 	VField * field = [menuItem representedObject];
@@ -2619,7 +2619,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 /* mugshotUpdated
  * An image was dragged onto the mugshots window, save it.
  */
--(IBAction)mugshotUpdated:(id)sender;
+-(IBAction)mugshotUpdated:(id)sender
 {
 	VMessage * theRecord = [currentArrayOfMessages objectAtIndex:currentSelectedRow];
 
@@ -3224,7 +3224,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 /* viewNextPriorityUnread
  * Moves the selection to the next priority unread message.
  */
--(IBAction)viewNextPriorityUnread:(id)sender;
+-(IBAction)viewNextPriorityUnread:(id)sender
 {
 	if (currentSelectedRow >= 0)
 	{

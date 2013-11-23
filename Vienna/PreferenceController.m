@@ -853,7 +853,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	}
 }
 
--(IBAction)browseDownloadFolder:(id)sender;
+-(IBAction)browseDownloadFolder:(id)sender
 {
 	NSOpenPanel *panel = [NSOpenPanel openPanel];
 	NSString * defaultFolder = [[NSUserDefaults standardUserDefaults] stringForKey: MAPref_DownloadFolder];

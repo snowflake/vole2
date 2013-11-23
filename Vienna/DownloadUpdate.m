@@ -127,7 +127,7 @@
 
 /* shouldDecodeSourceDataOfMIMEType
  */
--(BOOL)download:(NSURLDownload *)download shouldDecodeSourceDataOfMIMEType:(NSString *)encodingType;
+-(BOOL)download:(NSURLDownload *)download shouldDecodeSourceDataOfMIMEType:(NSString *)encodingType
 {
     BOOL shouldDecode = NO;
     if ([encodingType isEqual:@"application/macbinary"])

@@ -41,7 +41,7 @@ enum {
     return self;
 }
 
--(void)initiateCheck:(id)sender;
+-(void)initiateCheck:(id)sender
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:_fileURL];

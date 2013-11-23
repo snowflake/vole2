@@ -75,7 +75,7 @@
 /* pictureUpdated
  * An image was dragged onto the picture window, save it.
  */
--(IBAction)pictureUpdated:(id)sender;
+-(IBAction)pictureUpdated:(id)sender
 {
 	// Get dropped image and save it.
 	NSData * TIFFData = [[personImage image] TIFFRepresentationUsingCompression: NSTIFFCompressionLZW factor: 1.0];
