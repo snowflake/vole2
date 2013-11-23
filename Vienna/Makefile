@@ -7,6 +7,8 @@ all:
 # set up appropiate developer dirs, can be changed in environment
 DEVELOPER_DIR_XC3?= /Xcode3.2.6
 DEVELOPER_DIR_XC5?= /Applications/Xcode.app/Contents/Developer
+PROJECT_XC3=Vole_xc3.xcodeproj
+PROJECT_XC5=Vole_xc5.xcodeproj
 
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
 		mavericks
@@ -26,6 +28,7 @@ tiger-release tiger: MOSXDT=10.4
 tiger-release tiger: ARCHS=ppc i386
 tiger-release tiger: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 tiger-release tiger: SDK_NAME=macosx10.4
+tiger-release tiger: PROJECT=${PROJECT_XC3}
 
 leopard-release: NAME=vl
 leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal.
@@ -35,6 +38,7 @@ leopard-release leopard: MOSXDT=10.5
 leopard-release leopard: ARCHS=ppc i386 x86_64
 leopard-release leopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 leopard-release leopard: SDK_NAME=macosx10.5
+leopard-release leopard: PROJECT=${PROJECT_XC3}
 
 snowleopard-release: NAME=vs
 snowleopard-release: COMPATIBILITY=Snow Leopard (10.6) and later, Intel
@@ -44,6 +48,7 @@ snowleopard-release snowleopard: MOSXDT=10.5
 snowleopard-release snowleopard: ARCHS=ppc i386 x86_64
 snowleopard-release snowleopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 snowleopard-release snowleopard: SDK_NAME=macosx10.6
+snowleopard-release snowleopard: PROJECT=${PROJECT_XC3}
 
 mavericks-release: NAME=vv
 mavericks-release: COMPATIBILITY=Tiger and Later, Intel
@@ -53,6 +58,7 @@ mavericks-release mavericks: MOSXDT=10.7
 mavericks-release mavericks: ARCHS=i386
 mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
 mavericks-release mavericks: SDK_NAME=macosx10.9
+mavericks-release mavericks: PROJECT=${PROJECT_XC5}
 
 lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
@@ -94,9 +100,9 @@ ${BUILDS}:
 	[ -d ${DEVELOPER_DIR} ] 
 	rm -f XXXX-Tempfile.h
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-	xcodebuild -project Vole.xcodeproj  -configuration $@ clean 
+	xcodebuild -project ${PROJECT}  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-	xcodebuild -project Vole.xcodeproj  -configuration $@ \
+	xcodebuild -project ${PROJECT}  -configuration $@ \
 		BUILDID="${SHORTDATE}.${SN}" \
 		ARCHS="${ARCHS}" SDK_NAME="${SDK_NAME}" \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}"
