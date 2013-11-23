@@ -724,7 +724,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 				threadData.mask = 0;
 				threadData.message = message;
 				[self performSelectorOnMainThread:@selector(addRSSMessageToDatabase:)
-//#warning 64BIT: Inspect use of sizeof
+// #warning 64BIT: Inspect use of sizeof
 									   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 									waitUntilDone:YES];
 			}
