@@ -71,7 +71,6 @@ enum {
 }
 
 // General functions
--(NSInteger)getMessages:(VTask *)task;
 -(id)initWithCredentials:(Credentials *)theCredentials;
 -(NSString *)username;
 -(NSString *)password;
