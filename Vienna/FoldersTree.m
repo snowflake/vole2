@@ -451,7 +451,8 @@
  */
 -(void)handleFolderDeleted:(NSNotification *)nc
 {
-	NSInteger folderId = [(NSNumber *)[nc object] integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger folderId = [(NSNumber *)[nc object] intValue];
 	TreeNode * thisNode = [rootNode nodeFromID:folderId];
 	TreeNode * nextNode;
 
@@ -486,7 +487,8 @@
  */
 -(void)handleFolderUpdate:(NSNotification *)nc
 {
-	NSInteger folderId = [(NSNumber *)[nc object] integerValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger folderId = [(NSNumber *)[nc object] intValue];
 	[self updateFolder:folderId recurseToParents:YES];
 }
 
@@ -600,11 +602,11 @@
 	if (node != nil)
 	{
 		if ([[node folder] childUnreadCount])
-#warning 64BIT: Check formatting arguments
-			return [NSString stringWithFormat:@"%d unread messages", [[node folder] childUnreadCount]];
+// #warning 64BIT: Check formatting arguments
+			return [NSString stringWithFormat:@"%ld unread messages", (long) [[node folder] childUnreadCount]];
 		if (([[node folder] permissions] == MA_ReadOnly_Folder) && [[node folder] unreadCount] > 0)
-#warning 64BIT: Check formatting arguments
-			return [NSString stringWithFormat:@"%d unread messages", [[node folder] unreadCount]];
+// #warning 64BIT: Check formatting arguments
+			return [NSString stringWithFormat:@"%ld unread messages", (long) [[node folder] unreadCount]];
 	}
 	return nil;
 }
@@ -622,11 +624,11 @@
 	if (node == nil)
 		node = rootNode;
 	if (([[node folder] permissions] == MA_ReadWrite_Folder) && [[node folder] messageCount] > 0)
-#warning 64BIT: Check formatting arguments
-		return ([NSString stringWithFormat:@"%@ (%d)", [node nodeName], [[node folder] messageCount]]);
+// #warning 64BIT: Check formatting arguments
+		return ([NSString stringWithFormat:@"%@ (%ld)", [node nodeName], (long)[[node folder] messageCount]]);
 	if (!IsSearchFolder([node folder]) && [[node folder] unreadCount])
 #warning 64BIT: Check formatting arguments
-		return ([NSString stringWithFormat:@"%@ (%d)", [node nodeName], [[node folder] unreadCount]]);
+		return ([NSString stringWithFormat:@"%@ (%ld)", [node nodeName], (long)[[node folder] unreadCount]]);
 	return [node nodeName];
 }
 

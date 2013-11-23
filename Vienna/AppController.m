@@ -362,9 +362,11 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 
 		identifier = [dataArray objectAtIndex:index++];
 		if (index < [dataArray count])
-			visible = [[dataArray objectAtIndex:index++] integerValue] == YES;
+			// #warning 64BIT dje integerValue -> intValue
+			visible = [[dataArray objectAtIndex:index++] intValue] == YES;
 		if (index < [dataArray count])
-			width = [[dataArray objectAtIndex:index++] integerValue];
+			// #warning 64BIT dje integerValue -> intValue
+			width = [[dataArray objectAtIndex:index++] intValue];
 
 		field = [db fieldByIdentifier:identifier];
 		[field setVisible:visible];
@@ -643,8 +645,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	{
 		if (currentCountOfPriorityUnread > 0)
 		{
-#warning 64BIT: Check formatting arguments
-			NSString *countdown = [NSString stringWithFormat:@"%i", currentCountOfPriorityUnread];
+// #warning 64BIT: Check formatting arguments
+			NSString *countdown = [NSString stringWithFormat:@"%li", (long)currentCountOfPriorityUnread];
 			NSImage * iconImageBuffer = [originalIcon copy];
 			NSSize iconSize = [originalIcon size];
 
