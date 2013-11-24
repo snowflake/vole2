@@ -1523,7 +1523,7 @@
 					"SQLITE_WITHOUT_ZONEMALLOC=1",
 					__DEBUG__,
 				);
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = 4.0;
 				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
 				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
