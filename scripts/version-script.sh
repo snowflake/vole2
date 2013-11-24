@@ -101,6 +101,7 @@ printf '"GCC Version: %s\\n"\n' "${GCC_VERSION}" >>${OF}
 printf '#ifdef __VERSION__\n"GCC: " __VERSION__ "\\n" \n#endif\n' >>${OF}
 printf '#ifdef __clang_version__\n"Clang: " __clang_version__ "\\n" \n#endif\n' >>${OF}
 
+printf '"GCC/Clang optimization level: %s\\n"\n' "${GCC_OPTIMIZATION_LEVEL}" >>${OF}
 printf '"MacOSX Deployment Target: %s\\n"\n' "${MACOSX_DEPLOYMENT_TARGET}" >>${OF}
 printf '"Product Name: %s\\n"\n' "${PRODUCT_NAME}" >>${OF}
 printf '"SDK Root: %s\\n"\n' "${SDKROOT}" >>${OF}
