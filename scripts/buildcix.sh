@@ -16,7 +16,7 @@ sdk="${8}"
 shortbuild="${9}"
 
 function list_minimum_osx(){
-printf "Minumum OS X required: "
+printf "Minimum OS X required: "
 case ${deploy} in 
 	10.4)   printf "10.4 Tiger and later";;
 	10.5)   printf "10.5 Leopard and later";;
