@@ -58,7 +58,12 @@
 	}
 	else
 	{
+#if 0
+        // This is broken on Mavericks
 		NSString * outputFormat = [defaults objectForKey:@"NSShortDateFormatString"];
+#else
+        NSString * outputFormat = @"%d/%m/%Y";
+#endif
 		theDate = [self descriptionWithCalendarFormat:outputFormat];
 	}
 	
