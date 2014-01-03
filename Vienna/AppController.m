@@ -276,6 +276,10 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	// Start the check timer
 	checkTimer = nil;
 	[self handleCheckFrequencyChange:nil];
+    
+    // DJE 2014-01-03 resize the mugshot view
+    int mugshotHeight = [defaults integerForKey:MAPref_MugshotsSize];
+    [self resizeMugshotView:mugshotHeight];
 }
 
 /* updateHTMLDict
