@@ -278,8 +278,19 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[self handleCheckFrequencyChange:nil];
     
     // DJE 2014-01-03 resize the mugshot view
-    int mugshotHeight = [defaults integerForKey:MAPref_MugshotsSize];
-    [self resizeMugshotView:mugshotHeight];
+    // this did not work:
+    // ====
+    //    int mugshotHeight = [defaults integerForKey:MAPref_MugshotsSize];
+    //    [self resizeMugshotView:mugshotHeight];
+    // ====
+    // try this:
+	BOOL mugshotsEnabled = [ defaults boolForKey:MAPref_MugshotsEnabled];
+	NSString * mugshotsFolderName = [ defaults stringForKey:MAPref_MugshotsFolder ];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"MA_Notify_MugshotsFolderChanged"
+     object: mugshotsEnabled ? mugshotsFolderName : nil ];
+    // ====
+
 }
 
 /* updateHTMLDict
