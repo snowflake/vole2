@@ -10,6 +10,10 @@ DEVELOPER_DIR_XC5?= /Applications/Xcode.app/Contents/Developer
 PROJECT_XC3=Vole_xc3.xcodeproj
 PROJECT_XC5=Vole_xc5.xcodeproj
 
+# Xcode.app locations
+XC3_XCODE_APP=${DEVELOPER_DIR_XC3}/Applications/Xcode.app
+XC5_XCODE_APP?=/Applications/Xcode.app
+
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
 		mavericks
 RELEASES:= 	Development-release tiger-release leopard-release \
@@ -28,7 +32,7 @@ tiger-release tiger: MOSXDT=10.4
 tiger-release tiger: ARCHS=ppc i386
 tiger-release tiger: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 tiger-release tiger: SDK_NAME=macosx10.4
-tiger-release tiger: PROJECT=${PROJECT_XC3}
+tiger-release tiger tiger-go: PROJECT=${PROJECT_XC3}
 
 leopard-release: NAME=vl
 leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal.
@@ -38,7 +42,7 @@ leopard-release leopard: MOSXDT=10.5
 leopard-release leopard: ARCHS=ppc i386 x86_64
 leopard-release leopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 leopard-release leopard: SDK_NAME=macosx10.5
-leopard-release leopard: PROJECT=${PROJECT_XC3}
+leopard-release leopard leopard-go: PROJECT=${PROJECT_XC3}
 
 snowleopard-release: NAME=vs
 snowleopard-release: COMPATIBILITY=Snow Leopard (10.6) and later, Intel
@@ -48,7 +52,7 @@ snowleopard-release snowleopard: MOSXDT=10.5
 snowleopard-release snowleopard: ARCHS=ppc i386 x86_64
 snowleopard-release snowleopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 snowleopard-release snowleopard: SDK_NAME=macosx10.6
-snowleopard-release snowleopard: PROJECT=${PROJECT_XC3}
+snowleopard-release snowleopard snowleopard-go: PROJECT=${PROJECT_XC3}
 
 mavericks-release: NAME=vv
 mavericks-release: COMPATIBILITY=Tiger and Later, Intel
@@ -58,7 +62,7 @@ mavericks-release mavericks: MOSXDT=10.7
 mavericks-release mavericks: ARCHS=i386
 mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
 mavericks-release mavericks: SDK_NAME=macosx10.9
-mavericks-release mavericks: PROJECT=${PROJECT_XC5}
+mavericks-release mavericks mavericks-go: PROJECT=${PROJECT_XC5}
 
 lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
@@ -107,9 +111,16 @@ ${BUILDS}:
 		ARCHS="${ARCHS}" SDK_NAME="${SDK_NAME}" \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}"
 
-# Run the version of Xcode appropiate to the target
+# Run the version of Xcode appropriate to the target.
+# This helps to preserve Xcode and Interface Builder integration
+# especially on Xcode3.
+# Xcode 3 projects:-
 tiger-go leopard-go snowleopard-go:
-	open ${DEVELOPER_DIR}/Applications/Xcode.app
+	open -a ${XC3_XCODE_APP}  ${PROJECT}
+# Xcode 5 projects:-
+lion-go mountainlion-go mavericks-go:
+	open -a ${XC5_XCODE_APP}  ${PROJECT}
+
 
 # Run the Vienna app from its build directory
 tiger-run leopard-run snowleopard-run lion-run \
