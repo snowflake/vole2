@@ -68,6 +68,9 @@ lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
 
+mountainlion-release: 	NAME=vm
+
+
 #Development: SHORT=DV 
 Development Development-release:  SN=0
 #tiger:	     SHORT=TG 
