@@ -194,8 +194,8 @@
 -(IBAction)showAcknowledgements:(id)sender;
 -(IBAction)uploadFile:(id)sender;
 -(IBAction)downloadFile:(id)sender;
--(IBAction)cancelUpload:(id)sender;
--(IBAction)okUpload:(id)sender;
+-(IBAction)cancelDownload:(id)sender;
+-(IBAction)okDownload:(id)sender;
 -(IBAction)copyUrl:(id)sender;
 -(IBAction)setCIXBack:(id)sender;
 

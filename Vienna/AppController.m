@@ -2688,13 +2688,15 @@ int messageSortHandler(id i1, id i2, void * context)
 	[panel setAllowsMultipleSelection: YES];
 }
 
--(IBAction)cancelUpload:(id)sender
+#pragma mark Download file
+
+-(IBAction)cancelDownload:(id)sender
 {
 	[downloadWindow orderOut:sender];
 	[NSApp endSheet:downloadWindow returnCode:NSCancelButton];
 }
 
--(IBAction)okUpload:(id)sender
+-(IBAction)okDownload:(id)sender
 {
 	[downloadWindow orderOut:sender];
 	[NSApp endSheet:downloadWindow returnCode:NSOKButton];
