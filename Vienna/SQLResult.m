@@ -25,7 +25,7 @@ static SEL sRowCountSelector;
 
 #pragma mark -
 
--(id)initWithTable:(char**)inTable rows:(int)inRows columns:(int)inColumns
+-(id)initWithTable:(char**)inTable rows:(NSInteger)inRows columns:(NSInteger)inColumns
 {
 	if( ![super init])
 		return nil;
@@ -62,19 +62,19 @@ static SEL sRowCountSelector;
 
 #pragma mark -
 
--(int)rowCount
+-(NSInteger)rowCount
 {
 	return mRows;
 }
 
--(int)columnCount
+-(NSInteger)columnCount
 {
 	return mColumns;
 }
 
 #pragma mark -
 
--(SQLRow*)rowAtIndex:(int)inIndex
+-(SQLRow*)rowAtIndex:(NSInteger)inIndex
 {
 	if( inIndex >= mRows )
 		return nil;
@@ -101,7 +101,7 @@ static SEL sRowCountSelector;
 	mResult = [inResult retain];
 	mPosition = 0;
 	mRowAtIndexMethod = [mResult methodForSelector:sRowAtIndexSelector];
-	mRowCountMethod = (int (*)(SQLResult*, SEL))[mResult methodForSelector:sRowCountSelector];
+	mRowCountMethod = (NSInteger (*)(SQLResult*, SEL))[mResult methodForSelector:sRowCountSelector];
 	
 	return self;
 }

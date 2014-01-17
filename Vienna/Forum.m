@@ -35,21 +35,21 @@
 
 /* categoryId
  */
--(int)categoryId
+-(NSInteger)categoryId
 {
 	return categoryId;
 }
 
 /* nodeId
  */
--(int)nodeId
+-(NSInteger)nodeId
 {
 	return nodeId;
 }
 
 /* status
  */
--(int)status
+-(NSInteger)status
 {
 	return status;
 }
@@ -63,7 +63,7 @@
 
 /* folderId
  */
--(int)folderId
+-(NSInteger)folderId
 {
 	return folderId;
 }
@@ -84,28 +84,28 @@
 
 /* setCategoryId
  */
--(void)setCategoryId:(int)newCategoryId
+-(void)setCategoryId:(NSInteger)newCategoryId
 {
 	categoryId = newCategoryId;
 }
 
 /* setNodeId
  */
--(void)setNodeId:(int)newNodeId
+-(void)setNodeId:(NSInteger)newNodeId
 {
 	nodeId = newNodeId;
 }
 
 /* setStatus
  */
--(void)setStatus:(int)newStatus
+-(void)setStatus:(NSInteger)newStatus
 {
 	status = newStatus;
 }
 
 /* setFolderId
  */
--(void)setFolderId:(int)newFolderId
+-(void)setFolderId:(NSInteger)newFolderId
 {
 	folderId = newFolderId;
 }

@@ -29,7 +29,7 @@
 // Functions
 -(id)initWithData:(NSData *)data;
 -(id)initWithEmptyTree;
--(int)countOfChildren;
+-(NSInteger)countOfChildren;
 -(NSString *)nodeName;
 -(XMLParser *)addTree:(NSString *)name;
 -(XMLParser *)addTree:(NSString *)name withElement:(NSString *)value;
@@ -42,7 +42,7 @@
 -(NSString *)valueOfAttribute:(NSString *)attributeName;
 -(XMLParser *)treeByName:(NSString *)name;
 -(XMLParser *)treeByPath:(NSString *)path;
--(XMLParser *)treeByIndex:(int)index;
+-(XMLParser *)treeByIndex:(NSInteger)index;
 +(NSString *)quoteAttributes:(NSString *)stringToProcess;
 +(NSString *)processAttributes:(NSString *)stringToProcess;
 +(NSCalendarDate *)parseXMLDate:(NSString *)dateString;

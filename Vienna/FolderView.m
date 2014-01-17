@@ -21,7 +21,7 @@
 #import"FolderView.h"
 
 @interface NSObject (FoldersViewDelegate)
--(BOOL)handleKeyDown:(unichar)keyChar withFlags:(unsigned int)flags;
+-(BOOL)handleKeyDown:(unichar)keyChar withFlags:(NSUInteger)flags;
 @end
 
 @implementation FolderView
@@ -43,7 +43,7 @@
  * Returns the ID of the row being dragged, or -1 if no
  * dragging is ocurring.
  */
--(int)dragRow
+-(NSInteger)dragRow
 {
 	return dragRow;
 }
@@ -89,7 +89,7 @@
 -(void)buildTooltips
 {
     NSRange range;
-    unsigned int index;
+    NSUInteger index;
 
     [self removeAllToolTips];
 
@@ -116,7 +116,7 @@
  */
 -(NSString *)view:(NSView *)view stringForToolTip:(NSToolTipTag)tag point:(NSPoint)point userData:(void *)data
 {
-    int row;
+    NSInteger row;
     
     row = [self rowAtPoint:point];
     return [_dataSource outlineView:self tooltipForItem:[self itemAtRow:row]];

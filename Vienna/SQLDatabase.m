@@ -51,7 +51,7 @@
 
 -(BOOL)open
 {
-	int	err;
+	NSInteger	err;
 	NSFileManager *fm = [NSFileManager defaultManager];
 	
 	// If the new sqlite3 database does not exist then convert the old one (iff that exists!)
@@ -105,7 +105,7 @@
 	return string;
 }
 
--(int)lastInsertRowId
+-(NSInteger)lastInsertRowId
 {
 	if( !mDatabase )
 		return -1;
@@ -129,6 +129,7 @@
 	NSData  *ls = [ inQuery dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion: YES];
 	char *qs = calloc( [ls length] +1, 1);
 	if(qs == NULL){
+// #warning 64BIT: Check formatting arguments
 		NSLog(@"calloc failed at %s %d",__FILE__, __LINE__);
 		return nil;
 	}
@@ -164,6 +165,7 @@
 	
 	va_start( arguments, inFormat );
 	
+// #warning 64BIT: Check formatting arguments
 	query = [[NSString alloc] initWithFormat:inFormat arguments:arguments];
 	sqlResult = [self performQuery:query];
 	[query release];
@@ -173,9 +175,9 @@
 	return sqlResult;
 }
 
--(int)upgradeFromSqlite2
+-(NSInteger)upgradeFromSqlite2
 {
-	int status;
+	NSInteger status;
 	NSString *sqlite2 = [[NSBundle mainBundle] pathForAuxiliaryExecutable: @"sqlite2"];
 	NSString *cmd = [[NSString alloc] initWithFormat: @"echo '.dump'|%@ ~/Library/Vienna/database.db | /usr/bin/sqlite3 %@", sqlite2, mPath];
 

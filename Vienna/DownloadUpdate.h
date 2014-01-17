@@ -28,7 +28,9 @@
 	IBOutlet NSTextField * progressString;
 	IBOutlet NSWindow * updateWindow;
 	NSURLDownload * theDownload;
+// #warning 64BIT: Inspect use of long
 	long expectedLength;
+// #warning 64BIT: Inspect use of long
 	long bytesReceived;
 }
 

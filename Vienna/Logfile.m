@@ -21,7 +21,7 @@
 
 @implementation Logfile
 
--(id)initWithName:(NSString *)filename versions:(int)versions
+-(id)initWithName:(NSString *)filename versions:(NSInteger)versions
 {
 	if (versions == 0)
 		return self;
@@ -37,7 +37,7 @@
 	return self;
 }
 
--(void)write:(char *)text length:(int)len;
+-(void)write:(char *)text length:(NSInteger)len
 {
 	if (maxVersions == 0)
 		return;
@@ -64,21 +64,24 @@
 
 -(void)purgeVersions
 {
-	int i;
+	NSInteger i;
 	NSString *oldVersion;
 	NSString *newVersion;
 	NSFileManager *fm = [NSFileManager defaultManager];
 
 	// Get rid of oldest version;
-	NSString *oldNum = [NSString stringWithFormat:@"%03d", maxVersions];
+// #warning 64BIT: Check formatting arguments
+	NSString *oldNum = [NSString stringWithFormat:@"%03ld", (long)maxVersions];
 	oldVersion = [self makeFilename: oldNum];
 	[fm removeFileAtPath: oldVersion handler:nil];
 		
     // Move the rest up
 	for (i=maxVersions-1; i>0; i--)
 	{
-		NSString *oldNum = [NSString stringWithFormat:@"%03d", i];
-		NSString *newNum = [NSString stringWithFormat:@"%03d", i+1];
+// #warning 64BIT: Check formatting arguments
+		NSString *oldNum = [NSString stringWithFormat:@"%03ld",(long) i];
+// #warning 64BIT: Check formatting arguments
+		NSString *newNum = [NSString stringWithFormat:@"%03ld",(long) i+1];
 		
 		oldVersion = [self makeFilename: oldNum];
 		newVersion = [self makeFilename: newNum];

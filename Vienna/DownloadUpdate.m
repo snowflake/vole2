@@ -33,6 +33,7 @@
     [progressBar startAnimation:self];
 
 	// Set the title
+// #warning 64BIT: Check formatting arguments
 	NSString * title = [NSString stringWithFormat:NSLocalizedString(@"Downloading %@", nil), [toFilename lastPathComponent]];
 	[titleString setStringValue:title];
 	
@@ -87,7 +88,7 @@
 /* didReceiveDataOfLength
  * Called when a block of data is received from the server.
  */
--(void)download:(NSURLDownload *)download didReceiveDataOfLength:(unsigned)length
+-(void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
 {
 	NSString * unitString;
 	double unitsValue;
@@ -110,13 +111,15 @@
 	}
     if (expectedLength != NSURLResponseUnknownLength)
 	{
-        float percentComplete = (bytesReceived / (float)expectedLength) * 100.0;
-		NSString * progress = [NSString stringWithFormat:NSLocalizedString(@"Full download progress", nil), unitsValue, unitString, (int)percentComplete];
+        CGFloat percentComplete = (bytesReceived / (CGFloat)expectedLength) * 100.0;
+// #warning 64BIT: Check formatting arguments -changed to long for percentComplete.  This code is never used as we don't have an update server, so nevever tested
+		NSString * progress = [NSString stringWithFormat:NSLocalizedString(@"Full download progress", nil), unitsValue, unitString, (long)percentComplete];
 		[progressString setStringValue:progress];
 		[progressBar setDoubleValue:percentComplete];
 	}
 	else
 	{
+// #warning 64BIT: Check formatting arguments (OK -DJE)
 		NSString * progress = [NSString stringWithFormat:NSLocalizedString(@"Simple download progress", nil), unitsValue, unitString];
 		[progressString setStringValue:progress];
     }
@@ -124,7 +127,7 @@
 
 /* shouldDecodeSourceDataOfMIMEType
  */
--(BOOL)download:(NSURLDownload *)download shouldDecodeSourceDataOfMIMEType:(NSString *)encodingType;
+-(BOOL)download:(NSURLDownload *)download shouldDecodeSourceDataOfMIMEType:(NSString *)encodingType
 {
     BOOL shouldDecode = NO;
     if ([encodingType isEqual:@"application/macbinary"])
@@ -148,6 +151,7 @@
         errorDescription = NSLocalizedString(@"An error occured during download.", nil);
 	else
 		errorDescription = [NSString stringWithFormat:@"The download failed because: %@.", [error localizedDescription]];
+// #warning 64BIT: Check formatting arguments
     NSBeginAlertSheet(NSLocalizedString(@"Download Failed", nil), nil, nil, nil, [self window], nil, nil, nil, nil, errorDescription);
 
     [download release];

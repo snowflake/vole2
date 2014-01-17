@@ -43,7 +43,7 @@
 /* setTaskId
  * Sets the ID for this task.
  */
--(void)setTaskId:(int)newTaskId
+-(void)setTaskId:(NSInteger)newTaskId
 {
 	taskId = newTaskId;
 }
@@ -51,7 +51,7 @@
 /* taskId
  * Returns the unique task ID
  */
--(int)taskId
+-(NSInteger)taskId
 {
 	return taskId;
 }
@@ -59,7 +59,7 @@
 /* setActionCode
  * Sets the action code for this task
  */
--(void)setActionCode:(int)newActionCode
+-(void)setActionCode:(NSInteger)newActionCode
 {
 	actionCode = newActionCode;
 }
@@ -67,7 +67,7 @@
 /* actionCode
  * Return the action code that identifies this task.
  */
--(int)actionCode
+-(NSInteger)actionCode
 {
 	return actionCode;
 }
@@ -111,7 +111,7 @@
 /* setResultCode
  * Sets the action result code
  */
--(void)setResultCode:(int)newResultCode
+-(void)setResultCode:(NSInteger)newResultCode
 {
 	resultCode = newResultCode;
 }
@@ -119,7 +119,7 @@
 /* resultCode
  * Returns the action result code.
  */
--(int)resultCode
+-(NSInteger)resultCode
 {
 	return resultCode;
 }
@@ -127,7 +127,7 @@
 /* setOrderCode
  * Sets the action order code
  */
--(void)setOrderCode:(int)newOrderCode
+-(void)setOrderCode:(NSInteger)newOrderCode
 {
 	orderCode = newOrderCode;
 }
@@ -135,7 +135,7 @@
 /* orderCode
  * Returns the action order code.
  */
--(int)orderCode
+-(NSInteger)orderCode
 {
 	return orderCode;
 }
@@ -149,6 +149,7 @@
 	va_list arguments;
 	
 	va_start(arguments, format);
+// #warning 64BIT: Check formatting arguments
 	formattedString = [[NSString alloc] initWithFormat:format arguments:arguments];
 	[self setResultString:formattedString];
 	[formattedString release];
@@ -230,7 +231,8 @@
  */
 -(NSString *)description
 {
-	return [NSString stringWithFormat:@"(code=%d, data='%@', order=%d, result=%d, resultData='%@')", actionCode, actionData, orderCode, resultCode, resultString];
+// #warning 64BIT: Check formatting arguments
+	return [NSString stringWithFormat:@"(code=%ld, data='%@', order=%ld, result=%ld, resultData='%@')", (long)actionCode, actionData, (long)orderCode, (long)resultCode, resultString];
 }
 
 /* taskCompare

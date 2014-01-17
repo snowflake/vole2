@@ -30,12 +30,12 @@
     return cell;
 }
 
--(void)setOffset:(int)newOffset
+-(void)setOffset:(NSInteger)newOffset
 {
 	offset = newOffset;
 }
 
--(int)offset
+-(NSInteger)offset
 {
 	return offset;
 }
@@ -77,7 +77,7 @@
     [super editWithFrame: textFrame inView: controlView editor:textObj delegate:anObject event: theEvent];
 }
 
--(void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength
+-(void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength
 {
     NSRect textFrame, imageFrame;
     NSDivideRect (aRect, &imageFrame, &textFrame, 3 + [image size].width, NSMinXEdge);
@@ -86,8 +86,8 @@
 
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-	int drawingOffset = (offset * 10);
-	int cellContentWidth;
+	NSInteger drawingOffset = (offset * 10);
+	NSInteger cellContentWidth;
 
 	cellContentWidth = [self cellSizeForBounds:cellFrame].width;
 	if (image != nil)

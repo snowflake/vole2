@@ -57,7 +57,7 @@
 /* readSoFar
  * Returns the number of bytes read so far.
  */
--(int)readSoFar
+-(NSInteger)readSoFar
 {
 	return readSoFar;
 }
@@ -65,7 +65,7 @@
 /* fileSize
  * Returns the size of the entire file
  */
--(int)fileSize
+-(NSInteger)fileSize
 {
 	return fileSize;
 }
@@ -79,7 +79,7 @@
 {
 	NSMutableString * lineString = [NSMutableString stringWithCapacity:BF_STRING_MAX];
 	char lineBuffer[BF_LINE_MAX];
-	int count;
+	NSInteger count;
 	char ch;
 
 	ch = [self readChar];
@@ -129,12 +129,12 @@
 /* readTextOfSize
  * Reads textSize characters from the input.
  */
--(NSString *)readTextOfSize:(int)textSize
+-(NSString *)readTextOfSize:(NSInteger)textSize
 {
 	NSMutableString * textString = [NSMutableString stringWithCapacity:textSize];
 	char textBuffer[BF_LINE_MAX];
-	int charSize;
-	int count;
+	NSInteger charSize;
+	NSInteger count;
 	char ch;
 
 	ch = [self readUnixChar:&charSize];
@@ -172,7 +172,7 @@
 /* readUnixChar
  * Reads one character from the buffer. Newlines are converted to \n
  */
--(char)readUnixChar:(int *)charSizePtr
+-(char)readUnixChar:(NSInteger *)charSizePtr
 {
 	char ch = [self readChar];
 	char charSize = 1;

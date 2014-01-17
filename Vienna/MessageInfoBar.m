@@ -61,7 +61,8 @@
 
 		NSMutableAttributedString * infoBarString = [[NSMutableAttributedString alloc] init];
 
-		NSString * messageNumber = [NSString stringWithFormat:@"%d", [message messageId]];
+// #warning 64BIT: Check formatting arguments
+		NSString * messageNumber = [NSString stringWithFormat:@"%ld", (long)[message messageId]];
 		NSString * senderName = [message sender];
 		NSString * messageDate = [[[message date] dateWithCalendarFormat:nil timeZone:nil] friendlyDescription];
 		NSString * folderName = [db folderPathName:[message folderId]];
@@ -86,7 +87,8 @@
 
 		if ([message comment])
 		{
-			NSString * commentNumber = [NSString stringWithFormat:@"%d", [message comment]];
+// #warning 64BIT: Check formatting arguments
+			NSString * commentNumber = [NSString stringWithFormat:@"%ld", (long)[message comment]];
 			NSAttributedString * commentLabel = [[NSAttributedString alloc] initWithString:NSLocalizedString(@". Comment to message ", nil) attributes:normalDict];
 			NSAttributedString * commentPart = [[NSAttributedString alloc] initWithString:commentNumber attributes:boldDict];
 

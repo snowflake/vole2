@@ -58,7 +58,7 @@
         NSRange colRange = [self columnsInRect:visibleRect];
         NSRange rowRange = [self rowsInRect:visibleRect];
         NSRect frameOfCell;
-		unsigned col, row;
+		NSUInteger col, row;
 		
         for (col = colRange.location; col < colRange.location + colRange.length; col++)
 		{
@@ -76,8 +76,8 @@
  */
 -(NSString *)view:(NSView *)view stringForToolTip:(NSToolTipTag)tag point:(NSPoint)point userData:(void *)matrix
 {
-    int rowIndex = [self rowAtPoint:point];
-    int columnIndex = [self columnAtPoint:point];
+    NSInteger rowIndex = [self rowAtPoint:point];
+    NSInteger columnIndex = [self columnAtPoint:point];
     NSTableColumn *tableColumn = (columnIndex != -1) ? [[self tableColumns] objectAtIndex:columnIndex] : nil;
     return (columnIndex != -1) ? [[self delegate] tableView:self toolTipForTableColumn:tableColumn row:rowIndex] : @"";
 }

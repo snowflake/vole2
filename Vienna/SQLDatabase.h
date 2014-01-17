@@ -30,22 +30,22 @@
 -(SQLResult*)performQuery:(NSString*)inQuery;
 -(SQLResult*)performQueryWithFormat:(NSString*)inFormat, ...;
 
--(int)lastInsertRowId;
--(int)upgradeFromSqlite2;
+-(NSInteger)lastInsertRowId;
+-(NSInteger)upgradeFromSqlite2;
 
 @end
 
 @interface SQLResult : NSObject
 {
 	char**	mTable;
-	int		mRows;
-	int		mColumns;
+	NSInteger		mRows;
+	NSInteger		mColumns;
 }
 
--(int)rowCount;
--(int)columnCount;
+-(NSInteger)rowCount;
+-(NSInteger)columnCount;
 
--(SQLRow*)rowAtIndex:(int)inIndex;
+-(SQLRow*)rowAtIndex:(NSInteger)inIndex;
 -(NSEnumerator*)rowEnumerator;
 
 @end
@@ -54,17 +54,17 @@
 {
 	char**	mRowData;
 	char**	mColumns;
-	int		mColumnCount;
+	NSInteger		mColumnCount;
 }
 
--(int)columnCount;
+-(NSInteger)columnCount;
 
--(NSString*)nameOfColumnAtIndex:(int)inIndex;
--(NSString*)nameOfColumnAtIndexNoCopy:(int)inIndex;
+-(NSString*)nameOfColumnAtIndex:(NSInteger)inIndex;
+-(NSString*)nameOfColumnAtIndexNoCopy:(NSInteger)inIndex;
 
 -(NSString*)stringForColumn:(NSString*)inColumnName;
 -(NSString*)stringForColumnNoCopy:(NSString*)inColumnName;
--(NSString*)stringForColumnAtIndex:(int)inIndex;
--(NSString*)stringForColumnAtIndexNoCopy:(int)inIndex;
+-(NSString*)stringForColumnAtIndex:(NSInteger)inIndex;
+-(NSString*)stringForColumnAtIndexNoCopy:(NSInteger)inIndex;
 
 @end

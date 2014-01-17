@@ -203,7 +203,7 @@
 /* treeByIndex
  * Returns an XMLParser object for the child tree at the specified index.
  */
--(XMLParser *)treeByIndex:(int)index
+-(XMLParser *)treeByIndex:(NSInteger)index
 {
 	return [XMLParser treeWithCFXMLTreeRef:CFTreeGetChildAtIndex(tree, index)];
 }
@@ -243,8 +243,8 @@
  */
 -(XMLParser *)treeByName:(NSString *)name
 {
-	int count = CFTreeGetChildCount(tree);
-	int index;
+	NSInteger count = CFTreeGetChildCount(tree);
+	NSInteger index;
 	
 	for (index = count - 1; index >= 0; --index)
 	{
@@ -259,7 +259,7 @@
 /* countOfChildren
  * Count of children of this tree
  */
--(int)countOfChildren
+-(NSInteger)countOfChildren
 {
 	return CFTreeGetChildCount(tree);
 }
@@ -372,8 +372,8 @@
 	
 	if (isXMLContent)
 	{
-		int count = CFTreeGetChildCount(tree);
-		int index;
+		NSInteger count = CFTreeGetChildCount(tree);
+		NSInteger index;
 		
 		for (index = 0; index < count; ++index)
 		{
@@ -391,8 +391,8 @@
 	}
 	else
 	{
-		int count = CFTreeGetChildCount(tree);
-		int index;
+		NSInteger count = CFTreeGetChildCount(tree);
+		NSInteger index;
 		
 		for (index = 0; index < count; ++index)
 		{
@@ -443,8 +443,8 @@
 		return nil;
 	
 	NSMutableString * processedString = [[NSMutableString alloc] initWithString:stringToProcess];
-	int entityStart;
-	int entityEnd;
+	NSInteger entityStart;
+	NSInteger entityEnd;
 	
 	entityStart = [processedString indexOfCharacterInString:'&' afterIndex:0];
 	while (entityStart != NSNotFound)
@@ -457,6 +457,7 @@
 			NSString * stringToAppend;
 			
 			if ([entityString characterAtIndex:1] == '#' && entityRange.length > 3)
+// #warning 64BIT dje
 				stringToAppend = [NSString stringWithFormat:@"%c", [[entityString substringFromIndex:2] intValue]];
 			else
 			{

@@ -42,8 +42,8 @@
 	NSMutableArray * arrayOfViews;
 	Database * db;
 	NSRect searchWindowFrame;
-	int searchFolderId;
-	int totalCriteria;
+	NSInteger searchFolderId;
+	NSInteger totalCriteria;
 	BOOL firstRun;
 }
 
@@ -56,7 +56,7 @@
 
 // Public functions
 -(void)newCriteria:(NSWindow *)window;
--(void)loadCriteria:(NSWindow *)window folderId:(int)folderId;
+-(void)loadCriteria:(NSWindow *)window folderId:(NSInteger)folderId;
 
 // General functions
 -(id)initWithDatabase:(Database *)newDb;
@@ -64,9 +64,9 @@
 -(void)displaySearchSheet:(NSWindow *)window;
 -(void)initForField:(NSString *)fieldName inRow:(NSView *)row;
 -(void)setOperatorsPopup:(NSPopUpButton *)popUpButton, ...;
--(void)addCriteria:(unsigned int)index;
--(void)addDefaultCriteria:(int)index;
--(void)removeCriteria:(int)index;
+-(void)addCriteria:(NSUInteger)index;
+-(void)addDefaultCriteria:(NSInteger)index;
+-(void)removeCriteria:(NSInteger)index;
 -(void)removeAllCriteria;
 -(void)resizeSearchWindow;
 @end

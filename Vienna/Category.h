@@ -22,17 +22,17 @@
 #import "Vole.h"
 
 @interface Category : NSObject {
-	int categoryId;
-	int parentId;
+	NSInteger categoryId;
+	NSInteger parentId;
 	NSString * name;
 }
 
 // Public functions
--(int)categoryId;
--(int)parentId;
+-(NSInteger)categoryId;
+-(NSInteger)parentId;
 -(NSString *)name;
--(void)setCategoryId:(int)newCategoryId;
--(void)setParentId:(int)newParentId;
+-(void)setCategoryId:(NSInteger)newCategoryId;
+-(void)setParentId:(NSInteger)newParentId;
 -(void)setName:(NSString *)name;
 -(NSComparisonResult)categoryCompare:(Category *)otherObject;
 -(id)initWithName:(NSString *)newName;

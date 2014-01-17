@@ -79,10 +79,10 @@
 #define MA_OrderCode_GetRSS				800
 
 @interface VTask : NSObject {
-	int taskId;
-	int orderCode;
-	int actionCode;
-	int resultCode;
+	NSInteger taskId;
+	NSInteger orderCode;
+	NSInteger actionCode;
+	NSInteger resultCode;
 	NSString * actionData;
 	NSString * folderName;
 	NSString * resultString;
@@ -91,22 +91,22 @@
 }
 
 // Public accessor functions
--(int)taskId;
--(int)orderCode;
--(int)actionCode;
+-(NSInteger)taskId;
+-(NSInteger)orderCode;
+-(NSInteger)actionCode;
 -(NSString *)actionData;
 -(NSString *)folderName;
--(int)resultCode;
+-(NSInteger)resultCode;
 -(NSString *)resultString;
 -(NSDate *)lastRunDate;
 -(NSDate *)earliestRunDate;
 
--(void)setTaskId:(int)newTaskId;
--(void)setOrderCode:(int)orderCode;
--(void)setActionCode:(int)newActionCode;
+-(void)setTaskId:(NSInteger)newTaskId;
+-(void)setOrderCode:(NSInteger)orderCode;
+-(void)setActionCode:(NSInteger)newActionCode;
 -(void)setActionData:(NSString *)newActionData;
 -(void)setFolderName:(NSString *)newFolderName;
--(void)setResultCode:(int)newResultCode;
+-(void)setResultCode:(NSInteger)newResultCode;
 -(void)setResultString:(NSString *)newResultString;
 -(void)setResultStringWithFormat:(NSString *)newResultString, ...;
 -(void)setLastRunDate:(NSDate *)newLastRunDate;

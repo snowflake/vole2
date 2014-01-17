@@ -41,7 +41,7 @@ enum {
     return self;
 }
 
--(void)initiateCheck:(id)sender;
+-(void)initiateCheck:(id)sender
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:_fileURL];
@@ -257,7 +257,7 @@ enum {
 -(void)returnError:(MacPADResultCode)code message:(NSString *)msg
 {
     NSNumber *yesno = [NSNumber numberWithBool:(code == kMacPADResultNewVersion)];
-    NSNumber *errorCode = [NSNumber numberWithInt:code];
+    NSNumber *errorCode = [NSNumber numberWithLong:(long)code];
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:yesno, MacPADNewVersionAvailable,
                                                 msg, MacPADErrorMessage, errorCode, MacPADErrorCode, nil];
     if (code == 0 || code == 5) {
@@ -342,7 +342,7 @@ enum {
     NSArray *partsB = [self splitVersion:versionB];
     
     NSString *partA, *partB;
-    int i, n, typeA, typeB, intA, intB;
+    NSInteger i, n, typeA, typeB, intA, intB;
     
     n = MIN([partsA count], [partsB count]);
     for (i = 0; i < n; ++i) {
@@ -393,7 +393,7 @@ enum {
         // Yep. Lets get the next part of the larger
         // n holds the value we want
         NSString *missingPart;
-        int missingType, shorterResult, largerResult;
+        NSInteger missingType, shorterResult, largerResult;
         
         if ([partsA count] > [partsB count]) {
             missingPart = [partsA objectAtIndex:n];
@@ -424,7 +424,7 @@ enum {
 {
     NSString *character;
     NSMutableString *s;
-    int i, n, oldType, newType;
+    NSInteger i, n, oldType, newType;
     NSMutableArray *parts = [NSMutableArray array];
     if ([version length] == 0) {
         // Nothing to do here
@@ -452,10 +452,11 @@ enum {
     return parts;
 }
 
--(int)getCharType:(NSString *)character
+-(NSInteger)getCharType:(NSString *)character
 {
     if ([character isEqualToString:@"."]) {
         return kPeriodType;
+// #warning 64BIT
     } else if ([character isEqualToString:@"0"] || [character intValue] != 0) {
         return kNumberType;
     } else {

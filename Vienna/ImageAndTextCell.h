@@ -24,12 +24,12 @@
 @interface ImageAndTextCell : NSTextFieldCell {
 	@private
     NSImage	*image;
-	int offset;
+	NSInteger offset;
 }
--(void)setOffset:(int)offset;
+-(void)setOffset:(NSInteger)offset;
 -(void)setImage:(NSImage *)anImage;
 -(NSImage *)image;
--(int)offset;
+-(NSInteger)offset;
 -(void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView;
 -(NSSize)cellSize;
 @end

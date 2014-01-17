@@ -32,7 +32,7 @@
 
 /* initWithAddress
  */
--(id)initWithAddress:(NSString *)theAddress port:(int)thePort
+-(id)initWithAddress:(NSString *)theAddress port:(NSInteger)thePort
 {
 	if ((self = [super init]) != nil)
 	{

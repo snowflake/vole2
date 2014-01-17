@@ -21,7 +21,7 @@
 #import "MessageListView.h"
 
 @interface NSObject(MessageListViewDelegate)
--(BOOL)handleKeyDown:(unichar)keyChar withFlags:(unsigned int)flags;
+-(BOOL)handleKeyDown:(unichar)keyChar withFlags:(NSUInteger)flags;
 @end
 
 @implementation MessageListView

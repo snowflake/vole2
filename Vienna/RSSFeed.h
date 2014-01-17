@@ -36,7 +36,7 @@
 	IBOutlet NSButton * siteHomePageButton;
 	NSDictionary * sourcesDict;
 	Database * db;
-	int editFolderId;
+	NSInteger editFolderId;
 }
 
 // Action handlers
@@ -50,6 +50,6 @@
 // General functions
 -(id)initWithDatabase:(Database *)newDb;
 -(void)newRSSSubscription:(NSWindow *)window initialURL:(NSString *)initialURL;
--(void)editRSSSubscription:(NSWindow *)window folderId:(int)folderId;
+-(void)editRSSSubscription:(NSWindow *)window folderId:(NSInteger)folderId;
 
 @end

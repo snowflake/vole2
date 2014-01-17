@@ -78,7 +78,7 @@
 /* setPersonId
  * Sets the ID of the person.
  */
--(void)setPersonId:(int)newPersonId
+-(void)setPersonId:(NSInteger)newPersonId
 {
 	personId = newPersonId;
 }
@@ -138,7 +138,7 @@
 /* personId
  * Returns the person Id
  */
--(int)personId
+-(NSInteger)personId
 {
 	return personId;
 }

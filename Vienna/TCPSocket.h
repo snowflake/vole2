@@ -25,7 +25,7 @@
 @interface TCPSocket : Socket {
 }
 
--(id)initWithAddress:(NSString *)theAddress port:(int)thePort;
+-(id)initWithAddress:(NSString *)theAddress port:(NSInteger)thePort;
 -(BOOL)connect;
 
 @end

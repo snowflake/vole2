@@ -41,9 +41,9 @@
 	BOOL initializedPersonArray;
 	BOOL initializedRSSArray;
 	BOOL readOnly;
-	int databaseVersion;
-	int countOfPriorityUnread;
-	int cachedRSSNodeID;
+	NSInteger databaseVersion;
+	NSInteger countOfPriorityUnread;
+	NSInteger cachedRSSNodeID;
 	NSThread * mainThread;
 	BOOL inTransaction;
 	NSString * username;
@@ -65,7 +65,7 @@
 -(BOOL)initDatabase:(NSString *)databaseFileName;
 -(void)syncLastUpdate;
 -(void)setUsername:(NSString *)newUsername;
--(int)databaseVersion;
+-(NSInteger)databaseVersion;
 -(void)beginTransaction;
 -(void)commitTransaction;
 -(void)compactDatabase;
@@ -73,68 +73,68 @@
 -(void)close;
 
 // Fields functions
--(void)addField:(NSString *)name title:(NSString *)title type:(int)type tag:(int)tag sqlField:(NSString *)sqlField visible:(BOOL)visible width:(int)width;
+-(void)addField:(NSString *)name title:(NSString *)title type:(NSInteger)type tag:(NSInteger)tag sqlField:(NSString *)sqlField visible:(BOOL)visible width:(NSInteger)width;
 -(NSArray *)arrayOfFields;
 -(VField *)fieldByIdentifier:(NSString *)identifier;
 -(VField *)fieldByTitle:(NSString *)title;
 
 // Folder functions
 -(void)initFolderArray;
--(NSArray *)arrayOfFolders:(int)parentID;
--(Folder *)folderFromID:(int)wantedId;
--(Folder *)folderFromIDAndName:(int)wantedParentId name:(NSString *)wantedName;
--(int)addFolder:(int)conferenceId folderName:(NSString *)name permissions:(int)permissions mustBeUnique:(BOOL)mustBeUnique;
--(int)addFolderByPath:(int)parentId path:(NSString *)path;
--(BOOL)deleteFolder:(int)folderId;
--(BOOL)setFolderName:(int)folderId newName:(NSString *)newName;
--(BOOL)setFolderDescription:(int)folderId newDescription:(NSString *)newDescription;
--(BOOL)setFolderLink:(int)folderId newLink:(NSString *)newLink;
--(void)flushFolder:(int)folderId;
--(void)releaseMessages:(int)folderId;
--(void)markFolderRead:(int)folderId;
--(void)markFolderLocked:(int)folderId isLocked:(BOOL)isLocked;
--(void)setFolderUnreadCount:(Folder *)folder adjustment:(int)adjustment;
--(int)countOfPriorityUnread;
--(NSString *)folderPathName:(int)folderId;
--(int)conferenceNodeID;
--(int)rssNodeID;
+-(NSArray *)arrayOfFolders:(NSInteger)parentID;
+-(Folder *)folderFromID:(NSInteger)wantedId;
+-(Folder *)folderFromIDAndName:(NSInteger)wantedParentId name:(NSString *)wantedName;
+-(NSInteger)addFolder:(NSInteger)conferenceId folderName:(NSString *)name permissions:(NSInteger)permissions mustBeUnique:(BOOL)mustBeUnique;
+-(NSInteger)addFolderByPath:(NSInteger)parentId path:(NSString *)path;
+-(BOOL)deleteFolder:(NSInteger)folderId;
+-(BOOL)setFolderName:(NSInteger)folderId newName:(NSString *)newName;
+-(BOOL)setFolderDescription:(NSInteger)folderId newDescription:(NSString *)newDescription;
+-(BOOL)setFolderLink:(NSInteger)folderId newLink:(NSString *)newLink;
+-(void)flushFolder:(NSInteger)folderId;
+-(void)releaseMessages:(NSInteger)folderId;
+-(void)markFolderRead:(NSInteger)folderId;
+-(void)markFolderLocked:(NSInteger)folderId isLocked:(BOOL)isLocked;
+-(void)setFolderUnreadCount:(Folder *)folder adjustment:(NSInteger)adjustment;
+-(NSInteger)countOfPriorityUnread;
+-(NSString *)folderPathName:(NSInteger)folderId;
+-(NSInteger)conferenceNodeID;
+-(NSInteger)rssNodeID;
 -(NSImage *)imageForFolder:(Folder *)folder;
 
 // RSS feed functions
 -(NSArray *)arrayOfRSSFolders;
--(RSSFolder *)rssFolderFromId:(int)folderId;
+-(RSSFolder *)rssFolderFromId:(NSInteger)folderId;
 -(RSSFolder *)rssFolderFromURL:(NSString *)url;
--(int)addRSSFolder:(NSString *)feedName subscriptionURL:(NSString *)url;
--(BOOL)setRSSFolderFeed:(int)folderId subscriptionURL:(NSString *)url;
--(void)setRSSFeedLastUpdate:(int)folderId lastUpdate:(NSDate *)lastUpdate;
+-(NSInteger)addRSSFolder:(NSString *)feedName subscriptionURL:(NSString *)url;
+-(BOOL)setRSSFolderFeed:(NSInteger)folderId subscriptionURL:(NSString *)url;
+-(void)setRSSFeedLastUpdate:(NSInteger)folderId lastUpdate:(NSDate *)lastUpdate;
 
 // Forum functions
--(int)addForum:(Forum *)newForum;
--(int)addCategory:(Category *)newCategory;
--(NSArray *)arrayOfForums:(int)status inCategory:(int)categoryId;
--(NSArray *)arrayOfCategories:(int)parentId;
--(Category *)findCategory:(int)parentId name:(NSString *)name;
+-(NSInteger)addForum:(Forum *)newForum;
+-(NSInteger)addCategory:(Category *)newCategory;
+-(NSArray *)arrayOfForums:(NSInteger)status inCategory:(NSInteger)categoryId;
+-(NSArray *)arrayOfCategories:(NSInteger)parentId;
+-(Category *)findCategory:(NSInteger)parentId name:(NSString *)name;
 -(void)cleanBrowserTables;
 
 // Search Folder functions
 -(void)initSearchFoldersArray;
 -(BOOL)createSearchFolder:(NSString *)folderName withQuery:(VCriteriaTree *)criteriaTree;
--(BOOL)updateSearchFolder:(int)folderId withFolder:(NSString *)folderName withQuery:(VCriteriaTree *)criteriaTree;
--(VCriteriaTree *)searchStringForSearchFolder:(int)folderId;
+-(BOOL)updateSearchFolder:(NSInteger)folderId withFolder:(NSString *)folderName withQuery:(VCriteriaTree *)criteriaTree;
+-(VCriteriaTree *)searchStringForSearchFolder:(NSInteger)folderId;
 -(NSString *)criteriaToSQL:(VCriteriaTree *)criteriaTree;
 
 // Tasks functions
 -(void)initTasksArray;
 -(NSArray *)arrayOfTasks:(BOOL)onlyReadyTasks;
--(VTask *)addTask:(int)action_code actionData:(NSString *)actionData folderName:(NSString *)folderName orderCode:(int)orderCode;
+-(VTask *)addTask:(NSInteger)action_code actionData:(NSString *)actionData folderName:(NSString *)folderName orderCode:(NSInteger)orderCode;
 -(VTask *)addTask:(VTask *)task;
 -(void)deleteTask:(VTask *)task;
--(VTask *)findTask:(int)wantedActionCode wantedActionData:(NSString *)wantedActionData;
+-(VTask *)findTask:(NSInteger)wantedActionCode wantedActionData:(NSString *)wantedActionData;
 -(void)setTaskCompleted:(VTask *)task;
 -(void)setTaskWaiting:(VTask *)task;
 -(void)setTaskRunning:(VTask *)task;
 -(void)updateTask:(VTask *)task;
--(void)clearTasks:(int)tasksFlag;
+-(void)clearTasks:(NSInteger)tasksFlag;
 
 // Person data functions
 -(VPerson *)retrievePerson:(NSString *)name;
@@ -142,26 +142,26 @@
 
 // Message functions
 -(BOOL)initMessageArray:(Folder *)folder;
--(int)addMessage:(int)folderID message:(VMessage *)message wasNew:(BOOL *)wasNew;
--(int)addMessageToFolder:(int)folderId path:(NSString *)path message:(VMessage *)message raw:(BOOL)raw wasNew:(BOOL *)wasNew;
--(BOOL)deleteMessage:(int)folderId messageNumber:(int)messageNumber;
--(NSArray *)arrayOfMessages:(int)folderId filterString:(NSString *)filterString withoutIgnored:(BOOL)withoutIgnored sorted:(BOOL *)sorted;
--(NSArray *)arrayOfChildMessages:(int)folderId messageId:(int)messageId;
--(NSArray *)arrayOfMessagesNumbers:(int)folderId;
--(void)buildArrayOfChildMessages:(NSMutableArray *)newArray folder:(Folder *)folder messageId:(int)messageId searchIndex:(unsigned int)searchIndex;
--(NSString *)messageText:(int)folderId messageId:(int)messageId;
--(void)markMessageRead:(int)folderId messageId:(int)messageId isRead:(BOOL)isRead;
--(void)markMessageFlagged:(int)folderId messageId:(int)messageId isFlagged:(BOOL)isFlagged;
--(void)markMessagePriority:(int)folderId messageId:(int)messageId isPriority:(BOOL)isPriority;
--(void)markMessageIgnored:(int)folderId messageId:(int)messageId isIgnored:(BOOL)isIgnored;
+-(NSInteger)addMessage:(NSInteger)folderID message:(VMessage *)message wasNew:(BOOL *)wasNew;
+-(NSInteger)addMessageToFolder:(NSInteger)folderId path:(NSString *)path message:(VMessage *)message raw:(BOOL)raw wasNew:(BOOL *)wasNew;
+-(BOOL)deleteMessage:(NSInteger)folderId messageNumber:(NSInteger)messageNumber;
+-(NSArray *)arrayOfMessages:(NSInteger)folderId filterString:(NSString *)filterString withoutIgnored:(BOOL)withoutIgnored sorted:(BOOL *)sorted;
+-(NSArray *)arrayOfChildMessages:(NSInteger)folderId messageId:(NSInteger)messageId;
+-(NSArray *)arrayOfMessagesNumbers:(NSInteger)folderId;
+-(void)buildArrayOfChildMessages:(NSMutableArray *)newArray folder:(Folder *)folder messageId:(NSInteger)messageId searchIndex:(NSUInteger)searchIndex;
+-(NSString *)messageText:(NSInteger)folderId messageId:(NSInteger)messageId;
+-(void)markMessageRead:(NSInteger)folderId messageId:(NSInteger)messageId isRead:(BOOL)isRead;
+-(void)markMessageFlagged:(NSInteger)folderId messageId:(NSInteger)messageId isFlagged:(BOOL)isFlagged;
+-(void)markMessagePriority:(NSInteger)folderId messageId:(NSInteger)messageId isPriority:(BOOL)isPriority;
+-(void)markMessageIgnored:(NSInteger)folderId messageId:(NSInteger)messageId isIgnored:(BOOL)isIgnored;
 -(NSArray *)findMessages:(NSDictionary *)criteriaDictionary;
 -(void)loadRSSGuids:(id)ignored;
 -(NSMutableDictionary *)getRSSGuids;
 
 
 // Spotlight metatdata functions
--(void)removeSpotlightMetadata:(int)messageId folder:(int)folderId;
--(void)addSpotlightMetadata:(int)messageId folder:(int)folderId sender:(NSString *)senderName date:(NSDate *)date text:(NSString *)text;
--(NSString *)createSpotlightFolder:(int)folderId message:(int)messageId;
+-(void)removeSpotlightMetadata:(NSInteger)messageId folder:(NSInteger)folderId;
+-(void)addSpotlightMetadata:(NSInteger)messageId folder:(NSInteger)folderId sender:(NSString *)senderName date:(NSDate *)date text:(NSString *)text;
+-(NSString *)createSpotlightFolder:(NSInteger)folderId message:(NSInteger)messageId;
 
 @end

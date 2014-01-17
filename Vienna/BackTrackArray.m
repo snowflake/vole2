@@ -25,8 +25,8 @@
 // This structure defines one item in the backtrack
 // array sufficient to backtrack to any element.
 typedef struct{
-	int folderId;
-	int messageNumber;
+	NSInteger folderId;
+	NSInteger messageNumber;
 } BackTrackItem;
 
 @implementation BackTrackArray
@@ -56,14 +56,14 @@ typedef struct{
  */
 -(BOOL)isAtEndOfQueue
 {
-	return queueIndex >= (int)[array count] - 1;
+	return queueIndex >= (NSInteger)[array count] - 1;
 }
 
 /* previousItemAtQueue
  * Removes an item from the tail of the queue as long as the queue is not
  * empty and returns the backtrack data.
  */
--(BOOL)previousItemAtQueue:(int *)folderId messageNumber:(int *)messageNumber
+-(BOOL)previousItemAtQueue:(NSInteger *)folderId messageNumber:(NSInteger *)messageNumber
 {
 	if (queueIndex > 0)
 	{
@@ -83,9 +83,9 @@ typedef struct{
  * Removes an item from the tail of the queue as long as the queue is not
  * empty and returns the backtrack data.
  */
--(BOOL)nextItemAtQueue:(int *)folderId messageNumber:(int *)messageNumber
+-(BOOL)nextItemAtQueue:(NSInteger *)folderId messageNumber:(NSInteger *)messageNumber
 {
-	if (queueIndex < (int)[array count] - 1)
+	if (queueIndex < (NSInteger)[array count] - 1)
 	{
 		BackTrackItem * data;
 		NSData * dataItem;
@@ -108,12 +108,12 @@ typedef struct{
  * new 'head' position. This produces the expected results when tracking
  * from the new item inserted back to the most recent item.
  */
--(void)addToQueue:(int)folderId messageNumber:(int)messageNumber
+-(void)addToQueue:(NSInteger)folderId messageNumber:(NSInteger)messageNumber
 {
 	NSData * dataItem;
 	BackTrackItem data;
 
-	while (queueIndex + 1 < (int)[array count])
+	while (queueIndex + 1 < (NSInteger)[array count])
 		[array removeObjectAtIndex:queueIndex + 1];
 	if ([array count] == MAX_BACKTRACK_ITEMS)
 	{
@@ -122,6 +122,7 @@ typedef struct{
 	}
 	data.folderId = folderId;
 	data.messageNumber = messageNumber;
+// #warning 64BIT: Inspect use of sizeof
 	dataItem = [[NSData alloc] initWithBytes:&data length:sizeof(data)];
 	[array addObject:dataItem];
 	[dataItem release];

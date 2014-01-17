@@ -31,7 +31,7 @@
 	Logfile *logFile;
 }
 
--(id)initWithAddress:(NSString *)theAddress port:(int)thePort;
+-(id)initWithAddress:(NSString *)theAddress port:(NSInteger)thePort;
 -(NSString *)address;
 -(int)port;
 -(int)getFd;

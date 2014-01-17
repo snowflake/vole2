@@ -16,7 +16,7 @@
 "%d subscriptions successfully imported" = "%d subscriptions successfully imported";
 "RSS Subscription Export Title" = "Export Completed";
 "%d subscriptions successfully exported" = "%d subscriptions successfully exported";
-"Growl description" = "%d new messages were retrieved by Vole";
+"Growl description" = "%ld new messages were retrieved by Vole";
 "Growl notification name" = "New Messages";
 "Growl notification title" = "New Messages";
 "Retrieving profile..." = "Retrieving profile...";
@@ -46,7 +46,7 @@
 "Smart Folder" = "Smart Folder";
 "Delete selected message" = "Are you sure you want to permanently delete the selected articles?";
 "Delete selected message text" = "This operation cannot be undone.";
-"Infobar Format" = "%d messages";
+"Infobar Format" = "%ld messages";
 "Cancel" = "Cancel";
 "OK" = "OK";
 "From" = "From";
@@ -72,7 +72,7 @@
 "An update is now available" = "An update is now available";
 "Update available text" = "Version %@ of Vole is available from:\n\n%@\n\nWould you like to download it now? If you choose not to download it now, you can download it later by choosing Check For Updates again.";
 "Simple download progress" = "%.1f%@ received";
-"Full download progress" = "%.1f%@ received (%d%% complete)";
+"Full download progress" = "%.1f%@ received (%ld%% complete)";
 "Starting..." = "Starting...";
 "Downloading %@" = "Downloading %@";
 "An error occured during download." = "Vole was unable to determine the cause of the error. Please contact technical support for assistance.";

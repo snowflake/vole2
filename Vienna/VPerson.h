@@ -22,7 +22,7 @@
 #import "Vole.h"
 
 @interface VPerson : NSObject {
-	int personId;
+	NSInteger personId;
 	NSString * shortName;
 	NSString * name;
 	NSString * emailAddress;
@@ -37,7 +37,7 @@
 -(void)setEmailAddress:(NSString *)newEmailAddress;
 -(void)setInfo:(NSString *)newInfo;
 -(void)setParsedInfo:(NSString *)newParsedInfo;
--(void)setPersonId:(int)newId;
+-(void)setPersonId:(NSInteger)newId;
 -(void)setPicture:(NSImage *)newPicture;
 -(NSString *)name;
 -(NSString *)shortName;
@@ -45,6 +45,6 @@
 -(NSString *)info;
 -(NSString *)parsedInfo;
 -(NSImage *)picture;
--(int)personId;
+-(NSInteger)personId;
 -(NSComparisonResult)personCompare:(VPerson *)otherObject;
 @end

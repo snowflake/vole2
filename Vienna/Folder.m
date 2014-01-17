@@ -25,7 +25,7 @@
 
 /* initWithId
 */
--(id)initWithId:(int)newId parentId:(int)newIdParent name:(NSString *)newName permissions:(int)newPerms
+-(id)initWithId:(NSInteger)newId parentId:(NSInteger)newIdParent name:(NSString *)newName permissions:(NSInteger)newPerms
 {
 	if ((self = [super init]) != nil)
 	{
@@ -49,7 +49,7 @@
 /* itemId
  * Returns this item's ID.
  */
--(int)itemId
+-(NSInteger)itemId
 {
 	return itemId;
 }
@@ -57,35 +57,35 @@
 /* parentId
  * Returns this item's parent ID.
  */
--(int)parentId
+-(NSInteger)parentId
 {
 	return parentId;
 }
 
 /* unreadCount
  */
--(int)unreadCount
+-(NSInteger)unreadCount
 {
 	return unreadCount;
 }
 
 /* permissions
  */
--(int)permissions
+-(NSInteger)permissions
 {
 	return permissions;
 }
 
 /* priorityUnreadCount
  */
--(int)priorityUnreadCount
+-(NSInteger)priorityUnreadCount
 {
 	return priorityUnreadCount;
 }
 
 /* childUnreadCount
  */
--(int)childUnreadCount
+-(NSInteger)childUnreadCount
 {
 	return childUnreadCount;
 }
@@ -157,17 +157,17 @@
 /* setPermissions
  * Updates the permissions mask.
  */
--(void)setPermissions:(int)newPermissions
+-(void)setPermissions:(NSInteger)newPermissions
 {
 	permissions = newPermissions;
 }
 
 /* messageFromID
  */
--(VMessage *)messageFromID:(int)messageId
+-(VMessage *)messageFromID:(NSInteger)messageId
 {
 	NSAssert(isMessages, @"Folder's cache of messages should be initialized before messageFromID can be used");
-	return [messages objectForKey:[NSNumber numberWithInt:messageId]];
+	return [messages objectForKey:[NSNumber numberWithLong:(long)messageId]];
 }
 
 /* messages
@@ -179,7 +179,7 @@
 
 /* setUnreadCount
  */
--(void)setUnreadCount:(int)count
+-(void)setUnreadCount:(NSInteger)count
 {
 	NSAssert1(count >= 0, @"Attempting to set a negative unread count on folder %@", name);
 	if (unreadCount != count)
@@ -191,7 +191,7 @@
 
 /* setPrioritytUnreadCount
  */
--(void)setPriorityUnreadCount:(int)count
+-(void)setPriorityUnreadCount:(NSInteger)count
 {
 	NSAssert1(count >= 0, @"Attempting to set a negative priority unread count on folder %@", name);
 	if (priorityUnreadCount != count)
@@ -205,7 +205,7 @@
  * Update a separate count of the total number of unread messages
  * in all child folders.
  */
--(void)setChildUnreadCount:(int)count
+-(void)setChildUnreadCount:(NSInteger)count
 {
 	NSAssert1(count >= 0, @"Attempting to set a negative unread count on folder %@", name);
 	childUnreadCount = count;
@@ -238,16 +238,16 @@
  */
 -(void)addMessage:(VMessage *)newMessage
 {
-	[messages setObject:newMessage forKey:[NSNumber numberWithInt:[newMessage messageId]]];
+	[messages setObject:newMessage forKey:[NSNumber numberWithLong:(long)[newMessage messageId]]];
 	isMessages = YES;
 }
 
 /* deleteMessage
  */
--(void)deleteMessage:(int)messageId
+-(void)deleteMessage:(NSInteger)messageId
 {
 	NSAssert(isMessages, @"Folder's cache of messages should be initialized before deleteMessage can be used");
-	[messages removeObjectForKey:[NSNumber numberWithInt:messageId]];
+	[messages removeObjectForKey:[NSNumber numberWithLong:(long)messageId]];
 }
 
 /* markFolderEmpty
@@ -260,9 +260,9 @@
 
 /* messageCount
  */
--(int)messageCount
+-(NSInteger)messageCount
 {
-	return isMessages ? (int)[messages count] : -1;
+	return isMessages ? (NSInteger)[messages count] : -1;
 }
 
 /* folderCompare
@@ -297,7 +297,7 @@ NSString * cixConfs = @"CIX Conferences";
 -(NSScriptObjectSpecifier *)objectSpecifier
 {
     NSArray * folders = [[NSApp delegate] folders];
-    unsigned index = [folders indexOfObjectIdenticalTo:self];
+    NSUInteger index = [folders indexOfObjectIdenticalTo:self];
     if (index != NSNotFound)
 	{
         NSScriptObjectSpecifier *containerRef = [[NSApp delegate] objectSpecifier];

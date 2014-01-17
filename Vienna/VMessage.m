@@ -38,7 +38,7 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
 
 /* initWithData
  */
--(id)initWithInfo:(int)newMessageId
+-(id)initWithInfo:(NSInteger)newMessageId
 {
 	if ((self = [super init]) != nil)
 	{
@@ -118,29 +118,32 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
 -(BOOL)isRead					{ return readFlag; }
 -(BOOL)isFlagged				{ return markedFlag; }
 -(BOOL)isPriority				{ return priorityFlag; }
--(int)level						{ return level; }
--(int)folderId					{ return [[messageData objectForKey:MA_Column_MessageFolderId] intValue]; }
+-(NSInteger)level						{ return level; }
+// #warning 64BIT dje integerValue -> intValue
+-(NSInteger)folderId					{ return [[messageData objectForKey:MA_Column_MessageFolderId] intValue]; }
 -(VMessage *)lastChildMessage	{ return lastChildMessage; }
 -(NSString *)sender				{ return [messageData objectForKey:MA_Column_MessageFrom]; }
--(int)messageId					{ return [[messageData objectForKey:MA_Column_MessageId] intValue]; }
+// #warning 64BIT dje integerValue -> intValue
+-(NSInteger)messageId					{ return [[messageData objectForKey:MA_Column_MessageId] intValue]; }
 -(NSString *)title				{ return [messageData objectForKey:MA_Column_MessageTitle]; }
--(int)comment					{ return [[messageData objectForKey:MA_Column_MessageComment] intValue]; }
+// #warning 64BIT dje integerValue -> intValue
+-(NSInteger)comment					{ return [[messageData objectForKey:MA_Column_MessageComment] intValue]; }
 -(NSString *)text				{ return [messageData objectForKey:MA_Column_MessageText]; }
 -(NSString *)guid				{ return [messageData objectForKey:MA_Column_MessageGuid]; }
 -(NSDate *)date					{ return [messageData objectForKey:MA_Column_MessageDate]; }
 
 /* setLevel
  */
--(void)setLevel:(int)n
+-(void)setLevel:(NSInteger)n
 {
 	level = n;
 }
 
 /* setFolderId
  */
--(void)setFolderId:(int)newFolderId
+-(void)setFolderId:(NSInteger)newFolderId
 {
-	[messageData setObject:[NSNumber numberWithInt:newFolderId] forKey:MA_Column_MessageFolderId];
+	[messageData setObject:[NSNumber numberWithLong:(long)newFolderId] forKey:MA_Column_MessageFolderId];
 }
 
 /* setLastChildMessage
@@ -152,16 +155,16 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
 
 /* setNumber
  */
--(void)setNumber:(int)newMessageId
+-(void)setNumber:(NSInteger)newMessageId
 {
-	[messageData setObject:[NSNumber numberWithInt:newMessageId] forKey:MA_Column_MessageId];
+	[messageData setObject:[NSNumber numberWithLong:(long)newMessageId] forKey:MA_Column_MessageId];
 }
 
 /* setComment
  */
--(void)setComment:(int)newMessageComment
+-(void)setComment:(NSInteger)newMessageComment
 {
-	[messageData setObject:[NSNumber numberWithInt:newMessageComment] forKey:MA_Column_MessageComment];
+	[messageData setObject:[NSNumber numberWithLong:(long)newMessageComment] forKey:MA_Column_MessageComment];
 }
 
 /* markPriority
@@ -189,7 +192,8 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
  */
 -(NSString *)description
 {
-	return [NSString stringWithFormat:@"Message ID %u", [self messageId]];
+// #warning 64BIT: Check formatting arguments
+	return [NSString stringWithFormat:@"Message ID %ld", (long)[self messageId]];
 }
 
 /* dealloc

@@ -44,7 +44,7 @@
 #import "LogRect.h"
 
 // Non-class function used for sorting
-int messageSortHandler(id item1, id item2, void * context);
+NSInteger messageSortHandler(id item1, id item2, void * context);
 
 extern char * cixLocation_cstring; // in main.m
 extern int cixbetaflag; // in main.m
@@ -74,7 +74,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 {
 	// Set the preference defaults
 	NSMutableDictionary * defaultValues = [NSMutableDictionary dictionary];
-	NSNumber * cachedFolderID = [NSNumber numberWithInt:MA_Conference_NodeID];
+	NSNumber * cachedFolderID = [NSNumber numberWithLong:(long)MA_Conference_NodeID];
 	NSData * msgListFont = [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Lucida Grande" size:12.0]];
 	NSData * folderFont = [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Helvetica" size:12.0]];
 	NSData * messageFont = [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Helvetica" size:14.0]];
@@ -100,18 +100,18 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[defaultValues setObject:quoteColourAsData forKey:MAPref_QuoteColour];
 	[defaultValues setObject:priorityColourAsData forKey:MAPref_PriorityColour];
 	[defaultValues setObject:ignoredColourAsData forKey:MAPref_IgnoredColour];
-	[defaultValues setObject:[NSNumber numberWithInt:1] forKey:MAPref_SortDirection];
+	[defaultValues setObject:[NSNumber numberWithLong:(long)1] forKey:MAPref_SortDirection];
 	[defaultValues setObject:MA_Column_MessageId forKey:MAPref_SortColumn];
-	[defaultValues setObject:[NSNumber numberWithInt:0] forKey:MAPref_CheckFrequency];
+	[defaultValues setObject:[NSNumber numberWithLong:(long)0] forKey:MAPref_CheckFrequency];
 	[defaultValues setObject:NSLocalizedString(@"None", nil) forKey:MAPref_DefaultSignature];
 	[defaultValues setObject:[NSArray arrayWithObjects:nil] forKey:MAPref_MessageColumns];
-	[defaultValues setObject:[NSNumber numberWithInt:100] forKey:MAPref_RecentOnJoin];
+	[defaultValues setObject:[NSNumber numberWithLong:(long)100] forKey:MAPref_RecentOnJoin];
 	[defaultValues setObject:boolYes forKey:MAPref_AutoCollapseFolders];
 	[defaultValues setObject:boolNo forKey:MAPref_OnlineMode];
 	[defaultValues setObject:boolNo forKey:MAPref_Recovery];
 	[defaultValues setObject:boolYes forKey:MAPref_MugshotsEnabled];
 	[defaultValues setObject:MA_DefaultMugshotsFolder forKey:MAPref_MugshotsFolder];
-	[defaultValues setObject:[NSNumber numberWithInt: MUGSHOTS_DEFAULT_SIZE] forKey:MAPref_MugshotsSize];
+	[defaultValues setObject:[NSNumber numberWithLong:(long)MUGSHOTS_DEFAULT_SIZE] forKey:MAPref_MugshotsSize];
 	[defaultValues setObject:@"~/" forKey:MAPref_DownloadFolder];
 	[defaultValues setObject:boolYes forKey:MAPref_DetectMugshotDownload];
 	[defaultValues setObject:@"~/Library/Vienna" forKey:MAPref_LibraryFolder];
@@ -239,7 +239,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[self handleIgnoredColourChange:nil];
 
 	// Select the first conference
-	int previousFolderId = [defaults integerForKey:MAPref_CachedFolderID];
+	NSInteger previousFolderId = [defaults integerForKey:MAPref_CachedFolderID];
 	if (![foldersTree selectFolder:previousFolderId])
 		[foldersTree selectFolder:[db conferenceNodeID]];
 
@@ -293,9 +293,9 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	// Set the default web family and size to whatever the user selected
 	// for the message font.
 	[webPrefs setStandardFontFamily:[messageFont familyName]];
-	[webPrefs setDefaultFontSize:(int)[messageFont pointSize]];
+	[webPrefs setDefaultFontSize:(NSInteger)[messageFont pointSize]];
 	
-	[htmlDict setObject:[NSNumber numberWithInt:1] forKey:@"UseWebKit"];
+	[htmlDict setObject:[NSNumber numberWithLong:(long)1] forKey:@"UseWebKit"];
 	[htmlDict setObject:webPrefs forKey:@"WebPreferences"];
 	[webPrefs release];
 }
@@ -352,18 +352,20 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	// Initialize the message columns from saved data
 	NSArray * dataArray = [defaults arrayForKey:MAPref_MessageColumns];
 	VField * field;
-	unsigned int index;
+	NSUInteger index;
 	
 	for (index = 0; index < [dataArray count];)
 	{
 		NSString * identifier;
-		int width = 100;
+		NSInteger width = 100;
 		BOOL visible = NO;
 
 		identifier = [dataArray objectAtIndex:index++];
 		if (index < [dataArray count])
+			// #warning 64BIT dje integerValue -> intValue
 			visible = [[dataArray objectAtIndex:index++] intValue] == YES;
 		if (index < [dataArray count])
+			// #warning 64BIT dje integerValue -> intValue
 			width = [[dataArray objectAtIndex:index++] intValue];
 
 		field = [db fieldByIdentifier:identifier];
@@ -443,7 +445,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 /* showColumnsForFolder
  * Display the columns for the specific folder.
  */
--(void)showColumnsForFolder:(int)folderId
+-(void)showColumnsForFolder:(NSInteger)folderId
 {
 	if (folderId == MA_Outbox_NodeID || folderId == MA_Draft_NodeID)
 	{
@@ -464,14 +466,14 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 -(void)updateVisibleColumns
 {
 	NSArray * fields = [db arrayOfFields];
-	int count = [fields count];
-	int index;
+	NSInteger count = [fields count];
+	NSInteger index;
 
 	// Get the bounds of the message list because we need to work out
 	// when the columns spill beyond the bounds
 	NSRect listRect = [messageList bounds];
-	int widthSoFar = 0;
-	int countOfResizableColumns = 0;
+	NSInteger widthSoFar = 0;
+	NSInteger countOfResizableColumns = 0;
 
 	// Create the new columns
 	for (index = 0; index < count; ++index)
@@ -492,7 +494,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		{
 			NSTableColumn * newTableColumn = [[NSTableColumn alloc] initWithIdentifier:identifier];
 			NSTableHeaderCell * headerCell = [newTableColumn headerCell];
-			int tag = [field tag];
+			NSInteger tag = [field tag];
 			BOOL isResizable = (tag != MA_ID_MessageUnread && tag != MA_ID_MessageFlagged);
 
 			[headerCell setTitle:[field title]];
@@ -515,7 +517,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	// auto-resize to bring them back.
 	if ((widthSoFar >= listRect.size.width) && countOfResizableColumns > 0)
 	{
-		int diff = (widthSoFar - listRect.size.width) / countOfResizableColumns;
+		NSInteger diff = (widthSoFar - listRect.size.width) / countOfResizableColumns;
 		for (index = 0; index < count; ++index)
 		{
 			VField * field = [fields objectAtIndex:index];
@@ -525,7 +527,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 				if ([tableColumn resizingMask] & NSTableColumnAutoresizingMask)
 //				if ([tableColumn isResizable])  //PJC Deprecated in 10.4 (but only available from 10.4!)
 				{
-					int newFieldWidth = [field width] - diff;
+					NSInteger newFieldWidth = [field width] - diff;
 					[field setWidth:newFieldWidth];
 					[tableColumn setWidth:newFieldWidth];
 				}
@@ -571,7 +573,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	{
 		[dataArray addObject:[field name]];
 		[dataArray addObject:[NSNumber numberWithBool:[field visible]]];
-		[dataArray addObject:[NSNumber numberWithInt:[field width]]];
+		[dataArray addObject:[NSNumber numberWithLong:(long)[field width]]];
 	}
 
 	// Save these to the preferences
@@ -589,7 +591,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)setTableViewFont
 {
-	int height;
+	NSInteger height;
 	
 	[messageListFont release];
 	[boldMessageListFont release];
@@ -607,7 +609,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 #else
 	// replacement here
 	NSLayoutManager *nslm = [[NSLayoutManager alloc] init];
-	height = (int) [ nslm defaultLineHeightForFont: boldMessageListFont ];
+	height = (NSInteger) [ nslm defaultLineHeightForFont: boldMessageListFont ];
 	[ nslm release];
 #endif
 	[messageList setRowHeight:height + 3];
@@ -638,12 +640,13 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)showPriorityUnreadCountOnApplicationIcon
 {
-	int currentCountOfPriorityUnread = [db countOfPriorityUnread];
+	NSInteger currentCountOfPriorityUnread = [db countOfPriorityUnread];
 	if (currentCountOfPriorityUnread != lastCountOfPriorityUnread)
 	{
 		if (currentCountOfPriorityUnread > 0)
 		{
-			NSString *countdown = [NSString stringWithFormat:@"%i", currentCountOfPriorityUnread];
+// #warning 64BIT: Check formatting arguments
+			NSString *countdown = [NSString stringWithFormat:@"%li", (long)currentCountOfPriorityUnread];
 			NSImage * iconImageBuffer = [originalIcon copy];
 			NSSize iconSize = [originalIcon size];
 
@@ -662,7 +665,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 							 fromRect:NSMakeRect(0, 0, iconSize.width, iconSize.height) 
 							operation:NSCompositeSourceOver 
 							 fraction:1.0f];
-			float max = (numSize.width > numSize.height) ? numSize.width : numSize.height;
+			CGFloat max = (numSize.width > numSize.height) ? numSize.width : numSize.height;
 			max += 16;
 			NSRect circleRect = NSMakeRect(iconSize.width - max, 0, max, max);
 			NSBezierPath * bp = [NSBezierPath bezierPathWithOvalInRect:circleRect];
@@ -716,7 +719,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		return NSTerminateCancel;
 	if ([connect isProcessing])
 	{
-		int returnCode;
+		NSInteger returnCode;
 		
 		returnCode = NSRunAlertPanel(NSLocalizedString(@"Connect Running", nil),
 									 NSLocalizedString(@"Connect Running text", nil),
@@ -842,7 +845,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)endGotoMessage:(id)sender
 {
-	int messageNumber = [gotoNumber intValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger messageNumber = [gotoNumber intValue];
 
 	[gotoWindow orderOut:sender];
 	[NSApp endSheet:gotoWindow returnCode:1];
@@ -864,7 +868,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)originalThread:(id)sender
 {
-	int rowIndex = [messageList selectedRow];
+	NSInteger rowIndex = [messageList selectedRow];
 	if (rowIndex != -1)
 	{
 		VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
@@ -878,14 +882,14 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)originalMessage:(id)sender
 {
-	int rowIndex = [messageList selectedRow];
+	NSInteger rowIndex = [messageList selectedRow];
 	if (rowIndex != -1)
 	{
 		VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
-		int comment = [thisMessage comment];
+		NSInteger comment = [thisMessage comment];
 		if (comment)
 		{
-			int folderId = [thisMessage folderId];
+			NSInteger folderId = [thisMessage folderId];
 
 			if (folderId == MA_Outbox_NodeID || folderId == MA_Draft_NodeID)
 				folderId = [foldersTree folderFromPath:[db conferenceNodeID] path:[thisMessage sender]];
@@ -900,7 +904,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  * If we're offline, offer to retrieve a single message from the service. If we're online,
  * retrieve the message immediately.
  */
--(void)offerToRetrieveMessage:(int)messageId fromFolderId:(int)folderId
+-(void)offerToRetrieveMessage:(NSInteger)messageId fromFolderId:(NSInteger)folderId
 {
 	NSString * folderPath = [db folderPathName:folderId];
 	Folder * folder = [db folderFromID:currentFolderId];
@@ -910,11 +914,13 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 			[self retrieveMessage:messageId fromFolder:folderPath];
 		else
 		{
+// #warning 64BIT: Check formatting arguments (This string is not in localizablestrings
 			NSString * titleText = [NSString stringWithFormat:NSLocalizedString(@"Offer to retrieve message title", nil), messageId];
 			NSString * bodyText = NSLocalizedString(@"Offer to retrieve message text", nil);
 			
 			// Package up the message and folder numbers to the context info
-			NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithInt:messageId], folderPath, nil] retain];
+			NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil] retain];
+// #warning 64BIT: Check formatting arguments
 			NSBeginAlertSheet(titleText,
 							  NSLocalizedString(@"Retrieve", nil),
 							  NSLocalizedString(@"Cancel", nil),
@@ -931,13 +937,16 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 /* offerToRetrieveMessage
  * Offer to retrieve a single message from the service.
  */
--(void)offerToRetrieveMessage:(int)messageId fromFolderPath:(NSString *)folderPath
+-(void)offerToRetrieveMessage:(NSInteger)messageId fromFolderPath:(NSString *)folderPath
 {
+// #warning 64BIT: Check formatting arguments
 	NSString * titleText = [NSString stringWithFormat:NSLocalizedString(@"Offer to join and retrieve message title", nil), folderPath];
+// #warning 64BIT: Check formatting arguments
 	NSString * bodyText = [NSString stringWithFormat:NSLocalizedString(@"Offer to join and retrieve message text", nil), folderPath];
 	
 	// Package up the message and folder numbers to the context info
-	NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithInt:messageId], folderPath, nil] retain];	
+	NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil] retain];	
+// #warning 64BIT: Check formatting arguments
 	NSBeginAlertSheet(titleText,
 					  NSLocalizedString(@"Join", nil),
 					  NSLocalizedString(@"Cancel", nil),
@@ -952,14 +961,15 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 /* doRetrieveMessage
  * Handle the response from the sheet.
  */
--(void)doRetrieveMessage:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)doRetrieveMessage:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	NSArray * contextArray = (NSArray *)contextInfo;
 	if (returnCode == NSAlertDefaultReturn)
 	{
 		NSAssert(contextArray != nil, @"Got a nil context array");
 		NSAssert([contextArray count] == 2, @"Context array is the wrong size");
-		int messageId = [[contextArray objectAtIndex:0] intValue];
+		// #warning 64BIT dje integerValue -> intValue
+		NSInteger messageId = [[contextArray objectAtIndex:0] intValue];
 		NSString * folderPath = [contextArray objectAtIndex:1];
 		[self retrieveMessage:messageId fromFolder:folderPath];
 	}
@@ -969,9 +979,10 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 /* retrieveMessage
  * Create a task to retrieve a single message.
  */
--(void)retrieveMessage:(int)messageId fromFolder:(NSString *)folderPath
+-(void)retrieveMessage:(NSInteger)messageId fromFolder:(NSString *)folderPath
 {
-	NSString * messageString = [NSString stringWithFormat:@"%d", messageId];
+// #warning 64BIT: Check formatting arguments
+	NSString * messageString = [NSString stringWithFormat:@"%ld", messageId];
 	[db addTask:MA_TaskCode_FileMessages actionData:messageString folderName:folderPath orderCode:MA_OrderCode_FileMessages];
 	
 	// If we're in online mode, make a note of the requested message so we can select it
@@ -984,11 +995,11 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  * Moves the selection to the specified message. Returns YES if we found the
  * message, NO otherwise.
  */
--(BOOL)scrollToMessage:(int)number
+-(BOOL)scrollToMessage:(NSInteger)number
 {
 	NSEnumerator * enumerator = [currentArrayOfMessages objectEnumerator];
 	VMessage * thisMessage;
-	int rowIndex = 0;
+	NSInteger rowIndex = 0;
 	BOOL found = NO;
 
 	while ((thisMessage = [enumerator nextObject]) != nil)
@@ -1074,7 +1085,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 /* beginConnect
  * Initiate a connection to the server.
  */
--(BOOL)beginConnect:(int)connectMode
+-(BOOL)beginConnect:(NSInteger)connectMode
 {	
 	if (![self networkUP])
 	{
@@ -1150,7 +1161,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  * Return the ID of the currently selected folder whose messages are shown in
  * the message window.
  */
--(int)currentFolderId
+-(NSInteger)currentFolderId
 {
 	return currentFolderId;
 }
@@ -1210,7 +1221,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  *   cix:<folder> ................... Selects the first topic in the specified conference.
  *   cix:<folder>/<folder> .......... Parses the path to the folder and selects the last message in the folder.
  */
--(void)handleCIXLink:(NSString *)folderPath messageNumber:(int)messageNumber
+-(void)handleCIXLink:(NSString *)folderPath messageNumber:(NSInteger)messageNumber
 {
 	if (folderPath == nil)
 	{
@@ -1222,7 +1233,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 	else
 	{
-		int folderId = -1;
+		NSInteger folderId = -1;
 
 		if ([folderPath hasPrefix:@"/"])
 			folderPath = [folderPath substringFromIndex:1];
@@ -1247,6 +1258,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 {
 	[db addTask:MA_TaskCode_FileDownload actionData:filename folderName:folderPath orderCode:MA_OrderCode_FileDownload];
 	
+//#warning 64BIT: Check formatting arguments
 	NSString *statusString = [NSString stringWithFormat:NSLocalizedString(@"'%@:%@' marked for download", nil),folderPath, filename];
 
 	[self setStatusMessage:statusString];
@@ -1280,7 +1292,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleFolderUpdate:(NSNotification *)nc
 {
-	int folderId = [(NSNumber *)[nc object] intValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger folderId = [(NSNumber *)[nc object] intValue];
 	if (folderId == currentFolderId)
 	{
 		[self setMainWindowTitle:folderId];
@@ -1294,7 +1307,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 -(void)handleFolderSelection:(NSNotification *)note
 {
 	TreeNode * node = (TreeNode *)[note object];
-	int newFolderId = [node nodeId];
+	NSInteger newFolderId = [node nodeId];
 
 	// We only care if the selection really changed
 	if (currentFolderId != newFolderId && newFolderId != 0)
@@ -1413,7 +1426,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleCheckFrequencyChange:(NSNotification *)note
 {
-	int newFrequency = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_CheckFrequency];
+	NSInteger newFrequency = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_CheckFrequency];
 
 	[checkTimer invalidate];
 	[checkTimer release];
@@ -1452,7 +1465,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 
 /* messageSortHandler
  */
-int messageSortHandler(id i1, id i2, void * context)
+NSInteger messageSortHandler(id i1, id i2, void * context)
 {
 	AppController * app = (AppController *)context;
 	VMessage * item1 = i1;
@@ -1461,8 +1474,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	switch (app->sortColumnTag)
 	{
 		case MA_ID_MessageId: {
-			int number1 = [item1 messageId];
-			int number2 = [item2 messageId];
+			NSInteger number1 = [item1 messageId];
+			NSInteger number2 = [item2 messageId];
 			if (number1 < number2)
 				return NSOrderedAscending * app->sortDirection;
 			if (number2 < number1)
@@ -1471,8 +1484,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		}
 
 		case MA_ID_MessageComment: {
-			int number1 = [item1 comment];
-			int number2 = [item2 comment];
+			NSInteger number1 = [item1 comment];
+			NSInteger number2 = [item2 comment];
 			if (number1 < number2)
 				return NSOrderedAscending * app->sortDirection;
 			if (number2 < number1)
@@ -1481,8 +1494,8 @@ int messageSortHandler(id i1, id i2, void * context)
 		}
 
 		case MA_ID_MessageFolderId: {
-			int number1 = [item1 folderId];
-			int number2 = [item2 folderId];
+			NSInteger number1 = [item1 folderId];
+			NSInteger number2 = [item2 folderId];
 			if (number1 < number2)
 				return NSOrderedAscending * app->sortDirection;
 			if (number2 < number1)
@@ -1533,8 +1546,8 @@ int messageSortHandler(id i1, id i2, void * context)
 -(void)threadMessages
 {
 	NSMutableArray * threadedArrayOfMessages;
-	unsigned int index = 0;
-	unsigned int count = [currentArrayOfMessages count];
+	NSUInteger index = 0;
+	NSUInteger count = [currentArrayOfMessages count];
 
 	// If the message array is unsorted, we need to do our own sort before
 	// threading. For performance reasons, the threading code assumes that
@@ -1554,7 +1567,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		[message setLastChildMessage:message];
 		if ([message comment] > 0)
 		{
-			int parentIndex = index - 1;
+			NSInteger parentIndex = index - 1;
 			while (parentIndex >= 0)
 			{
 				VMessage * parentMessage = [threadedArrayOfMessages objectAtIndex:parentIndex];
@@ -1564,7 +1577,7 @@ int messageSortHandler(id i1, id i2, void * context)
 
 					while (lastChild != [lastChild lastChildMessage])
 						lastChild = [lastChild lastChildMessage];
-					unsigned int insertIndex = [threadedArrayOfMessages indexOfObject:lastChild] + 1;
+					NSUInteger insertIndex = [threadedArrayOfMessages indexOfObject:lastChild] + 1;
 					NSAssert(insertIndex <= index, @"Oops!");
 					if (insertIndex > 0 && insertIndex != index)
 					{
@@ -1589,7 +1602,7 @@ int messageSortHandler(id i1, id i2, void * context)
  * Selects the specified row in the table and makes it visible by
  * scrolling it to the center of the table.
  */
--(void)makeRowSelectedAndVisible:(int)rowIndex
+-(void)makeRowSelectedAndVisible:(NSInteger)rowIndex
 {
 	if (rowIndex < 0)
 		[infoBarView update:nil database:db];
@@ -1607,10 +1620,10 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(void)centerSelectedRow
 {
-	int rowIndex = [messageList selectedRow];
-	int pageSize = [messageList rowsInRect:[messageList visibleRect]].length;
-	int lastRow = [messageList numberOfRows] - 1;
-	int visibleRow = rowIndex + (pageSize / 2);
+	NSInteger rowIndex = [messageList selectedRow];
+	NSInteger pageSize = [messageList rowsInRect:[messageList visibleRect]].length;
+	NSInteger lastRow = [messageList numberOfRows] - 1;
+	NSInteger visibleRow = rowIndex + (pageSize / 2);
 	
 	if (visibleRow > lastRow)
 		visibleRow = lastRow;
@@ -1635,7 +1648,8 @@ int messageSortHandler(id i1, id i2, void * context)
 {
 	NSTableColumn * tableColumn = [[notification userInfo] objectForKey:@"NSTableColumn"];
 	VField * field = [db fieldByIdentifier:[tableColumn identifier]];
-	int oldWidth = [[[notification userInfo] objectForKey:@"NSOldWidth"] intValue];
+	// #warning 64BIT dje integerValue -> intValue
+	NSInteger oldWidth = [[[notification userInfo] objectForKey:@"NSOldWidth"] intValue];
 
 	if (oldWidth != [tableColumn width])
 	{
@@ -1647,7 +1661,7 @@ int messageSortHandler(id i1, id i2, void * context)
 /* doViewColumn
  * Toggle whether or not a specified column is visible.
  */
--(void)doViewColumn:(id)sender;
+-(void)doViewColumn:(id)sender
 {
 	NSMenuItem * menuItem = (NSMenuItem *)sender;
 	VField * field = [menuItem representedObject];
@@ -1700,7 +1714,7 @@ int messageSortHandler(id i1, id i2, void * context)
 /* tagFromIdentifier
  * Given a field identifier, returns the tag associated with that field.
  */
--(int)tagFromIdentifier:(NSString *)identifier
+-(NSInteger)tagFromIdentifier:(NSString *)identifier
 {
 	VField * field = [db fieldByIdentifier:identifier];
 	return [field tag];
@@ -1710,7 +1724,7 @@ int messageSortHandler(id i1, id i2, void * context)
  * Datasource for the table view. Return the total number of rows we'll display which
  * is equivalent to the number of messages in the current folder.
  */
--(int)numberOfRowsInTableView:(NSTableView *)aTableView
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	return [currentArrayOfMessages count];
 }
@@ -1719,11 +1733,11 @@ int messageSortHandler(id i1, id i2, void * context)
  * Called by the table view to obtain the object at the specified column and row. This is
  * called often so it needs to be fast.
  */
--(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+-(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
     VMessage * theRecord;
 
-    NSParameterAssert(rowIndex >= 0 && rowIndex < (int)[currentArrayOfMessages count]);
+    NSParameterAssert(rowIndex >= 0 && rowIndex < (NSInteger)[currentArrayOfMessages count]);
     theRecord = [currentArrayOfMessages objectAtIndex:rowIndex];
 	if ([[aTableColumn identifier] isEqualToString:MA_Column_MessageFolderId])
 	{
@@ -1732,7 +1746,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	if ([[aTableColumn identifier] isEqualToString:MA_Column_MessageId])
 	{
 		if ([theRecord comment] && [theRecord level] == 0 && currentFolderId != MA_Outbox_NodeID && currentFolderId != MA_Draft_NodeID && showThreading)
-			return [NSString stringWithFormat:@"...%d", [theRecord messageId]];
+// #warning 64BIT: Check formatting arguments
+			return [NSString stringWithFormat:@"...%ld", (long)[theRecord messageId]];
 	}
     return [[theRecord messageData] objectForKey:[aTableColumn identifier]];
 }
@@ -1749,7 +1764,7 @@ int messageSortHandler(id i1, id i2, void * context)
 /* refreshMessageAtRow
  * Refreshes the message at the specified row.
  */
--(void)refreshMessageAtRow:(int)theRow
+-(void)refreshMessageAtRow:(NSInteger)theRow
 {
 //	NSLog(@"RefreshmessageAtRow called for row %d",theRow);
 	requestedMessage = 0;
@@ -1757,7 +1772,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		[textView setString:@""];
 	else
 	{
-		NSAssert(theRow < (int)[currentArrayOfMessages count], @"Out of range row index received");
+		NSAssert(theRow < (NSInteger)[currentArrayOfMessages count], @"Out of range row index received");
 		[self updateMessageText];
 
 		// Make sure we start at the top
@@ -1767,7 +1782,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		// Add this to the backtrack list
 		if (!isBacktracking)
 		{
-			int messageId = [[currentArrayOfMessages objectAtIndex:theRow] messageId];
+			NSInteger messageId = [[currentArrayOfMessages objectAtIndex:theRow] messageId];
 			[backtrackArray addToQueue:currentFolderId messageNumber:messageId];
 		}
 		
@@ -1805,8 +1820,8 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)forwardTrackMessage:(id)sender
 {
-	int folderId;
-	int messageNumber;
+	NSInteger folderId;
+	NSInteger messageNumber;
 
 	if ([backtrackArray nextItemAtQueue:&folderId messageNumber:&messageNumber])
 	{
@@ -1821,8 +1836,8 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)backTrackMessage:(id)sender
 {
-	int folderId;
-	int messageNumber;
+	NSInteger folderId;
+	NSInteger messageNumber;
 	
 	if ([backtrackArray previousItemAtQueue:&folderId messageNumber:&messageNumber])
 	{
@@ -1837,10 +1852,10 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(void)selectNextRootMessage
 {
-	int selectedRow = [messageList selectedRow];
+	NSInteger selectedRow = [messageList selectedRow];
 	if (selectedRow == -1)
 		return;
-	while (++selectedRow < (int)[currentArrayOfMessages count])
+	while (++selectedRow < (NSInteger)[currentArrayOfMessages count])
 	{
 		VMessage * theMessage = [currentArrayOfMessages objectAtIndex:selectedRow];
 		if ([theMessage level] == 0)
@@ -1856,7 +1871,7 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(void)selectPreviousRootMessage
 {
-	int selectedRow = [messageList selectedRow];
+	NSInteger selectedRow = [messageList selectedRow];
 	if (selectedRow == -1)
 		return;
 	while (--selectedRow >= 0)
@@ -1874,12 +1889,12 @@ int messageSortHandler(id i1, id i2, void * context)
 /*
  * Return the index of the root of the current message
  */
--(int)findRootMessage
+-(NSInteger)findRootMessage
 {
-	int selectedRow = [messageList selectedRow];
+	NSInteger selectedRow = [messageList selectedRow];
 	if (selectedRow == -1)
 		return -1;
-	while (++selectedRow < (int)[currentArrayOfMessages count])
+	while (++selectedRow < (NSInteger)[currentArrayOfMessages count])
 	{
 		VMessage * theMessage = [currentArrayOfMessages objectAtIndex:selectedRow];
 		if ([theMessage level] == 0)
@@ -1893,14 +1908,14 @@ int messageSortHandler(id i1, id i2, void * context)
 -(void)viewNextUnreadRoot
 {
 	VMessage * theMessage = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
-	int oldFolder = [theMessage folderId];
-	int oldSelectedRow = [self findRootMessage];
+	NSInteger oldFolder = [theMessage folderId];
+	NSInteger oldSelectedRow = [self findRootMessage];
 				
 	[self viewNextUnread: self];
-	int newSelectedRow = [self findRootMessage];
+	NSInteger newSelectedRow = [self findRootMessage];
 				
 	theMessage = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
-	int newFolder = [theMessage folderId];
+	NSInteger newFolder = [theMessage folderId];
 
 	if ( (oldFolder != newFolder || oldSelectedRow != newSelectedRow) && [theMessage level] != 0) 
 	{
@@ -1913,7 +1928,7 @@ int messageSortHandler(id i1, id i2, void * context)
  * Support special key codes. If we handle the key, return YES otherwise
  * return NO to allow the framework to pass it on for default processing.
  */
--(BOOL)handleKeyDown:(unichar)keyChar withFlags:(unsigned int)flags
+-(BOOL)handleKeyDown:(unichar)keyChar withFlags:(NSUInteger)flags
 {
 	switch (keyChar)
 	{
@@ -2046,8 +2061,8 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(void)doubleClickRow:(id)sender
 {
-	int selectedRow = [messageList selectedRow];
-	if (selectedRow >= 0 && selectedRow < (int)[currentArrayOfMessages count])
+	NSInteger selectedRow = [messageList selectedRow];
+	if (selectedRow >= 0 && selectedRow < (NSInteger)[currentArrayOfMessages count])
 	{
 		Folder * folder = [db folderFromID:currentFolderId];
 		VMessage * message = [currentArrayOfMessages objectAtIndex:selectedRow];
@@ -2068,7 +2083,7 @@ int messageSortHandler(id i1, id i2, void * context)
  * Called by the connection code to ask if we can post the specified
  * message. We deny only if the specified message is being edited.
  */
--(BOOL)canPostMessage:(int)folderId messageNumber:(int)messageNumber
+-(BOOL)canPostMessage:(NSInteger)folderId messageNumber:(NSInteger)messageNumber
 {
 	return [self messageWindowWithAttributes:folderId messageNumber:messageNumber] == nil;
 }
@@ -2077,7 +2092,7 @@ int messageSortHandler(id i1, id i2, void * context)
  * Locates an existing open message window with the specified parent folder ID and message
  * number, and returns the MessageWindow object found.
  */
--(MessageWindow *)messageWindowWithAttributes:(int)folderId messageNumber:(int)messageNumber
+-(MessageWindow *)messageWindowWithAttributes:(NSInteger)folderId messageNumber:(NSInteger)messageNumber
 {
 	NSArray * windowArray = [NSApp windows];
 	NSEnumerator * enumerator = [windowArray objectEnumerator];
@@ -2121,7 +2136,7 @@ int messageSortHandler(id i1, id i2, void * context)
 /* willDisplayCell [delegate]
  * Catch the table view before it displays a cell.
  */
--(void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+-(void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	VMessage * message = [currentArrayOfMessages objectAtIndex:rowIndex];
 
@@ -2168,7 +2183,7 @@ int messageSortHandler(id i1, id i2, void * context)
 -(void)handleMugshotFolderChanged:(NSNotification *)nc
 {
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-	int height;
+	NSInteger height;
 
 	NSString *tmp = [nc object];
 	if (tmp)
@@ -2187,7 +2202,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		showMugshots = NO;
 	}
 	[self resizeMugshotView:height];
-	[defaults setObject:[NSNumber numberWithInt: height] forKey:MAPref_MugshotsSize];
+	[defaults setObject:[NSNumber numberWithLong:(long)height] forKey:MAPref_MugshotsSize];
 	[personManager setMugshotFolder:tmp];
 
 	// if the window has been newly open (or the folder changed) then refresh the mugshot display
@@ -2256,13 +2271,13 @@ int messageSortHandler(id i1, id i2, void * context)
 /* resizeMugshotView
  * Resize the mugshot view window.
  */
--(void)resizeMugshotView:(int)height
+-(void)resizeMugshotView:(NSInteger)height
 {
 	NSSplitView *splitter = (NSSplitView *)[[[mugshotView superview] superview] superview];
 	NSRect       foldersFrame, mugshotFrame;
     NSView      *foldersSubview;
     NSView      *mugshotSubview;
-	float        totalHeight;
+	CGFloat        totalHeight;
     	
     // Get the bits
     foldersSubview = [[splitter subviews] objectAtIndex:0];
@@ -2290,19 +2305,19 @@ int messageSortHandler(id i1, id i2, void * context)
 {
 	NSMutableAttributedString * attrMessageText = nil;
 	const char * charptr = nil;
-	int rangeIndex;
-	int attrRangeIndex;
-	int quoteRangeStart;
-	int urlRangeStart;
-	int wordRangeStart;
-	int whitespacesToSkip;
+	NSInteger rangeIndex;
+	NSInteger attrRangeIndex;
+	NSInteger quoteRangeStart;
+	NSInteger urlRangeStart;
+	NSInteger wordRangeStart;
+	NSInteger whitespacesToSkip;
 	BOOL isAtStartOfLine;
 	BOOL plainText;
 	BOOL isInWordBreak;
 	BOOL isGrouping;
 	BOOL doStyleURL;
 	BOOL isCopiedFromGroup;
-	int  enc;
+	NSInteger  enc;
 	NSRange wordRange;
 	NSString *mactext = nil;
 	
@@ -2334,7 +2349,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	
 	NSMutableDictionary * underlineAttr = [NSMutableDictionary dictionary];
 	[underlineAttr setValue:messageFont forKey:NSFontAttributeName];
-	[underlineAttr setValue:[NSNumber numberWithInt:NSSingleUnderlineStyle] forKey:NSUnderlineStyleAttributeName];
+	[underlineAttr setValue:[NSNumber numberWithLong:(long)NSSingleUnderlineStyle] forKey:NSUnderlineStyleAttributeName];
 	
 	// If message text begins with <html> then we render as HTML only
 	// Deprecated API was here DJE
@@ -2413,10 +2428,10 @@ int messageSortHandler(id i1, id i2, void * context)
 			// Handle styles
 			if ((*charptr == '*' || *charptr == '/' || *charptr == '_') && isInWordBreak && urlRangeStart == -1)
 			{
-				int styleRangeStart = rangeIndex;
-				int styleRangeTextStart = attrRangeIndex;
-				int styleRangeTextLength = 0;
-				int styleRangeLength = 1;
+				NSInteger styleRangeStart = rangeIndex;
+				NSInteger styleRangeTextStart = attrRangeIndex;
+				NSInteger styleRangeTextLength = 0;
+				NSInteger styleRangeLength = 1;
 				const char * charptrStart = charptr + 1;
 				char endStyleChar = *charptr;
 				
@@ -2544,7 +2559,7 @@ int messageSortHandler(id i1, id i2, void * context)
 				NSURL * url = [NSURL URLWithString:urlString];
 				if (url != nil)
 				{
-					int diff = rangeIndex - attrRangeIndex;
+					NSInteger diff = rangeIndex - attrRangeIndex;
 					NSRange attrRange = NSMakeRange(urlRangeStart - diff, (rangeIndex - urlRangeStart));
 					[attrMessageText addAttribute:NSLinkAttributeName value:url range:attrRange];
 				}
@@ -2610,7 +2625,7 @@ int messageSortHandler(id i1, id i2, void * context)
 /* mugshotUpdated
  * An image was dragged onto the mugshots window, save it.
  */
--(IBAction)mugshotUpdated:(id)sender;
+-(IBAction)mugshotUpdated:(id)sender
 {
 	VMessage * theRecord = [currentArrayOfMessages objectAtIndex:currentSelectedRow];
 
@@ -2637,16 +2652,16 @@ int messageSortHandler(id i1, id i2, void * context)
 	if (!rssFeed)
 		rssFeed = [[RSSFeed alloc] initWithDatabase:db];
 	
-	int folderId = [foldersTree actualSelection];
+	NSInteger folderId = [foldersTree actualSelection];
 	[rssFeed editRSSSubscription:mainWindow folderId:folderId];
 }
 
--(void)uploadPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)uploadPanelDidEnd:(NSOpenPanel *)panel returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	if (returnCode == NSOKButton)
 	{
 		// Get the full path of the folder
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		NSString * folderPath = [db folderPathName:folderId];
 
 		NSArray * fileNames = [panel filenames];
@@ -2702,14 +2717,14 @@ int messageSortHandler(id i1, id i2, void * context)
 	[NSApp endSheet:downloadWindow returnCode:NSOKButton];
 }
 
--(void)downloadSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)downloadSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	NSString * filename = [downloadFilename stringValue];
 	
 	if (returnCode == NSOKButton)
 	{
 		// Get the full path of the folder
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		NSString * folderPath = [db folderPathName:folderId];
 		
 		// Create a task to do it
@@ -2721,7 +2736,7 @@ int messageSortHandler(id i1, id i2, void * context)
 */
 -(IBAction)downloadFile:(id)sender
 {
-	int folderId = [foldersTree actualSelection];
+	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
 	
 	// TODO ?? Maybe set filename in advance from message ??
@@ -2756,11 +2771,11 @@ int messageSortHandler(id i1, id i2, void * context)
 	if (!searchFolder)
 		searchFolder = [[SearchFolder alloc] initWithDatabase:db];
 
-	int folderId = [foldersTree actualSelection];
+	NSInteger folderId = [foldersTree actualSelection];
 	[searchFolder loadCriteria:mainWindow folderId:folderId];
 }
 
--(int)checkBeta
+-(NSInteger)checkBeta
 // Check if we are using the beta server and alert the user (added 2013-10-15)
 
 {
@@ -2848,7 +2863,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	{
 		MessageWindow * msgWindow;
 		
-		msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:[db folderPathName:currentFolderId] commentNumber:(int)0 initialText: nil];
+		msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:[db folderPathName:currentFolderId] commentNumber:(NSInteger)0 initialText: nil];
 		[[msgWindow window] makeKeyAndOrderFront:self];
 	}
 }
@@ -2889,16 +2904,19 @@ int messageSortHandler(id i1, id i2, void * context)
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:currentSelectedRow];
 		NSString * nodePath = [db folderPathName:[theRecord folderId]];
-		int comment = [theRecord messageId];
+		NSInteger comment = [theRecord messageId];
 		MessageWindow * msgWindow;
 
 		// Look for an existing reply in the draft folder.
 		// If not there, look for an existing reply in the outbox folder
 		// If a reply is found in either place, look for an open window.
 		NSMutableDictionary * criteriaDictionary = [[NSMutableDictionary alloc] init];
-		NSString * commentString = [NSString stringWithFormat:@"%d", comment];
-		NSString * outBoxFolder = [NSString stringWithFormat:@"%d", MA_Outbox_NodeID];
-		NSString * draftFolder = [NSString stringWithFormat:@"%d", MA_Draft_NodeID];
+// #warning 64BIT: Check formatting arguments
+		NSString * commentString = [NSString stringWithFormat:@"%ld", (long) comment];
+// #warning 64BIT: Check formatting arguments
+		NSString * outBoxFolder = [NSString stringWithFormat:@"%ld",(long) MA_Outbox_NodeID];
+// #warning 64BIT: Check formatting arguments
+		NSString * draftFolder = [NSString stringWithFormat:@"%ld", (long) MA_Draft_NodeID];
 
 		[criteriaDictionary setObject:[NSArray arrayWithObjects:commentString, nil] forKey:MA_Column_MessageComment];
 		[criteriaDictionary setObject:[NSArray arrayWithObjects:outBoxFolder, draftFolder, nil] forKey:MA_Column_MessageFolderId];
@@ -2925,7 +2943,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		else
 		{
 			NSString *reply = [self makeReplyText];
-			msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:nodePath commentNumber:(int)comment initialText:reply];
+			msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:nodePath commentNumber:(NSInteger)comment initialText:reply];
 			// static analyser complains
 			// [reply release];
 		}
@@ -2983,7 +3001,8 @@ int messageSortHandler(id i1, id i2, void * context)
 -(IBAction)deleteMessage:(id)sender
 {
 	if (currentSelectedRow >= 0)
-		NSBeginCriticalAlertSheet(NSLocalizedString(@"Delete selected message", nil),
+// #warning 64BIT: Check formatting arguments
+		NSBeginCriticalAlertSheet (NSLocalizedString(@"Delete selected message", nil),
 								  NSLocalizedString(@"Delete", nil),
 								  NSLocalizedString(@"Cancel", nil),
 								  nil, [NSApp mainWindow], self,
@@ -2995,7 +3014,7 @@ int messageSortHandler(id i1, id i2, void * context)
  * This function is called after the user has dismissed
  * the confirmation sheet.
  */
--(void)doConfirmedDelete:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)doConfirmedDelete:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	if (returnCode == NSAlertDefaultReturn)
 	{		
@@ -3011,6 +3030,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		[db beginTransaction];
 		while ((rowIndex = [enumerator nextObject]) != nil)
 		{
+			// #warning 64BIT DJE integerValue -> intValue
 			VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[rowIndex intValue]];
 			if (![theRecord isRead])
 				needFolderRedraw = YES;
@@ -3021,7 +3041,8 @@ int messageSortHandler(id i1, id i2, void * context)
 			// FUTURE: if we're the moderator of this conference, withdraw it too.
 			if ([[cixCredentials username] isEqualToString:[theRecord sender]])
 			{
-				NSString * messageString = [NSString stringWithFormat:@"%d", [theRecord messageId]];
+// #warning 64BIT: Check formatting arguments
+				NSString * messageString = [NSString stringWithFormat:@"%ld", (long)[theRecord messageId]];
 				NSString * folderPath = [db folderPathName:[theRecord folderId]];
 
 				[db addTask:MA_TaskCode_WithdrawMessage actionData:messageString folderName:folderPath orderCode:MA_OrderCode_WithdrawMessage];
@@ -3044,7 +3065,7 @@ int messageSortHandler(id i1, id i2, void * context)
 			[self threadMessages];
 
 		// Compute the new place to put the selection
-		if (currentSelectedRow >= (int)[currentArrayOfMessages count])
+		if (currentSelectedRow >= (NSInteger)[currentArrayOfMessages count])
 			currentSelectedRow = [currentArrayOfMessages count] - 1;
 		[self makeRowSelectedAndVisible:currentSelectedRow];
 		[messageList reloadData];
@@ -3192,7 +3213,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	// other folders until we come back to ourselves.
 	if (![self viewNextUnreadInCurrentFolder:[messageList selectedRow] isPriority:NO])
 	{
-		int nextFolderWithUnread = [foldersTree nextFolderWithUnread:currentFolderId isPriority:NO];
+		NSInteger nextFolderWithUnread = [foldersTree nextFolderWithUnread:currentFolderId isPriority:NO];
 		if (nextFolderWithUnread != -1)
 		{
 			if (nextFolderWithUnread != currentFolderId)
@@ -3212,7 +3233,7 @@ int messageSortHandler(id i1, id i2, void * context)
 /* viewNextPriorityUnread
  * Moves the selection to the next priority unread message.
  */
--(IBAction)viewNextPriorityUnread:(id)sender;
+-(IBAction)viewNextPriorityUnread:(id)sender
 {
 	if (currentSelectedRow >= 0)
 	{
@@ -3226,7 +3247,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	// other folders until we come back to ourselves.
 	if (![self viewNextUnreadInCurrentFolder:[messageList selectedRow] isPriority:YES])
 	{
-		int nextFolderWithUnread = [foldersTree nextFolderWithUnread:currentFolderId isPriority:YES];
+		NSInteger nextFolderWithUnread = [foldersTree nextFolderWithUnread:currentFolderId isPriority:YES];
 		if (nextFolderWithUnread != -1)
 		{
 			if (nextFolderWithUnread != currentFolderId)
@@ -3246,9 +3267,9 @@ int messageSortHandler(id i1, id i2, void * context)
 /* viewNextUnreadInCurrentFolder
  * Select the next unread message in the current folder after currentRow.
  */
--(BOOL)viewNextUnreadInCurrentFolder:(int)currentRow isPriority:(BOOL)priorityFlag
+-(BOOL)viewNextUnreadInCurrentFolder:(NSInteger)currentRow isPriority:(BOOL)priorityFlag
 {
-	int totalRows = [currentArrayOfMessages count];
+	NSInteger totalRows = [currentArrayOfMessages count];
 	if (currentRow < totalRows - 1)
 	{
 		VMessage * theRecord;
@@ -3290,7 +3311,7 @@ int messageSortHandler(id i1, id i2, void * context)
 
 /* selectFolderAndMessage
  */
--(BOOL)selectFolderAndMessage:(int)folderId messageNumber:(int)messageNumber
+-(BOOL)selectFolderAndMessage:(NSInteger)folderId messageNumber:(NSInteger)messageNumber
 {
 	if (folderId == currentFolderId)
 		return [self scrollToMessage:messageNumber];
@@ -3308,7 +3329,7 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(void)refreshFolder:(BOOL)reloadData
 {
-	int messageNumber = -1;
+	NSInteger messageNumber = -1;
 
 	if (currentSelectedRow >= 0)
 		messageNumber = [[currentArrayOfMessages objectAtIndex:currentSelectedRow] messageId];
@@ -3350,10 +3371,10 @@ int messageSortHandler(id i1, id i2, void * context)
 	[NSApp endSheet:modAddTopicWindow returnCode:NSOKButton];
 }
 
--(void)modTopicSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)modTopicSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	// Get the full path of the folder
-	int folderId = [foldersTree actualSelection];
+	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
 
 	// Get stuff from sheet
@@ -3377,7 +3398,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		
 		MessageWindow * msgWindow;
 		
-		msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:newTopic commentNumber:(int)0 initialText: @"Seed message"];
+		msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:newTopic commentNumber:(NSInteger)0 initialText: @"Seed message"];
 		[[msgWindow window] makeKeyAndOrderFront:self];
 	}
 }
@@ -3394,18 +3415,18 @@ int messageSortHandler(id i1, id i2, void * context)
 	[NSApp endSheet:modUsernameWindow returnCode:NSOKButton];
 }
 
--(void)modSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+-(void)modSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	NSString * username = [modUsernameText stringValue];
 
 	if (returnCode == NSOKButton)
 	{
 		// Get the full path of the folder
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		NSString * folderPath = [db folderPathName:folderId];
 		
 		// Create a task to do it
-		[db addTask:(int)contextInfo actionData:username folderName:folderPath orderCode:MA_OrderCode_Mod];
+		[db addTask:(NSInteger)contextInfo actionData:username folderName:folderPath orderCode:MA_OrderCode_Mod];
 	}
 }
 
@@ -3464,12 +3485,13 @@ int messageSortHandler(id i1, id i2, void * context)
 -(IBAction)modReadonly:(id)sender
 {
 	// Get the full path of the folder
-	int folderId = [foldersTree actualSelection];
+	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
+// #warning 64BIT: Check formatting arguments
 	NSString * alertBody = [NSString stringWithFormat:NSLocalizedString(@"Toggle Topic %@?", nil), folderPath];
 
 	// Get confirmation first
-	int returnCode;
+	NSInteger returnCode;
 	returnCode = NSRunAlertPanel(NSLocalizedString(@"Toggle Readonly", nil), alertBody, NSLocalizedString(@"Yes", nil), NSLocalizedString(@"Cancel", nil), nil);
 	if (returnCode == NSAlertAlternateReturn)
 		return;
@@ -3481,7 +3503,7 @@ int messageSortHandler(id i1, id i2, void * context)
 -(IBAction)modAddTopic:(id)sender
 {
 	// Add conf name (without topic) to sheet 
-	int folderId = [foldersTree actualSelection];
+	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
 	NSArray *bits = [folderPath pathComponents];
 	
@@ -3504,7 +3526,7 @@ int messageSortHandler(id i1, id i2, void * context)
 /* setMainWindowTitle
  * Updates the main window title bar.
  */
--(void)setMainWindowTitle:(int)folderId
+-(void)setMainWindowTitle:(NSInteger)folderId
 {
 	NSMutableString * newTitleString = [NSMutableString stringWithFormat:@"%@", [db folderPathName:folderId]];
 	Folder * folder = [db folderFromID:folderId];
@@ -3518,7 +3540,7 @@ int messageSortHandler(id i1, id i2, void * context)
  * Switches to the specified folder and displays messages filtered by the given
  * searchFilter.
  */
--(void)selectFolderWithFilter:(int)newFolderId searchFilter:(NSString *)searchFilter
+-(void)selectFolderWithFilter:(NSInteger)newFolderId searchFilter:(NSString *)searchFilter
 {
 	[self setMainWindowTitle:newFolderId];
 	[db flushFolder:currentFolderId];
@@ -3562,7 +3584,7 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markAllRead:(id)sender
 {
-	int folderId = [foldersTree actualSelection];
+	NSInteger folderId = [foldersTree actualSelection];
 	NSAssert(folderId > MA_Max_Reserved_NodeID, @"Trying to call markAllRead on an invalid folder");
 	[self startProgressIndicator];
 	[db markFolderRead:folderId];
@@ -3589,14 +3611,14 @@ int messageSortHandler(id i1, id i2, void * context)
  * If just one message is selected, we return that message and all child threads.
  * If a range of messages are selected, we return all the selected messages.
  */
--(NSArray *)markedMessageRange:(unsigned int)flags
+-(NSArray *)markedMessageRange:(NSUInteger)flags
 {
 	NSAssert(flags & (Range_Thread|Range_ThreadFromRoot|Range_Selected), @"Illegal flags passed to markedMessageRange");
 	NSArray * messageArray = nil;
 
 	if ([messageList numberOfSelectedRows] == 1 && (flags & (Range_Thread|Range_ThreadFromRoot)))
 	{
-		int rowIndex = [messageList selectedRow];
+		NSInteger rowIndex = [messageList selectedRow];
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:rowIndex];
 
 		if (flags & Range_ThreadFromRoot)
@@ -3614,6 +3636,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		NSNumber * rowIndex;
 		
 		while ((rowIndex = [enumerator nextObject]) != nil)
+// #warning 64BIT DJE integerValue -> intValue
 			[newArray addObject:[currentArrayOfMessages objectAtIndex:[rowIndex intValue]]];
 		messageArray = [newArray retain];
 		[newArray release];
@@ -3659,7 +3682,7 @@ int messageSortHandler(id i1, id i2, void * context)
 -(void)markPriorityByArray:(NSArray *)messageArray priorityFlag:(BOOL)priorityFlag
 {
 	VMessage * theRecord;
-	unsigned int arrayIndex = 0;
+	NSUInteger arrayIndex = 0;
 	
 	[db beginTransaction];
 	while (arrayIndex < [messageArray count])
@@ -3715,7 +3738,7 @@ int messageSortHandler(id i1, id i2, void * context)
 {
 	VMessage * theRecord;
 	NSMutableArray * arrayCopy = [[NSMutableArray alloc] initWithArray:currentArrayOfMessages];
-	unsigned int arrayIndex = 0;
+	NSUInteger arrayIndex = 0;
 
 	[db beginTransaction];
 	while (arrayIndex < [messageArray count])
@@ -3732,7 +3755,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	currentArrayOfMessages = [arrayCopy retain];
 	[arrayCopy release];
 	
-	if (currentSelectedRow >= (int)[currentArrayOfMessages count])
+	if (currentSelectedRow >= (NSInteger)[currentArrayOfMessages count])
 		currentSelectedRow = [currentArrayOfMessages count] - 1;
 	[infoBarView update:nil database:db];
 	[self refreshFolder:NO];
@@ -3789,8 +3812,8 @@ int messageSortHandler(id i1, id i2, void * context)
 {
 	NSEnumerator * enumerator = [messageArray objectEnumerator];
 	VMessage * theRecord;
-	int lastFolderId = -1;
-	int folderId;
+	NSInteger lastFolderId = -1;
+	NSInteger folderId;
 
 	[db beginTransaction];
 	while ((theRecord = [enumerator nextObject]) != nil)
@@ -3914,7 +3937,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else
 	{
-		url = [NSString stringWithFormat:@"cix:%@:%d",[db folderPathName:[thisMessage folderId]], [thisMessage messageId]];
+// #warning 64BIT: Check formatting arguments
+		url = [NSString stringWithFormat:@"cix:%@:%ld",[db folderPathName:[thisMessage folderId]], (long)[thisMessage messageId]];
 	}
 
 	NSPasteboard *pb = [NSPasteboard generalPasteboard];
@@ -3966,8 +3990,9 @@ int messageSortHandler(id i1, id i2, void * context)
 */
 -(IBAction)deleteFolder:(id)sender
 {
-	int folderId = [foldersTree actualSelection];
-	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to delete a built-in folder %d", folderId);
+	NSInteger folderId = [foldersTree actualSelection];
+//#warning 64BIT: Check formatting arguments
+	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to delete a built-in folder %ld", (long) folderId);
 	
 	// Get the full path of the folder we're deleting.
 	NSString * folderPath = [db folderPathName:folderId];
@@ -3981,22 +4006,25 @@ int messageSortHandler(id i1, id i2, void * context)
 	
 	if (IsSearchFolder(folder))
 	{
+// #warning 64BIT: Check formatting arguments
 		alertBody = [NSString stringWithFormat:NSLocalizedString(@"Delete smart folder text", nil), folderPath];
 		alertTitle = NSLocalizedString(@"Delete smart folder", nil);
 	}
 	else if (IsRSSFolder(folder))
 	{
+// #warning 64BIT: Check formatting arguments
 		alertBody = [NSString stringWithFormat:NSLocalizedString(@"Delete RSS feed text", nil), [folder name]];
 		alertTitle = NSLocalizedString(@"Delete RSS feed", nil);
 	}
 	else
 	{
+// #warning 64BIT: Check formatting arguments
 		alertBody = [NSString stringWithFormat:NSLocalizedString(@"Delete folder text", nil), folderPath];
 		alertTitle = NSLocalizedString(@"Delete folder", nil);
 	}
 	
 	// Get confirmation first
-	int returnCode;
+	NSInteger returnCode;
 	returnCode = NSRunAlertPanel(alertTitle, alertBody, NSLocalizedString(@"Delete", nil), NSLocalizedString(@"Cancel", nil), nil);
 	if (returnCode == NSAlertAlternateReturn)
 		return;
@@ -4006,6 +4034,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		[db addTask:MA_TaskCode_ResignFolder actionData:@"" folderName:folderPath orderCode:MA_OrderCode_ResignFolder];
 	
 	// Create a status string
+// #warning 64BIT: Check formatting arguments
 	NSString * deleteStatusMsg = [NSString stringWithFormat:NSLocalizedString(@"Delete folder status", nil), folderPath];
 	
 	// Now call the database to delete the folder.
@@ -4024,14 +4053,15 @@ int messageSortHandler(id i1, id i2, void * context)
 */
 -(IBAction)resignFolder:(id)sender
 {
-	int folderId = [foldersTree actualSelection];
-	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to resign from a built-in folder %d", folderId);
+	NSInteger folderId = [foldersTree actualSelection];
+// #warning 64BIT: Check formatting arguments
+	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to resign from a built-in folder %ld", (long)folderId);
 	
 	// Get the full path of the folder we're deleting.
 	NSString * folderPath = [db folderPathName:folderId];
 			
 	// Get confirmation first
-	int returnCode;
+	NSInteger returnCode;
 	returnCode = NSRunAlertPanel(NSLocalizedString(@"Resign", nil), NSLocalizedString(@"Resign Conference/Topic", nil), NSLocalizedString(@"Resign", nil), NSLocalizedString(@"Cancel", nil), nil);
 	if (returnCode == NSAlertAlternateReturn)
 		return;
@@ -4114,7 +4144,8 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(void)endConnect:(NSNumber *)resultCode
 {
-	int result = [resultCode intValue];
+// #warning 64BIT DJE integerValue -> intValue
+	NSInteger result = [resultCode intValue];
 	switch (result)
 	{
 		case MA_Connect_Success: {
@@ -4124,7 +4155,8 @@ int messageSortHandler(id i1, id i2, void * context)
 			{
 				NSNumber * defaultValue = [NSNumber numberWithBool:YES];
 				NSNumber * stickyValue = [NSNumber numberWithBool:NO];
-				NSString * msgText = [NSString stringWithFormat:NSLocalizedString(@"Growl description", nil), [connect messagesCollected]];
+// #warning 64BIT: Check formatting arguments (DJE: Growl description now has a %ld)
+				NSString * msgText = [NSString stringWithFormat:NSLocalizedString(@"Growl description", nil), (long) [connect messagesCollected]];
 
 				NSDictionary *aNuDict = [NSDictionary dictionaryWithObjectsAndKeys:
 					NSLocalizedString(@"Growl notification name", nil), GROWL_NOTIFICATION_NAME,
@@ -4177,7 +4209,9 @@ int messageSortHandler(id i1, id i2, void * context)
 	va_list arguments;
 
 	va_start(arguments, bodyText);
+// #warning 64BIT: Check formatting arguments
 	fullBodyText = [[NSString alloc] initWithFormat:NSLocalizedString(bodyText, nil) arguments:arguments];
+// #warning 64BIT: Check formatting arguments
 	NSBeginAlertSheet(NSLocalizedString(titleString, nil),
 					  NSLocalizedString(@"OK", nil),
 					  nil,
@@ -4255,7 +4289,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(viewProfile:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		Folder * folder = [db folderFromID:folderId];
 		*validateFlag = ([messageList selectedRow] >= 0) && !IsRSSFolder(folder) && (folderId != MA_Draft_NodeID && folderId != MA_Outbox_NodeID);
 		return YES;
@@ -4290,7 +4324,7 @@ int messageSortHandler(id i1, id i2, void * context)
 		// We return NO because validateMenuItem needs a chance to
 		// change the label on the menu item whereas the toolbar
 		// doesn't.
-		int rowIndex = [messageList selectedRow];
+		NSInteger rowIndex = [messageList selectedRow];
 		*validateFlag = (rowIndex != -1 && ![db readOnly] && !isBusy);
 		return NO;
 	}
@@ -4408,8 +4442,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(originalMessage:))
 	{
-		int rowIndex = [messageList selectedRow];
-		int comment = 0;
+		NSInteger rowIndex = [messageList selectedRow];
+		NSInteger comment = 0;
 		if (rowIndex != -1)
 		{
 			VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
@@ -4436,7 +4470,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(deleteFolder:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		return (folderId != [db rssNodeID]) && folderId > MA_Max_Reserved_NodeID && !isBusy;
 	}
 	else if (theAction == @selector(renameFolder:))
@@ -4446,31 +4480,31 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(resignFolder:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		Folder * folder = [db folderFromID:folderId];
 		return (folderId != [db rssNodeID] && (folderId > MA_Max_Reserved_NodeID || folderId == [db conferenceNodeID]) && !isBusy && !IsSearchFolder(folder) && !IsRSSFolder(folder));
 	}
 	else if (theAction == @selector(fillMessageGaps:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		Folder * folder = [db folderFromID:folderId];
 		return (folderId != [db rssNodeID] && (folderId > MA_Max_Reserved_NodeID || folderId == [db conferenceNodeID]) && !isBusy && !IsSearchFolder(folder) && !IsRSSFolder(folder));
 	}
 	else if (theAction == @selector(editRSSSubscription:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		Folder * folder = [db folderFromID:folderId];
 		return (!isBusy && folder != nil && IsRSSFolder(folder));
 	}
 	else if (theAction == @selector(editSearchFolder:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		Folder * folder = [db folderFromID:folderId];
 		return (!isBusy && folder != nil && IsSearchFolder(folder));
 	}
 	else if (theAction == @selector(markAllRead:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		return (folderId > MA_Max_Reserved_NodeID) && !IsSearchFolder([db folderFromID:folderId]) && !isBusy;
 	}
 	else if (theAction == @selector(joinConference:))
@@ -4483,7 +4517,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(exportCIXScratchpad:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		Folder * folder = [db folderFromID:folderId];
 		return !isBusy && (folderId > MA_Max_Reserved_NodeID || folderId == [db conferenceNodeID]) && !IsRSSFolder(folder);
 	}
@@ -4497,7 +4531,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(replyByMail:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		Folder * folder = [db folderFromID:folderId];
 		return currentSelectedRow >= 0 && !IsRSSFolder(folder);
 	}
@@ -4515,7 +4549,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(markPriority:))
 	{
-		int rowIndex = [messageList selectedRow];
+		NSInteger rowIndex = [messageList selectedRow];
 		if (rowIndex != -1)
 		{
 			VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
@@ -4528,7 +4562,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(markIgnored:))
 	{
-		int rowIndex = [messageList selectedRow];
+		NSInteger rowIndex = [messageList selectedRow];
 		if (rowIndex != -1)
 		{
 			VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
@@ -4541,7 +4575,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(markFlagged:))
 	{
-		int rowIndex = [messageList selectedRow];
+		NSInteger rowIndex = [messageList selectedRow];
 		if (rowIndex != -1)
 		{
 			VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
@@ -4558,7 +4592,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	}
 	else if (theAction == @selector(markRead:))
 	{
-		int rowIndex = [messageList selectedRow];
+		NSInteger rowIndex = [messageList selectedRow];
 		if (rowIndex != -1)
 		{
 			VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
@@ -4578,7 +4612,7 @@ int messageSortHandler(id i1, id i2, void * context)
 			 theAction == @selector(uploadFile:) ||
 			 theAction == @selector(downloadFile:))
 	{
-		int folderId = [foldersTree actualSelection];
+		NSInteger folderId = [foldersTree actualSelection];
 		Folder * folder = [db folderFromID:folderId];
 		return (folderId != [db rssNodeID] && (folderId > MA_Max_Reserved_NodeID || folderId == [db conferenceNodeID]) && !isBusy && !IsSearchFolder(folder) && !IsRSSFolder(folder));		
 	}
@@ -4757,7 +4791,7 @@ int messageSortHandler(id i1, id i2, void * context)
  */
 -(BOOL)tableView:(NSTableView *)tv writeRows:(NSArray*)rows toPasteboard:(NSPasteboard*)pboard
 {
-	unsigned int msgnum;
+	NSUInteger msgnum;
 	NSMutableString *newtext = [NSMutableString stringWithString:@""];
 	
 	// Set up the pasteboard	
@@ -4767,7 +4801,8 @@ int messageSortHandler(id i1, id i2, void * context)
 	for (msgnum = 0; msgnum < [rows count]; msgnum++)
 	{
 		// Get the message ID being dragged
-		int rowIndex = [[rows objectAtIndex: msgnum] intValue];
+		// #warning 64BIT DJE integerValue -> intValue
+		NSInteger rowIndex = [[rows objectAtIndex: msgnum] intValue];
 		VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
 
 		// Can't drag from pseudo folders.
@@ -4799,20 +4834,24 @@ int messageSortHandler(id i1, id i2, void * context)
 		}
 		else if ([thisMessage comment])
 		{
-			[newtext appendFormat: @"**COPIED FROM: >>>%@ %d %@(%d)%@ c%d\n%@\n", 
+// #warning 64BIT: Check formatting arguments
+			[newtext appendFormat: @"**COPIED FROM: >>>%@ %ld %@(%ld)%@ c%ld\n%@\n", 
 								[db folderPathName:[thisMessage folderId]],
-								[thisMessage messageId],  [thisMessage sender],
-								[text length],
+								(long)[thisMessage messageId],
+							    [thisMessage sender],
+								(long)[text length],
 								[dateFormatter descriptionWithCalendarFormat: @"%d%b%y %H:%M"], 
-								[thisMessage comment],
+								(long)[thisMessage comment],
 								text];
 		}
 		else
 		{
+// #warning 64BIT: Check formatting arguments
 			[newtext appendFormat: @"**COPIED FROM: >>>%@ %d %@(%d)%@\n%@\n", 
 								[db folderPathName:[thisMessage folderId]],
-								[thisMessage messageId],  [thisMessage sender],
-								[text length],
+								(long)[thisMessage messageId],
+			                    [thisMessage sender],
+								(long)[text length],
 								[dateFormatter descriptionWithCalendarFormat: @"%d%b%y %H:%M"],  
 								text];
 		}
@@ -4878,6 +4917,7 @@ int messageSortHandler(id i1, id i2, void * context)
 	NSString * voleAcronyms[]={ @"Vole", @"VOLE", @"vole"}; // keys to lookup
 	size_t i;
 	NSString * version = [NSString stringWithFormat:@"%@ / %@",@"Small, cute, furry mammal / Vienna Off-Line Environment\n", acronymsVersion];  
+// #warning 64BIT: Inspect use of sizeof
 	for (i = 0; i< sizeof(voleAcronyms) / sizeof(NSString *); i++){
 		NSString * current = [ acronymDictionary valueForKey:voleAcronyms[i] ];
 		if (current == nil) { // not in dict, so just use our version

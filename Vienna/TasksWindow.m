@@ -72,7 +72,7 @@
 /* toolTipForTableColumn
  * Return the tooltip for the specified row and column.
  */
--(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex
+-(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 {
 	VTask * task = [currentArrayOfTasks objectAtIndex:rowIndex];
 	return [task resultString];
@@ -104,7 +104,7 @@
  */
 -(void)handleClick:(id)sender
 {
-	int selectedColumn = [tasksList clickedColumn];
+	NSInteger selectedColumn = [tasksList clickedColumn];
     if (selectedColumn < 0) return; // Column does  not exist, must be on a blank row
                                     // (DJE added to fix exception)
                                     // Fixes cix:vienna/bugs:49
@@ -131,7 +131,7 @@
 /* numberOfRowsInTableView [datasource]
  * Datasource for the table view. Return the total number of rows we'll display.
  */
--(int)numberOfRowsInTableView:(NSTableView *)aTableView
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
 	return [currentArrayOfTasks count];
 }
@@ -140,7 +140,7 @@
  * Called by the table view to obtain the object at the specified column and row. This is
  * called often so it needs to be fast.
  */
--(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+-(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	NSString * identifier = [aTableColumn identifier];
 	VTask * task = [currentArrayOfTasks objectAtIndex:rowIndex];
@@ -177,23 +177,38 @@
 		{
 			case MA_TaskCode_PostMessages:		taskName = NSLocalizedString(@"Post messages", nil); break;
 			case MA_TaskCode_ReadMessages:		taskName = NSLocalizedString(@"Read new messages", nil); break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_ResignFolder:		taskName = [NSString stringWithFormat:NSLocalizedString(@"Resign from %@", nil), [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_JoinFolder:		taskName = [NSString stringWithFormat:NSLocalizedString(@"Join %@", nil), [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_WithdrawMessage:   taskName = [NSString stringWithFormat:NSLocalizedString(@"Withdraw message %@ from %@", nil), [task actionData], [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_FileMessages:		taskName = [NSString stringWithFormat:NSLocalizedString(@"Retrieve message(s) %@ from %@", nil), [task actionData], [task folderName]]; break;
 			case MA_TaskCode_ConfList:			taskName = NSLocalizedString(@"Refresh browser list", nil); break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_SkipBack:			taskName = [NSString stringWithFormat:NSLocalizedString(@"Skip back %@ messages in %@", nil), [task actionData], [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_SetCIXBack:		taskName = [NSString stringWithFormat:NSLocalizedString(@"Set CIX back %@ day(s)", nil), [task actionData]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_GetResume:			taskName = [NSString stringWithFormat:NSLocalizedString(@"Get profile for '%@'", nil), [task actionData]]; break;
 			case MA_TaskCode_PutResume:			taskName = NSLocalizedString(@"Update your online profile", nil); break;
 			case MA_TaskCode_GetRSS:			taskName = NSLocalizedString(@"Refresh RSS feeds", nil); break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_FileDownload:      taskName = [NSString stringWithFormat:NSLocalizedString(@"Download file %@ from %@", nil), [task actionData], [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_FileUpload:        taskName = [NSString stringWithFormat:NSLocalizedString(@"Upload file %@ to %@", nil), [task actionData], [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_ModAddPart:		taskName = [NSString stringWithFormat:NSLocalizedString(@"Mod Add particpant %@ to %@", nil), [task actionData], [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_ModRemPart:		taskName = [NSString stringWithFormat:NSLocalizedString(@"Mod Remove participant %@ from %@", nil), [task actionData], [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_ModComod:			taskName = [NSString stringWithFormat:NSLocalizedString(@"Mod Comod %@ to %@", nil), [task actionData], [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_ModExmod:			taskName = [NSString stringWithFormat:NSLocalizedString(@"Mod Exmod %@ from %@", nil), [task actionData], [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_ModRdOnly:			taskName = [NSString stringWithFormat:NSLocalizedString(@"Mod Make %@ readonly", nil), [task folderName]]; break;
+// #warning 64BIT: Check formatting arguments
 			case MA_TaskCode_ModNewConf:		taskName = [NSString stringWithFormat:NSLocalizedString(@"Mod New conference %@", nil), [task folderName]]; break;
 			case MA_TaskCode_ModAddTopic:		
 				{
@@ -202,6 +217,7 @@
 					NSArray *folderBits = [[task folderName] pathComponents];
 					NSArray *dataBits = [[task actionData] componentsSeparatedByString:@":"];
 					NSString *confName = [NSString stringWithFormat:@"%@/%@", [folderBits objectAtIndex: 0], [dataBits objectAtIndex: 0]];
+// #warning 64BIT: Check formatting arguments
 					taskName = [NSString stringWithFormat:NSLocalizedString(@"Mod Add Topic %@", nil), confName]; 
 				}
 				break;
@@ -226,6 +242,7 @@
 		if (![[task earliestRunDate] isEqualToDate:[NSDate distantFuture]])
 		{
 			NSCalendarDate * anDate = [[task earliestRunDate] dateWithCalendarFormat:nil timeZone:nil];
+// #warning 64BIT: Check formatting arguments
 			return [NSString stringWithFormat:NSLocalizedString(@"Will run after %@", nil), [anDate friendlyDescription]];
 		}
 		return @"";
@@ -239,6 +256,7 @@
 	if (![[task lastRunDate] isEqualToDate:[NSDate distantFuture]])
 	{
 		NSCalendarDate * anDate = [[task lastRunDate] dateWithCalendarFormat:nil timeZone:nil];
+// #warning 64BIT: Check formatting arguments
 		return [NSString stringWithFormat:NSLocalizedString(@"Last ran %@", nil), [anDate friendlyDescription]];
 	}
 	return @"";
@@ -264,6 +282,7 @@
 	allowRefresh = NO;
 	while ((rowIndex = [enumerator nextObject]) != nil)
 	{
+// #warning 64BIT intValue used instead of integerValue
 		VTask * task = [currentArrayOfTasks objectAtIndex:[rowIndex intValue]];
 		[db deleteTask:task];
 	}
@@ -282,6 +301,7 @@
 	allowRefresh = NO;
 	while ((rowIndex = [enumerator nextObject]) != nil)
 	{
+// #warning 64BIT DJE intValue used intrad of integerValue
 		VTask * task = [currentArrayOfTasks objectAtIndex:[rowIndex intValue]];
 		[db setTaskWaiting:task];
 	}

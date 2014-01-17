@@ -26,7 +26,7 @@
 	NSTask * sshTask;
 }
 
--(id)initWithAddress:(NSString *)theAddress port:(int)thePort;
+-(id)initWithAddress:(NSString *)theAddress port:(NSInteger)thePort;
 -(BOOL)connect;
 -(void)close;
 
