@@ -113,7 +113,7 @@
         }
         imageFrame.origin.x += 3;
         imageFrame.size = imageSize;
-#if 0
+#if 1
         /*
          * What is this block doing? I found that if I replaced the deprecated
          * API immediately below this block, I needed to disable this block as well,
@@ -125,11 +125,14 @@
         else
             imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
 #endif
-#if 0
+#if 1
         // deprecated API in 10.8 (DJE)
         [image compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
 #else
         // replacement
+        //  (this is broken as the images are drawn upside down
+        //   ( see Vienna bug 63 -  revert the changes for now and
+        //   live with the messages in the system log
         [image drawAtPoint:imageFrame.origin
                   fromRect:NSZeroRect
                  operation:NSCompositeSourceOver
