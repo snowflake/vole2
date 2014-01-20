@@ -126,3 +126,7 @@ typedef CGFLOAT_TYPE CGFloat;
 #define NSAppKitVersionNumber10_8 1187
 #endif
 
+#ifndef VOLE_DEPLOYMENT_TARGET
+#error VOLE_DEPLOYMENT_TARGET must be a project preprocessor definition 
+#endif
+
