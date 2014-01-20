@@ -102,3 +102,27 @@ typedef CGFLOAT_TYPE CGFloat;
 #define CGFLOAT_DEFINED 1
 
 #endif // CGFLOAT_DEFINED
+
+
+// AppKit version numbers (From AppKit Release Notes for OSX 10.9)
+
+#ifndef NSAppKitVersionNumber10_4
+#define NSAppKitVersionNumber10_4 824
+#endif
+
+#ifndef NSAppKitVersionNumber10_5
+#define NSAppKitVersionNumber10_5 949
+#endif
+
+#ifndef NSAppKitVersionNumber10_6
+#define NSAppKitVersionNumber10_6 1038
+#endif
+
+#ifndef NSAppKitVersionNumber10_7
+#define NSAppKitVersionNumber10_7 1138
+#endif
+
+#ifndef NSAppKitVersionNumber10_8
+#define NSAppKitVersionNumber10_8 1187
+#endif
+
