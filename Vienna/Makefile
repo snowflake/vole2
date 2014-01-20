@@ -4,6 +4,15 @@
 all: 
 	@echo read the makefile
 
+#******************************** Warning ***********************************
+
+# MOSXDT in this Makefile must be kept in step with VOLE_DEPLOYMENT_TARGET
+# preprocessor macros in the Xcode Project for each configuration.
+
+#****************************************************************************
+
+
+
 # set up appropiate developer dirs, can be changed in environment
 DEVELOPER_DIR_XC3?= /Xcode3.2.6
 DEVELOPER_DIR_XC5?= /Applications/Xcode.app/Contents/Developer

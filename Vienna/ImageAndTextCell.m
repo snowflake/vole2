@@ -113,31 +113,25 @@
         }
         imageFrame.origin.x += 3;
         imageFrame.size = imageSize;
-#if 1
-        /*
-         * What is this block doing? I found that if I replaced the deprecated
-         * API immediately below this block, I needed to disable this block as well,
-         * otherwise the icons were displaced from the text and were cropped
-         * randomly. (DJE)
-         */
-        if ([controlView isFlipped])
-            imageFrame.origin.y += ceil((cellFrame.size.height + imageFrame.size.height) / 2);
-        else
-            imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
-#endif
-#if 1
-        // deprecated API in 10.8 (DJE)
-        [image compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
+#if ( VOLE_DEPLOYMENT_TARGET < VOLE_MACOSX_10_6)
+            // Tiger and Leopard Code.
+			if ([controlView isFlipped])
+                imageFrame.origin.y += ceil((cellFrame.size.height + imageFrame.size.height) / 2);
+            else
+                imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
+            // deprecated API in 10.8 (DJE)
+            [image compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
 #else
-        // replacement
-        //  (this is broken as the images are drawn upside down
-        //   ( see Vienna bug 63 -  revert the changes for now and
-        //   live with the messages in the system log
-        [image drawAtPoint:imageFrame.origin
-                  fromRect:NSZeroRect
-                 operation:NSCompositeSourceOver
-                  fraction:1.0];
-#endif 
+            // replacement for deprecated API (works on OSX 10.6 and later)
+            // see http://git.chromium.org/gitweb/?p=chromium/chromium.git;a=commitdiff;h=27a103d09d5a52e293f075fa6468a3039e92e8fe
+            imageFrame.origin.y += ceil((cellFrame.size.height - imageSize.height) / 2);
+            [image drawInRect:imageFrame
+                     fromRect:NSZeroRect
+                    operation:NSCompositeSourceOver
+                     fraction:1.0
+               respectFlipped:YES
+                        hints:nil];
+#endif // VOLE_DEPLOYMENT_TARGET
     }
     [super drawWithFrame:cellFrame inView:controlView];
 }

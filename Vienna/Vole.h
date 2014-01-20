@@ -130,3 +130,13 @@ typedef CGFLOAT_TYPE CGFloat;
 #error VOLE_DEPLOYMENT_TARGET must be a project preprocessor definition 
 #endif
 
+// 2 digits major, 3 digits minor
+#define VOLE_MACOSX_10_4  10004
+#define VOLE_MACOSX_10_5  10005
+#define VOLE_MACOSX_10_6  10006
+#define VOLE_MACOSX_10_7  10007
+#define VOLE_MACOSX_10_8  10008
+#define VOLE_MACOSX_10_9  10009
+#define VOLE_MACOSX_10_10 10010
+#define VOLE_MACOSX_10_11 10011
+#define VOLE_MACOSX_10_12 10012
