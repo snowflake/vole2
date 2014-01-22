@@ -182,6 +182,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 -(NSInteger)browser:(NSBrowser *)browser numberOfRowsInColumn:(NSInteger)column
 {
+    (void)browser;
 	if (column == 0)
 		return countOfCategories;
 	if ((NSInteger)[arrayOfCategories count] >= column)
@@ -194,6 +195,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 -(void)browser:(NSBrowser *)browser willDisplayCell:(id)cell atRow:(NSInteger)row column:(NSInteger)column
 {
+    (void)browser;
 	if (column == 0)
 		[cell setStringValue:categoryNames[row]];
 	else

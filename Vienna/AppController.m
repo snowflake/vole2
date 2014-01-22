@@ -2648,6 +2648,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)getMessagesOnTimer:(NSTimer *)aTimer
 {
+    (void)aTimer;
 	if ((connect == nil || ![connect isProcessing]) && ![self isBusy])
 		[self getMessages:self];
 }
@@ -2754,6 +2755,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(void)downloadSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)sheet;
     (void)contextInfo;
 	NSString * filename = [downloadFilename stringValue];
 	
@@ -3062,6 +3064,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)doConfirmedDelete:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)sheet;
     (void)contextInfo;
 	if (returnCode == NSAlertDefaultReturn)
 	{		
@@ -3430,6 +3433,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(void)modTopicSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)returnCode;
+    (void)sheet;
     (void)contextInfo;
 	// Get the full path of the folder
 	NSInteger folderId = [foldersTree actualSelection];
@@ -3475,6 +3480,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(void)modSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)sheet;
 	NSString * username = [modUsernameText stringValue];
 
 	if (returnCode == NSOKButton)
@@ -4715,6 +4721,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
+    (void)flag;
     (void)toolbar;
     NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     if ([itemIdentifier isEqualToString:@"SearchItem"])
@@ -4878,6 +4885,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(BOOL)tableView:(NSTableView *)tv writeRows:(NSArray*)rows toPasteboard:(NSPasteboard*)pboard
 {
+    (void)tv;
 	NSUInteger msgnum;
 	NSMutableString *newtext = [NSMutableString stringWithString:@""];
 	

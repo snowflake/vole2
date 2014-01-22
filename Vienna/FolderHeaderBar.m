@@ -123,6 +123,7 @@
  */
 -(void)drawRect:(NSRect)rect
 {
+    (void)rect;
 	NSRect brect = [self bounds];
 	[[NSColor colorForControlTint:NSDefaultControlTint] set];
 	NSRectFill(brect);
