@@ -312,10 +312,10 @@
 -(NSString *)textRestyledForPosting
 {
 	NSMutableString * msgText = [NSMutableString stringWithString:[textView string]];
-	[msgText replaceString:[NSString stringWithFormat:@"%C", SINGLE_OPEN_QUOTE] withString:@"'"];
-	[msgText replaceString:[NSString stringWithFormat:@"%C", SINGLE_CLOSE_QUOTE] withString:@"'"];
-	[msgText replaceString:[NSString stringWithFormat:@"%C", DOUBLE_OPEN_QUOTE] withString:@"\""];
-	[msgText replaceString:[NSString stringWithFormat:@"%C", DOUBLE_CLOSE_QUOTE] withString:@"\""];
+	[msgText replaceString:[NSString stringWithFormat:@"%C", (unichar)SINGLE_OPEN_QUOTE] withString:@"'"];
+	[msgText replaceString:[NSString stringWithFormat:@"%C", (unichar)SINGLE_CLOSE_QUOTE] withString:@"'"];
+	[msgText replaceString:[NSString stringWithFormat:@"%C", (unichar)DOUBLE_OPEN_QUOTE] withString:@"\""];
+	[msgText replaceString:[NSString stringWithFormat:@"%C", (unichar)DOUBLE_CLOSE_QUOTE] withString:@"\""];
 	return msgText;
 }
 

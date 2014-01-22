@@ -228,7 +228,7 @@
 			[msgStatus appendString:@"M"];
 		
 // #warning 64BIT: Check formatting arguments
-		NSString * msgText = [NSString stringWithFormat:@"%@\n>>>%@ %d %@(%d)%@%@\n%@\n",
+		NSString * msgText = [NSString stringWithFormat:@"%@\n>>>%@ %ld %@(%ld)%@%@\n%@\n",
 			msgStatus,
 			folderPath,
 			(long)[theMessage messageId],

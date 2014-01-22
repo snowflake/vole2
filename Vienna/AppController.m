@@ -993,7 +993,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 -(void)retrieveMessage:(NSInteger)messageId fromFolder:(NSString *)folderPath
 {
 // #warning 64BIT: Check formatting arguments
-	NSString * messageString = [NSString stringWithFormat:@"%ld", messageId];
+	NSString * messageString = [NSString stringWithFormat:@"%ld", (long)messageId];
 	[db addTask:MA_TaskCode_FileMessages actionData:messageString folderName:folderPath orderCode:MA_OrderCode_FileMessages];
 	
 	// If we're in online mode, make a note of the requested message so we can select it
@@ -4942,7 +4942,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		else
 		{
 // #warning 64BIT: Check formatting arguments
-			[newtext appendFormat: @"**COPIED FROM: >>>%@ %d %@(%d)%@\n%@\n", 
+			[newtext appendFormat: @"**COPIED FROM: >>>%@ %ld %@(%ld)%@\n%@\n", 
 								[db folderPathName:[thisMessage folderId]],
 								(long)[thisMessage messageId],
 			                    [thisMessage sender],
