@@ -1356,7 +1356,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx10.9;
+				SDKROOT = "";
 				SYMROOT = "../../Vienna-build";
 			};
 			name = mavericks;
@@ -1423,7 +1423,24 @@
 			};
 			name = mavericks;
 		};
-		AA503399085CFC6000BC203D /* Development */ = {
+		61CF30CF1890729700981450 /* mountainlion */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = "";
+				SYMROOT = "../../Vienna-build";
+			};
+			name = mountainlion;
+		};
+		61CF30D01890729700981450 /* mountainlion */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -1438,7 +1455,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Vole_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = __DEBUG__;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__DEBUG__,
+					"VOLE_DEPLOYMENT_TARGET=10007",
+				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
@@ -1463,14 +1483,14 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MDDirectory = MDImporter;
 				MDTarget = Vienna;
 				MDTargetApp = Vienna.app;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.8;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1480,24 +1500,7 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Development;
-		};
-		AA50339D085CFC6000BC203D /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx10.9;
-				SYMROOT = "../../Vienna-build";
-			};
-			name = Development;
+			name = mountainlion;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1505,8 +1508,8 @@
 		AA503398085CFC6000BC203D /* Build configuration list for PBXNativeTarget "Vole" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA503399085CFC6000BC203D /* Development */,
 				61608EFE1822A3A60055EA84 /* mavericks */,
+				61CF30D01890729700981450 /* mountainlion */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = mavericks;
@@ -1514,8 +1517,8 @@
 		AA50339C085CFC6000BC203D /* Build configuration list for PBXProject "Vole_xc5" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA50339D085CFC6000BC203D /* Development */,
 				61608EFD1822A3A60055EA84 /* mavericks */,
+				61CF30CF1890729700981450 /* mountainlion */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = mavericks;
