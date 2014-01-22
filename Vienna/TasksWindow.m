@@ -66,6 +66,7 @@
  */
 -(BOOL)tableViewShouldDisplayCellToolTips:(NSTableView *)tableView
 {
+    (void)tableView;
 	return YES;
 }
 
@@ -74,6 +75,7 @@
  */
 -(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 {
+    (void)tableView;
 	VTask * task = [currentArrayOfTasks objectAtIndex:rowIndex];
 	return [task resultString];
 }
@@ -134,6 +136,7 @@
  */
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
+    (void)aTableView;
 	return [currentArrayOfTasks count];
 }
 
@@ -143,6 +146,7 @@
  */
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
+    (void)aTableView;
 	NSString * identifier = [aTableColumn identifier];
 	VTask * task = [currentArrayOfTasks objectAtIndex:rowIndex];
 

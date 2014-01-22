@@ -240,6 +240,7 @@
  */
 -(void)handleTextDidChange:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	[self enableSubscribeButton];
 }
 
@@ -249,6 +250,7 @@
  */
 -(void)handleTextDidChange2:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	[self enableSaveButton];
 }
 

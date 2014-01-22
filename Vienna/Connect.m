@@ -773,6 +773,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * context)
 {
+    (void)context;
 	return [[item1 date] compare:[item2 date]];
 }
 
@@ -1143,6 +1144,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)connectThread:(NSObject *)object
 {
+    (void)object;
 	NSAutoreleasePool * pool;
 	NSInteger result = MA_Connect_Success;
 	VTask * task;

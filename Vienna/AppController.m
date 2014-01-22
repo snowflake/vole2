@@ -740,6 +740,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)applicationWillTerminate:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	// Save the splitview layout
 	[splitView1 storeLayoutWithName:@"SplitView1Positions"];
 	[splitView2 storeLayoutWithName:@"SplitView2Positions"];
@@ -773,8 +774,9 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 /* applicationDidFinishLaunching
  * Handle post-load activities.
  */
--(void)applicationDidFinishLaunching:(NSNotification *)aNot
+-(void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 
 	// If the user's default CIX profile is missing, add an action to retrieve
@@ -1360,6 +1362,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleUsernameChange:(NSNotification *)note
 {
+    (void)note;
 	[db setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:MAPref_Username]];
 	[self refreshFolder:NO];
 }
@@ -1369,6 +1372,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleQuoteColourChange:(NSNotification *)note
 {
+    (void)note;
 	NSData * colourData;
 	NSColor * newQuoteColour;
 
@@ -1385,6 +1389,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handlePriorityColourChange:(NSNotification *)note
 {
+    (void)note;
 	NSData * colourData;
 	NSColor * newPriorityColour;
 	
@@ -1400,6 +1405,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleIgnoredColourChange:(NSNotification *)note
 {
+    (void)note;
 	NSData * colourData;
 	NSColor * newIgnoredColour;
 	
@@ -1415,6 +1421,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleMessageListFontChange:(NSNotification *)note
 {
+    (void)note;
 	[self setTableViewFont];
 	[messageList reloadData];
 }
@@ -1424,6 +1431,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleMessageFontChange:(NSNotification *)note
 {
+    (void)note;
 	if (currentSelectedRow != -1)
 	{
 		[self updateHTMLDict];
@@ -1436,6 +1444,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)handleCheckFrequencyChange:(NSNotification *)note
 {
+    (void)note;
 	NSInteger newFrequency = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_CheckFrequency];
 
 	[checkTimer invalidate];
@@ -1646,6 +1655,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)tableView:(NSTableView *)tableView didClickTableColumn:(NSTableColumn *)tableColumn
 {
+    (void)tableView;
 	NSString * columnName = [tableColumn identifier];
 	[self sortByIdentifier:columnName];
 }
@@ -1736,6 +1746,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
+    (void)aTableView;
 	return [currentArrayOfMessages count];
 }
 
@@ -1745,6 +1756,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
+    (void)aTableView;
     VMessage * theRecord;
 
     NSParameterAssert(rowIndex >= 0 && rowIndex < (NSInteger)[currentArrayOfMessages count]);
@@ -1767,6 +1779,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	currentSelectedRow = [messageList selectedRow];
 	[self refreshMessageAtRow:currentSelectedRow];
 }
@@ -2151,6 +2164,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
+    (void)aTableView;
 	VMessage * message = [currentArrayOfMessages objectAtIndex:rowIndex];
 
 	// Show priority messages in the priority message colour.

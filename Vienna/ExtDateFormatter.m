@@ -42,6 +42,7 @@
  */
 -(BOOL)getObjectValue:(id *)obj forString:(NSString *)string errorDescription:(NSString **)error
 {
+    (void)obj; (void)string; (void)error;
 	// Aw. Fuggedaboutit!
     return NO;
 }

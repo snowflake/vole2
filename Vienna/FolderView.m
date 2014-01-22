@@ -116,6 +116,7 @@
  */
 -(NSString *)view:(NSView *)view stringForToolTip:(NSToolTipTag)tag point:(NSPoint)point userData:(void *)data
 {
+    (void)view; (void)tag; (void)data;
     NSInteger row;
     
     row = [self rowAtPoint:point];

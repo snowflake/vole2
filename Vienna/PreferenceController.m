@@ -122,6 +122,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)handleReloadPreferences:(NSNotification *)nc
 {
+    (void)nc;
 	[self initializePreferences];
 }
 
@@ -413,6 +414,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
+    (void)aTableView;
 	return [arrayOfSignatures count];
 }
 
@@ -422,6 +424,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
+    (void)aTableView;
 	return [arrayOfSignatures objectAtIndex:rowIndex];
 }
 
@@ -430,6 +433,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	NSInteger row = [signaturesList selectedRow];
 	[deleteSignatureButton setEnabled:(row >= 0)];
 	[editSignatureButton setEnabled:(row >= 0)];
@@ -756,6 +760,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)handleTextDidChange:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	NSString * title = [signatureTitle stringValue];
 	[saveSignatureButton setEnabled:![title isEqualToString:@""]];
 }

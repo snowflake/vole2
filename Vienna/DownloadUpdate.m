@@ -70,6 +70,7 @@
  */
 -(void)downloadDidBegin:(NSURLDownload *)download
 {
+    (void)download;
 	[progressString setStringValue:NSLocalizedString(@"Starting...", nil)];
 }
 

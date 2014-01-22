@@ -95,6 +95,7 @@
  */
 -(void)handleTextDidChange:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	[self enableJoinButton];
 }
 

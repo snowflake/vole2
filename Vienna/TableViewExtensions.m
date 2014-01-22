@@ -76,6 +76,7 @@
  */
 -(NSString *)view:(NSView *)view stringForToolTip:(NSToolTipTag)tag point:(NSPoint)point userData:(void *)matrix
 {
+    (void) matrix; (void)tag; (void)view;
     NSInteger rowIndex = [self rowAtPoint:point];
     NSInteger columnIndex = [self columnAtPoint:point];
     NSTableColumn *tableColumn = (columnIndex != -1) ? [[self tableColumns] objectAtIndex:columnIndex] : nil;

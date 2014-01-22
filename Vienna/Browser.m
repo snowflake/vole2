@@ -107,6 +107,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 -(BOOL)tableViewShouldDisplayCellToolTips:(NSTableView *)tableView
 {
+    (void)tableView;
 	return YES;
 }
 
@@ -115,6 +116,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 -(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 {
+    (void)tableView;
 	Forum * forum = [currentArrayOfForums objectAtIndex:rowIndex];
 // #warning 64BIT: Check formatting arguments
 	NSMutableString * tooltipString = [NSMutableString stringWithFormat:NSLocalizedString(@"Name: %@\n", nil), [forum name]];
@@ -161,6 +163,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 -(void)handleFolderUpdate:(NSNotification *)note
 {
+    (void)note;
 //	int folderId = [(NSNumber *)[nc object] intValue];	
 }
 
@@ -169,6 +172,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 -(void)handleForumUpdate:(NSNotification *)note
 {
+    (void)note;
 	[self refreshTasksList:currentCategory withFilter:nil];
 }
 
@@ -283,6 +287,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
+    (void)aTableView;
 	return [currentArrayOfForums count];
 }
 
@@ -368,6 +373,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
+    (void)aTableView;
 	NSString * identifier = [aTableColumn identifier];
 	Forum * forum = [currentArrayOfForums objectAtIndex:rowIndex];
 	

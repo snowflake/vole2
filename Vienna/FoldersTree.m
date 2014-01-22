@@ -122,6 +122,7 @@
  */
 -(void)handleFolderFontChange:(NSNotification *)note
 {
+    (void)note;
 	[self setFolderListFont];
 	[outlineView reloadData];
 }
@@ -564,8 +565,9 @@
  * Tell the outline view if the specified item can be expanded. The answer is
  * yes if we have children, no otherwise.
  */
--(BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+-(BOOL)outlineView:(NSOutlineView *)anOutlineView isItemExpandable:(id)item
 {
+    (void)anOutlineView;
 	TreeNode * node = (TreeNode *)item;
 	if (node == nil)
 		node = rootNode;
@@ -575,8 +577,9 @@
 /* numberOfChildrenOfItem
  * Returns the number of children belonging to the specified item
  */
--(NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+-(NSInteger)outlineView:(NSOutlineView *)anOutlineView numberOfChildrenOfItem:(id)item
 {
+    (void)anOutlineView;
 	TreeNode * node = (TreeNode *)item;
 	if (node == nil)
 		node = rootNode;
@@ -586,8 +589,9 @@
 /* child
  * Returns the child at the specified offset of the item
  */
--(id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+-(id)outlineView:(NSOutlineView *)anOutlineView child:(NSInteger)index ofItem:(id)item
 {
+    (void)anOutlineView;
 	TreeNode * node = (TreeNode *)item;
 	if (node == nil)
 		node = rootNode;

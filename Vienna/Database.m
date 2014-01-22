@@ -1271,6 +1271,7 @@ enum {
 // are divided by (vienna) folder numbers to avoid large, slow directory searches.
 -(NSString *)createSpotlightFolder:(NSInteger)folderId message:(NSInteger)messageId
 {
+    (void)messageId;
 	NSString *shortCachePath = @"~/Library/Caches/Metadata/Vienna/";
 	NSString *cachePath = [shortCachePath stringByExpandingTildeInPath];
 	NSString *folderCachePath;

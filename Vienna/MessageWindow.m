@@ -150,6 +150,7 @@
  */
 -(void)handleMessageFontChange:(NSNotification *)note
 {
+    (void)note;
 	[self setMessageFont];
 }
 
@@ -159,6 +160,7 @@
  */
 -(void)handleSignaturesChange:(NSNotification *)note
 {
+    (void)note;
 	[self reloadSignaturesList];
 }
 

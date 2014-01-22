@@ -203,6 +203,7 @@
  */
 -(void)checkForUpdatesComplete:(NSNotification *)notification
 {
+    (void)notification;
 	NSAssert(checkUpdates != nil, @"Notification called with nil checkUpdates");
 	if (![checkUpdates isUpdateAvailable])
 		[self runOKAlertSheet:[checkUpdates updateTitle] text:[checkUpdates updateStatus]];
