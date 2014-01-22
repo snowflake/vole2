@@ -114,6 +114,7 @@
  */
 -(void)handleTintChange:(NSNotification *)nc
 {
+    (void)nc;
 	[self setNeedsDisplay:YES];
 }
 

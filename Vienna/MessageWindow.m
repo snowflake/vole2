@@ -448,6 +448,7 @@
  */
 -(NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
+    (void)toolbar;
     return [NSArray arrayWithObjects:@"SendMessage",
 									 NSToolbarPrintItemIdentifier,
 									 @"SaveAsDraft",
@@ -460,6 +461,7 @@
  */
 -(NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
+    (void)toolbar;
     return [NSArray arrayWithObjects:NSToolbarSeparatorItemIdentifier,
 									 NSToolbarSpaceItemIdentifier,
 									 NSToolbarFlexibleSpaceItemIdentifier,

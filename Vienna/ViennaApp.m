@@ -29,6 +29,7 @@
  */
 -(void)handleGetMessages:(NSScriptCommand *)name
 {
+    (void)name;
 	[[self delegate] getMessages:nil];
 }
 

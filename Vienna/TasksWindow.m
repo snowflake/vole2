@@ -75,6 +75,7 @@
  */
 -(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 {
+    (void)tableColumn;
     (void)tableView;
 	VTask * task = [currentArrayOfTasks objectAtIndex:rowIndex];
 	return [task resultString];

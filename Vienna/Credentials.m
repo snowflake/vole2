@@ -74,6 +74,7 @@
  */
 -(NSString *)getPasswordFromKeychain:(NSString *)theUsername
 {
+    (void)theUsername;
 	// Deprecated API was here DJE
 	const char * cServiceName = [[NSString stringWithFormat:@"Vole:%@", serviceName] 
 								 cStringUsingEncoding:NSWindowsCP1252StringEncoding];

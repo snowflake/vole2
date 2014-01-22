@@ -649,7 +649,8 @@
  * Everything else is shown in a non-bold font.
  */
 -(void)outlineView:(NSOutlineView *)olv willDisplayCell:(NSCell *)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item 
-{    
+{
+    (void)olv;
     if ([[tableColumn identifier] isEqualToString:@"folderColumns"]) 
 	{
 		TreeNode * node = (TreeNode *)item;
@@ -687,6 +688,9 @@
  */
 -(NSDragOperation)outlineView:(NSOutlineView*)olv validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
 {
+    (void)info;
+    (void)olv;
+    (void)index;
 	TreeNode * node = item;
 
 	// Prevent drops on to simple conference names or reserved folders
@@ -702,6 +706,7 @@
  */
 -(BOOL)outlineView:(NSOutlineView*)olv acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 {
+    (void)index; (void)olv;
 	NSPasteboard *pboard = [info draggingPasteboard];
 	TreeNode * node = item;
 		

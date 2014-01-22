@@ -185,6 +185,7 @@
  */
 -(void)importScratchpad:(NSArray *)portArray
 {
+    (void)portArray;
 	NSAutoreleasePool * pool;
 	BufferedFile * buffer;
 	

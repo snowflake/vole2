@@ -973,6 +973,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)doRetrieveMessage:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)sheet;
 	NSArray * contextArray = (NSArray *)contextInfo;
 	if (returnCode == NSAlertDefaultReturn)
 	{
@@ -4714,6 +4715,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
+    (void)toolbar;
     NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     if ([itemIdentifier isEqualToString:@"SearchItem"])
 	{
@@ -4831,6 +4833,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
+    (void)toolbar;
     return [NSArray arrayWithObjects:@"NewRSSSubscription",
 									 @"NewSmartFolder",
 									 NSToolbarPrintItemIdentifier,
@@ -4849,6 +4852,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
+    (void)toolbar;
     return [NSArray arrayWithObjects:NSToolbarSeparatorItemIdentifier,
 									 NSToolbarSpaceItemIdentifier,
 									 NSToolbarFlexibleSpaceItemIdentifier,

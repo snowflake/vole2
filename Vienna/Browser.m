@@ -117,6 +117,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
 -(NSString *)tableView:(NSTableView *)tableView toolTipForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 {
     (void)tableView;
+    (void)tableColumn;
 	Forum * forum = [currentArrayOfForums objectAtIndex:rowIndex];
 // #warning 64BIT: Check formatting arguments
 	NSMutableString * tooltipString = [NSMutableString stringWithFormat:NSLocalizedString(@"Name: %@\n", nil), [forum name]];
@@ -456,6 +457,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
+    (void)toolbar; (void)flag;
     NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
 	if ([itemIdentifier isEqualToString:@"Refresh"])
 	{
@@ -493,6 +495,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
+    (void)toolbar;
     return [NSArray arrayWithObjects:NSToolbarPrintItemIdentifier,
 									 @"Join",
 									 NSToolbarFlexibleSpaceItemIdentifier,
@@ -508,6 +511,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
+    (void)toolbar;
     return [NSArray arrayWithObjects:NSToolbarSeparatorItemIdentifier,
 									 NSToolbarSpaceItemIdentifier,
 									 NSToolbarFlexibleSpaceItemIdentifier,
