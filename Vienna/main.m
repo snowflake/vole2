@@ -41,7 +41,10 @@ int main(int argc, const char *argv[])
 			exit(0);
 		}
 		if (!strcmp("-d",argv[1])) {
-			printf("%s", buildinfo);
+			printf("%s", buildinfo_1);
+			printf("Project deployment target: %d\n", 
+					VOLE_DEPLOYMENT_TARGET);
+			printf("%s", buildinfo_2);
 			printf("SQLite version: %s\n",sqlite3_libversion());
 			printf("SQLite id: %s\n", sqlite3_sourceid());
 			exit(0);
