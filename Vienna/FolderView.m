@@ -167,6 +167,7 @@
  */
 -(void)outlineViewItemDidExpand:(NSNotification *)notification
 {
+    (void)notification;
     [self buildTooltips];
 }
 
@@ -176,6 +177,7 @@
  */
 -(void)outlineViewItemDidCollapse:(NSNotification *)notification
 {
+    (void)notification;
     [self buildTooltips];
 }
 

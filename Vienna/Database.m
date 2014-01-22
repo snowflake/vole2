@@ -2971,6 +2971,7 @@ enum {
 // Fill a dictionary full of RSS Guids so we can weed out duplicates
 -(void)loadRSSGuids:(id)ignored
 {
+    (void)ignored;
 	if (RSSGuids)
 		return;
 		

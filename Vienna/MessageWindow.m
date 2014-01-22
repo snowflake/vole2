@@ -250,6 +250,7 @@
  */
 -(BOOL)windowShouldClose:(NSNotification *)notification
 {
+    (void)notification;
 	[[self window] orderFront:self];
 	if ([messageWindow isDocumentEdited])
 	{
@@ -364,6 +365,7 @@
  */
 -(void)textDidChange:(NSNotification *)notification
 {
+    (void)notification;
 	[messageWindow setDocumentEdited:YES];
 }
 
@@ -372,6 +374,7 @@
  */
 -(void)controlTextDidChange:(NSNotification *)notification
 {
+    (void)notification;
 	[messageWindow setDocumentEdited:YES];
 	[self updateTitle];
 }
@@ -407,6 +410,7 @@
  */
 -(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem
 {
+    (void)toolbarItem;
 	return YES;
 }
 
@@ -417,6 +421,7 @@
  */
 -(NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
+    (void)toolbar; (void)flag;
     NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
 	if ([itemIdentifier isEqualToString:@"SendMessage"])
 	{

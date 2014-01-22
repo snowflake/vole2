@@ -229,6 +229,7 @@
  */
 -(void)doUpdateSelection:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)contextInfo;
 	if (returnCode == NSAlertDefaultReturn)
 	{
 		[sheet close];
@@ -247,6 +248,7 @@
  */
 -(void)savePanelDidEnd:(NSSavePanel *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)contextInfo;
 	if (returnCode == NSOKButton)
 	{
 		[sheet close];

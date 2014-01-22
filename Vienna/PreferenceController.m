@@ -424,7 +424,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-    (void)aTableView;
+    (void)aTableView; (void)aTableColumn;
 	return [arrayOfSignatures objectAtIndex:rowIndex];
 }
 
@@ -688,6 +688,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)signatureSheetEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)contextInfo; (void)sheet;
 	if (returnCode == NSOKButton)
 	{
 		NSString * title = [signatureTitle stringValue];
@@ -812,6 +813,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)browsePanelDidEnd:(NSOpenPanel *)panel returnCode:(NSInteger)returnCode contextInfo:(void *)context
 {
+    (void)context;
 	if (returnCode == NSOKButton)
 	{
 		NSString *newFolder = [[panel filename] stringByAbbreviatingWithTildeInPath];
@@ -872,6 +874,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 
 -(void)downloadPanelDidEnd:(NSOpenPanel *)panel returnCode:(NSInteger)returnCode contextInfo:(void *)context
 {
+    (void)context;
 	if (returnCode == NSOKButton)
 	{
 		NSString *newFolder = [[panel filename] stringByAbbreviatingWithTildeInPath];
@@ -941,6 +944,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)resumeSheetEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)contextInfo; (void)sheet;
 	if (returnCode == NSOKButton)
 	{
 		NSString * text = [NSString stringWithString:[resumeText string]];

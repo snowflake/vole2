@@ -97,6 +97,7 @@
  */
 -(void)handleTaskListChange:(NSNotification *)notification
 {
+    (void)notification;
 	if (allowRefresh)
 		[self refreshTasksList];
 }

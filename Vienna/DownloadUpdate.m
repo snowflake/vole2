@@ -81,6 +81,7 @@
  */
 -(void)download:(NSURLDownload *)download didReceiveResponse:(NSURLResponse *)response
 {
+    (void)download;
     bytesReceived = 0;
 	expectedLength = [response expectedContentLength];
     if (expectedLength != NSURLResponseUnknownLength)
@@ -92,6 +93,7 @@
  */
 -(void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
 {
+    (void)download;
 	NSString * unitString;
 	double unitsValue;
 	
@@ -131,6 +133,7 @@
  */
 -(BOOL)download:(NSURLDownload *)download shouldDecodeSourceDataOfMIMEType:(NSString *)encodingType
 {
+    (void)download;
     BOOL shouldDecode = NO;
     if ([encodingType isEqual:@"application/macbinary"])
         shouldDecode = YES;

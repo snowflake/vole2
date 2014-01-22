@@ -759,6 +759,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)windowWillClose:(NSNotification *)notification
 {
+    (void)notification;
 	[NSApp terminate:nil];
 }
 
@@ -768,6 +769,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
 {
+    (void)theApplication;
 	return YES;
 }
 
@@ -2688,6 +2690,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(void)uploadPanelDidEnd:(NSOpenPanel *)panel returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)contextInfo;
 	if (returnCode == NSOKButton)
 	{
 		// Get the full path of the folder
@@ -2750,6 +2753,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(void)downloadSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)contextInfo;
 	NSString * filename = [downloadFilename stringValue];
 	
 	if (returnCode == NSOKButton)
@@ -3057,6 +3061,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)doConfirmedDelete:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)contextInfo;
 	if (returnCode == NSAlertDefaultReturn)
 	{		
 		// Make a new copy of the currentArrayOfMessages with the selected message removed.
@@ -3424,6 +3429,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(void)modTopicSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    (void)contextInfo;
 	// Get the full path of the folder
 	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];

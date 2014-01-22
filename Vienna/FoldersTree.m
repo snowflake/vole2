@@ -422,6 +422,7 @@
  */
 -(void)handleAutoCollapseChange:(NSNotification *)nc
 {
+    (void)nc;
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 	BOOL newDoAutoCollapse = [defaults boolForKey:MAPref_AutoCollapseFolders];
 	
@@ -515,6 +516,7 @@
  */
 -(void)reloadFolderItem:(id)node reloadChildren:(BOOL)flag
 {
+    (void)flag;
 	isRefreshingFolder = YES;
 	if (node == rootNode)
 		[outlineView reloadData];
@@ -601,8 +603,9 @@
 /* tooltipForItem [dataSource]
  * For items that have counts, we show a tooltip that aggregates the counts.
  */
--(NSString *)outlineView:(FolderView *)outlineView tooltipForItem:(id)item
+-(NSString *)outlineView:(FolderView *)anOutlineView tooltipForItem:(id)item
 {
+    (void)anOutlineView;
 	TreeNode * node = (TreeNode *)item;
 	if (node != nil)
 	{
@@ -623,8 +626,9 @@
  * Folders with unread messages show the folder name and the number of unread messages in the folder.
  * For everything else, we just show the folder name.
  */
--(id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+-(id)outlineView:(NSOutlineView *)anOutlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
+    (void)anOutlineView; (void)tableColumn;
 	TreeNode * node = (TreeNode *)item;
 	if (node == nil)
 		node = rootNode;
@@ -668,6 +672,7 @@
  */
 -(void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
+    (void)notification;
 	if (!blockSelectionHandler)
 	{
 		NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
