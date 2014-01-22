@@ -128,8 +128,9 @@ ${BUILDS}:
 	xcodebuild -project ${PROJECT}  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project ${PROJECT}  -configuration $@ \
+		-sdk ${SDK_NAME} \
 		BUILDID="${SHORTDATE}.${SN}" \
-		ARCHS="${ARCHS}" SDK_NAME="${SDK_NAME}" \
+		ARCHS="${ARCHS}"  \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}"
 
 # Run the version of Xcode appropriate to the target.
