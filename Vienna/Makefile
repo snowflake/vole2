@@ -63,6 +63,16 @@ snowleopard-release snowleopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 snowleopard-release snowleopard: SDK_NAME=macosx10.6
 snowleopard-release snowleopard snowleopard-go: PROJECT=${PROJECT_XC3}
 
+mountainlion-release: 	            NAME=vm
+mountainlion-release:               COMPATIBILITY=Lion and Later
+mountainlion-release:               STATUS=Experimental
+mountainlion-release mountainlion: MOSXDT=10.7
+# archs must be given in the order ppc i386 x86_64
+mountainlion-release mountainlion: ARCHS?=x86_64
+mountainlion-release mountainlion: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
+mountainlion-release mountainlion: SDK_NAME=macosx10.8
+mountainlion-release mountainlion mountainlion-go: PROJECT=${PROJECT_XC5}
+
 mavericks-release: NAME=vv
 mavericks-release: COMPATIBILITY=Tiger and Later, Intel
 mavericks-release: STATUS=Experimental, needs testing
@@ -77,7 +87,6 @@ lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
 
-mountainlion-release: 	NAME=vm
 
 
 #Development: SHORT=DV 
