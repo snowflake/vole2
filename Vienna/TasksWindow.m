@@ -104,6 +104,7 @@
  */
 -(void)handleClick:(id)sender
 {
+    (void)sender;
 	NSInteger selectedColumn = [tasksList clickedColumn];
     if (selectedColumn < 0) return; // Column does  not exist, must be on a blank row
                                     // (DJE added to fix exception)
@@ -267,6 +268,7 @@
  */
 -(IBAction)clear:(id)sender
 {
+    (void)sender;
 	[db clearTasks:MA_TaskResult_Succeeded];
 	[db clearTasks:MA_TaskResult_Failed];
 }
@@ -276,6 +278,7 @@
  */
 -(IBAction)removeSelectedTasks:(id)sender
 {
+    (void)sender;
 	NSEnumerator * enumerator = [tasksList selectedRowEnumerator];
 	NSNumber * rowIndex;	
 
@@ -295,6 +298,7 @@
  */
 -(IBAction)reRunSelectedTasks:(id)sender
 {
+    (void)sender;
 	NSEnumerator * enumerator = [tasksList selectedRowEnumerator];
 	NSNumber * rowIndex;	
 

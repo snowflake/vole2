@@ -704,6 +704,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)showPreferencePanel:(id)sender
 {
+    (void)sender;
 	if (!preferenceController)
 		preferenceController = [[PreferenceController alloc] initWithCredentials:cixCredentials];
 	[preferenceController showWindow:self];
@@ -715,6 +716,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
+    (void)sender;
 	if (![self closeAllMessageWindows])
 		return NSTerminateCancel;
 	if ([connect isProcessing])
@@ -810,6 +812,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)compactDatabase:(id)sender
 {
+    (void)sender;
 	[NSApp beginSheet:compactDatabaseWindow
 	   modalForWindow:mainWindow 
 		modalDelegate:nil 
@@ -826,6 +829,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)gotoMessage:(id)sender
 {
+    (void)sender;
 	NSNumberFormatter * formatter = [gotoNumber formatter];
 
 	// Set the minimum and maximum range of the Goto based on the
@@ -868,6 +872,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)originalThread:(id)sender
 {
+    (void)sender;
 	NSInteger rowIndex = [messageList selectedRow];
 	if (rowIndex != -1)
 	{
@@ -882,6 +887,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)originalMessage:(id)sender
 {
+    (void)sender;
 	NSInteger rowIndex = [messageList selectedRow];
 	if (rowIndex != -1)
 	{
@@ -1021,6 +1027,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)printDocument:(id)sender
 {
+    (void)sender;
 	NSPrintInfo * printInfo = [NSPrintInfo sharedPrintInfo];
 	NSPrintOperation * printOp;
 	
@@ -1048,6 +1055,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)goOnline:(id)sender
 {
+    (void)sender;
 	if (!isOnlineMode)
 	{
 		isOnlineMode = YES;
@@ -1062,6 +1070,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)goOffline:(id)sender
 {
+    (void)sender;
 	if (isOnlineMode)
 	{
 		[connect setOnline:NO];
@@ -1187,6 +1196,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)fillMessageGaps:(id)sender
 {
+    (void)sender;
 	NSArray * arrayOfFolders = [foldersTree folders:[foldersTree actualSelection]];
 
 	if (!missingMessagesController)
@@ -1820,6 +1830,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)forwardTrackMessage:(id)sender
 {
+    (void)sender;
 	NSInteger folderId;
 	NSInteger messageNumber;
 
@@ -1836,6 +1847,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)backTrackMessage:(id)sender
 {
+    (void)sender;
 	NSInteger folderId;
 	NSInteger messageNumber;
 	
@@ -2061,6 +2073,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)doubleClickRow:(id)sender
 {
+    (void)sender;
 	NSInteger selectedRow = [messageList selectedRow];
 	if (selectedRow >= 0 && selectedRow < (NSInteger)[currentArrayOfMessages count])
 	{
@@ -2627,6 +2640,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)mugshotUpdated:(id)sender
 {
+    (void)sender;
 	VMessage * theRecord = [currentArrayOfMessages objectAtIndex:currentSelectedRow];
 
 	// Get dropped image and save it.
@@ -2639,6 +2653,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)newRSSSubscription:(id)sender
 {
+    (void)sender;
 	if (!rssFeed)
 		rssFeed = [[RSSFeed alloc] initWithDatabase:db];
 	[rssFeed newRSSSubscription:mainWindow initialURL:nil];
@@ -2649,6 +2664,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)editRSSSubscription:(id)sender
 {
+    (void)sender;
 	if (!rssFeed)
 		rssFeed = [[RSSFeed alloc] initWithDatabase:db];
 	
@@ -2683,6 +2699,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 */
 -(IBAction)uploadFile:(id)sender
 {
+    (void)sender;
 	//Use file selector sheet to select file & create TAsk
 	NSOpenPanel *panel = [NSOpenPanel openPanel];
 	NSString *initialFolder = [[NSUserDefaults standardUserDefaults] stringForKey: MAPref_LastUploadFolder];
@@ -2736,6 +2753,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 */
 -(IBAction)downloadFile:(id)sender
 {
+    (void)sender;
 	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
 	
@@ -2758,6 +2776,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)newSearchFolder:(id)sender
 {
+    (void)sender;
 	if (!searchFolder)
 		searchFolder = [[SearchFolder alloc] initWithDatabase:db];
 	[searchFolder newCriteria:mainWindow];
@@ -2768,6 +2787,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)editSearchFolder:(id)sender
 {
+    (void)sender;
 	if (!searchFolder)
 		searchFolder = [[SearchFolder alloc] initWithDatabase:db];
 
@@ -2802,6 +2822,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)getMessages:(id)sender
 {
+    (void)sender;
 	if ([connect isProcessing])
 		[connect abortConnect];
 	else
@@ -2821,6 +2842,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)getRSSMessages:(id)sender
 {
+    (void)sender;
 	if ([connect isProcessing])
 		[connect abortConnect];
 	else
@@ -2839,6 +2861,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)getCixMessages:(id)sender
 {
+    (void)sender;
 	if ([connect isProcessing])
 		[connect abortConnect];
 	else
@@ -2858,6 +2881,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)newMessage:(id)sender
 {
+    (void)sender;
 	Folder * folder = [db folderFromID:currentFolderId];
 	if (folder && !IsRSSFolder(folder) && ![db readOnly])
 	{
@@ -2899,6 +2923,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)replyToMessage:(id)sender
 {
+    (void)sender;
 	Folder * folder = [db folderFromID:currentFolderId];
 	if (folder && !IsRSSFolder(folder) && currentSelectedRow >= 0 && ![db readOnly])
 	{
@@ -2962,6 +2987,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)replyByMail:(id)sender
 {
+    (void)sender;
 	if (currentSelectedRow >= 0)
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:currentSelectedRow];
@@ -3000,6 +3026,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)deleteMessage:(id)sender
 {
+    (void)sender;
 	if (currentSelectedRow >= 0)
 // #warning 64BIT: Check formatting arguments
 		NSBeginCriticalAlertSheet (NSLocalizedString(@"Delete selected message", nil),
@@ -3113,6 +3140,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)toggleHideIgnoredMessages:(id)sender
 {
+    (void)sender;
 	hideIgnoredMessages = !hideIgnoredMessages;
 	[[NSUserDefaults standardUserDefaults] setBool:hideIgnoredMessages forKey:MAPref_HideIgnoredMessages];
 	[self refreshFolder:YES];
@@ -3123,6 +3151,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)togglePlainText:(id)sender
 {
+    (void)sender;
 	showPlainText = !showPlainText;
 	[[NSUserDefaults standardUserDefaults] setBool:showPlainText forKey:MAPref_ShowPlainText];
 	if (currentSelectedRow != -1)
@@ -3134,6 +3163,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)toggleWindowsCP:(id)sender
 {
+    (void)sender;
 	return;  // DJE
 	showWindowsCP = !showWindowsCP;
 	[[NSUserDefaults standardUserDefaults] setBool:showWindowsCP forKey:MAPref_ShowWindowsCP];
@@ -3148,6 +3178,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)toggleThreading:(id)sender
 {
+    (void)sender;
 	showThreading = !showThreading;
 	if (showThreading && sortColumnTag != MA_ID_MessageId)
 	{
@@ -3165,6 +3196,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)showTasksWindow:(id)sender
 {
+    (void)sender;
 	if (!tasksWindow)
 		tasksWindow = [[TasksWindow alloc] init];
 	[tasksWindow setDatabase:db];
@@ -3175,7 +3207,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  * Toggle display of the activity viewer during a connect.
  */
 -(IBAction)toggleActivityViewer:(id)sender
-{	
+{
+    (void)sender;
 	NSWindow * activityWindow = [activityViewer window];
 	if (![activityWindow isVisible])
 		[activityViewer showWindow:self];
@@ -3188,6 +3221,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)viewOutbox:(id)sender
 {
+    (void)sender;
 	[foldersTree selectFolder:MA_Outbox_NodeID];
 }
 
@@ -3196,6 +3230,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)viewDrafts:(id)sender
 {
+    (void)sender;
 	[foldersTree selectFolder:MA_Draft_NodeID];
 }
 
@@ -3204,6 +3239,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)viewNextUnread:(id)sender
 {
+    (void)sender;
 	[self markCurrentRead];
 
 	// Set focus back to message list
@@ -3235,6 +3271,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)viewNextPriorityUnread:(id)sender
 {
+    (void)sender;
 	if (currentSelectedRow >= 0)
 	{
 		// Only mark the current one read if it was a priority message
@@ -3434,6 +3471,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 // Menu options for Moderator functions
 -(IBAction)modAddParticipant:(id)sender
 {
+    (void)sender;
 	[modUsernameTitle setStringValue: @"Add Participant"];
 
 	// Fire up the sheet
@@ -3446,6 +3484,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(IBAction)modRemParticipant:(id)sender
 {
+    (void)sender;
 	[modUsernameTitle setStringValue: @"Remove Participant"];
 	
 	// Fire up the sheet
@@ -3458,6 +3497,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(IBAction)modComod:(id)sender
 {
+    (void)sender;
 	[modUsernameTitle setStringValue: @"Add Co-Mod"];
 	
 	// Fire up the sheet
@@ -3471,6 +3511,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(IBAction)modExmod:(id)sender
 {
+    (void)sender;
 	[modUsernameTitle setStringValue: @"Remove Co-Mod"];
 	
 	// Fire up the sheet
@@ -3484,6 +3525,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(IBAction)modReadonly:(id)sender
 {
+    (void)sender;
 	// Get the full path of the folder
 	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
@@ -3502,6 +3544,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(IBAction)modAddTopic:(id)sender
 {
+    (void)sender;
 	// Add conf name (without topic) to sheet 
 	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
@@ -3519,6 +3562,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(IBAction)modNewConference:(id)sender
 {
+    (void)sender;
 	//PJC TODO:
 }	
 
@@ -3584,6 +3628,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markAllRead:(id)sender
 {
+    (void)sender;
 	NSInteger folderId = [foldersTree actualSelection];
 	NSAssert(folderId > MA_Max_Reserved_NodeID, @"Trying to call markAllRead on an invalid folder");
 	[self startProgressIndicator];
@@ -3651,6 +3696,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markPriority:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -3666,6 +3712,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markThreadFromRootPriority:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -3705,6 +3752,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markThreadFromRootIgnored:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -3721,6 +3769,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markIgnored:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -3767,6 +3816,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markThreadRead:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		NSArray * messageArray = [self markedMessageRange:Range_Thread];
@@ -3781,6 +3831,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markThreadFromRootRead:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -3795,6 +3846,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markRead:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -3847,6 +3899,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markFlagged:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -3862,6 +3915,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)markThreadFromRootFlagged:(id)sender
 {
+    (void)sender;
 	if ([messageList selectedRow] != -1 && ![db readOnly])
 	{
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -3894,6 +3948,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)viewProfile:(id)sender
 {
+    (void)sender;
 	if (!profileWindow)
 		profileWindow = [[Profile alloc] initWithDatabase:db];
 	[profileWindow showWindow:self];
@@ -3913,6 +3968,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)joinConference:(id)sender
 {
+    (void)sender;
 	if (!joinWindow)
 		joinWindow = [[Join alloc] initWithDatabase:db];
 	[joinWindow joinCIXConference:mainWindow initialConferenceName:nil];
@@ -3920,12 +3976,14 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 -(IBAction)setCIXBack:(id)sender
 {
+    (void)sender;
 	[db addTask:MA_TaskCode_SetCIXBack actionData:(NSString *)@"1" folderName:@"cixnews/information" orderCode:MA_OrderCode_SetCIXBack];
 	[self setStatusMessage:@"CIX will be set back by one day."];
 }
 
 -(IBAction)copyUrl:(id)sender
 {
+    (void)sender;
 	VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 	Folder * srcFolder = [db folderFromID:[thisMessage folderId]];
 	NSString *url;
@@ -3951,6 +4009,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)renameFolder:(id)sender
 {
+    (void)sender;
 	Folder * folder = [db folderFromID:[foldersTree actualSelection]];
 	if (IsRSSFolder(folder) || IsSearchFolder(folder))
 	{
@@ -3990,6 +4049,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 */
 -(IBAction)deleteFolder:(id)sender
 {
+    (void)sender;
 	NSInteger folderId = [foldersTree actualSelection];
 //#warning 64BIT: Check formatting arguments
 	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to delete a built-in folder %ld", (long) folderId);
@@ -4053,6 +4113,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 */
 -(IBAction)resignFolder:(id)sender
 {
+    (void)sender;
 	NSInteger folderId = [foldersTree actualSelection];
 // #warning 64BIT: Check formatting arguments
 	NSAssert1(folderId > MA_Max_Reserved_NodeID, @"Ouch! Attempting to resign from a built-in folder %ld", (long)folderId);
@@ -4075,6 +4136,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(IBAction)showAcknowledgements:(id)sender
 {
+    (void)sender;
 	NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
 	NSString * pathToAckFile = [thisBundle pathForResource:@"Acknowledgements.rtf" ofType:@""];
 	NSURL * acknowledgementURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"file://%@", pathToAckFile]];
@@ -4123,6 +4185,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)startConnect:(id)sender
 {
+    (void)sender;
 }
 
 /* taskStatus

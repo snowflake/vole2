@@ -155,6 +155,7 @@
  */
 -(IBAction)stopImport:(id)sender
 {
+    (void)sender;
 	if (importRunning)
 	{
 		stopImportFlag = YES;
@@ -448,6 +449,7 @@
  */
 -(IBAction)importRSSSubscriptions:(id)sender
 {
+    (void)sender;
 	[self importOpenPanel:@selector(handleRSSSubscriptionsImport:)];
 }
 
@@ -456,6 +458,7 @@
  */
 -(IBAction)importCIXScratchpad:(id)sender
 {
+    (void)sender;
 	[self importOpenPanel:@selector(handleCIXScratchpadImport:)];
 }
 

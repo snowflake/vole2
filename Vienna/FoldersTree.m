@@ -439,6 +439,7 @@
  */
 -(void)handleDoubleClick:(id)sender
 {
+    (void)sender;
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	TreeNode * node = [outlineView itemAtRow:[outlineView selectedRow]];
 	[nc postNotificationName:@"MA_Notify_EditFolder" object:node];

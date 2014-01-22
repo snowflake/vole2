@@ -325,6 +325,7 @@ static NSString * defaultField = @"Read";
  */
 -(IBAction)doSave:(id)sender
 {
+    (void)sender;
 	NSString * folderName = [searchFolderName stringValue];
 	NSUInteger c;
 
@@ -387,6 +388,7 @@ static NSString * defaultField = @"Read";
  */
 -(IBAction)doCancel:(id)sender
 {
+    (void)sender;
 	[NSApp endSheet:searchWindow];
 	[searchWindow orderOut:self];
 }
@@ -397,6 +399,7 @@ static NSString * defaultField = @"Read";
  */
 -(void)handleTextDidChange:(NSNotification *)aNotification
 {
+    (void)aNotification;
 	NSString * folderName = [searchFolderName stringValue];
 	folderName = [folderName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	[saveButton setEnabled:![folderName isEqualToString:@""]];

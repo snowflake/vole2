@@ -53,6 +53,7 @@
  */
 -(IBAction)doCancel:(id)sender
 {
+    (void)sender;
 	[NSApp abortModal];
 	[self close];
 }
@@ -62,6 +63,7 @@
  */
 -(IBAction)doConnect:(id)sender
 {
+    (void)sender;
 	NSString * newUsername = [username stringValue];
 	NSString * newPassword = [password stringValue];
 	

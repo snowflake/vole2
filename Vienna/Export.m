@@ -111,6 +111,7 @@
  */
 -(IBAction)stopExport:(id)sender
 {
+    (void)sender;
 	if (exportRunning)
 	{
 		stopExportFlag = YES;
@@ -270,6 +271,7 @@
  */
 -(IBAction)exportRSSSubscriptions:(id)sender
 {
+    (void)sender;
 	[self exportSavePanel:@selector(handleRSSSubscriptionsExport:)];
 }
 
@@ -278,6 +280,7 @@
  */
 -(IBAction)exportCIXScratchpad:(id)sender
 {
+    (void)sender;
 	[self exportSavePanel:@selector(handleCIXScratchpadExport:)];
 }
 

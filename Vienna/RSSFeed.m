@@ -151,6 +151,7 @@
  */
 -(IBAction)doSubscribe:(id)sender
 {
+    (void)sender;
 	NSString * feedURLString = [[feedURL stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
 	// Format the URL based on the selected feed source.
@@ -193,6 +194,7 @@
  */
 -(IBAction)doSave:(id)sender
 {
+    (void)sender;
 	NSString * feedURLString = [[editFeedURL stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
 	// Save the new information to the database
@@ -208,6 +210,7 @@
  */
 -(IBAction)doSubscribeCancel:(id)sender
 {
+    (void)sender;
 	[NSApp endSheet:newRSSFeedWindow];
 	[newRSSFeedWindow orderOut:self];
 }
@@ -217,6 +220,7 @@
  */
 -(IBAction)doEditCancel:(id)sender
 {
+    (void)sender;
 	[NSApp endSheet:editRSSFeedWindow];
 	[editRSSFeedWindow orderOut:self];
 }
@@ -226,6 +230,7 @@
  */
 -(IBAction)doLinkSourceChanged:(id)sender
 {
+    (void)sender;
 	[self setLinkTitle];
 }
 
@@ -275,6 +280,7 @@
  */
 -(void)doShowSiteHomePage:(id)sender
 {
+    (void)sender;
 	NSMenuItem * feedSourceItem = [feedSource selectedItem];
 	if (feedSourceItem != nil)
 	{

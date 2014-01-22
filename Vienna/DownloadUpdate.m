@@ -60,6 +60,7 @@
  */
 -(IBAction)cancelButton:(id)sender
 {
+    (void)sender;
 	[theDownload cancel];
 	[self commonDownloadComplete];
 }

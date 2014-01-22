@@ -70,6 +70,7 @@
  */
 -(IBAction)selectFillExisting:(id)sender
 {
+    (void)sender;
 	[skipBackCount setEnabled:NO];
 	[messageNumber setEnabled:NO];
 	[okButton setEnabled:YES];
@@ -81,6 +82,7 @@
  */
 -(IBAction)selectFillBackToSpecific:(id)sender
 {
+    (void)sender;
 	[skipBackCount setEnabled:NO];
 	[messageNumber setEnabled:YES];
 	[self enableOKButton:messageNumber];
@@ -92,6 +94,7 @@
  */
 -(IBAction)selectSkipBack:(id)sender
 {
+    (void)sender;
 	[skipBackCount setEnabled:YES];
 	[messageNumber setEnabled:NO];
 	[self enableOKButton:skipBackCount];
@@ -219,6 +222,7 @@
  */
 -(IBAction)stopScan:(id)sender
 {
+    (void)sender;
 	if (scanRunning)
 	{
 		stopScanFlag = YES;
@@ -231,6 +235,7 @@
  */
 -(void)scanForMessages:(id)sender
 {
+    (void)sender;
 	NSAutoreleasePool * pool;
 	Folder * folder;
 	VTask * task;

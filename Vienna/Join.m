@@ -62,6 +62,7 @@
  */
 -(IBAction)doJoin:(id)sender
 {
+    (void)sender;
 	NSString * folderPath = [[inputField stringValue] lowercaseString];
 	folderPath = [folderPath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if ([folderPath isEqualToString:@""])
@@ -82,6 +83,7 @@
  */
 -(IBAction)doCancel:(id)sender
 {
+    (void)sender;
 	// Close the window
 	[NSApp endSheet:joinConferenceWindow];
 	[joinConferenceWindow orderOut:self];

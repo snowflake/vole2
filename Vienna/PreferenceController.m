@@ -357,6 +357,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)selectDefaultLinksHandler:(id)sender
 {
+    (void) sender;
 	NSMenuItem * selectedItem = [linksHandler selectedItem];
 	if (selectedItem != nil)
 	{
@@ -370,6 +371,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)selectConnectionType:(id)sender
 {
+    (void)sender;
 	NSMenuItem * selectedItem = [connectionType selectedItem];
 	if (selectedItem != nil)
 	{
@@ -382,6 +384,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 */
 -(IBAction)changeLogVersions:(id)sender
 {
+    (void)sender;
 	// #warning 64BIT dje integerValue -> intValue
 	NSInteger versions = [logVersions intValue];
 	[[NSUserDefaults standardUserDefaults] setInteger:versions forKey:MAPref_LogVersions];
@@ -456,6 +459,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)changeQuoteColour:(id)sender
 {
+    (void)sender;
 	[NSApp internalSetQuoteColour:[quoteColour color]];
 }
 
@@ -464,6 +468,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)changePriorityColour:(id)sender
 {
+    (void)sender;
 	[NSApp internalSetPriorityColour:[priorityColour color]];
 }
 
@@ -472,6 +477,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)changeIgnoredColour:(id)sender
 {
+    (void)sender;
 	[NSApp internalSetIgnoredColour:[ignoredColour color]];
 }
 
@@ -525,6 +531,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)changeCheckFrequency:(id)sender
 {
+    (void)sender;
 	NSInteger newFrequency = [[checkFrequency selectedItem] tag];
 	[NSApp internalSetCheckFrequency:newFrequency];
 }
@@ -534,6 +541,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)changeRecentCount:(id)sender
 {
+    (void)sender;
 	// #warning 64BIT dje integerValue -> intValue
 	NSInteger newCount = [recentCount intValue];
 	[[NSUserDefaults standardUserDefaults] setInteger:newCount forKey:MAPref_RecentOnJoin];
@@ -594,6 +602,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)newSignature:(id)sender
 {
+    (void)sender;
 	[signatureBeingEdited release];
 	signatureBeingEdited = nil;
 
@@ -613,6 +622,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)editSignature:(id)sender
 {
+    (void)sender;
 	NSAssert([signaturesList selectedRow] >= 0, @"Somehow editSignature got called without a selected row");
 	
 	NSString * title = [arrayOfSignatures objectAtIndex:[signaturesList selectedRow]];
@@ -638,6 +648,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)deleteSignature:(id)sender
 {
+    (void)sender;
 	NSString * titleOfSignatureToDelete = [arrayOfSignatures objectAtIndex:[signaturesList selectedRow]];
 
 	// Call a common function to both remove the signature and fix up the default
@@ -654,6 +665,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)saveSignature:(id)sender
 {
+    (void)sender;
 	[NSApp endSheet:signatureEditor returnCode:NSOKButton];
 }
 
@@ -662,6 +674,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)cancelSignature:(id)sender
 {
+    (void)sender;
 	[NSApp endSheet:signatureEditor returnCode:NSCancelButton];
 }
 
@@ -807,6 +820,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)browseMugshotFolder:(id)sender
 {
+    (void)sender;
 	NSOpenPanel *panel = [NSOpenPanel openPanel];
 	
 	[panel beginSheetForDirectory: mugshotsFolderName
@@ -826,6 +840,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)defaultMugshotFolder:(id)sender
 {
+    (void)sender;
 	[self updateMugshotFolder: @"~/Library/Vienna/Mugshots"];
 }
 
@@ -862,6 +877,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 
 -(IBAction)browseDownloadFolder:(id)sender
 {
+    (void)sender;
 	NSOpenPanel *panel = [NSOpenPanel openPanel];
 	NSString * defaultFolder = [[NSUserDefaults standardUserDefaults] stringForKey: MAPref_DownloadFolder];
 
@@ -905,6 +921,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)editResume:(id)sender
 {
+    (void)sender;
 	if ([currentPerson parsedInfo] != nil)
 		[resumeText setString:[currentPerson parsedInfo]];
 	[saveResumeButton setEnabled:YES];
@@ -936,6 +953,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)saveResume:(id)sender
 {
+    (void)sender;
 	[NSApp endSheet:resumeEditor returnCode:NSOKButton];
 }
 
@@ -944,6 +962,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)cancelResume:(id)sender
 {
+    (void)sender;
 	[NSApp endSheet:resumeEditor returnCode:NSCancelButton];
 }
 

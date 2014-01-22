@@ -43,6 +43,7 @@ enum {
 
 -(void)initiateCheck:(id)sender
 {
+    (void)sender;
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:_fileURL];
     [self processDictionary:dict];

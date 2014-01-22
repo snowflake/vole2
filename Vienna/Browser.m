@@ -204,6 +204,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 -(IBAction)browserSingleClick:(id)sender
 {
+    (void)sender;
 	NSInteger column = [browserList selectedColumn];
 	NSInteger categoryId = -2;
 
@@ -350,6 +351,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(void)joinFolder:(id)sender
 {
+    (void)sender;
 	NSInteger selectedRow = [forumList selectedRow];
 	if (selectedRow >= 0 && selectedRow < (NSInteger)[currentArrayOfForums count])
 	{
@@ -413,6 +415,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(IBAction)printDocument:(id)sender
 {
+    (void)sender;
 	NSPrintInfo * printInfo = [NSPrintInfo sharedPrintInfo];
 	NSPrintOperation * printOp;
 	
@@ -435,6 +438,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
  */
 -(void)refreshBrowser:(id)sender
 {
+    (void)sender;
 	NSAssert(db != nil, @"Forgot to initialise db before calling refreshBrowser");
 	[db addTask:MA_TaskCode_ConfList actionData:@"" folderName:@"" orderCode:MA_OrderCode_ConfList];
 }

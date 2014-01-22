@@ -77,7 +77,8 @@
  */
 -(IBAction)pictureUpdated:(id)sender
 {
-	// Get dropped image and save it.
+    // Get dropped image and save it.
+    (void)sender;
 	NSData * TIFFData = [[personImage image] TIFFRepresentationUsingCompression: NSTIFFCompressionLZW factor: 1.0];
 	NSImage * newImage = [[NSImage alloc] initWithData:TIFFData];
 	[currentPerson setPicture:newImage];
@@ -161,6 +162,7 @@
  */
 -(IBAction)sendMail:(id)sender
 {
+    (void)sender;
 	NSURL * mailURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"mailto:%@", [currentPerson emailAddress]]];
 	[[NSWorkspace sharedWorkspace] openURL:mailURL];
 }
@@ -170,6 +172,7 @@
  */
 -(IBAction)updateResume:(id)sender
 {
+    (void)sender;
 	NSAssert(db != nil, @"Forgot to initialise db before calling updateResume");
 	NSAssert(currentPerson != nil, @"Update button should be disabled if currentPerson is nil");
 	[db addTask:MA_TaskCode_GetResume actionData:[currentPerson shortName] folderName:@"" orderCode:MA_OrderCode_GetResume];

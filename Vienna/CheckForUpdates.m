@@ -192,6 +192,7 @@
  */
 -(IBAction)checkForUpdates:(id)sender
 {
+    (void)sender;
 	if (!checkUpdates)
 		checkUpdates = [[CheckForUpdates alloc] init];
 	[checkUpdates checkForUpdate:mainWindow showUI:YES];

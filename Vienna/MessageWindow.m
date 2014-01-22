@@ -279,6 +279,7 @@
  */
 -(void)sendMessage:(id)sender
 {
+    (void)sender;
 	[self removeFromFolder:MA_Draft_NodeID];
 	[self saveToFolder:MA_Outbox_NodeID];
 	[messageWindow performClose:self];
@@ -290,6 +291,7 @@
  */
 -(void)saveAsDraft:(id)sender
 {
+    (void)sender;
 	[self removeFromFolder:MA_Outbox_NodeID];
 	[self saveToFolder:MA_Draft_NodeID];
 	[messageWindow setDocumentEdited:NO];
@@ -377,6 +379,7 @@
  */
 -(IBAction)printDocument:(id)sender
 {
+    (void)sender;
 	NSPrintInfo * printInfo = [NSPrintInfo sharedPrintInfo];
 	NSPrintOperation * printOp;
 	
