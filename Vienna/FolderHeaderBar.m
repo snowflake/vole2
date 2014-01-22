@@ -47,7 +47,7 @@
 	// the messages for the folder yet. This is OK.
 	if (folderCount <= 0)
 // #warning 64BIT: Check formatting arguments
-		countString = [NSString stringWithFormat:NSLocalizedString(@"No messages", nil)];
+		countString = [NSString stringWithFormat:@"%@", NSLocalizedString(@"No messages", nil) ];
 	else
 	{
 // #warning 64BIT: Check formatting arguments
