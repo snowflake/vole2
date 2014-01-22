@@ -128,7 +128,7 @@
 -(void)refreshTasksList
 {
 	[currentArrayOfTasks release];
-	currentArrayOfTasks = [[db arrayOfTasks:NO] retain];
+	currentArrayOfTasks = [[NSMutableArray arrayWithArray:[db arrayOfTasks:NO] ] retain];
 	[tasksList reloadData];
 	[clearButton setEnabled:[currentArrayOfTasks count] > 0];
 }
