@@ -26,7 +26,7 @@ XC5_XCODE_APP?=/Applications/Xcode.app
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
 		mavericks
 RELEASES:= 	Development-release tiger-release leopard-release \
-		snowleopard-release lion-release mountain-release \
+		snowleopard-release lion-release mountainlion-release \
 		mavericks-release
 
 Development-release: NAME=dv
