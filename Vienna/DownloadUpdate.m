@@ -40,7 +40,7 @@
 	// Enter a tight loop until the user cancels or the
 	// import completes.
     NSURLRequest * theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:fromURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-	theDownload = [[NSURLDownload alloc] initWithRequest:theRequest delegate:self];	
+	theDownload = [[NSURLDownload alloc] initWithRequest:theRequest delegate:(id)self];
     if (theDownload)
         [theDownload setDestination:toFilename allowOverwrite:YES];
 }

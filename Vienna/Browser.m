@@ -64,12 +64,12 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
 	
     // Set the appropriate toolbar options. We are the delegate, customization is allowed,
 	// changes made by the user are automatically saved and we start in icon+text mode.
-    [toolbar setDelegate:self];
+    [toolbar setDelegate:(id)self];
     [toolbar setAllowsUserCustomization:YES];
     [toolbar setAutosavesConfiguration:YES]; 
     [toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
     [browserWindow setToolbar:toolbar];
-	[browserWindow setDelegate:self];
+	[browserWindow setDelegate:(id)self];
 
 	// Initialise the sort direction
 	[self showSortDirection];

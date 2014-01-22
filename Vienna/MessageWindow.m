@@ -73,12 +73,12 @@
 
     // Set the appropriate toolbar options. We are the delegate, customization is allowed,
 	// changes made by the user are automatically saved and we start in icon+text mode.
-    [toolbar setDelegate:self];
+    [toolbar setDelegate:(id)self];
     [toolbar setAllowsUserCustomization:YES];
     [toolbar setAutosavesConfiguration:YES]; 
     [toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
     [messageWindow setToolbar:toolbar];
-	[messageWindow setDelegate:self];
+	[messageWindow setDelegate:(id)self];
 
 	// Set the current message text
 	NSInteger messageNumber = [message messageId];

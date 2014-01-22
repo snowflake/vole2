@@ -149,13 +149,13 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 
     // Set the appropriate toolbar options. We are the delegate, customization is allowed,
 	// changes made by the user are automatically saved and we start in icon+text mode.
-    [toolbar setDelegate:self];
+    [toolbar setDelegate:(id)self];
     [toolbar setAllowsUserCustomization:YES];
     [toolbar setAutosavesConfiguration:YES]; 
     [toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
 
     [mainWindow setToolbar:toolbar];
-	[mainWindow setDelegate:self];
+	[mainWindow setDelegate:(id)self];
 	[mainWindow setTitle:appName];
 	[NSApp setDelegate:self];
 
