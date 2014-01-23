@@ -709,8 +709,10 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 
 		// Select the newly added signature for convenience.
 		NSInteger row = [arrayOfSignatures indexOfObject:title];
-		[signaturesList selectRow:row byExtendingSelection:NO];
-		
+        // DJE - Deprecated API was here
+		[signaturesList selectRowIndexes: [NSIndexSet indexSetWithIndex:(NSUInteger)row]
+                    byExtendingSelection:NO];
+
 		// Give all open message windows a chance to refresh their signature drop down list.
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_SignaturesChange" object:title];
 	}
