@@ -78,7 +78,7 @@ mavericks-release: COMPATIBILITY=Tiger and Later, Intel
 mavericks-release: STATUS=Experimental, needs testing
 mavericks-release mavericks: MOSXDT=10.7
 # archs must be given in the order ppc i386 x86_64
-mavericks-release mavericks: ARCHS?=i386 x86_64
+mavericks-release mavericks: ARCHS?=x86_64
 mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
 mavericks-release mavericks: SDK_NAME=macosx10.9
 mavericks-release mavericks mavericks-go: PROJECT=${PROJECT_XC5}
