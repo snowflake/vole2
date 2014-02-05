@@ -809,7 +809,21 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	if (browserController == nil)
 		browserController = [[Browser alloc] initWithDatabase:db];
 	[browserController showWindow:sender];
+	
 }
+
+/* showVoleBuild
+ * Display the Vole Build window.
+ */
+-(IBAction)showVoleBuild:(id)sender 
+{
+	NSLog(@"hello from showVoleBuild");
+	if(voleBuildInfoController == nil)
+		voleBuildInfoController = [[VoleBuildInfoController alloc] init];
+	[voleBuildInfoController showWindow: self];
+}
+
+
 
 /* compactDatabase
  * Run the database compaction command.
@@ -5056,6 +5070,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[messageListFont release];
 	[boldMessageListFont release];
 	[db release];
+	[voleBuildInfoController release];
 	[super dealloc];
 }
 @end

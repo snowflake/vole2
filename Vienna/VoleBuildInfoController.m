@@ -17,12 +17,47 @@
 
 @implementation VoleBuildInfoController
 
+
+
+
+-( char *)  getSysctl: (char *) sysctl {
+	static char buff[50];
+	size_t oldlen = sizeof(buff) - 1;
+	size_t newlen = 0;
+	int retcode = sysctlbyname(sysctl, buff, &oldlen, NULL, newlen);
+	if(retcode == 0)
+		return buff;
+	else
+		return "sysctlbyname failed";
+}
+
+-( char *) getCurrentArch {
+#if defined(__i386__)
+#   define VOLE_ARCH "i386"
+#elif defined(__x86_64__)
+#   define VOLE_ARCH "x86_64"
+#elif defined(__ppc__)
+#   define VOLE_ARCH "ppc"
+#elif defined(__ppc64__)
+#   define VOLE_ARCH "ppc64"
+#else
+#   define VOLE_ARCH "Unknown"
+#endif
+	return VOLE_ARCH;	
+	
+}
+
+
+
 /* init
  * Just init the activity window.
  */
 -(id)init
 {
-	return [super initWithWindowNibName:@"VoleBuildInfo"];
+	NSLog(@"hello from VoleBuildInfo");
+	if( ! [super initWithWindowNibName:@"VoleBuildInfo"])
+		return nil;
+	return self;
 }
 
 /* windowDidLoad
@@ -30,29 +65,65 @@
  */
 -(void)windowDidLoad
 {
-	NSFont * font = [NSFont userFixedPitchFontOfSize:10];
-	[textView setFont:font];
-}
-
-/* clearLog
- * Remove the last log
- */
--(void)clearLog
-{
-	[textView setString:@""];
-}
-
-/* writeString
- * Append the string to the end of the text in the activity window.
- */
--(void)writeString:(NSString *)string
-{
-	NSRange endRange;
+	NSLog(@"Vole window did load");
+	NSFont * font = [NSFont userFixedPitchFontOfSize:12];
+	NSLog(@"window did load value: %@",window);
 	
-	endRange.location = [[textView textStorage] length];
-	endRange.length = 0;
-	[textView replaceCharactersInRange:endRange withString:string];
-	endRange.length = [string length];
-	[textView scrollRangeToVisible:endRange];
+	[textView setFont:font];
+	[textView setContinuousSpellCheckingEnabled:NO];
+	[textView setEditable:NO];
+	[textView setString:[self voleStatusReport]];
+}
+
+-(NSString *)voleStatusReport {
+	NSString * bundleLocation = [[NSBundle mainBundle] bundlePath ];
+	NSString *report = [NSString stringWithFormat:
+						@"=== Vole Status Report ===\n"
+						"Date generated: %@\n"
+						"\n"
+						"[Vole Runtime]\n"
+						"Location: %@\n"
+						"%@" // OSX versions
+						"Hardware Machine: %s\n"
+						"Current Architecture: %s\n"
+						"AppKit Version: %.12g\n"
+						"Foundation Version: %.12g\n"
+						"\n"
+						"%s" // build
+						"%s",  // unchecked files
+						[[NSDate date] description],
+						bundleLocation ? bundleLocation : @"Unknown", // Location
+						[self softwareVersion],
+						[self getSysctl:"hw.machine"],
+						[self getCurrentArch],
+						NSAppKitVersionNumber,
+						NSFoundationVersionNumber,
+						vole_build_info,
+						vole_vcs_changes];
+	
+	return report;
+
+}
+
+-(NSString *) softwareVersion {
+	NSDictionary * versionDict;
+	NSString * server = @"";
+	versionDict = [NSDictionary dictionaryWithContentsOfFile:
+				   @"/System/Library/CoreServices/SystemVersion.plist"];
+	if(versionDict)
+		server	= @"";
+	else if((versionDict=[NSDictionary dictionaryWithContentsOfFile:
+						  @"/System/Library/CoreServices/ServerVersion.plist"]))
+		server=@"Server ";
+	else 
+		return @"OS X Version: Unknown (No plist)\n";
+	NSString *osxversion = [versionDict valueForKey:@"ProductUserVisibleVersion"];
+	NSString *osxbuild   = [versionDict valueForKey:@"ProductBuildVersion"];
+	
+	return [NSString stringWithFormat:@"OS X %@Version: %@\nOS X Build: %@\n",
+			server,
+			osxversion ? osxversion : @"Unknown",
+			osxbuild   ? osxbuild   : @"Unknown" ];
+	
 }
 @end

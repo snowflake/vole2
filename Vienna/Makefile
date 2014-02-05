@@ -111,7 +111,7 @@ mavericks mavericks-release:      SN=9
 # lion lion-release lion-go: 			DEVELOPER_DIR?=/Developer
 
 ${BUILDS}: SHORTDATE:=$(shell date '+%Y%m%d.%H%M%S')
-
+${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vole.app RELEASE.html BUILD.html INSTALL.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
@@ -131,7 +131,8 @@ ${BUILDS}:
 		-sdk ${SDK_NAME} \
 		BUILDID="${SHORTDATE}.${SN}" \
 		ARCHS="${ARCHS}"  \
-		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}"
+		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}" \
+		VCSSTATUS="${VCSSTATUS}"
 
 # Run the version of Xcode appropriate to the target.
 # This helps to preserve Xcode and Interface Builder integration

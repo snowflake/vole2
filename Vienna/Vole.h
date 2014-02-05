@@ -140,3 +140,10 @@ typedef CGFLOAT_TYPE CGFloat;
 #define VOLE_MACOSX_10_10 10010
 #define VOLE_MACOSX_10_11 10011
 #define VOLE_MACOSX_10_12 10012
+
+// declarations for main.m and VoleBuildInfo
+extern char vole_build_info[];
+extern char vole_vcs_changes[];
+
+ 
+

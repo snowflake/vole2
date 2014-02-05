@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import <stdio.h>
+#import <stdlib.h>
+#import <unistd.h>
+#import "Vole.h"
 // XXXX-Tempfile has declarations which may be useful in other modules
 #import "XXXX-Tempfile.h"
 #import "testAnotherViennaIsRunning.h"
 #import "sqlite3.h"
-#import <stdlib.h>
-#import <unistd.h>
+
 char * cixLocation_cstring = "cix.compulink.co.uk"; // Normal server
 char * betaserver = "v4.conferencing.co.uk"; // alternate beta server
 char * volecixbetaname = "volecixbeta"; // name of a file in $HOME folder to activate the beta server

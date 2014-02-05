@@ -13,14 +13,18 @@
 //  limitations under the License.
 //
 
+#import <sys/types.h>
+#import <sys/sysctl.h>
+
 #import <Foundation/Foundation.h>
 #import "Vole.h"
 
-
 @interface VoleBuildInfoController : NSWindowController {
 	IBOutlet NSTextView * textView;
-	IBOutlet NSWindow * activityWindow;
+	IBOutlet NSWindow * window;
 }
--(void)clearLog;
--(void)writeString:(NSString *)string;
+-(NSString *) voleStatusReport;
+-(NSString *) softwareVersion;
+-(NSString *)voleStatusReport;
+
 @end

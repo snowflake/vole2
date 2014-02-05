@@ -48,5 +48,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>ViennaApp</string>
+	<key>VoleVCSStatus</key>
+	<string>${VCSSTATUS}</string>
 </dict>
 </plist>

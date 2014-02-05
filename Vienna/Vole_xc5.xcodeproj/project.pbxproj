@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		611065F51624366C00E9E654 /* LogRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 611065F41624366C00E9E654 /* LogRect.m */; };
 		6110660816243A7000E9E654 /* LogRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 6110660716243A7000E9E654 /* LogRect.h */; };
+		614862CA18A2754900FAAA7D /* VoleBuildInfoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 614862C818A2754900FAAA7D /* VoleBuildInfoController.h */; };
+		614862CB18A2754900FAAA7D /* VoleBuildInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614862C918A2754900FAAA7D /* VoleBuildInfoController.m */; };
+		614862CE18A2760B00FAAA7D /* VoleBuildInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614862CC18A2760B00FAAA7D /* VoleBuildInfo.xib */; };
 		61587D0C184132010018AB9E /* Vole.h in Headers */ = {isa = PBXBuildFile; fileRef = 61587D0B184132010018AB9E /* Vole.h */; };
 		6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6176B81A147FA24700BB5841 /* checkVienna.xib */; };
 		6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */; };
@@ -254,6 +257,9 @@
 		32DBCF750370BD2300C91783 /* Vole_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vole_Prefix.pch; sourceTree = "<group>"; };
 		611065F41624366C00E9E654 /* LogRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRect.m; sourceTree = "<group>"; };
 		6110660716243A7000E9E654 /* LogRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRect.h; sourceTree = "<group>"; };
+		614862C818A2754900FAAA7D /* VoleBuildInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoleBuildInfoController.h; sourceTree = "<group>"; };
+		614862C918A2754900FAAA7D /* VoleBuildInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoleBuildInfoController.m; sourceTree = "<group>"; };
+		614862CD18A2760B00FAAA7D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/VoleBuildInfo.xib; sourceTree = "<group>"; };
 		61587D0B184132010018AB9E /* Vole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vole.h; sourceTree = "<group>"; };
 		6176B81B147FA24700BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
 		6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testAnotherViennaIsRunning.h; sourceTree = "<group>"; };
@@ -601,6 +607,8 @@
 				AA26F4DC0604927300FE7994 /* URLHandlerCommand.m */,
 				AA682CF5069A955F00228193 /* ViennaApp.h */,
 				AA682CF6069A955F00228193 /* ViennaApp.m */,
+				614862C818A2754900FAAA7D /* VoleBuildInfoController.h */,
+				614862C918A2754900FAAA7D /* VoleBuildInfoController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -624,6 +632,7 @@
 				AA3BDC9E063249FE004621CD /* SearchFolder.nib */,
 				AA6E2A69064C6FAA00C7A6F9 /* Export.nib */,
 				AA7300C2067BF43400827E96 /* Browser.nib */,
+				614862CC18A2760B00FAAA7D /* VoleBuildInfo.xib */,
 				AA9F3085081B69EE00D6EA23 /* RSSFeed.nib */,
 				AAC504800828EB8E0089FF70 /* RSSSources.plist */,
 				AA2CE688081C3F3800D8FD8F /* Acknowledgements.rtf */,
@@ -839,6 +848,7 @@
 				AAFA8CA9062A0BE200C530A6 /* CalendarExtensions.h in Headers */,
 				AA4F650C062AE8EB00D4837C /* Join.h in Headers */,
 				AAA3AF0906338A00006735EB /* SearchFolder.h in Headers */,
+				614862CA18A2754900FAAA7D /* VoleBuildInfoController.h in Headers */,
 				AA583930063590110055BE1E /* Credentials.h in Headers */,
 				AAA541EB0639E39200A373CA /* MessageInfoBar.h in Headers */,
 				AA8C72F50641DE1F00649BA2 /* VCriteria.h in Headers */,
@@ -994,6 +1004,7 @@
 				AA958BE5068667C000F293F1 /* openForum.tiff in Resources */,
 				AA958BEC0686786B00F293F1 /* forum_header.tiff in Resources */,
 				AA958C350686855B00F293F1 /* joinFolder.tiff in Resources */,
+				614862CE18A2760B00FAAA7D /* VoleBuildInfo.xib in Resources */,
 				AA680A51068F331B004078F0 /* Action.tiff in Resources */,
 				AA6BC5B80694C5F400A3460D /* lockedFolder.tiff in Resources */,
 				CD3F61D807466F5700BAE165 /* nextunread.tiff in Resources */,
@@ -1122,6 +1133,7 @@
 				AAA305FF0682A25200E4A6DC /* TableViewExtensions.m in Sources */,
 				AA958C810686910700F293F1 /* Category.m in Sources */,
 				AA682CF8069A955F00228193 /* ViennaApp.m in Sources */,
+				614862CB18A2754900FAAA7D /* VoleBuildInfoController.m in Sources */,
 				AA21F47807538EDE00503F58 /* VPerson.m in Sources */,
 				AAAA2FF0077289EF000FB214 /* Profile.m in Sources */,
 				AAAA305A0773CE22000FB214 /* PersonManager.m in Sources */,
@@ -1163,6 +1175,14 @@
 				2A37F4B7FDCFA73011CA2CEA /* English */,
 			);
 			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		614862CC18A2760B00FAAA7D /* VoleBuildInfo.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				614862CD18A2760B00FAAA7D /* English */,
+			);
+			name = VoleBuildInfo.xib;
 			sourceTree = "<group>";
 		};
 		6176B81A147FA24700BB5841 /* checkVienna.xib */ = {

@@ -34,6 +34,7 @@
 #import "Join.h"
 #import "Credentials.h"
 #import "Profile.h"
+#import "VoleBuildInfoController.h"
 
 @class PreferenceController;
 @class AuthenticationController;
@@ -51,6 +52,7 @@
 @class RSSFeed;
 @class MessageView;
 @class Browser;
+@class VoleBuildInfoController;
 
 @interface AppController : NSObject <ConnectProtocol,GrowlApplicationBridgeDelegate> {
 	IBOutlet NSWindow * mainWindow;
@@ -99,6 +101,7 @@
 	Browser * browserController;
 	Profile * profileWindow;
 	RSSFeed * rssFeed;
+	VoleBuildInfoController * voleBuildInfoController;
 
 	Database * db;
 	BOOL sortedFlag;
@@ -142,6 +145,7 @@
 }
 
 // Menu action items
+-(IBAction)showVoleBuild:(id)sender;   // Show the VoleBuildInfo window
 -(IBAction)showPreferencePanel:(id)sender;
 // #warning 64BIT DJE deleted next line - multiple getMessages found
 -(IBAction)getMessages:(id)sender;
