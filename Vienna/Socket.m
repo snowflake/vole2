@@ -30,9 +30,9 @@
 #include <sys/uio.h>
 
 #import "sanitise_string.h"
-
-#define BF_LINE_MAX			128
-#define BF_STRING_MAX		256
+// increased 5/2/2014
+#define BF_LINE_MAX			30000
+#define BF_STRING_MAX		5120
 
 @implementation Socket
 

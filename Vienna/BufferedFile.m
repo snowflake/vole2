@@ -21,8 +21,8 @@
 #import "BufferedFile.h"
 #import "sanitise_string.h"
 
-#define BF_LINE_MAX			128
-#define BF_STRING_MAX		256
+#define BF_LINE_MAX			30000
+#define BF_STRING_MAX		1024
 #define BF_BUFFER_MAX		(16 * 1024)
 
 @implementation BufferedFile

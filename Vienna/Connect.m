@@ -2456,8 +2456,8 @@ abortLabel:
 	// - Terse output (M: instead of Main:, etc)
 	// - No paging in terminal
 	NSInteger recentCount = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_RecentOnJoin];
-
-	[self writeStringWithFormat:YES string:@"opt timeout 6 missing y terse comp y ref y term pag 0 term width 300 edit v bit8 y recent %d u z d z q\n", recentCount];
+	// increase the term width to 30000 5/2/2014
+	[self writeStringWithFormat:YES string:@"opt timeout 6 missing y terse comp y ref y term pag 0 term width 30000 edit v bit8 y recent %d u z d z q\n", recentCount];
 	[self readAndScanForMainPrompt:&endOfFile];
 	if (endOfFile)
 		return MA_Connect_Aborted;
