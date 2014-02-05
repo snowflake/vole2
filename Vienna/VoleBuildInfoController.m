@@ -54,7 +54,6 @@
  */
 -(id)init
 {
-	NSLog(@"hello from VoleBuildInfo");
 	if( ! [super initWithWindowNibName:@"VoleBuildInfo"])
 		return nil;
 	return self;
@@ -65,14 +64,22 @@
  */
 -(void)windowDidLoad
 {
-	NSLog(@"Vole window did load");
 	NSFont * font = [NSFont userFixedPitchFontOfSize:12];
-	NSLog(@"window did load value: %@",window);
 	
 	[textView setFont:font];
 	[textView setContinuousSpellCheckingEnabled:NO];
 	[textView setEditable:NO];
 	[textView setString:[self voleStatusReport]];
+}
+
+-(IBAction)voleCpyToPasteboard:(id)sender {
+    (void) sender;
+    NSString * sr = [self voleStatusReport];
+    NSPasteboard *pb = [NSPasteboard generalPasteboard];
+	[pb declareTypes: [NSArray arrayWithObject:NSStringPboardType] owner:self];
+	[pb setString:sr forType:NSStringPboardType];
+    [textView setString:sr];
+    
 }
 
 -(NSString *)voleStatusReport {

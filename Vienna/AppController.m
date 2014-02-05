@@ -817,7 +817,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(IBAction)showVoleBuild:(id)sender 
 {
-	NSLog(@"hello from showVoleBuild");
+    (void)sender;
 	if(voleBuildInfoController == nil)
 		voleBuildInfoController = [[VoleBuildInfoController alloc] init];
 	[voleBuildInfoController showWindow: self];
