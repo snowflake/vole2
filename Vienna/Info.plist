@@ -50,5 +50,7 @@
 	<string>ViennaApp</string>
 	<key>VoleVCSStatus</key>
 	<string>${VCSSTATUS}</string>
+	<key>VoleVCSDate</key>
+	<string>${VCSDATE}</string>
 </dict>
 </plist>
