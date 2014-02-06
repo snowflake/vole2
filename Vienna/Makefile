@@ -110,7 +110,7 @@ mavericks mavericks-release:      SN=9
 # snowleopard snowleopard-release snowleopard-go:	DEVELOPER_DIR?=/Developer
 # lion lion-release lion-go: 			DEVELOPER_DIR?=/Developer
 
-${BUILDS}: SHORTDATE:=$(shell date '+%Y%m%d.%H%M%S')
+${BUILDS}: SHORTDATE:=$(shell date -u '+%Y%m%d.%H%M%S')
 ${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vole.app RELEASE.html BUILD.html INSTALL.html
