@@ -9,6 +9,9 @@
 # If this script is called with $1 set to vcs, it displays version control
 # status like this: Fossil(1) abcdefabcdef123456798888888888
 #                          ^ count of unchecked files
+#
+# If this script is called with $1 set to vcsdate, it displays
+# the version control checkin date.
 
 # for finding Fossil
 PATH=$SYSTEM_DEVELOPER_BIN_DIR:$PATH:/usr/local/bin
@@ -98,6 +101,20 @@ EOF_GIT_CHECKOUT
     printf '"Check-in Date: (unknown)\\n"\n'
   fi
 }
+function version_control_date(){
+  if fossil changes 2>/dev/null 1>/dev/null
+  then
+    # within a Fossil checkout
+    fossil status | awk '/^checkout:/ { printf "%s %s %s",$3,$4,$5 ; exit}'
+  elif git status -s -uno 2>/dev/null 1>/dev/null
+  then
+    # within a Git checkout
+  git log -1 | awk '/^Date: / {printf "%s %s %s %s %s %s", $2,$3,$4,$5,$6,$7;exit}'
+  else
+    # not within a checkout
+    printf '(unknown - not within a VCS)'
+  fi
+}
 function uuid_checkin(){
   # returns the checkin uuid
   if fossil changes 2>/dev/null 1>/dev/null
@@ -137,6 +154,12 @@ if [ x${1} = xvcs ]
 then
   printf '%s(%s) %s' $(version_control_type) $(count_unchecked_files) $(uuid_checkin)  
 exit 0
+fi
+
+if [ x${1} = xvcsdate ]
+then
+  version_control_date
+  exit 0
 fi
 
 echo  Fossil checked-in files checking script

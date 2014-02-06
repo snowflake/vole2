@@ -112,6 +112,7 @@ mavericks mavericks-release:      SN=9
 
 ${BUILDS}: SHORTDATE:=$(shell date -u '+%Y%m%d.%H%M%S')
 ${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
+${BUILDS}: VCSDATE:=$(shell /bin/sh ../scripts/version-script.sh vcsdate)
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vole.app RELEASE.html BUILD.html INSTALL.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
@@ -132,7 +133,9 @@ ${BUILDS}:
 		BUILDID="${SHORTDATE}.${SN}" \
 		ARCHS="${ARCHS}"  \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}" \
-		VCSSTATUS="${VCSSTATUS}"
+		VCSSTATUS="${VCSSTATUS}" \
+		VCSDATE="${VCSDATE}"
+
 
 # Run the version of Xcode appropriate to the target.
 # This helps to preserve Xcode and Interface Builder integration
