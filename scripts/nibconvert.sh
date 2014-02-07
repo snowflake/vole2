@@ -7,7 +7,7 @@
 
 
 echo Processing $1
-ibtool $1 --upgrade --write $(basename $1 .nib).xib 
-echo return code for $i was $?
+/Xcode3.2.6/usr/bin/ibtool $1 --upgrade --write $(basename $1 .nib).xib 
+echo return code for $1 was $?
 # reset the 'file extension is hidden' attribute
 SetFile -a e $(basename $1 .nib).xib
