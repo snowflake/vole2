@@ -83,6 +83,18 @@ mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
 mavericks-release mavericks: SDK_NAME=macosx10.9
 mavericks-release mavericks mavericks-go: PROJECT=${PROJECT_XC5}
 
+yosemite-release:          NAME=vy
+yosemite-release:          COMPATIBILITY=
+yosemite-release:          STATUS=experimental
+yosemite-release yosemite: MOSXDT=10.7
+# archs must be given in the order ppc i386 x86_64
+yosemite-release yosemite: ARCHS?=x86_64
+yosemite-release yosemite: DEVELOPER_DIR=${DEVELOPER_DIR_XC6}
+yosemite-release yosemite: SDK_NAME=macosx10.10
+yosemite-release yosemite yosemite-go: PROJECT=${PROJECT_XC6}
+
+
+
 lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
