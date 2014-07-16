@@ -75,7 +75,11 @@ New file $2
 
 [File]
 Filename: $2
-Hotlink to download: cixfile:vienna/${sandpit}:$2
+Hotlink to download (via Cix): cixfile:vienna/${sandpit}:$2
+Hotlink to download (via browser):
+(For download via browser, click on the File menu at the
+top left of the Browser window, immediately below the filename.
+This is not the same as the Browser File menu in the menubar.)
 Size: $(wc -c $2 | awk '{printf $1}') 
 $(/sbin/md5 $2)
 $(openssl sha1 $2)
