@@ -4971,6 +4971,12 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return YES;
 }
 
+static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
+
++(NSString *) getAcronymsVersion {
+	return acronymsVersion;
+}
+
 -(void)readAcronyms
 {
 	// DJE modified here, 29 May 2013
@@ -4983,7 +4989,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	BOOL endOfFile = NO;
 	BOOL foundFile = NO;
 	NSString * line;
-	NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
+	
 
 	// Look for the acronyms file in ~/Library.
 	if ([[NSFileManager defaultManager] isReadableFileAtPath: fileName]) {

@@ -17,6 +17,7 @@
 #import <sys/sysctl.h>
 
 #import <Foundation/Foundation.h>
+#import "AppController.h"
 #import "Vole.h"
 
 @interface VoleBuildInfoController : NSWindowController {

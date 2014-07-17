@@ -319,4 +319,7 @@
 -(NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;    
 -(NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar;
 -(NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar;
+
+// Acronyms
++(NSString *)getAcronymsVersion;
 @end
