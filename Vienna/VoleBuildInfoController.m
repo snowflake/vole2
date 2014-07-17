@@ -13,6 +13,7 @@
 //  limitations under the License.
 //
 
+#import "sqlite3.h"
 #import "VoleBuildInfoController.h"
 
 @implementation VoleBuildInfoController
@@ -97,6 +98,9 @@
 						"Foundation Version: %.12g\n"
 						"\n"
 						"%s" // build
+						"[SQLite]\n"
+						"SQLite version: %s\n"
+						"SQLite: %s\n\n"
 						"%s",  // unchecked files
 						[[NSDate date] description],
 						bundleLocation ? bundleLocation : @"Unknown", // Location
@@ -106,6 +110,8 @@
 						NSAppKitVersionNumber,
 						NSFoundationVersionNumber,
 						vole_build_info,
+						sqlite3_libversion(),
+						sqlite3_sourceid(),
 						vole_vcs_changes];
 	
 	return report;
