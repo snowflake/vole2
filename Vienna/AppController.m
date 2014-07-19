@@ -5004,6 +5004,8 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 		if([line hasPrefix:@"[Acronyms.Lst Version"])
 		{
 			acronymsVersion = [ NSString stringWithFormat:@"%@]", line];
+            [acronymsVersion retain];  // DO NOT release, it's required for Vole Status Report
+            // (acronymsVersion is static)
 			line = [buffer readLine:&endOfFile];
 			continue;
 		}
