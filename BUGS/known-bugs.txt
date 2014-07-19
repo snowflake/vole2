@@ -1,0 +1,6 @@
+2014/07/19
+==========
+
+ebfe40e363 crashes on Mavericks due to an over-released variable
+(acronymsVersion). The crash is in Vole->Develop->Vole Info.
+Fixed by 96c60c8c73
