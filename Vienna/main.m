@@ -15,6 +15,7 @@
 #import "XXXX-Tempfile.h"
 #import "testAnotherViennaIsRunning.h"
 #import "sqlite3.h"
+#import "VLCheckCodeSign.h"
 
 char * cixLocation_cstring = "cix.compulink.co.uk"; // Normal server
 char * betaserver = "v4.conferencing.co.uk"; // alternate beta server
