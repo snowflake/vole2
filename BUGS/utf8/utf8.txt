@@ -1,0 +1,3 @@
+The message contained in greekmessage.txt does not display correctly
+because it is in utf-8.
+
