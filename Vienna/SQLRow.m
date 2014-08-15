@@ -57,7 +57,7 @@
 	// deprecated API was here DJE
 	//	return [NSString stringWithCString:mColumns[ inIndex ]];
 	//replacement here
-	return [NSString stringWithCString:mColumns[ inIndex ] encoding:NSWindowsCP1252StringEncoding];
+	return [NSString stringWithUTF8String:mColumns[ inIndex ] ]; // DJE - column names are UTF8 always
 
 }
 
@@ -69,10 +69,10 @@
 // #warning are there more initWithCStringNoCopy in the rest of the source?
 //	return [[[NSString alloc] initWithCStringNoCopy:mColumns[ inIndex ] length:strlen( mColumns[ inIndex ]) freeWhenDone:NO] autorelease];
 // replace with:
-	return /* DJE [ */ [[NSString alloc] initWithBytesNoCopy: sanitise_string( mColumns[ inIndex ] )
+	return /* DJE [ */ [[NSString alloc] initWithBytesNoCopy: mColumns[ inIndex ]
 												 length: strlen( mColumns[ inIndex ] )
-											   encoding: NSWindowsCP1252StringEncoding
-										   freeWhenDone: NO]/* autorelease DJE do we need this? ]  */;
+											   encoding: NSUTF8StringEncoding // column names are UTF8
+   										   freeWhenDone: NO]/* autorelease DJE do we need this? ]  */;
 	}
 
 #pragma mark -
@@ -89,7 +89,7 @@
 		//if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
 		// replacement here
 		if( strcmp( mColumns[ index ],
-				   [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
+				   [inColumnName UTF8String]) == 0 )   // DJE: column names can be UTF8
 			break;
 	
 	return [self stringForColumnAtIndex:index];
@@ -106,7 +106,7 @@
 		// deprecated API here DJE
 		//if( strcmp( mColumns[ index ], [inColumnName cString]) == 0 )
 		// replcement here
-		if( strcmp( mColumns[ index ], [inColumnName cStringUsingEncoding:NSWindowsCP1252StringEncoding]) == 0 )
+		if( strcmp( mColumns[ index ], [inColumnName UTF8String]) == 0 ) // DJE: column names can be UTF8
 			break;
 	
 	return [self stringForColumnAtIndexNoCopy:index];
