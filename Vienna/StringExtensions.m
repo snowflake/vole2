@@ -166,7 +166,14 @@
  */
 -(NSString *)reversedString
 {
-	const char * cString = [self cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+// 2014-08-16 DJE: switch to ASCII encoding. This method is only
+//                 used while scanning for Cix pronpts, not messages.
+	const char * cString = [self cStringUsingEncoding:NSASCIIStringEncoding];
+#if 0
+	FILE *fp = fopen("/Users/davidevans/junk/reversed-strings.lst","a");
+	fprintf(fp,"%s\n", cString);
+	fclose(fp);
+#endif
 	char * rcString = strdup(cString);
 	NSString * reversedString = nil;
 
@@ -179,7 +186,7 @@
 			rcString[p] = cString[(length - p) - 1];
 		rcString[p] = '\0';
 		reversedString = [[[NSMutableString alloc] initWithCString:rcString
-														  encoding:NSWindowsCP1252StringEncoding] autorelease];
+														  encoding:NSASCIIStringEncoding] autorelease];
 		free(rcString);
 	}
 	return reversedString;
