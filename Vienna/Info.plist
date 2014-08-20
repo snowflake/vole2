@@ -41,7 +41,7 @@
 	<key>CFBundleVersion</key>
 	<string>${BUILDID}</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.6.14</string>
+	<string>1.6.15</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
