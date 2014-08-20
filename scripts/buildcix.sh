@@ -25,6 +25,7 @@ case ${deploy} in
 	10.7)   printf "10.7 Lion and later";;
 	10.8)   printf "10.8 Mountain Lion and later";;
 	10.9)   printf "10.9 Mavericks and later";;
+        10.10)  printf "10.10 Yosemite and later";;
         *         )  printf "Unknown";;
 esac
 }
