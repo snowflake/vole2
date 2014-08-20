@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -e
 # create a message to be placed in vienna/files describing the file
 
 # $1 = path to Vole command
@@ -10,6 +10,9 @@
 # $6 = deployment target (10.4 10.5 etc)
 # $7 = build archs (ppc i386 x86_64)
 # $8 = SDK (macosx10.4 etc )
+binary="${1}"
+zipfile="${2}"
+cixfile="${3}"
 deploy="${6}"
 archs="${7}"
 sdk="${8}"
@@ -60,31 +63,67 @@ SPEOF
 fi
 }
 #####
+function print_md5(){
+	/sbin/md5 $1 | /usr/bin/awk '{print "MD5:", $4}'
+	}
+function print_sha1(){
+	/usr/bin/openssl sha1 $1 | awk '{print "SHA1:", $2}'
+	}
+###################################
+function webdownload(){
+printf 'Web:\n'
+printf 'Info: To download the file, open your browser on the Web link above,\n'
+printf '      then hover your mouse pointer at the top of the page. A tool\n'
+printf '      bar of options will appear and one of them will download the file.\n'
+}
+##################################
+function copytogoogle(){
+read -p 'Is this stable release to be copied to Google y/n: ' google
+case "${google}" in
+	( [Yy] ) echo copy to google2 ;
+		/bin/sh ../scripts/copy-to-google.sh shortcopy dummy "${zipfile}" ;;
+	( * ) echo Not copying to Google;;
+esac
 
+}
+
+###################################
+function display_file_info(){
+printf '[File]\n'
+if [ $sandpit = files ]
+then
+   printf 'Filename: %s\n' ${1}
+   printf 'Hotlink To Download: cix:vienna/files:%s\n' ${1}
+   case ${google} in
+	([Yy]) webdownload ;;
+   esac
+else
+   sh ../scripts/copy-to-google.sh longfilename ${binary}
+   webdownload
+fi
+} 
+################################### end of functions #####################
 sandpit=NotSet
 while [ $sandpit = NotSet ]
 do 
   read -p 'Is this release for the Sandpit? (y/n): ' rel
   case $rel in
-      [Yy] ) sandpit=sandpit ; break ;;
-      [Nn] ) sandpit=files ; break ;;
+      [Yy] ) sandpit=sandpit 
+	     sh ../scripts/copy-to-google.sh copy "${binary}" \
+				"${zipfile}" ;;
+      [Nn] ) sandpit=files ; echo copy to google; copytogoogle ;;
   esac
 done
 
-cat > $3  << XEOF
-New file $2
 
-[File]
-Filename: $2
-Hotlink to download (via Cix): cixfile:vienna/${sandpit}:$2
-Hotlink to download (via browser):
-(For download via browser, click on the hotlink.
-   When the browser window opens, click on the File menu at the
-   top left of the window, immediately below the filename.
-   This is not the same as the File menu in the menubar.)
+cat > $3  << XEOF
+
+Date: $(date)
+
+$(display_file_info ${2})
 Size: $(wc -c $2 | awk '{printf $1}') 
-$(/sbin/md5 $2)
-$(openssl sha1 $2)
+$(print_md5  $2)
+$(print_sha1 $2)
 
 [Vole]
 Description: Vole off-line reader for Mac OS X only.
