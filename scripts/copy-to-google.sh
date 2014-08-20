@@ -42,16 +42,16 @@ sdknum=${build:16}
 
 case $sdknum in 
 	( 4 ) sdk=TIGER ;;
-	( 5 ) sdk=LEOPARD ;;
-	( 6 ) sdk=SNOWLEOPARD ;;
+	( 5 ) sdk=LEOPA ;;
+	( 6 ) sdk=SNOWL ;;
 	( 7 ) sdk=LION ;;
-	( 8 ) sdk=MOUNTAINLION ;;
-	( 9 ) sdk=MAVERICKS ;;
-	( 10 )sdk=YOSDEMITE ;;
+	( 8 ) sdk=MLION ;;
+	( 9 ) sdk=MAVER ;;
+	( 10 )sdk=YOSEM ;;
         ( *  )echo 'Unknown SDK, script failed!'; exit 1;;
 esac
 
-filename=Vole-${sdk}-${marketingversion}-${build}-${checkout:0:8}.zip
+filename=Vole-${sdk}-${marketingversion}-${build}-${checkout:0:10}.zip
 
 if [ $lfn -eq 1 ]
 then
