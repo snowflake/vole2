@@ -940,7 +940,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		if( folderId <= MA_Max_Reserved_NodeID) return; // don't fetch for Draft or Outbasket.
         NSInteger messageId = [thisMessage messageId];
 
-        NSLog(@"refreshCurrentMessage in AppController: Message ID = %ld, folder id = %ld", (long)messageId, (long)folderId);
+ //       NSLog(@"refreshCurrentMessage in AppController: Message ID = %ld, folder id = %ld", (long)messageId, (long)folderId);
         [self offerToRetrieveMessage: messageId fromFolderId: folderId];
 	}
 }
@@ -4745,6 +4745,18 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	else if (theAction == @selector(modNewConference:)) 
 	{
 		return NO; // Not done this yet! but move above when finished
+	}
+    // DJE added this 2014-08-22
+    // XXX figure out how to tell if we are in a RSS folder.
+    // XXX Surely there is a simpler way of doing this.
+    else if (theAction == @selector(refreshCurrentMessage:))
+    {
+        NSInteger rowIndex = [messageList selectedRow];
+        if (rowIndex == -1) {return NO; }
+        VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
+        NSInteger folderId = [thisMessage folderId];
+        if( folderId <= MA_Max_Reserved_NodeID) return NO; // don't enable for Draft or Outbasket.
+		return [currentArrayOfMessages count] > 0 && !isBusy;
 	}
 
 	return YES;
