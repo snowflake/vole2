@@ -899,6 +899,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+
 /* originalMessage
  * Place the selection on the message to which the current one is a comment,
  * assuming there is one.
@@ -923,6 +924,27 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		}
 	}
 }
+
+/* Refresh current message.
+ * Unconditionally fetch the current message from Cix.
+ * (This method added 2014-08-22 )
+ */
+-(IBAction)refreshCurrentMessage:(id)sender
+{
+    (void)sender;
+    NSInteger rowIndex = [messageList selectedRow];
+	if (rowIndex != -1)
+	{
+		VMessage * thisMessage = [currentArrayOfMessages objectAtIndex:rowIndex];
+        NSInteger folderId = [thisMessage folderId];
+		if( folderId <= MA_Max_Reserved_NodeID) return; // don't fetch for Draft or Outbasket.
+        NSInteger messageId = [thisMessage messageId];
+
+        NSLog(@"refreshCurrentMessage in AppController: Message ID = %ld, folder id = %ld", (long)messageId, (long)folderId);
+        [self offerToRetrieveMessage: messageId fromFolderId: folderId];
+	}
+}
+
 
 /* offerToRetrieveMessage
  * If we're offline, offer to retrieve a single message from the service. If we're online,
