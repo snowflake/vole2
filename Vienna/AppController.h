@@ -255,6 +255,8 @@
 -(void)offerToRetrieveMessage:(NSInteger)messageId fromFolderId:(NSInteger)folderId;
 -(void)offerToRetrieveMessage:(NSInteger)messageId fromFolderPath:(NSString *)folderPath;
 -(void)retrieveMessage:(NSInteger)messageId fromFolder:(NSString *)folderPath;
+-(IBAction)refreshCurrentMessage:(id)sender;
+
 
 // General functions
 -(void)initSortMenu;
