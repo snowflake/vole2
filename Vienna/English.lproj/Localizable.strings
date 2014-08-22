@@ -109,3 +109,6 @@
 "is greater than or equal to" = "is greater than or equal to";
 "Cannot open export file message" = "Cannot create export output file";
 "Cannot open export file message text" = "The specified export output file could not be created. Check that it is not locked and no other application is using it.";
+"Offer to retrieve message title" = "The message will be retrieved on the next connect.";
+"Offer to retrieve message text" = "";
+
