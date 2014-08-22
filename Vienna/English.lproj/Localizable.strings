@@ -111,4 +111,5 @@
 "Cannot open export file message text" = "The specified export output file could not be created. Check that it is not locked and no other application is using it.";
 "Offer to retrieve message title" = "The message will be retrieved on the next connect.";
 "Offer to retrieve message text" = "";
-
+"Offer to join and retrieve message title" = "Do you want to join the conference and fetch the message?";
+"Offer to join and retrieve message text" = "";
