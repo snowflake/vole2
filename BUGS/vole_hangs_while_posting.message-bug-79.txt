@@ -1,0 +1,37 @@
+This was posted in cix:vienna/bugs:79
+
+Vole hangs while posting a message during a blink.
+
+There have been quite a few complaints in the
+past about Vole hanging during a blink and
+failing to post a message. To add insult to injury,
+Vole then goes and deletes the message from the
+Out Basket, psssibly wasting hours of work.
+
+In the past, I have never mamaged to duplicate
+this bug. I suspect it depends on the contents
+of the message.
+
+Today it hapened to me. Looking at the 
+Activity Window, Vole was waiting for a prompt
+from Cix after posting the last line of the message.
+
+I copied the contents of the Activity Window to the
+clipboard and Force Quitted Vole. I also
+killed the ssh process, which Vole uses, from the
+command line.
+
+I then saved the clipboard to a file, which I have
+preserved in the Vole source repository as:
+
+BUGS/vole_hangs_while_posting_this_message.txt
+
+I then tried posting the message in my test conference
+and Vole hanged in the same place.
+
+Having a reproducible bug means it is now possible
+to find out what is breaking Vole.
+
+Stay tuned for updates.
+
+
