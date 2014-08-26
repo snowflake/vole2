@@ -1,0 +1,35 @@
+Looking at the amount of breakage today, nothing is
+really safe apart from pure 7-bit ASCII.
+
+Pros:
+
+Easy to implement.  There is plenty of tested code
+in, for example, the text mode browser Lynx which
+we can 'borrow'.
+
+Current usage of the & character is quite low.
+In my archive of scratchpads totalling 220MB
+there are 22,000 &s.
+
+Can be implemented by OLR authors independently of
+CIX.
+
+For browser use, such as Forums, the conversion
+back to normal text will occur automatically --
+or will it?  Here's a test Euro sign here >&euro;<
+Maybe this should be a con.
+
+With hexadecimal entities we can encode all
+of Unicode. If people want to use Emoji or
+Glagolitic, they can.
+&#x1F3E9; is apparently the Emoji for love hotel.
+
+Cons:
+
+Will make lines longer and may trigger word-wrapping
+in OLRs such as Vole when uploading to CoSy.  This
+is another broken mis-feature of Cix
+
+It will cause confusion in conferences which discuss HTML
+such as the html conference and this one. But hey, we're
+geeks well able to look after ourselves..
