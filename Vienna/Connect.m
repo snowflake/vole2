@@ -1748,7 +1748,7 @@ abortLabel:
 -(void)getConferenceInfo:(VTask *)task
 {
 	NSString * folderName = [task folderName];
-	BOOL endOfFile;
+	BOOL endOfFile= NO ; // DJE shut up static analyzer
 
 	[self writeStringWithFormat:YES string:@"sh %@\n", folderName];
 	NSString * line = [self readLine:&endOfFile];
