@@ -20,7 +20,7 @@
 
 -(id)initWithFile:(NSString*)inPath
 {
-	if( ![super init])
+	if( !(self=[super init]) )
 		return nil;
 	
 	mPath = [inPath copy];
@@ -31,7 +31,7 @@
 
 -(id)init
 {
-	if( ![super init])
+	if( !(self=[super init]) )
 		return nil;
 	
 	mPath = NULL;
