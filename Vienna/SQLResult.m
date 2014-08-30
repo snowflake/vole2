@@ -27,7 +27,7 @@ static SEL sRowCountSelector;
 
 -(id)initWithTable:(char**)inTable rows:(NSInteger)inRows columns:(NSInteger)inColumns
 {
-	if( ![super init])
+	if( !(self=[super init]))
 		return nil;
 	
 	mTable = inTable;
@@ -39,7 +39,7 @@ static SEL sRowCountSelector;
 
 -(id)init
 {
-	if( ![super init])
+	if( !(self=[super init]) )
 		return nil;
 	
 	mTable = NULL;
@@ -95,7 +95,7 @@ static SEL sRowCountSelector;
 
 -(id)initWithResult:(SQLResult*)inResult
 {
-	if( ![super init])
+	if( !(self=[super init]))
 		return nil;
 	
 	mResult = [inResult retain];
