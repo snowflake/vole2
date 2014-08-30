@@ -41,14 +41,17 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  * Initialise the window.
  */
 -(id)initWithDatabase:(Database *)theDb
-{
-	db = theDb;
-	currentArrayOfForums = nil;
-	arrayOfCategories = [[NSMutableArray alloc] init];
-	sortColumnIdentifier = @"name";
-	sortDirection = 1;
-	selectedCategory = -2;
-	return [super initWithWindowNibName:@"Browser"];
+{ //DJE re-arranged here 30/8/2014
+    self=[super initWithWindowNibName:@"Browser"];
+    if(self){
+        db = theDb;
+        currentArrayOfForums = nil;
+        arrayOfCategories = [[NSMutableArray alloc] init];
+        sortColumnIdentifier = @"name";
+        sortDirection = 1;
+        selectedCategory = -2;
+    }
+	return self;
 }
 
 /* windowDidLoad
