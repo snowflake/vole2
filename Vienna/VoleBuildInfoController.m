@@ -55,7 +55,7 @@
  */
 -(id)init
 {
-	if( ! [super initWithWindowNibName:@"VoleBuildInfo"])
+	if( ! (self=[super initWithWindowNibName:@"VoleBuildInfo"]) )
 		return nil;
 	return self;
 }

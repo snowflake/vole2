@@ -14,7 +14,7 @@
 // #warning: more work is required in this file 
 -(id)initWithColumns:(char**)inColumns rowData:(char**)inRowData columns:(NSInteger)inColumnCount
 {
-	if( ![super init])
+	if( !(self=[super init]) )
 		return nil;
 	
 	mRowData = inRowData;
@@ -26,7 +26,7 @@
 
 -(id)init
 {
-	if( ![super init])
+	if( !(self=[super init]) )
 		return nil;
 	
 	mRowData = NULL;
