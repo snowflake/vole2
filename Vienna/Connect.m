@@ -1452,8 +1452,10 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 					[self pushBackLine:line];
 					break;
 				}
-				if (endOfFile)
-					goto abortLabel;
+				if (endOfFile){
+                    [messageBody release];  //DJE release here to avoid memory leak warning
+                    goto abortLabel;
+                }
 				messageSoFar += [line length];
 				[messageBody appendString:line];
 			}
