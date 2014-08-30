@@ -1839,7 +1839,7 @@ abortLabel:
  */
 -(void)getResume:(VTask *)task
 {
-	BOOL endOfFile;
+	BOOL endOfFile = NO;
 
 	// Tell the user what we're up to
 // #warning 64BIT: Check formatting arguments
@@ -1864,7 +1864,7 @@ abortLabel:
 	else
 	{
 		NSMutableString * resumeText = [[NSMutableString alloc] init];
-		while (!endOfFile)
+        while (!endOfFile)
 		{
 			[resumeText appendString:line];
 			line = [self readLine:&endOfFile];
