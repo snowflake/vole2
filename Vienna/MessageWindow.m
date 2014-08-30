@@ -44,14 +44,18 @@
  */
 -(id)initNewMessage:(Database *)theDb recipient:(NSString *)recipient commentNumber:(NSInteger)commentNumber initialText:(NSString *)initialText
 {
-	db = theDb;
-	message = [[VMessage alloc] initWithInfo:MA_MsgID_New];
-	[message setFolderId:-1];
-	[message setComment:commentNumber];
-	[message setSender:recipient];
-	if (initialText)
-		[message setText: initialText];
-	return [super initWithWindowNibName:@"Comment"];
+    // DJE rearanged to assign self first 30/8/2014
+    self=[super initWithWindowNibName:@"Comment"];
+    if(self){
+        db = theDb;
+        message = [[VMessage alloc] initWithInfo:MA_MsgID_New];
+        [message setFolderId:-1];
+        [message setComment:commentNumber];
+        [message setSender:recipient];
+        if (initialText)
+            [message setText: initialText];
+    }
+    return self;
 }
 
 /* initMessageFromMessage
