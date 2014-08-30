@@ -2625,7 +2625,7 @@ abortLabel:
 	// Create a match buffer
 	char * matchbuffer = malloc(sizeof(char) * (longestLength + 1));
 	if (matchbuffer == nil)
-		return -1;
+        {[scanStrings release];return -1;}
 	memset(matchbuffer, '\0', longestLength + 1);
 
 	// Now read from the service and match the last X characters with
