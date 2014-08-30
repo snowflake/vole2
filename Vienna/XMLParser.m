@@ -276,7 +276,7 @@
 	//  XXX does [data bytes ] return a read only pointer, thus the string cannot be sanitised?
 	size_t length = [ data length];
 	char *cp = malloc(length+1);
-	if(cp == NULL) return nil;
+	if(cp == NULL){CFRelease(data); return nil;}
 	[data getBytes: (void *) cp length:length ];
 	*(cp +length) = '\0';
 	NSString *xmlString = [[[NSString alloc] initWithBytes: sanitise_string( cp ) 
