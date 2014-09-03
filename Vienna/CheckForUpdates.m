@@ -32,7 +32,9 @@
 	// One day we might do this differently.
 	NSAlert * alert = [[ NSAlert alloc] init];
 	[alert addButtonWithTitle:@"OK"];
-	[alert setInformativeText:@"To check for updates, please join the Cix vienna conference."];
+    [alert setInformativeText:@"To check for updates, please join the Cix vienna conference.\n\n"
+     "To stop this message appearing on startup, please uncheck the 'Check "
+     "for newer versions of Vole on startup' box in Preferences->General."];
 	[alert runModal];
 	return;
 	// end of dje additons
