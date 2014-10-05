@@ -15,19 +15,24 @@ all:
 
 # set up appropiate developer dirs, can be changed in environment
 DEVELOPER_DIR_XC3?= /Xcode3.2.6
-DEVELOPER_DIR_XC5?= /Applications/Xcode.app/Contents/Developer
+DEVELOPER_DIR_XC5?= NOT_CURRENTLY_AVAILABLE
+DEVELOPER_DIR_XC6?= /Applications/Xcode.app/Contents/Developer
+DEVELOPER_DIR_XC6_BETA?=/Applications/Xcode_beta/Xcode.app/Contents/Developer
+
 PROJECT_XC3=Vole_xc3.xcodeproj
 PROJECT_XC5=Vole_xc5.xcodeproj
-
+PROJECT_XC6=${PROJECT_XC5}
 # Xcode.app locations
 XC3_XCODE_APP=${DEVELOPER_DIR_XC3}/Applications/Xcode.app
-XC5_XCODE_APP?=/Applications/Xcode.app
+XC5_XCODE_APP?=NOT_CURRENTLY_AVAILABLE
+XC6_XCODE_APP?=/Applications/Xcode.app
+XC6BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode.app
 
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
-		mavericks
+		mavericks yosemite
 RELEASES:= 	Development-release tiger-release leopard-release \
 		snowleopard-release lion-release mountainlion-release \
-		mavericks-release
+		mavericks-release yosemite-release
 
 Development-release: NAME=dv
 Development-release: COMPATIBILITY=Unknown
@@ -75,13 +80,13 @@ mountainlion-release mountainlion mountainlion-go: PROJECT=${PROJECT_XC5}
 
 mavericks-release: NAME=vv
 mavericks-release: COMPATIBILITY=Tiger and Later, Intel
-mavericks-release: STATUS=Experimental, needs testing
+mavericks-release: STATUS=Seems to be OK
 mavericks-release mavericks: MOSXDT=10.7
 # archs must be given in the order ppc i386 x86_64
 mavericks-release mavericks: ARCHS?=x86_64
-mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC5}
+mavericks-release mavericks: DEVELOPER_DIR=${DEVELOPER_DIR_XC6}
 mavericks-release mavericks: SDK_NAME=macosx10.9
-mavericks-release mavericks mavericks-go: PROJECT=${PROJECT_XC5}
+mavericks-release mavericks mavericks-go: PROJECT=${PROJECT_XC6}
 
 yosemite-release:          NAME=vy
 yosemite-release:          COMPATIBILITY=
@@ -89,7 +94,7 @@ yosemite-release:          STATUS=experimental
 yosemite-release yosemite: MOSXDT=10.7
 # archs must be given in the order ppc i386 x86_64
 yosemite-release yosemite: ARCHS?=x86_64
-yosemite-release yosemite: DEVELOPER_DIR=${DEVELOPER_DIR_XC6}
+yosemite-release yosemite: DEVELOPER_DIR=${DEVELOPER_DIR_XC6_BETA}
 yosemite-release yosemite: SDK_NAME=macosx10.10
 yosemite-release yosemite yosemite-go: PROJECT=${PROJECT_XC6}
 
@@ -100,27 +105,15 @@ lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
 lion-release: STATUS=Not yet available
 
 
-
-#Development: SHORT=DV 
+# OS X Releases
 Development Development-release:  SN=0
-#tiger:	     SHORT=TG 
 tiger tiger-release:              SN=4
-#leopard:     SHORT=LP 
 leopard leopard-release:          SN=5
-#snowleopard: SHORT=SL
 snowleopard snowleopard-release:  SN=6
-#lion:	     SHORT=LN 
 lion lion-release:	          SN=7
-#mountainlion:SHORT=ML
 mountainlion mountainlion-release:SN=8
-#mavericks:   SHORT=MV
 mavericks mavericks-release:      SN=9
-
-# Development Development-go:	DEVELOPER_DIR?=/Developer
-# tiger tiger-release tiger-go:	DEVELOPER_DIR?=/Developer 
-# leopard leopard-release leopard-go: 	DEVELOPER_DIR?=/Developer
-# snowleopard snowleopard-release snowleopard-go:	DEVELOPER_DIR?=/Developer
-# lion lion-release lion-go: 			DEVELOPER_DIR?=/Developer
+yosemite yosemite-release:	  SN=10
 
 ${BUILDS}: SHORTDATE:=$(shell date -u '+%Y%m%d.%H%M%S')
 ${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
@@ -152,17 +145,26 @@ ${BUILDS}:
 # Run the version of Xcode appropriate to the target.
 # This helps to preserve Xcode and Interface Builder integration
 # especially on Xcode3.
+
 # Xcode 3 projects:-
 tiger-go leopard-go snowleopard-go:
 	open -a ${XC3_XCODE_APP}  ${PROJECT}
+
 # Xcode 5 projects:-
-lion-go mountainlion-go mavericks-go:
+lion-go mountainlion-go :
 	open -a ${XC5_XCODE_APP}  ${PROJECT}
 
+# Xcode 6 projects:-
+mavericks-go:
+	open -a ${XC6_XCODE_APP}  ${PROJECT}
+
+# Xcode 6 beta projects:-
+yosemite-go:
+	open -a ${XC6BETA_XCODE_APP} ${PROJECT}
 
 # Run the Vienna app from its build directory
 tiger-run leopard-run snowleopard-run lion-run \
-	mountainlion-run mavericks-run Development-run:
+	mountainlion-run mavericks-run yosemite-run Development-run:
 	open ../../Vienna-build/$(subst -run,,$@)/Vole.app
 
 
