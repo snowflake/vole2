@@ -130,6 +130,7 @@ ${BUILDS}:
 	[ XX${DEVELOPER_DIR} != XX ]
 	[ -d ${DEVELOPER_DIR} ] 
 	rm -f XXXX-Tempfile.h
+	/usr/bin/awk -f ../scripts/check_buildable.awk -v sdkname=${SDK_NAME}
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project ${PROJECT}  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
