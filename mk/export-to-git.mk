@@ -1,5 +1,6 @@
 # export the Fossil repository to git.
 
+# Note: the github repo was changed from vole to vole2 (2014-10-13)
 dir=../../vole-git
 marks=/tmp/marks
 
