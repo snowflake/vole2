@@ -8,7 +8,7 @@ all: directory-check
 	fossil export --git  > /tmp/vex
 	cat /tmp/vex \
 		| ( cd ${dir} && git init && git fast-import --quiet  )
-	-(cd ${dir} && git remote add origin git@github.com:snowflake/vole.git)
+	-(cd ${dir} && git remote add origin git@github.com:snowflake/vole2.git)
 
 push: directory-check
 	cd ${dir} && git push --mirror
