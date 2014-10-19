@@ -1809,6 +1809,10 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		if ([theRecord comment] && [theRecord level] == 0 && currentFolderId != MA_Outbox_NodeID && currentFolderId != MA_Draft_NodeID && showThreading)
 // #warning 64BIT: Check formatting arguments
 			return [NSString stringWithFormat:@"...%ld", (long)[theRecord messageId]];
+        // DJE Fix comma in message numbers bug by using string with format, instead of whatver
+        // objectForKey returns.
+        else
+            return [NSString stringWithFormat:@"%ld", (long)[theRecord messageId]];
 	}
     return [[theRecord messageData] objectForKey:[aTableColumn identifier]];
 }
