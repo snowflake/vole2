@@ -11,7 +11,8 @@ all:
 
 #****************************************************************************
 
-
+DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT?=NO
+DEBUG_INFORMATION_FORMAT?=dwarf
 
 # set up appropiate developer dirs, can be changed in environment
 DEVELOPER_DIR_XC3?= /Xcode3.2.6
@@ -140,7 +141,11 @@ ${BUILDS}:
 		ARCHS="${ARCHS}"  \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}" \
 		VCSSTATUS="${VCSSTATUS}" \
-		VCSDATE="${VCSDATE}"
+		VCSDATE="${VCSDATE}" \
+		DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT=${DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT} \
+		DEBUG_INFORMATION_FORMAT=${DEBUG_INFORMATION_FORMAT}
+
+
 
 
 # Run the version of Xcode appropriate to the target.
@@ -175,7 +180,9 @@ ARCHIVE_DIR=~/Vienna-archive
 
 ${RELEASES}:
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-		make $(subst -release,,$@)
+		make DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT=YES \
+		   DEBUG_INFORMATION_FORMAT=dwarf-with-dsym \
+		   $(subst -release,,$@)
 	echo $@
 	echo ${VIENNA_APP}
 	[ -d ${SOURCE_DIR} ]
