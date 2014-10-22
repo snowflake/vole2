@@ -15,8 +15,20 @@ archive_dir=${HOME}/Archive-dsyms
 uuid_dir=${archive_dir}/UUIDs
 executable=Vole.app/Contents/MacOS/Vole
 
+build=$( ${bpd}/${executable} -z)
+sdknum=${build:16}
+case $sdknum in
+	( 4 ) sdk=TIGER ;;
+	( 5 ) sdk=LEOPD ;;
+	( 6 ) sdk=SNOWL ;;
+	( 7 ) sdk=LION  ;;
+	( 8 ) sdk=MLION ;;
+	( 9 ) sdk=MAVER ;;
+	( 10 ) sdk=YOSEM ;;
+	( * ) echo 'Unknown SDK'; exit 1 ;;
+esac
 
-buildsave_dir=${archive_dir}/vole-builds/$( ${bpd}/${executable} -z )
+buildsave_dir=${archive_dir}/vole-builds/${sdk}/${build}
 
 
 [ ${1} ] 

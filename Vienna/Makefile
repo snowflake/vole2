@@ -179,6 +179,7 @@ tiger-run leopard-run snowleopard-run lion-run \
 ARCHIVE_DIR=~/Vienna-archive
 
 ${RELEASES}:
+	rm -rf ${SOURCE_DIR}/*
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 		make DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT=YES \
 		   DEBUG_INFORMATION_FORMAT=dwarf-with-dsym \
@@ -200,6 +201,8 @@ ${RELEASES}:
 	echo '</pre></body></html>' >> ${BUILD_INFO}
 	cp ../NOTES/RELEASE.html ${SOURCE_DIR}
 	cp ../NOTES/INSTALL.html ${SOURCE_DIR}
+# archive the build
+	sh ../scripts/archive-dsym.sh ${SOURCE_DIR}
 	rm -f template.dmg wc.dmg template.dmg.bz2
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
