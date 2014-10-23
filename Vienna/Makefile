@@ -203,6 +203,8 @@ ${RELEASES}:
 	cp ../NOTES/INSTALL.html ${SOURCE_DIR}
 # archive the build
 	sh ../scripts/archive-dsym.sh ${SOURCE_DIR}
+# strip the release executable
+	strip -S ${VIENNA_APP}		
 	rm -f template.dmg wc.dmg template.dmg.bz2
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
