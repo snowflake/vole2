@@ -3,6 +3,8 @@ This is the root directory for the Vole off-line reader for Cix project.
 Find out about Cix at https://forums.cixonline.com/secure/newhome.aspx
 and http://en.wikipedia.org/wiki/CIX
 
+Find out about Vole at http://www.cixonline.com/vole_for_mac.asp
+
 Vole was formerly known as Vienna or Vinkix, and you will see many historical
 references to them.
 
