@@ -1,10 +1,12 @@
 This is the root directory for the Vole off-line reader for Cix project.
 
+Find out about Cix at https://forums.cixonline.com/secure/newhome.aspx
+and http://en.wikipedia.org/wiki/CIX
+
 Vole was formerly known as Vienna or Vinkix, and you will see many historical
 references to them.
 
-The source code for Vole is in the Vienna directory. It is simply
-too painful to rename it as Fossil does not know about directory versioning.
+The source code for Vole is in the Vienna directory. 
 
 Requirements to run:
 
@@ -12,5 +14,7 @@ Requirements to run:
 
 Requirements to build:
 
-      Xcode 3.2.6 and a Mac OS X that supports it (Snow Leopard or later)
-
+      Xcode 3.2.6 and a Mac OS X that supports it (Snow Leopard)
+      Xcode 5 and Mountain Lion.
+      Xcode 6 and Mavericks or Yosemite.
+      
