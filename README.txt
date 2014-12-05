@@ -20,3 +20,5 @@ Requirements to build:
       Xcode 5 and Mountain Lion.
       Xcode 6 and Mavericks or Yosemite.
       
+Are you looking for the Vienna RSS and Atom feed reader?
+Try http://www.vienna-rss.org/
