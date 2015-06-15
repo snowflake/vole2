@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <asl.h>
 #import "Vole.h"
 #import "Growl/GrowlApplicationBridge.h"
 
@@ -243,6 +244,7 @@
 -(void)handleCIXFileLink:(NSString *)folderPath file:(NSString *)filename;
 -(void)handleRSSLink:(NSString *)linkPath;
 -(void)handlePersonUpdate:(NSNotification *)note;
+-(void)appIsGoingToTerminate:(NSNotification *)nc;
 
 // Message selection functions
 -(BOOL)scrollToMessage:(NSInteger)number;

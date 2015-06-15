@@ -176,7 +176,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[nc addObserver:self selector:@selector(handleMugshotFolderChanged:) name:@"MA_Notify_MugshotsFolderChanged" object:nil];
 	[nc addObserver:self selector:@selector(handlePersonUpdate:) name:@"MA_Notify_PersonUpdated" object:nil];	
 	[nc addObserver:self selector:@selector(handleEditFolder:) name:@"MA_Notify_EditFolder" object:nil];
-
+        [nc addObserver:self selector:@selector(appIsGoingToTerminate:)
+                   name:@"NSApplicationWillTerminateNotification" object:nil];
 	// Hide the spinner when it is stopped
 	progressCount = 0;
 	[spinner setDisplayedWhenStopped:NO];
@@ -5118,5 +5119,9 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 	[db release];
 	[voleBuildInfoController release];
 	[super dealloc];
+}
+-(void)appIsGoingToTerminate:(NSNotification *)nc
+{
+  asl_log_message(ASL_LEVEL_NOTICE,"%s","Vole is terminating normally");
 }
 @end
