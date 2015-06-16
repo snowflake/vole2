@@ -19,6 +19,7 @@ DEVELOPER_DIR_XC3?= /Xcode3.2.6
 DEVELOPER_DIR_XC5?= NOT_CURRENTLY_AVAILABLE
 DEVELOPER_DIR_XC6?= /Applications/Xcode.app/Contents/Developer
 DEVELOPER_DIR_XC6_BETA?=/Applications/Xcode_beta/Xcode.app/Contents/Developer
+DEVELOPER_DIR_XC7_BETA?=/Applications/Xcode_beta/Xcode-beta.app/Contents/Developer
 
 PROJECT_XC3=Vole_xc3.xcodeproj
 PROJECT_XC5=Vole_xc5.xcodeproj
@@ -28,12 +29,13 @@ XC3_XCODE_APP=${DEVELOPER_DIR_XC3}/Applications/Xcode.app
 XC5_XCODE_APP?=NOT_CURRENTLY_AVAILABLE
 XC6_XCODE_APP?=/Applications/Xcode.app
 XC6BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode.app
+XC7BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode-beta.app
 
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
-		mavericks yosemite
+		mavericks yosemite elcapitan
 RELEASES:= 	Development-release tiger-release leopard-release \
 		snowleopard-release lion-release mountainlion-release \
-		mavericks-release yosemite-release
+		mavericks-release yosemite-release elcapitan-release
 
 Development-release: NAME=dv
 Development-release: COMPATIBILITY=Unknown
@@ -99,6 +101,14 @@ yosemite-release yosemite: DEVELOPER_DIR=${DEVELOPER_DIR_XC6}
 yosemite-release yosemite: SDK_NAME=macosx10.10
 yosemite-release yosemite yosemite-go: PROJECT=${PROJECT_XC6}
 
+elcapitan-release:	NAME=ve
+elcapitan-release:	COMPATIBILITY=
+elcapitan-release:	STATUS=beta
+elcapitan-release elcapitan: MOSXDT=10.7
+elcapitan-release elcapitan: ARCHS?=x86_64
+elcapitan-release elcapitan: DEVELOPER_DIR=${DEVELOPER_DIR_XC7_BETA}
+elcapitan-release elcapitan: SDK_NAME=macosx10.11
+elcapitan-release elcapitan elcapitan-go: PROJECT=${PROJECT_XC6}
 
 
 lion-release: NAME=vn
@@ -115,6 +125,7 @@ lion lion-release:	          SN=7
 mountainlion mountainlion-release:SN=8
 mavericks mavericks-release:      SN=9
 yosemite yosemite-release:	  SN=10
+elcapitan elcapitan-release:	  SN=11
 
 ${BUILDS}: SHORTDATE:=$(shell date -u '+%Y%m%d.%H%M%S')
 ${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
@@ -133,9 +144,9 @@ ${BUILDS}:
 	rm -f XXXX-Tempfile.h
 	/usr/bin/awk -f ../scripts/check_buildable.awk -v sdkname=${SDK_NAME}
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-	xcodebuild -project ${PROJECT}  -configuration $@ clean 
+	xcodebuild -project ./${PROJECT}  -configuration $@ clean 
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
-	xcodebuild -project ${PROJECT}  -configuration $@ \
+	xcodebuild -project ./${PROJECT}  -configuration $@ \
 		-sdk ${SDK_NAME} \
 		BUILDID="${SHORTDATE}.${SN}" \
 		ARCHS="${ARCHS}"  \
@@ -166,11 +177,14 @@ mavericks-go:
 
 # Xcode 6 beta projects:-
 yosemite-go:
-	open -a ${XC6BETA_XCODE_APP} ${PROJECT}
+	open -a ${XC6_XCODE_APP} ${PROJECT}
+
+elcapitan-go:
+	open -a ${XC7BETA_XCODE_APP} ./${PROJECT}
 
 # Run the Vienna app from its build directory
 tiger-run leopard-run snowleopard-run lion-run \
-	mountainlion-run mavericks-run yosemite-run Development-run:
+	mountainlion-run mavericks-run yosemite-run elcapitan-run Development-run:
 	open ../../Vienna-build/$(subst -run,,$@)/Vole.app
 
 
