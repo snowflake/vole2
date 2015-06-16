@@ -113,7 +113,7 @@ int main(int argc, const char *argv[])
 			cixbetaflag=1;
 		}
 	}
-        asl_log_message(ASL_LEVEL_NOTICE,"Vole %s is starting\n"
+        asl_log(NULL,NULL,ASL_LEVEL_NOTICE,"Vole %s is starting\n"
                         "(build: %s,\nsrc: %s,\nunchecked files: %d)",
 	marketing_version,build_short_id,source_code_fossil_uuid,unchecked_files);
     return NSApplicationMain(argc, argv);

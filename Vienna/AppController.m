@@ -5122,6 +5122,6 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 }
 -(void)appIsGoingToTerminate:(NSNotification *)nc
 {
-  asl_log_message(ASL_LEVEL_NOTICE,"%s","Vole is terminating normally");
+  asl_log(NULL,NULL,ASL_LEVEL_NOTICE,"%s","Vole is terminating normally");
 }
 @end
