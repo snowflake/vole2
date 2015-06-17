@@ -18,6 +18,38 @@
 #import "sqlite3.h"
 #import "VLCheckCodeSign.h"
 
+/* These defines are from Appkit/NSApplication.h and should
+ * be kept up to date when new versions are released
+ */
+#define NSAppKitVersionNumber10_0 577
+#define NSAppKitVersionNumber10_1 620
+#define NSAppKitVersionNumber10_2 663
+#define NSAppKitVersionNumber10_2_3 663.6
+#define NSAppKitVersionNumber10_3 743
+#define NSAppKitVersionNumber10_3_2 743.14
+#define NSAppKitVersionNumber10_3_3 743.2
+#define NSAppKitVersionNumber10_3_5 743.24
+#define NSAppKitVersionNumber10_3_7 743.33
+#define NSAppKitVersionNumber10_3_9 743.36
+#define NSAppKitVersionNumber10_4 824
+#define NSAppKitVersionNumber10_4_1 824.1
+#define NSAppKitVersionNumber10_4_3 824.23
+#define NSAppKitVersionNumber10_4_4 824.33
+#define NSAppKitVersionNumber10_4_7 824.41
+#define NSAppKitVersionNumber10_5 949
+#define NSAppKitVersionNumber10_5_2 949.27
+#define NSAppKitVersionNumber10_5_3 949.33
+#define NSAppKitVersionNumber10_6 1038
+#define NSAppKitVersionNumber10_7 1138
+#define NSAppKitVersionNumber10_7_2 1138.23
+#define NSAppKitVersionNumber10_7_3 1138.32
+#define NSAppKitVersionNumber10_7_4 1138.47
+#define NSAppKitVersionNumber10_8 1187
+#define NSAppKitVersionNumber10_9 1265
+#define NSAppKitVersionNumber10_10 1343
+
+char * osx_major_minor(void); // Returns OS X version as a string. 
+
 char * cixLocation_cstring = "cix.compulink.co.uk"; // Normal server
 char * betaserver = "v4.conferencing.co.uk"; // alternate beta server
 char * volecixbetaname = "volecixbeta"; // name of a file in $HOME folder to activate the beta server
@@ -51,6 +83,10 @@ int main(int argc, const char *argv[])
 			printf("%s", buildinfo_2);
 			printf("SQLite version: %s\n",sqlite3_libversion());
 			printf("SQLite id: %s\n", sqlite3_sourceid());
+			printf("=== Runtime ===\n");
+			printf("OS X version (major.minor): %s\n", osx_major_minor());
+			printf("AppKit version: %f\n", NSAppKitVersionNumber);
+                        printf("Foundation version: %f\n", NSFoundationVersionNumber);
 			exit(0);
 		}
 		if(!strcmp("-b", argv[1])){
@@ -114,8 +150,40 @@ int main(int argc, const char *argv[])
 		}
 	}
         asl_log(NULL,NULL,ASL_LEVEL_NOTICE,"Vole %s is starting\n"
-                        "(build: %s,\nsrc: %s,\nunchecked files: %d)",
-	marketing_version,build_short_id,source_code_fossil_uuid,unchecked_files);
-    return NSApplicationMain(argc, argv);
+                "(build: %s,\nsrc: %s,\nunchecked files: %d\n"
+                "OSX: %s, Foundation: %f, Appkit: %f )",
+                marketing_version,build_short_id,
+                source_code_fossil_uuid,unchecked_files,
+                osx_major_minor(),
+                NSFoundationVersionNumber, NSAppKitVersionNumber);
+        return NSApplicationMain(argc, argv);
 	return 0;
 }
+char * osx_major_minor(){
+  if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_0){
+    return "before 10.0.x";
+  } else if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_1){
+    return "10.0.x";
+  } else if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_2){
+    return "10.1.x";
+  } else if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_3){
+    return "10.2.x";
+  } else if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_4){
+    return "10.3.x";
+  } else  if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_5){
+    return "10.4.x";
+  } else   if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_6){
+    return "10.5.x";
+  } else   if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_7){
+    return "10.6.x";
+  } else   if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_8){
+    return "10.7.x";
+  } else   if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_9){
+    return "10.8.x";
+  } else   if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_10){
+    return "10.9.x";
+  } else return "10.10.x or later";
+  return "Unable to detemine OSX version";
+}
+  
+  
