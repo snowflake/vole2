@@ -94,7 +94,7 @@ typedef struct
 	-(void)addRSSMessageToDatabase:(NSData *)data;
 	-(void)addRetrievedForum:(Forum *)forum;
 	-(void)cleanForumsList;
-	-(void)addRetreivedResume:(NSString *)resumeText;
+	-(void)addRetrievedResume:(NSString *)resumeText;
 	-(void)refreshRSSThread:(NSObject *)object;
 @end
 
