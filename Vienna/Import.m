@@ -263,9 +263,9 @@
 				while (index < [line length])
 					switch ([line characterAtIndex:index++])
 					{
-						case 'U': read_flag = ![line characterAtIndex:index++] == '1'; continue;
-						case 'M': marked_flag = [line characterAtIndex:index++] == '1'; continue;
-						case 'L': locked_flag = [line characterAtIndex:index++] == '1'; continue;
+						case 'U': read_flag = ! ( [line characterAtIndex:index++] == '1' ); continue;
+						case 'M': marked_flag = ( [line characterAtIndex:index++] == '1' ); continue;
+						case 'L': locked_flag = ( [line characterAtIndex:index++] == '1' ); continue;
 					}
 			}
 				
