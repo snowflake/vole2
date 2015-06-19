@@ -260,3 +260,8 @@ validate-help:
 export-git:	# export fossil repo to git
 	make -C ../mk -f export-to-git.mk  all push
 
+
+.PHONY: appledoc
+appledoc:
+	cd ../scripts && sh appledoc.sh
+
