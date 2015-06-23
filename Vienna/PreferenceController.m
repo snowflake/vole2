@@ -143,6 +143,11 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 
 }
 
+#pragma clang diagnostic push
+
+// This disables the warnings from kICHelper strings.
+#pragma GCC diagnostic ignored "-Winvalid-source-encoding"
+
 /* initializePreferences
  * Set the preference settings from the user defaults.
  */
@@ -321,6 +326,8 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 			[profileResume setStringValue:[currentPerson parsedInfo]];
 	}
 }
+
+#pragma clang diagnostic pop
 
 /* changeAutoCollapseFolders
  * Respond when the user changes the state of auto-collapsing folders.
