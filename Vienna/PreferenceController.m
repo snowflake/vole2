@@ -398,6 +398,8 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	[[NSUserDefaults standardUserDefaults] setInteger:versions forKey:MAPref_LogVersions];
 }
 
+#pragma clang diagnostic push
+#pragma GCC diagnostic ignored "-Winvalid-source-encoding"
 /* setDefaultLinksHandler
  * Set the default handler for cix links via Internet Config.
  */
@@ -414,6 +416,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 // #warning 64BIT: Inspect use of sizeof
 	ICSetPref(internetConfigHandler, kICHelper "cix", attr, &spec, sizeof(spec));
 }
+#pragma clang diagnostic pop
 
 /* numberOfRowsInTableView [datasource]
  * Datasource for the table view. Return the total number of signatures in the
