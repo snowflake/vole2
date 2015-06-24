@@ -11,8 +11,8 @@ all:
 
 #****************************************************************************
 
-DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT?=NO
-DEBUG_INFORMATION_FORMAT?=dwarf
+DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT?=YES
+DEBUG_INFORMATION_FORMAT?=dwarf-with-dsym
 
 # set up appropiate developer dirs, can be changed in environment
 DEVELOPER_DIR_XC3?= /Xcode3.2.6
