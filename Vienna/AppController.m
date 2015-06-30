@@ -67,6 +67,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 
 @implementation AppController
 
+#pragma mark - initialize
 /* initialize
  * Application initialization.
  */
@@ -119,6 +120,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
 
+#pragma mark - awakeFromNib
 /* awakeFromNib
  * When we launch, we have to get our NSToolbar set up.  This involves creating a new one, adding the NSToolbarItems,
  * and installing the toolbar in our window.
@@ -279,6 +281,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[self handleCheckFrequencyChange:nil];
 }
 
+#pragma mark - updateHTMLDict
 /* updateHTMLDict
  * Update the HTML dictionary that formatMessage uses for rendering HTML in NSTextView.
  */
@@ -301,6 +304,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[webPrefs release];
 }
 
+#pragma mark - growlIsReady
 /* growlIsReady
  * Called by Growl if it is loaded. We use this as a trigger to acknowledge its existence.
  */
@@ -309,6 +313,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	growlAvailable = YES;
 }
 
+#pragma mark - registrationDictionaryForGrowl
 /* registrationDictionaryForGrowl
  * Called by Growl to request the notification dictionary.
  */
@@ -330,6 +335,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return regDict;
 }
 
+#pragma mark - initTableView
 /* initTableView
  * Do all the initialization for the message list table view control
  */
@@ -385,6 +391,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[self setTableViewFont];
 }
 
+#pragma mark - initSortMenu
 /* initSortMenu
  * Create the sort popup menu.
  */
@@ -415,6 +422,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[[viewMenu itemWithTitle:@"Sort By"] setSubmenu:sortMenu];
 }
 
+#pragma mark - initColumnsMenu
 /* initColumnsMenu
  * Create the columns popup menu.
  */
@@ -443,6 +451,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[[viewMenu itemWithTitle:@"Columns"] setSubmenu:columnsMenu];
 }
 
+#pragma mark - showColumnsForFolder
 /* showColumnsForFolder
  * Display the columns for the specific folder.
  */
@@ -460,6 +469,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - updateVisibleColumns
 /* updateVisibleColumns
  * Iterates through the array of visible columns and makes them
  * visible or invisible as needed.
@@ -557,6 +567,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[messageList sizeLastColumnToFit];
 }
 
+#pragma mark - saveTableSettings
 /* saveTableSettings
  * Save the table column settings, specifically the visibility and width.
  */
@@ -586,6 +597,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[dataArray release];
 }
 
+#pragma mark - setTableViewFont
 /* setTableViewFont
  * Gets the font for the message list and adjusts the table view
  * row height to properly display that font.
@@ -616,6 +628,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[messageList setRowHeight:height + 3];
 }
 
+#pragma mark - showSortDirection
 /* showSortDirection
  * Shows the current sort column and direction in the table.
  */
@@ -636,6 +649,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - showPriorityUnreadCountOnApplicationIcon
 /* showPriorityUnreadCountOnApplicationIcon
  * Update the Vienna application icon to show the number of unread priority messages.
  */
@@ -689,6 +703,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - isBusy
 /* isBusy
  * Return whether the client is busy processing something that cannot be interrupted by a connect or
  * any other database access.
@@ -700,6 +715,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return isImporting || isGettingMissingMessages;
 }
 
+#pragma mark - showPreferencePanel
 /* showPreferencePanel
  * Display the Preference Panel.
  */
@@ -711,6 +727,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[preferenceController showWindow:self];
 }
 
+#pragma mark - applicationShouldTerminate
 /* applicationShouldTerminate
  * This function is called when the user wants to close Vienna. First we check to see
  * if a connection or import is running and that all messages are saved.
@@ -736,6 +753,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return NSTerminateNow;
 }
 
+#pragma mark - applicationWillTerminate
 /* applicationWillTerminate
  * This is where we put the clean-up code.
  */
@@ -754,6 +772,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[connect release];
 }
 
+#pragma mark - windowWillClose
 /* windowWillClose
  * Handle closure of the main window. If we get applicationShouldTerminateAfterLastWindowClosed working
  * (see below) then we can remove this function.
@@ -764,6 +783,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[NSApp terminate:nil];
 }
 
+#pragma mark - applicationShouldTerminateAfterLastWindowClosed
 /* applicationShouldTerminateAfterLastWindowClosed
  * This is supposed to get called when the last window owned by the application is closed but
  * this isn't happening here. Not sure why but we need to debug this.
@@ -774,6 +794,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return YES;
 }
 
+#pragma mark - applicationDidFinishLaunching
 /* applicationDidFinishLaunching
  * Handle post-load activities.
  */
@@ -802,6 +823,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - showBrowser
 /* showBrowser
  * Display the browser window.
  */
@@ -813,6 +835,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	
 }
 
+#pragma mark - showVoleBuild
 /* showVoleBuild
  * Display the Vole Build window.
  */
@@ -825,7 +848,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 }
 
 
-
+#pragma mark - compactDatabase
 /* compactDatabase
  * Run the database compaction command.
  */
@@ -844,6 +867,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[compactDatabaseWindow orderOut:self];
 }
 
+#pragma mark - gotoMessage
 /* gotoMessage
  */
 -(IBAction)gotoMessage:(id)sender
@@ -864,6 +888,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		  contextInfo:nil];
 }
 
+#pragma mark - endGotoMessage
 /* endGotoMessage
  */
 -(IBAction)endGotoMessage:(id)sender
@@ -877,6 +902,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		[self offerToRetrieveMessage:messageNumber fromFolderId:currentFolderId];
 }
 
+#pragma mark - cancelGotoMessage
 /* cancelGotoMessage
  */
 -(IBAction)cancelGotoMessage:(id)sender
@@ -885,6 +911,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[NSApp endSheet:gotoWindow returnCode:0];
 }
 
+#pragma mark - originalThread
 /* originalThread
  * From a search folder, switch to the original folder from which the selected
  * message came from.
@@ -900,7 +927,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
-
+#pragma mark - originalMessage
 /* originalMessage
  * Place the selection on the message to which the current one is a comment,
  * assuming there is one.
@@ -926,6 +953,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - refreshCurrentMessage
 /* Refresh current message.
  * Unconditionally fetch the current message from Cix.
  * (This method added 2014-08-22 )
@@ -947,6 +975,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 }
 
 
+#pragma mark - offerToRetrieveMessage (from FolderID)
 /* offerToRetrieveMessage
  * If we're offline, offer to retrieve a single message from the service. If we're online,
  * retrieve the message immediately.
@@ -981,6 +1010,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - offerToRetrieveMessage (from folderPath)
 /* offerToRetrieveMessage
  * Offer to retrieve a single message from the service.
  */
@@ -1005,6 +1035,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 					  bodyText);
 }
 
+#pragma mark - doRetrieveMessage
 /* doRetrieveMessage
  * Handle the response from the sheet.
  */
@@ -1024,6 +1055,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[contextArray release];
 }
 
+#pragma mark - retrieveMessage
 /* retrieveMessage
  * Create a task to retrieve a single message.
  */
@@ -1039,6 +1071,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		requestedMessage = messageId;
 }
 
+#pragma mark - scrollToMessage
 /* scrollToMessage
  * Moves the selection to the specified message. Returns YES if we found the
  * message, NO otherwise.
@@ -1064,6 +1097,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return found;
 }
 
+#pragma mark - printDocument
 /* printDocument
  * Print the current message in the message window.
  */
@@ -1079,6 +1113,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[printOp runOperation];
 }
 
+#pragma mark - toggleOnline
 /* toggleOnline
  * Toggle online mode.
  */
@@ -1090,6 +1125,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		[self goOnline:sender];
 }
 
+#pragma mark - goOnline
 /* goOnline
  * Switch to online mode. Note that we should NOT connect
  * at this point. Save that for the first actual task that
@@ -1105,6 +1141,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - goOffline
 /* goOffline
  * Switch to offline mode. Call the connectoid to ensure
  * that we actually disconnect from the service. If we weren't
@@ -1120,6 +1157,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - networkUP
 -(BOOL)networkUP
 {
 	Boolean success;
@@ -1133,6 +1171,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
     return okay;
 }
 
+#pragma mark - beginConnect
 /* beginConnect
  * Initiate a connection to the server.
  */
@@ -1170,6 +1209,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return YES;
 }
 
+#pragma mark - handleTaskAdded
 /* handleTaskAdded
  * Called when a new task is added to the database. If we're in online mode then we
  * action this task immediately.
@@ -1184,6 +1224,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - folders
 /* folders
  * Return the array of folders.
  */
@@ -1192,6 +1233,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return [foldersTree folders:[db conferenceNodeID]];
 }
 
+#pragma mark - database
 /* database
  * Return the active application database object.
  */
@@ -1200,6 +1242,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return db;
 }
 
+#pragma mark - appName
 /* appName
  * Returns's the application friendly (localized) name.
  */
@@ -1208,6 +1251,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return appName;
 }
 
+#pragma mark - currentFolderID
 /* currentFolderId
  * Return the ID of the currently selected folder whose messages are shown in
  * the message window.
@@ -1217,6 +1261,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return currentFolderId;
 }
 
+#pragma mark - personManager
 /* personManager
  * Return the active application person manager object
  */
@@ -1225,6 +1270,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return personManager;
 }
 
+#pragma mark - onlineMode
 /* onlineMode
  * Returns whether or not we're in online mode.
  */
@@ -1233,6 +1279,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	return isOnlineMode;
 }
 
+#pragma mark - fillMessageGaps
 /* fillMessageGaps
  * Begin the UI to locate and fill gaps in the current folder.
  */
@@ -1246,6 +1293,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[missingMessagesController getMissingMessages:mainWindow arrayOfFolders:arrayOfFolders database:db];
 }
 
+#pragma mark - handleRSSLink
 /* handleRSSLink
  * Handle feed://<rss> links. If we're already subscribed to the link then make the folder
  * active. Otherwise offer to subscribe to the link.
@@ -1263,6 +1311,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - handleCIXLink
 /* handleCIXLink
  * Handles a CIX URL. Valid formats are:
  *
@@ -1306,6 +1355,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - handleCIXFileLink
 -(void)handleCIXFileLink:(NSString *)folderPath file:(NSString *)filename
 {
 	[db addTask:MA_TaskCode_FileDownload actionData:filename folderName:folderPath orderCode:MA_OrderCode_FileDownload];
@@ -1317,6 +1367,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 }
 
 
+#pragma mark - handleEditFolder
 /* handleEditFolder
  * Respond to an edit folder notification.
  */
@@ -1339,6 +1390,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - handleFolderUpdate
 /* handleFolderUpdate
  * Called if a folder content has changed.
  */
@@ -1353,6 +1405,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - handleFolderSelection
 /* handleFolderSelection
  * Called when the selection changes in the folder pane.
  */
@@ -1396,6 +1449,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - handleUsernameChange
 /* handleUsernameChange
  * The user name has changed. We need to refresh the current folder
  * so that priority messages are properly updated.
@@ -1407,6 +1461,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[self refreshFolder:NO];
 }
 
+#pragma mark - handleQuoteColourChange
 /* handleQuoteColourChange
  * Called when the user changes the quote colour in the Preferences
  */
@@ -1424,6 +1479,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		[self updateMessageText];
 }
 
+#pragma mark - handlePriorityColourChange
 /* handlePriorityColourChange
  * Called when the user changes the priority colour in the Preferences
  */
@@ -1440,6 +1496,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[self refreshFolder:NO];
 }
 
+#pragma mark - handleIgnoredColourChange
 /* handleIgnoredColourChange
  * Called when the user changes the ignored colour in the Preferences
  */
@@ -1456,6 +1513,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[self refreshFolder:NO];
 }
 
+#pragma mark - handleMessageListFontChange
 /* handleMessageListFontChange
  * Called when the user changes the message list font and/or size in the Preferences
  */
@@ -1466,6 +1524,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[messageList reloadData];
 }
 
+#pragma mark - handleMessageFontChange
 /* handleMessageFontChange
  * Called when the user changes the message or plain text font and/or size in the Preferences
  */
@@ -1479,6 +1538,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+
+#pragma mark - handleCheckFrequencyChange
 /* handleCheckFrequencyChange
  * Called when the frequency by which we check messages is changed.
  */
@@ -1499,6 +1560,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	}
 }
 
+#pragma mark - setSortColumnIdentifier
 /* setSortColumnIdentifier
  */
 -(void)setSortColumnIdentifier:(NSString *)str
@@ -1508,6 +1570,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	sortColumnIdentifier = str;
 }
 
+#pragma mark - sortMessages
 /* sortMessages
  * Re-orders the messages in currentArrayOfMessages by the current sort order
  */
@@ -1522,6 +1585,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	sortedFlag = NO;
 }
 
+#pragma mark - messageSortHandle
 /* messageSortHandler
  */
 NSInteger messageSortHandler(id i1, id i2, void * context)
@@ -1595,6 +1659,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return NSOrderedSame;
 }
 
+#pragma mark - threadMessages
 /* threadMessages
  * Re-orders the messages in currentArrayOfMessages by thread.
  *
@@ -1657,6 +1722,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	currentArrayOfMessages = threadedArrayOfMessages;
 }
 
+#pragma mark - makeRowSelectedAndVisible
 /* makeRowSelectedAndVisible
  * Selects the specified row in the table and makes it visible by
  * scrolling it to the center of the table.
@@ -1674,6 +1740,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - centerSelectedRow
 /* centerSelectedRow
  * Center the selected row in the table view.
  */
@@ -1690,6 +1757,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[messageList scrollRowToVisible:visibleRow];
 }
 
+#pragma mark - didClickTableColumns
 /* didClickTableColumns
  * Handle the user click in the column header to sort by that column.
  */
@@ -1700,6 +1768,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self sortByIdentifier:columnName];
 }
 
+#pragma mark - tableViewColumnDidResize
 /* tableViewColumnDidResize
  * This notification is called when the user completes resizing a column. We obtain the
  * new column size and save the settings.
@@ -1718,6 +1787,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - doViewColumn
 /* doViewColumn
  * Toggle whether or not a specified column is visible.
  */
@@ -1731,6 +1801,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self saveTableSettings];
 }
 
+#pragma mark - doSortColumn
 /* doSortColumn
  * Handle the user picking an item from the Sort By submenu
  */
@@ -1743,6 +1814,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self sortByIdentifier:[field name]];
 }
 
+#pragma mark - sortByIdentifier
 /* sortByIdentifier
  * Sort by the column indicated by the specified column name.
  */
@@ -1771,6 +1843,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self refreshFolder:NO];
 }
 
+#pragma mark - tagFromIdentifier
 /* tagFromIdentifier
  * Given a field identifier, returns the tag associated with that field.
  */
@@ -1780,6 +1853,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return [field tag];
 }
 
+#pragma mark - numberOfRowsInTableView
 /* numberOfRowsInTableView [datasource]
  * Datasource for the table view. Return the total number of rows we'll display which
  * is equivalent to the number of messages in the current folder.
@@ -1790,6 +1864,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return [currentArrayOfMessages count];
 }
 
+#pragma mark - objectValueForTableColumn
 /* objectValueForTableColumn [datasource]
  * Called by the table view to obtain the object at the specified column and row. This is
  * called often so it needs to be fast.
@@ -1818,6 +1893,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
     return [[theRecord messageData] objectForKey:[aTableColumn identifier]];
 }
 
+#pragma mark - tableViewSelectionDidChange
 /* tableViewSelectionDidChange [delegate]
  * Handle the selection changing in the table view.
  */
@@ -1828,6 +1904,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self refreshMessageAtRow:currentSelectedRow];
 }
 
+#pragma mark - refreshMessageAtRow
 /* refreshMessageAtRow
  * Refreshes the message at the specified row.
  */
@@ -1866,6 +1943,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - handlePersonUpdate
 /* handlePersonUpdate
  * Information for a person has changed. If the profile window is visible and showing
  * the profile information for this person then update it.
@@ -1882,6 +1960,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - forwardTrackMessage
 /* forwardTrackMessage
  * Forward track through the list of messages displayed
  */
@@ -1899,6 +1978,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - backTrackMessage
 /* backTrackMessage
  * Back track through the list of messages displayed
  */
@@ -1916,6 +1996,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - selectNextRootMessage
 /* selectNextRootMessage
  * Move the selection to the next root message
  */
@@ -1935,6 +2016,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - selectPreviousRootMessage
 /* selectPreviousRootMessage
  * Move the selection to the previous root message
  */
@@ -1955,6 +2037,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 }
 
 
+#pragma mark - findRootMessage
 /*
  * Return the index of the root of the current message
  */
@@ -1974,6 +2057,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return -1;
 }
 
+#pragma mark - viewNextUnreadRoot
 -(void)viewNextUnreadRoot
 {
 	VMessage * theMessage = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
@@ -1993,6 +2077,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 }
 
 
+#pragma mark - handleKeyDown  [Delegate]
 /* handleKeyDown [delegate]
  * Support special key codes. If we handle the key, return YES otherwise
  * return NO to allow the framework to pass it on for default processing.
@@ -2125,6 +2210,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return NO;
 }
 
+#pragma mark - doubleClickRow
 /* doubleClickRow
  * Handles the double-click action in a non-empty row.
  */
@@ -2149,6 +2235,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - canPostMessage
 /* canPostMessage [delegate]
  * Called by the connection code to ask if we can post the specified
  * message. We deny only if the specified message is being edited.
@@ -2158,6 +2245,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return [self messageWindowWithAttributes:folderId messageNumber:messageNumber] == nil;
 }
 
+#pragma mark - messageWindowWithAttributes
 /* messageWindowWithAttributes
  * Locates an existing open message window with the specified parent folder ID and message
  * number, and returns the MessageWindow object found.
@@ -2181,6 +2269,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return nil;
 }
 
+#pragma mark - closeAllMessageWindows
 /* closeAllMessageWindows
  * Loop for all open message windows and give them a chance to save themselves
  * if they were modified.
@@ -2203,6 +2292,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return YES;
 }
 
+#pragma mark - willDisplayCell [Delegate]
 /* willDisplayCell [delegate]
  * Catch the table view before it displays a cell.
  */
@@ -2247,6 +2337,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - handleMugshotFolderChanged
 /* handleMugshotFolderChanged
  * Called when the user changes the mugshot folder in Preferences. We take this
  * opportunity to recache our copy of the folder name.
@@ -2281,6 +2372,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[self updateMessageText];
 }
 
+#pragma mark - updateMessageText
 /* updateMessageText
  * Updates the message text for the current selected message possibly because
  * some of the message attributes have changed.
@@ -2299,6 +2391,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self displayMugshot:theRecord];
 }
 
+#pragma mark - displayMugshot
 /* displayMugshot
  * Display the mugshot for the specified message.
  */
@@ -2339,6 +2432,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - resizeMugshotWindow
 /* resizeMugshotView
  * Resize the mugshot view window.
  */
@@ -2368,6 +2462,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
     [splitter setNeedsDisplay: YES];
 }
 
+#pragma mark - formatMessage
 /* formatMessage
  * Format the message by making URLs into clickable links, bold, italic and underline specifiers into
  * their actual attributes and formatting quotes.
@@ -2675,6 +2770,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return attrMessageText;
 }
 
+#pragma mark - isConnecting
 /* isConnecting
  * Returns whether or not 
  */
@@ -2683,6 +2779,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return [connect isProcessing];
 }
 
+#pragma mark - getMessagesOnTimer
 /* getMessagesOnTimer
  * Each time the check timer fires, we see if a connect is not
  * running and then kick one off.
@@ -2694,6 +2791,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[self getMessages:self];
 }
 
+#pragma mark - mugshotUpdated (image dropped onto mugshot window)
 /* mugshotUpdated
  * An image was dragged onto the mugshots window, save it.
  */
@@ -2707,6 +2805,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[personManager setPersonImage:[theRecord sender] image:TIFFData];
 }
 
+#pragma mark - newRSSSubscription
 /* newRSSSubscription
  * Display the pane for a new RSS subscription.
  */
@@ -2718,6 +2817,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[rssFeed newRSSSubscription:mainWindow initialURL:nil];
 }
 
+#pragma mark - editRSSSubscription
 /* editRSSSubscription
  * Display the pane to edit an RSS subscription.
  */
@@ -2731,6 +2831,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[rssFeed editRSSSubscription:mainWindow folderId:folderId];
 }
 
+#pragma mark - uploadPanelDidEnd
 -(void)uploadPanelDidEnd:(NSOpenPanel *)panel returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     (void)contextInfo;
@@ -2755,6 +2856,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - uploadFile
 /* uploadFile
 */
 -(IBAction)uploadFile:(id)sender
@@ -2780,7 +2882,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[panel setAllowsMultipleSelection: YES];
 }
 
-#pragma mark Download file
+#pragma mark - cancelDownload file
 
 -(IBAction)cancelDownload:(id)sender
 {
@@ -2788,12 +2890,14 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[NSApp endSheet:downloadWindow returnCode:NSCancelButton];
 }
 
+#pragma mark - okDownload
 -(IBAction)okDownload:(id)sender
 {
 	[downloadWindow orderOut:sender];
 	[NSApp endSheet:downloadWindow returnCode:NSOKButton];
 }
 
+#pragma mark - downloadSheetDidEnd
 -(void)downloadSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     (void)sheet;
@@ -2811,6 +2915,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - downloadFile dialogue
 /* downloadFile dialogue
 */
 -(IBAction)downloadFile:(id)sender
@@ -2833,6 +2938,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		  contextInfo:nil];
 }
 
+#pragma mark - newSearchFolder
 /* newSearchFolder
  * Create a new search folder.
  */
@@ -2844,6 +2950,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[searchFolder newCriteria:mainWindow];
 }
 
+#pragma mark - editSearchFolder
 /* editSearchFolder
  * Edits the current search folder.
  */
@@ -2857,6 +2964,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[searchFolder loadCriteria:mainWindow folderId:folderId];
 }
 
+#pragma mark - checkBeta (using CIX beta server)
 -(NSInteger)checkBeta
 // Check if we are using the beta server and alert the user (added 2013-10-15)
 
@@ -2879,6 +2987,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return 0;
 }
 
+#pragma mark - getMessages
 /* getMessages
  * Get new messages from the service.
  */
@@ -2899,6 +3008,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - getRSSMessages
 /* getRSSMessages
  * Get new RSS messages from the service.
  */
@@ -2918,6 +3028,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - getCixMessages
 /* getCixMessages
  * Get new Cix messages from the service.
  */
@@ -2938,6 +3049,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - newMessage (create a new message in the current folder)
 /* newMessage
  * Create a new message in the current folder.
  */
@@ -2954,6 +3066,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - makeReplyText
 /* makeReplyText
  * Build the reply based on the current message and which bits (if any)
  * of it are selected.
@@ -2980,6 +3093,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return quoteString;
 }
 
+#pragma mark - replyToMessage
 /* replyToMessage
  * Reply to the selected message.
  */
@@ -3043,6 +3157,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - replyByMail
 /* replyByMail
  * Sends a reply using whatever e-mail software is configured on the user's
  * system.
@@ -3083,6 +3198,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - deleteMessage
 /* deleteMessage
  * Delete the current message
  */
@@ -3099,6 +3215,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 								  NSLocalizedString(@"Delete selected message text", nil));
 }
 
+#pragma mark - doConfirmDelete (after user has dismissed the confirmation sheet)
 /* doConfirmedDelete
  * This function is called after the user has dismissed
  * the confirmation sheet.
@@ -3167,6 +3284,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markCurrentRead
 /* markCurrentRead
  * Mark the "current selected" read.
  */
@@ -3199,6 +3317,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - toggleHideIgnoredMessages
 /* toggleHideIgnoredMessages
  * Toggles whether ignored messages are shown or not.
  */
@@ -3210,6 +3329,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self refreshFolder:YES];
 }
 
+#pragma mark - togglePlainText
 /* togglePlainText
  * Toggle whether messages are displayed in plain text.
  */
@@ -3222,6 +3342,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[self updateMessageText];
 }
 
+#pragma mark - toggleWindowsCP
 /* toggleWindowsCP
  * Toggle display of the current message in the Windows code page.
  */
@@ -3235,6 +3356,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[self updateMessageText];
 }
 
+#pragma mark - toggleThreading
 /* toggleThreading
  * Toggle whether or not we display messages by thread.
  * (Because threading relies on the messages in currentArrayOfMessages being in ascending numerical
@@ -3255,6 +3377,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self refreshFolder:NO];
 }
 
+#pragma mark - showTasksWindow
 /* showTasksWindow
  * Display the tasks window.
  */
@@ -3267,6 +3390,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[tasksWindow showWindow:self];
 }
 
+
+#pragma mark - toggleActivityViewer
 /* toggleActivityViewer
  * Toggle display of the activity viewer during a connect.
  */
@@ -3280,6 +3405,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[activityWindow close];
 }
 
+
+#pragma mark - viewOutbox
 /* viewOutbox
  * Switch to and view the contents of the Out Basket folder.
  */
@@ -3289,6 +3416,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[foldersTree selectFolder:MA_Outbox_NodeID];
 }
 
+#pragma mark - viewDrafts
 /* viewDrafts
  * Switch to and view the contents of the Drafts folder.
  */
@@ -3298,6 +3426,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[foldersTree selectFolder:MA_Draft_NodeID];
 }
 
+#pragma mark - viewNextThread
 /* viewNextUnread
  * Moves the selection to the next unread message.
  */
@@ -3330,6 +3459,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - viewNextPriorityThread
 /* viewNextPriorityUnread
  * Moves the selection to the next priority unread message.
  */
@@ -3365,6 +3495,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - viewNextThreadInCurrentFolder
 /* viewNextUnreadInCurrentFolder
  * Select the next unread message in the current folder after currentRow.
  */
@@ -3390,6 +3521,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return NO;
 }
 
+#pragma mark - selectFirstUnreadFolder
 /* selectFirstUnreadInFolder
  * Moves the selection to the first unread message in the current message list or the
  * last message if the folder has no unread messages.
@@ -3400,6 +3532,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[self makeRowSelectedAndVisible:[currentArrayOfMessages count] - 1];
 }
 
+#pragma mark - selectFirstUnreadPriorityInFolder
 /* selectFirstUnreadPriorityInFolder
  * Moves the selection to the first unread priority message in the current message list or the
  * last message if the folder has no unread priority messages.
@@ -3410,6 +3543,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[self makeRowSelectedAndVisible:[currentArrayOfMessages count] - 1];
 }
 
+#pragma mark - selectFolderAndMessage
 /* selectFolderAndMessage
  */
 -(BOOL)selectFolderAndMessage:(NSInteger)folderId messageNumber:(NSInteger)messageNumber
@@ -3423,6 +3557,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return [self scrollToMessage:messageNumber];
 }
 
+#pragma mark - refreshFolder
 /* refreshFolder
  * Refreshes the current folder by applying the current sort or thread
  * logic and redrawing the message list. The selected message is preserved
@@ -3460,18 +3595,21 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - cancelModAddTopic
 -(IBAction)cancelModAddtopic:(id)sender
 {
 	[modAddTopicWindow orderOut:sender];
 	[NSApp endSheet:modAddTopicWindow returnCode:NSCancelButton];
 }
 
+#pragma mark - okModAddTopic
 -(IBAction)okModAddtopic:(id)sender
 {
 	[modAddTopicWindow orderOut:sender];
 	[NSApp endSheet:modAddTopicWindow returnCode:NSOKButton];
 }
 
+#pragma mark - modTopicSheetDidEnd
 -(void)modTopicSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     (void)returnCode;
@@ -3507,18 +3645,21 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - cancelModUsername
 -(IBAction)cancelModUsername:(id)sender
 {
 	[modUsernameWindow orderOut:sender];
 	[NSApp endSheet:modUsernameWindow returnCode:NSCancelButton];
 }
 
+#pragma mark - okModUserName
 -(IBAction)okModUsername:(id)sender
 {
 	[modUsernameWindow orderOut:sender];
 	[NSApp endSheet:modUsernameWindow returnCode:NSOKButton];
 }
 
+#pragma mark - modSheetDidEnd
 -(void)modSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     (void)sheet;
@@ -3535,7 +3676,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
-
+#pragma mark - Menu Options for moderator functions
 // Menu options for Moderator functions
 -(IBAction)modAddParticipant:(id)sender
 {
@@ -3634,7 +3775,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	//PJC TODO:
 }	
 
-
+#pragma mark - setMainWindowTitle
 /* setMainWindowTitle
  * Updates the main window title bar.
  */
@@ -3648,6 +3789,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[headerBarView setCurrentFolder:db folderId:folderId];
 }
 
+#pragma mark - selectFolderWithFilter
 /* selectFolderWithFilter
  * Switches to the specified folder and displays messages filtered by the given
  * searchFilter.
@@ -3675,6 +3817,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[mainWindow makeFirstResponder:messageList];
 }
 
+#pragma mark - selectMessageAfterReload
 /* selectMessageAfterReload
  */
 -(void)selectMessageAfterReload
@@ -3691,6 +3834,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	selectAtEndOfReload = MA_Select_Unread;
 }
 
+#pragma mark - markAllRead
 /* markAllRead
  * Mark all messages in the current folder read.
  */
@@ -3757,6 +3901,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return messageArray;
 }
 
+#pragma mark - markPriority
 /* markPriority
  * Mark the selected messages priority or normal. If just one message is
  * selected, we toggle the state of that message and all child messgaes. If
@@ -3774,6 +3919,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markThreadFromRootPriority
 /* markThreadFromRootPriority
  * Toggle the priority state of the entire thread from the root
  * message.
@@ -3790,6 +3936,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markPriorityByArray
 /* markPriorityByArray
  * Helper function used by both markRead and markThreadRead. Takes as an input an array
  * of messages and marks those messages read or unread.
@@ -3814,6 +3961,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self showPriorityUnreadCountOnApplicationIcon];
 }
 
+#pragma mark - markThreadFromRootIgnored
 /* markThreadFromRootIgnored
  * Toggle the ignored state of the entire thread from the root
  * message.
@@ -3830,6 +3978,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markIgnored
 /* markIgnored
  * Mark the selected messages ignored or not ignored. If just one message is
  * selected, we toggle the state of that message and all child messgaes. If
@@ -3847,6 +3996,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markIgnoredByArray
 /* markIgnoredByArray
  * Helper function used by both markRead and markThreadRead. Takes as an input an array
  * of messages and marks those messages read or unread.
@@ -3893,6 +4043,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markThreadFromRootRead
 /* markThreadFromRootRead
  * Toggle the read/unread state of the entire thread from the root
  * message.
@@ -3909,6 +4060,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markRead (toggle)
 /* markRead
  * Toggle the read/unread state of the selected message
  */
@@ -3924,6 +4076,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markReadByArray
 /* markReadByArray
  * Helper function used by both markRead and markThreadRead. Takes as an input an array
  * of messages and marks those messages read or unread.
@@ -3962,6 +4115,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self showPriorityUnreadCountOnApplicationIcon];
 }
 
+#pragma mark - markFlagged
 /* markFlagged
  * Toggle the flagged/unflagged state of the selected message
  */
@@ -3977,6 +4131,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markThreadFromRootFlagged
 /* markThreadFromRootFlagged
  * Toggle the flagged/unflagged state of the entire thread from the root
  * message.
@@ -3993,6 +4148,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - markFlaggedByArray
 /* markFlaggedByArray
  * Mark the specified messages in messageArray as flagged.
  */
@@ -4011,6 +4167,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[messageList reloadData];
 }
 
+#pragma mark - viewProfile (for the current user)
 /* viewProfile
  * Display the profile for the current user if there is one.
  */
@@ -4031,6 +4188,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - joinConference
 /* joinConference
  * Join a CIX conference.
  */
@@ -4042,6 +4200,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[joinWindow joinCIXConference:mainWindow initialConferenceName:nil];
 }
 
+#pragma mark - setCIXBack (by one day)
 -(IBAction)setCIXBack:(id)sender
 {
     (void)sender;
@@ -4049,6 +4208,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self setStatusMessage:@"CIX will be set back by one day."];
 }
 
+#pragma mark - copyURL
 -(IBAction)copyUrl:(id)sender
 {
     (void)sender;
@@ -4072,6 +4232,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[pb setString:url forType:NSStringPboardType];
 }
 
+#pragma mark - renameFolder (rename current Folder)
 /* renameFolder
  * Renames the current folder
  */
@@ -4093,6 +4254,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - endRenameFolder
 /* endRenameFolder
  * Called when the user OK's the Rename Folder sheet
  */
@@ -4103,6 +4265,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[db setFolderName:currentFolderId newName:[renameField stringValue]];
 }
 
+#pragma mark - cancelRenameFolder
 /* cancelRenameFolder
  * Called when the user cancels the Rename Folder sheet
  */
@@ -4112,6 +4275,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[NSApp endSheet:renameWindow returnCode:0];
 }
 
+#pragma mark - deleteFolder
 /* deleteFolder
 * Delete the current folder.
 */
@@ -4176,6 +4340,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self showPriorityUnreadCountOnApplicationIcon];
 }
 
+#pragma mark - resignFolder
 /* resignFolder
 * Resign from CIX but leave the folder intact.
 */
@@ -4199,6 +4364,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[db addTask:MA_TaskCode_ResignFolder actionData:@"" folderName:folderPath orderCode:MA_OrderCode_ResignFolder];
 }
 
+#pragma mark - showAcknowledgements (in a browser)
 /* showAcknowledgements
  * Display the acknowledgements document in a browser.
  */
@@ -4212,6 +4378,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[acknowledgementURL release];
 }
 
+#pragma mark - searchUsingToolbarTextField
 /* searchUsingToolbarTextField
  * Executes a search using the search field on the toolbar.
  */
@@ -4240,6 +4407,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self selectFolderWithFilter:currentFolderId searchFilter:searchString];
 }
 
+#pragma mark - activityString (write to activity window)
 /* activityString
  * Writes the specified string to the activity window.
  */
@@ -4248,6 +4416,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[activityViewer writeString:string];
 }
 
+#pragma mark - startConnect (delegate)
 /* startConnect
  * This delegate is called when a connection is started
  */
@@ -4256,6 +4425,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
     (void)sender;
 }
 
+#pragma mark - taskStatus (called when a task is completed)
 /* taskStatus
  * Called when a task is completed.
  */
@@ -4270,6 +4440,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[self startProgressIndicator];
 }
 
+#pragma mark - endConnect (delegate called when a connection is completed)
 /* endConnect
  * This delegate is called when a connection is completed
  */
@@ -4331,6 +4502,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - runOKAlertSheet
 /* runOKAlertSheet
  * Displays an alert sheet with just an OK button.
  */
@@ -4356,6 +4528,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	va_end(arguments);
 }
 
+#pragma mark - setStatusMessage (for the info bar)
 /* setStatusMessage
  * Sets a new status message for the info bar then updates the view. To remove
  * any existing status message, pass nil as the value.
@@ -4368,6 +4541,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[self updateStatusMessage];
 }
 
+#pragma mark  updateStatusMessage
 /* updateStatusMessage
  */
 -(void)updateStatusMessage
@@ -4381,6 +4555,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[infoString displayIfNeeded];
 }
 
+#pragma mark - startProgressIndicator (on info bar)
 /* startProgressIndicator
  * Gets the progress indicator on the info bar running. Because this can be called
  * nested, we use progressCount to make sure we remove it at the right time.
@@ -4391,6 +4566,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[spinner startAnimation:self];
 }
 
+#pragma mark - stopProgressIndicator
 /* stopProgressIndicator
  * Stops the progress indicator on the info bar running
  */
@@ -4404,6 +4580,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	}
 }
 
+#pragma mark - validateCommonToolbarAndMenuItems
 /* validateCommonToolbarAndMenuItems
  * Validation code for items that appear on both the toolbar and the menu. Since these are
  * handled identically, we validate here to avoid duplication of code in two delegates.
@@ -4499,6 +4676,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
     return NO;
 }
 
+#pragma mark - validateToolbarItem
 /* validateToolbarItem
  * Check [theItem identifier] and return YES if the item is enabled, NO otherwise.
  */
@@ -4509,6 +4687,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return flag;
 }
 
+
+#pragma mark - validateMenuItem
 /* validateMenuItem
  * This is our override where we handle item validation for the
  * commands that we own.
@@ -4767,6 +4947,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return YES;
 }
 
+#pragma mark - itemForItemIdentifier
 /* itemForItemIdentifier
  * This method is required of NSToolbar delegates.  It takes an identifier, and returns the matching NSToolbarItem.
  * It also takes a parameter telling whether this toolbar item is going into an actual toolbar, or whether it's
@@ -4906,6 +5087,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 									 nil];
 }
 
+#pragma mark - toolbarAllowedItemIdentifiers
 /* toolbarAllowedItemIdentifiers
  * This method is required of NSToolbar delegates.  It returns an array holding identifiers for all allowed
  * toolbar items in this toolbar.  Any not listed here will not be available in the customization palette.
@@ -4933,6 +5115,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 									 nil];
 }
 
+#pragma mark - writeRows (initiate a drag from MessageListView)
 /* writeRows
  * Called to initiate a drag from MessageListView
  */
@@ -5010,12 +5193,14 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	return YES;
 }
 
+#pragma mark - getAcronymsVersion
 static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 
 +(NSString *) getAcronymsVersion {
 	return acronymsVersion;
 }
 
+#pragma mark - readAcronyms
 -(void)readAcronyms
 {
 	// DJE modified here, 29 May 2013
@@ -5086,6 +5271,7 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 	[buffer release];
 }
 
+#pragma mark -  dealloc
 /* dealloc
  * Clean up and release resources.
  */
