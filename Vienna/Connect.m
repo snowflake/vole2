@@ -103,6 +103,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 
 @implementation Connect
 
+#pragma mark - initWithCredentials
 /* initWithCredentials
  * Initialise the class
  */
@@ -132,6 +133,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return self;
 }
 
+#pragma mark - username
 /* username
  * Return the user name associated with this connection
  */
@@ -140,6 +142,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return [credentials username];
 }
 
+#pragma mark - password
 /* password
  * Returns the password associated with this connection
  */
@@ -148,6 +151,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return [credentials password];
 }
 
+#pragma mark - setOnline
 /* setOnline
  * Specify whether the connection operates in online or offline mode. In online mode
  * we don't disconnect after processing tasks.
@@ -166,6 +170,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[condLock unlockWithCondition:HAS_DATA];
 }
 
+#pragma mark - setDelegate
 /* setDelegate
  * Set the delegate object to which the connect code will
  * send status information.
@@ -177,6 +182,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	delegate = newDelegate;
 }
 
+#pragma mark - setMode
 /* setMode
  * Both / RSS or Cix
  */
@@ -185,7 +191,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	connectMode = newMode;
 }
 
-
+#pragma mark - setDatabase
 /* setDatabase
  * Set the database to be used by the connection
  */
@@ -196,6 +202,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	db = newDatabase;
 }
 
+#pragma mark - abortConnect
 /* abortConnect
  * Trigger a cancel of the connection. This call is asynchronous and
  * returns once it has set the flag. The actual cancel may take a bit
@@ -207,6 +214,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	rssAbortFlag = YES;
 }
 
+#pragma mark - isProcessing
 /* isProcessing
  * Returns whether or not a task is being processed.
  */
@@ -215,6 +223,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return taskRunningCount > 0;
 }
 
+#pragma mark - messagesCollected
 /* messagesCollected
  * Return the number of messages collected in the last connect.
  */
@@ -223,6 +232,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return messagesCollected;
 }
 
+#pragma mark - serviceString
 /* serviceString
  * Returns the service name used for this connection.
  */
@@ -232,6 +242,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return [NSString stringWithFormat:@"%@:%d", [socket address], [socket port]];
 }
 
+#pragma mark - processSingleTask
 /* processSingleTask
  * Process the specified task only.
  */
@@ -307,6 +318,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - processOfflineTasks
 /* processOfflineTasks
  * Do an offline task connect which consists of posting messages from the Out Basket,
  * reading new messages and carrying out any other active tasks in the task queue.
@@ -358,6 +370,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[self updateLastFolder:[NSNumber numberWithLong:(long)MA_Outbox_NodeID]];
 }
 
+#pragma mark - taskCompleted
 /* taskCompleted
  */
 -(void)taskCompleted:(VTask *)task
@@ -368,6 +381,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	--taskRunningCount;
 }
 
+#pragma mark - taskStarted
 /* taskStarted
  */
 -(void)taskStarted:(VTask *)task
@@ -377,6 +391,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[db setTaskRunning:task];
 }
 
+#pragma mark - updateLastFolder
 /* updateLastFolder
  * If the folder ID passed to this function is different from the folder ID when this function
  * was last called, we use this as a cue to tell the folder view to redraw itself so that changes
@@ -396,6 +411,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	lastTopicId = topicId;
 }
 
+#pragma mark - addToDatabase
 /* addToDatabase
  * Called from the thread with a new folder or message to be added to the database.
  */
@@ -427,6 +443,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - addRSSMessageToDatabase
 /* addRSSMessageToDatabase
  * Called from the thread with a new RSS message to be added to the database.
  */
@@ -442,6 +459,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		++messagesCollected;
 }	
 
+#pragma mark - updateRSSFolder
 /* updateRSSFolder
  * Update information on an RSS folder.
  */
@@ -459,6 +477,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[db setRSSFeedLastUpdate:threadData->folderId lastUpdate:threadData->lastUpdate];
 }
 
+#pragma mark - updateFolder
 /* updateFolder
  * Update information on an standard folder.
  */
@@ -470,6 +489,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		[db setFolderDescription:folderId newDescription:threadData->description];
 }
 
+#pragma mark - addRetrievedForum
 /* addRetrievedForum
  * Called from the thread with a new forum to be added to the database.
  */
@@ -484,11 +504,13 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - cleanForumsList
 -(void)cleanForumsList
 {
 	[db cleanBrowserTables];
 }
 
+#pragma mark - addCategory
 /* addCategory
  * Add the specified category to the database.
  */
@@ -497,6 +519,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[db addCategory:newCategory];
 }
 
+#pragma mark - addRetrievedResume
 /* addRetrievedResume
  * Add a resume to the database. The first line of the resume is the
  * person name.
@@ -514,6 +537,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[db updatePerson:name data:info];
 }
 
+#pragma mark - sendActivityStringToDelegate
 /* sendActivityStringToDelegate
  * Calls the delegate function passing a string to be shown in the activity window
  */
@@ -523,6 +547,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		[delegate performSelectorOnMainThread:@selector(activityString:) withObject:string waitUntilDone:NO];
 }
 
+#pragma mark - sendStartConnectToDelegate
 /* sendStartConnectToDelegate
  * Calls the delegate function advising it that a connect has started
  */
@@ -532,6 +557,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		[delegate performSelectorOnMainThread:@selector(startConnect:) withObject:nil waitUntilDone:YES];
 }
 
+#pragma mark - sendEndConnectToDelegate
 /* sendEndConnectToDelegate
  * Calls the delegate function advising it that a connect has ended
  */
@@ -541,6 +567,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		[delegate performSelectorOnMainThread:@selector(endConnect:) withObject:[NSNumber numberWithLong:(long)result] waitUntilDone:YES];
 }
 
+#pragma mark - sendStatusToDelegate
 /* sendStatusToDelegate
  * Sends a status string to the delegate
  */
@@ -550,6 +577,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		[delegate performSelectorOnMainThread:@selector(setStatusMessage:) withObject:statusString waitUntilDone:YES];
 }
 
+#pragma mark - refreshRSSThread
 /* refreshRSSThread
  * Refreshing the RSS feeds occurs on a separate thread from CIX since it doesn't
  * need to be serialised or uses the CIX socket.
@@ -768,6 +796,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[pool release];
 }
 
+#pragma mark - messageSateSortHandler
 /* messageDateSortHandler
  * Compares two VMessages and returns their chronological order
  */
@@ -777,6 +806,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return [[item1 date] compare:[item2 date]];
 }
 
+#pragma mark - setModerator
 // Join conference and enable moderator privileges
 -(BOOL)setModerator:(VTask *)task
 {
@@ -808,6 +838,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return NO;
 }
 
+#pragma mark - modAddPart
 -(void)modAddpart:(VTask *)task
 {	
 	if ([self setModerator: task])
@@ -825,6 +856,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - modRempart
 -(void)modRempart:(VTask *)task
 {
 	if ([self setModerator: task])
@@ -842,6 +874,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - modReadOnly
 -(void)modReadonly:(VTask *)task
 {
 	if ([self setModerator: task])
@@ -873,6 +906,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - modComod
 -(void)modComod:(VTask *)task
 {
 	if ([self setModerator: task])
@@ -889,6 +923,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - modExmod
 -(void)modExmod:(VTask *)task
 {
 	if ([self setModerator: task])
@@ -906,6 +941,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - modAddTopic
 -(void)modAddTopic:(VTask *)task
 {
 	if ([self setModerator: task])
@@ -947,6 +983,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - modNewconf
 -(void)modNewconf:(VTask *)task
 {
 	if ([self setModerator: task])
@@ -955,6 +992,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	}
 }
 
+#pragma mark - zmodemSend
 // Send a file via Zmodem
 -(NSInteger)zmodemSend:(NSString *)fileName
 {
@@ -990,7 +1028,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return status;
 }
 
-
+#pragma mark - zmodemReceive
 // Receive a file via Zmodem
 -(NSInteger)zmodemReceive:(NSString *)downloadFolder
 {
@@ -1026,6 +1064,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return status;
 }
 
+#pragma mark - downloadFile
 -(void)downloadFile:(VTask *)task
 {
 	BOOL endOfFile;
@@ -1079,6 +1118,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[self readAndScanForMainPrompt:&endOfFile];
 }
 
+#pragma mark - uploadFile
 -(void)uploadFile:(VTask *)task
 {
 	BOOL endOfFile;
@@ -1137,6 +1177,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 }
 
 
+#pragma mark - connectThread
 /* connectThread
  * This is the actual thread that runs to connect to the service and retrieve new
  * messages. It runs as long as we're online takes its feed from the tasksArray
@@ -1291,6 +1332,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[pool release];
 }
 
+#pragma mark - stopCIXConnectThread
 /* stopCIXConnectThread
  * synchronously get the cix connect thread to shut down.
  */
@@ -1306,6 +1348,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
     }
 } 
 
+#pragma mark - getMessages
 /* getMessages
  * Read all new messages from the service.
  */
@@ -1351,6 +1394,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	return result;
 }
 
+#pragma mark - collectScratchapd
 /* collectScratchpad
  * Get the contents of the scratchpad and parse.
  */
@@ -1499,6 +1543,7 @@ abortLabel:
 	return result;
 }
 
+#pragma mark - updateFullList
 /* updateFullList
  * Retrieve the full list of available CIX conferences.
  */
@@ -1633,6 +1678,7 @@ abortLabel:
 	[task setResultCode:MA_TaskResult_Succeeded];
 }
 
+#pragma mark - resign Folder
 /* resignFolder
  * Handle the task to resign a conference or topic.
  */
@@ -1659,6 +1705,7 @@ abortLabel:
 		[task setResultCode:MA_TaskResult_Succeeded];
 }
 
+#pragma mark - joinFolder
 /* joinFolder
  * Join a conference or a topic within a conference
  */
@@ -1686,6 +1733,7 @@ abortLabel:
 	}
 }
 
+#pragma mark - enterFolder
 /* enterFolder
  * Joins the folder specified by the task folder name. If we're not a member of the conference or
  * topic, we handle taking care of joining and responding to any errors. If we succeed, we stay in
@@ -1743,6 +1791,7 @@ abortLabel:
 	return success;
 }
 
+#pragma mark - getConferenceInfo
 /* getConferenceInfo
  * Retrieve the list of topics in a conference and update the database
  * with the descriptions.
@@ -1794,6 +1843,7 @@ abortLabel:
 	[self readAndScanForMainPrompt:&endOfFile];
 }
 
+#pragma mark - putResume
 /* putResume
  * Upload the current logged in person's profile.
  */
@@ -1836,6 +1886,7 @@ abortLabel:
 	[task setResultCode:MA_TaskResult_Succeeded];
 }
 
+#pragma mark - getResume
 /* getResume
  * Retrieve a resume and store it in the database.
  */
@@ -1882,6 +1933,7 @@ abortLabel:
 	[socket setTimeout:lastTimeout];
 }
 
+#pragma mark - setCIXBack
 /* setCIXBack
  * Skip back a specified number of days
  */
@@ -1915,6 +1967,8 @@ abortLabel:
 	[task setResultCode:taskResult];
 	[task setResultString:@"OK"];
 }
+
+#pragma mark - skipBack
 /* skipBack
  * Skip back a specified number of messages
  */
@@ -1951,6 +2005,7 @@ abortLabel:
 	}
 }
 
+#pragma mark - withdrawMessage
 /* withdrawMessage
  * Withdraw a single message from a topic.
  */
@@ -2001,6 +2056,7 @@ abortLabel:
 	}
 }
 
+#pragma mark - fileMessages
 /* fileMessages
  * Retrieve a range of messages from a topic.
  */
@@ -2073,6 +2129,7 @@ abortLabel:
 	}
 }
 
+#pragma mark - hasHighBitChars
 -(BOOL)hasHighBitChars:(NSMutableArray *)text
 {
 	NSUInteger index, charindex;
@@ -2089,6 +2146,7 @@ abortLabel:
 	return NO;
 }
 
+#pragma mark - postMessages
 /* postMessages
  * Post all messages in the outbox
  */
@@ -2362,6 +2420,7 @@ abortLabel:
 	[task setResultString:taskData];
 }
 
+#pragma mark - connectToService
 /* connectToService
  * Open a socket and connect to the service. Perform the initial
  * authentication and login protocol.
@@ -2487,6 +2546,7 @@ abortLabel:
 	return MA_Connect_Success;
 }
 
+#pragma mark - disconnectFromService
 /* disconnectFromService
  * As its name implies, cleanly disconnect from the service.
  */
@@ -2511,6 +2571,7 @@ abortLabel:
 	return [self writeStringWithFormat:YES string:@"%@\n", string];
 }
 
+#pragma mark - writeLineUsingEncoding
 /* writeLineUsingEncoding
  */
 -(BOOL)writeLineUsingEncoding:(NSString *)string encoding:(NSStringEncoding)encoding
@@ -2524,6 +2585,7 @@ abortLabel:
 	return NO;
 }
 
+#pragma mark - writeStringWithFormat
 /* writeStringWithFormat
  * Formats a string with arguments and writes that string to the service.Then
  * if echo is YES, we wait for that string to be echoed back.
@@ -2543,6 +2605,7 @@ abortLabel:
 	return result;
 }
 
+#pragma mark - writeString
 /* writeString
  * Writes a string to the service. If echo is YES, we wait for that string to
  * be echoed back.
@@ -2557,6 +2620,7 @@ abortLabel:
 	return endOfFile;
 }
 
+#pragma mark - pushBackLine
 /* pushBackLine
  * Push back a line we got from the service so that the
  * next read will get this line instead.
@@ -2570,6 +2634,7 @@ abortLabel:
 	isPushedLine = YES;
 }
 
+#pragma mark - readLine
 /* readLine
  * Read one line from the service.
  */
@@ -2590,6 +2655,7 @@ abortLabel:
 	return string;
 }
 
+#pragma mark - readAndScanForMainPrompt
 /* readAndScanForMainPrompt
  * Scan for the M: prompt.
  */
@@ -2598,6 +2664,7 @@ abortLabel:
 	[self readAndScanForStrings:[NSArray arrayWithObjects:@"M:", nil] endOfFile:endOfFile];
 }
 
+#pragma mark -  readAndScanForStrings
 /* readAndScanForStrings
  * Reads from the service until we match one of the strings in
  * the array. If we match, we return the index of the matching
@@ -2687,6 +2754,7 @@ abortLabel:
 	return matchIndex;
 }
 
+#pragma mark - Telnet state machine enumeration
 // Telnet state machine
 enum {
 	TSTATE_BEGIN,
@@ -2711,6 +2779,7 @@ enum {
 #define SE			240
 #define SB			250
 
+#pragma mark - readServiceChar
 /* readServiceChar
  * This is a wrapper over the socket readChar that embodies additional logic
  * for handling Telnet control codes.
@@ -2830,6 +2899,7 @@ enum {
 	return ch;
 }
 
+#pragma mark - dealloc
 /* dealloc
  * Clean up and release resources.
  */
