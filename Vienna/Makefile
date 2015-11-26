@@ -20,17 +20,19 @@ DEVELOPER_DIR_XC5?= NOT_CURRENTLY_AVAILABLE
 DEVELOPER_DIR_XC6?= /Applications/Xcode.app/Contents/Developer
 DEVELOPER_DIR_XC6_BETA?=/Applications/Xcode_beta/Xcode.app/Contents/Developer
 DEVELOPER_DIR_XC7_BETA?=/Applications/Xcode_beta/Xcode-beta.app/Contents/Developer
+DEVELOPER_DIR_XC7?=/Applications/Xcode.app/Contents/Developer
 
 PROJECT_XC3=Vole_xc3.xcodeproj
 PROJECT_XC5=Vole_xc5.xcodeproj
 PROJECT_XC6=${PROJECT_XC5}
+PROJECT_XC7=${PROJECT_XC5}
 # Xcode.app locations
 XC3_XCODE_APP=${DEVELOPER_DIR_XC3}/Applications/Xcode.app
 XC5_XCODE_APP?=NOT_CURRENTLY_AVAILABLE
 XC6_XCODE_APP?=/Applications/Xcode.app
 XC6BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode.app
 XC7BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode-beta.app
-
+XC7_XCODE_APP?=/Applications/Xcode.app
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
 		mavericks yosemite elcapitan
 RELEASES:= 	Development-release tiger-release leopard-release \
@@ -103,12 +105,12 @@ yosemite-release yosemite yosemite-go: PROJECT=${PROJECT_XC6}
 
 elcapitan-release:	NAME=ve
 elcapitan-release:	COMPATIBILITY=
-elcapitan-release:	STATUS=beta
+elcapitan-release:	STATUS=Stable
 elcapitan-release elcapitan: MOSXDT=10.7
 elcapitan-release elcapitan: ARCHS?=x86_64
-elcapitan-release elcapitan: DEVELOPER_DIR=${DEVELOPER_DIR_XC7_BETA}
+elcapitan-release elcapitan: DEVELOPER_DIR=${DEVELOPER_DIR_XC7}
 elcapitan-release elcapitan: SDK_NAME=macosx10.11
-elcapitan-release elcapitan elcapitan-go: PROJECT=${PROJECT_XC6}
+elcapitan-release elcapitan elcapitan-go: PROJECT=${PROJECT_XC7}
 
 
 lion-release: NAME=vn
@@ -180,7 +182,7 @@ yosemite-go:
 	open -a ${XC6_XCODE_APP} ${PROJECT}
 
 elcapitan-go:
-	open -a ${XC7BETA_XCODE_APP} ./${PROJECT}
+	open -a ${XC7_XCODE_APP} ./${PROJECT}
 
 # Run the Vienna app from its build directory
 tiger-run leopard-run snowleopard-run lion-run \
