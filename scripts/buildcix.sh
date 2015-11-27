@@ -158,7 +158,8 @@ systems.
 $(sandpit_warning)
 
 [Notes]
-$(/opt/local/bin/lynx -dump ../NOTES/RELEASE.html)
+For release notes, please visit:
+https://chiselapp.com/user/vinkix/repository/olrcix/wiki?name=RI
 
 XEOF
 
