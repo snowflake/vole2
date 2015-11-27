@@ -228,10 +228,16 @@ ${RELEASES}:
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
 		VERSION=${VERSION}
-	/opt/local/bin/gpg --no-armor --detach-sign "${NAME}-${VERSION}.dmg"
+	@echo Sign the disk image with gpg
+	/opt/local/bin/gpg -u ${VOLE_PGP_USER1} -u ${VOLE_PGP_USER2} \
+		--no-armor --detach-sign "${NAME}-${VERSION}.dmg"
+	@echo Compute the SHA hashes and sign the file
+	sh ../scripts/sha-hashes.sh "${NAME}-${VERSION}.dmg"
+	cp temp-hash.asc disk-image-hashes.asc
 	sh ../scripts/readme-gen.sh "${NAME}-${VERSION}" > README.html
 	zip -0 --must-match ${NAME}-${VERSION}.zip README.html \
-		${NAME}-${VERSION}.dmg ${NAME}-${VERSION}.dmg.sig
+		${NAME}-${VERSION}.dmg ${NAME}-${VERSION}.dmg.sig \
+		disk-image-hashes.asc
 	sh ../scripts/buildcix.sh \
 		"${VIENNA_APP}" \
 		${NAME}-${VERSION}.zip \
