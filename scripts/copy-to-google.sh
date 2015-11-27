@@ -47,7 +47,8 @@ case $sdknum in
 	( 7 ) sdk=LION ;;
 	( 8 ) sdk=MLION ;;
 	( 9 ) sdk=MAVER ;;
-	( 10 )sdk=YOSEM ;;
+	( 10 ) sdk=YOSEM ;;
+        ( 11 ) sdk=ELCAP ;;
         ( *  )echo 'Unknown SDK, script failed!'; exit 1;;
 esac
 
