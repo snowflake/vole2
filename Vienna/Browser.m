@@ -37,6 +37,18 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
 
 @implementation Browser
 
+/* set up date formatter
+ */
+static NSDateFormatter * dateFormatter = nil;
+static void setupDateFormatter(){
+    // date formaters are expenisve to calculate, so we only do it once
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle: NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle: NSDateFormatterShortStyle];
+    [dateFormatter setTimeZone: [ NSTimeZone timeZoneForSecondsFromGMT: 0 ]];
+}
+
+
 /* initWithDatabase
  * Initialise the window.
  */
@@ -133,10 +145,22 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
 		[tooltipString appendString:NSLocalizedString(@"This conference is closed", nil)];
 	if ([forum status] == MA_Open_Conference)
 	{
-		NSString * outputFormat = [[NSUserDefaults standardUserDefaults] objectForKey:@"NSShortDateFormatString"];
-		NSCalendarDate * date = [[forum lastActiveDate] dateWithCalendarFormat:nil timeZone:nil];
+#if 0
+        // old code
+        NSString * outputFormat = [[NSUserDefaults standardUserDefaults] objectForKey:@"NSShortDateFormatString"];
+        NSCalendarDate * date = [[forum lastActiveDate] dateWithCalendarFormat:nil timeZone:nil];
 // #warning 64BIT: Check formatting arguments
 		[tooltipString appendFormat:NSLocalizedString(@"Last message posted on %@", nil), [date descriptionWithCalendarFormat:outputFormat]];
+#else
+        // new code
+        NSDate * date = [forum lastActiveDate];
+        if (dateFormatter == nil){
+            setupDateFormatter();
+        }
+        [tooltipString appendFormat:NSLocalizedString(@"Last message posted on %@", nil),
+             [ dateFormatter stringFromDate: date]];
+
+#endif
 	}
 	return tooltipString;
 }
@@ -411,9 +435,19 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
 	{
 		if ([forum status] == MA_Open_Conference)
 		{
+#if 0
+            // old code
 			NSString * outputFormat = [[NSUserDefaults standardUserDefaults] objectForKey:@"NSShortDateFormatString"];
 			NSCalendarDate * date = [[forum lastActiveDate] dateWithCalendarFormat:nil timeZone:nil];
 			return [date descriptionWithCalendarFormat:outputFormat];
+#else
+            // new code
+            NSDate *date = [forum lastActiveDate];
+            if (dateFormatter == nil){
+                setupDateFormatter();
+            }
+            return [dateFormatter stringFromDate: date];
+#endif
 		}
 		if ([forum status] == MA_Empty_Conference)
 			return NSLocalizedString(@"Empty", nil);
