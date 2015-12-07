@@ -104,7 +104,8 @@ typedef CGFLOAT_TYPE CGFloat;
 #endif // CGFLOAT_DEFINED
 
 
-// AppKit version numbers (From AppKit Release Notes for OSX 10.9)
+// AppKit version numbers (From AppKit Release Notes for OSX 10.9
+// and 10.11 Appkit release notes
 
 #ifndef NSAppKitVersionNumber10_4
 #define NSAppKitVersionNumber10_4 824
@@ -125,6 +126,36 @@ typedef CGFLOAT_TYPE CGFloat;
 #ifndef NSAppKitVersionNumber10_8
 #define NSAppKitVersionNumber10_8 1187
 #endif
+
+#ifndef NSAppKitVersionNumber10_9
+#define NSAppKitVersionNumber10_9 1265
+#endif
+
+#ifndef NSAppKitVersionNumber10_10
+#define NSAppKitVersionNumber10_10 1343
+#endif
+
+#ifndef NSAppKitVersionNumber10_10_2
+#define NSAppKitVersionNumber10_10_2 1344
+#endif
+
+#ifndef NSAppKitVersionNumber10_10_3
+#define NSAppKitVersionNumber10_10_3 1347
+#endif
+
+#ifndef NSAppKitVersionNumber10_10_4
+#define NSAppKitVersionNumber10_10_4 1348
+#endif
+
+#ifndef NSAppKitVersionNumber10_10_5
+#define NSAppKitVersionNumber10_10_5 1348
+#endif
+
+#ifndef NSAppKitVersionNumber10_10_Max
+#define NSAppKitVersionNumber10_10_Max 1349
+#endif
+
+//  end of Appkit versions
 
 #ifndef VOLE_DEPLOYMENT_TARGET
 #error VOLE_DEPLOYMENT_TARGET must be a project preprocessor definition 
