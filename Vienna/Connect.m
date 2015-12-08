@@ -1611,8 +1611,23 @@ abortLabel:
 			}
 			else if ([statusString isEqualToString:@"o"])
 			{
+#if 0
+                // old code
 				lastActiveDate = [NSCalendarDate dateWithString:datePart calendarFormat:@"%d/%m/%Y"];
-				status = MA_Open_Conference;
+#else
+                // new code 2015-12-6
+                static NSDateFormatter * browserDateFormatter = nil;
+                if (browserDateFormatter == nil){
+                    browserDateFormatter = [[NSDateFormatter alloc] init];
+                    NSLocale * locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+                    [browserDateFormatter setLocale: locale]; // this also sets up the Gregorian calendar
+                    [browserDateFormatter setTimeZone: [NSTimeZone timeZoneForSecondsFromGMT:0] ];
+                    [browserDateFormatter setDateFormat:@"dd/MM/yyyy" ];
+//                    NSLog(@"set browser formatter %@", browserDateFormatter);
+                }
+                lastActiveDate = [browserDateFormatter dateFromString: datePart];
+#endif
+                status = MA_Open_Conference;
 			}
 			else
 			{

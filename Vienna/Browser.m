@@ -41,10 +41,10 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context);
  */
 static NSDateFormatter * dateFormatter = nil;
 static void setupDateFormatter(){
-    // date formaters are expenisve to calculate, so we only do it once
+    // date formaters are expensive to calculate, so we only do it once
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle: NSDateFormatterShortStyle];
-    [dateFormatter setTimeStyle: NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle: NSDateFormatterNoStyle];
     [dateFormatter setTimeZone: [ NSTimeZone timeZoneForSecondsFromGMT: 0 ]];
 }
 
