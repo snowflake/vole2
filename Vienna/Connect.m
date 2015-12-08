@@ -1618,6 +1618,7 @@ abortLabel:
                 // new code 2015-12-6
                 static NSDateFormatter * browserDateFormatter = nil;
                 if (browserDateFormatter == nil){
+                    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
                     browserDateFormatter = [[NSDateFormatter alloc] init];
                     NSLocale * locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
                     [browserDateFormatter setLocale: locale]; // this also sets up the Gregorian calendar
