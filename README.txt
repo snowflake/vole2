@@ -12,13 +12,14 @@ The source code for Vole is in the Vienna directory.
 
 Requirements to run:
 
-      Mac OS X Tiger or later. PowerPC or Intel
+      Mac OS X Tiger or later. PowerPC or Intel-32 or Intel-64
 
 Requirements to build:
 
       Xcode 3.2.6 and a Mac OS X that supports it (Snow Leopard)
       Xcode 5 and Mountain Lion.
       Xcode 6 and Mavericks or Yosemite.
-      
+      Xcode 6 and 7 and El Capitan
+
 Are you looking for the Vienna RSS and Atom feed reader?
 Try http://www.vienna-rss.org/
