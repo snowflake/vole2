@@ -11,6 +11,8 @@ all:
 
 #****************************************************************************
 
+APPNAME=Vole.app
+
 DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT?=YES
 DEBUG_INFORMATION_FORMAT?=dwarf-with-dsym
 
@@ -129,6 +131,9 @@ mavericks mavericks-release:      SN=9
 yosemite yosemite-release:	  SN=10
 elcapitan elcapitan-release:	  SN=11
 
+BINARIES_DIR=${APPNAME}/Contents/MacOS
+CSIGN=${BINARIES_DIR}/sqlite2 ${BINARIES_DIR}/rz ${BINARIES_DIR}/sz
+
 ${BUILDS}: SHORTDATE:=$(shell date -u '+%Y%m%d.%H%M%S')
 ${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
 ${BUILDS}: VCSDATE:=$(shell /bin/sh ../scripts/version-script.sh vcsdate)
@@ -201,6 +206,17 @@ ${RELEASES}:
 		   DEBUG_INFORMATION_FORMAT=dwarf-with-dsym \
 		   $(subst -release,,$@)
 	echo $@
+	for i   in  ${CSIGN} ; do \
+		echo ==== $$i ; \
+		codesign -i uk.org.voleproject.vole-$$(basename $$i ) -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
+		done
+	for i 	in  ${SOURCE_DIR}/${APPNAME}/Contents/Frameworks/Growl.framework/Versions/A \
+		    ${SOURCE_DIR}/${APPNAME} ; do \
+		echo ==== $$i ; \
+		codesign -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
+		done
+	codesign --verify --verbose=4 --deep ${SOURCE_DIR}/${APPNAME}
+	exit 1
 	echo ${VIENNA_APP}
 	[ -d ${SOURCE_DIR} ]
 	echo '<html><head><title>Vole build info</title></head>' > ${BUILD_INFO}
