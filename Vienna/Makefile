@@ -201,6 +201,7 @@ ARCHIVE_DIR=~/Vienna-archive
 
 ${RELEASES}:
 	rm -rf ${SOURCE_DIR}/*
+	mkdir -p ${SOURCE_DIR}/app-temp
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 		make DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT=YES \
 		   DEBUG_INFORMATION_FORMAT=dwarf-with-dsym \
@@ -237,6 +238,13 @@ ${RELEASES}:
 		codesign -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
 		done
 	codesign --verify --verbose=4 --deep ${SOURCE_DIR}/${APPNAME}
+# create the package
+	(cd ${SOURCE_DIR} && \
+	   tar cf - Vole.app ) | tar xf - -C ${SOURCE_DIR}/app-temp
+	pkgbuild --root $$(pwd)/${SOURCE_DIR}/app-temp  \
+	   --component-plist pkg-component.plist \
+	    --install-location /JUNK2 junk.pkg
+
 # build the disk image
 	rm -f template.dmg wc.dmg template.dmg.bz2
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
