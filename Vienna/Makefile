@@ -206,17 +206,6 @@ ${RELEASES}:
 		   DEBUG_INFORMATION_FORMAT=dwarf-with-dsym \
 		   $(subst -release,,$@)
 	echo $@
-	for i   in  ${CSIGN} ; do \
-		echo ==== $$i ; \
-		codesign -i uk.org.voleproject.vole-$$(basename $$i ) -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
-		done
-	for i 	in  ${SOURCE_DIR}/${APPNAME}/Contents/Frameworks/Growl.framework/Versions/A \
-		    ${SOURCE_DIR}/${APPNAME} ; do \
-		echo ==== $$i ; \
-		codesign -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
-		done
-	codesign --verify --verbose=4 --deep ${SOURCE_DIR}/${APPNAME}
-	exit 1
 	echo ${VIENNA_APP}
 	[ -d ${SOURCE_DIR} ]
 	echo '<html><head><title>Vole build info</title></head>' > ${BUILD_INFO}
@@ -236,7 +225,19 @@ ${RELEASES}:
 # archive the build
 	sh ../scripts/archive-dsym.sh ${SOURCE_DIR}
 # strip the release executable
-	strip -S ${VIENNA_APP}		
+	strip -S ${VIENNA_APP}
+# codesign the app		
+	for i   in  ${CSIGN} ; do \
+		echo ==== $$i ; \
+		codesign -i uk.org.voleproject.vole-$$(basename $$i ) -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
+		done
+	for i 	in  ${SOURCE_DIR}/${APPNAME}/Contents/Frameworks/Growl.framework/Versions/A \
+		    ${SOURCE_DIR}/${APPNAME} ; do \
+		echo ==== $$i ; \
+		codesign -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
+		done
+	codesign --verify --verbose=4 --deep ${SOURCE_DIR}/${APPNAME}
+# build the disk image
 	rm -f template.dmg wc.dmg template.dmg.bz2
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
