@@ -228,15 +228,19 @@ ${RELEASES}:
 # strip the release executable
 	strip -S ${VIENNA_APP}
 # codesign the app		
+	# Codesign the helper commands rz sz sqlite2
 	for i   in  ${CSIGN} ; do \
 		echo ==== $$i ; \
-		codesign -i uk.org.voleproject.vole-$$(basename $$i ) -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
-		done
+		codesign -i uk.org.voleproject.vole-$$(basename $$i ) \
+		   -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
+		   done
+	# Codesign Growl and Vole.app
 	for i 	in  ${SOURCE_DIR}/${APPNAME}/Contents/Frameworks/Growl.framework/Versions/A \
 		    ${SOURCE_DIR}/${APPNAME} ; do \
 		echo ==== $$i ; \
 		codesign -f -s "Developer ID Application" ${SOURCE_DIR}/$$i ; \
 		done
+	# sanity check to see if codesign worked
 	codesign --verify --verbose=4 --deep ${SOURCE_DIR}/${APPNAME}
 # create the package
 	(cd ${SOURCE_DIR} && \
