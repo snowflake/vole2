@@ -126,7 +126,11 @@
 	// deprecated API here DJE
 //	result = sqlite3_get_table( mDatabase, [inQuery lossyCString], &results, &rows, &columns, NULL );
 	// replacement here
+#ifdef VOLE2
+	NSData  *ls = [ inQuery dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion: YES];
+#else
 	NSData  *ls = [ inQuery dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion: YES];
+#endif
 	char *qs = calloc( [ls length] +1, 1);
 	if(qs == NULL){
 // #warning 64BIT: Check formatting arguments

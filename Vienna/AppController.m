@@ -199,8 +199,13 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	
 	// Initialize the database
 	db = [[Database alloc] init];
+#if 0
 	if (![db initDatabase:[defaults stringForKey:MAPref_DefaultDatabase]])
+#else
+	if (![db initDatabase:DBNAME])
+#endif
 	{
+		NSLog(@"Failed to initialise database %@", DBNAME);
 		[NSApp terminate:nil];
 		return;
 	}

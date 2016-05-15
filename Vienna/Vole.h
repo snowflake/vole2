@@ -176,5 +176,14 @@ typedef CGFLOAT_TYPE CGFloat;
 extern char vole_build_info[];
 extern char vole_vcs_changes[];
 
- 
 
+// #define VOLE2 1
+
+// The name of the database
+
+#ifdef VOLE2
+#define DBNAME @"~/Library/Vienna/database_utf8.db"
+#else
+// Classic vole 1
+#define DBNAME @"~/Library/Vienna/database3.db"
+#endif

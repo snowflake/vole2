@@ -122,9 +122,13 @@
 	// deprecated API here DJE
 	// return [NSString stringWithCString:mRowData[ inIndex ]];
 	// replacement here
+#ifdef VOLE2
+	return [NSString stringWithCString: mRowData[ inIndex ]
+				  encoding:NSUTF8StringEncoding];
+#else
 	return [NSString stringWithCString: sanitise_string(mRowData[ inIndex ])
-							  encoding:NSWindowsCP1252StringEncoding];
-
+				  encoding:NSWindowsCP1252StringEncoding];
+#endif
 	
 }
 
@@ -135,11 +139,18 @@
 	//  deprecated API here
 	// 	return [[[NSString alloc] initWithCStringNoCopy:mRowData[ inIndex ] length:strlen( mRowData[ inIndex ]) freeWhenDone:NO] autorelease];
 	// replacement here
+#ifdef VOLE2
+	return /* DJE [ */ [[NSString alloc] initWithBytesNoCopy: mRowData[ inIndex ]
+										   length: strlen( mRowData[ inIndex ])
+										 encoding: NSUTF8StringEncoding
+									 freeWhenDone: NO] /*autorelease  DJE ] */;
+#else
+// VOLE 1
 	return /* DJE [ */ [[NSString alloc] initWithBytesNoCopy: sanitise_string(mRowData[ inIndex ])
 										   length: strlen( mRowData[ inIndex ])
 										 encoding: NSWindowsCP1252StringEncoding
 									 freeWhenDone: NO] /*autorelease  DJE ] */;
-
+#endif
 }
 
 #pragma mark -
