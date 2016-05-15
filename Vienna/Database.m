@@ -2655,6 +2655,8 @@ enum {
 	return [newArray sortedArrayUsingSelector:@selector(compare:)];
 }
 
+#if 0
+// DJE 2016-05-15 This method is redundant
 -(NSString *)convertFromISO:(NSString *)messageText
 {// this method is only used to display the message title.  Should it be call convertToISO
 	NSString *mactext;
@@ -2669,6 +2671,7 @@ enum {
 	
 	return mactext;
 }
+#endif
 
 /* arrayOfMessages
  * Retrieves an array containing all messages (except for text) for the
@@ -2742,7 +2745,7 @@ enum {
 					++unread_count;
 				}
 				
-				messageTitle = [self convertFromISO: messageTitle];
+//				messageTitle = [self convertFromISO: messageTitle];
 				
 				VMessage * message = [[VMessage alloc] initWithInfo:messageId];
 				[message setComment:commentId];
