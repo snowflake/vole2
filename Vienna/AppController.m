@@ -2527,8 +2527,12 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	// The messageText should have already been sanitised, otherwise expect a crash (DJE)
 	NSData * chardata = [[NSData alloc] 
 						 initWithBytes:[messageText
-										cStringUsingEncoding:NSWindowsCP1252StringEncoding]
-						 length:[messageText length]];
+#ifdef VOLE2
+                                        cStringUsingEncoding:NSUTF8StringEncoding]
+#else
+                                        cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+#endif
+                         length:[messageText length]];
 	if ([messageText hasPrefix:@"<HTML>"])
 	{
 		attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
@@ -2538,7 +2542,11 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	else
 	{
 		if (showWindowsCP)
-			enc = NSWindowsCP1252StringEncoding;
+#ifdef VOLE2
+            enc = NSUTF8StringEncoding;
+#else
+            enc = NSWindowsCP1252StringEncoding;
+#endif
 		else
 			enc = NSISOLatin1StringEncoding;
 		
@@ -2549,8 +2557,11 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			// deprecated API was here DJE
 		//	charptr = [mactext cString];
 			// replacement here
-			charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
-
+#ifdef VOLE2
+            charptr = [mactext cStringUsingEncoding:NSUTF8StringEncoding];
+#else
+            charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+#endif
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString: mactext];
 			messageText = mactext;
 		}
