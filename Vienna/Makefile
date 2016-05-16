@@ -243,12 +243,13 @@ ${RELEASES}:
 	# sanity check to see if codesign worked
 	codesign --verify --verbose=4 --deep ${SOURCE_DIR}/${APPNAME}
 # create the package
+if 0
 	(cd ${SOURCE_DIR} && \
 	   tar cf - Vole.app ) | tar xf - -C ${SOURCE_DIR}/app-temp
 	pkgbuild --root $$(pwd)/${SOURCE_DIR}/app-temp  \
 	   --component-plist pkg-component.plist \
 	    --install-location /JUNK2 junk.pkg
-
+endif
 # build the disk image
 	rm -f template.dmg wc.dmg template.dmg.bz2
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \

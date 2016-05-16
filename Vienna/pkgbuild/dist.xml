@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-gui-script minSpecVersion="1">
+    <title>Vole</title>
+    <options hostArchitectures="ppc" />
+    <readme file="readme.html" mime-type="text/html" />
+    <background alignment="bottomleft" 
+        file="Vienna-logo.jpg" mime-type="image/jpeg" />
+    <pkg-ref id="uk.co.opencommunity.vienna"/>
+    <options customize="never" require-scripts="false"/>
+    <choices-outline>
+        <line choice="default">
+            <line choice="uk.co.opencommunity.vienna"/>
+        </line>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="uk.co.opencommunity.vienna" visible="false">
+        <pkg-ref id="uk.co.opencommunity.vienna"/>
+    </choice>
+    <pkg-ref id="uk.co.opencommunity.vienna" version="1.6.17" onConclusion="none">junk2.pkg</pkg-ref>
+</installer-gui-script>
