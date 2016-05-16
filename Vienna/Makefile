@@ -36,10 +36,11 @@ XC6BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode.app
 XC7BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode-beta.app
 XC7_XCODE_APP?=/Applications/Xcode.app
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
-		mavericks yosemite elcapitan
+		mavericks yosemite elcapitan elcapitan2
 RELEASES:= 	Development-release tiger-release leopard-release \
 		snowleopard-release lion-release mountainlion-release \
-		mavericks-release yosemite-release elcapitan-release
+		mavericks-release yosemite-release elcapitan-release \
+		elcapitan2-release
 
 Development-release: NAME=dv
 Development-release: COMPATIBILITY=Unknown
@@ -107,12 +108,21 @@ yosemite-release yosemite yosemite-go: PROJECT=${PROJECT_XC6}
 
 elcapitan-release:	NAME=ve
 elcapitan-release:	COMPATIBILITY=
-elcapitan-release:	STATUS=Stable
+elcapitan-release:	STATUS=Alpha testing
 elcapitan-release elcapitan: MOSXDT=10.7
 elcapitan-release elcapitan: ARCHS?=x86_64
 elcapitan-release elcapitan: DEVELOPER_DIR=${DEVELOPER_DIR_XC7}
 elcapitan-release elcapitan: SDK_NAME=macosx10.11
 elcapitan-release elcapitan elcapitan-go: PROJECT=${PROJECT_XC7}
+
+elcapitan2-release:	NAME=v2e
+elcapitan2-release:	COMPATIBILITY=
+elcapitan2-release:	STATUS=Alpha testing
+elcapitan2-release elcapitan2: MOSXDT=10.7
+elcapitan2-release elcapitan2: ARCHS?=x86_64
+elcapitan2-release elcapitan2: DEVELOPER_DIR=${DEVELOPER_DIR_XC7}
+elcapitan2-release elcapitan2: SDK_NAME=macosx10.11
+elcapitan2-release elcapitan2 elcapitan2-go: PROJECT=${PROJECT_XC7}
 
 
 lion-release: NAME=vn
@@ -130,6 +140,7 @@ mountainlion mountainlion-release:SN=8
 mavericks mavericks-release:      SN=9
 yosemite yosemite-release:	  SN=10
 elcapitan elcapitan-release:	  SN=11
+elcapitan2 elcapitan2-release:	  SN=11
 
 BINARIES_DIR=${APPNAME}/Contents/MacOS
 CSIGN=${BINARIES_DIR}/sqlite2 ${BINARIES_DIR}/rz ${BINARIES_DIR}/sz
@@ -186,12 +197,13 @@ mavericks-go:
 yosemite-go:
 	open -a ${XC6_XCODE_APP} ${PROJECT}
 
-elcapitan-go:
+elcapitan-go elcapitan2-go:
 	open -a ${XC7_XCODE_APP} ./${PROJECT}
 
 # Run the Vienna app from its build directory
 tiger-run leopard-run snowleopard-run lion-run \
-	mountainlion-run mavericks-run yosemite-run elcapitan-run Development-run:
+	mountainlion-run mavericks-run yosemite-run \
+	elcapitan-run elcapitan2-run Development-run:
 	open ../../Vienna-build/$(subst -run,,$@)/Vole.app
 
 
