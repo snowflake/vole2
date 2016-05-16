@@ -202,10 +202,11 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 #if 0
 	if (![db initDatabase:[defaults stringForKey:MAPref_DefaultDatabase]])
 #else
-	if (![db initDatabase:DBNAME])
+	// DJE changed 2016-05-16
+	if (![db initDatabase: DBNAME])
 #endif
 	{
-		NSLog(@"Failed to initialise database %@", DBNAME);
+		NSLog(@"Error: Failed to initialise database %@", DBNAME);
 		[NSApp terminate:nil];
 		return;
 	}
@@ -2467,8 +2468,55 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
     [splitter setNeedsDisplay: YES];
 }
 
-#pragma mark - formatMessage
-/* formatMessage
+#pragma mark - formatMessage - Vole 2
+#ifdef VOLE2
+/* formatMessage (VOLE 2)
+ * Format the message by making URLs into clickable links, bold, italic and underline specifiers into
+ * their actual attributes and formatting quotes.
+ */
+-(NSAttributedString *)formatMessage:(NSString *)messageText usePlainText:(BOOL)usePlainText
+{
+	NSMutableAttributedString * attrMessageText = nil;
+	const char * charptr = nil;
+	NSInteger rangeIndex;
+	NSInteger attrRangeIndex;
+	NSInteger quoteRangeStart;
+	NSInteger urlRangeStart;
+	NSInteger wordRangeStart;
+	NSInteger whitespacesToSkip;
+	BOOL isAtStartOfLine;
+	BOOL plainText;
+	BOOL isInWordBreak;
+	BOOL isGrouping;
+	BOOL doStyleURL;
+	BOOL isCopiedFromGroup;
+	NSInteger  enc;
+	NSRange wordRange;
+	NSString *mactext = nil;
+	
+	// Initialise local vars
+	rangeIndex = 0;
+	attrRangeIndex = 0;
+	quoteRangeStart = -1;
+	urlRangeStart = -1;
+	wordRangeStart = -1;
+	wordRange.length = 0;
+	whitespacesToSkip = 0;
+	isAtStartOfLine = YES;
+	isInWordBreak = YES;
+	isGrouping = NO;
+	doStyleURL = NO;
+	plainText = showPlainText;
+	isCopiedFromGroup = NO;
+
+	return [[NSMutableAttributedString alloc] initWithString:messageText];
+}
+#endif // VOLE2 defined
+
+
+#pragma mark - formatMessage - Vole 1
+#ifndef VOLE2
+/* formatMessage (VOLE 1)
  * Format the message by making URLs into clickable links, bold, italic and underline specifiers into
  * their actual attributes and formatting quotes.
  */
@@ -2527,12 +2575,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	// The messageText should have already been sanitised, otherwise expect a crash (DJE)
 	NSData * chardata = [[NSData alloc] 
 						 initWithBytes:[messageText
-#ifdef VOLE2
-                                        cStringUsingEncoding:NSUTF8StringEncoding]
-#else
-                                        cStringUsingEncoding:NSWindowsCP1252StringEncoding]
-#endif
-                         length:[messageText length]];
+										cStringUsingEncoding:NSWindowsCP1252StringEncoding]
+						 length:[messageText length]];
 	if ([messageText hasPrefix:@"<HTML>"])
 	{
 		attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
@@ -2542,11 +2586,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	else
 	{
 		if (showWindowsCP)
-#ifdef VOLE2
-            enc = NSUTF8StringEncoding;
-#else
-            enc = NSWindowsCP1252StringEncoding;
-#endif
+			enc = NSWindowsCP1252StringEncoding;
 		else
 			enc = NSISOLatin1StringEncoding;
 		
@@ -2557,11 +2597,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			// deprecated API was here DJE
 		//	charptr = [mactext cString];
 			// replacement here
-#ifdef VOLE2
-            charptr = [mactext cStringUsingEncoding:NSUTF8StringEncoding];
-#else
-            charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
-#endif
+			charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString: mactext];
 			messageText = mactext;
 		}
@@ -2785,6 +2822,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 //	[messageFont release];   **** deleted, we do not own this object ****
 	return attrMessageText;
 }
+#endif // if not defined VOLE2
+
 
 #pragma mark - isConnecting
 /* isConnecting
