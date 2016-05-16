@@ -75,6 +75,9 @@
 	NSMutableString * fullTitleString = [NSMutableString stringWithString:[db folderPathName:folderId]];
 	if (IsFolderLocked(folder))
 		[fullTitleString appendString:@" (Read Only)"];
+#ifdef VOLE_ALPHA_STRING
+    [fullTitleString appendString: VOLE_ALPHA_STRING];
+#endif
 
 	NSMutableAttributedString * newTitleString = [[NSMutableAttributedString alloc] initWithString:fullTitleString];
 	if ([folder link])

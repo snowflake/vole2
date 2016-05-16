@@ -3840,6 +3840,9 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	Folder * folder = [db folderFromID:folderId];
 	if (IsFolderLocked(folder))
 		[newTitleString appendString:@" (Read Only)"];
+#ifdef VOLE_ALPHA_STRING
+    [newTitleString appendString: VOLE_ALPHA_STRING];
+#endif
 	[mainWindow setTitle:newTitleString];
 	[headerBarView setCurrentFolder:db folderId:folderId];
 }
