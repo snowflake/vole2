@@ -1,6 +1,3 @@
-#import "VOLE_SELECT_THIS_FILE_SHOULD_NOT_BE_COMMITED.h"
-
-
 // This header file is partly taken from JSONKIT.
 // It should be included in all headers that use Cocoa, Appkit or Foundation.
 // (DJE)
@@ -181,8 +178,8 @@ extern char vole_vcs_changes[];
 
 
 //
-//  VOLE2 is defined (or not) in header file included at the top of this
-//  header file.
+//  VOLE2 is defined (or not) 
+//  in Config/*.xcconfig files.
 //
 // The name of the database
 

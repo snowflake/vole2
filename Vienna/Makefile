@@ -243,7 +243,7 @@ ${RELEASES}:
 	# sanity check to see if codesign worked
 	codesign --verify --verbose=4 --deep ${SOURCE_DIR}/${APPNAME}
 # create the package
-if 0
+ifdef DONTDEFINETHIS
 	(cd ${SOURCE_DIR} && \
 	   tar cf - Vole.app ) | tar xf - -C ${SOURCE_DIR}/app-temp
 	pkgbuild --root $$(pwd)/${SOURCE_DIR}/app-temp  \
