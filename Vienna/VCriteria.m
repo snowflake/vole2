@@ -203,7 +203,8 @@
 		// deprecated API here DJE
 		//		NSData * data = [NSData dataWithBytes:[string cString] length:[string length]];
 		// replacement here
-		NSData * data = [NSData dataWithBytes:[string cStringUsingEncoding:NSWindowsCP1252StringEncoding] 
+		NSData * data = [NSData dataWithBytes:[string cStringUsingEncoding:
+                                               VoleDatabaseStringEncoding]
 									   length:[string length]];
 
 		XMLParser * xmlTree = [[XMLParser alloc] initWithData:data];

@@ -186,7 +186,9 @@ extern char vole_vcs_changes[];
 #ifdef VOLE2
 #define DBNAME @"~/Library/Vienna/database_utf8.db"
 #define VOLE_ALPHA_STRING @"   <<<<  VOLE 2 ALPHA  >>>>"
+#define VoleDatabaseStringEncoding NSUTF8StringEncoding
 #else
 // Classic vole 1
 #define DBNAME @"~/Library/Vienna/database3.db"
+#define VoleDatabaseStringEncoding NSWindowsCP1252StringEncoding
 #endif
