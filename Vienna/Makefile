@@ -2,8 +2,29 @@
 # Copyright (C) 2011 David Evans
 
 all: 
-	@echo read the makefile
+ifdef VOLE_QUICK_BUILD
+	${VOLE_QUICK_BUILD}
+else
+	@echo 'For make all, define VOLE_QUICK_BUILD in your environment'
+	@echo 'to be an xcodebuild command string.'
+	@echo 'Example for /bin/sh in your ~/.profile'
+	@echo 'VOLE_QUICK_BUILD="xcodebuild -project Vole_xc5.xcodeproj -configuration elcapitan2 -sdk macosx10.11"'
+	@echo 'export VOLE_QUICK_BUILD'
+	exit 1
+endif
 
+clean:
+ifdef VOLE_QUICK_BUILD
+	${VOLE_QUICK_BUILD} clean
+else
+	@echo 'For make clean, define VOLE_QUICK_BUILD in your environment'
+	@echo 'to be an xcodebuild command string.'
+	@echo 'Example for /bin/sh in your ~/.profile'
+	@echo 'VOLE_QUICK_BUILD="xcodebuild -project Vole_xc5.xcodeproj -configuration elcapitan2 -sdk macosx10.11"'
+	@echo 'export VOLE_QUICK_BUILD'
+	exit 1
+endif
+	
 #******************************** Warning ***********************************
 
 # MOSXDT in this Makefile must be kept in step with VOLE_DEPLOYMENT_TARGET
