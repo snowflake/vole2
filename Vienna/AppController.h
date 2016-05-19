@@ -19,6 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <wchar.h>
 #include <asl.h>
 #import "Vole.h"
 #import "Growl/GrowlApplicationBridge.h"

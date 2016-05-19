@@ -2477,7 +2477,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 -(NSAttributedString *)formatMessage:(NSString *)messageText usePlainText:(BOOL)usePlainText
 {
 	NSMutableAttributedString * attrMessageText = nil;
-	const char * charptr = nil;
+	const wchar_t * wcharptr = nil;
 	NSInteger rangeIndex;
 	NSInteger attrRangeIndex;
 	NSInteger quoteRangeStart;
@@ -2493,6 +2493,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	NSInteger  enc;
 	NSRange wordRange;
 	NSString *mactext = nil;
+    void * memsave; // used to save the calloc'ed memory
 	
 	// Initialise local vars
 	rangeIndex = 0;
@@ -2508,8 +2509,252 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	doStyleURL = NO;
 	plainText = showPlainText;
 	isCopiedFromGroup = NO;
+	
+	// Create our fonts up-front
+	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:(usePlainText ? MAPref_PlainTextFont : MAPref_MessageFont)];
+	NSFont * messageFont = [NSUnarchiver unarchiveObjectWithData:fontData];
+	
+	// Styled dictionaries
+	NSMutableDictionary * boldAttr = [NSMutableDictionary dictionary];
+	[boldAttr setValue:[[NSFontManager sharedFontManager] convertWeight:YES ofFont:messageFont] forKey:NSFontAttributeName];
+	
+	NSMutableDictionary * italicAttr = [NSMutableDictionary dictionary];
+	[italicAttr setValue:[[NSFontManager sharedFontManager] convertFont:messageFont toHaveTrait:NSItalicFontMask] forKey:NSFontAttributeName];
+	
+	NSMutableDictionary * underlineAttr = [NSMutableDictionary dictionary];
+	[underlineAttr setValue:messageFont forKey:NSFontAttributeName];
+	[underlineAttr setValue:[NSNumber numberWithLong:(long)NSSingleUnderlineStyle] forKey:NSUnderlineStyleAttributeName];
+	
+    NSData * ucs4data = [messageText dataUsingEncoding: NSUTF32StringEncoding];
+    // ucs4data is a block of wchars with BOM and no null terminator
+    wcharptr = memsave = calloc( [ucs4data length]+1 , 1);
+    memcpy( (void *)wcharptr, [ucs4data bytes]+4, [ucs4data length]-4);
+	
+    // If message text begins with <html> then we render as HTML only
+    if ([messageText hasPrefix:@"<HTML>"])
+	{
+        NSData * chardata = [[[NSData alloc]
+                             initWithBytes:[messageText
+                                            cStringUsingEncoding:NSUTF8StringEncoding]
+                             length:[messageText length]] autorelease];
+        attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
+		plainText = YES;
+	}
+	else
+	{
 
-	return [[NSMutableAttributedString alloc] initWithString:messageText];
+			attrMessageText = [[NSMutableAttributedString alloc] initWithString: messageText];
+		// Set the font for the entire message
+		NSRange entireTextRange = NSMakeRange(0, [attrMessageText length]);
+		[attrMessageText addAttribute:NSFontAttributeName value:messageFont range:entireTextRange];
+	}
+
+	if (!plainText)
+	{
+		while (*wcharptr)
+		{		
+			if (*wcharptr == L'>' && isAtStartOfLine)
+				quoteRangeStart = attrRangeIndex;
+			
+			if (*wcharptr != L' ' && *wcharptr != L'\t')
+				isAtStartOfLine = NO;
+
+			if (acronymDictionary && !iswalnum(*wcharptr) && rangeIndex > wordRangeStart)
+			{
+				wordRange = NSMakeRange(wordRangeStart+1, rangeIndex-wordRangeStart-1);
+				wordRangeStart = rangeIndex;
+			}
+			
+			// Handle **COPIED FROM links
+			if (wcsncasecmp(wcharptr, L"**COPIED FROM:", 14) == 0)
+			{
+				urlRangeStart = rangeIndex;
+				whitespacesToSkip = 4;
+				isCopiedFromGroup = YES;
+			}
+			
+			// Handle styles
+			if ((*wcharptr == L'*' || *wcharptr == L'/' || *wcharptr == L'_') && isInWordBreak && urlRangeStart == -1)
+			{
+				NSInteger styleRangeStart = rangeIndex;
+				NSInteger styleRangeTextStart = attrRangeIndex;
+				NSInteger styleRangeTextLength = 0;
+				NSInteger styleRangeLength = 1;
+				const wchar_t * wcharptrStart = wcharptr + 1;
+				wchar_t endStyleChar = *wcharptr;
+				
+				while (*++wcharptr && *wcharptr != endStyleChar && *wcharptr != L'\r' && *wcharptr != L'\n')
+				{
+					++styleRangeLength;
+					++styleRangeTextLength;
+				}
+
+				// We can only legally style the sequence if:
+				// - we hit a matching end of style character on the same line.
+				// - the end of style character is followed by tab, newline, period, comma, closing parenthesis, qmark or exclmark.
+				// - the style range is 3 chrs or more.
+				//
+				if (*wcharptr != endStyleChar || *wcharptrStart == L' ' || \
+                    (*wcharptr && wcschr(L" \t\r\n,.)!?", *(wcharptr+1)) == 0) || styleRangeLength < 2)
+				{
+					rangeIndex = styleRangeStart + 1;
+					attrRangeIndex = styleRangeTextStart + 1;
+					wcharptr = wcharptrStart;
+				}
+				else
+				{
+					++styleRangeLength;
+					++wcharptr;
+					NSDictionary * styleAttr = nil;
+					switch (endStyleChar)
+					{
+						case L'*': styleAttr = boldAttr; break;
+						case L'/': styleAttr = italicAttr; break;
+						case L'_': styleAttr = underlineAttr; break;
+					}
+					
+					NSString * styleString = [messageText substringWithRange:NSMakeRange(styleRangeStart + 1, styleRangeTextLength)];
+					NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:styleString attributes:styleAttr];
+					
+					[attrMessageText replaceCharactersInRange:NSMakeRange(styleRangeTextStart, styleRangeLength) withAttributedString:attrString];
+					[attrString release];
+					
+					rangeIndex += styleRangeLength;
+					attrRangeIndex += styleRangeTextLength;
+				}
+				continue;
+			}
+
+			// Look for common URLs that we know about.
+			if (*wcharptr == L':' && urlRangeStart == -1)
+			{
+				if (rangeIndex >= 4 && wcsncasecmp(wcharptr - 4, L"http", 4) == 0)
+					urlRangeStart = rangeIndex - 4;
+				if (rangeIndex >= 5 && wcsncasecmp(wcharptr - 5, L"https", 5) == 0)
+					urlRangeStart = rangeIndex - 5;
+				if (rangeIndex >= 3 && wcsncasecmp(wcharptr - 3, L"cix", 3) == 0)
+					urlRangeStart = rangeIndex - 3;
+				if (rangeIndex >= 7 && wcsncasecmp(wcharptr - 7, L"cixfile", 7) == 0)
+					urlRangeStart = rangeIndex - 7;
+				if (rangeIndex >= 3 && wcsncasecmp(wcharptr - 3, L"url", 3) == 0)
+					urlRangeStart = rangeIndex - 3;
+				if (rangeIndex >= 3 && wcsncasecmp(wcharptr - 3, L"ftp", 3) == 0)
+					urlRangeStart = rangeIndex - 3;
+				if (rangeIndex >= 6 && wcsncasecmp(wcharptr - 6, L"mailto", 6) == 0)
+					urlRangeStart = rangeIndex - 6;
+			}
+			
+			// Support < and > around a multi-line URL
+			if (*wcharptr == '<' && !isGrouping)
+				isGrouping = YES;
+			if (*wcharptr == '>' && isGrouping)
+			{
+				isGrouping = NO;
+				doStyleURL = YES;
+			}
+
+			// Handle end of links by styling it NSLinkAttributeName and creating a
+			// URL object so the system will do the rest automatically.
+			if (*wcharptr == L' ' || *wcharptr == L'\t' || *wcharptr == L'\r' || *wcharptr == L'\n')
+			{
+				if (whitespacesToSkip)
+					--whitespacesToSkip;
+				
+				if (urlRangeStart != -1 && !isGrouping && whitespacesToSkip == 0)
+				{
+					// Skip trailing characters not part of the URL.
+					while (attrRangeIndex > 0 && (*(wcharptr - 1) == L'.' || *(wcharptr - 1) == L'>' || *(wcharptr - 1) == L')'))
+					{
+						--attrRangeIndex;
+						--rangeIndex;
+						--wcharptr;
+					}
+					doStyleURL = YES;
+				}
+				isInWordBreak = YES;
+			}
+			else
+				isInWordBreak = NO;
+
+			// Style a URL
+			if (doStyleURL)
+			{
+				NSRange urlRange = NSMakeRange(urlRangeStart, (rangeIndex - urlRangeStart));
+				NSMutableString * urlString = [NSMutableString stringWithString:[messageText substringWithRange:urlRange]];
+				
+				// Drop the initial url: prefix
+				if ([[urlString lowercaseString] hasPrefix:@"url:"])
+					[urlString deleteCharactersInRange:NSMakeRange(0, 4)];
+				
+				// Special case COPIED FROM URLs
+				if (isCopiedFromGroup)
+				{
+					NSScanner * scanner = [NSScanner scannerWithString:urlString];
+					NSString * folderPart = nil;
+					NSString * numberPart = nil;
+					
+					[scanner scanString:@"**COPIED FROM: >>>" intoString:nil];
+					[scanner scanUpToString:@" " intoString:&folderPart];
+					[scanner scanString:@" " intoString:nil];
+					[scanner scanUpToString:@"" intoString:&numberPart];
+					if (folderPart && numberPart)
+						urlString = [NSMutableString stringWithFormat:@"cix:%@:%@", folderPart, numberPart];
+					else if (folderPart)
+						urlString = [NSMutableString stringWithFormat:@"cix:%@", folderPart];
+				}
+	
+				// Strip newlines from the URL
+				[urlString replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [urlString length])];
+				NSURL * url = [NSURL URLWithString:urlString];
+				if (url != nil)
+				{
+					NSInteger diff = rangeIndex - attrRangeIndex;
+					NSRange attrRange = NSMakeRange(urlRangeStart - diff, (rangeIndex - urlRangeStart));
+					[attrMessageText addAttribute:NSLinkAttributeName value:url range:attrRange];
+				}
+				urlRangeStart = -1;
+				doStyleURL = NO;
+				isCopiedFromGroup = NO;
+			}
+#ifdef USE_ACRONYMS
+			// Look for acronyms
+			if (!doStyleURL && wordRange.length > 0 && (!isalnum(*wcharptr)))
+			{
+#warning need to take care here!!!!!
+				NSString *wordString = [[NSString alloc]initWithBytes:/* need to convert to char* */(wcharptr-wordRange.length) length: wordRange.length encoding: NSISOLatin1StringEncoding]; // change this
+				NSString *expansion = nil;
+#warning need to take care here!!!!!
+				expansion = [acronymDictionary objectForKey:wordString];
+				if (expansion && [attrMessageText length] > wordRange.location + wordRange.length)
+					[attrMessageText addAttribute:NSToolTipAttributeName value:expansion range:wordRange];
+			}
+#endif
+
+			if (*wcharptr == L'\n' || *wcharptr == L'\r')
+			{
+				// If this line started with a '>' then we treat it as a quoted line
+				// and set the appropriate quote colour.
+				if (quoteRangeStart != -1)
+				{
+					NSRange quoteRange = NSMakeRange(quoteRangeStart, (attrRangeIndex - quoteRangeStart) + 1);
+					[attrMessageText addAttribute:NSForegroundColorAttributeName value:quoteColour range:quoteRange];
+					quoteRangeStart = -1;
+				}
+				isAtStartOfLine = YES;
+			}
+			
+			++wcharptr;
+			++rangeIndex;
+			++attrRangeIndex;
+		}
+	}
+    free(memsave);
+    // DJE deleted the next line. It causes a crash in vmware/general:1915,
+// which uses italic messages styles, when running on Leopard SDK without
+// garbage collection.  It works perfectly OK on Tiger SDK, for some
+// reason I do not know.
+//	[messageFont release];   **** deleted, we do not own this object ****
+	return attrMessageText;
 }
 #endif // VOLE2 defined
 
