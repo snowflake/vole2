@@ -188,7 +188,8 @@ VERSION=$(shell INFOPLIST_FILE=${INFOPLIST_FILE} /bin/sh \
 	../scripts/version-script.sh marketingversion)
 PATH=${DEVELOPER_DIR}/usr/bin:/usr/local/bin:/usr/bin:/bin
 
-${BUILDS}:
+.PHONY: ${BUILDS}
+${BUILDS}: targetcheck
 	@echo Target $@ building version ${VERSION}
 	[ XX${DEVELOPER_DIR} != XX ]
 	[ -d ${DEVELOPER_DIR} ] 
@@ -244,7 +245,8 @@ tiger-run leopard-run snowleopard-run lion-run \
 # where to put the saved releases
 ARCHIVE_DIR=~/Vienna-archive
 
-${RELEASES}:
+.PHONY: ${RELEASES}
+${RELEASES}: targetcheck
 	rm -rf ${SOURCE_DIR}/*
 	mkdir -p ${SOURCE_DIR}/app-temp
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
@@ -348,3 +350,12 @@ export-git:	# export fossil repo to git
 appledoc:
 	cd ../scripts && sh appledoc.sh
 
+.PHONY: targetcheck
+targetcheck:
+# Stop users specifying more than one target for build and release.
+# This is because we scan the MAKECMDGOALS variable looking
+# for the number 2, which determines if this is a vole2 build.
+	@if [ `echo ${MAKECMDGOALS} | wc -w`  -gt 1 ] ; \
+		then \
+		echo 'Specifying two or more targets will lead to grief' ;\
+		exit 1; fi
