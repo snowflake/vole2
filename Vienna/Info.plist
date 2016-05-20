@@ -41,10 +41,10 @@
 	<key>CFBundleVersion</key>
 	<string>${BUILDID}</string>
 
-<!-- ****************** This file is for Vole 1 *******************->
+<!-- ****************** This file is for Vole 1 *******************-->
 	<key>CFBundleShortVersionString</key>
 	<string>1.6.18</string>
-<!-- ****************** This file is for Vole 1 *******************->
+<!-- ****************** This file is for Vole 1 *******************-->
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
