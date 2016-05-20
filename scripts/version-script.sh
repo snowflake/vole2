@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 # This script is run by Xcode during the build phase to generate information about
 # the build in C header file format.  When run it produces a file which is included by main.m.
 # Copy and paste this file into into Xcodes script window, or alternatively
@@ -68,16 +69,11 @@ function printlines(){
 }
 
 function marketing_version(){
-# Older versions of agvtool within Xcode have a different format 
-# for the -terse option, and don't support the -terse1 option at all.
-# Use the lowest common denominator and process with an awk script.
 
+# This will work if we have two .xcodeproj directories in the Vienna directory,
+# unlike agvtool.
+/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${INFOPLIST_FILE}
 
-#agvtool mvers  | tail -1 | tr '"' '%' |\
-#     awk 'BEGIN { FS="%"} { printf("%s",$2)}' 
-# don't use agvtool, use PlistBuddy instead.
-# This will work if we have two .xcodeproj directories in the Vienna directory
-/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Info.plist
 }
 
 function checkin(){
@@ -160,6 +156,11 @@ if [ x${1} = xvcsdate ]
 then
   version_control_date
   exit 0
+fi
+if [ x${1} = xmarketingversion ]
+then
+	marketing_version | tr -d '\n'
+	exit 0
 fi
 
 echo  Fossil checked-in files checking script

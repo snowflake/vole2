@@ -166,6 +166,17 @@ elcapitan2 elcapitan2-release:	  SN=11
 BINARIES_DIR=${APPNAME}/Contents/MacOS
 CSIGN=${BINARIES_DIR}/sqlite2 ${BINARIES_DIR}/rz ${BINARIES_DIR}/sz
 
+# do this before finding the version
+# INFOPLIST_FILE is also an xcode variable, and it may be defined
+# in an xcconfig file as well
+ifeq ($(findstring 2,${MAKECMDGOALS}),2)
+# compiling Vole 2
+INFOPLIST_FILE=Info-vole2.plist
+else
+INFOPLIST_FILE=Info.plist
+endif
+export INFOPLIST_FILE
+
 ${BUILDS}: SHORTDATE:=$(shell date -u '+%Y%m%d.%H%M%S')
 ${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
 ${BUILDS}: VCSDATE:=$(shell /bin/sh ../scripts/version-script.sh vcsdate)
@@ -173,11 +184,12 @@ SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
 SOURCE_FILES=Vole.app RELEASE.html BUILD.html INSTALL.html
 BUILD_INFO=${SOURCE_DIR}/BUILD.html
 VIENNA_APP=${SOURCE_DIR}/Vole.app/Contents/MacOS/Vole
-VERSION=$(shell sh ../scripts/getversion.sh )
+VERSION=$(shell INFOPLIST_FILE=${INFOPLIST_FILE} /bin/sh \
+	../scripts/version-script.sh marketingversion)
 PATH=${DEVELOPER_DIR}/usr/bin:/usr/local/bin:/usr/bin:/bin
 
 ${BUILDS}:
-	echo $@
+	@echo Target $@ building version ${VERSION}
 	[ XX${DEVELOPER_DIR} != XX ]
 	[ -d ${DEVELOPER_DIR} ] 
 	rm -f XXXX-Tempfile.h
