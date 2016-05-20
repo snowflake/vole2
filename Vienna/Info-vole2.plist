@@ -2,6 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<!-- this is for Vole 2 -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -9,7 +10,7 @@
 	<key>CFBundleIconFile</key>
 	<string>vienna.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>uk.co.opencommunity.vienna</string>
+	<string>uk.org.voleproject.vole2</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -41,10 +42,10 @@
 	<key>CFBundleVersion</key>
 	<string>${BUILDID}</string>
 
-<!-- ****************** This file is for Vole 1 *******************->
+<!-- *************** This file is for Vole 2 ****************** -->
 	<key>CFBundleShortVersionString</key>
-	<string>1.6.18</string>
-<!-- ****************** This file is for Vole 1 *******************->
+	<string>2.0.0</string>
+<!-- *************** This file is for Vole 2 ****************** -->
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
