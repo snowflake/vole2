@@ -272,6 +272,7 @@
 		6176B9391480196F00BB5841 /* getBSDProcessTable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getBSDProcessTable.c; sourceTree = "<group>"; };
 		6176B93B1480197A00BB5841 /* getBSDProcessTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getBSDProcessTable.h; sourceTree = "<group>"; };
 		61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XXXX-Tempfile.h"; sourceTree = "<group>"; };
+		61BDCD541CEF11310066C977 /* elcapitan2.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = elcapitan2.xcconfig; path = xcconfig/elcapitan2.xcconfig; sourceTree = "<group>"; };
 		61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string_private.h; sourceTree = "<group>"; };
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
 		61CC8C1E13672D4F0049AECF /* sanitise_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string.h; sourceTree = "<group>"; };
@@ -534,6 +535,7 @@
 				AA21F45D0753077300503F58 /* TODO */,
 				AA21F4510753053500503F58 /* CHANGES */,
 				AAE3AEF406570DB700A1FA1F /* Vienna Help */,
+				61BDCD521CEF10270066C977 /* XCConfig */,
 				AA32882E0846FAC400A7AD5A /* MacPAD */,
 				AA26F478060490F400FE7994 /* SQLite */,
 				AA4F657B062B873100D4837C /* Extensions */,
@@ -712,6 +714,14 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		61BDCD521CEF10270066C977 /* XCConfig */ = {
+			isa = PBXGroup;
+			children = (
+				61BDCD541CEF11310066C977 /* elcapitan2.xcconfig */,
+			);
+			name = XCConfig;
 			sourceTree = "<group>";
 		};
 		AA26F478060490F400FE7994 /* SQLite */ = {
@@ -1485,6 +1495,7 @@
 		};
 		61A06E631CEA618400DA4525 /* elcapitan2 */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61BDCD541CEF11310066C977 /* elcapitan2.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1525,7 +1536,6 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
