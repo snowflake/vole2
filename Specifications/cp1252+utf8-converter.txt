@@ -4,7 +4,7 @@ Input:	a C-string of possibly multiple lines containing
 call:
 
 int cputf8(char * instring, size_t in_size, char *outstring,
-         size_t out_size, bool unicode_entities, bool cp1252_entities,
+         size_t out_size, bool unicode_entities, bool all_entities,
 	 int *error, char **error_msg);
 
 char * instring 	A pointer to the input string.
@@ -12,8 +12,9 @@ size_t in_size		The length of the input string.
 char * outstring	A pointer to the output string buffer.
 size_t outsize		The length of the output buffer.
 bool unicode_entities   Use Vole Unicode Entities for all codepoints 
-			not in CP1252.
-bool cp1252)entities    Use Vole Unicode Entities for all codepoints
+			not in CP1252. Output single byte for all CP1252
+                        Replace invalid CP1252 codepoints by '?'
+bool all_entities       Use Vole Unicode Entities for all codepoints
 			0x80 and above.
 int *error		A pointer to an error code when returning.
 char **error_msg	A pointer to an error message when returning. 
