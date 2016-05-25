@@ -1,0 +1,29 @@
+Input:	a C-string of possibly multiple lines containing
+	a mixture of CP1252 and UTF-8 and possibly invalid code points.
+
+call:
+
+int cputf8(char * instring, size_t in_size, char *outstring,
+         size_t out_size, bool unicode_entities, bool cp1252_entities,
+	 int *error, char **error_msg);
+
+char * instring 	A pointer to the input string.
+size_t in_size		The length of the input string.
+char * outstring	A pointer to the output string buffer.
+size_t outsize		The length of the output buffer.
+bool unicode_entities   Use Vole Unicode Entities for all codepoints 
+			not in CP1252.
+bool cp1252)entities    Use Vole Unicode Entities for all codepoints
+			0x80 and above.
+int *error		A pointer to an error code when returning.
+char **error_msg	A pointer to an error message when returning. 
+
+Returns
+-------
+	This function returns an integer.
+	0 = No error
+	1 = Out of memory. You should allocate more memory to the output buffer
+	    and retry the call with the same input buffer.
+        2 = An invalid codepoint was detected.
+
+	    
