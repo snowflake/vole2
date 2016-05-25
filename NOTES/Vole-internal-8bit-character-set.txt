@@ -1,0 +1,37 @@
+Eureka moment 1 of 2 - Vole internal 8-bit character set.
+
+Applies to Vole 1 and Vole 2
+
+There are 5 unassigned code points in CP 1252 and this is a
+right pain.  They are quite likely to occur in CIX messages these
+days as they are probably part of an UTF-8 sequence.
+
+We can't feed a raw message into the OS X CP1252 to Unicode (NSString) converter
+as it will refuse to convert text with undefined code points.  It
+returns a NULL, which will most likely result in crash if the
+the return value is used ( the dreaded EXC BAD ACCESS window of death
+so familiar to OS X users),
+
+At the moment  Vole converts the undefined code points into question
+marks.  This is losing information. Physicists might say infomation
+can never be destroyed, in which case where does it go? 
+
+The question marks appear in strings of gibberish familiar to Vole
+users.
+
+We need a way of preserving the information in the message, and after
+much musing for many months I finally think I have found a way.
+
+I have now defined a Vole internal character set which is compatible with
+the CP1252->NSString converter.
+
+The 5 undefined characters will now be mapped to unused control
+characters in the ASCII <Control> range.  These are almost never
+used in CIX messages (only 5 instances in 300 MB of messages).
+
+When the message is required after an NSString to CP1252 conversion
+the mapping can be reversed.
+
+I have temporarily suspended work on Vole 2 while I implement
+this idea in Vole 1.  The work on Vole 1 is also applicable in Vole 2,
+

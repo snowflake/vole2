@@ -1,0 +1,43 @@
+Eureka moment 2 of 2 - Vole Unicode entities
+
+Appicable to Vole 1
+
+The Vole 1 SQLite database is encoded in CP 1252.
+
+The 3 Vole/Vienna developers got this wrong. Mea Culpa. This did
+not matter in the early days of Vienna as there was no such thing
+as CIX Reader, CIX forums or iXOLR, which are all generating
+messages in UTF-8.
+
+Had we read an obscure part of the SQLIte documentation we would
+have found there were only two recommended encodings, UTF-8 and UTF-16, 
+which are set when the database is created. 
+
+We now need a method of encoding arbitrary Unicode chars in a CP1252 string
+so as to maintain compatibilty with Vole 1 database.
+
+I did think of using HTML entities such as &#x1F4A9; but these are quite
+likely to occcur in Cix messages like the html conference or this one.
+
+I have now come up with a method which is invisible to the user and is
+backward compatible with older versions of Vole should a user revert to
+one. It is only used internally by Vole and will be filtered out 
+if a user copies and pastes into a posting. Or if a user exports a message.
+
+The scheme is quite simple. The characters are saved as 
+
+<STX>[U+XXX]<ETX>
+
+where <STX> is ASCII control char 0x0002  #START OF TEXT
+and   <ETX> is ASCII control char 0x0003  #END OF TEXT
+and XXX is the codepoint in uper case hexdecimal, as many
+HEX digits as required.
+
+Example:        <STX>[U+296F]<ETX>
+ 
+should you ever feel the need to post
+296F DOWNWARDS HARPOON WITH BARB LEFT BESIDE UPWARDS HARPOON WITH BARB RIGHT
+
+The two control characters never occur in CIX messages and they can always
+be filtered out by the CIX message processor of Vole should some
+joker decide to post a message with a Vole Unicode entity.
