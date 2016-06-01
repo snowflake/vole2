@@ -18,6 +18,12 @@
 // #
 // #    The entries are in cp1252 order
 // #
+// # The conversion is   Vole <-> CP1252
+// #                      1a        81
+// #                      1c        8d
+// #                      1d        8f
+// #                      1e        90
+// #                      1f        9d
 
 
 char cp1252_to_vole[] {
