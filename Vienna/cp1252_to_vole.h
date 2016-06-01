@@ -30,8 +30,8 @@ char cp1252_to_vole[] {
 //   out         in  comment
     0x0000, // 0x00 #NULL
     0x0001, // 0x01 #START OF HEADING
-    0x0002, // 0x02 #START OF TEXT
-    0x0003, // 0x03 #END OF TEXT
+    0x0004, // 0x02 #START OF TEXT  -- reassigned to 0x04
+    0x0005, // 0x03 #END OF TEXT    -- reassigned to 0x05
     0x0004, // 0x04 #END OF TRANSMISSION
     0x0005, // 0x05 #ENQUIRY
     0x0006, // 0x06 #ACKNOWLEDGE
