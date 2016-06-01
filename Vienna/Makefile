@@ -359,3 +359,14 @@ targetcheck:
 		then \
 		echo 'Specifying two or more targets will lead to grief' ;\
 		exit 1; fi
+
+##############################################################################
+.PHONY: generate-character-set-tables
+
+CHARSET_GEN:= ~/Vienna-source/unicode-projects/table-generators
+
+generate_character_set_tables:
+# This target generates the character set lookup tables
+	make -C ${CHARSET_GEN} cp1252sanitise > sanitise_string_private.h
+	make -C ${CHARSET_GEN} cp1252lookup >   cp1252lookup.h
+	make -C ${CHARSET_GEN} cp1252ucs4 >     cp1252_to_ucs4.h
