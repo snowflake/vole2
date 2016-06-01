@@ -368,5 +368,7 @@ CHARSET_GEN:= ~/Vienna-source/unicode-projects/table-generators
 generate_character_set_tables:
 # This target generates the character set lookup tables
 	make -C ${CHARSET_GEN} cp1252sanitise > sanitise_string_private.h
-	make -C ${CHARSET_GEN} cp1252lookup >   cp1252lookup.h
-	make -C ${CHARSET_GEN} cp1252ucs4 >     cp1252_to_ucs4.h
+	make -C ${CHARSET_GEN} cp1252lookup   > cp1252lookup.h
+	make -C ${CHARSET_GEN} cp1252ucs4     > cp1252_to_ucs4.h
+	make -C ${CHARSET_GEN} cp1252tovole   > cp1252_to_vole.h
+	make -C ${CHARSET_GEN} voletocp1252   > vole_to_cp1252.h
