@@ -9,11 +9,12 @@
 #import <wchar.h>
 #define REPLCH 0xFFFD
 // Mapping of undefined code points to the private use area
-#define PU0081 0xF0081
-#define PU008D 0xF008D
-#define PU008F 0xF008F
-#define PU0090 0xF0090
-#define PU009D 0xF009D
+#define PUBASE 0x10FE00
+#define PU0081 PUBASE+0x81
+#define PU008D PUBASE+0x8D
+#define PU008F PUBASE+0x8F
+#define PU0090 PUBASE+0x90
+#define PU009D PUBASE+0x9D
 
 
 wchar_t cp1252_to_ucs4_table[256] = {
