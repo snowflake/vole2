@@ -44,7 +44,7 @@ DEVELOPER_DIR_XC6?= /Applications/Xcode.app/Contents/Developer
 DEVELOPER_DIR_XC6_BETA?=/Applications/Xcode_beta/Xcode.app/Contents/Developer
 DEVELOPER_DIR_XC7_BETA?=/Applications/Xcode_beta/Xcode-beta.app/Contents/Developer
 DEVELOPER_DIR_XC7?=/Applications/Xcode.app/Contents/Developer
-DEVELOPER_DIR_XC8?=/Applications/Xcode_beta/????
+DEVELOPER_DIR_XC8?=/Applications/Xcode_beta/Xcode-beta.app/Contents/Developer
 
 PROJECT_XC3=Vole_xc3.xcodeproj
 PROJECT_XC5=Vole_xc5.xcodeproj
@@ -59,7 +59,7 @@ XC6_XCODE_APP?=/Applications/Xcode.app
 XC6BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode.app
 XC7BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode-beta.app
 XC7_XCODE_APP?=/Applications/Xcode.app
-XC8BETA_XCODE_APP?=/Applications/Xcode_beta/????
+XC8BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode-beta.app
 
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
 		mavericks yosemite elcapitan elcapitan2 sierra sierra2
