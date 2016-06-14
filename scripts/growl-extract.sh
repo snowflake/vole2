@@ -29,7 +29,8 @@ fi
 case ${SDK_NAME} in
 	( macosx10.4      )       tar xvf growl0.7.4.tar ;;
 	( macosx10.5|macosx10.6 ) tar xvzf ../growl/growl-1.2.3.tgz ;;
-	( macosx10.7|macosx10.8|macosx10.9|macosx10.10|macosx10.11 ) zipextract 2.0.1 ;;
+	( macosx10.7|macosx10.8|macosx10.9|macosx10.10|macosx10.11|macosx10.12 \
+		 ) zipextract 2.0.1 ;;
 	(  * ) echo "Error: Growl Extract: unknown SDK ${SDK_NAME}"; exit 1 ;;
 	esac
 if [ $? -ne 0 ]

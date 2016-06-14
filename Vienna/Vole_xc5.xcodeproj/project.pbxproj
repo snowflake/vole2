@@ -1557,6 +1557,82 @@
 			};
 			name = elcapitan2;
 		};
+		61A5565C1D103B8100048359 /* sierra */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = "";
+				SYMROOT = "../../Vienna-build";
+			};
+			name = sierra;
+		};
+		61A5565D1D103B8100048359 /* sierra */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Vole_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__DEBUG__,
+					"VOLE_DEPLOYMENT_TARGET=10007",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				"GCC_VERSION[sdk=macosx10.4]" = 4.0;
+				"GCC_VERSION[sdk=macosx10.5][arch=*]" = 4.2;
+				"GCC_VERSION[sdk=macosx10.6][arch=*]" = 4.2;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MDDirectory = MDImporter;
+				MDTarget = Vienna;
+				MDTargetApp = Vienna.app;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Vole;
+				SDKROOT = macosx10.12;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = sierra;
+		};
 		61BA023B19E18E80001D4CB4 /* yosemite */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1794,6 +1870,7 @@
 				61608EFE1822A3A60055EA84 /* mavericks */,
 				61BA023C19E18E80001D4CB4 /* yosemite */,
 				61DB4D651B3060EA00609D01 /* elcapitan */,
+				61A5565D1D103B8100048359 /* sierra */,
 				61A06E631CEA618400DA4525 /* elcapitan2 */,
 				61CF30D01890729700981450 /* mountainlion */,
 			);
@@ -1806,6 +1883,7 @@
 				61608EFD1822A3A60055EA84 /* mavericks */,
 				61BA023B19E18E80001D4CB4 /* yosemite */,
 				61DB4D641B3060EA00609D01 /* elcapitan */,
+				61A5565C1D103B8100048359 /* sierra */,
 				61A06E621CEA618400DA4525 /* elcapitan2 */,
 				61CF30CF1890729700981450 /* mountainlion */,
 			);
