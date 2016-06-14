@@ -26,6 +26,7 @@ case $sdknum in
 	( 9 ) sdk=MAVER ;;
 	( 10 ) sdk=YOSEM ;;
         ( 11 ) sdk=ELCAP ;;
+        ( 12 ) sdk=SIERA ;;
 	( * ) echo 'Unknown SDK'; exit 1 ;;
 esac
 
