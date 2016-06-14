@@ -159,6 +159,15 @@ sierra-release sierra: 	DEVELOPER_DIR=${DEVELOPER_DIR_XC8}
 sierra-release sierra: 	SDK_NAME=macosx10.12
 sierra-release sierra sierra-go: PROJECT=${PROJECT_XC7}
 
+sierra2-release:		NAME=vr
+sierra2-release:		COMPATIBILITY=
+sierra2-release:		STATUS=Alpha testing
+sierra2-release sierra2: 	MOSXDT=10.7
+sierra2-release sierra2:	ARCHS?=x86_64
+sierra2-release sierra2: 	DEVELOPER_DIR=${DEVELOPER_DIR_XC8}
+sierra2-release sierra2: 	SDK_NAME=macosx10.12
+sierra2-release sierra2 sierra2-go: PROJECT=${PROJECT_XC7}
+
 
 lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
