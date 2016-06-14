@@ -44,11 +44,14 @@ DEVELOPER_DIR_XC6?= /Applications/Xcode.app/Contents/Developer
 DEVELOPER_DIR_XC6_BETA?=/Applications/Xcode_beta/Xcode.app/Contents/Developer
 DEVELOPER_DIR_XC7_BETA?=/Applications/Xcode_beta/Xcode-beta.app/Contents/Developer
 DEVELOPER_DIR_XC7?=/Applications/Xcode.app/Contents/Developer
+DEVELOPER_DIR_XC8?=/Applications/Xcode_beta/????
 
 PROJECT_XC3=Vole_xc3.xcodeproj
 PROJECT_XC5=Vole_xc5.xcodeproj
 PROJECT_XC6=${PROJECT_XC5}
 PROJECT_XC7=${PROJECT_XC5}
+PROJECT_XC8=${PROJECT_XC5}
+
 # Xcode.app locations
 XC3_XCODE_APP=${DEVELOPER_DIR_XC3}/Applications/Xcode.app
 XC5_XCODE_APP?=NOT_CURRENTLY_AVAILABLE
@@ -56,12 +59,14 @@ XC6_XCODE_APP?=/Applications/Xcode.app
 XC6BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode.app
 XC7BETA_XCODE_APP?=/Applications/Xcode_beta/Xcode-beta.app
 XC7_XCODE_APP?=/Applications/Xcode.app
+XC8BETA_XCODE_APP?=/Applications/Xcode_beta/????
+
 BUILDS:=	Development tiger leopard snowleopard lion mountainlion \
-		mavericks yosemite elcapitan elcapitan2
+		mavericks yosemite elcapitan elcapitan2 sierra sierra2
 RELEASES:= 	Development-release tiger-release leopard-release \
 		snowleopard-release lion-release mountainlion-release \
 		mavericks-release yosemite-release elcapitan-release \
-		elcapitan2-release
+		elcapitan2-release sierra-release sierra2-release
 
 Development-release: NAME=dv
 Development-release: COMPATIBILITY=Unknown
@@ -145,6 +150,15 @@ elcapitan2-release elcapitan2: DEVELOPER_DIR=${DEVELOPER_DIR_XC7}
 elcapitan2-release elcapitan2: SDK_NAME=macosx10.11
 elcapitan2-release elcapitan2 elcapitan2-go: PROJECT=${PROJECT_XC7}
 
+sierra-release:		NAME=vr
+sierra-release:		COMPATIBILITY=
+sierra-release:		STATUS=Alpha testing
+sierra-release sierra: 	MOSXDT=10.7
+sierra-release sierra:	ARCHS?=x86_64
+sierra-release sierra: 	DEVELOPER_DIR=${DEVELOPER_DIR_XC8}
+sierra-release sierra: 	SDK_NAME=macosx10.12
+sierra-release sierra sierra-go: PROJECT=${PROJECT_XC7}
+
 
 lion-release: NAME=vn
 lion-release: COMPATIBILITY=Lion (10.7) and later, Intel
@@ -162,6 +176,8 @@ mavericks mavericks-release:      SN=9
 yosemite yosemite-release:	  SN=10
 elcapitan elcapitan-release:	  SN=11
 elcapitan2 elcapitan2-release:	  SN=11
+sierra sierra-release:		  SN=12
+sierra2 sierra2-release:	  SN=12
 
 BINARIES_DIR=${APPNAME}/Contents/MacOS
 CSIGN=${BINARIES_DIR}/sqlite2 ${BINARIES_DIR}/rz ${BINARIES_DIR}/sz
@@ -234,10 +250,14 @@ yosemite-go:
 elcapitan-go elcapitan2-go:
 	open -a ${XC7_XCODE_APP} ./${PROJECT}
 
+sierra-go sierra2-go:
+	open -a ${XC8BETA_XCODE_APP} ./${PROJECT}
+
 # Run the Vienna app from its build directory
 tiger-run leopard-run snowleopard-run lion-run \
 	mountainlion-run mavericks-run yosemite-run \
-	elcapitan-run elcapitan2-run Development-run:
+	elcapitan-run elcapitan2-run \
+	sierra-run sierra2-run  Development-run:
 	open ../../Vienna-build/$(subst -run,,$@)/Vole.app
 
 
