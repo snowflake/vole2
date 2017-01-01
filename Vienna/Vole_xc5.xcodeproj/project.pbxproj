@@ -1081,6 +1081,7 @@
 			name = "Vers script";
 			outputPaths = (
 				"XXXX-Tempfile.h",
+				VoleInfo.plist,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
