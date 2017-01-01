@@ -31,6 +31,7 @@
 		6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */; };
 		6176B93A1480196F00BB5841 /* getBSDProcessTable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B9391480196F00BB5841 /* getBSDProcessTable.c */; };
 		6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B93B1480197A00BB5841 /* getBSDProcessTable.h */; };
+		618C45431E198B3D00A31B94 /* VoleInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618C45421E198B3D00A31B94 /* VoleInfo.plist */; };
 		61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */; };
 		61B258841892864C0084C727 /* VoleBuildInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61B258821892864C0084C727 /* VoleBuildInfo.xib */; };
 		61B76F641891CC7A0040B789 /* VoleBuildInfoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 61B76F621891CC7A0040B789 /* VoleBuildInfoController.h */; };
@@ -279,6 +280,7 @@
 		6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testAnotherViennaIsRunning.c; sourceTree = "<group>"; };
 		6176B9391480196F00BB5841 /* getBSDProcessTable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getBSDProcessTable.c; sourceTree = "<group>"; };
 		6176B93B1480197A00BB5841 /* getBSDProcessTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getBSDProcessTable.h; sourceTree = "<group>"; };
+		618C45421E198B3D00A31B94 /* VoleInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VoleInfo.plist; sourceTree = "<group>"; };
 		61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XXXX-Tempfile.h"; sourceTree = "<group>"; };
 		61B258831892864C0084C727 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/VoleBuildInfo.xib; sourceTree = "<group>"; };
 		61B76F621891CC7A0040B789 /* VoleBuildInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoleBuildInfoController.h; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				618C45421E198B3D00A31B94 /* VoleInfo.plist */,
 				6114850718A6A80100031CD0 /* MissingMessagesProgress.xib */,
 				6114850918A6A80100031CD0 /* Preferences.xib */,
 				6114850B18A6A80100031CD0 /* ProfileWindow.xib */,
@@ -1019,6 +1022,7 @@
 				6114851918A6A80100031CD0 /* SearchFolder.xib in Resources */,
 				6114851A18A6A80100031CD0 /* TasksWindow.xib in Resources */,
 				6114851B18A6A80100031CD0 /* UpdateWindow.xib in Resources */,
+				618C45431E198B3D00A31B94 /* VoleInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
