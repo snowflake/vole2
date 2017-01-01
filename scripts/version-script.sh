@@ -288,4 +288,7 @@ if [ $unchecked_files -ne 0 ]
 		echo ERROR files not checked into Fossil or Git.
 	fi
 echo 'version-script.sh completed'
+
+. ../scripts/vscript-xml.sh
+
 exit 0
