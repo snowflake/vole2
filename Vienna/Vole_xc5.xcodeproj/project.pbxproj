@@ -22,6 +22,8 @@
 		61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */; };
 		61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 61CC8C1D13672D4F0049AECF /* sanitise_string.c */; };
 		61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1E13672D4F0049AECF /* sanitise_string.h */; };
+		61D1A9F91E194F4F008B1916 /* sierra2.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 61D1A9F81E194F4F008B1916 /* sierra2.xcconfig */; };
+		61D1A9FB1E194FB5008B1916 /* VoleInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61D1A9FA1E194FB5008B1916 /* VoleInfo.plist */; };
 		61E34B07194252C100B9D9D8 /* ActivityViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E34AE3194252C100B9D9D8 /* ActivityViewer.xib */; };
 		61E34B08194252C100B9D9D8 /* Authentication.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E34AE5194252C100B9D9D8 /* Authentication.xib */; };
 		61E34B09194252C100B9D9D8 /* Browser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E34AE7194252C100B9D9D8 /* Browser.xib */; };
@@ -276,6 +278,8 @@
 		61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string_private.h; sourceTree = "<group>"; };
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
 		61CC8C1E13672D4F0049AECF /* sanitise_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string.h; sourceTree = "<group>"; };
+		61D1A9F81E194F4F008B1916 /* sierra2.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = sierra2.xcconfig; path = xcconfig/sierra2.xcconfig; sourceTree = "<group>"; };
+		61D1A9FA1E194FB5008B1916 /* VoleInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VoleInfo.plist; sourceTree = "<group>"; };
 		61E34AE4194252C100B9D9D8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ActivityViewer.xib; sourceTree = "<group>"; };
 		61E34AE6194252C100B9D9D8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Authentication.xib; sourceTree = "<group>"; };
 		61E34AE8194252C100B9D9D8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Browser.xib; sourceTree = "<group>"; };
@@ -629,6 +633,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				61D1A9FA1E194FB5008B1916 /* VoleInfo.plist */,
 				61E34AE3194252C100B9D9D8 /* ActivityViewer.xib */,
 				61E34AE5194252C100B9D9D8 /* Authentication.xib */,
 				61E34AE7194252C100B9D9D8 /* Browser.xib */,
@@ -719,6 +724,7 @@
 		61BDCD521CEF10270066C977 /* XCConfig */ = {
 			isa = PBXGroup;
 			children = (
+				61D1A9F81E194F4F008B1916 /* sierra2.xcconfig */,
 				61BDCD541CEF11310066C977 /* elcapitan2.xcconfig */,
 			);
 			name = XCConfig;
@@ -990,6 +996,7 @@
 				AA26F44F060490BE00FE7994 /* getMessages.tiff in Resources */,
 				AA26F450060490BE00FE7994 /* greyRightArrow.tiff in Resources */,
 				AA26F451060490BE00FE7994 /* outboxFolder.tiff in Resources */,
+				61D1A9F91E194F4F008B1916 /* sierra2.xcconfig in Resources */,
 				61E34B0A194252C100B9D9D8 /* Comment.xib in Resources */,
 				AA26F452060490BE00FE7994 /* reply.tiff in Resources */,
 				AA26F453060490BE00FE7994 /* smallFolder.tiff in Resources */,
@@ -1038,6 +1045,7 @@
 				AAFB92DF0752E6E90029E5AC /* resume.tiff in Resources */,
 				61E34B15194252C100B9D9D8 /* SearchFolder.xib in Resources */,
 				AA21F4520753053500503F58 /* CHANGES in Resources */,
+				61D1A9FB1E194FB5008B1916 /* VoleInfo.plist in Resources */,
 				AA21F45E0753077300503F58 /* TODO in Resources */,
 				61E34B0D194252C100B9D9D8 /* Import.xib in Resources */,
 				AADD8963081C1916007C6E88 /* rssFolder.tiff in Resources */,
