@@ -25,8 +25,8 @@ printf "    </array>\n"
 }
 
 function iso_date(){
-# print date in ISO 8601 format
-TZ=UTC date +%Y-%m-%dT%H:%M:%S+0000
+# print date in ISO 8601 format (see plist dtd for acceptable format)
+TZ=UTC date +%Y-%m-%dT%H:%M:%SZ
 }
 
 cat >${filename} <<EOF1
