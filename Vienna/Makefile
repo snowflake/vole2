@@ -77,7 +77,7 @@ tiger-release: COMPATIBILITY=Tiger (10.4) and later, Universal.
 tiger-release: STATUS=Recommended for everyone.
 tiger-release tiger: MOSXDT=10.4
 # archs must be given in the order ppc i386 x86_64
-tiger-release tiger: ARCHS=ppc i386
+tiger-release tiger: ARCHS?=ppc i386
 tiger-release tiger: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 tiger-release tiger: SDK_NAME=macosx10.4
 tiger-release tiger tiger-go: PROJECT=${PROJECT_XC3}
@@ -87,7 +87,7 @@ leopard-release: COMPATIBILITY=Leopard (10.5) and later, Universal.
 leopard-release: STATUS=Experimental, may crash, needs testing
 leopard-release leopard: MOSXDT=10.5
 # archs must be given in the order ppc i386 x86_64
-leopard-release leopard: ARCHS=ppc i386 x86_64
+leopard-release leopard: ARCHS?=ppc i386 x86_64
 leopard-release leopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 leopard-release leopard: SDK_NAME=macosx10.5
 leopard-release leopard leopard-go: PROJECT=${PROJECT_XC3}
@@ -97,7 +97,7 @@ snowleopard-release: COMPATIBILITY=Snow Leopard (10.6) and later, Intel
 snowleopard-release: STATUS=Experimental, may crash, needs testing
 snowleopard-release snowleopard: MOSXDT=10.5
 # archs must be given in the order ppc i386 x86_64
-snowleopard-release snowleopard: ARCHS=ppc i386 x86_64
+snowleopard-release snowleopard: ARCHS?=ppc i386 x86_64
 snowleopard-release snowleopard: DEVELOPER_DIR=${DEVELOPER_DIR_XC3}
 snowleopard-release snowleopard: SDK_NAME=macosx10.6
 snowleopard-release snowleopard snowleopard-go: PROJECT=${PROJECT_XC3}
