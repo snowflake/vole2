@@ -70,6 +70,7 @@ cat >${filename} <<EOF1
   <key>VCSCheckin</key>
     <string>$(uuid_checkin | nolf)</string>   
 $(archs_array)
+<!-- UUID Placeholder -->
 </dict>
 </plist>
 EOF1

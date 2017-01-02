@@ -232,7 +232,10 @@ ${BUILDS}: targetcheck
 		VCSDATE="${VCSDATE}" \
 		DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT=${DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT} \
 		DEBUG_INFORMATION_FORMAT=${DEBUG_INFORMATION_FORMAT}
-
+# Postprocess VoleInfo.plist
+	cat VoleInfo.plist | awk -f ../scripts/postprocess_voleinfo.awk \
+		vole=${VIENNA_APP} \
+	        > ${SOURCE_DIR}/Vole.app/Contents/Resources/VoleInfo.plist
 
 
 
