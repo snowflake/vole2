@@ -10,3 +10,4 @@
 #include <stdbool.h>
 
 bool testAnotherViennaIsRunning(void);
+

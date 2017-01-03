@@ -26,6 +26,5 @@
 }
 -(NSString *) voleStatusReport;
 -(NSString *) softwareVersion;
--(NSString *)voleStatusReport;
 -(IBAction)voleCpyToPasteboard:(id)sender;
 @end
