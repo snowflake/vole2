@@ -116,7 +116,11 @@ static SEL sRowCountSelector;
 {
 	if( mPosition >= (*mRowCountMethod)(mResult, sRowCountSelector) )
 		return nil;
-	
+	/*
+         * ENABLE_STRICT_OBJC_MSGSEND = YES in a xcconfig file, or elsewhere,
+         * will cause the next line to give an error:
+         * "too many arguments to function call, expected 0, have 3"
+         */
 	return (*mRowAtIndexMethod)(mResult, sRowAtIndexSelector, mPosition++);
 }
 

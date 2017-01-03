@@ -4,7 +4,8 @@
 // Modified by Dave Evans to disable clang static analyzer
 
 // Apple LLVM 8.0 - Preprocessing
-ENABLE_STRICT_OBJC_MSGSEND = YES
+// DJE: Enabling the next line will cause SQLResult.m to fail
+//ENABLE_STRICT_OBJC_MSGSEND = YES
 
 // Apple LLVM 8.0 - Warning Policies
 //GCC_TREAT_WARNINGS_AS_ERRORS = YES
