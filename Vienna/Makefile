@@ -213,9 +213,12 @@ VERSION=$(shell INFOPLIST_FILE=${INFOPLIST_FILE} /bin/sh \
 	../scripts/version-script.sh marketingversion)
 PATH=${DEVELOPER_DIR}/usr/bin:/usr/local/bin:/usr/bin:/bin
 
-.PHONY: check
+.PHONY: check check2
 check:
 	make XCODE_XCCONFIG_FILE=xcconfig/check_everything.xcconfig \
+		sierra
+check2:
+	make XCODE_XCCONFIG_FILE=xcconfig/XcodeWarnings-no-static-analyzer.xcconfig \
 		sierra
 
 .PHONY: ${BUILDS}
