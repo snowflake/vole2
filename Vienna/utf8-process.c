@@ -62,10 +62,10 @@ utf8process(unsigned char *input)
 	return (NULL);
 
     size_t	    end = strlen((char *)input);
-    char           *base = malloc((end * 4) + 1);
+    unsigned char           *base = malloc((end * 4) + 1);
     if (base == NULL)
 	return (NULL);
-    char           *output = base;
+    unsigned char           *output = base;
 
     size_t	    i;
     for (i = 0; i < end;) {
@@ -106,7 +106,7 @@ utf8process(unsigned char *input)
 	}
 cp1252:
 	/* Assume it is genuine cp1252 */
-	strcpy(output, codetable[input[i]].utf8bytes);
+	strcpy( (char *)output, codetable[input[i]].utf8bytes);
 	output += codetable[input[i]].nbytes;
 	i++;
 	continue;
@@ -114,5 +114,5 @@ cp1252:
     }
     *output = '\0';
     /* terminate the string; */
-    return base;
+    return (char *)base;
 }
