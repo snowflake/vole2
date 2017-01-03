@@ -22,7 +22,8 @@
 
 @implementation ImageAndTextCell
 
--copyWithZone:(NSZone *)zone\
+-(ImageAndTextCell *) 
+copyWithZone:(NSZone *)zone        \
 {
     ImageAndTextCell *cell = (ImageAndTextCell *)[super copyWithZone:zone];
     cell->image = [image retain];

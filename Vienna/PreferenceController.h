@@ -118,5 +118,5 @@
 
 // General functions
 -(void)initializePreferences;
--initWithCredentials:(Credentials *)credentials;
+-(id)initWithCredentials:(Credentials *)credentials;
 @end
