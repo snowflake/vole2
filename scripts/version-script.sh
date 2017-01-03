@@ -144,6 +144,11 @@ else
    echo '*** Not within any version control check-in. ***' | printlines
 fi
 }
+
+function stripquotes(){
+    sed 's/"//g'
+}
+
 ############# end of functions section #############
 
 if [ x${1} = xvcs ]
@@ -220,6 +225,13 @@ printf '"Project File Path: %s\\n"\n' "${PROJECT_FILE_PATH}" >>${OF}
 printf '"Garbage collection: %s\\n"\n' "${GCC_ENABLE_OBJC_GC}" >>${OF}
 printf '"Debugging Symbols:%s\\n"\n' "${DEBUGGING_SYMBOLS}" >>${OF}
 printf '"Debug Information Format: %s\\n"\n' "${DEBUG_INFORMATION_FORMAT}" >>${OF}
+
+GCCPREP=$( echo -n "${GCC_PREPROCESSOR_DEFINITIONS}" | stripquotes)
+printf '"GCC Preprocessor Definitions: %s\\n"\n' "${GCCPREP}" >>${OF}
+
+WARNING_CF=$(echo -n "${WARNING_CFLAGS}" | stripquotes)
+printf '"Warning C Flags: %s\\n"\n' "${WARNING_CF}" >> ${OF}
+
 printf '"GCC Version: %s\\n"\n' "${GCC_VERSION}" >>${OF}
 
 # the next two lines are tricky

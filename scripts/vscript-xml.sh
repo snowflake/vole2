@@ -61,6 +61,10 @@ cat >${filename} <<EOF1
     <string>${MACOSX_DEPLOYMENT_TARGET}</string>
   <key>SDKName</key>
     <string>${SDK_NAME}</string>
+  <key>GCCPreprocessorDefinitions</key>
+    <string>${GCCPREP}</string>
+  <key>WarningCFlags</key>
+    <string>${WARNING_CF}<string>
   <key>VCSStatus</key>
     <string>${VCSSTATUS}</string>
   <key>VCSDate</key>
