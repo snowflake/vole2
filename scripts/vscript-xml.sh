@@ -12,6 +12,10 @@ function nolf(){
 # delete linefeeds from stdin
    tr -d '\012'
 }
+function interesting_environments(){
+   printenv | sort |awk -f ../scripts/interesting_environments.awk
+}
+
 
 function archs_array(){
 # Generate a array of Archs
@@ -64,7 +68,7 @@ cat >${filename} <<EOF1
   <key>GCCPreprocessorDefinitions</key>
     <string>${GCCPREP}</string>
   <key>WarningCFlags</key>
-    <string>${WARNING_CF}<string>
+    <string>${WARNING_CF}</string>
   <key>VCSStatus</key>
     <string>${VCSSTATUS}</string>
   <key>VCSDate</key>
@@ -75,6 +79,7 @@ cat >${filename} <<EOF1
     <string>$(uuid_checkin | nolf)</string>   
 $(archs_array)
 <!-- UUID Placeholder -->
+$(interesting_environments)
 </dict>
 </plist>
 EOF1
