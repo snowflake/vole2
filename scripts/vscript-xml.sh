@@ -78,6 +78,16 @@ cat >${filename} <<EOF1
   <key>VCSCheckin</key>
     <string>$(uuid_checkin | nolf)</string>   
 $(archs_array)
+   <key>BuildMachineHostname</key>
+     <string>$(hostname)</string>
+   <key>BuildMachineUserName</key>
+     <string>$(whoami)</string>
+   <key>BuildMachineOSXVersion</key>
+     <string>$(sw_vers -productVersion)</string>
+   <key>BuildMachineOSXBuildVersion</key>
+     <string>$(sw_vers -buildVersion)</string>
+   <key>BuildMachineXcodeVersion</key>
+     <string>${XCODE_VERSION_ACTUAL} ${XCODE_PRODUCT_BUILD_VERSION}</string>
 <!-- UUID Placeholder -->
 $(interesting_environments)
 </dict>
