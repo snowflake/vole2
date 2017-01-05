@@ -244,6 +244,9 @@ ${BUILDS}: targetcheck
 	cat VoleInfo.plist | awk -f ../scripts/postprocess_voleinfo.awk \
 		vole=${VIENNA_APP} \
 	        > ${SOURCE_DIR}/Vole.app/Contents/Resources/VoleInfo.plist
+# add completion time to VoleInfo.plist (in the newly compiled app)
+		sh ../scripts/completion_time.sh :BuildCompletionTime \
+	           ${SOURCE_DIR}/Vole.app/Contents/Resources/VoleInfo.plist
 
 
 
