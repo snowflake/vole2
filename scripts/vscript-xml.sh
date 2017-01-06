@@ -47,6 +47,8 @@ cat >${filename} <<EOF1
     <string>${PRODUCT_NAME}</string>
   <key>Version</key>
     <string>$(marketing_version | nolf)</string>
+  <key>BuildStyle</key>
+    <string>${BUILD_STYLE}</string>
   <key>MaxOSXVersion</key>
     <string>Not Implemented yet</string>
   <key>BuildDate</key>
