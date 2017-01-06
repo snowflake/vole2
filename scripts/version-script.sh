@@ -219,6 +219,7 @@ fi
 printf '"\\n"\n' >>${OF}
 printf '"Archs: %s\\n"\n' "${ARCHS}" >>${OF} 
 printf '"Build Style: %s\\n"\n' "${BUILD_STYLE}" >>${OF}
+printf '"Vole Build Style: %s\\n"\n' "${VOLE_BUILD_STYLE}" >>${OF}
 printf '"Build Variants: %s\\n"\n' "${BUILD_VARIANTS}" >>${OF}
 printf '"Configuration: %s\\n"\n'  "${CONFIGURATION}"  >>${OF}
 printf '"Project File Path: %s\\n"\n' "${PROJECT_FILE_PATH}" >>${OF}

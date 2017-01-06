@@ -234,6 +234,7 @@ ${BUILDS}: targetcheck
 	xcodebuild -project ./${PROJECT}  -configuration $@ \
 		-sdk ${SDK_NAME} \
 		BUILDID="${SHORTDATE}.${SN}" \
+                VOLE_BUILD_STYLE=$@ \
 		ARCHS="${ARCHS}"  \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}" \
 		VCSSTATUS="${VCSSTATUS}" \
