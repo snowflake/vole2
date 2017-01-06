@@ -228,7 +228,8 @@ printf '"Debug Information Format: %s\\n"\n' "${DEBUG_INFORMATION_FORMAT}" >>${O
 
 GCCPREP=$( echo -n "${GCC_PREPROCESSOR_DEFINITIONS}" | stripquotes)
 printf '"GCC Preprocessor Definitions: %s\\n"\n' "${GCCPREP}" >>${OF}
-
+printf '"(Note: GCC Preprocessor Definitions does not show those specific to\\n"\n' >>${OF}
+printf '"    a SDK or an Arch.)\\n"\n' >>${OF}
 WARNING_CF=$(echo -n "${WARNING_CFLAGS}" | stripquotes)
 printf '"Warning C Flags: %s\\n"\n' "${WARNING_CF}" >> ${OF}
 
