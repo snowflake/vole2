@@ -202,7 +202,7 @@ INFOPLIST_FILE=Info.plist
 endif
 export INFOPLIST_FILE
 
-${BUILDS}: SHORTDATE:=$(shell date -u '+%Y%m%d.%H%M%S')
+${BUILDS}: SHORTDATE:=$(shell date -u '+%Y%m.%d.%H%M%S')
 ${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
 ${BUILDS}: VCSDATE:=$(shell /bin/sh ../scripts/version-script.sh vcsdate)
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
@@ -233,7 +233,7 @@ ${BUILDS}: targetcheck
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project ./${PROJECT}  -configuration $@ \
 		-sdk ${SDK_NAME} \
-		BUILDID="${SHORTDATE}.${SN}" \
+		BUILDID="${SHORTDATE}" \
                 VOLE_BUILD_STYLE=$@ \
 		ARCHS="${ARCHS}"  \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}" \
