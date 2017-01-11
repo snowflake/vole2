@@ -16,17 +16,21 @@ uuid_dir=${archive_dir}/UUIDs
 executable=Vole.app/Contents/MacOS/Vole
 
 build=$( ${bpd}/${executable} -z)
-sdknum=${build:16}
+# sdknum=${build:16} ## old code ##
+sdknum=$(/usr/libexec/plistbuddy -c "print :SDKName" \
+	${bpd}/Vole.app/Contents/Resources/VoleInfo.plist)
+echo Using SDK ${sdknum}
+
 case $sdknum in
-	( 4 ) sdk=TIGER ;;
-	( 5 ) sdk=LEOPD ;;
-	( 6 ) sdk=SNOWL ;;
-	( 7 ) sdk=LION  ;;
-	( 8 ) sdk=MLION ;;
-	( 9 ) sdk=MAVER ;;
-	( 10 ) sdk=YOSEM ;;
-        ( 11 ) sdk=ELCAP ;;
-        ( 12 ) sdk=SIERA ;;
+	( macosx10.4 ) sdk=TIGER ;;
+	( macosx10.5 ) sdk=LEOPD ;;
+	( macosx10.6 ) sdk=SNOWL ;;
+	( macosx10.7 ) sdk=LION  ;;
+	( macosx10.8 ) sdk=MLION ;;
+	( macosx10.9 ) sdk=MAVER ;;
+	( macosx10.10 ) sdk=YOSEM ;;
+        ( macosx10.11 ) sdk=ELCAP ;;
+        ( macosx10.12 ) sdk=SIERA ;;
 	( * ) echo 'Unknown SDK'; exit 1 ;;
 esac
 
