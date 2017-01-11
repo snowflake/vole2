@@ -1,4 +1,4 @@
-More fun with Launch Services.
+More fun with Launch Services and opening Apps by various methods.
 
 This is of interest to anyone who is testing new apps in general,
 not just Vole. It also applies to anyone who has multiple
