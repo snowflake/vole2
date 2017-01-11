@@ -1,0 +1,37 @@
+Even more fun with Launch Services and long version numbers.
+
+Apps are supposed to have a long version number of the
+format 'x.y.z' where x, y, and z are decimal numbers.
+ The version can also be 'x.y'
+
+This is the key CFBundleVersion in Info.plist
+
+Each build is supposed to have a greater version than the previous
+version. How this happens is up to the developer. Some developers
+choose to increment one or more of x, y and z.  Vole uses
+a version number based on time of build.
+
+How big x, y and z can be is not documented anywhere.
+I did some simple reverse engineering of the Launch Services database
+dump and found that
+
+x must be less than (2^22)
+y and z must be less than (2^21)
+
+In other words, x is a 22 bit number and y and z are 21 bit numbers.
+The total number of bits is 64.
+
+The current version number for Vole is based on time
+
+It is YYYYMMDD . hhmmss . v
+where v is the minor version of the SDK used for the build.
+
+Example: 20170110.104322.12
+
+It turns out that YYYYMMDD overflows the maximum value allowed for
+x, leading to unpredicatable results.
+
+As from today the Vole long version number will still be based on time
+but will be in the format.
+
+YYYYMM . DD . hhmmss
