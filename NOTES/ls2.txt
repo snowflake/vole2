@@ -1,0 +1,55 @@
+More fun with Launch Services.
+
+This is of interest to anyone who is testing new apps in general,
+not just Vole. It also applies to anyone who has multiple
+copies of an App installed.
+
+Things don't work the way you think they do! 
+Beware of surpising effects. You might not be testing
+the app you think you are.
+
+Vole has a menu item 'Vole->Develop->Info About Vole'.
+This opens a pane with information about Vole, particularly
+the Location of the Vole app that is running. This has been
+very useful to me in debugging Launch Services.
+
+There are several ways to open an App.
+
+1) Click on it in Finder.
+   This method is the most definitive. AFAICS you will open
+   the App you were expecting.
+
+2) Click on it in Launch Pad. Only one instance of the App
+will be shown. Lauuch Pad seems to search a list of known
+locations in the order [home folder]/Applications,
+/Applications, (and where else?) More research is needed
+on this.
+
+3) From the Terminal command line
+
+open -a Vole
+
+This seems to open the App last opened by Finder or LaunchPad.
+
+If the Launch Services database has been reinitialised
+and the App has never been opened by Finder or Launch Pad,
+the App opened could be from almost anywhere. 
+
+4) From the Terminal command line, specifying an App bundle
+in the fileystem.
+
+open /Users/testing/Vole-source/build/Vole.app
+
+You get exactly what you asked for, assuming the bundle exists.
+
+5) From the Terminal Command line, specifying a URL
+
+open cix:vienna/files:1
+
+The App that runs could be anywhere, it will not necessarily
+be the one you opened in 3) or 4)
+
+6) From a Web Browser, clicking on a URL.
+
+Presumably this ought to be the same as 5)
+

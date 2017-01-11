@@ -1,0 +1,23 @@
+Fun with Launch Services
+
+I have a folder containing lots of Voles with debugging symbols
+which are used with the debugger to find the line in source
+code for a Crash Report. Fortunately these are rare, touch wood.
+
+Launch Services, the part of OS X which deals with starting Apps,
+was getting very confused with all my Voles.  I could
+not persuade it that I really did not want to run
+one of the Voles in the debugging folder as the default app
+for a cix: URL
+
+Eventually I discovered an undocumented command 'lsregister'
+which can be used by Launch Services to rescan the system.
+
+https://jira.atlassian.com/browse/SRCTREE-985
+
+It is also possible to dump the LS database to see what is
+going on. 'lsregister -dump'
+
+After re-scanning the system and 'touching' the Vole that I
+wanted to be the default, all was back to normal again.
+
