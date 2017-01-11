@@ -22,7 +22,7 @@ There are several ways to open an App.
 2) Click on it in Launch Pad. Only one instance of the App
 will be shown. Lauuch Pad seems to search a list of known
 locations in the order [home folder]/Applications,
-/Applications, (and where else?) More research is needed
+/Applications, (and where else?). More research is needed
 on this.
 
 3) From the Terminal command line
@@ -31,20 +31,21 @@ open -a Vole
 
 This seems to open the App last opened by Finder or LaunchPad.
 
-If the Launch Services database has been reinitialised
+If the Launch Services database has been reinitialised and
+new copies of the App have been installed since then,
 and the App has never been opened by Finder or Launch Pad,
 the App opened could be from almost anywhere. 
 
 4) From the Terminal command line, specifying an App bundle
 in the fileystem.
 
-open /Users/testing/Vole-source/build/Vole.app
+$ open /Users/testing/Vole-source/build/Vole.app
 
 You get exactly what you asked for, assuming the bundle exists.
 
-5) From the Terminal Command line, specifying a URL
+5) From the Terminal command line, specifying a URL
 
-open cix:vienna/files:1
+$ open cix:vienna/files:1
 
 The App that runs could be anywhere, it will not necessarily
 be the one you opened in 3) or 4)
@@ -52,4 +53,32 @@ be the one you opened in 3) or 4)
 6) From a Web Browser, clicking on a URL.
 
 Presumably this ought to be the same as 5)
+
+========
+Q. When multiple copies of an App exist on the filesystem and they are
+registered with Launch Services by virtue of being opened
+with Finder or Launch Pad, registered with lsregister, touched with
+'/usr/bin/touch' or moved into place with '/bin/mv', how
+does Launch Services determine which one to run?
+
+A. You would think there is an algorithm, but this does not seem to
+be the case. It does not seem to be determined by the App
+short version (example 1.6.19), the long version (also known as the
+build in the messages announcing new versions of Vole
+in the files topic), example 20170110.123420.12, or anything else
+that I can see.
+
+Launch Services certainly does not seem to pick the latest version.
+
+If no new copies of the App have been generated, the copy that
+Launch Services will run is always the same, but it is not
+possible to predict which one.
+
+=====
+The moral of this message, according to a posting in the Apple
+developer forums, is that you must always do the final testing
+of an App in a clean machine without the developer tools installed,
+and without multiple copies of the App installed.
+
+This is where Virtual Machines come in handy.
 
