@@ -22,7 +22,7 @@ do
 /usr/bin/shasum --algorithm $i --binary $1 >> temp-hash
 done
 
-/opt/local/bin/gpg --clearsign  ${USER1} ${USER2}  --armor --digest-algo SHA512 \
+/opt/local/bin/gpg2 --clearsign  ${USER1} ${USER2}  --armor --digest-algo SHA512 \
 	--comment "SHA hashes of ${1}" \
 	--comment "Use /usr/bin/shasum to check the integrity of the file" \
 		temp-hash
