@@ -350,7 +350,7 @@ endif
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
 		VERSION=${VERSION}
 	@echo Sign the disk image with gpg
-	/opt/local/bin/gpg -u ${VOLE_PGP_USER1} -u ${VOLE_PGP_USER2} \
+	/opt/local/bin/gpg2 -u ${VOLE_PGP_USER1} -u ${VOLE_PGP_USER2} \
 		--no-armor --detach-sign "${NAME}-${VERSION}.dmg"
 	@echo Compute the SHA hashes and sign the file
 	sh ../scripts/sha-hashes.sh "${NAME}-${VERSION}.dmg"
