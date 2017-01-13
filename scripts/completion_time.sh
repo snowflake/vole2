@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # Script to insert current time into a plist
-# $1 = key
-# $2 = file
+# $1 = file
 
 
 
@@ -12,7 +11,11 @@
 #   Linkname: A shell script to perform the equivalent of Xcode's "Build
 #          &amp; Archive" command. GitHub
 
-date=$(date -u "+%a %b %d %T GMT %Y")
+# Get seconds since the Epoch
+SSTE=$(date -u +%s)
 
-/usr/libexec/plistbuddy -x -c "add $1 date '${date}'" $2
+date=$(date -u -r ${SSTE} "+%a %b %d %T GMT %Y")
+
+/usr/libexec/plistbuddy -x -c "add :BuildCompletionTime date '${date}'" $1
  
+/usr/libexec/plistbuddy -x -c "add :BuildCompletionTimeSeconds integer ${SSTE}" $1

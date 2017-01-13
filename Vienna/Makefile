@@ -248,7 +248,7 @@ ${BUILDS}: targetcheck
 		vole=${VIENNA_APP} \
 	        > ${SOURCE_DIR}/Vole.app/Contents/Resources/VoleInfo.plist
 # add completion time to VoleInfo.plist (in the newly compiled app)
-		sh ../scripts/completion_time.sh :BuildCompletionTime \
+		sh ../scripts/completion_time.sh \
 	           ${SOURCE_DIR}/Vole.app/Contents/Resources/VoleInfo.plist
 
 
