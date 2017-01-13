@@ -30,7 +30,7 @@ printf "    </array>\n"
 
 function iso_date(){
 # print date in ISO 8601 format (see plist dtd for acceptable format)
-TZ=UTC date +%Y-%m-%dT%H:%M:%SZ
+date -u -r ${SECONDS_SINCE_EPOCH} +%Y-%m-%dT%H:%M:%SZ
 }
 
 cat >${filename} <<EOF1
@@ -55,6 +55,8 @@ cat >${filename} <<EOF1
     <string>${builddate}</string>
   <key>BuildDateISO</key>
     <date>$(iso_date | nolf)</date>
+  <key>BuildDateSinceEpoch</key>
+    <integer>${SECONDS_SINCE_EPOCH}</integer>
   <key>BuildUUID</key>
     <string>${build_uuid}</string>
   <key>BuildID</key>
