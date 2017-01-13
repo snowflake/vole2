@@ -203,7 +203,7 @@ endif
 export INFOPLIST_FILE
 
 ${BUILDS}: SECONDS_SINCE_EPOCH=$(shell date -u +%s)
-${BUILDS}: SHORTDATE:=$(shell date -r ${SECONDS_SINCE_EPOCH} -u '+%Y%m.%d.%H%M%S')
+${BUILDS}: SHORTDATE=$(shell date -r ${SECONDS_SINCE_EPOCH} -u '+%Y%m.%d.%H%M%S')
 ${BUILDS}: VCSSTATUS:=$(shell /bin/sh ../scripts/version-script.sh vcs)
 ${BUILDS}: VCSDATE:=$(shell /bin/sh ../scripts/version-script.sh vcsdate)
 SOURCE_DIR=../../Vienna-build/$(subst -release,,$@)
