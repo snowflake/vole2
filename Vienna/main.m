@@ -47,6 +47,9 @@
 #define NSAppKitVersionNumber10_8 1187
 #define NSAppKitVersionNumber10_9 1265
 #define NSAppKitVersionNumber10_10 1343
+#define NSAppKitVersionNumber10_11 1404
+#define NSAppKitVersionNumber10_12 1504
+
 
 char * osx_major_minor(void); // Returns OS X version as a string. 
 
@@ -182,7 +185,11 @@ char * osx_major_minor(){
     return "10.8.x";
   } else   if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_10){
     return "10.9.x";
-  } else return "10.10.x or later";
+  } else   if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_11){
+    return "10.10.x";
+  } else   if (floor(NSAppKitVersionNumber) < NSAppKitVersionNumber10_12){
+    return "10.11.x";
+  } else   return "10.12.x or later";
   return "Unable to detemine OSX version";
 }
   
