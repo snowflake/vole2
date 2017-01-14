@@ -161,5 +161,13 @@ $(sandpit_warning)
 For release notes, please visit:
 https://chiselapp.com/user/vinkix/repository/olrcix/wiki?name=RINOTES
 
+====
+Extra Hashes for use with /usr/bin/shasum
+SHA1
+$(/usr/bin/shasum --algorithm 1 --binary ${zipfile})
+SHA256
+$(/usr/bin/shasum --algorithm 256 --binary ${zipfile})
+====
+
 XEOF
 
