@@ -351,6 +351,8 @@ endif
 	make -f ../mk/make-dmg.mk SOURCE_DIR=${SOURCE_DIR} \
 		SOURCE_FILES="${SOURCE_FILES}" NAME="${NAME}" \
 		VERSION=${VERSION}
+	@echo Codesign the disk image - do not resign it
+	codesign -s "Developer ID Application" "${NAME}-${VERSION}.dmg"
 	@echo Sign the disk image with gpg
 	/opt/local/bin/gpg2 -u ${VOLE_PGP_USER1} -u ${VOLE_PGP_USER2} \
 		--no-armor --detach-sign "${NAME}-${VERSION}.dmg"
