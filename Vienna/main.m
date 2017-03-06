@@ -11,6 +11,7 @@
 #import <stdlib.h>
 #import <unistd.h>
 #import <asl.h>
+#import <time.h>
 #import "Vole.h"
 // XXXX-Tempfile has declarations which may be useful in other modules
 #import "XXXX-Tempfile.h"
@@ -57,6 +58,42 @@ char * cixLocation_cstring = "cix.compulink.co.uk"; // Normal server
 char * betaserver = "v4.conferencing.co.uk"; // alternate beta server
 char * volecixbetaname = "volecixbeta"; // name of a file in $HOME folder to activate the beta server
 int cixbetaflag=0;  // set to 1 if using cix beta
+
+#ifdef OVERRIDE_LOCALTIME
+// See whether Foundation classes ever call localtime(3) and localtime_r(3)
+struct tm * localtime( const time_t *t){
+  struct tm tm;
+  tm.tm_sec=20;
+  tm.tm_min= 2;
+  tm.tm_hour = 20;
+  tm.tm_mday= 5;
+  tm.tm_mon = 3;
+  tm.tm_year = 2016;
+  tm.tm_wday = 0;
+  tm.tm_yday = 65;
+  tm.tm_isdst=0;
+  tm.tm_zone="DJE";
+  tm.tm_gmtoff = 0L;
+  return(&tm);
+}
+
+struct tm * localtime_r( const time_t *t, struct tm * tm){
+
+  tm->tm_sec=20;
+  tm->tm_min= 2;
+  tm->tm_hour = 15;
+  tm->tm_mday= 5;
+  tm->tm_mon = 3;
+  tm->tm_year = 2016;
+  tm->tm_wday = 0;
+  tm->tm_yday = 65;
+  tm->tm_isdst=0;
+  tm->tm_zone="DJE";
+  tm->tm_gmtoff = 0L;
+  return(tm);
+}
+#endif // OVERRIDE_LOCALTIME
+
 
 int main(int argc, const char *argv[])
 {
