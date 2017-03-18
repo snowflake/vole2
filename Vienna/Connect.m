@@ -1620,8 +1620,10 @@ abortLabel:
                 if (browserDateFormatter == nil){
                     [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
                     browserDateFormatter = [[NSDateFormatter alloc] init];
-                    NSLocale * locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+                    // previous versions used localeWithLocaleIdentifier, which does not work on 10.4 and 10.5
+                    NSLocale * locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
                     [browserDateFormatter setLocale: locale]; // this also sets up the Gregorian calendar
+                    [locale release];
                     [browserDateFormatter setTimeZone: [NSTimeZone timeZoneForSecondsFromGMT:0] ];
                     [browserDateFormatter setDateFormat:@"dd/MM/yyyy" ];
 //                    NSLog(@"set browser formatter %@", browserDateFormatter);
