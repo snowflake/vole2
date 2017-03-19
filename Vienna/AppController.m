@@ -3450,8 +3450,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		}
 		[[msgWindow window] makeKeyAndOrderFront:self];
 		// static analyser complains
-		// [messageArray release];
-
+		// [messageArray release]; // Now autoreleased in Database.m
 		// Clean up on the way out.
 		[criteriaDictionary release];
 	}

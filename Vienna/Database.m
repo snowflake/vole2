@@ -2345,7 +2345,7 @@ enum {
 		// static analyser complains
 		// [results release];
 	}
-	return messageArray;
+	return [messageArray autorelease];
 }
 
 /* initMessageArray
