@@ -3374,6 +3374,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 -(NSString *)makeReplyText
 {
 	NSMutableString *quoteString = [[NSMutableString alloc] init];
+    [quoteString autorelease];
 
 	// Get the text selected in the message view, if any
 	NSRange range = [textView selectedRange];
@@ -3446,7 +3447,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			NSString *reply = [self makeReplyText];
 			msgWindow = [[MessageWindow alloc] initNewMessage:db recipient:nodePath commentNumber:(NSInteger)comment initialText:reply];
 			// static analyser complains
-			// [reply release];
+			// [reply release]; // now autoreleased
 		}
 		[[msgWindow window] makeKeyAndOrderFront:self];
 		// static analyser complains
