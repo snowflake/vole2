@@ -24,7 +24,15 @@ else
 	@echo 'export VOLE_QUICK_BUILD'
 	exit 1
 endif
-	
+
+analyze:
+ifdef VOLE_QUICK_BUILD
+	${VOLE_QUICK_BUILD} -xcconfig xcconfig/XcodeWarnings.xcconfig
+else
+	@echo VOLE_QUICK_BUILD not defined
+	exit 1
+endif
+
 #******************************** Warning ***********************************
 
 # MOSXDT in this Makefile must be kept in step with VOLE_DEPLOYMENT_TARGET
