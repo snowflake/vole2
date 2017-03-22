@@ -279,10 +279,16 @@
 	if(cp == NULL){CFRelease(data); return nil;}
 	[data getBytes: (void *) cp length:length ];
 	*(cp +length) = '\0';
-	NSString *xmlString = [[[NSString alloc] initWithBytes: sanitise_string( cp ) 
+#ifdef VOLE2
+	NSString *xmlString = [[[NSString alloc] initWithBytes: cp
 													length: length 
-												  encoding: NSWindowsCP1252StringEncoding] autorelease];
-	free(cp);
+                                                  encoding: NSUTF8StringEncoding] autorelease];
+#else /* vole 1 code, this is broken, but it should not be changed */
+    NSString *xmlString = [[[NSString alloc] initWithBytes: sanitise_string( cp )
+													length: length 
+                                                  encoding: NSWindowsCP1252StringEncoding] autorelease];
+#endif
+    free(cp);
 	// end of new changes
 	CFRelease(data);
 	return xmlString;
@@ -383,10 +389,20 @@
 		//	[valueString appendString:[NSString stringWithCString:(char *)CFDataGetBytePtr(valueData) length:CFDataGetLength(valueData)]];
 		//
 		// replaced by	
-			[valueString appendString:[[[NSString alloc] initWithBytes: sanitise_string((char *)CFDataGetBytePtr(valueData)) 
-																length:CFDataGetLength(valueData)
-															  encoding:	NSWindowsCP1252StringEncoding] autorelease]];
-			CFRelease(valueData);
+#ifdef VOLE2
+            // Vole 2 (added 22-3-2017)
+            [valueString appendString:[[[NSString alloc] initWithBytes: (char *)CFDataGetBytePtr(valueData)
+																length: CFDataGetLength(valueData)
+															  encoding:	NSUTF8StringEncoding] autorelease]];
+#else
+            // Vole 1 broken code. Does not work for searches for codepoints >0x7f
+            [valueString appendString:[[[NSString alloc] initWithBytes: sanitise_string((char *)CFDataGetBytePtr(valueData))
+                                                                length:CFDataGetLength(valueData)
+                                                              encoding:	NSWindowsCP1252StringEncoding] autorelease]];
+#endif  // VOLE2
+            CFRelease(valueData);
+            
+            
 		}
 	}
 	else
