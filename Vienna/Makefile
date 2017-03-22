@@ -285,7 +285,7 @@ elcapitan-go elcapitan2-go:
 	open -a ${XC7_XCODE_APP} ./${PROJECT}
 
 sierra-go sierra2-go:
-	open -a ${XC8BETA_XCODE_APP} ./${PROJECT}
+	open -a ${XC7_XCODE_APP} ./${PROJECT}
 
 # Run the Vienna app from its build directory
 tiger-run leopard-run snowleopard-run lion-run \
