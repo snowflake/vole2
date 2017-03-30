@@ -2292,6 +2292,9 @@ abortLabel:
 				for (index = 0; index < countOfWrappedLines; ++index)
 				{
 					NSString *line = [wrappedMessageBody objectAtIndex:index];
+                    if ([line isEqualToString:@"."]){    // Added DJE 30-3-2017
+                        line = [line stringByAppendingString:@" "];
+                    }
 					// DJE replaced
 					//NSData * msgData = [line dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
 					NSData * msgData = [line dataUsingEncoding:NSWindowsCP1252StringEncoding allowLossyConversion:YES];
