@@ -22,5 +22,7 @@ Requirements to build:
       Xcode 6 and 7 and El Capitan
       Xcode 7 and 8 and El Capitan or Sierra
 
+Development takes place on the trunk branch (Git and Fossil)
+
 Are you looking for the Vienna RSS and Atom feed reader?
 Try http://www.vienna-rss.org/
