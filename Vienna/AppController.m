@@ -2678,7 +2678,12 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 			// Style a URL
 			if (doStyleURL)
-			{
+            {
+                if(urlRangeStart < 0L){
+                NSLog(@"Message from line %d, file %s: urlRangeStart less than 0. this is cused by pairs of angle"
+                      " brackets in a message. Apple warn this will cause a NSRange exception in future",
+                      __LINE__, __FILE__);
+                }
 				NSRange urlRange = NSMakeRange(urlRangeStart, (rangeIndex - urlRangeStart));
 				NSMutableString * urlString = [NSMutableString stringWithString:[messageText substringWithRange:urlRange]];
 				
@@ -2994,6 +2999,11 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			// Style a URL
 			if (doStyleURL)
 			{
+                if(urlRangeStart < 0L){
+                    NSLog(@"Message from line %d, file %s: urlRangeStart less than 0. this is cused by pairs of angle"
+                          " brackets in a message. Apple warn this will cause a NSRange exception in future",
+                          __LINE__, __FILE__);
+                }
 				NSRange urlRange = NSMakeRange(urlRangeStart, (rangeIndex - urlRangeStart));
 				NSMutableString * urlString = [NSMutableString stringWithString:[messageText substringWithRange:urlRange]];
 				
