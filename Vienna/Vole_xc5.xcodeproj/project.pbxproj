@@ -43,8 +43,6 @@
 		61E34B17194252C100B9D9D8 /* UpdateWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E34B03194252C100B9D9D8 /* UpdateWindow.xib */; };
 		61E34B18194252C100B9D9D8 /* Welcome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E34B05194252C100B9D9D8 /* Welcome.xib */; };
 		61F67A8419A3DF1A006D43E6 /* cp1252utf8.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F67A8319A3DF1A006D43E6 /* cp1252utf8.h */; };
-		61F67A8719A3DF98006D43E6 /* utf8-process.c in Sources */ = {isa = PBXBuildFile; fileRef = 61F67A8519A3DF98006D43E6 /* utf8-process.c */; };
-		61F67A8819A3DF98006D43E6 /* utf8-process.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F67A8619A3DF98006D43E6 /* utf8-process.h */; };
 		61F67A8A19A3E17B006D43E6 /* smart-utf.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F67A8919A3E17B006D43E6 /* smart-utf.h */; };
 		8D15AC290486D014006FF6A4 /* Vole_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF750370BD2300C91783 /* Vole_Prefix.pch */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -299,8 +297,6 @@
 		61E34B04194252C100B9D9D8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/UpdateWindow.xib; sourceTree = "<group>"; };
 		61E34B06194252C100B9D9D8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Welcome.xib; sourceTree = "<group>"; };
 		61F67A8319A3DF1A006D43E6 /* cp1252utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cp1252utf8.h; sourceTree = "<group>"; };
-		61F67A8519A3DF98006D43E6 /* utf8-process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "utf8-process.c"; sourceTree = "<group>"; };
-		61F67A8619A3DF98006D43E6 /* utf8-process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "utf8-process.h"; sourceTree = "<group>"; };
 		61F67A8919A3E17B006D43E6 /* smart-utf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "smart-utf.h"; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* Vole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vole.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -804,8 +800,6 @@
 				6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */,
 				6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */,
 				61F67A8319A3DF1A006D43E6 /* cp1252utf8.h */,
-				61F67A8519A3DF98006D43E6 /* utf8-process.c */,
-				61F67A8619A3DF98006D43E6 /* utf8-process.h */,
 				61F67A8919A3E17B006D43E6 /* smart-utf.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 				6176B9391480196F00BB5841 /* getBSDProcessTable.c */,
@@ -896,7 +890,6 @@
 				AA21F47707538EDE00503F58 /* VPerson.h in Headers */,
 				AAAA2FF1077289EF000FB214 /* Profile.h in Headers */,
 				AAAA30590773CE22000FB214 /* PersonManager.h in Headers */,
-				61F67A8819A3DF98006D43E6 /* utf8-process.h in Headers */,
 				CD2BE9D207F863BE000056B7 /* SSHSocket.h in Headers */,
 				CDC85C6A07FC7BD9001CD23A /* TCPSocket.h in Headers */,
 				CDC85CFA0802B2BD001CD23A /* Socket.h in Headers */,
@@ -1134,7 +1127,6 @@
 				AA26F4850604911B00FE7994 /* SQLDatabase.m in Sources */,
 				AA26F4870604911B00FE7994 /* SQLResult.m in Sources */,
 				AA26F4880604911B00FE7994 /* SQLRow.m in Sources */,
-				61F67A8719A3DF98006D43E6 /* utf8-process.c in Sources */,
 				AA26F4DE0604927300FE7994 /* BufferedFile.m in Sources */,
 				AA26F4E30604927300FE7994 /* Folder.m in Sources */,
 				AA26F4E60604927300FE7994 /* VMessage.m in Sources */,

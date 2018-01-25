@@ -34,4 +34,5 @@
 	-(NSString *)reversedString;
 	-(NSInteger)indexOfCharacterInString:(char)ch afterIndex:(NSInteger)startIndex;
 	-(BOOL)hasCharacter:(char)ch;
+    -(NSString *)vlconvertToUTF8;
 @end

@@ -2388,6 +2388,11 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	VMessage * theRecord = [currentArrayOfMessages objectAtIndex:currentSelectedRow];
 	NSString * messageText = [db messageText:[theRecord folderId] messageId:[theRecord messageId]];
 
+#ifndef VOLE2
+    messageText = [messageText vlconvertToUTF8];
+   
+#endif // Dreadfull encoding hack
+        
 	NSAttributedString * attrText = [self formatMessage:messageText usePlainText:showPlainText];
 	[[textView textStorage] setAttributedString:attrText];
 	// static analyser complains
@@ -2469,7 +2474,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 }
 
 #pragma mark - formatMessage - Vole 2
-#ifdef VOLE2
+#if  defined( VOLE2 ) || ! defined (OLDVOLE1)
 /* formatMessage (VOLE 2)
  * Format the message by making URLs into clickable links, bold, italic and underline specifiers into
  * their actual attributes and formatting quotes.
@@ -2765,8 +2770,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 
 #pragma mark - formatMessage - Vole 1
-#ifndef VOLE2
-/* formatMessage (VOLE 1)
+#if defined(OLDVOLE1)
+* formatMessage (VOLE 1)
  * Format the message by making URLs into clickable links, bold, italic and underline specifiers into
  * their actual attributes and formatting quotes.
  */
@@ -2825,8 +2830,13 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	// The messageText should have already been sanitised, otherwise expect a crash (DJE)
 	NSData * chardata = [[NSData alloc] 
 						 initWithBytes:[messageText
+#ifdef OLDVOLE1
 										cStringUsingEncoding:NSWindowsCP1252StringEncoding]
-						 length:[messageText length]];
+#else
+                         cStringUsingEncoding:NSUTF8StringEncoding ]
+#endif
+                         
+                         length:[messageText length]];
 	if ([messageText hasPrefix:@"<HTML>"])
 	{
 		attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
@@ -2836,8 +2846,12 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	else
 	{
 		if (showWindowsCP)
-			enc = NSWindowsCP1252StringEncoding;
-		else
+#ifdef OLDVOLE1
+            enc = NSWindowsCP1252StringEncoding;
+#else
+            enc = NSUTF8StringEncoding;
+#endif
+        else
 			enc = NSISOLatin1StringEncoding;
 		
 		// Convert using selected charset.
@@ -2847,8 +2861,11 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			// deprecated API was here DJE
 		//	charptr = [mactext cString];
 			// replacement here
-			charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
-
+#ifdef OLDVOLE1
+            charptr = [mactext cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+#else
+            charptr = [mactext cStringUsingEncoding:NSUTF8StringEncoding];
+#endif
 			attrMessageText = [[NSMutableAttributedString alloc] initWithString: mactext];
 			messageText = mactext;
 		}
@@ -2859,7 +2876,13 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			// deprecated API was here DJE
 			//charptr = [messageText cString];
 			// replacement here
-			charptr = [messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding];
+            int cenc;
+#ifdef OLDVOLE1
+            cenc = NSWindowsCP15252StringEncoding;
+#else
+            cenc = NSUTF8StringEncoding;
+#endif
+			charptr = [messageText cStringUsingEncoding: cenc];
 
 		}
 		[chardata autorelease];
