@@ -213,7 +213,7 @@
         // and it's a bit iffy even if it does. Switch to Vole 2 please.
         // Unicode makes sense even if CIX screw it up with Mojibake
 		NSData * data = [NSData dataWithBytes:[string cStringUsingEncoding:
-                                               NSWindowsCP1252String Encoding
+                                               NSWindowsCP1252StringEncoding]
 									   length:[string length]];
 #endif
 		XMLParser * xmlTree = [[XMLParser alloc] initWithData:data];
