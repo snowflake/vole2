@@ -203,10 +203,19 @@
 		// deprecated API here DJE
 		//		NSData * data = [NSData dataWithBytes:[string cString] length:[string length]];
 		// replacement here
+#ifdef VOLE2
+        // **************************** Vole 2 *****************************
+        const char * cString = [string UTF8String];
+        NSData *data = [NSData dataWithBytes:cString length: strlen(cString)];
+#else
+        // **************************** Vole 1 *****************************
+        // Search will not work if string contains Non-ASCII characters,
+        // and it's a bit iffy even if it does. Switch to Vole 2 please.
+        // Unicode makes sense even if CIX screw it up with Mojibake
 		NSData * data = [NSData dataWithBytes:[string cStringUsingEncoding:
-                                               VoleDatabaseStringEncoding]
+                                               NSWindowsCP1252String Encoding
 									   length:[string length]];
-
+#endif
 		XMLParser * xmlTree = [[XMLParser alloc] initWithData:data];
 		XMLParser * criteriaGroup = [xmlTree treeByName:@"criteriagroup"];
 		NSInteger index = 0;
