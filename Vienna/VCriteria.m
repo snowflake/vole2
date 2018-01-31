@@ -212,9 +212,10 @@
         // Search will not work if string contains Non-ASCII characters,
         // and it's a bit iffy even if it does. Switch to Vole 2 please.
         // Unicode makes sense even if CIX screw it up with Mojibake
-		NSData * data = [NSData dataWithBytes:[string cStringUsingEncoding:
-                                               NSWindowsCP1252StringEncoding]
-									   length:[string length]];
+        const char * cString = [string cStringUsingEncoding:
+                                NSWindowsCP1252StringEncoding];
+        NSData * data = [NSData dataWithBytes: cString
+                                       length:strlen(cString)];
 #endif
 		XMLParser * xmlTree = [[XMLParser alloc] initWithData:data];
 		XMLParser * criteriaGroup = [xmlTree treeByName:@"criteriagroup"];
