@@ -215,8 +215,12 @@
 		
 		// Call the main thread to retrieve the text of a specific message
 		[self performSelectorOnMainThread:@selector(loadMessageText:) withObject:theMessage waitUntilDone:YES];
+        
+#ifdef VOLE2
+        NSInteger size = strlen([messageText UTF8String]);
+#else
 		NSInteger size = [messageText length];
-		
+#endif
 		NSMutableString * msgStatus = [NSMutableString stringWithString:@"!MF:"];
 		if ([theMessage isPriority])
 			[msgStatus appendString:@"A"];
@@ -240,10 +244,16 @@
 		// DJE deprecated API here
 		//     NSData * msgData = [NSData dataWithBytes:[msgText cString] length:[msgText length]];
 		// replace with
-		NSData * msgData = [NSData dataWithBytes:[msgText cStringUsingEncoding:NSWindowsCP1252StringEncoding] length:[msgText length]];
-
-		[fileHandle writeData:msgData];
-	}
+#ifdef VOLE2
+        // changed here DJE 31/1/2018
+        char * cString = [msgText UTF8String];
+        NSData * msgData = [NSData dataWithBytes:cString length:strlen(cString)];
+        [fileHandle writeData:msgData];
+#else
+        NSData * msgData = [NSData dataWithBytes:[msgText cStringUsingEncoding:NSWindowsCP1252StringEncoding] length:[msgText length]];
+        [fileHandle writeData:msgData];
+#endif
+    }
 	
 	// This line is essential if we're not to end up eating all the memory on
 	// the system!
