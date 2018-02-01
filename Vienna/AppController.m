@@ -2549,6 +2549,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[attrMessageText addAttribute:NSFontAttributeName value:messageFont range:entireTextRange];
 	}
 
+#define utf16codepoints(cpval) ( cpval >= 0x10000 ? 2 : 1 )
+    
 	if (!plainText)
 	{
 		while (*wcharptr)
@@ -2585,8 +2587,10 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 				
 				while (*++wcharptr && *wcharptr != endStyleChar && *wcharptr != L'\r' && *wcharptr != L'\n')
 				{
-					++styleRangeLength;
-					++styleRangeTextLength;
+				//	++styleRangeLength;
+                    styleRangeLength += utf16codepoints(*wcharptr);
+					// ++styleRangeTextLength;
+                    styleRangeTextLength += utf16codepoints(*wcharptr);
 				}
 
 				// We can only legally style the sequence if:
@@ -2597,13 +2601,16 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 				if (*wcharptr != endStyleChar || *wcharptrStart == L' ' || \
                     (*wcharptr && wcschr(L" \t\r\n,.)!?", *(wcharptr+1)) == 0) || styleRangeLength < 2)
 				{
-					rangeIndex = styleRangeStart + 1;
-					attrRangeIndex = styleRangeTextStart + 1;
+					// rangeIndex = styleRangeStart + 1;
+                    rangeIndex = styleRangeStart + utf16codepoints( *wcharptr);
+					// attrRangeIndex = styleRangeTextStart + 1;
+                    attrRangeIndex = styleRangeTextStart + utf16codepoints( *wcharptr);
 					wcharptr = wcharptrStart;
 				}
 				else
 				{
-					++styleRangeLength;
+					// ++styleRangeLength;
+                    styleRangeLength +=  utf16codepoints( *wcharptr);
 					++wcharptr;
 					NSDictionary * styleAttr = nil;
 					switch (endStyleChar)
@@ -2747,10 +2754,10 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 				}
 				isAtStartOfLine = YES;
 			}
-			
-			++wcharptr;
-			++rangeIndex;
-			++attrRangeIndex;
+			// reordered here - DJE 1/2/2018
+            rangeIndex += utf16codepoints( *wcharptr);
+            attrRangeIndex += utf16codepoints( *wcharptr);
+            ++wcharptr;
 		}
 	}
     free(memsave);
