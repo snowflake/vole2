@@ -2554,7 +2554,11 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	if (!plainText)
 	{
 		while (*wcharptr)
-		{		
+		{
+            if(urlRangeStart >= 0 && *wcharptr > 0x7eL) {
+                // Only ASCII allowed in URLs
+                urlRangeStart = -1;
+            }
 			if (*wcharptr == L'>' && isAtStartOfLine)
 				quoteRangeStart = attrRangeIndex;
 			
