@@ -2691,47 +2691,49 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			if (doStyleURL)
             {
                 if(urlRangeStart < 0L){
-                NSLog(@"Message from line %d, file %s: urlRangeStart less than 0. this is cused by pairs of angle"
-                      " brackets in a message. Apple warn this will cause a NSRange exception in future",
-                      __LINE__, __FILE__);
+                    //                  NSLog(@"Message from line %d, file %s: urlRangeStart less than 0. this is caused by pairs of angle"
+                    //                      " brackets in a message. Apple warn this will cause a NSRange exception in future",
+                    //                    __LINE__, __FILE__);
                 }
-				NSRange urlRange = NSMakeRange(urlRangeStart, (rangeIndex - urlRangeStart));
-				NSMutableString * urlString = [NSMutableString stringWithString:[messageText substringWithRange:urlRange]];
-				
-				// Drop the initial url: prefix
-				if ([[urlString lowercaseString] hasPrefix:@"url:"])
-					[urlString deleteCharactersInRange:NSMakeRange(0, 4)];
-				
-				// Special case COPIED FROM URLs
-				if (isCopiedFromGroup)
-				{
-					NSScanner * scanner = [NSScanner scannerWithString:urlString];
-					NSString * folderPart = nil;
-					NSString * numberPart = nil;
-					
-					[scanner scanString:@"**COPIED FROM: >>>" intoString:nil];
-					[scanner scanUpToString:@" " intoString:&folderPart];
-					[scanner scanString:@" " intoString:nil];
-					[scanner scanUpToString:@"" intoString:&numberPart];
-					if (folderPart && numberPart)
-						urlString = [NSMutableString stringWithFormat:@"cix:%@:%@", folderPart, numberPart];
-					else if (folderPart)
-						urlString = [NSMutableString stringWithFormat:@"cix:%@", folderPart];
-				}
-	
-				// Strip newlines from the URL
-				[urlString replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [urlString length])];
-				NSURL * url = [NSURL URLWithString:urlString];
-				if (url != nil)
-				{
-					NSInteger diff = rangeIndex - attrRangeIndex;
-					NSRange attrRange = NSMakeRange(urlRangeStart - diff, (rangeIndex - urlRangeStart));
-					[attrMessageText addAttribute:NSLinkAttributeName value:url range:attrRange];
-				}
-				urlRangeStart = -1;
-				doStyleURL = NO;
-				isCopiedFromGroup = NO;
-			}
+                else {
+                    NSRange urlRange = NSMakeRange(urlRangeStart, (rangeIndex - urlRangeStart));
+                    NSMutableString * urlString = [NSMutableString stringWithString:[messageText substringWithRange:urlRange]];
+                    
+                    // Drop the initial url: prefix
+                    if ([[urlString lowercaseString] hasPrefix:@"url:"])
+                        [urlString deleteCharactersInRange:NSMakeRange(0, 4)];
+                    
+                    // Special case COPIED FROM URLs
+                    if (isCopiedFromGroup)
+                    {
+                        NSScanner * scanner = [NSScanner scannerWithString:urlString];
+                        NSString * folderPart = nil;
+                        NSString * numberPart = nil;
+                        
+                        [scanner scanString:@"**COPIED FROM: >>>" intoString:nil];
+                        [scanner scanUpToString:@" " intoString:&folderPart];
+                        [scanner scanString:@" " intoString:nil];
+                        [scanner scanUpToString:@"" intoString:&numberPart];
+                        if (folderPart && numberPart)
+                            urlString = [NSMutableString stringWithFormat:@"cix:%@:%@", folderPart, numberPart];
+                        else if (folderPart)
+                            urlString = [NSMutableString stringWithFormat:@"cix:%@", folderPart];
+                    }
+                    
+                    // Strip newlines from the URL
+                    [urlString replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [urlString length])];
+                    NSURL * url = [NSURL URLWithString:urlString];
+                    if (url != nil)
+                    {
+                        NSInteger diff = rangeIndex - attrRangeIndex;
+                        NSRange attrRange = NSMakeRange(urlRangeStart - diff, (rangeIndex - urlRangeStart));
+                        [attrMessageText addAttribute:NSLinkAttributeName value:url range:attrRange];
+                    }
+                }
+                urlRangeStart = -1;
+                doStyleURL = NO;
+                isCopiedFromGroup = NO;
+            }
 #ifdef USE_ACRONYMS
 			// Look for acronyms
 			if (!doStyleURL && wordRange.length > 0 && (!isalnum(*wcharptr)))
