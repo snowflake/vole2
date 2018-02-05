@@ -1,0 +1,12 @@
+.style1 {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-weight: bold;
+}
+
+.style2 {font-family: Verdana, Arial, Helvetica, sans-serif}
+
+.style3 {font-size: xx-large; font-weight: bold; }
+
+.style4 {font-family: Verdana, Arial, Helvetica, sans-serif;
+	 font-weight: bold; font-size: xx-large; }
+

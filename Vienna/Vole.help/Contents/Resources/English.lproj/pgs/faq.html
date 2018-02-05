@@ -7,7 +7,7 @@
 <style type="text/css">
 <!--
 .style1 {font-family: Verdana, Arial, Helvetica, sans-serif}
-.style3 {
+.style4 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: xx-large;
@@ -17,13 +17,13 @@
 </head>
 
 <body>
-<p><img alt="Vienna logo" src="images/Small-Vienna-Logo.jpg" width="64" height="60"><span class="style3">Frequently Asked Questions</span></p>
-<p class="style1">Some of the frequently asked questions during the Vienna pre-
+<p><img alt="Vienna logo" src="images/Small-Vienna-Logo.jpg" width="64" height="60"><span class="style4">Frequently Asked Questions</span></p>
+<p class="style2">Some of the frequently asked questions during the Vienna pre-
 release testing and later.</p>
 
-<p class="style1">Q: What is the difference between Vole, Vinkix and Vienna?</p>
+<p class="style2">Q: What is the difference between Vole, Vinkix and Vienna?</p>
 
-<p class="style1">A: Not much. They are all basically the same program. In
+<p class="style2">A: Not much. They are all basically the same program. In
 the beginning (2004) there was Vienna. Vienna was renamed to Vinkix in 2011
 so that it could co-exist with Vienna-2. Vienna-2 was a divergence from Vienna
 in around 2006 and it was dedicated to reading RSS and Atom feeds. The Cix
@@ -31,46 +31,46 @@ conferencing capability was removed from Vienna-2. You will often see
 Vienna referred to as Vienna-OLR and Vienna-2 as Vienna-RSS. Vienna-OLR also
 has RSS reading capability but it is not much used for that these days. Vienna-RSS is much superior in that respect.</p>
 
-<p class="style1">Q: You still haven't told me what Vole is.</p>
+<p class="style2">Q: You still haven't told me what Vole is.</p>
 
-<p class="style1">A: In July 2012, Vinkix was renamed to Vole. This was as a result of a vote in the Cix vienna conference to find a better name than Vinkix,
+<p class="style2">A: In July 2012, Vinkix was renamed to Vole. This was as a result of a vote in the Cix vienna conference to find a better name than Vinkix,
 which some may have thought was an ugly and contrived name.</p>
 
-<p class="style1">Q: Where can I find support for Vole on Cix?</p>
+<p class="style2">Q: Where can I find support for Vole on Cix?</p>
 
-<p class="style1">A: Please join the <b>vienna</b> conference. This conference
+<p class="style2">A: Please join the <b>vienna</b> conference. This conference
 is for support of Vienna, Vinkix and Vole. We have kept the vienna conference
 because of its vast repository of historical discussions.</p>
 
-<p class="style1">Q: How do I get a list of conferences on Cix?</p>
+<p class="style2">Q: How do I get a list of conferences on Cix?</p>
 
-<p class="style1">A: You will find this in Window->Browser  from the menu bar.
+<p class="style2">A: You will find this in Window->Browser  from the menu bar.
 If the list is empty or you want the latest version then click
 on refresh and do a blink.</p>
 
 
 
-<p class="style1">Q: I have both Parlance and Vienna on my machine. When I click a cix: link in Vienna, it always attempts to open the link with Parlance.</p>
-<p class="style1">A: This is because Parlance is also registered as the default handler for cix: links. In the event of multiple applications registering to handle the same link type, the OS picks a winner. However it is possible to manually set the active handler via the Preferences. In Preferences, choose the CIX tab and set Vole as the default CIX links handler.</p>
-<p class="style1">Q: My database is rather large.</p>
-<p class="style1">A: Vole uses SQLite as the database engine and it can generate rather large databases. Future revisions of SQLite may improve on the storage usage although probably not dramatically. Note that SQLite does not automatically reduce the database size when you delete topics or conferences so you should consider running the Compact Database command from the File menu afterwards.</p>
-<p class="style1">Q: How do message styles work?</p>
-<p class="style1">A: Vole automatically renders words or phrases between * characters in bold. Similarly it renders words or phrases between / in italics and _ as underlined. This is a CIX convention supported by most off-line readers.</p>
-<p class="style1">To create text in bold when entering a message, simply surround the text with * characters. One restriction is that you cannot run styles across lines. So the start and end of the style character must appear on the same line otherwise the style will not be rendered. In addition, the end style must be followed by any of these characters: space, newline, tab, comma, full-stop, question mark, exclamation mark or closing parenthesis.</p>
-<p class="style1">Q: Where do the mugshots pictures come from?</p>
-<p class="style1">A: Mugshots live in ~/Library/Vienna/Mugshots. (this location
+<p class="style2">Q: I have both Parlance and Vienna on my machine. When I click a cix: link in Vienna, it always attempts to open the link with Parlance.</p>
+<p class="style2">A: This is because Parlance is also registered as the default handler for cix: links. In the event of multiple applications registering to handle the same link type, the OS picks a winner. However it is possible to manually set the active handler via the Preferences. In Preferences, choose the CIX tab and set Vole as the default CIX links handler.</p>
+<p class="style2">Q: My database is rather large.</p>
+<p class="style2">A: Vole uses SQLite as the database engine and it can generate rather large databases. Future revisions of SQLite may improve on the storage usage although probably not dramatically. Note that SQLite does not automatically reduce the database size when you delete topics or conferences so you should consider running the Compact Database command from the File menu afterwards.</p>
+<p class="style2">Q: How do message styles work?</p>
+<p class="style2">A: Vole automatically renders words or phrases between * characters in bold. Similarly it renders words or phrases between / in italics and _ as underlined. This is a CIX convention supported by most off-line readers.</p>
+<p class="style2">To create text in bold when entering a message, simply surround the text with * characters. One restriction is that you cannot run styles across lines. So the start and end of the style character must appear on the same line otherwise the style will not be rendered. In addition, the end style must be followed by any of these characters: space, newline, tab, comma, full-stop, question mark, exclamation mark or closing parenthesis.</p>
+<p class="style2">Q: Where do the mugshots pictures come from?</p>
+<p class="style2">A: Mugshots live in ~/Library/Vienna/Mugshots. (this location
 may change in the future after the Vienna->Vole renaming process is complete) tif, bmp, gif and jpg files are valid and are searched in that order. if you prefix the name of a mugshot file with a conference name (eg. enquire_within-tykepenguin.jpg) then it will be shown only for that person in that conference</p>
-<p class="style1">Q: What's all this 'connect'/'online'/'get' business. Just how to I get my messages?</p>
-<p class="style1">A: Most of the time "Connect" will do what you want. it will update Cix and RSS messages at the same time. If you don't have a timed connection to cix then 'online' might suit you better as it posts messages as you send them. The other two options allow you to update cix and RSS feeds independently should you want to</p>
+<p class="style2">Q: What's all this 'connect'/'online'/'get' business. Just how to I get my messages?</p>
+<p class="style2">A: Most of the time "Connect" will do what you want. it will update Cix and RSS messages at the same time. If you don't have a timed connection to cix then 'online' might suit you better as it posts messages as you send them. The other two options allow you to update cix and RSS feeds independently should you want to</p>
 
-<p class="style1">Q: What does the number that sometimes appears in the Vole Dock icon mean?</p>
+<p class="style2">Q: What does the number that sometimes appears in the Vole Dock icon mean?</p>
 
-<p class="style1">A: This is the number of Priority Unread messages
+<p class="style2">A: This is the number of Priority Unread messages
  left to read.</p>
 
-<p class="style1">Q: I need to tell a user to go to a message in another conference or to download a file from a conference or to access a web site or specify an email address. What's the easiest way to do this?</p>
+<p class="style2">Q: I need to tell a user to go to a message in another conference or to download a file from a conference or to access a web site or specify an email address. What's the easiest way to do this?</p>
 
-<p class="style1">A: Please use <a href="hotlinks.html">Hotlink</a></p>
+<p class="style2">A: Please use <a href="hotlinks.html">Hotlink</a></p>
 
 </body>
 </html>
