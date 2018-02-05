@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleName</key>
+	<string>Vole</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en-us</string>
+	<key>CFBundleIdentifier</key>
+	<string>uk.org.voleproject.vole.help</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2</string>
+	<key>CFBundleSignature</key>
+	<string>hbwr</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
+	<key>HPDBookAccessPath</key>
+	<string>Vole.html</string>
+	<key>HPDBookIconPath</key>
+	<string>shrd/CixReader.png</string>
+	<key>HPDBookIndexPath</key>
+	<string>Vole.helpindex</string>
+	<key>HPDBookKBProduct</key>
+	<string>vole1</string>
+<!--	<key>HPDBookKBURL</key>
+	<string>http://www.cix.co.uk/support</string> -->
+	<key>HPDBookTitle</key>
+	<string>Vole Help</string>
+	<key>HPDBookType</key>
+	<string>3</string>
+	<key>HPDBookTopicListCSSPath</key>
+	<string>helpstyle.css</string>
+</dict>
+</plist>
