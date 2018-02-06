@@ -17,7 +17,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string> <!-- for OSX this should be set to ???? -->
 	<key>CFBundleHelpBookFolder</key>
-	<string>Vienna Help</string>
+	<string>Vole.help</string>
 	<key>CFBundleHelpBookName</key>
 	<string>Vole Help</string>
 	<!-- LSMinumimSystemVersion added 2013-11-02 DJE -->

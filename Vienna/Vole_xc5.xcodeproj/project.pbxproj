@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		611065F51624366C00E9E654 /* LogRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 611065F41624366C00E9E654 /* LogRect.m */; };
 		6110660816243A7000E9E654 /* LogRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 6110660716243A7000E9E654 /* LogRect.h */; };
+		611D88582029CC7B00FB3E58 /* Vole.help in Resources */ = {isa = PBXBuildFile; fileRef = 611D88572029CC7B00FB3E58 /* Vole.help */; };
 		614862CA18A2754900FAAA7D /* VoleBuildInfoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 614862C818A2754900FAAA7D /* VoleBuildInfoController.h */; };
 		614862CB18A2754900FAAA7D /* VoleBuildInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614862C918A2754900FAAA7D /* VoleBuildInfoController.m */; };
 		614862CE18A2760B00FAAA7D /* VoleBuildInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614862CC18A2760B00FAAA7D /* VoleBuildInfo.xib */; };
@@ -202,7 +203,6 @@
 		AAD34DF7062786520094D6A6 /* DownloadUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD34DF5062786520094D6A6 /* DownloadUpdate.m */; };
 		AADD8963081C1916007C6E88 /* rssFolder.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AADD8962081C1916007C6E88 /* rssFolder.tiff */; };
 		AADD8A0E081C253F007C6E88 /* rssFeed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AADD8A0D081C253F007C6E88 /* rssFeed.tiff */; };
-		AAE3AF0706570DB700A1FA1F /* Vienna Help in Resources */ = {isa = PBXBuildFile; fileRef = AAE3AEF406570DB700A1FA1F /* Vienna Help */; };
 		AAF3B14206095E7B0025CC7F /* StringExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = AAF3B14006095E7B0025CC7F /* StringExtensions.h */; };
 		AAF3B14306095E7B0025CC7F /* StringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF3B14106095E7B0025CC7F /* StringExtensions.m */; };
 		AAFA8BAD062A005100C530A6 /* reschedule.tiff in Resources */ = {isa = PBXBuildFile; fileRef = AAFA8BAC062A005100C530A6 /* reschedule.tiff */; };
@@ -264,6 +264,7 @@
 		32DBCF750370BD2300C91783 /* Vole_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vole_Prefix.pch; sourceTree = "<group>"; };
 		611065F41624366C00E9E654 /* LogRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRect.m; sourceTree = "<group>"; };
 		6110660716243A7000E9E654 /* LogRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRect.h; sourceTree = "<group>"; };
+		611D88572029CC7B00FB3E58 /* Vole.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Vole.help; sourceTree = "<group>"; };
 		614862C818A2754900FAAA7D /* VoleBuildInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoleBuildInfoController.h; sourceTree = "<group>"; };
 		614862C918A2754900FAAA7D /* VoleBuildInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoleBuildInfoController.m; sourceTree = "<group>"; };
 		614862CD18A2760B00FAAA7D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/VoleBuildInfo.xib; sourceTree = "<group>"; };
@@ -455,7 +456,6 @@
 		AAD34DF5062786520094D6A6 /* DownloadUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadUpdate.m; sourceTree = "<group>"; };
 		AADD8962081C1916007C6E88 /* rssFolder.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = rssFolder.tiff; sourceTree = "<group>"; };
 		AADD8A0D081C253F007C6E88 /* rssFeed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = rssFeed.tiff; sourceTree = "<group>"; };
-		AAE3AEF506570DB700A1FA1F /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/Vienna Help"; sourceTree = "<group>"; };
 		AAF3B14006095E7B0025CC7F /* StringExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringExtensions.h; sourceTree = "<group>"; };
 		AAF3B14106095E7B0025CC7F /* StringExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringExtensions.m; sourceTree = "<group>"; };
 		AAFA8BAC062A005100C530A6 /* reschedule.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = reschedule.tiff; sourceTree = "<group>"; };
@@ -538,7 +538,6 @@
 			children = (
 				AA21F45D0753077300503F58 /* TODO */,
 				AA21F4510753053500503F58 /* CHANGES */,
-				AAE3AEF406570DB700A1FA1F /* Vienna Help */,
 				61BDCD521CEF10270066C977 /* XCConfig */,
 				AA32882E0846FAC400A7AD5A /* MacPAD */,
 				AA26F478060490F400FE7994 /* SQLite */,
@@ -633,6 +632,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				611D88572029CC7B00FB3E58 /* Vole.help */,
 				61D1A9FA1E194FB5008B1916 /* VoleInfo.plist */,
 				61E34AE3194252C100B9D9D8 /* ActivityViewer.xib */,
 				61E34AE5194252C100B9D9D8 /* Authentication.xib */,
@@ -1026,7 +1026,6 @@
 				AAFF197906504F6700D6F7CB /* draftFolderButton.tiff in Resources */,
 				AAFF199506504FCC00D6F7CB /* outboxFolderButton.tiff in Resources */,
 				61E34B16194252C100B9D9D8 /* TasksWindow.xib in Resources */,
-				AAE3AF0706570DB700A1FA1F /* Vienna Help in Resources */,
 				AA167A40065834F60091365D /* ViennaApp.scriptTerminology in Resources */,
 				AA167A850658361B0091365D /* ViennaApp.scriptSuite in Resources */,
 				AA87E3CB067010E200CE1F20 /* goOffline.tiff in Resources */,
@@ -1037,6 +1036,7 @@
 				AA958BE5068667C000F293F1 /* openForum.tiff in Resources */,
 				AA958BEC0686786B00F293F1 /* forum_header.tiff in Resources */,
 				61E34B0F194252C100B9D9D8 /* MainMenu.xib in Resources */,
+				611D88582029CC7B00FB3E58 /* Vole.help in Resources */,
 				AA958C350686855B00F293F1 /* joinFolder.tiff in Resources */,
 				614862CE18A2760B00FAAA7D /* VoleBuildInfo.xib in Resources */,
 				AA680A51068F331B004078F0 /* Action.tiff in Resources */,
@@ -1399,14 +1399,6 @@
 				AAC504360828E6740089FF70 /* English */,
 			);
 			name = RSSSources.plist;
-			sourceTree = "<group>";
-		};
-		AAE3AEF406570DB700A1FA1F /* Vienna Help */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AAE3AEF506570DB700A1FA1F /* English */,
-			);
-			name = "Vienna Help";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
