@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>Vole</string>
+	<string>filled in by script</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -23,7 +23,7 @@
 	<key>HPDBookIndexPath</key>
 	<string>Vole.helpindex</string>
 	<key>HPDBookKBProduct</key>
-	<string>vole1</string>
+	<string>set by script</string>
 <!--	<key>HPDBookKBURL</key>
 	<string>http://www.cix.co.uk/support</string> -->
 	<key>HPDBookTitle</key>

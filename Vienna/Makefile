@@ -161,6 +161,7 @@ elcapitan2-release elcapitan2 elcapitan2-go: PROJECT=${PROJECT_XC7}
 sierra-release:		NAME=vr
 sierra-release:		COMPATIBILITY=
 sierra-release:		STATUS=Alpha testing
+sierra:			HelpBookName="Vole1"
 sierra-release sierra: 	MOSXDT=10.7
 sierra-release sierra:	ARCHS?=x86_64
 sierra-release sierra: 	DEVELOPER_DIR=${DEVELOPER_DIR_XC8}
@@ -170,6 +171,7 @@ sierra-release sierra sierra-go: PROJECT=${PROJECT_XC7}
 sierra2-release:		NAME=vr
 sierra2-release:		COMPATIBILITY=
 sierra2-release:		STATUS=Alpha testing
+sierra2:			HelpBookName="Vole2"
 sierra2-release sierra2: 	MOSXDT=10.7
 sierra2-release sierra2:	ARCHS?=x86_64
 sierra2-release sierra2: 	DEVELOPER_DIR=${DEVELOPER_DIR_XC8}
@@ -252,7 +254,7 @@ ${BUILDS}: targetcheck
 		DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT=${DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT} \
 		DEBUG_INFORMATION_FORMAT=${DEBUG_INFORMATION_FORMAT}
 # Postprocess the Help Book Info.plist
-		../scripts/HelpInfoProcess.sh ${SOURCE_DIR}
+		../scripts/HelpInfoProcess.sh ${SOURCE_DIR} ${HelpBookName}
 # Postprocess VoleInfo.plist
 	cat VoleInfo.plist | awk -f ../scripts/postprocess_voleinfo.awk \
 		vole=${VIENNA_APP} \

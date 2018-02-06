@@ -19,7 +19,7 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>Vole.help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>Vole Help</string>
+	<string>uk.co.opencommunity.vienna.help</string>
 	<!-- LSMinumimSystemVersion added 2013-11-02 DJE -->
 	<key>LSMinimumSystemVersion</key>
         <string>${MACOSX_DEPLOYMENT_TARGET}</string>
