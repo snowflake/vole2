@@ -932,6 +932,7 @@
 				61AD4DD211C991280033534B /* Vers script */,
 				8D15AC280486D014006FF6A4 /* Headers */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
+				61CB9970202A48B2007EB81B /* Script to Update Vole.help bundle */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				AA65D27F083CF46F00BC387C /* CopyFiles */,
@@ -1094,6 +1095,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n\nPATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\n# modified to take the script\n. ../scripts/version-script.sh\n";
+		};
+		61CB9970202A48B2007EB81B /* Script to Update Vole.help bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Script to Update Vole.help bundle";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Updating Help Bundle\"\n../scripts/HelpInfoProcess.sh";
 		};
 		CDA3BDA408F18AB200D6393F /* ZModem script */ = {
 			isa = PBXShellScriptBuildPhase;
