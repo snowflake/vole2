@@ -18,11 +18,13 @@
 PATH=$SYSTEM_DEVELOPER_BIN_DIR:$PATH:/usr/local/bin
 
 OF=XXXX-Tempfile.h
-
-# Now done in VoleInfo.plist
-#build_uuid=$(uuidgen | tr -d '\012')
-
 . ../scripts/common-functions.sh
+
+PLB=/usr/libexec/PlistBuddy
+
+function plget() {
+    ${PLB} -c "Print :${1}" VoleInfo.plist
+    }
 
 if [ x${1} = xvcs ]
 then
@@ -40,6 +42,15 @@ then
 	marketing_version | tr -d '\n'
 	exit 0
 fi
+
+# Now done in VoleInfo.plist
+#build_uuid=$(uuidgen | tr -d '\012')
+echo "version-script.sh: fetching BuildUUID"
+build_uuid=$(plget BuildUUID)
+echo ${build_uuid}
+BUILDID=$(plget BuildID)
+echo ${BUILDID}
+echo "version-script.sh: done fetching"
 
 echo  Fossil checked-in files checking script
 
@@ -80,9 +91,10 @@ printf '"Built by username: %s\\n"\n' `whoami` >> ${OF}
 printf '"Build UUID: %s\\n"\n' "${build_uuid}" >> ${OF}
 printf '"Build ID: %s\\n"\n' "${BUILDID}" >> ${OF}
 # date command does not like leading zeros
-builddate=$(date -u -r "${SECONDS_SINCE_EPOCH}")
-echo Build date ${builddate}
-printf '"Built on: %s\\n\\n"\n' "$builddate"  >> ${OF}
+#builddate=$(date -u -r "${SECONDS_SINCE_EPOCH}")
+builddate=$(plget BuildDate)
+echo Build date: ${builddate}
+printf '"Built on: %s\\n\\n"\n' "${builddate}"  >> ${OF}
 printf '"=== Version control status ===\\n"\n' >>${OF}
 version_control_status  | printlines >> ${OF}
 if [ $unchecked_files -ne 0 ]	
