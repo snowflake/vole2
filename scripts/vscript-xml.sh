@@ -12,49 +12,26 @@ filename=VoleInfo.plist
 echo xxx vscript-xml.sh started
 echo Filename is ${filename}
 
-function marketing_version(){
+. ../scripts/common-functions.sh
 
-# This will work if we have two .xcodeproj directories in the Vienna directory,
-# unlike agvtool.
-/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${INFOPLIST_FILE}
-
-}
-
-function uuid_checkin(){
-  # returns the checkin uuid
-  if fossil changes 2>/dev/null 1>/dev/null
-  then
-     # within a Fossil checkout
-     fossil status | awk '/^checkout:/ { print $2; exit}'
-  elif git status -s -uno 2>/dev/null 1>/dev/null
-  then
-     # within a Git checkout
-     git log -1 | awk '/^commit / {print $2;exit}'
-  else
-    # not within a checkout
-    printf 'Unknown'
-  fi
-}
-
-function nolf(){
-# delete linefeeds from stdin
-   tr -d '\012'
-}
 function interesting_environments(){
    printenv | sort |awk -f ../scripts/interesting_environments.awk
 }
 
 
 function archs_array(){
-# Generate a array of Archs
-printf "  <key>Archs</key>\n"
-printf "    <array>\n"
-for i in "${ARCHS}"
-do
-printf "      <string>%s</string>\n" ${i}
-done
-printf "    </array>\n"
+    # Generate a array of Archs
+    printf "  <key>Archs</key>\n"
+    printf "    <array>\n"
+    for i in "${ARCHS}"
+    do
+	printf "      <string>%s</string>\n" ${i}
+    done
+    printf "    </array>\n"
 }
+
+VCSSTATUS=$(../scripts/version-script.sh vcs)
+VCSDATE=$(../scripts/version-script.sh vcsdate)
 
 function iso_date(){
 # print date in ISO 8601 format (see plist dtd for acceptable format)
@@ -65,7 +42,7 @@ SECONDS_SINCE_EPOCH=$(date -u +%s)
 # SHORTDATE is used for Bundle long version numbers
 SHORTDATE=$(date -r ${SECONDS_SINCE_EPOCH} -u '+%Y%m.%d.%H%M%S')
 builddate=$(date -u -r "${SECONDS_SINCE_EPOCH}")
-
+BUILDID="${SHORTDATE}"
 cat >${filename} <<EOF1
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -91,7 +68,7 @@ cat >${filename} <<EOF1
   <key>BuildDateSinceEpoch</key>
     <integer>${SECONDS_SINCE_EPOCH}</integer>
   <key>BuildUUID</key>
-    <string>${build_uuid}</string>
+    <string>$(uuidgen | nolf)</string>
   <key>BuildID</key>
     <string>${BUILDID}</string>
   <key>Configuration</key>

@@ -244,8 +244,8 @@ ${BUILDS}: targetcheck
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project ./${PROJECT}  -configuration $@ \
 		-sdk ${SDK_NAME} \
-		SECONDS_SINCE_EPOCH="${SECONDS_SINCE_EPOCH}" \
-		BUILDID="${SHORTDATE}" \
+#		SECONDS_SINCE_EPOCH="${SECONDS_SINCE_EPOCH}" \
+#		BUILDID="${SHORTDATE}" \
                 VOLE_BUILD_STYLE=$@ \
 		ARCHS="${ARCHS}"  \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}" \
