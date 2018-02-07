@@ -3,10 +3,38 @@
 # Generate a plist containing info about Vole for the 
 #   Check-For-Updates facility.
 
+PATH=../scripts:${PATH}
+
+set -e
+set -x
 filename=VoleInfo.plist
 
-echo vscript-xml.sh started
+echo xxx vscript-xml.sh started
 echo Filename is ${filename}
+
+function marketing_version(){
+
+# This will work if we have two .xcodeproj directories in the Vienna directory,
+# unlike agvtool.
+/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${INFOPLIST_FILE}
+
+}
+
+function uuid_checkin(){
+  # returns the checkin uuid
+  if fossil changes 2>/dev/null 1>/dev/null
+  then
+     # within a Fossil checkout
+     fossil status | awk '/^checkout:/ { print $2; exit}'
+  elif git status -s -uno 2>/dev/null 1>/dev/null
+  then
+     # within a Git checkout
+     git log -1 | awk '/^commit / {print $2;exit}'
+  else
+    # not within a checkout
+    printf 'Unknown'
+  fi
+}
 
 function nolf(){
 # delete linefeeds from stdin
@@ -32,6 +60,11 @@ function iso_date(){
 # print date in ISO 8601 format (see plist dtd for acceptable format)
 date -u -r ${SECONDS_SINCE_EPOCH} +%Y-%m-%dT%H:%M:%SZ
 }
+############ end of functions ##############
+SECONDS_SINCE_EPOCH=$(date -u +%s)
+# SHORTDATE is used for Bundle long version numbers
+SHORTDATE=$(date -r ${SECONDS_SINCE_EPOCH} -u '+%Y%m.%d.%H%M%S')
+builddate=$(date -u -r "${SECONDS_SINCE_EPOCH}")
 
 cat >${filename} <<EOF1
 <?xml version="1.0" encoding="UTF-8"?>

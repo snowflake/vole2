@@ -928,8 +928,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA503398085CFC6000BC203D /* Build configuration list for PBXNativeTarget "Vole" */;
 			buildPhases = (
+				61B75330202B17C100DF486E /* Run script to generate VoleInfo.plist */,
+				61AD4DD211C991280033534B /* Run version script to generate XXXX-Tempfile.h */,
 				61AD4D9211C94A770033534B /* Growl Extract */,
-				61AD4DD211C991280033534B /* Vers script */,
 				8D15AC280486D014006FF6A4 /* Headers */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				61CB9970202A48B2007EB81B /* Script to Update Vole.help bundle */,
@@ -1079,7 +1080,7 @@
 			shellPath = /bin/sh;
 			shellScript = "echo Extracting growl\n\n. ../scripts/growl-extract.sh\n";
 		};
-		61AD4DD211C991280033534B /* Vers script */ = {
+		61AD4DD211C991280033534B /* Run version script to generate XXXX-Tempfile.h */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1087,14 +1088,28 @@
 			inputPaths = (
 				A_FILE_WHICH_MUST_NOT_EXIST,
 			);
-			name = "Vers script";
+			name = "Run version script to generate XXXX-Tempfile.h";
 			outputPaths = (
 				"XXXX-Tempfile.h",
 				VoleInfo.plist,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nPATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\n# modified to take the script\n. ../scripts/version-script.sh\n";
+			shellScript = "#!/bin/sh\n\nPATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\n# modified to take the script\nrm -f XXXX-Tempfile.h\n. ../scripts/version-script.sh\n";
+		};
+		61B75330202B17C100DF486E /* Run script to generate VoleInfo.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run script to generate VoleInfo.plist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -f VoleInfo.plist\n. ../scripts/vscript-xml.sh";
 		};
 		61CB9970202A48B2007EB81B /* Script to Update Vole.help bundle */ = {
 			isa = PBXShellScriptBuildPhase;

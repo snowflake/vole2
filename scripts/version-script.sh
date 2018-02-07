@@ -305,6 +305,4 @@ if [ $unchecked_files -ne 0 ]
 	fi
 echo 'version-script.sh completed'
 
-. ../scripts/vscript-xml.sh
-
 exit 0
