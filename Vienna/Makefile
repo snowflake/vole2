@@ -391,12 +391,21 @@ endif
 	cp ${NAME}-${VERSION}.zip \
 		${ARCHIVE_DIR}/${NAME}-${VERSION}-`${VIENNA_APP}  -b`.zip
 
+# Build the release notes for the Vole wiki
 .PHONY: releasenotes
 releasenotes:
 	[ -f ~/mac/sources-mine/vole/RELEASES ]
 	cat ~/mac/sources-mine/vole/RELEASES | \
 		awk -f ../scripts/makereleaseindex.awk | \
 		fossil wiki commit RINOTES
+
+# Build the help home page for various releases on the wiki
+.PHONY: helpnotes
+helpnotes:
+	[ -f ~/mac/sources-mine/vole/RELEASES ]
+	cat ~/mac/sources-mine/vole/RELEASES | \
+		awk -f ../scripts/makewikihelpindex.awk | \
+		fossil wiki commit Help
 
 # validate-help requires Macports: gmake opensp html
 .PHONY: validate-help
