@@ -933,6 +933,7 @@
 				61AD4D9211C94A770033534B /* Growl Extract */,
 				8D15AC280486D014006FF6A4 /* Headers */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
+				61B75331202C4BE700DF486E /* Run Script to update Info.lplist */,
 				61CB9970202A48B2007EB81B /* Script to Update Vole.help bundle */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
@@ -1110,6 +1111,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "rm -f VoleInfo.plist\n. ../scripts/vscript-xml.sh";
+		};
+		61B75331202C4BE700DF486E /* Run Script to update Info.lplist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script to update Info.lplist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../scripts/update-info-plist.sh";
 		};
 		61CB9970202A48B2007EB81B /* Script to Update Vole.help bundle */ = {
 			isa = PBXShellScriptBuildPhase;

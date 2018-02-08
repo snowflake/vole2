@@ -1,15 +1,14 @@
-# This script is sourced by version-script.sh.
-# It should not be run independently.
+#!/bin/sh
+
 # Generate a plist containing info about Vole for the 
 #   Check-For-Updates facility.
 
 PATH=../scripts:${PATH}
 
 set -e
-set -x
 filename=VoleInfo.plist
 
-echo xxx vscript-xml.sh started
+echo vscript-xml.sh started
 echo Filename is ${filename}
 
 . ../scripts/common-functions.sh

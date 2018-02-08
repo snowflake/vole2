@@ -40,7 +40,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>${BUILDID}</string>
+	<string>BUILDID is set by a script</string>
 
 <!-- *************** This file is for Vole 2 ****************** -->
 	<key>CFBundleShortVersionString</key>
@@ -53,8 +53,8 @@
 	<key>NSPrincipalClass</key>
 	<string>ViennaApp</string>
 	<key>VoleVCSStatus</key>
-	<string>${VCSSTATUS}</string>
+	<string>VCSSTATUS is set by a script</string>
 	<key>VoleVCSDate</key>
-	<string>${VCSDATE}</string>
+	<string>VCSDATE is set by a script</string>
 </dict>
 </plist>
