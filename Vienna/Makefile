@@ -394,16 +394,14 @@ endif
 # Build the release notes for the Vole wiki
 .PHONY: releasenotes
 releasenotes:
-	[ -f ~/mac/sources-mine/vole/RELEASES ]
-	cat ~/mac/sources-mine/vole/RELEASES | \
+	fossil tag list | ../scripts/sortreleases.awk | \
 		awk -f ../scripts/makereleaseindex.awk | \
 		fossil wiki commit RINOTES
 
 # Build the help home page for various releases on the wiki
 .PHONY: helpnotes
 helpnotes:
-	[ -f ~/mac/sources-mine/vole/RELEASES ]
-	cat ~/mac/sources-mine/vole/RELEASES | \
+	fossil tag list | ../scripts/sortreleases.awk | \
 		awk -f ../scripts/makewikihelpindex.awk | \
 		fossil wiki commit Help
 
