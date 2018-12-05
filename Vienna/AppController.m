@@ -2527,7 +2527,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	
     NSData * ucs4data = [messageText dataUsingEncoding: NSUTF32StringEncoding];
     // ucs4data is a block of wchars with BOM and no null terminator
-    wcharptr = memsave = calloc( [ucs4data length]+8, 1);
+    wcharptr = memsave = calloc( [ucs4data length]+8, 1);
     memcpy( (void *)wcharptr, [ucs4data bytes]+4, [ucs4data length]-4);
 	
     // If message text begins with <html> then we render as HTML only
