@@ -11,8 +11,9 @@ build: clean
 release:	build
 	make -f ../mk/make-dmg.mk NAME=encode VERSION=1.0 \
 		SOURCE_DIR=build/Debug SOURCE_FILES=Encoding.app
-build-modern:
-	xcodebuild -sdk macosx10.12 -configuration Debug ARCHS='x86_64 i386' MACOSX_DEPLOYMENT_TARGET=10.6
+
+build-modern: clean-modern
+	xcodebuild -sdk macosx10.12 -configuration Debug ARCHS='x86_64 i386' MACOSX_DEPLOYMENT_TARGET=10.6 ONLY_ACTIVE_ARCH=NO
 
 clean-modern:
 	xcodebuild -configuration Debug clean
