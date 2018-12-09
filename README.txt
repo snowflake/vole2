@@ -1,9 +1,12 @@
 This is the root directory for the Vole off-line reader for Cix project.
 
-Find out about Cix at https://forums.cixonline.com/secure/newhome.aspx
-and http://en.wikipedia.org/wiki/CIX
+Find out about Cix at https://www.cix.uk/forums/
 
-Find out about Vole at http://www.cixonline.com/vole_for_mac.asp
+and https://www.cix.uk/forums/accessing-forums
+
+Wikipedia article  http://en.wikipedia.org/wiki/CIX
+
+-------------------------------------------------------------------------------
 
 Vole was formerly known as Vienna or Vinkix, and you will see many historical
 references to them.
@@ -12,17 +15,20 @@ The source code for Vole is in the Vienna directory.
 
 Requirements to run:
 
-      Mac OS X Tiger or later. PowerPC or Intel-32 or Intel-64
+      Mac OS X Lion, Intel 64-bit
 
 Requirements to build:
 
-      Xcode 3.2.6 and a Mac OS X that supports it (Snow Leopard)
-      Xcode 5 and Mountain Lion.
-      Xcode 6 and Mavericks or Yosemite.
-      Xcode 6 and 7 and El Capitan
-      Xcode 7 and 8 and El Capitan or Sierra
+      Xcode 8 and El Capitan or Sierra
 
-Development takes place on the trunk branch (Git and Fossil)
+Work is in progress to make it build on High Sierra and Mojave
 
+Vole was formerly known as Vienna. It was renamed to avoid conflict
+with the Vienna RSS and Atom reader.
+
+-------------------------------------------------------------------------------
 Are you looking for the Vienna RSS and Atom feed reader?
-Try http://www.vienna-rss.org/
+
+It's on Github:  https://github.com/ViennaRSS/vienna-rss
+
+and also at http://www.vienna-rss.com/
