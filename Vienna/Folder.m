@@ -38,8 +38,8 @@
 		isUnreadCountChanged = NO;
 		isMessages = NO;
 		hasDescription = NO;
-		messages = [[NSMutableDictionary dictionary] retain];
-		name = [newName retain];
+		messages = [NSMutableDictionary dictionary];
+		name = newName;
 		description = nil;
 		link = nil;
 	}
@@ -119,8 +119,6 @@
  */
 -(void)setDescription:(NSString *)newDescription
 {
-	[newDescription retain];
-	[description release];
 	description = newDescription;
 	hasDescription = YES;
 }
@@ -130,8 +128,6 @@
  */
 -(void)setLink:(NSString *)newLink
 {
-	[newLink retain];
-	[link release];
 	link = newLink;
 	hasDescription = YES;
 }
@@ -149,8 +145,6 @@
  */
 -(void)setName:(NSString *)newName
 {
-	[newName retain];
-	[name release];
 	name = newName;
 }
 
@@ -296,6 +290,12 @@ NSString * cixConfs = @"CIX Conferences";
  */
 -(NSScriptObjectSpecifier *)objectSpecifier
 {
+    /* This bit of code is only used during scripting
+     * I have no clue what the next line is meant to do, and convert to ARC does not like it,
+     * so we will log a message and return nil for now.
+     */
+    NSLog(@" %s %d scripting unsupported.",__FILE__, __LINE__);
+#if 0
     NSArray * folders = [[NSApp delegate] folders];
     NSUInteger index = [folders indexOfObjectIdenticalTo:self];
     if (index != NSNotFound)
@@ -303,18 +303,11 @@ NSString * cixConfs = @"CIX Conferences";
         NSScriptObjectSpecifier *containerRef = [[NSApp delegate] objectSpecifier];
         return [[[NSIndexSpecifier allocWithZone:[self zone]] initWithContainerClassDescription:(NSScriptClassDescription *)[NSApp classDescription] containerSpecifier:containerRef key:@"folders" index:index] autorelease];
     }
+#endif
 	return nil;
 }
 
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[messages release];
-	[description release];
-	[link release];
-	[name release];
-	[super dealloc];
-}
 @end

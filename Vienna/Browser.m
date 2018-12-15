@@ -72,7 +72,7 @@ static void setupDateFormatter(){
 -(void)windowDidLoad
 {
 	// Create the toolbar.
-    NSToolbar * toolbar = [[[NSToolbar alloc] initWithIdentifier:@"MA_BrowserToolbar"] autorelease];
+    NSToolbar * toolbar = [[NSToolbar alloc] initWithIdentifier:@"MA_BrowserToolbar"];
 	
 	// Now reload from the database
 	currentCategory = MA_All_Conferences;
@@ -181,8 +181,6 @@ static void setupDateFormatter(){
  */
 -(void)setSortColumnIdentifier:(NSString *)str
 {
-	[str retain];
-	[sortColumnIdentifier release];
 	sortColumnIdentifier = str;
 }
 
@@ -284,11 +282,9 @@ static void setupDateFormatter(){
 {
 	NSArray * sortedArrayOfForums;
 	
-	sortedArrayOfForums = [[currentArrayOfForums sortedArrayUsingFunction:forumSortHandler context:self] retain];
+	sortedArrayOfForums = [currentArrayOfForums sortedArrayUsingFunction:forumSortHandler context:(__bridge void * _Nullable)(self)];
 	NSAssert([sortedArrayOfForums count] == [currentArrayOfForums count], @"Lost messages from currentArrayOfForums during sort");
-	[currentArrayOfForums release];
-	currentArrayOfForums = [[NSArray arrayWithArray:sortedArrayOfForums] retain];
-	[sortedArrayOfForums release];
+	currentArrayOfForums = [NSArray arrayWithArray:sortedArrayOfForums];
 	[forumList reloadData];
 }
 
@@ -297,7 +293,7 @@ static void setupDateFormatter(){
  */
 NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
 {
-	Browser * app = (Browser *)context;
+	Browser * app = (__bridge Browser *)context;
 	if ([app->sortColumnIdentifier isEqualToString:@"name"])
 		return [[item1 name] caseInsensitiveCompare:[item2 name]] * app->sortDirection;
 
@@ -330,10 +326,9 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
 	[progressBar startAnimation:self];
 	[statusString setStringValue:NSLocalizedString(@"Loading browser list...", nil)];
 
-	[currentArrayOfForums release];
 	if (filter == nil || [filter length] == 0)
 	{
-		currentArrayOfForums = [[db arrayOfForums:category inCategory:selectedCategory] retain];
+		currentArrayOfForums = [db arrayOfForums:category inCategory:selectedCategory];
 		[(NSSearchField *)searchView setStringValue:@""];
 	}
 	else
@@ -350,8 +345,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
 			}
 		}
 		
-		currentArrayOfForums = [[NSArray arrayWithArray:newArrayOfForums] retain];
-		[newArrayOfForums release];
+		currentArrayOfForums = [NSArray arrayWithArray:newArrayOfForums];
 	}
 	
 	[self sortForums];
@@ -526,7 +520,7 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
 		[item setTarget:self];
 		[item setAction:@selector(searchBrowser:)];
     }
-	return [item autorelease];
+	return item;
 }
 
 /* toolbarDefaultItemIdentifiers
@@ -565,11 +559,4 @@ NSInteger forumSortHandler(Forum * item1, Forum * item2, void * context)
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[joinWindow release];
-	[currentArrayOfForums release];
-	[sortColumnIdentifier release];
-	[super dealloc];
-}
 @end

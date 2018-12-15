@@ -114,8 +114,6 @@
  */
 -(void)setLastActiveDate:(NSDate *)newLastActiveDate
 {
-	[newLastActiveDate retain];
-	[lastActiveDate release];
 	lastActiveDate = newLastActiveDate;
 }
 
@@ -123,8 +121,6 @@
  */
 -(void)setName:(NSString *)newName
 {
-	[newName retain];
-	[name release];
 	name = newName;
 }
 
@@ -132,17 +128,9 @@
  */
 -(void)setDescription:(NSString *)newDescription
 {
-	[newDescription retain];
-	[description release];
 	description = newDescription;
 }
 
 /* dealloc
  */
--(void)dealloc
-{
-	[name release];
-	[description release];
-	[super dealloc];
-}
 @end

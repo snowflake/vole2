@@ -166,11 +166,11 @@ int main(int argc, const char *argv[])
 		
 	}
 	if( testAnotherViennaIsRunning() == true ){
-		NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-		[NSApplication sharedApplication];
-		[NSBundle loadNibNamed:@"checkVienna" owner:NSApp];
-		[NSApp run];
-		[pool drain];
+		@autoreleasepool {
+			[NSApplication sharedApplication];
+			[NSBundle loadNibNamed:@"checkVienna" owner:NSApp];
+			[NSApp run];
+		}
 	}		
 // test for using the beta server
 	char * home = getenv("HOME");

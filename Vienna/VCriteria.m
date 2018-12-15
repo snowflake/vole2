@@ -124,8 +124,6 @@
  */
 -(void)setField:(NSString *)newField
 {
-	[newField retain];
-	[field release];
 	field = newField;
 }
 
@@ -142,8 +140,6 @@
  */
 -(void)setValue:(NSString *)newValue
 {
-	[newValue retain];
-	[value release];
 	value = newValue;
 }
 
@@ -174,12 +170,6 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[value release];
-	[field release];
-	[super dealloc];
-}
 @end
 
 @implementation VCriteriaTree
@@ -234,10 +224,8 @@
 				[newCriteria setOperator:[operator intValue]];
 				[newCriteria setValue:value];
 				[self addCriteria:newCriteria];
-				[newCriteria release];
 				++index;
 			}
-		[xmlTree release];
 	}
 	return self;
 }
@@ -281,9 +269,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[criteriaTree release];
-	[super dealloc];
-}
 @end

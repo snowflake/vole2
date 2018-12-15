@@ -147,7 +147,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	cixCredentials = [[Credentials alloc] initForService:@"CIX"];
 	
 	// Create the toolbar.
-    NSToolbar * toolbar = [[[NSToolbar alloc] initWithIdentifier:@"MA_Toolbar"] autorelease];
+    NSToolbar * toolbar = [[NSToolbar alloc] initWithIdentifier:@"MA_Toolbar"];
 
     // Set the appropriate toolbar options. We are the delegate, customization is allowed,
 	// changes made by the user are automatically saved and we start in icon+text mode.
@@ -293,8 +293,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)updateHTMLDict
 {
-	[htmlDict release];
-	htmlDict = [[NSMutableDictionary dictionary] retain];
+	htmlDict = [NSMutableDictionary dictionary];
 
 	WebPreferences * webPrefs = [[WebPreferences alloc] initWithIdentifier:@"ViennaWebPrefs"];
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_MessageFont];
@@ -307,7 +306,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	
 	[htmlDict setObject:[NSNumber numberWithLong:(long)1] forKey:@"UseWebKit"];
 	[htmlDict setObject:webPrefs forKey:@"WebPreferences"];
-	[webPrefs release];
 }
 
 #pragma mark - growlIsReady
@@ -404,7 +402,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 -(void)initSortMenu
 {
 	NSMenu * viewMenu = [[[NSApp mainMenu] itemWithTitle:@"View"] submenu];
-	NSMenu * sortMenu = [[[NSMenu alloc] initWithTitle:@"Sort By"] autorelease];
+	NSMenu * sortMenu = [[NSMenu alloc] initWithTitle:@"Sort By"];
 	NSArray * fields = [db arrayOfFields];
 	NSEnumerator * enumerator = [fields objectEnumerator];
 	VField * field;
@@ -422,7 +420,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 			NSMenuItem * menuItem = [[NSMenuItem alloc] initWithTitle:[field title] action:@selector(doSortColumn:) keyEquivalent:@""];
 			[menuItem setRepresentedObject:field];
 			[sortMenu addItem:menuItem];
-			[menuItem release];
 		}
 	}
 	[[viewMenu itemWithTitle:@"Sort By"] setSubmenu:sortMenu];
@@ -435,7 +432,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 -(void)initColumnsMenu
 {
 	NSMenu * viewMenu = [[[NSApp mainMenu] itemWithTitle:@"View"] submenu];
-	NSMenu * columnsMenu = [[[NSMenu alloc] initWithTitle:@"Columns"] autorelease];
+	NSMenu * columnsMenu = [[NSMenu alloc] initWithTitle:@"Columns"];
 	NSArray * fields = [db arrayOfFields];
 	NSEnumerator * enumerator = [fields objectEnumerator];
 	VField * field;
@@ -451,7 +448,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 			NSMenuItem * menuItem = [[NSMenuItem alloc] initWithTitle:[field title] action:@selector(doViewColumn:) keyEquivalent:@""];
 			[menuItem setRepresentedObject:field];
 			[columnsMenu addItem:menuItem];
-			[menuItem release];
 		}
 	}
 	[[viewMenu itemWithTitle:@"Columns"] setSubmenu:columnsMenu];
@@ -522,7 +518,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 			[newTableColumn setMaxWidth:1000];
 			[newTableColumn setWidth:[field width]];
 			[messageList addTableColumn:newTableColumn];
-			[newTableColumn release];
 
 			widthSoFar += [field width];
 			if (isResizable)
@@ -556,7 +551,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
     NSTableColumn * tableColumn = [messageList tableColumnWithIdentifier:MA_Column_MessageId];
 	ImageAndTextCell * imageAndTextCell = [[ImageAndTextCell alloc] init];
     [tableColumn setDataCell:imageAndTextCell];
-	[imageAndTextCell release];
 	
 	// Set the extended date formatter on the Date column
 	tableColumn = [messageList tableColumnWithIdentifier:MA_Column_MessageDate];
@@ -600,7 +594,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[defaults synchronize];
 	
 	// We're done
-	[dataArray release];
 }
 
 #pragma mark - setTableViewFont
@@ -612,14 +605,12 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 {
 	NSInteger height;
 	
-	[messageListFont release];
-	[boldMessageListFont release];
 	
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_MessageListFont];
 	messageListFont = [NSUnarchiver unarchiveObjectWithData:fontData];
 	boldMessageListFont = [[NSFontManager sharedFontManager] convertWeight:YES ofFont:messageListFont];
-	[boldMessageListFont retain ];   // DJE This makes it work on Leopard without garbage collection
-	[messageListFont retain ];  // and this as well 
+	   // DJE This makes it work on Leopard without garbage collection
+	  // and this as well 
 
 
 // deprecated API was here DJE	
@@ -629,7 +620,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	// replacement here
 	NSLayoutManager *nslm = [[NSLayoutManager alloc] init];
 	height = (NSInteger) [ nslm defaultLineHeightForFont: boldMessageListFont ];
-	[ nslm release];
 #endif
 	[messageList setRowHeight:height + 3];
 }
@@ -700,8 +690,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 			// Now set the new app icon and clean up.
 			[iconImageBuffer unlockFocus];
 			[NSApp setApplicationIconImage:iconImageBuffer];
-			[iconImageBuffer release];
-			[attributes release];
 		}
 		else
 			[NSApp setApplicationIconImage:originalIcon];
@@ -775,7 +763,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	if (currentFolderId != -1)
 		[db flushFolder:currentFolderId];
 	[db close];
-	[connect release];
 }
 
 #pragma mark - windowWillClose
@@ -999,19 +986,22 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 // #warning 64BIT: Check formatting arguments (This string is not in localizablestrings
 			NSString * titleText = [NSString stringWithFormat:NSLocalizedString(@"Offer to retrieve message title", nil), messageId];
 			NSString * bodyText = NSLocalizedString(@"Offer to retrieve message text", nil);
-			
+// #error needs attention here
 			// Package up the message and folder numbers to the context info
-			NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil] retain];
+			NSArray * contextArray = [NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil];
 // #warning 64BIT: Check formatting arguments
-			NSBeginAlertSheet(titleText,
-							  NSLocalizedString(@"Retrieve", nil),
-							  NSLocalizedString(@"Cancel", nil),
-							  nil,
-							  mainWindow,
-							  self,
-							  @selector(doRetrieveMessage:returnCode:contextInfo:),
-							  nil, contextArray,
-							  bodyText);
+			NSBeginAlertSheet(titleText,                                            // title
+							  NSLocalizedString(@"Retrieve", nil),                  // default button
+							  NSLocalizedString(@"Cancel", nil),                    // alternate button
+							  nil,                                                  // other button
+							  mainWindow,                                           // doc window
+							  self,                                                 // modal delegate
+							  @selector(doRetrieveMessage:returnCode:contextInfo:), // did end selector
+							  nil,                                                  // didDismassSelector
+#warning dje added a __bridge to keep ARC happy
+                              (__bridge void *)(contextArray),                                         // context Info
+                              @"%@",                                                // msg Format
+							  bodyText);                                            // Message ...
 		}
 	}
 }
@@ -1028,7 +1018,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSString * bodyText = [NSString stringWithFormat:NSLocalizedString(@"Offer to join and retrieve message text", nil), folderPath];
 	
 	// Package up the message and folder numbers to the context info
-	NSArray * contextArray = [[NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil] retain];	
+	NSArray * contextArray = [NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil];	
 // #warning 64BIT: Check formatting arguments
 	NSBeginAlertSheet(titleText,
 					  NSLocalizedString(@"Join", nil),
@@ -1037,7 +1027,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 					  mainWindow,
 					  self,
 					  @selector(doRetrieveMessage:returnCode:contextInfo:),
-					  nil, contextArray,
+					  nil, (__bridge void *)(contextArray),
 					  bodyText);
 }
 
@@ -1048,7 +1038,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 -(void)doRetrieveMessage:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     (void)sheet;
-	NSArray * contextArray = (NSArray *)contextInfo;
+	NSArray * contextArray = (__bridge NSArray *)contextInfo;
 	if (returnCode == NSAlertDefaultReturn)
 	{
 		NSAssert(contextArray != nil, @"Got a nil context array");
@@ -1058,7 +1048,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 		NSString * folderPath = [contextArray objectAtIndex:1];
 		[self retrieveMessage:messageId fromFolder:folderPath];
 	}
-	[contextArray release];
 }
 
 #pragma mark - retrieveMessage
@@ -1478,8 +1467,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSColor * newQuoteColour;
 
 	colourData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_QuoteColour];
-	newQuoteColour = [[NSUnarchiver unarchiveObjectWithData:colourData] retain];
-	[quoteColour release];
+	newQuoteColour = [NSUnarchiver unarchiveObjectWithData:colourData];
 	quoteColour = newQuoteColour;
 	if (currentSelectedRow != -1)
 		[self updateMessageText];
@@ -1496,8 +1484,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSColor * newPriorityColour;
 	
 	colourData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_PriorityColour];
-	newPriorityColour = [[NSUnarchiver unarchiveObjectWithData:colourData] retain];
-	[priorityColour release];
+	newPriorityColour = [NSUnarchiver unarchiveObjectWithData:colourData];
 	priorityColour = newPriorityColour;
 	[self refreshFolder:NO];
 }
@@ -1513,8 +1500,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSColor * newIgnoredColour;
 	
 	colourData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_IgnoredColour];
-	newIgnoredColour = [[NSUnarchiver unarchiveObjectWithData:colourData] retain];
-	[ignoredColour release];
+	newIgnoredColour = [NSUnarchiver unarchiveObjectWithData:colourData];
 	ignoredColour = newIgnoredColour;
 	[self refreshFolder:NO];
 }
@@ -1555,14 +1541,13 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	NSInteger newFrequency = [[NSUserDefaults standardUserDefaults] integerForKey:MAPref_CheckFrequency];
 
 	[checkTimer invalidate];
-	[checkTimer release];
 	if (newFrequency > 0)
 	{
-		checkTimer = [[NSTimer scheduledTimerWithTimeInterval:newFrequency
+		checkTimer = [NSTimer scheduledTimerWithTimeInterval:newFrequency
 													   target:self
 													 selector:@selector(getMessagesOnTimer:)
 													 userInfo:nil
-													  repeats:YES] retain];
+													  repeats:YES];
 	}
 }
 
@@ -1571,8 +1556,6 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 -(void)setSortColumnIdentifier:(NSString *)str
 {
-	[str retain];
-	[sortColumnIdentifier release];
 	sortColumnIdentifier = str;
 }
 
@@ -1584,10 +1567,9 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 {
 	NSArray * sortedArrayOfMessages;
 
-	sortedArrayOfMessages = [currentArrayOfMessages sortedArrayUsingFunction:messageSortHandler context:self];
+	sortedArrayOfMessages = [currentArrayOfMessages sortedArrayUsingFunction:messageSortHandler context:(__bridge void * _Nullable)(self)];
 	NSAssert([sortedArrayOfMessages count] == [currentArrayOfMessages count], @"Lost messages from currentArrayOfMessages during sort");
-	[currentArrayOfMessages release];
-	currentArrayOfMessages = [[NSArray arrayWithArray:sortedArrayOfMessages] retain];
+	currentArrayOfMessages = [NSArray arrayWithArray:sortedArrayOfMessages];
 	sortedFlag = NO;
 }
 
@@ -1596,7 +1578,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
  */
 NSInteger messageSortHandler(id i1, id i2, void * context)
 {
-	AppController * app = (AppController *)context;
+	AppController * app = (__bridge AppController *)context;
 	VMessage * item1 = i1;
 	VMessage * item2 = i2;
 
@@ -1724,7 +1706,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		++index;
 	}
 	NSAssert(count == [currentArrayOfMessages count], @"Lost messages from currentArrayOfMessages during rethread");
-	[currentArrayOfMessages release];
 	currentArrayOfMessages = threadedArrayOfMessages;
 }
 
@@ -2533,10 +2514,10 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
     // If message text begins with <html> then we render as HTML only
     if ([messageText hasPrefix:@"<HTML>"])
 	{
-        NSData * chardata = [[[NSData alloc]
+        NSData * chardata = [[NSData alloc]
                              initWithBytes:[messageText
                                             cStringUsingEncoding:NSUTF8StringEncoding]
-                             length:[messageText length]] autorelease];
+                             length:[messageText length]];
         attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
 		plainText = YES;
 	}
@@ -2628,7 +2609,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 					NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:styleString attributes:styleAttr];
 					
 					[attrMessageText replaceCharactersInRange:NSMakeRange(styleRangeTextStart, styleRangeLength) withAttributedString:attrString];
-					[attrString release];
 					
 					rangeIndex += styleRangeLength;
 					attrRangeIndex += styleRangeTextLength;
@@ -2843,7 +2823,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	if ([messageText hasPrefix:@"<HTML>"])
 	{
 		attrMessageText = [[NSMutableAttributedString alloc] initWithHTML:chardata options:htmlDict documentAttributes:nil];
-		[chardata autorelease];
+//		[chardata autorelease];
 		plainText = YES;
 	}
 	else
@@ -2875,8 +2855,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			charptr = [messageText cStringUsingEncoding:NSWindowsCP1252StringEncoding];
 
 		}
-		[chardata autorelease];
-		[mactext autorelease];
+//		[chardata autorelease];
+//		[mactext autorelease];
 
 		// Set the font for the entire message
 		NSRange entireTextRange = NSMakeRange(0, [attrMessageText length]);
@@ -2950,7 +2930,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 					NSAttributedString * attrString = [[NSAttributedString alloc] initWithString:styleString attributes:styleAttr];
 					
 					[attrMessageText replaceCharactersInRange:NSMakeRange(styleRangeTextStart, styleRangeLength) withAttributedString:attrString];
-					[attrString release];
 					
 					rangeIndex += styleRangeLength;
 					attrRangeIndex += styleRangeTextLength;
@@ -3397,7 +3376,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 -(NSString *)makeReplyText
 {
 	NSMutableString *quoteString = [[NSMutableString alloc] init];
-    [quoteString autorelease];
 
 	// Get the text selected in the message view, if any
 	NSRange range = [textView selectedRange];
@@ -3476,7 +3454,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		// static analyser complains
 		// [messageArray release]; // Now autoreleased in Database.m
 		// Clean up on the way out.
-		[criteriaDictionary release];
 	}
 }
 
@@ -3514,10 +3491,8 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		[[NSWorkspace sharedWorkspace] openURL:mailURL];
 
 		// Clean up at the end
-		[mailURL release];
 		// static analyser complains
 		// [person release];
-		[title release];
 	}
 }
 
@@ -3580,9 +3555,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			}
 		}
 		[db commitTransaction];
-		[currentArrayOfMessages release];
-		currentArrayOfMessages = [arrayCopy retain];
-		[arrayCopy release];
+		currentArrayOfMessages = arrayCopy;
 
 		// If any of the messages we deleted were unread then the
 		// folder's unread count just changed.
@@ -3894,11 +3867,10 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		messageNumber = [[currentArrayOfMessages objectAtIndex:currentSelectedRow] messageId];
 	if (reloadData)
 	{
-		[currentArrayOfMessages release];
 		currentArrayOfMessages = nil;
 		[infoBarView update:nil database:db];
 		[self startProgressIndicator];
-		currentArrayOfMessages = [[db arrayOfMessages:currentFolderId filterString:@"" withoutIgnored:hideIgnoredMessages sorted:&sortedFlag] retain];
+		currentArrayOfMessages = [db arrayOfMessages:currentFolderId filterString:@"" withoutIgnored:hideIgnoredMessages sorted:&sortedFlag];
 		[self stopProgressIndicator];
 	}
 	if (showThreading)
@@ -4127,11 +4099,10 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	[messageList deselectAll:self];
 	currentFolderId = newFolderId;
 	[self showColumnsForFolder:currentFolderId];
-	[currentArrayOfMessages release];
 	currentArrayOfMessages = nil;
 	[infoBarView update:nil database:db];
 	[self startProgressIndicator];
-	currentArrayOfMessages = [[db arrayOfMessages:currentFolderId filterString:searchFilter withoutIgnored:hideIgnoredMessages sorted:&sortedFlag] retain];
+	currentArrayOfMessages = [db arrayOfMessages:currentFolderId filterString:searchFilter withoutIgnored:hideIgnoredMessages sorted:&sortedFlag];
 	if (showThreading)
 		[self threadMessages];
 	else
@@ -4209,7 +4180,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 			while ([theRecord level] > 0 && rowIndex)
 				theRecord = [currentArrayOfMessages objectAtIndex:--rowIndex];
 		}
-		messageArray = [[db arrayOfChildMessages:[theRecord folderId] messageId:[theRecord messageId]] retain];
+		messageArray = [db arrayOfChildMessages:[theRecord folderId] messageId:[theRecord messageId]];
 	}
 
 	else if ([messageList numberOfSelectedRows] > 0 && (flags & Range_Selected))
@@ -4221,8 +4192,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		while ((rowIndex = [enumerator nextObject]) != nil)
 // #warning 64BIT DJE integerValue -> intValue
 			[newArray addObject:[currentArrayOfMessages objectAtIndex:[rowIndex intValue]]];
-		messageArray = [newArray retain];
-		[newArray release];
+		messageArray = newArray;
 	}
 	return messageArray;
 }
@@ -4241,7 +4211,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 		NSArray * messageArray = [self markedMessageRange:Range_Thread|Range_Selected];
 		[self markPriorityByArray:messageArray priorityFlag:![theRecord isPriority]];
-		[messageArray release];
 	}
 }
 
@@ -4258,7 +4227,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 		NSArray * messageArray = [self markedMessageRange:Range_ThreadFromRoot];
 		[self markPriorityByArray:messageArray priorityFlag:![theRecord isPriority]];
-		[messageArray release];
 	}
 }
 
@@ -4300,7 +4268,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 		NSArray * messageArray = [self markedMessageRange:Range_ThreadFromRoot];
 		[self markIgnoredByArray:messageArray ignoreFlag:![theRecord isIgnored]];
-		[messageArray release];
 	}
 }
 
@@ -4318,7 +4285,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 		NSArray * messageArray = [self markedMessageRange:Range_Thread|Range_Selected];
 		[self markIgnoredByArray:messageArray ignoreFlag:![theRecord isIgnored]];
-		[messageArray release];
 	}
 }
 
@@ -4344,9 +4310,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		++arrayIndex;
 	}
 	[db commitTransaction];
-	[currentArrayOfMessages release];
-	currentArrayOfMessages = [arrayCopy retain];
-	[arrayCopy release];
+	currentArrayOfMessages = arrayCopy;
 	
 	if (currentSelectedRow >= (NSInteger)[currentArrayOfMessages count])
 		currentSelectedRow = [currentArrayOfMessages count] - 1;
@@ -4365,7 +4329,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	{
 		NSArray * messageArray = [self markedMessageRange:Range_Thread];
 		[self markReadByArray:messageArray readFlag:YES];
-		[messageArray release];
 	}
 }
 
@@ -4382,7 +4345,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 		NSArray * messageArray = [self markedMessageRange:Range_ThreadFromRoot];
 		[self markReadByArray:messageArray readFlag:![theRecord isRead]];
-		[messageArray release];
 	}
 }
 
@@ -4398,7 +4360,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 		NSArray * messageArray = [self markedMessageRange:Range_Selected];
 		[self markReadByArray:messageArray readFlag:![theRecord isRead]];
-		[messageArray release];
 	}
 }
 
@@ -4453,7 +4414,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 		NSArray * messageArray = [self markedMessageRange:Range_Selected];
 		[self markFlaggedByArray:messageArray flagged:![theRecord isFlagged]];
-		[messageArray release];
 	}
 }
 
@@ -4470,7 +4430,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 		VMessage * theRecord = [currentArrayOfMessages objectAtIndex:[messageList selectedRow]];
 		NSArray * messageArray = [self markedMessageRange:Range_ThreadFromRoot];
 		[self markFlaggedByArray:messageArray flagged:![theRecord isFlagged]];
-		[messageArray release];
 	}
 }
 
@@ -4701,7 +4660,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	NSString * pathToAckFile = [thisBundle pathForResource:@"Acknowledgements.rtf" ofType:@""];
 	NSURL * acknowledgementURL = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"file://%@", pathToAckFile]];
 	[[NSWorkspace sharedWorkspace] openURL:acknowledgementURL];
-	[acknowledgementURL release];
 }
 
 #pragma mark - searchUsingToolbarTextField
@@ -4850,7 +4808,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 					  nil,
 					  nil, nil,
 					  fullBodyText);
-	[fullBodyText release];
 	va_end(arguments);
 }
 
@@ -4861,8 +4818,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
  */
 -(void)setStatusMessage:(NSString *)newStatusText
 {
-	[newStatusText retain];
-	[statusText release];
 	statusText = newStatusText;
 	[self updateStatusMessage];
 }
@@ -5391,7 +5346,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
         [item setTarget:self];
         [item setAction:@selector(viewNextUnread:)];
 	}
-	return [item autorelease];
+	return item;
 }
 
 /* toolbarDefaultItemIdentifiers
@@ -5486,8 +5441,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 								 length:[text length]];
 			NSAttributedString * attrString = [[NSAttributedString alloc] initWithHTML:textData documentAttributes:nil];
 			[newtext appendFormat: @"%@\n", [attrString string]];
-			[attrString release];
-			[textData release];
 		}
 		else if ([thisMessage comment])
 		{
@@ -5554,7 +5507,7 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 		if([line hasPrefix:@"[Acronyms.Lst Version"])
 		{
 			acronymsVersion = [ NSString stringWithFormat:@"%@]", line];
-            [acronymsVersion retain];  // DO NOT release, it's required for Vole Status Report
+              // DO NOT release, it's required for Vole Status Report
             // (acronymsVersion is static)
 			line = [buffer readLine:&endOfFile];
 			continue;
@@ -5594,7 +5547,6 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 			[ acronymDictionary setObject: [ NSString stringWithFormat:@"%@ / %@", current, version] forKey:voleAcronyms[i]  ];
 		}
 	}
-	[buffer release];
 }
 
 #pragma mark -  dealloc
@@ -5605,32 +5557,6 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 {
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc removeObserver:self];
-	[cixCredentials release];
-	[personManager release];
-	[browserController release];
-	[priorityColour release];
-	[originalIcon release];
-	[extDateFormatter release];
-	[searchFolder release];
-	[rssFeed release];
-	[importController release];
-	[exportController release];
-	[missingMessagesController release];
-	[checkUpdates release];
-	[preferenceController release];
-	[activityViewer release];
-	[tasksWindow release];
-	[joinWindow release];
-	[profileWindow release];
-	[currentArrayOfMessages release];
-	[backtrackArray release];
-	[checkTimer release];
-	[htmlDict release];
-	[messageListFont release];
-	[boldMessageListFont release];
-	[db release];
-	[voleBuildInfoController release];
-	[super dealloc];
 }
 -(void)appIsGoingToTerminate:(NSNotification *)nc
 {

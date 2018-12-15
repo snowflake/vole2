@@ -13,7 +13,7 @@
 
 + (id)databaseWithFile:(NSString*)inPath
 {
-	return [[[SQLDatabase alloc] initWithFile:inPath] autorelease];
+	return [[SQLDatabase alloc] initWithFile:inPath];
 }
 
 #pragma mark -
@@ -43,8 +43,6 @@
 -(void)dealloc
 {
 	[self close];
-	[mPath release];
-	[super dealloc];
 }
 
 #pragma mark -
@@ -155,7 +153,7 @@
 	if( !sqlResult )
 		sqlite3_free_table( results );
 	
-	return [sqlResult autorelease];  // DJE changed to autorelease
+	return sqlResult;  // DJE changed to autorelease
 }
 
 -(SQLResult*)performQueryWithFormat:(NSString*)inFormat, ...
@@ -172,7 +170,6 @@
 // #warning 64BIT: Check formatting arguments
 	query = [[NSString alloc] initWithFormat:inFormat arguments:arguments];
 	sqlResult = [self performQuery:query];
-	[query release];
 	
 	va_end( arguments );
 	
@@ -194,8 +191,6 @@
 	
 	status = [convertTask terminationStatus];
 
-	[convertTask release];
-	[cmd release];
 	return status;
 }
 

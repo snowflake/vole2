@@ -66,8 +66,6 @@
  */
 -(void)setCurrentPerson:(VPerson *)newPerson
 {
-	[newPerson retain];
-	[currentPerson release];
 	currentPerson = newPerson;
 	[self updateUI];
 }
@@ -84,7 +82,6 @@
 	[currentPerson setPicture:newImage];
 	if (newImage != nil)
 		[noImageText setHidden:YES];
-	[newImage release];
 }
 
 /* updateUI
@@ -115,7 +112,7 @@
 		{
 			[personResume setString:@""];
 			[noResumeText setHidden:NO];
-			if ([[NSApp delegate] onlineMode])
+			if ([(AppController *)[NSApp delegate] onlineMode])
 			{
 				[db addTask:MA_TaskCode_GetResume actionData:[currentPerson shortName] folderName:@"" orderCode:MA_OrderCode_GetResume];
 				[noResumeText setStringValue:NSLocalizedString(@"Retrieving profile...", nil)];
@@ -128,7 +125,8 @@
 		else
 		{
 			[noResumeText setHidden:YES];
-			NSAttributedString * attrText = [currentPerson info] ? [[NSApp delegate] formatMessage:[currentPerson parsedInfo] usePlainText:YES] : nil;
+#warning added a cast here
+			NSAttributedString * attrText = [currentPerson info] ? [(AppController *)[NSApp delegate] formatMessage:[currentPerson parsedInfo] usePlainText:YES] : nil;
 			[[personResume textStorage] setAttributedString:attrText];
 		//  static analyser complains here
 			// [attrText release];
@@ -182,9 +180,4 @@
 /* dealloc
  * Clean up at the end
  */
--(void)dealloc
-{
-	[currentPerson release];
-	[super dealloc];
-}
 @end

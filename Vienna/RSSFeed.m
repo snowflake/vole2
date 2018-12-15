@@ -62,7 +62,7 @@
 		NSString * pathToPList = [thisBundle pathForResource:@"RSSSources.plist" ofType:@""];
 		if (pathToPList != nil)
 		{
-			sourcesDict = [[NSDictionary dictionaryWithContentsOfFile:pathToPList] retain];
+			sourcesDict = [NSDictionary dictionaryWithContentsOfFile:pathToPList];
 			[feedSource removeAllItems];
 			if (sourcesDict)
 			{
@@ -95,9 +95,9 @@
 			// deprecated API here, DJE
 //			NSString * pasteString = [NSString stringWithCString:[pboardData bytes] length:[pboardData length]];
 //	replaced by  ( use ISOLatin1 encoding as it allows losses, we are only interested in an URL)
-			NSString * pasteString = [[[NSString alloc] initWithBytes: [pboardData bytes]
+			NSString * pasteString = [[NSString alloc] initWithBytes: [pboardData bytes]
 															   length: [pboardData length]
-															 encoding: NSISOLatin1StringEncoding ] autorelease ];
+															 encoding: NSISOLatin1StringEncoding ];
 // end of changes
 			if (pasteString != nil && ([[pasteString lowercaseString] hasPrefix:@"http://"] || [[pasteString lowercaseString] hasPrefix:@"feed://"]))
 			{
@@ -181,7 +181,8 @@
 	[db addRSSFolder:@"(Untitled Feed)" subscriptionURL:feedURLString];
 
 	// If we're in online mode, get the feed immediately
-	if ([[NSApp delegate] onlineMode])
+#warning added a cast here
+	if ([(AppController *)[NSApp delegate] onlineMode])
 		[db addTask:MA_TaskCode_GetRSS actionData:@"" folderName:@"" orderCode:MA_OrderCode_GetRSS];
 
 	// Close the window
@@ -326,8 +327,5 @@
 -(void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[sourcesDict release];
-	[db release];
-	[super dealloc];
 }
 @end

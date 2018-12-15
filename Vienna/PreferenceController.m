@@ -136,10 +136,9 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	// deprecated API was here DJE
 //	return [NSString stringWithCString:(char *)pascalString + 1 length:pStringLength];
 	// replcement here
-	return [[[NSString alloc]initWithBytes:(char *)pascalString + 1 
+	return [[NSString alloc]initWithBytes:(char *)pascalString + 1 
 									length:pStringLength
-								  encoding:NSWindowsCP1252StringEncoding]
-			autorelease];
+								  encoding:NSWindowsCP1252StringEncoding];
 
 }
 
@@ -216,14 +215,14 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	[saveSpotlightMetadata setState:[defaults boolForKey:MAPref_SaveSpotlightMetadata] ? NSOnState : NSOffState];
 	
 	// Load the signatures list
-	arrayOfSignatures = [[[Signatures defaultSignatures] signatureTitles] retain];
+	arrayOfSignatures = [[Signatures defaultSignatures] signatureTitles];
 	[deleteSignatureButton setEnabled:NO];
 	[editSignatureButton setEnabled:NO];
 	signatureBeingEdited = nil;
 	
 	// Get some info about us
 	NSBundle * appBundle = [NSBundle mainBundle];
-	NSString * appName = [[NSApp delegate] appName];
+	NSString * appName = [(AppController *)[NSApp delegate] appName];
 	NSString * fullAppName = @"";
 	OSType appCode = 0L;
 	if (appBundle != nil)
@@ -313,11 +312,10 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	[defaultSignature addItemsWithTitles:arrayOfSignatures];
 	
 	// Display your profile details, if any
-	PersonManager * personManager = [[NSApp delegate] personManager];
-	[currentPerson release];
+	PersonManager * personManager = [(AppController *)[NSApp delegate] personManager];
 	currentPerson = [personManager personFromPerson:[credentials username]];
 	if (currentPerson != nil)
-	{	[ currentPerson retain ];  // DJE added 2012-09-21
+	{	  // DJE added 2012-09-21
 		if ([currentPerson name] != nil)
 			[profileFullName setStringValue:[currentPerson name]];
 		if ([currentPerson emailAddress] != nil)
@@ -566,8 +564,6 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)setSavedUsername:(NSString *)newUsername
 {
-	[newUsername retain];
-	[savedUsername release];
 	savedUsername = newUsername;
 }
 
@@ -576,8 +572,6 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)setSavedPassword:(NSString *)newPassword
 {
-	[newPassword retain];
-	[savedPassword release];
 	savedPassword = newPassword;
 }
 
@@ -617,7 +611,6 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 -(IBAction)newSignature:(id)sender
 {
     (void)sender;
-	[signatureBeingEdited release];
 	signatureBeingEdited = nil;
 
 	[signatureText setString:@""];
@@ -642,8 +635,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	NSString * title = [arrayOfSignatures objectAtIndex:[signaturesList selectedRow]];
 	NSString * text = [[Signatures defaultSignatures] signatureForTitle:title];
 
-	[signatureBeingEdited release];
-	signatureBeingEdited = [title retain];
+	signatureBeingEdited = title;
 
 	[signatureText setString:text];
 	[signatureTitle setStringValue:title];
@@ -762,8 +754,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(void)reloadSignatures
 {
-	[arrayOfSignatures release];
-	arrayOfSignatures = [[[Signatures defaultSignatures] signatureTitles] retain];
+	arrayOfSignatures = [[Signatures defaultSignatures] signatureTitles];
 	[signaturesList reloadData];
 }
 
@@ -811,8 +802,6 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 -(void)updateMugshotFolder:(NSString *)newFolder
 {	
 	[mugshotFolder setStringValue: newFolder];
-	[newFolder retain];
-	[mugshotsFolderName release];
 	mugshotsFolderName = newFolder;
 	[[NSUserDefaults standardUserDefaults] setObject:mugshotsFolderName forKey:MAPref_MugshotsFolder];
 	
@@ -922,7 +911,8 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)changeProfileFullName:(id)sender
 {
-	PersonManager * personManager = [[NSApp delegate] personManager];
+#warning added a cast here
+	PersonManager * personManager = [(AppController *)[NSApp delegate] personManager];
 	[currentPerson setName:[sender stringValue]];
 	[personManager updatePerson:currentPerson];
 }
@@ -932,7 +922,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
  */
 -(IBAction)changeProfileEmailAddress:(id)sender
 {
-	PersonManager * personManager = [[NSApp delegate] personManager];
+	PersonManager * personManager = [(AppController *)[NSApp delegate] personManager];
 	[currentPerson setEmailAddress:[sender stringValue]];
 	[personManager updatePerson:currentPerson];
 }
@@ -960,7 +950,7 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	if (returnCode == NSOKButton)
 	{
 		NSString * text = [NSString stringWithString:[resumeText string]];
-		PersonManager * personManager = [[NSApp delegate] personManager];
+		PersonManager * personManager = [(AppController *)[NSApp delegate] personManager];
 		[currentPerson setParsedInfo:text];
 		[personManager updatePerson:currentPerson];
 		[profileResume setStringValue:[currentPerson parsedInfo]];
@@ -995,12 +985,5 @@ NSInteger availableFontSizes[] = { 6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 32, 
 	if (internetConfigHandler != nil)
 		ICEnd(internetConfigHandler);
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[arrayOfSignatures release];
-	[signatureBeingEdited release];
-	[mugshotsFolderName release];
-	[currentPerson release];
-	[savedUsername release];
-	[savedPassword release];
-	[super dealloc];
 }
 @end

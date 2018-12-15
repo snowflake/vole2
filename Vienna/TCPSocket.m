@@ -105,8 +105,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[super dealloc];
-}
 @end

@@ -95,7 +95,6 @@
 	}
 	
 	// Clean up before we exit
-    [macPAD release];
     macPAD = nil;
 }
 
@@ -136,8 +135,6 @@
  */
 -(void)setUpdateURL:(NSString *)newUpdateURL
 {
-	[newUpdateURL retain];
-	[updateURL release];
 	updateURL = newUpdateURL;
 }
 
@@ -146,8 +143,6 @@
  */
 -(void)setLatestVersion:(NSString *)newLatestVersion
 {
-	[newLatestVersion retain];
-	[latestVersion release];
 	latestVersion = newLatestVersion;
 }
 
@@ -157,7 +152,7 @@
 -(void)macPADErrorOccurred:(NSNotification *)aNotification
 {
 	updateTitle = NSLocalizedString(@"An error has occurred.", nil);
-	updateStatus = [[[aNotification userInfo] objectForKey:MacPADErrorMessage] retain];
+	updateStatus = [[aNotification userInfo] objectForKey:MacPADErrorMessage];
 	updateAvailable = NO;
 	[self doneUpdateCheck];
 }
@@ -177,14 +172,6 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[latestVersion release];
-	[updateURL release];
-	[updateTitle release];
-	[updateStatus release];
-	[super dealloc];
-}
 @end
 
 @implementation AppController (CheckForUpdates)

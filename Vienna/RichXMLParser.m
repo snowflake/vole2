@@ -66,8 +66,6 @@
  */
 -(void)setTitle:(NSString *)newTitle
 {
-	[newTitle retain];
-	[title release];
 	title = newTitle;
 }
 
@@ -76,8 +74,6 @@
  */
 -(void)setDescription:(NSString *)newDescription
 {
-	[newDescription retain];
-	[description release];
 	description = newDescription;
 }
 
@@ -86,8 +82,6 @@
  */
 -(void)setAuthor:(NSString *)newAuthor
 {
-	[newAuthor retain];
-	[author release];
 	author = newAuthor;
 }
 
@@ -96,8 +90,6 @@
  */
 -(void)setDate:(NSDate *)newDate
 {
-	[newDate retain];
-	[date release];
 	date = newDate;
 }
 
@@ -106,8 +98,6 @@
  */
 -(void)setLink:(NSString *)newLink
 {
-	[newLink retain];
-	[link release];
 	link = newLink;
 }
 
@@ -116,8 +106,6 @@
  */
 -(void)setGuid:(NSString *)newId
 {
-	[newId retain];
-	[guid release];
 	guid = newId;
 }
 
@@ -172,15 +160,6 @@
 /* dealloc
  * Clean up when we're released.
  */
--(void)dealloc
-{
-	[title release];
-	[description release];
-	[author release];
-	[date release];
-	[link release];
-	[super dealloc];
-}
 @end
 
 @implementation RichXMLParser
@@ -206,12 +185,6 @@
  */
 -(void)reset
 {
-	[title release];
-	[description release];
-	[lastModified release];
-	[link release];
-	[items release];
-	[guid release];
 	title = nil;
 	description = nil;
 	link = nil;
@@ -431,7 +404,6 @@
 			// Derive any missing title
 			[self ensureTitle:newItem];
 			[items addObject:newItem];
-			[newItem release];
 		}
 	}
 	return success;
@@ -567,7 +539,6 @@
 			// Derive any missing title
 			[self ensureTitle:newItem];
 			[items addObject:newItem];
-			[newItem release];
 		}
 	}
 	return YES;
@@ -578,8 +549,6 @@
  */
 -(void)setTitle:(NSString *)newTitle
 {
-	[newTitle retain];
-	[title release];
 	title = newTitle;
 }
 
@@ -588,8 +557,6 @@
  */
 -(void)setDescription:(NSString *)newDescription
 {
-	[newDescription retain];
-	[description release];
 	description = newDescription;
 }
 
@@ -598,8 +565,6 @@
  */
 -(void)setLink:(NSString *)newLink
 {
-	[newLink retain];
-	[link release];
 	link = newLink;
 }
 
@@ -608,8 +573,6 @@
  */
 -(void)setLastModified:(NSDate *)newDate
 {
-	[newDate retain];
-	[lastModified release];
 	lastModified = newDate;
 }
 
@@ -671,22 +634,10 @@
 		NSData * chardata = [[NSData alloc] initWithBytes:[[item description] UTF8String] length:[[item description] length]];
 		NSMutableAttributedString * attrText = [[NSMutableAttributedString alloc] initWithHTML:chardata documentAttributes:nil];
 		[item setTitle:[[attrText string] firstNonBlankLine]];
-		[chardata release];
-		[attrText release];
 	}
 }
 
 /* dealloc
  * Clean up afterwards.
  */
--(void)dealloc
-{
-	[title release];
-	[description release];
-	[lastModified release];
-	[link release];
-	[items release];
-	[ guid release];
-	[super dealloc];
-}
 @end

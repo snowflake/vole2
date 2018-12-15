@@ -79,8 +79,6 @@
  */
 -(void)setName:(NSString *)newName
 {
-	[newName retain];
-	[name release];
 	name = newName;
 }
 
@@ -95,9 +93,4 @@
 /* dealloc
  * Clean up at the end.
  */
--(void)dealloc
-{
-	[name release];
-	[super dealloc];
-}
 @end

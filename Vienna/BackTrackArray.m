@@ -125,16 +125,10 @@ typedef struct{
 // #warning 64BIT: Inspect use of sizeof
 	dataItem = [[NSData alloc] initWithBytes:&data length:sizeof(data)];
 	[array addObject:dataItem];
-	[dataItem release];
 	++queueIndex;
 }
 
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[array release];
-	[super dealloc];
-}
 @end

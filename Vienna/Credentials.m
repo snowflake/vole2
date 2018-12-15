@@ -39,8 +39,8 @@
 	{
 		NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 		serviceName = theServiceName;
-		username = [[defaults stringForKey:MAPref_Username] retain];
-		password = [[self getPasswordFromKeychain:username] retain];
+		username = [defaults stringForKey:MAPref_Username];
+		password = [self getPasswordFromKeychain:username];
 	}
 	return self;
 }
@@ -93,10 +93,10 @@
 		// deprecated API was here DJE
 		//		thePassword = [NSString stringWithCString:passwordPtr length:passwordLength];
 		// replacement here
-		thePassword = [[[NSString alloc] 
+		thePassword = [[NSString alloc] 
 							initWithBytes :passwordPtr 
 								length:passwordLength 
-							encoding:NSWindowsCP1252StringEncoding] autorelease];
+							encoding:NSWindowsCP1252StringEncoding];
 
 		SecKeychainItemFreeContent(NULL, passwordPtr);
 	}
@@ -110,8 +110,6 @@
 {
 	NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:newUsername forKey:MAPref_Username];
-	[newUsername retain];
-	[username release];
 	username = newUsername;
 }
 
@@ -129,8 +127,6 @@
 	SecKeychainItemRef itemRef;
 	OSStatus status;
 
-	[newPassword retain];
-	[password release];
 	password = newPassword;
 	
 	status = SecKeychainFindGenericPassword(NULL, strlen(cServiceName), cServiceName, strlen(cUsername), cUsername, NULL, NULL, &itemRef);

@@ -34,8 +34,8 @@
 		[self setFolderName:@""];
 		[self setResultString:@""];
 		resultCode = MA_TaskResult_Waiting;
-		lastRunDate = [[NSDate distantFuture] retain];
-		earliestRunDate = [[NSDate distantPast] retain];
+		lastRunDate = [NSDate distantFuture];
+		earliestRunDate = [NSDate distantPast];
 	}
 	return self;
 }
@@ -77,8 +77,6 @@
  */
 -(void)setActionData:(NSString *)newActionData
 {
-	[newActionData retain];
-	[actionData release];
 	actionData = newActionData;
 }
 
@@ -95,8 +93,6 @@
  */
 -(void)setFolderName:(NSString *)newFolderName
 {
-	[newFolderName retain];
-	[folderName release];
 	folderName = newFolderName;
 }
 
@@ -152,7 +148,6 @@
 // #warning 64BIT: Check formatting arguments
 	formattedString = [[NSString alloc] initWithFormat:format arguments:arguments];
 	[self setResultString:formattedString];
-	[formattedString release];
 	va_end(arguments);
 }
 
@@ -162,8 +157,6 @@
  */
 -(void)setResultString:(NSString *)newResultString
 {
-	[newResultString retain];
-	[resultString release];
 	resultString = newResultString;
 }
 
@@ -180,8 +173,6 @@
  */
 -(void)setLastRunDate:(NSDate *)newLastRunDate
 {
-	[newLastRunDate retain];
-	[lastRunDate release];
 	lastRunDate = newLastRunDate;
 }
 
@@ -198,8 +189,6 @@
  */
 -(void)setEarliestRunDate:(NSDate *)newEarliestRunDate
 {
-	[newEarliestRunDate retain];
-	[earliestRunDate release];
 	earliestRunDate = newEarliestRunDate;
 }
 
@@ -248,12 +237,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[actionData release];
-	[resultString release];
-	[lastRunDate release];
-	[earliestRunDate release];
-	[super dealloc];
-}
 @end

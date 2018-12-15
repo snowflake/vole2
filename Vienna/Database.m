@@ -65,16 +65,16 @@ enum {
 		initializedRSSArray = NO;
 		countOfPriorityUnread = 0;
 		cachedRSSNodeID = -1;
-		searchFoldersArray = [[NSMutableDictionary dictionary] retain];
-		foldersArray = [[NSMutableDictionary dictionary] retain];
-		forumArray = [[NSMutableDictionary dictionary] retain];
-		categoryArray = [[NSMutableDictionary dictionary] retain];
+		searchFoldersArray = [NSMutableDictionary dictionary];
+		foldersArray = [NSMutableDictionary dictionary];
+		forumArray = [NSMutableDictionary dictionary];
+		categoryArray = [NSMutableDictionary dictionary];
 		tasksArray = [[NSMutableArray alloc] init];
-		personArray = [[NSMutableDictionary dictionary] retain];
-		rssFeedArray = [[NSMutableDictionary dictionary] retain];
+		personArray = [NSMutableDictionary dictionary];
+		rssFeedArray = [NSMutableDictionary dictionary];
 
 		// Preload the images
-		iconArray = [[NSArray arrayWithObjects:
+		iconArray = [NSArray arrayWithObjects:
 			[NSImage imageNamed:@"smallFolder.tiff"],
 			[NSImage imageNamed:@"outboxFolder.tiff"],
 			[NSImage imageNamed:@"draftFolder.tiff"],
@@ -83,7 +83,7 @@ enum {
 			[NSImage imageNamed:@"lockedFolder.tiff"],
 			[NSImage imageNamed:@"rssFolder.tiff"],
 			[NSImage imageNamed:@"rssFeed.tiff"],
-			nil] retain];
+			nil];
 	}
 	return self;
 }
@@ -166,8 +166,6 @@ enum {
 		[self executeSQLWithFormat:@"insert into search_folders (folder_id, search_string) values (%d, '%@')", [sqlDatabase lastInsertRowId], preparedCriteriaString];
 
 		// Clean up
-		[markedCriteria release];
-		[criteriaTree release];
 
 		// Set the initial version
 		[self executeSQL:@"insert into info (version) values (5)"];
@@ -260,8 +258,8 @@ enum {
 	[self syncLastUpdate];
 	
 	// Create fields
-	fieldsByName = [[NSMutableDictionary dictionary] retain];
-	fieldsByTitle = [[NSMutableDictionary dictionary] retain];
+	fieldsByName = [NSMutableDictionary dictionary];
+	fieldsByTitle = [NSMutableDictionary dictionary];
 	fieldsOrdered = [[NSMutableArray alloc] init];
 	
 	[self addField:MA_Column_MessageUnread title:@"Read" type:MA_FieldType_Flag tag:MA_ID_MessageUnread sqlField:@"read_flag" visible:YES width:17];
@@ -300,7 +298,6 @@ enum {
 //#warning 64BIT: Check formatting arguments
 	NSString * query = [[NSString alloc] initWithFormat:sqlStatement arguments:arguments];
 	/* SQLResult * result = */  [sqlDatabase performQuery:query];
-	[query release];
 	// static analyser complains
 	// [result release];
 }
@@ -345,7 +342,6 @@ enum {
 		[fieldsOrdered addObject:field];
 		[fieldsByName setValue:field forKey:name];
 		[fieldsByTitle setValue:field forKey:title];
-		[field release];
 	}
 }
 
@@ -419,8 +415,6 @@ enum {
  */
 -(void)setUsername:(NSString *)newUsername
 {
-	[newUsername retain];
-	[username release];
 	username = newUsername;
 }
 
@@ -492,7 +486,6 @@ enum {
 				[forum setDescription:description];
 				[forum setLastActiveDate:lastActiveDate];
 				[forumArray setObject:forum forKey:name];
-				[forum release];
 			}
 		}
 
@@ -516,7 +509,6 @@ enum {
 				[category setParentId:parentId];
 				[category setName:name];
 				[categoryArray setObject:category forKey:[NSNumber numberWithLong:(long)categoryId]];
-				[category release];
 			}
 		}
 		// static analsyer complains
@@ -761,7 +753,6 @@ enum {
 				Folder * folder = [self folderFromID:folderId];
 				RSSFolder * rssFolder = [[RSSFolder alloc] initWithId:folder subscriptionURL:url update:update];
 				[rssFeedArray setObject:rssFolder forKey:[NSNumber numberWithLong:(long)folderId]];
-				[rssFolder release];
 			}
 		}
 		// static analyser complains
@@ -893,7 +884,7 @@ enum {
 
 		// Add this new folder to our internal cache
 		Folder * folder = [self folderFromID:folderId];
-		RSSFolder * itemPtr = [[[RSSFolder alloc] initWithId:folder subscriptionURL:url update:lastUpdate] autorelease];
+		RSSFolder * itemPtr = [[RSSFolder alloc] initWithId:folder subscriptionURL:url update:lastUpdate];
 		[rssFeedArray setObject:itemPtr forKey:[NSNumber numberWithLong:(long)folderId]];
 		// static analyser complains
 		// [results release];
@@ -943,7 +934,7 @@ enum {
 	newItemId = [sqlDatabase lastInsertRowId];
 
 	// Add this new folder to our internal cache
-	itemPtr = [[[Folder alloc] initWithId:newItemId parentId:parentId name:name permissions:permissions] autorelease];
+	itemPtr = [[Folder alloc] initWithId:newItemId parentId:parentId name:name permissions:permissions];
 	[foldersArray setObject:itemPtr forKey:[NSNumber numberWithLong:(long)newItemId]];
 
 	// Send a notification when new folders are added
@@ -1710,7 +1701,6 @@ enum {
 				[task setLastRunDate:lastRunDate];
 				[task setEarliestRunDate:earliestRunDate];
 				[tasksArray addObject:task];
-				[task release];
 			}
 		}
 		// static analsyer complains 
@@ -1853,7 +1843,7 @@ enum {
 	NSAssert(folderName != nil, @"folderName cannot be nil. Use an empty string instead");
 
 	// Add to our internal tasks array
-	VTask * task = [[[VTask alloc] init] autorelease];
+	VTask * task = [[VTask alloc] init];
 	[task setOrderCode:orderCode];
 	[task setActionCode:actionCode];
 	[task setActionData:actionData];
@@ -1944,11 +1934,9 @@ enum {
 	// Verify we're on the right thread
 	[self verifyThreadSafety];
 	
-	[task retain];
 	[tasksArray removeObject:task];
 	[self executeSQLWithFormat:@"delete from tasks where task_id=%d", [task taskId]];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MA_Notify_TaskDeleted" object:task];
-	[task release];
 }
 
 /* initSearchFoldersArray
@@ -1980,7 +1968,6 @@ enum {
 				
 				VCriteriaTree * criteriaTree = [[VCriteriaTree alloc] initWithString:search_string];
 				[searchFoldersArray setObject:criteriaTree forKey:[NSNumber numberWithLong:(long)folderId]];
-				[criteriaTree release];
 			}
 		}
 		// static analyser complains
@@ -2094,7 +2081,7 @@ enum {
 				// the setChildUnreadCount computation to a separate loop. The NSAssert will
 				// fire to warn us when this can happen.
 				//
-				Folder * folder = [[[Folder alloc] initWithId:newItemId parentId:newParentId name:name permissions:permissions] autorelease];
+				Folder * folder = [[Folder alloc] initWithId:newItemId parentId:newParentId name:name permissions:permissions];
 				if (IsSearchFolder(folder))
 				{
 					unreadCount = 0;
@@ -2205,7 +2192,6 @@ enum {
 				[person setName:name];
 				[person setInfo:info];
 				[personArray setObject:person forKey:name];
-				[person release];
 			}
 		}
 		// static analyser complains
@@ -2255,7 +2241,7 @@ enum {
 		[person setInfo:data];
 		[person setPersonId:[sqlDatabase lastInsertRowId]];
 		[personArray setObject:person forKey:name];
-		[person autorelease];
+//		[person autorelease];
 	}
 	
 	// Send a notification when new folders are added
@@ -2339,13 +2325,12 @@ enum {
 				[message setGuid:guid];
 				[message setDateFromDate:messageDate];
 				[messageArray addObject:message];
-				[message release];
 			}
 		}
 		// static analyser complains
 		// [results release];
 	}
-	return [messageArray autorelease];
+	return messageArray;
 }
 
 /* initMessageArray
@@ -2403,7 +2388,6 @@ enum {
 				[message setTitle:title];
 				[message setSender:sender];
 				[folder addMessage:message];
-				[message release];
 			}
 
 			// This is a good time to do a quick check to ensure that our
@@ -2760,7 +2744,6 @@ enum {
 				[message setFolderId:messageFolderId];
 				[newArray addObject:message];
 				[folder addMessage:message];
-				[message release];
 
 				lastMessageId = messageId;
 			}
@@ -3051,12 +3034,6 @@ enum {
  */
 -(void)close
 {
-	[foldersArray release];
-	[searchFoldersArray release];
-	[forumArray release];
-	[categoryArray release];
-	[rssFeedArray release];
-	[personArray release];
 	[sqlDatabase close];
 	initializedFoldersArray = NO;
 	initializedSearchFoldersArray = NO;
@@ -3071,12 +3048,5 @@ enum {
 {
 	if (sqlDatabase)
 		[self close];
-	[sqlDatabase release];
-	[fieldsOrdered release];
-	[fieldsByTitle release];
-	[fieldsByName release];
-	[iconArray release];
-	[RSSGuids release];
-	[super dealloc];
 }
 @end

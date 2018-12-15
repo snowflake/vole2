@@ -29,9 +29,9 @@
 {
 	if ((self = [super init]) != nil)
 	{
-		folder = [theFolder retain];
-		subscriptionURL = [url retain];
-		lastUpdate = [update retain];
+		folder = theFolder;
+		subscriptionURL = url;
+		lastUpdate = update;
 	}
 	return self;
 }
@@ -65,8 +65,6 @@
  */
 -(void)setSubscriptionURL:(NSString *)newSubscriptionURL
 {
-	[newSubscriptionURL retain];
-	[subscriptionURL release];
 	subscriptionURL = newSubscriptionURL;
 }
 
@@ -83,8 +81,6 @@
  */
 -(void)setLastUpdate:(NSDate *)newLastUpdate
 {
-	[newLastUpdate retain];
-	[lastUpdate release];
 	lastUpdate = newLastUpdate;
 }
 
@@ -99,11 +95,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[folder release];
-	[subscriptionURL release];
-	[lastUpdate release];
-	[super dealloc];
-}
 @end

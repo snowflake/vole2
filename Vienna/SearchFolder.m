@@ -144,7 +144,7 @@ static NSString * defaultField = @"Read";
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTextDidChange:) name:NSControlTextDidChangeNotification object:searchFolderName];
 
 		// Create a mapping for field to column names
-		nameToFieldMap = [[NSMutableDictionary dictionary] retain];
+		nameToFieldMap = [NSMutableDictionary dictionary];
 
 		// Initialize the search criteria view popups with all the
 		// fields in the database.
@@ -366,7 +366,6 @@ static NSString * defaultField = @"Read";
 		CriteriaOperator operator = [VCriteria operatorFromString:operatorString];
 		VCriteria * newCriteria = [[VCriteria alloc] initWithField:fieldString withOperator:operator withValue:valueString];
 		[criteriaTree addCriteria:newCriteria];
-		[newCriteria release];
 	}
 
 	// Get the folder name then either create a new search folder entry in the database
@@ -378,7 +377,6 @@ static NSString * defaultField = @"Read";
 	else
 		[db updateSearchFolder:searchFolderId withFolder:folderName withQuery:criteriaTree];
 
-	[criteriaTree release];
 	
 	[NSApp endSheet:searchWindow];
 	[searchWindow orderOut:self];
@@ -491,7 +489,7 @@ static NSString * defaultField = @"Read";
 	NSRect bounds = [searchCriteriaSuperview bounds];
 	NSView *row = (NSView *)[NSUnarchiver unarchiveObjectWithData:archRow];
 	[row setFrameOrigin:NSMakePoint(bounds.origin.x, bounds.origin.y + (((totalCriteria - 1) - index) * rowHeight))];
-	[searchCriteriaSuperview addSubview:[row retain]];
+	[searchCriteriaSuperview addSubview:row];
 	[arrayOfViews insertObject:row atIndex:index];
 
 	// Link the previous row to the next one so that the Tab key behaves
@@ -504,7 +502,6 @@ static NSString * defaultField = @"Read";
 		[row setNextKeyView:lastKeyView];
 	}
 	[searchCriteriaSuperview display];
-	[row release];
 }
 
 /* resizeSearchWindow
@@ -533,9 +530,5 @@ static NSString * defaultField = @"Read";
 -(void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[arrayOfViews release];
-	[nameToFieldMap release];
-	[db release];
-	[super dealloc];
 }
 @end

@@ -42,7 +42,7 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
 {
 	if ((self = [super init]) != nil)
 	{
-		messageData = [[NSMutableDictionary dictionary] retain];
+		messageData = [NSMutableDictionary dictionary];
 		readFlag = NO;
 		markedFlag = NO;
 		priorityFlag = NO;
@@ -199,9 +199,4 @@ NSString * MA_Column_MessageGuid = @"headerGuid";
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[messageData release];
-	[super dealloc];
-}
 @end

@@ -26,7 +26,7 @@
 copyWithZone:(NSZone *)zone        \
 {
     ImageAndTextCell *cell = (ImageAndTextCell *)[super copyWithZone:zone];
-    cell->image = [image retain];
+    cell->image = image;
 	cell->offset = offset;
     return cell;
 }
@@ -45,16 +45,15 @@ copyWithZone:(NSZone *)zone        \
 {
     if (anImage != image)
 	{
-        [image release];
 		image = nil;
 		if (anImage)
-			image = [anImage retain];
+			image = anImage;
     }
 }
 
 -(NSImage *)image
 {
-    return [[image retain] autorelease];
+    return image;
 }
 
 -(NSRect)imageFrameForCellFrame:(NSRect)cellFrame
@@ -147,8 +146,6 @@ copyWithZone:(NSZone *)zone        \
 
 -(void)dealloc
 {
-    [image release];
     image = nil;
-    [super dealloc];
 }
 @end

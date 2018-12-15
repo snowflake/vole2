@@ -116,7 +116,5 @@
 -(void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[db release];
-	[super dealloc];
 }
 @end

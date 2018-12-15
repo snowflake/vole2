@@ -44,10 +44,10 @@ enum {
 -(void)initiateCheck:(id)sender
 {
     (void)sender;
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:_fileURL];
-    [self processDictionary:dict];
-    [pool release];
+    @autoreleasepool {
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:_fileURL];
+        [self processDictionary:dict];
+    }
 }
 
 -(void)performCheck:(NSURL *)url withVersion:(NSString *)version
@@ -60,9 +60,7 @@ enum {
     }
     
     // Save the current version and URL
-    [_currentVersion release];
     _currentVersion = [version copy];
-    [_fileURL release];
     _fileURL = [url copy];
     
     [NSThread detachNewThreadSelector:@selector(initiateCheck:) toTarget:self withObject:nil];
@@ -195,9 +193,9 @@ enum {
         // Unregister with the notification center
         [nc removeObserver:_delegate name:MacPADErrorOccurredNotification object:self];
         [nc removeObserver:_delegate name:MacPADCheckFinishedNotification object:self];
-        [_delegate autorelease];
+//        [_delegate autorelease];
     }
-    _delegate = [delegate retain];
+    _delegate = delegate;
     // Register the new MacPADSocketNotification methods for the delegate
     // Only register if the delegate implements it, though
     if ([_delegate respondsToSelector:@selector(macPADErrorOccurred:)]) {
@@ -215,7 +213,7 @@ enum {
     if (_releaseNotes == nil) {
         return @"";
     } else {
-        return [[_releaseNotes copy] autorelease];
+        return [_releaseNotes copy];
     }
 }
 
@@ -224,7 +222,7 @@ enum {
     if (_newVersion == nil) {
         return @"";
     } else {
-        return [[_newVersion copy] autorelease];
+        return [_newVersion copy];
     }
 }
 
@@ -233,7 +231,7 @@ enum {
     if (_productPageURL == nil) {
         return @"";
     } else {
-        return [[_productPageURL copy] autorelease];
+        return [_productPageURL copy];
     }
 }
 
@@ -251,7 +249,7 @@ enum {
     if (_productDownloadURLs == nil) {
         return [NSArray array];
     } else {
-        return [[_productDownloadURLs copy] autorelease];
+        return [_productDownloadURLs copy];
     }
 }
 
@@ -325,16 +323,7 @@ enum {
     [nc removeObserver:self];
     
     // Release objects
-    [_delegate release];
-    [_fileHandle release];
-    [_currentVersion release];
-    [_buffer release];
-    [_newVersion release];
-    [_releaseNotes release];
-    [_productPageURL release];
-    [_productDownloadURLs release];
     
-    [super dealloc];
 }
 
 -(NSComparisonResult)compareVersion:(NSString *)versionA toVersion:(NSString *)versionB
@@ -431,7 +420,7 @@ enum {
         // Nothing to do here
         return parts;
     }
-    s = [[[version substringToIndex:1] mutableCopy] autorelease];
+    s = [[version substringToIndex:1] mutableCopy];
     oldType = [self getCharType:s];
     n = [version length] - 1;
     for (i = 1; i <= n; ++i) {

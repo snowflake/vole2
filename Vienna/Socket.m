@@ -107,7 +107,6 @@
 // #warning 64BIT: Check formatting arguments
 	stringToSend = [[NSString alloc] initWithFormat:format arguments:arguments];
 	sendResult = [self sendString:stringToSend];
-	[stringToSend release];
 	va_end(arguments);
 	return sendResult;
 }
@@ -236,9 +235,9 @@
 			//	;
 			// DJE Replace with:
 			sanitise_string(data);
-			string= [[[NSString alloc] initWithBytes:(data) 
+			string= [[NSString alloc] initWithBytes:(data) 
 											  length:(length)
-											encoding:NSWindowsCP1252StringEncoding ] autorelease];
+											encoding:NSWindowsCP1252StringEncoding ];
 			
 
 		}
@@ -408,7 +407,6 @@
 	if (logFile)
 	{
 		[logFile close];
-		[logFile release];
 		logFile = nil;
 	}
 }
@@ -416,9 +414,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[address release];
-	[super dealloc];
-}
 @end

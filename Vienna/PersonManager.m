@@ -44,7 +44,7 @@
 	if ((self = [self init]) != nil)
 	{
 		db = newDb;
-		mugshotsFolder = [[[[NSUserDefaults standardUserDefaults] stringForKey:MAPref_MugshotsFolder] stringByExpandingTildeInPath] retain];
+		mugshotsFolder = [[[NSUserDefaults standardUserDefaults] stringForKey:MAPref_MugshotsFolder] stringByExpandingTildeInPath];
 	}
 	return self;
 }
@@ -56,15 +56,11 @@
 {
 	if (newMugshotsFolder == nil)
 	{
-		[mugshotsFolder release];
 		mugshotsFolder = nil;
 	}
 	else
 	{
-		[newMugshotsFolder retain];
-		[mugshotsFolder release];
-		mugshotsFolder = [[newMugshotsFolder stringByExpandingTildeInPath] retain];
-		[newMugshotsFolder release];
+		mugshotsFolder = [newMugshotsFolder stringByExpandingTildeInPath];
 	}
 }
 
@@ -103,7 +99,7 @@
 	VPerson * newPerson;
 
 	// Get anything we know about this person from the database.
-	newPerson = [[db retrievePerson:personName] retain];
+	newPerson = [db retrievePerson:personName];
 	if (newPerson == nil)
 		newPerson = [[VPerson alloc] init];
 	[newPerson setShortName:personName];
@@ -146,7 +142,7 @@
 	[self parseResumeXFormat:newPerson];
 	
 	// Now return what we have so far.
-	return [newPerson autorelease];		// DJE added autorelease,
+	return newPerson;		// DJE added autorelease,
 							// but this leads to a Crash
 							// when creating a Profile
 							// in a new database - reported by ceebee@cix
@@ -215,7 +211,6 @@
 					[person setParsedInfo:[NSString stringWithFormat:@"%@%@", preXMLBlock, postXMLBlock]];
 				}
 			}
-			[xmlTree release];
 		}
 	}
 }
@@ -249,23 +244,20 @@
 	NSImage *image = [[NSImage alloc] initByReferencingFile: filename];
 	if (![image isValid]) 
 	{
-		[image release];
 		[filename replaceCharactersInRange: extension withString: @"gif"];
 		image = [[NSImage alloc] initByReferencingFile: filename];
 	}		
 	if (![image isValid]) 
 	{
-		[image release];
 		[filename replaceCharactersInRange: extension withString: @"bmp"];
 		image = [[NSImage alloc] initByReferencingFile: filename];
 	}
 	if (![image isValid]) 
 	{
-		[image release];
 		[filename replaceCharactersInRange: extension withString: @"jpg"];
 		image = [[NSImage alloc] initByReferencingFile: filename];
 	}		
-	return [image autorelease]; // DJE made into autorelease, other calls to this method must not release the object
+	return image; // DJE made into autorelease, other calls to this method must not release the object
 }
 
 /* findFullNameInAB
@@ -326,7 +318,7 @@
 			image = [[NSImage alloc] initWithData: [person imageData]];
 		}
 	}
-	return [image autorelease]; // DJE made into autorelease
+	return image; // DJE made into autorelease
 }
 
 /* setMugshotInAB
@@ -354,9 +346,4 @@
 
 /* dealloc
  */
--(void)dealloc
-{
-	[mugshotsFolder release];
-	[super dealloc];
-}
 @end

@@ -87,8 +87,6 @@
  */
 -(void)setDatabase:(Database *)newDb
 {
-	[newDb retain];
-	[db release];
 	db = newDb;
 	[self refreshTasksList];
 }
@@ -127,8 +125,7 @@
  */
 -(void)refreshTasksList
 {
-	[currentArrayOfTasks release];
-	currentArrayOfTasks = [[NSMutableArray arrayWithArray:[db arrayOfTasks:NO] ] retain];
+	currentArrayOfTasks = [NSMutableArray arrayWithArray:[db arrayOfTasks:NO] ];
 	[tasksList reloadData];
 	[clearButton setEnabled:[currentArrayOfTasks count] > 0];
 }
@@ -322,10 +319,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[db release];
-	[currentArrayOfTasks release];
-	[super dealloc];
-}
 @end

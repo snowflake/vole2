@@ -64,7 +64,7 @@
 -(id)initMessageFromMessage:(Database *)theDb message:(VMessage *)newMessage
 {
 	db = theDb;
-	message = [newMessage retain];
+	message = newMessage;
 	return [super initWithWindowNibName:@"Comment"];
 }
 
@@ -73,7 +73,7 @@
 -(void)windowDidLoad
 {
 	// Create the toolbar.
-    NSToolbar * toolbar = [[[NSToolbar alloc] initWithIdentifier:@"MA_ReplyToolbar"] autorelease];
+    NSToolbar * toolbar = [[NSToolbar alloc] initWithIdentifier:@"MA_ReplyToolbar"];
 
     // Set the appropriate toolbar options. We are the delegate, customization is allowed,
 	// changes made by the user are automatically saved and we start in icon+text mode.
@@ -203,7 +203,6 @@
 	if (![signatureTitle isEqualToString:@"None"])
 	{
 		newSignature = [NSString stringWithFormat:@"\n\n%@", [[Signatures defaultSignatures] signatureForTitle:signatureTitle]];
-		[newSignature retain];
 	}
 
 	if (currentSignature != nil)
@@ -220,10 +219,8 @@
 	{
 		NSAttributedString * attrText = [[NSAttributedString alloc] initWithString:newSignature attributes:[textView typingAttributes]];
 		[[textView textStorage] insertAttributedString:attrText atIndex:[msgText length]];
-		[attrText release];
 	}
 
-	[currentSignature release];
 	currentSignature = newSignature;
 	
 	[textView setSelectedRange:selRange];
@@ -275,7 +272,7 @@
 	}
 	if (![messageWindow isDocumentEdited])
 	{
-		[self autorelease];
+//		[self autorelease];
 		return YES;
 	}
 	return NO;
@@ -443,7 +440,7 @@
         [item setTarget:self];
         [item setAction:@selector(saveAsDraft:)];
 	}
-	return [item autorelease];
+	return item;
 }
 
 /* toolbarDefaultItemIdentifiers
@@ -478,10 +475,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[currentSignature release];
-	[message release];
-	[super dealloc];
-}
 @end

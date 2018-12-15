@@ -55,7 +55,7 @@
  */
 +(XMLParser *)treeWithCFXMLTreeRef:(CFXMLTreeRef)ref
 {
-	return [[[XMLParser alloc] initWithCFXMLTreeRef:ref] autorelease];
+	return [[XMLParser alloc] initWithCFXMLTreeRef:ref];
 }
 
 /* initWithCFXMLTreeRef
@@ -185,8 +185,8 @@
 -(XMLParser *)addTree:(NSString *)name withAttributes:(NSDictionary *)attributesDict closed:(BOOL)flag
 {
 	CFXMLElementInfo info;
-	info.attributes = (CFDictionaryRef)attributesDict;
-	info.attributeOrder = (CFArrayRef)[attributesDict allKeys];
+	info.attributes = (__bridge CFDictionaryRef)attributesDict;
+	info.attributeOrder = (__bridge CFArrayRef)[attributesDict allKeys];
 	info.isEmpty = flag;
 
 	CFXMLNodeRef newNode = CFXMLNodeCreate (kCFAllocatorDefault, kCFXMLNodeTypeElement, (CFStringRef)name, &info, kCFXMLNodeCurrentVersion);   
@@ -269,28 +269,28 @@
  */
 -(NSString *)xmlForTree
 {
-	NSData * data = (NSData *)CFXMLTreeCreateXMLData(kCFAllocatorDefault, tree);
+	NSData * data = (NSData *)CFBridgingRelease(CFXMLTreeCreateXMLData(kCFAllocatorDefault, tree));
 	// DJE deprecated API here
 	//	NSString * xmlString = [NSString stringWithCString:[data bytes] length:[data length]];
 	// replaced by
 	//  XXX does [data bytes ] return a read only pointer, thus the string cannot be sanitised?
 	size_t length = [ data length];
 	char *cp = malloc(length+1);
-	if(cp == NULL){CFRelease(data); return nil;}
+	if(cp == NULL){CFRelease((__bridge CFTypeRef)(data)); return nil;}
 	[data getBytes: (void *) cp length:length ];
 	*(cp +length) = '\0';
 #ifdef VOLE2
-	NSString *xmlString = [[[NSString alloc] initWithBytes: cp
+	NSString *xmlString = [[NSString alloc] initWithBytes: cp
 													length: length 
-                                                  encoding: NSUTF8StringEncoding] autorelease];
+                                                  encoding: NSUTF8StringEncoding];
 #else /* vole 1 code, this is broken, but it should not be changed */
-    NSString *xmlString = [[[NSString alloc] initWithBytes: sanitise_string( cp )
+    NSString *xmlString = [[NSString alloc] initWithBytes: sanitise_string( cp )
 													length: length 
-                                                  encoding: NSWindowsCP1252StringEncoding] autorelease];
+                                                  encoding: NSWindowsCP1252StringEncoding];
 #endif
     free(cp);
 	// end of new changes
-	CFRelease(data);
+	CFRelease((__bridge CFTypeRef)(data));
 	return xmlString;
 }
 
@@ -310,7 +310,7 @@
 	if (CFXMLNodeGetTypeCode(node) == kCFXMLNodeTypeElement )
 	{
 		CFXMLElementInfo eInfo = *(CFXMLElementInfo *)CFXMLNodeGetInfoPtr(node);
-		return [[(NSDictionary *)eInfo.attributes retain] autorelease];
+		return (__bridge NSDictionary *)eInfo.attributes;
 	}
 	return nil;
 }
@@ -329,13 +329,13 @@
 		CFXMLElementInfo eInfo = *(CFXMLElementInfo *)CFXMLNodeGetInfoPtr(node);
 		if (eInfo.attributes != nil)
 		{
-			return (NSString *)CFDictionaryGetValue(eInfo.attributes, attributeName);
+			return (NSString *)CFDictionaryGetValue(eInfo.attributes, (__bridge const void *)(attributeName));
 		}
 	}
 	else if (CFXMLNodeGetTypeCode(node) == kCFXMLNodeTypeProcessingInstruction)
 	{
 		CFXMLProcessingInstructionInfo eInfo = *(CFXMLProcessingInstructionInfo *)CFXMLNodeGetInfoPtr(node);
-		NSScanner * scanner = [NSScanner scannerWithString:(NSString *)eInfo.dataString];
+		NSScanner * scanner = [NSScanner scannerWithString:(__bridge NSString *)eInfo.dataString];
 		while (![scanner isAtEnd])
 		{
 			NSString * instructionName = nil;
@@ -391,14 +391,14 @@
 		// replaced by	
 #ifdef VOLE2
             // Vole 2 (added 22-3-2017)
-            [valueString appendString:[[[NSString alloc] initWithBytes: (char *)CFDataGetBytePtr(valueData)
+            [valueString appendString:[[NSString alloc] initWithBytes: (char *)CFDataGetBytePtr(valueData)
 																length: CFDataGetLength(valueData)
-															  encoding:	NSUTF8StringEncoding] autorelease]];
+															  encoding:	NSUTF8StringEncoding]];
 #else
             // Vole 1 broken code. Does not work for searches for codepoints >0x7f
-            [valueString appendString:[[[NSString alloc] initWithBytes: sanitise_string((char *)CFDataGetBytePtr(valueData))
+            [valueString appendString:[[NSString alloc] initWithBytes: sanitise_string((char *)CFDataGetBytePtr(valueData))
                                                                 length:CFDataGetLength(valueData)
-                                                              encoding:	NSWindowsCP1252StringEncoding] autorelease]];
+                                                              encoding:	NSWindowsCP1252StringEncoding]];
 #endif  // VOLE2
             CFRelease(valueData);
             
@@ -492,7 +492,6 @@
 	}
 	
 	NSString * returnString = [processedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	[processedString release];
 	return returnString;
 }
 
@@ -544,6 +543,5 @@
 		CFRelease(node);
 	if (tree != nil)
 		CFRelease(tree);
-	[super dealloc];
 }
 @end

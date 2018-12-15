@@ -40,22 +40,16 @@
 
 -(void)setName:(NSString *)newName
 {
-	[newName retain];
-	[name release];
 	name = newName;
 }
 
 -(void)setTitle:(NSString *)newTitle
 {
-	[newTitle retain];
-	[title release];
 	title = newTitle;
 }
 
 -(void)setSqlField:(NSString *)newSqlField
 {
-	[newSqlField retain];
-	[sqlField release];
 	sqlField = newSqlField;
 }
 
@@ -120,9 +114,4 @@
 	return [NSString stringWithFormat:@"('%@', title='%@', sqlField='%@', tag=%ld, width=%ld, visible=%ld)", name, title, sqlField, (long)tag, (long)width, (long)visible];
 }
 
--(void)dealloc
-{
-	[name release];
-	[super dealloc];
-}
 @end

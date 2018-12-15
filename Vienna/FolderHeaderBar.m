@@ -104,12 +104,9 @@
 		[folderName setAttributedStringValue:newTitleString];
 	}
 
-	[folder retain];
-	[currentFolder release];
 	currentFolder = folder;
 
 	[self refreshForCurrentFolder];
-	[newTitleString release];
 }
 
 /* handleTintChange
@@ -137,7 +134,5 @@
 -(void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[currentFolder release];
-	[super dealloc];
 }
 @end

@@ -175,8 +175,6 @@
  */
 -(void)setImportFilename:(NSString *)name
 {
-	[name retain];
-	[importFilename release];
 	importFilename = name;
 }
 
@@ -186,261 +184,253 @@
 -(void)importScratchpad:(NSArray *)portArray
 {
     (void)portArray;
-	NSAutoreleasePool * pool;
 	BufferedFile * buffer;
 	
-    pool = [[NSAutoreleasePool alloc] init];
-	buffer = [[BufferedFile alloc] initWithPath:importFilename];
-	[self performSelectorOnMainThread:@selector(initializeProgress:) withObject:[NSNumber numberWithLong:(long)[buffer fileSize]] waitUntilDone:YES];
-	if (buffer != nil)
-	{
-		BOOL endOfFile;
-		NSString * line = [buffer readLine:&endOfFile];
-		
-		while (!endOfFile && !stopImportFlag)
+    @autoreleasepool {
+		buffer = [[BufferedFile alloc] initWithPath:importFilename];
+		[self performSelectorOnMainThread:@selector(initializeProgress:) withObject:[NSNumber numberWithLong:(long)[buffer fileSize]] waitUntilDone:YES];
+		if (buffer != nil)
 		{
-	//		NSLog(@"raw line %@", line);  // DJE
+			BOOL endOfFile;
+			NSString * line = [buffer readLine:&endOfFile];
+			
+			while (!endOfFile && !stopImportFlag)
+			{
+		//		NSLog(@"raw line %@", line);  // DJE
 //			BOOL read_flag = YES;
-			BOOL read_flag = NO;  // dje changed from YES
-			BOOL marked_flag = NO;
-			BOOL ignore_flag = NO;
-			BOOL author_flag = NO;
-			BOOL keep_flag = NO;
-			BOOL locked_flag = NO;
-			
-			NSString * messagePath;
-			NSString * userName;
-			NSString * messageBody;
-			NSDate * messageDate;
-			NSString * messageDateString;
-			NSString * monthName;
-			int messageNumber;
-			int messageComment;
-			int messageSize;
-			int day, year;
-			int hour, minute;
-			BOOL hasMessage;
-			
-			// Initialize variables
-			messageComment = 0;
-			hasMessage = NO;
-			monthName = nil;
-			
-			// Parse the !MF header if one is found and set flags. The
-			// header format is the standard used by Semaphore and Ameol,
-			// and possibly others. The format is !MF:<ch>*
-			// where <ch> is one or more occurrences of the following:
-			//   A - author message
-			//   K - kept message
-			//   I - ignored message
-			//   U - unread message
-			//   M - marked message
-			//   L - locked message
-			//
-			if ([line hasPrefix:@"!MF:"])
-			{
-				NSUInteger index = 4;
-				read_flag = YES; // DJE
-				while (index < [line length])
-					switch ([line characterAtIndex:index++])
-					{
-						case 'A': author_flag = YES; continue;
-						case 'U': read_flag = NO; continue;
-						case 'I': ignore_flag = YES; continue;
-						case 'K': keep_flag = YES; continue;
-						case 'M': marked_flag = YES; continue;
-						case 'L': locked_flag = YES; continue;
-					}
-						
-						// Get the next line
-						line = [buffer readLine:&endOfFile];
-				if (endOfFile)
-					continue;
-			}
-			else if ([line hasPrefix:@"!S4:"])
-			{
-				NSUInteger index = 4;
-				while (index < [line length])
-					switch ([line characterAtIndex:index++])
-					{
-						case 'U': read_flag = ! ( [line characterAtIndex:index++] == '1' ); continue;
-						case 'M': marked_flag = ( [line characterAtIndex:index++] == '1' ); continue;
-						case 'L': locked_flag = ( [line characterAtIndex:index++] == '1' ); continue;
-					}
-			}
+				BOOL read_flag = NO;  // dje changed from YES
+				BOOL marked_flag = NO;
+				BOOL ignore_flag = NO;
+				BOOL author_flag = NO;
+				BOOL keep_flag = NO;
+				BOOL locked_flag = NO;
 				
-				// This is a mail message, so skip it. Happily the
-				// size of the message appears in the header.
-				if ([line hasPrefix:@"Memo #"])
+				NSString * messagePath;
+				NSString * userName;
+				NSString * messageBody;
+				NSDate * messageDate;
+				NSString * messageDateString;
+				NSString * monthName;
+				int messageNumber;
+				int messageComment;
+				int messageSize;
+				int day, year;
+				int hour, minute;
+				BOOL hasMessage;
+				
+				// Initialize variables
+				messageComment = 0;
+				hasMessage = NO;
+				monthName = nil;
+				
+				// Parse the !MF header if one is found and set flags. The
+				// header format is the standard used by Semaphore and Ameol,
+				// and possibly others. The format is !MF:<ch>*
+				// where <ch> is one or more occurrences of the following:
+				//   A - author message
+				//   K - kept message
+				//   I - ignored message
+				//   U - unread message
+				//   M - marked message
+				//   L - locked message
+				//
+				if ([line hasPrefix:@"!MF:"])
 				{
-					NSScanner * scanner = [NSScanner scannerWithString:line];
-					int messageNumber;
-					int messageSize;
-					
-					[scanner scanString:@"Memo #" intoString:nil];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&messageNumber];
-					[scanner scanString:@"(" intoString:nil];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&messageSize];
-					messageBody = [buffer readTextOfSize:messageSize];
+					NSUInteger index = 4;
+					read_flag = YES; // DJE
+					while (index < [line length])
+						switch ([line characterAtIndex:index++])
+						{
+							case 'A': author_flag = YES; continue;
+							case 'U': read_flag = NO; continue;
+							case 'I': ignore_flag = YES; continue;
+							case 'K': keep_flag = YES; continue;
+							case 'M': marked_flag = YES; continue;
+							case 'L': locked_flag = YES; continue;
+						}
+							
+							// Get the next line
+							line = [buffer readLine:&endOfFile];
+					if (endOfFile)
+						continue;
 				}
-				
-				// This is a multi-line standard CIX header which has the same information
-				// as a compact header, but spread over multiple lines.
-				if ([line isEqualToString:@"=========="])
+				else if ([line hasPrefix:@"!S4:"])
 				{
-					line = [buffer readLine:&endOfFile];
-					if (endOfFile)
-						continue;
+					NSUInteger index = 4;
+					while (index < [line length])
+						switch ([line characterAtIndex:index++])
+						{
+							case 'U': read_flag = ! ( [line characterAtIndex:index++] == '1' ); continue;
+							case 'M': marked_flag = ( [line characterAtIndex:index++] == '1' ); continue;
+							case 'L': locked_flag = ( [line characterAtIndex:index++] == '1' ); continue;
+						}
+				}
 					
-					NSScanner * scanner = [NSScanner scannerWithString:line];
-					[scanner scanUpToString:@" " intoString:&messagePath];
-					[scanner scanString:@"#" intoString:nil];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&messageNumber];
-					[scanner scanString:@", from " intoString:nil];
-					[scanner scanUpToString:@"," intoString:&userName];
-					[scanner scanString:@", " intoString:nil];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&messageSize];
-					[scanner scanString:@"chars, " intoString:nil];
-					[scanner scanUpToString:@"" intoString:&messageDateString];
-					
-					// Convert the date and time into something we can work with
-					messageDate = [NSCalendarDate dateWithString:messageDateString calendarFormat:@"%b %d %H:%M %y"];
-					
-					// Parse the next line which optionally specifies the comment
-					line = [buffer readLine:&endOfFile];
-					if (endOfFile)
-						continue;
-					
-					scanner = [NSScanner scannerWithString:line];
-					if ([scanner scanString:@"Comment to " intoString:nil])
+					// This is a mail message, so skip it. Happily the
+					// size of the message appears in the header.
+					if ([line hasPrefix:@"Memo #"])
 					{
+						NSScanner * scanner = [NSScanner scannerWithString:line];
+						int messageNumber;
+						int messageSize;
+						
+						[scanner scanString:@"Memo #" intoString:nil];
 // #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-						[scanner scanInt:&messageComment];
+						[scanner scanInt:&messageNumber];
+						[scanner scanString:@"(" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&messageSize];
+						messageBody = [buffer readTextOfSize:messageSize];
+					}
+					
+					// This is a multi-line standard CIX header which has the same information
+					// as a compact header, but spread over multiple lines.
+					if ([line isEqualToString:@"=========="])
+					{
 						line = [buffer readLine:&endOfFile];
 						if (endOfFile)
 							continue;
+						
+						NSScanner * scanner = [NSScanner scannerWithString:line];
+						[scanner scanUpToString:@" " intoString:&messagePath];
+						[scanner scanString:@"#" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&messageNumber];
+						[scanner scanString:@", from " intoString:nil];
+						[scanner scanUpToString:@"," intoString:&userName];
+						[scanner scanString:@", " intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&messageSize];
+						[scanner scanString:@"chars, " intoString:nil];
+						[scanner scanUpToString:@"" intoString:&messageDateString];
+						
+						// Convert the date and time into something we can work with
+						messageDate = [NSCalendarDate dateWithString:messageDateString calendarFormat:@"%b %d %H:%M %y"];
+						
+						// Parse the next line which optionally specifies the comment
+						line = [buffer readLine:&endOfFile];
+						if (endOfFile)
+							continue;
+						
+						scanner = [NSScanner scannerWithString:line];
+						if ([scanner scanString:@"Comment to " intoString:nil])
+						{
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+							[scanner scanInt:&messageComment];
+							line = [buffer readLine:&endOfFile];
+							if (endOfFile)
+								continue;
+						}
+						if ([line isEqualToString:@"----------"])
+						{
+							if(messageSize < 2) messageSize++; // DJE added to compensate for decrement in next line
+							messageBody = [buffer readTextOfSize:messageSize -1]; // DJE changed, because withdrawn messages are 1 byte shorter than usual
+							hasMessage = YES;
+						}
 					}
-					if ([line isEqualToString:@"----------"])
-					{
-						if(messageSize < 2) messageSize++; // DJE added to compensate for decrement in next line
-						messageBody = [buffer readTextOfSize:messageSize -1]; // DJE changed, because withdrawn messages are 1 byte shorter than usual
-						hasMessage = YES;
-					}
-				}
-				
-				// Then parse a compact header to extract:
-				//  - conference/topic name
-				//  - size of message
-				//  - username
-				//  - comment number
-				else if ([line hasPrefix:@">>>"])
-				{
-				//	NSLog(@"Line = %@", line); // DJE 
-					NSScanner * scanner = [NSScanner scannerWithString:line]; 
-					[scanner scanString:@">>>" intoString:nil];
-					[scanner scanUpToString:@" " intoString:&messagePath];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&messageNumber];
-					[scanner scanUpToString:@"(" intoString:&userName];
-					[scanner scanString:@"(" intoString:nil];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&messageSize];
-					[scanner scanString:@")" intoString:nil];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&day];
-					[scanner scanUpToCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:&monthName];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&year];
-//#warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&hour];
-					[scanner scanString:@":" intoString:nil];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&minute];
-					[scanner scanString:@"c" intoString:nil];
-// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
-					[scanner scanInt:&messageComment];					
 					
-					// Convert the date and time into something we can work with
-					// Handle bug in Parlance where some versions exported the year wrong.
-					if (monthName != nil)
+					// Then parse a compact header to extract:
+					//  - conference/topic name
+					//  - size of message
+					//  - username
+					//  - comment number
+					else if ([line hasPrefix:@">>>"])
 					{
-						if (year >= 100)
-							year -= 100;
+					//	NSLog(@"Line = %@", line); // DJE 
+						NSScanner * scanner = [NSScanner scannerWithString:line]; 
+						[scanner scanString:@">>>" intoString:nil];
+						[scanner scanUpToString:@" " intoString:&messagePath];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&messageNumber];
+						[scanner scanUpToString:@"(" intoString:&userName];
+						[scanner scanString:@"(" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&messageSize];
+						[scanner scanString:@")" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&day];
+						[scanner scanUpToCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:&monthName];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&year];
+//#warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&hour];
+						[scanner scanString:@":" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&minute];
+						[scanner scanString:@"c" intoString:nil];
+// #warning 64BIT: scanInt: argument is pointer to int, not NSInteger; you can use scanInteger:
+						[scanner scanInt:&messageComment];					
+						
+						// Convert the date and time into something we can work with
+						// Handle bug in Parlance where some versions exported the year wrong.
+						if (monthName != nil)
+						{
+							if (year >= 100)
+								year -= 100;
 // #warning 64BIT: Check formatting arguments
-						messageDateString = [NSString stringWithFormat:@"%d%@%d %d:%d", day, monthName, year, hour, minute];
-						messageDate = [NSCalendarDate dateWithString:messageDateString calendarFormat:@"%d%b%y %H:%M"];
-						if (messageDate == nil)
-							messageDate = [NSCalendarDate calendarDate];
-						
-						// Read the message body using the size as a clue.
-						if (messageSize < 2) messageSize++; // DJE added, precomp messagesize
-						messageBody = [buffer readTextOfSize:messageSize - 1]; // DJE, deal with ** Withdrawn by user ** messages which are one byte shorter
-						hasMessage = YES;
+							messageDateString = [NSString stringWithFormat:@"%d%@%d %d:%d", day, monthName, year, hour, minute];
+							messageDate = [NSCalendarDate dateWithString:messageDateString calendarFormat:@"%d%b%y %H:%M"];
+							if (messageDate == nil)
+								messageDate = [NSCalendarDate calendarDate];
+							
+							// Read the message body using the size as a clue.
+							if (messageSize < 2) messageSize++; // DJE added, precomp messagesize
+							messageBody = [buffer readTextOfSize:messageSize - 1]; // DJE, deal with ** Withdrawn by user ** messages which are one byte shorter
+							hasMessage = YES;
+						}
 					}
-				}
-				
-				// Only if we have a message do we try to make sense of the
-				// information we parsed.
-				if (hasMessage)
-				{
-					// Ignore Mail, Logs or News folders
-					if (!([messagePath hasPrefix:@"Mail/"] || [messagePath hasPrefix:@"News/"] || [messagePath hasPrefix:@"Logs/"]))
+					
+					// Only if we have a message do we try to make sense of the
+					// information we parsed.
+					if (hasMessage)
 					{
-						// Update progress
-						NSString * progressString = [NSString stringWithFormat:@"Reading %@", messagePath];
-						NSNumber * progressValue = [NSNumber numberWithLong:(long)[buffer readSoFar]];
-						[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressString waitUntilDone:YES];
-						[self performSelectorOnMainThread:@selector(updateProgressValue:) withObject:progressValue waitUntilDone:YES];
-						
-						// Now insert the message into the database
-						VMessage * message = [[VMessage alloc] initWithInfo:messageNumber];
-						[message setComment:messageComment];
-						[message setSender:userName];
-						NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc ] init ];  // DJE
-						NSMutableString *mb = [NSMutableString stringWithCapacity: [messageBody length] +1];
-						[mb appendString: messageBody];
-						[ mb appendString: @"\n" ]; // DJE added to compensate for reading 1 byte short
-				//		[message setText:messageBody];
-						[message setText:mb ]; // DJE
-						[ pool2 drain ]; // DJE
-						[message setDateFromDate:messageDate];
-						[message markRead:read_flag];
-						[message markPriority:author_flag];
-						[message markIgnored:ignore_flag];
-						[message markFlagged:marked_flag];
-						[self performSelectorOnMainThread:@selector(addRetrievedMessage:) withObject:[NSArray arrayWithObjects:message, messagePath, nil] waitUntilDone:YES];
-						[message release];
+						// Ignore Mail, Logs or News folders
+						if (!([messagePath hasPrefix:@"Mail/"] || [messagePath hasPrefix:@"News/"] || [messagePath hasPrefix:@"Logs/"]))
+						{
+							// Update progress
+							NSString * progressString = [NSString stringWithFormat:@"Reading %@", messagePath];
+							NSNumber * progressValue = [NSNumber numberWithLong:(long)[buffer readSoFar]];
+							[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressString waitUntilDone:YES];
+							[self performSelectorOnMainThread:@selector(updateProgressValue:) withObject:progressValue waitUntilDone:YES];
+							
+							// Now insert the message into the database
+							VMessage * message = [[VMessage alloc] initWithInfo:messageNumber];
+							[message setComment:messageComment];
+							[message setSender:userName];
+							@autoreleasepool {  // DJE
+								NSMutableString *mb = [NSMutableString stringWithCapacity: [messageBody length] +1];
+								[mb appendString: messageBody];
+								[ mb appendString: @"\n" ]; // DJE added to compensate for reading 1 byte short
+					//		[message setText:messageBody];
+								[message setText:mb ]; // DJE
+							} // DJE
+							[message setDateFromDate:messageDate];
+							[message markRead:read_flag];
+							[message markPriority:author_flag];
+							[message markIgnored:ignore_flag];
+							[message markFlagged:marked_flag];
+							[self performSelectorOnMainThread:@selector(addRetrievedMessage:) withObject:[NSArray arrayWithObjects:message, messagePath, nil] waitUntilDone:YES];
+						}
+						else
+						{
+							NSString * progressString = [NSString stringWithFormat:@"Skipping %@", messagePath];
+							NSNumber * progressValue = [NSNumber numberWithLong:(long)[buffer readSoFar]];
+							[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressString waitUntilDone:YES];
+							[self performSelectorOnMainThread:@selector(updateProgressValue:) withObject:progressValue waitUntilDone:YES];
+						}
 					}
-					else
-					{
-						NSString * progressString = [NSString stringWithFormat:@"Skipping %@", messagePath];
-						NSNumber * progressValue = [NSNumber numberWithLong:(long)[buffer readSoFar]];
-						[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressString waitUntilDone:YES];
-						[self performSelectorOnMainThread:@selector(updateProgressValue:) withObject:progressValue waitUntilDone:YES];
-					}
-				}
-				line = [buffer readLine:&endOfFile];
+					line = [buffer readLine:&endOfFile];
+			}
+				[buffer close];
 		}
-			[buffer close];
-	}
-		[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithLong:(long)-1] waitUntilDone:YES];
-		[buffer release];
-		[pool release];
+			[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithLong:(long)-1] waitUntilDone:YES];
+		}
 		[self performSelectorOnMainThread:@selector(stopImport:) withObject:nil waitUntilDone:NO];
 }
 
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[importFilename release];
-	[super dealloc];
-}
 @end
 
 @implementation AppController (Import)
@@ -557,6 +547,5 @@
 	NSRunAlertPanel(NSLocalizedString(@"RSS Subscription Import Title", nil), successString, NSLocalizedString(@"OK", nil), nil, nil);
 	
 	// Finished
-	[tree release];
 }
 @end

@@ -43,7 +43,7 @@
 
 <!-- ****************** This file is for Vole 1 *******************-->
 	<key>CFBundleShortVersionString</key>
-	<string>1.6.22</string>
+	<string>1.7.0</string> <!-- 1.7.x for Vole 1 with ARC -->
 <!-- ****************** This file is for Vole 1 *******************-->
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>

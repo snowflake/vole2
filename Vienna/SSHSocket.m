@@ -75,7 +75,6 @@
 
 	// These belong to the child process now.
 	close(slaveFd);
-	[slaveFh release];
 
 	fd = masterFd;
 
@@ -95,7 +94,6 @@
 	close(fd);
 	kill([sshTask processIdentifier], SIGTERM);
 	[sshTask waitUntilExit];
-	[sshTask release];
 	sshTask = nil;
 	[super close];
 }
@@ -103,9 +101,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[sshTask release];
-	[super dealloc];
-}
 @end

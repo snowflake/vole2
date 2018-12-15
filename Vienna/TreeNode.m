@@ -39,7 +39,7 @@
 			BOOL isOrdered = (folderId > MA_Conference_NodeID);
 			[parent addChild:self ordered:isOrdered];
 		}
-		children = [[NSMutableArray array] retain];
+		children = [NSMutableArray array];
 	}
 	return self;
 }
@@ -231,8 +231,6 @@
  */
 -(void)setFolder:(Folder *)newFolder
 {
-	[newFolder retain];
-	[folder release];
 	folder = newFolder;
 }
 
@@ -299,10 +297,4 @@
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[children release];
-	[folder release];
-	[super dealloc];
-}
 @end

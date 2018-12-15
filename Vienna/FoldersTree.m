@@ -79,7 +79,7 @@
 
 	// Our folders have images next to them.
     tableColumn = [outlineView tableColumnWithIdentifier:@"folderColumns"];
-    imageAndTextCell = [[[ImageAndTextCell alloc] init] autorelease];
+    imageAndTextCell = [[ImageAndTextCell alloc] init];
     [tableColumn setDataCell:imageAndTextCell];
 
 	// Get a bold variant of the cell font for when we show folders with unread messages
@@ -106,12 +106,11 @@
     [[popupMenu cell] setUsesItemFromMenu:NO];
     [[popupMenu cell] setBezelStyle:NSRegularSquareBezelStyle]; // DJE changed
     //[[popupMenu cell] setArrowPosition:NSPopUpArrowAtBottom];
-    NSMenuItem * item = [[NSMenuItem allocWithZone:[self zone]] initWithTitle:@"" action:NULL keyEquivalent:@""];
+    NSMenuItem * item = [[NSMenuItem allocWithZone:nil] initWithTitle:@"" action:NULL keyEquivalent:@""];
     [item setImage:[NSImage imageNamed:@"Action.tiff"]];
     [item setOnStateImage:nil];
     [item setMixedStateImage:nil];
     [[popupMenu cell] setMenuItem:item];
-    [item release];
     [popupMenu setPreferredEdge:NSMinXEdge];
     // menuRepresenatation is deprecated, so next line is commented out. (DJE)
     //  [[[popupMenu menu] menuRepresentation] setHorizontalEdgePadding:0.0];
@@ -134,8 +133,6 @@
 {
 	NSInteger height;
 
-	[cellFont release];
-	[boldCellFont release];
 
 	NSData * fontData = [[NSUserDefaults standardUserDefaults] objectForKey:MAPref_FolderFont];
 	cellFont = [NSUnarchiver unarchiveObjectWithData:fontData];
@@ -144,9 +141,8 @@
 	//	height = [boldCellFont defaultLineHeightForFont];
 	NSLayoutManager *nsl = [[ NSLayoutManager alloc] init];
 	height= (NSInteger) [ nsl defaultLineHeightForFont: boldCellFont];
-	[ nsl release];
-	[cellFont retain];  // DJE added
-	[boldCellFont retain]; // DJE added
+	  // DJE added
+	 // DJE added
 
 	[outlineView setRowHeight:height + 3];
 }
@@ -245,8 +241,6 @@
  */
 -(void)setDatabase:(Database *)newDb
 {
-	[newDb retain];
-	[db release];
 	db = newDb;
 }
 
@@ -739,8 +733,6 @@
 {
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc removeObserver:self];
-	[rootNode release];
-	[super dealloc];
 }
 
 @end

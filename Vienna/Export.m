@@ -71,8 +71,6 @@
 	else
 	{
 		// Make a copy of the export filename since the thread actually opens the file
-		[pathToFile retain];
-		[exportFilename release];
 		exportFilename = pathToFile;
 		
 		// Set the progress range to be the number of folders we are exporting. We won't know how
@@ -130,16 +128,14 @@
 	NSString * progressText = [NSString stringWithFormat:NSLocalizedString(@"Retrieving messages from %@", nil), folderPath];
 	[self updateProgressText:progressText];
 	
-	[messages release];
-	messages = [[db arrayOfMessages:[folder itemId] filterString:@"" withoutIgnored:NO sorted:&isSorted] retain];
+	messages = [db arrayOfMessages:[folder itemId] filterString:@"" withoutIgnored:NO sorted:&isSorted];
 }
 
 /* loadMessageText
  */
 -(void)loadMessageText:(VMessage *)message
 {
-	[messageText release];
-	messageText = [[db messageText:[message folderId] messageId:[message messageId]] retain];
+	messageText = [db messageText:[message folderId] messageId:[message messageId]];
 }
 
 /* updateProgressText
@@ -158,29 +154,28 @@
  */
 -(void)exportFolders:(NSArray *)arrayOfFolders
 {
-	NSAutoreleasePool * pool;
-    pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
 	
 // #warning 64BIT: Check formatting arguments
-	NSString * progressText = [NSString stringWithFormat:NSLocalizedString(@"Opening '%@'", nil), exportFilename];
-	[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressText waitUntilDone:YES];
-	
-	NSFileHandle * fileHandle = [NSFileHandle fileHandleForWritingAtPath:exportFilename];
-	NSEnumerator * enumerator = [arrayOfFolders objectEnumerator];
-	Folder * folder;
-	
-	countOfFolders = 0;
-	lastFolderId = -1;
-	while ((folder = [enumerator nextObject]) && !stopExportFlag)
-	{
-		++countOfFolders;
-		[self exportFolder:folder toFileHandle:fileHandle];
+		NSString * progressText = [NSString stringWithFormat:NSLocalizedString(@"Opening '%@'", nil), exportFilename];
+		[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:progressText waitUntilDone:YES];
+		
+		NSFileHandle * fileHandle = [NSFileHandle fileHandleForWritingAtPath:exportFilename];
+		NSEnumerator * enumerator = [arrayOfFolders objectEnumerator];
+		Folder * folder;
+		
+		countOfFolders = 0;
+		lastFolderId = -1;
+		while ((folder = [enumerator nextObject]) && !stopExportFlag)
+		{
+			++countOfFolders;
+			[self exportFolder:folder toFileHandle:fileHandle];
+		}
+		
+		[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:NSLocalizedString(@"Completed", nil) waitUntilDone:YES];
+		
+		[fileHandle closeFile];
 	}
-	
-	[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:NSLocalizedString(@"Completed", nil) waitUntilDone:YES];
-	
-	[fileHandle closeFile];
-	[pool release];
 	[self performSelectorOnMainThread:@selector(stopExport:) withObject:nil waitUntilDone:NO];
 }
 
@@ -258,20 +253,12 @@
 	// This line is essential if we're not to end up eating all the memory on
 	// the system!
 	[folder clearMessages];
-	[messages release];
 	messages = nil;
 }
 
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[messages release];
-	[messageText release];
-	[exportFilename release];
-	[super dealloc];
-}
 @end
 
 @implementation AppController (Export)
@@ -396,7 +383,6 @@
 		[xmlString replaceString:@"><" withString:@">\n<"];
 
 		NSData * msgData = [NSData dataWithBytes:[xmlString UTF8String] length:[xmlString length]];
-		[xmlString release];
 		[fileHandle writeData:msgData];
 		[fileHandle closeFile];
 	}
@@ -407,6 +393,5 @@
 	NSRunAlertPanel(NSLocalizedString(@"RSS Subscription Export Title", nil), successString, NSLocalizedString(@"OK", nil), nil, nil);
 	
 	// Clean up at the end
-	[newTree release];
 }
 @end

@@ -95,21 +95,10 @@
 			[infoBarString appendAttributedString:commentLabel];
 			[infoBarString appendAttributedString:commentPart];
 
-			[commentPart release];
-			[commentLabel release];
 		}
 		
 		[infoBarText setObjectValue:infoBarString];
 
-		[datePart release];
-		[postedLabel release];
-		[senderNamePart release];
-		[fromLabel release];
-		[folderNamePart release];
-		[inLabel release];
-		[numberPart release];
-		[msgLabel release];
-		[infoBarString release];
 	}
 }
 @end

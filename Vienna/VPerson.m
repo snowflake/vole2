@@ -40,8 +40,6 @@
  */
 -(void)setName:(NSString *)newName
 {
-	[newName retain];
-	[name release];
 	name = newName;
 }
 
@@ -50,8 +48,6 @@
  */
 -(void)setShortName:(NSString *)newShortName
 {
-	[newShortName retain];
-	[shortName release];
 	shortName = newShortName;
 }
 
@@ -60,8 +56,6 @@
  */
 -(void)setInfo:(NSString *)newInfo
 {
-	[newInfo retain];
-	[info release];
 	info = newInfo;
 }
 
@@ -70,8 +64,6 @@
  */
 -(void)setParsedInfo:(NSString *)newParsedInfo
 {
-	[newParsedInfo retain];
-	[parsedInfo release];
 	parsedInfo = newParsedInfo;
 }
 
@@ -88,8 +80,6 @@
  */
 -(void)setPicture:(NSImage *)newPicture
 {
-	[newPicture retain];
-	[picture release];
 	picture = newPicture;
 }
 
@@ -98,8 +88,6 @@
  */
 -(void)setEmailAddress:(NSString *)newEmailAddress
 {
-	[newEmailAddress retain];
-	[emailAddress release];
 	emailAddress = newEmailAddress;
 }
 
@@ -178,12 +166,4 @@
 /* dealloc
  * Clean up at the end.
  */
--(void)dealloc
-{
-	[info release];
-	[name release];
-	[shortName release];
-	[picture release];
-	[super dealloc];
-}
 @end

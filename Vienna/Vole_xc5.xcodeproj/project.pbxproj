@@ -1458,7 +1458,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = mavericks;
@@ -1467,6 +1467,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -1513,7 +1514,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1534,7 +1535,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = elcapitan2;
@@ -1544,6 +1545,7 @@
 			baseConfigurationReference = 61BDCD541CEF11310066C977 /* elcapitan2.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -1591,7 +1593,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.11;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1612,7 +1614,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = sierra;
@@ -1621,6 +1623,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -1667,7 +1670,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.12;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1688,7 +1691,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = yosemite;
@@ -1697,6 +1700,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -1743,7 +1747,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1764,7 +1768,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = mountainlion;
@@ -1773,6 +1777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -1819,7 +1824,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1840,7 +1845,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = sierra2;
@@ -1850,6 +1855,7 @@
 			baseConfigurationReference = 61BDCD541CEF11310066C977 /* elcapitan2.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -1897,7 +1903,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.12;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1918,7 +1924,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "";
+				SDKROOT = macosx;
 				SYMROOT = "../../Vienna-build";
 			};
 			name = elcapitan;
@@ -1927,6 +1933,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -1973,7 +1980,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Vole;
-				SDKROOT = macosx10.11;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",

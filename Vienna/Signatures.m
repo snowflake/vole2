@@ -35,7 +35,7 @@ static Signatures * defaultSignatures = nil;
 {
 	if ((self = [super init]) != nil)
 	{
-		signatures = [[NSMutableDictionary dictionary] retain];
+		signatures = [NSMutableDictionary dictionary];
 		[signatures addEntriesFromDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:MAPref_Signatures]];
 	}
 	return self;
@@ -91,9 +91,4 @@ static Signatures * defaultSignatures = nil;
 /* dealloc
  * Clean up and release resources.
  */
--(void)dealloc
-{
-	[signatures release];
-	[super dealloc];
-}
 @end

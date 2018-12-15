@@ -159,7 +159,6 @@
 // #warning 64BIT: Check formatting arguments
     NSBeginAlertSheet(NSLocalizedString(@"Download Failed", nil), nil, nil, nil, [self window], nil, nil, nil, nil, errorDescription);
 
-    [download release];
 }
 
 /* downloadDidFinish
@@ -167,7 +166,6 @@
  */
 -(void)downloadDidFinish:(NSURLDownload *)download
 {
-    [download release];
 	[self commonDownloadComplete];
 }
 @end

@@ -185,8 +185,8 @@
 		for (p = 0; p < length; ++p)
 			rcString[p] = cString[(length - p) - 1];
 		rcString[p] = '\0';
-		reversedString = [[[NSMutableString alloc] initWithCString:rcString
-														  encoding:NSASCIIStringEncoding] autorelease];
+		reversedString = [[NSMutableString alloc] initWithCString:rcString
+														  encoding:NSASCIIStringEncoding];
 		free(rcString);
 	}
 	return reversedString;
@@ -235,9 +235,9 @@
 			// Deprecated API here DJE
 			//[arrayOfLines addObject:[NSString stringWithCString:lineStart length:lineLength]];
 			// converted to
-			[arrayOfLines addObject:[[[NSString alloc] initWithBytes:lineStart 
+			[arrayOfLines addObject:[[NSString alloc] initWithBytes:lineStart 
 															  length:lineLength
-															encoding:NSWindowsCP1252StringEncoding] autorelease]];
+															encoding:NSWindowsCP1252StringEncoding]];
 			// end of conversion
 
 			lineLength = 0;
@@ -251,9 +251,9 @@
 			// deprecated API here DJE
 //			[arrayOfLines addObject:[NSString stringWithCString:lineStart length:indexOfEndOfLastWord]];
 			// replaced by
-			[arrayOfLines addObject:[[[NSString alloc ] initWithBytes: lineStart 
+			[arrayOfLines addObject:[[NSString alloc ] initWithBytes: lineStart 
 															   length:indexOfEndOfLastWord
-															 encoding:NSWindowsCP1252StringEncoding] autorelease]];
+															 encoding:NSWindowsCP1252StringEncoding]];
 			// end of replacement
 
 			lineLength = 0;
@@ -273,9 +273,9 @@
 		// deprecated API here DJE
 		//[arrayOfLines addObject:[NSString stringWithCString:lineStart length:lineLength]];
 		// replaced by
-		[arrayOfLines addObject:[[[NSString alloc ] initWithBytes:lineStart 
+		[arrayOfLines addObject:[[NSString alloc ] initWithBytes:lineStart 
 														   length:lineLength
-														 encoding: NSWindowsCP1252StringEncoding ] autorelease]];
+														 encoding: NSWindowsCP1252StringEncoding ]];
 	free(tempBuff);
 	return arrayOfLines;
 }

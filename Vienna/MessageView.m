@@ -19,7 +19,7 @@
 //
 
 #import "MessageView.h"
-
+#import "AppController.h"
 @interface NSObject (MessageViewDelegate)
 -(BOOL)handleKeyDown:(unichar)keyChar withFlags:(NSUInteger)flags;
 @end
@@ -35,7 +35,8 @@
 	if ([[theEvent characters] length] == 1)
 	{
 		unichar keyChar = [[theEvent characters] characterAtIndex:0];
-		if ([[self delegate] handleKeyDown:keyChar withFlags:[theEvent modifierFlags]])
+#warning Should this be cast to MessageListView? (dje)
+		if ([(AppController *)[self delegate] handleKeyDown:keyChar withFlags:[theEvent modifierFlags]])
 			return;
 	}
 	[super keyDown:theEvent];

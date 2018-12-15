@@ -52,7 +52,8 @@
 -(void)resetCursorRects
 {
     [self removeAllToolTips];
-    if (delegateImplementsShouldDisplayToolTips && [[self delegate] tableViewShouldDisplayCellToolTips:self])
+#warning How should we cast self delegate?
+    if (delegateImplementsShouldDisplayToolTips && [(NSObject *)[self delegate] tableViewShouldDisplayCellToolTips:self])
 	{
         NSRect visibleRect = [self visibleRect];
         NSRange colRange = [self columnsInRect:visibleRect];
@@ -80,7 +81,9 @@
     NSInteger rowIndex = [self rowAtPoint:point];
     NSInteger columnIndex = [self columnAtPoint:point];
     NSTableColumn *tableColumn = (columnIndex != -1) ? [[self tableColumns] objectAtIndex:columnIndex] : nil;
-    return (columnIndex != -1) ? [[self delegate] tableView:self toolTipForTableColumn:tableColumn row:rowIndex] : @"";
+    // added cast here (dje)
+#warning how should we cast  self delegate
+    return (columnIndex != -1) ? [(NSObject *)[self delegate] tableView:self toolTipForTableColumn:tableColumn row:rowIndex] : @"";
 }
 
 /* setHeaderImage
@@ -94,7 +97,6 @@
 	
 	NSImageCell * imageCell = [[NSImageCell alloc] init];
 	[tableColumn setDataCell:imageCell];
-	[imageCell release];
 }
 @end  
 

@@ -37,6 +37,7 @@ extern char * cixLocation_cstring; // in main.m, used for name of the service
 
 #define MAX_LINE   32
 
+#ifdef STRUCT
 // Structure for encapsulating a message, a folder and some flags
 typedef struct
 {
@@ -64,6 +65,7 @@ typedef struct
 	NSString * folderPath;
 	NSString * description;
 } CIXFolderUpdateData;
+#endif // STRUCT
 
 // Private functions
 @interface Connect (Private)
@@ -177,8 +179,6 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)setDelegate:(id)newDelegate
 {
-	[newDelegate retain];
-	[delegate release];
 	delegate = newDelegate;
 }
 
@@ -197,8 +197,6 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)setDatabase:(Database *)newDatabase
 {
-	[newDatabase retain];
-	[db release];
 	db = newDatabase;
 }
 
@@ -263,7 +261,6 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 		// The Connect object is shared so we need to remember to
 		// release the array we may have allocated last time we came
 		// through here.
-		[messagesToPost release];
 		messagesToPost = [[NSMutableArray alloc] init];
 		
 		while ((message = [enumerator nextObject]) != nil)
@@ -295,8 +292,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	{
 		if (!isRSSThreadRunning)
 		{
-			[rssArray release];
-			rssArray = [[db arrayOfRSSFolders] retain];
+			rssArray = [db arrayOfRSSFolders];
 			if (rssArray != nil && [rssArray count] > 0)
 				[NSThread detachNewThreadSelector:@selector(refreshRSSThread:) toTarget:self withObject:task];
 		}
@@ -417,6 +413,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)addToDatabase:(NSData *)data
 {
+#ifdef STRUCT
 	ThreadFolderData * threadData = (ThreadFolderData *)[data bytes];
 	NSAssert(threadData->folderPath != nil, @"threadData->folderPath cannot be nil");
 
@@ -441,6 +438,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			}
 		}
 	}
+#endif // STRUCT
 }
 
 #pragma mark - addRSSMessageToDatabase
@@ -449,6 +447,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)addRSSMessageToDatabase:(NSData *)data
 {
+#ifdef STRUCT
 	ThreadFolderData * threadData = (ThreadFolderData *)[data bytes];
 	NSInteger folderId = [threadData->message folderId];
 	BOOL wasNew;
@@ -457,6 +456,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[self updateLastFolder:[NSNumber numberWithLong:(long)folderId]];
 	if (wasNew)
 		++messagesCollected;
+#endif // STRUCT
 }	
 
 #pragma mark - updateRSSFolder
@@ -465,6 +465,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)updateRSSFolder:(NSData *)data
 {
+#ifdef STRUCT
 	RSSFolderUpdateData * threadData = (RSSFolderUpdateData *)[data bytes];
 	Folder * folder = [db folderFromID:threadData->folderId];
 
@@ -475,6 +476,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	if (threadData->link != nil)
 		[db setFolderLink:threadData->folderId newLink:threadData->link];
 	[db setRSSFeedLastUpdate:threadData->folderId lastUpdate:threadData->lastUpdate];
+#endif // STRUCT
 }
 
 #pragma mark - updateFolder
@@ -483,10 +485,12 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)updateFolder:(NSData *)data
 {
-	CIXFolderUpdateData * threadData = (CIXFolderUpdateData *)[data bytes];
+#ifdef STRUCT
+    CIXFolderUpdateData * threadData = (CIXFolderUpdateData *)[data bytes];
 	NSInteger folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData->folderPath];
 	if (folderId != -1)
 		[db setFolderDescription:folderId newDescription:threadData->description];
+#endif // STRUCT
 }
 
 #pragma mark - addRetrievedForum
@@ -584,216 +588,211 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(void)refreshRSSThread:(NSObject *)object
 {
-	NSAutoreleasePool * pool;
 	VTask * task = (VTask *)object;
 	NSInteger result = MA_Connect_Success;
 
 	// Init
-    pool = [[NSAutoreleasePool alloc] init];
-	isRSSThreadRunning = YES;
-	NSInteger taskResult = MA_Connect_Success;
-	NSString * taskData = @"";
+    @autoreleasepool {
+		isRSSThreadRunning = YES;
+		NSInteger taskResult = MA_Connect_Success;
+		NSString * taskData = @"";
 
-	// Communicate that a task has started.
-	[task retain];
-	[self performSelectorOnMainThread:@selector(taskStarted:) withObject:task waitUntilDone:YES];
-	if (connectMode == MA_ConnectMode_RSS)
-	{
-		[self sendStatusToDelegate: NSLocalizedString(@"Updating RSS subscriptions", nil)];
-	}
-
-
-	// Populate the RSS GUIDs dictionary
-	[db performSelectorOnMainThread:@selector(loadRSSGuids:) withObject:task waitUntilDone:YES];
-	NSMutableDictionary * RSSGuids = [db getRSSGuids];
-	
-	// Loop for every array in rssArray. This can be either every single RSS folder or just
-	// a selection of RSS folders. We don't care.
-	NSEnumerator * folderEnumerator = [rssArray objectEnumerator];
-	RSSFolder * rssFolder;
-	
-	while ((rssFolder = [folderEnumerator nextObject]) && !rssAbortFlag)
-	{
-		NSMutableArray * messageArray = [NSMutableArray array];
-		NSDate * newLastUpdate = nil;
-		BOOL isUntitledFeed = [[[rssFolder folder] name] isEqualToString:@"(Untitled Feed)"];
-
-		// Send status
-// #warning 64BIT: Check formatting arguments
-		NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Updating subscription from '%@'", nil), [[rssFolder folder] name]];
-		[self sendStatusToDelegate:statusString];
-
-		// Get the feed
-		RichXMLParser * newFeed = [[RichXMLParser alloc] init];
-		if ([newFeed loadFromURL:[rssFolder subscriptionURL]])
+		// Communicate that a task has started.
+		[self performSelectorOnMainThread:@selector(taskStarted:) withObject:task waitUntilDone:YES];
+		if (connectMode == MA_ConnectMode_RSS)
 		{
-			// Keep track of the date of the most recent item. We use this to ignore items we
-			// already have.
-			NSDate * lastUpdate = [rssFolder lastUpdate];
+			[self sendStatusToDelegate: NSLocalizedString(@"Updating RSS subscriptions", nil)];
+		}
 
-			// Extract the latest title and description
-			NSString * feedTitle = [newFeed title];
-			NSString * feedDescription = [newFeed description];
-			NSString * feedLink = [newFeed link];
 
-			// If the untitled feed now has a title, change the status
-			if (isUntitledFeed && feedTitle != nil)
-			{
+		// Populate the RSS GUIDs dictionary
+		[db performSelectorOnMainThread:@selector(loadRSSGuids:) withObject:task waitUntilDone:YES];
+		NSMutableDictionary * RSSGuids = [db getRSSGuids];
+		
+		// Loop for every array in rssArray. This can be either every single RSS folder or just
+		// a selection of RSS folders. We don't care.
+		NSEnumerator * folderEnumerator = [rssArray objectEnumerator];
+		RSSFolder * rssFolder;
+		
+		while ((rssFolder = [folderEnumerator nextObject]) && !rssAbortFlag)
+		{
+			NSMutableArray * messageArray = [NSMutableArray array];
+			NSDate * newLastUpdate = nil;
+			BOOL isUntitledFeed = [[[rssFolder folder] name] isEqualToString:@"(Untitled Feed)"];
+
+			// Send status
 // #warning 64BIT: Check formatting arguments
-				NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Updating subscription from '%@'", nil), feedTitle];
-				[self sendStatusToDelegate:statusString];
-			}
-			
-			// Get the feed's last update from the header if it is present. This will mark the
-			// date of the most recent message in the feed if the individual messages are
-			// missing a date tag.
-			// Note: some feeds appear to have a lastModified in the header that is out of
-			//   date compared to the items in the feed. So do a sanity check to ensure that
-			//   the date on the items take precedence.
-			if ([[newFeed lastModified] isGreaterThan:lastUpdate])
+			NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Updating subscription from '%@'", nil), [[rssFolder folder] name]];
+			[self sendStatusToDelegate:statusString];
+
+			// Get the feed
+			RichXMLParser * newFeed = [[RichXMLParser alloc] init];
+			if ([newFeed loadFromURL:[rssFolder subscriptionURL]])
 			{
-				newLastUpdate = [[newFeed lastModified] retain];
-			}
-			if (newLastUpdate == nil)
-				newLastUpdate = [lastUpdate retain];
+				// Keep track of the date of the most recent item. We use this to ignore items we
+				// already have.
+				NSDate * lastUpdate = [rssFolder lastUpdate];
 
-			// Parse off items.
-			NSEnumerator * itemEnumerator = [[newFeed items] objectEnumerator];
-			FeedItem * newsItem;
+				// Extract the latest title and description
+				NSString * feedTitle = [newFeed title];
+				NSString * feedDescription = [newFeed description];
+				NSString * feedLink = [newFeed link];
 
-			while ((newsItem = [itemEnumerator nextObject]) && !rssAbortFlag)
-			{
-				NSDate * messageDate = [newsItem date];
-				NSInteger msgFlag = MA_MsgID_New;
-				NSString * guid = [newsItem guid];
-				
-				// If the article doesn't have a GUID then synthesize one.
-				// This code nicked from Steve's Vienna2 RefreshManager.m
-				if (guid == nil || [guid isEqualToString:@""])
+				// If the untitled feed now has a title, change the status
+				if (isUntitledFeed && feedTitle != nil)
 				{
-//#warning 64BIT: Check formatting arguments
-					guid = [NSString stringWithFormat:@"%ld-%@-%@", (long int)[rssFolder folderId], [newsItem link], [newsItem title]];
-					[newsItem setGuid: guid];
-				}
-
-				// If no dates anywhere then use MA_MsgID_RSSNew as the message number to
-				// force the database to locate a previous copy of this message if there
-				// is one.
-				if (messageDate == nil)
-				{
-					messageDate = [NSCalendarDate date];
-					msgFlag = MA_MsgID_RSSNew;
+// #warning 64BIT: Check formatting arguments
+					NSString * statusString = [NSString stringWithFormat:NSLocalizedString(@"Updating subscription from '%@'", nil), feedTitle];
+					[self sendStatusToDelegate:statusString];
 				}
 				
-				// Now insert the message into the database if it is newer than the
-				// last update for this feed.
-				if ([messageDate isGreaterThan:lastUpdate])
-				{				
-					// Exclude matching GUIDs IFF titles also match
-					NSString *dup = [RSSGuids objectForKey: guid];
-					if (dup != nil)
-					{
-						// Quick sanity check that it really is the same message
-						if ([[newsItem title] isEqualToString: dup])
-							continue;
-					}
-				
-					NSString * messageBody = [newsItem description];
-					NSString * messageTitle = [newsItem title];
-					NSString * messageLink = [newsItem link];
-					NSString * userName = [newsItem author];
+				// Get the feed's last update from the header if it is present. This will mark the
+				// date of the most recent message in the feed if the individual messages are
+				// missing a date tag.
+				// Note: some feeds appear to have a lastModified in the header that is out of
+				//   date compared to the items in the feed. So do a sanity check to ensure that
+				//   the date on the items take precedence.
+				if ([[newFeed lastModified] isGreaterThan:lastUpdate])
+				{
+					newLastUpdate = [newFeed lastModified];
+				}
+				if (newLastUpdate == nil)
+					newLastUpdate = lastUpdate;
+
+				// Parse off items.
+				NSEnumerator * itemEnumerator = [[newFeed items] objectEnumerator];
+				FeedItem * newsItem;
+
+				while ((newsItem = [itemEnumerator nextObject]) && !rssAbortFlag)
+				{
+					NSDate * messageDate = [newsItem date];
+					NSInteger msgFlag = MA_MsgID_New;
+					NSString * guid = [newsItem guid];
 					
-					// Make sure we don't get any duplicates of this new article
-					[RSSGuids setObject: [newsItem title] forKey: guid];
-
-					// Format the message body complete with title and link.
-					NSMutableString * formattedMessageBody = [NSMutableString stringWithFormat:
-								@"<HTML><HEAD></HEAD><BODY><B>%@</B><BR><BR>%@",
-								messageTitle,
-								messageBody];
-					if (messageLink != nil)
-						[formattedMessageBody appendFormat:@"<BR><BR><A HREF=\"%@\">%@</A>\n<BR>", messageLink, messageLink];
-					[formattedMessageBody appendString:@"</BODY></HTML>"];
-
-					// Create the message
-					VMessage * message = [[VMessage alloc] initWithInfo:msgFlag];
-					[message setComment:0];
-					[message setFolderId:[rssFolder folderId]];
-					[message setSender:userName];
-					[message setText:formattedMessageBody];
-					[message setTitle:messageTitle];
-					[message setDateFromDate:messageDate];
-					[message setGuid: [newsItem guid]];
-					[messageArray addObject:message];
-					[message release];
-
-					// Track most current update
-					if ([messageDate isGreaterThan:newLastUpdate])
+					// If the article doesn't have a GUID then synthesize one.
+					// This code nicked from Steve's Vienna2 RefreshManager.m
+					if (guid == nil || [guid isEqualToString:@""])
 					{
-						[messageDate retain];
-						[newLastUpdate release];
-						newLastUpdate = messageDate;
+//#warning 64BIT: Check formatting arguments
+						guid = [NSString stringWithFormat:@"%ld-%@-%@", (long int)[rssFolder folderId], [newsItem link], [newsItem title]];
+						[newsItem setGuid: guid];
+					}
+
+					// If no dates anywhere then use MA_MsgID_RSSNew as the message number to
+					// force the database to locate a previous copy of this message if there
+					// is one.
+					if (messageDate == nil)
+					{
+						messageDate = [NSCalendarDate date];
+						msgFlag = MA_MsgID_RSSNew;
+					}
+					
+					// Now insert the message into the database if it is newer than the
+					// last update for this feed.
+					if ([messageDate isGreaterThan:lastUpdate])
+					{				
+						// Exclude matching GUIDs IFF titles also match
+						NSString *dup = [RSSGuids objectForKey: guid];
+						if (dup != nil)
+						{
+							// Quick sanity check that it really is the same message
+							if ([[newsItem title] isEqualToString: dup])
+								continue;
+						}
+					
+						NSString * messageBody = [newsItem description];
+						NSString * messageTitle = [newsItem title];
+						NSString * messageLink = [newsItem link];
+						NSString * userName = [newsItem author];
+						
+						// Make sure we don't get any duplicates of this new article
+						[RSSGuids setObject: [newsItem title] forKey: guid];
+
+						// Format the message body complete with title and link.
+						NSMutableString * formattedMessageBody = [NSMutableString stringWithFormat:
+									@"<HTML><HEAD></HEAD><BODY><B>%@</B><BR><BR>%@",
+									messageTitle,
+									messageBody];
+						if (messageLink != nil)
+							[formattedMessageBody appendFormat:@"<BR><BR><A HREF=\"%@\">%@</A>\n<BR>", messageLink, messageLink];
+						[formattedMessageBody appendString:@"</BODY></HTML>"];
+
+						// Create the message
+						VMessage * message = [[VMessage alloc] initWithInfo:msgFlag];
+						[message setComment:0];
+						[message setFolderId:[rssFolder folderId]];
+						[message setSender:userName];
+						[message setText:formattedMessageBody];
+						[message setTitle:messageTitle];
+						[message setDateFromDate:messageDate];
+						[message setGuid: [newsItem guid]];
+						[messageArray addObject:message];
+
+						// Track most current update
+						if ([messageDate isGreaterThan:newLastUpdate])
+						{
+							newLastUpdate = messageDate;
+						}
 					}
 				}
-			}
 
-			// Now sort the message array before we insert into the
-			// database so we're always inserting oldest first. The RSS feed is
-			// likely to give us newest first.
-			NSArray * sortedArrayOfMessages = [messageArray sortedArrayUsingFunction:messageDateSortHandler context:self];
-			NSEnumerator * messageEnumerator = [sortedArrayOfMessages objectEnumerator];
-			VMessage * message;
+				// Now sort the message array before we insert into the
+				// database so we're always inserting oldest first. The RSS feed is
+				// likely to give us newest first.
+				NSArray * sortedArrayOfMessages = [messageArray sortedArrayUsingFunction:messageDateSortHandler context:(__bridge void * _Nullable)(self)];
+				NSEnumerator * messageEnumerator = [sortedArrayOfMessages objectEnumerator];
+				VMessage * message;
+// #define STRUCT 1
+#ifdef STRUCT
+            // Here's where we add the messages to the database
+				while ((message = [messageEnumerator nextObject]) != nil)
+				{
 
-			// Here's where we add the messages to the database
-			while ((message = [messageEnumerator nextObject]) != nil)
-			{
-				ThreadFolderData threadData;
-				threadData.folderPath = nil;
-				threadData.mask = 0;
-				threadData.message = message;
-				[self performSelectorOnMainThread:@selector(addRSSMessageToDatabase:)
+					ThreadFolderData threadData;
+					threadData.folderPath = nil;
+					threadData.mask = 0;
+					threadData.message = message;
+					[self performSelectorOnMainThread:@selector(addRSSMessageToDatabase:)
+// #warning 64BIT: Inspect use of sizeof
+										   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
+										waitUntilDone:YES];
+            }
+				
+				// Set the last update date for this folder to be the date of the most
+				// recent article we retrieved.
+				RSSFolderUpdateData threadData;
+				threadData.folderId = [rssFolder folderId];
+				threadData.lastUpdate = newLastUpdate;
+				threadData.title = feedTitle;
+				threadData.description = feedDescription;
+				threadData.link = feedLink;
+				[self performSelectorOnMainThread:@selector(updateRSSFolder:)
 // #warning 64BIT: Inspect use of sizeof
 									   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 									waitUntilDone:YES];
-			}
-			
-			// Set the last update date for this folder to be the date of the most
-			// recent article we retrieved.
-			RSSFolderUpdateData threadData;
-			threadData.folderId = [rssFolder folderId];
-			threadData.lastUpdate = newLastUpdate;
-			threadData.title = feedTitle;
-			threadData.description = feedDescription;
-			threadData.link = feedLink;
-			[self performSelectorOnMainThread:@selector(updateRSSFolder:)
-// #warning 64BIT: Inspect use of sizeof
-								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
-								waitUntilDone:YES];
+#endif // STRUCT
+        }
+        
+			// Clean up
 		}
 
-		// Clean up
-		[newLastUpdate release];
-		[newFeed release];
+		// Set the task result
+		[task setResultCode:taskResult];
+		[task setResultString:taskData];
+
+		// Refresh UI when we're done.
+		[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithLong:(long)-1] waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(taskCompleted:) withObject:task waitUntilDone:YES];
+
+		// Let caller know the result.
+		if (!shuttingDown)
+		{
+			[self sendStatusToDelegate:nil];
+			[self sendEndConnectToDelegate:result];	
+		}
+		
+		isRSSThreadRunning = NO;
 	}
-
-	// Set the task result
-	[task setResultCode:taskResult];
-	[task setResultString:taskData];
-
-	// Refresh UI when we're done.
-	[self performSelectorOnMainThread:@selector(updateLastFolder:) withObject:[NSNumber numberWithLong:(long)-1] waitUntilDone:NO];
-	[self performSelectorOnMainThread:@selector(taskCompleted:) withObject:task waitUntilDone:YES];
-
-	// Let caller know the result.
-	if (!shuttingDown)
-	{
-		[self sendStatusToDelegate:nil];
-		[self sendEndConnectToDelegate:result];	
-	}
-	
-	[task release];
-	isRSSThreadRunning = NO;
-	[pool release];
 }
 
 #pragma mark - messageSateSortHandler
@@ -1020,8 +1019,6 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[zmTask waitUntilExit];
 	
 	status = [zmTask terminationStatus];
-	[zmTask release];
-	[fh release];
 	
 	[socket setNonBlocking: YES];
 	
@@ -1056,8 +1053,6 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 	[zmTask waitUntilExit];
 
 	status = [zmTask terminationStatus];
-	[zmTask release];
-	[fh release];
 	
 	[socket setNonBlocking: YES];
 	
@@ -1186,150 +1181,150 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 -(void)connectThread:(NSObject *)object
 {
     (void)object;
-	NSAutoreleasePool * pool;
 	NSInteger result = MA_Connect_Success;
 	VTask * task;
 	NSUInteger index;
 
-    pool = [[NSAutoreleasePool alloc] init];
-	index = 0;
-	lastTopicId = -1;
-	while (!cixAbortFlag && !shuttingDown)
-	{
-		[condLock lockWhenCondition:HAS_DATA];
-		if (shuttingDown)
-		    break;
-
-		while(index < [tasksArray count])
+    @autoreleasepool {
+#ifdef WHATS_THIS
+        // this next line was put in by the ARC conversion. Why?
+        __IMPL_ARCMT_REMOVED_EXPR__po		index = 0;
+#endif
+		lastTopicId = -1;
+		while (!cixAbortFlag && !shuttingDown)
 		{
-			task = [tasksArray objectAtIndex:index];
-			[condLock unlockWithCondition:HAS_DATA];
-			
-			// Check we're still connected
-			if (![socket isConnected])
+			[condLock lockWhenCondition:HAS_DATA];
+			if (shuttingDown)
+			    break;
+
+			while(index < [tasksArray count])
 			{
-				[self sendStartConnectToDelegate];
-				if ((result = [self connectToService]) != MA_Connect_Success)
+				task = [tasksArray objectAtIndex:index];
+				[condLock unlockWithCondition:HAS_DATA];
+				
+				// Check we're still connected
+				if (![socket isConnected])
 				{
-					cixAbortFlag = YES;
+					[self sendStartConnectToDelegate];
+					if ((result = [self connectToService]) != MA_Connect_Success)
+					{
+						cixAbortFlag = YES;
+						break;
+					}
+				}
+
+				[self performSelectorOnMainThread:@selector(taskStarted:) withObject:task waitUntilDone:YES];
+				switch ([task actionCode])
+				{
+				case MA_TaskCode_ConfList:
+					[self updateFullList:task];
+					break;
+
+				case MA_TaskCode_PostMessages:
+					[self postMessages:task];
+					break;
+
+				case MA_TaskCode_ReadMessages:
+					[self getMessages:task];
+					break;
+
+				case MA_TaskCode_JoinFolder:
+					[self joinFolder:task];
+					break;
+
+				case MA_TaskCode_GetResume:
+					[self getResume:task];
+					break;
+					
+				case MA_TaskCode_PutResume:
+					[self putResume:task];
+					break;
+					
+				case MA_TaskCode_FileMessages:
+					[self fileMessages:task];
+					break;
+					
+				case MA_TaskCode_ResignFolder:
+					[self resignFolder:task];
+					break;
+					
+				case MA_TaskCode_WithdrawMessage:
+					[self withdrawMessage:task];
+					break;
+					
+				case MA_TaskCode_SkipBack:
+					[self skipBack:task];
+					break;
+
+				case MA_TaskCode_SetCIXBack:
+					[self setCIXBack:task];
+					break;
+
+				case MA_TaskCode_FileDownload:
+					[self downloadFile:task];
+					break;
+
+				case MA_TaskCode_FileUpload:
+					[self uploadFile:task];
+					break;
+					
+				case MA_TaskCode_ModAddPart:
+					[self modAddpart:task];
+					break;
+				case MA_TaskCode_ModRemPart:
+					[self modRempart:task];
+					break;
+				case MA_TaskCode_ModNewConf:
+					[self modNewconf:task];
+					break;
+				case MA_TaskCode_ModRdOnly:
+					[self modReadonly:task];
+					break;
+				case MA_TaskCode_ModAddTopic:
+					[self modAddTopic:task];
+					break;
+				case MA_TaskCode_ModComod:
+					[self modComod:task];
+					break;
+				case MA_TaskCode_ModExmod:
+					[self modExmod:task];
 					break;
 				}
+				[self performSelectorOnMainThread:@selector(taskCompleted:) withObject:task waitUntilDone:NO];
+				[condLock lockWhenCondition:HAS_DATA];
+				++index;
 			}
-
-			[self performSelectorOnMainThread:@selector(taskStarted:) withObject:task waitUntilDone:YES];
-			switch ([task actionCode])
-			{
-			case MA_TaskCode_ConfList:
-				[self updateFullList:task];
+			
+			// Empty the queue when we reach the last item. This is to ensure that
+			// we don't grow it unnecessarily and eat up memory. Note that we should
+			// have acquired a lock by the time we get here.
+			tasksArray = nil;
+			index = 0;
+			[condLock unlockWithCondition:NO_DATA];
+			[self sendStatusToDelegate:nil];
+			
+			// If we're not in online mode then as soon as the tasks queue
+			// is empty, we exit and kill the thread.
+			if (!online)
 				break;
-
-			case MA_TaskCode_PostMessages:
-				[self postMessages:task];
-				break;
-
-			case MA_TaskCode_ReadMessages:
-				[self getMessages:task];
-				break;
-
-			case MA_TaskCode_JoinFolder:
-				[self joinFolder:task];
-				break;
-
-			case MA_TaskCode_GetResume:
-				[self getResume:task];
-				break;
-				
-			case MA_TaskCode_PutResume:
-				[self putResume:task];
-				break;
-				
-			case MA_TaskCode_FileMessages:
-				[self fileMessages:task];
-				break;
-				
-			case MA_TaskCode_ResignFolder:
-				[self resignFolder:task];
-				break;
-				
-			case MA_TaskCode_WithdrawMessage:
-				[self withdrawMessage:task];
-				break;
-				
-			case MA_TaskCode_SkipBack:
-				[self skipBack:task];
-				break;
-
-			case MA_TaskCode_SetCIXBack:
-				[self setCIXBack:task];
-				break;
-
-			case MA_TaskCode_FileDownload:
-				[self downloadFile:task];
-				break;
-
-			case MA_TaskCode_FileUpload:
-				[self uploadFile:task];
-				break;
-				
-			case MA_TaskCode_ModAddPart:
-				[self modAddpart:task];
-				break;
-			case MA_TaskCode_ModRemPart:
-				[self modRempart:task];
-				break;
-			case MA_TaskCode_ModNewConf:
-				[self modNewconf:task];
-				break;
-			case MA_TaskCode_ModRdOnly:
-				[self modReadonly:task];
-				break;
-			case MA_TaskCode_ModAddTopic:
-				[self modAddTopic:task];
-				break;
-			case MA_TaskCode_ModComod:
-				[self modComod:task];
-				break;
-			case MA_TaskCode_ModExmod:
-				[self modExmod:task];
-				break;
-			}
-			[self performSelectorOnMainThread:@selector(taskCompleted:) withObject:task waitUntilDone:NO];
-			[condLock lockWhenCondition:HAS_DATA];
-			++index;
 		}
-		
-		// Empty the queue when we reach the last item. This is to ensure that
-		// we don't grow it unnecessarily and eat up memory. Note that we should
-		// have acquired a lock by the time we get here.
-		[tasksArray release];
-		tasksArray = nil;
-		index = 0;
+		// Disconnect when we're done
+		[self disconnectFromService];
+
+		// Let caller know the result.
+		if (!shuttingDown)
+		{
+			[self sendStatusToDelegate:nil];
+			[self sendEndConnectToDelegate:result];	
+		}
+
+		// This is the right place to close the socket
+		[socket close];
+		socket = nil;
+		shuttingDown = NO;
+		isCIXThreadRunning = NO;
 		[condLock unlockWithCondition:NO_DATA];
-		[self sendStatusToDelegate:nil];
-		
-		// If we're not in online mode then as soon as the tasks queue
-		// is empty, we exit and kill the thread.
-		if (!online)
-			break;
 	}
-	// Disconnect when we're done
-	[self disconnectFromService];
-
-	// Let caller know the result.
-	if (!shuttingDown)
-	{
-		[self sendStatusToDelegate:nil];
-		[self sendEndConnectToDelegate:result];	
-	}
-
-	// This is the right place to close the socket
-	[socket close];
-	[socket release];
-	socket = nil;
-	shuttingDown = NO;
-	isCIXThreadRunning = NO;
-	[condLock unlockWithCondition:NO_DATA];
-	[pool release];
 }
 
 #pragma mark - stopCIXConnectThread
@@ -1418,6 +1413,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			break;
 		else if ([line hasPrefix:@"READ ONLY"] && folderPath != nil)
 		{
+#ifdef STRUCT
 			// Use a ThreadFolderData to communicate with the main thread
 			ThreadFolderData threadData;
 			threadData.folderPath = folderPath;
@@ -1428,9 +1424,11 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 // #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)] 
 								waitUntilDone:YES];
-		}
+#endif // STRUCT
+        }
 		else if ([line hasPrefix:@"Joining "])
 		{
+#ifdef STRUCT
 			NSScanner * scanner = [NSScanner scannerWithString:line];
 			[scanner scanString:@"Joining " intoString:nil];
 			[scanner scanUpToString:@" " intoString:&folderPath];
@@ -1448,6 +1446,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 // #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)] 
 								waitUntilDone:YES];
+#endif // STRUCT
 		}
 		else if ([line hasPrefix:@">>>"])
 		{
@@ -1497,7 +1496,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 					break;
 				}
 				if (endOfFile){
-                    [messageBody release];  //DJE release here to avoid memory leak warning
+                      //DJE release here to avoid memory leak warning
                     goto abortLabel;
                 }
 				messageSoFar += [line length];
@@ -1510,7 +1509,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			[message setSender:userName];
 			[message setText:messageBody];
 			[message setDateFromDate:messageDate];
-
+#ifdef STRUCT
 			// Use a ThreadFolderData to communicate with the main thread
 			ThreadFolderData threadData;
 			threadData.folderPath = messagePath;
@@ -1520,10 +1519,8 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 // #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 								waitUntilDone:YES];
-			
+#endif // STRUCT
 			// Clean up
-			[message release];
-			[messageBody release];
 		}
 		line = [self readLine:&endOfFile];
 	}
@@ -1623,7 +1620,6 @@ abortLabel:
                     // previous versions used localeWithLocaleIdentifier, which does not work on 10.4 and 10.5
                     NSLocale * locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
                     [browserDateFormatter setLocale: locale]; // this also sets up the Gregorian calendar
-                    [locale release];
                     [browserDateFormatter setTimeZone: [NSTimeZone timeZoneForSecondsFromGMT:0] ];
                     [browserDateFormatter setDateFormat:@"dd/MM/yyyy" ];
 //                    NSLog(@"set browser formatter %@", browserDateFormatter);
@@ -1647,7 +1643,6 @@ abortLabel:
 			[forum setStatus:status];
 			[forum setCategoryId:categoryId];
 			[self performSelectorOnMainThread:@selector(addRetrievedForum:) withObject:forum waitUntilDone:YES];
-			[forum release];
 
 			// Show running count for actual conferences (not comments)
 			if ((++count % 100) == 0)
@@ -1671,7 +1666,6 @@ abortLabel:
 			[category setParentId:-1];
 			[self performSelectorOnMainThread:@selector(addCategory:) withObject:category waitUntilDone:YES];
 			categoryId = [category categoryId];
-			[category release];
 
 			// There may not always be a sub-category...
 			if (subCategory != nil)
@@ -1680,7 +1674,6 @@ abortLabel:
 				[category setParentId:categoryId];
 				[self performSelectorOnMainThread:@selector(addCategory:) withObject:category waitUntilDone:YES];
 				categoryId = [category categoryId];
-				[category release];
 			}
 		}
 		line = [self readLine:&endOfFile];
@@ -1846,6 +1839,7 @@ abortLabel:
 		// Store in database here
 		if (topicName != nil && topicDescription != nil)
 		{
+#ifdef STRUCT
 			CIXFolderUpdateData threadData;
 			threadData.folderPath = [NSString stringWithFormat:@"%@/%@", folderName, topicName];
 			threadData.description = topicDescription;
@@ -1853,6 +1847,7 @@ abortLabel:
 // #warning 64BIT: Inspect use of sizeof
 								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
 								waitUntilDone:YES];
+#endif //STRUCT
 		}
 
 		// Now the next line
@@ -1943,7 +1938,6 @@ abortLabel:
 		
 		// Save the resume to the database
 		[self performSelectorOnMainThread:@selector(addRetrievedResume:) withObject:resumeText waitUntilDone:NO];
-		[resumeText release];
 
 		// Mark the task as having succeeded
 		[task setResultCode:MA_TaskResult_Succeeded];
@@ -2457,7 +2451,7 @@ abortLabel:
 	cixAbortFlag = NO;
 	// DJE changes here.
 	NSString * cixLocation = [ NSString stringWithUTF8String: cixLocation_cstring ]; // in main.m
-	[cixLocation retain];  // DJE - need a retain here otherwise we get a crash. This needs
+	  // DJE - need a retain here otherwise we get a crash. This needs
 						   // investigating as I can't see why at the moment. This is probably a memory leak
 			
 	
@@ -2621,7 +2615,6 @@ abortLabel:
 // #warning 64BIT: Check formatting arguments
 	formattedString = [[NSString alloc] initWithFormat:NSLocalizedString(string, nil) arguments:arguments];
 	result = [self writeString:echo string:formattedString];
-	[formattedString release];
 	va_end(arguments);
 	return result;
 }
@@ -2649,8 +2642,6 @@ abortLabel:
 -(void)pushBackLine:(NSString *)line
 {
 	NSAssert(!isPushedLine, @"Cannot push back more than one line");
-	[line retain];
-	[pushedLine release];
 	pushedLine = line;
 	isPushedLine = YES;
 }
@@ -2715,7 +2706,7 @@ abortLabel:
 	// Create a match buffer
 	char * matchbuffer = malloc(sizeof(char) * (longestLength + 1));
 	if (matchbuffer == nil)
-        {[scanStrings release];return -1;}
+        {return -1;}
 	memset(matchbuffer, '\0', longestLength + 1);
 
 	// Now read from the service and match the last X characters with
@@ -2771,7 +2762,6 @@ abortLabel:
 	
 	// Exit
 	free(matchbuffer);
-	[scanStrings release];
 	return matchIndex;
 }
 
@@ -2927,12 +2917,6 @@ enum {
 -(void)dealloc
 {
 	[self disconnectFromService];
-	[condLock release];
-	[rssArray release];
-	[tasksArray release];
-	[messagesToPost release];
-	[delegate release];
-	[super dealloc];
 }
 
 @end

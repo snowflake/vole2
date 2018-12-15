@@ -57,7 +57,6 @@ static SEL sRowCountSelector;
 		mTable = NULL;
 	}
 	
-	[super dealloc];
 }
 
 #pragma mark -
@@ -79,12 +78,12 @@ static SEL sRowCountSelector;
 	if( inIndex >= mRows )
 		return nil;
 	
-	return [[[SQLRow alloc] initWithColumns:mTable rowData:( mTable + ( ( inIndex + 1 ) * mColumns ) ) columns:mColumns] autorelease];
+	return [[SQLRow alloc] initWithColumns:mTable rowData:( mTable + ( ( inIndex + 1 ) * mColumns ) ) columns:mColumns];
 }
 
 -(NSEnumerator*)rowEnumerator
 {
-	return [[[SQLRowEnumerator allocWithZone:[self zone]] initWithResult:self] autorelease];
+	return [[SQLRowEnumerator allocWithZone:nil] initWithResult:self];
 }
 
 @end
@@ -98,7 +97,7 @@ static SEL sRowCountSelector;
 	if( !(self=[super init]))
 		return nil;
 	
-	mResult = [inResult retain];
+	mResult = inResult;
 	mPosition = 0;
 	mRowAtIndexMethod = [mResult methodForSelector:sRowAtIndexSelector];
 	mRowCountMethod = (NSInteger (*)(SQLResult*, SEL))[mResult methodForSelector:sRowCountSelector];
@@ -106,11 +105,6 @@ static SEL sRowCountSelector;
 	return self;
 }
 
--(void)dealloc
-{
-	[mResult release];
-	[super dealloc];
-}
 
 -(id)nextObject
 {

@@ -241,6 +241,5 @@
 		[fileHandle closeFile];
 		fileHandle = nil;
 	}
-	[super dealloc];
 }
 @end

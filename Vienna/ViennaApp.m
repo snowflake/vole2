@@ -30,7 +30,7 @@
 -(void)handleGetMessages:(NSScriptCommand *)name
 {
     (void)name;
-	[[self delegate] getMessages:nil];
+	[(AppController *)[self delegate] getMessages:nil];
 }
 
 /* applicationVersion
@@ -48,7 +48,7 @@
  */
 -(NSArray *)folders
 {
-	return [[self delegate] folders];
+	return [(AppController *)[self delegate] folders];
 }
 
 /* isConnecting
@@ -56,7 +56,7 @@
  */
 -(BOOL)isConnecting
 {
-	return [[self delegate] isConnecting];
+	return [(AppController *)[self delegate] isConnecting];
 }
 
 /* unreadCount
@@ -64,7 +64,7 @@
  */
 -(NSInteger)unreadCount
 {
-	Database * db = [[self delegate] database];
+	Database * db = [(AppController *)[self delegate] database];
 	Folder * rootFolder = [db folderFromID:[db conferenceNodeID]];
 	return [rootFolder childUnreadCount];
 }
@@ -74,8 +74,8 @@
  */
 -(Folder *)currentFolder
 {
-	Database * db = [[self delegate] database];
-	return [db folderFromID:[[self delegate] currentFolderId]];
+	Database * db = [(AppController *)[self delegate] database];
+	return [db folderFromID:[(AppController *)[self delegate] currentFolderId]];
 }
 
 /* checkFrequency

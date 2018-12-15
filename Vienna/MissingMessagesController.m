@@ -52,8 +52,7 @@
 	if (!missingMessagesWindow)
 		[NSBundle loadNibNamed:@"MissingMessages" owner:self];
 
-	[arrayOfFolders release];
-	arrayOfFolders = [folders retain];
+	arrayOfFolders = folders;
 	db = database;
 	parentWindow = window;
 
@@ -205,8 +204,7 @@
  */
 -(void)getMessagesForFolder:(Folder *)folder
 {
-	[messagesArray release];
-	messagesArray = [[db arrayOfMessagesNumbers:[folder itemId]] retain];
+	messagesArray = [db arrayOfMessagesNumbers:[folder itemId]];
 }
 
 /* isScanning
@@ -236,87 +234,84 @@
 -(void)scanForMessages:(id)sender
 {
     (void)sender;
-	NSAutoreleasePool * pool;
 	Folder * folder;
 	VTask * task;
 	
-    pool = [[NSAutoreleasePool alloc] init];
-	task = [[VTask alloc] init];
+    @autoreleasepool {
+		task = [[VTask alloc] init];
 
-	NSEnumerator * objectEnumerator = [arrayOfFolders objectEnumerator];
-	while ((folder = [objectEnumerator nextObject]) && !stopScanFlag)
-	{
-		// Note: folderPathName is one of the "safe" db functions in that it doesn't talk to
-		// the database.
-		NSString * folderName = [db folderPathName:[folder itemId]];
-
-		// Update the progress text as we hit each folder
-		++countOfFolders;
-		[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:folderName waitUntilDone:YES];
-
-		// Skip back actions are very easy
-		if (skipBackValue)
+		NSEnumerator * objectEnumerator = [arrayOfFolders objectEnumerator];
+		while ((folder = [objectEnumerator nextObject]) && !stopScanFlag)
 		{
-			VTask * task = [[VTask alloc] init];
-			[task setActionCode:MA_TaskCode_SkipBack];
-			[task setOrderCode:MA_OrderCode_SkipBack];
-// #warning 64BIT: Check formatting arguments
-			[task setActionData:[NSString stringWithFormat:@"%ld", (long)skipBackValue]];
-			[task setFolderName:folderName];
-			[self performSelectorOnMainThread:@selector(addFileMessageTask:) withObject:task waitUntilDone:YES];
-			[task release];
-		}
-		else
-		{
-			// Call the main thread to reload the messagesArray. All db access MUST be on the main thread
-			[self performSelectorOnMainThread:@selector(getMessagesForFolder:) withObject:folder waitUntilDone:YES];
-			if ([messagesArray count] > 0)
+			// Note: folderPathName is one of the "safe" db functions in that it doesn't talk to
+			// the database.
+			NSString * folderName = [db folderPathName:[folder itemId]];
+
+			// Update the progress text as we hit each folder
+			++countOfFolders;
+			[self performSelectorOnMainThread:@selector(updateProgressText:) withObject:folderName waitUntilDone:YES];
+
+			// Skip back actions are very easy
+			if (skipBackValue)
 			{
-				NSUInteger firstMessageNumber;
-				NSUInteger nextMessageNumber;
-				NSUInteger count;
-				
-// #warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
-				if (requiredFirstMessage == NSUIntegerMax)
-// #warning 64BIT DJE using intValue instead of integerValue
-					firstMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:0] intValue];
-				else
-					firstMessageNumber = requiredFirstMessage;
-				nextMessageNumber = firstMessageNumber;
-				
-				for (count = 0; count < [messagesArray count] && !stopScanFlag; ++count)
+				VTask * task = [[VTask alloc] init];
+				[task setActionCode:MA_TaskCode_SkipBack];
+				[task setOrderCode:MA_OrderCode_SkipBack];
+// #warning 64BIT: Check formatting arguments
+				[task setActionData:[NSString stringWithFormat:@"%ld", (long)skipBackValue]];
+				[task setFolderName:folderName];
+				[self performSelectorOnMainThread:@selector(addFileMessageTask:) withObject:task waitUntilDone:YES];
+			}
+			else
+			{
+				// Call the main thread to reload the messagesArray. All db access MUST be on the main thread
+				[self performSelectorOnMainThread:@selector(getMessagesForFolder:) withObject:folder waitUntilDone:YES];
+				if ([messagesArray count] > 0)
 				{
+					NSUInteger firstMessageNumber;
+					NSUInteger nextMessageNumber;
+					NSUInteger count;
+					
+// #warning 64BIT: Inspect use of MAX/MIN constant; consider one of LONG_MAX/LONG_MIN/ULONG_MAX/DBL_MAX/DBL_MIN, or better yet, NSIntegerMax/Min, NSUIntegerMax, CGFLOAT_MAX/MIN
+					if (requiredFirstMessage == NSUIntegerMax)
 // #warning 64BIT DJE using intValue instead of integerValue
-					NSUInteger thisMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:count] intValue];
-					if (thisMessageNumber != nextMessageNumber && thisMessageNumber > firstMessageNumber)
+						firstMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:0] intValue];
+					else
+						firstMessageNumber = requiredFirstMessage;
+					nextMessageNumber = firstMessageNumber;
+					
+					for (count = 0; count < [messagesArray count] && !stopScanFlag; ++count)
 					{
-						NSMutableString * rangeString;
-						
+// #warning 64BIT DJE using intValue instead of integerValue
+						NSUInteger thisMessageNumber = (NSUInteger)[[messagesArray objectAtIndex:count] intValue];
+						if (thisMessageNumber != nextMessageNumber && thisMessageNumber > firstMessageNumber)
+						{
+							NSMutableString * rangeString;
+							
 // #warning 64BIT: Check formatting arguments
-						rangeString = [NSMutableString stringWithFormat:@"%ld", (long)nextMessageNumber];
-						if (nextMessageNumber < thisMessageNumber - 1)
+							rangeString = [NSMutableString stringWithFormat:@"%ld", (long)nextMessageNumber];
+							if (nextMessageNumber < thisMessageNumber - 1)
 // #warning 64BIT: Check formatting arguments
-							[rangeString appendFormat:@"-%ld",(long) thisMessageNumber - 1];
+								[rangeString appendFormat:@"-%ld",(long) thisMessageNumber - 1];
 
-						// Keep a running total of the number of missing messages
-						countOfMessages += thisMessageNumber - nextMessageNumber;
+							// Keep a running total of the number of missing messages
+							countOfMessages += thisMessageNumber - nextMessageNumber;
 
-						// Call the main thread to actually add the task to the database. We can't do it
-						// here or we'll bugger up the database.
-						VTask * task = [[VTask alloc] init];
-						[task setActionCode:MA_TaskCode_FileMessages];
-						[task setOrderCode:MA_OrderCode_FileMessages];
-						[task setActionData:rangeString];
-						[task setFolderName:folderName];
-						[self performSelectorOnMainThread:@selector(addFileMessageTask:) withObject:task waitUntilDone:YES];
-						[task release];
+							// Call the main thread to actually add the task to the database. We can't do it
+							// here or we'll bugger up the database.
+							VTask * task = [[VTask alloc] init];
+							[task setActionCode:MA_TaskCode_FileMessages];
+							[task setOrderCode:MA_OrderCode_FileMessages];
+							[task setActionData:rangeString];
+							[task setFolderName:folderName];
+							[self performSelectorOnMainThread:@selector(addFileMessageTask:) withObject:task waitUntilDone:YES];
+						}
+						nextMessageNumber = thisMessageNumber + 1;
 					}
-					nextMessageNumber = thisMessageNumber + 1;
 				}
 			}
 		}
 	}
-	[pool release];
 	[self performSelectorOnMainThread:@selector(stopScan:) withObject:nil waitUntilDone:NO];
 }
 
@@ -331,10 +326,4 @@
 
 /* dealloc
  */
--(void)dealloc
-{
-	[messagesArray release];
-	[arrayOfFolders release];
-	[super dealloc];
-}
 @end
