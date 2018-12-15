@@ -44,6 +44,7 @@ APPNAME=Vole.app
 
 DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT?=YES
 DEBUG_INFORMATION_FORMAT?=dwarf-with-dsym
+GCC_OPTIMIZATION_LEVEL=0
 
 # set up appropiate developer dirs, can be changed in environment
 DEVELOPER_DIR_XC3?= /Xcode3.2.6
@@ -244,15 +245,13 @@ ${BUILDS}: targetcheck
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 	xcodebuild -project ./${PROJECT}  -configuration $@ \
 		-sdk ${SDK_NAME} \
-#		SECONDS_SINCE_EPOCH="${SECONDS_SINCE_EPOCH}" \
-#		BUILDID="${SHORTDATE}" \
                 VOLE_BUILD_STYLE=$@ \
 		ARCHS="${ARCHS}"  \
 		MACOSX_DEPLOYMENT_TARGET="${MOSXDT}" \
-#		VCSSTATUS="${VCSSTATUS}" \
-#		VCSDATE="${VCSDATE}" \
 		DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT=${DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT} \
-		DEBUG_INFORMATION_FORMAT=${DEBUG_INFORMATION_FORMAT}
+		DEBUG_INFORMATION_FORMAT=${DEBUG_INFORMATION_FORMAT} \
+		GCC_OPTIMIZATION_LEVEL="${GCC_OPTIMIZATION_LEVEL}"
+
 # Postprocess the Help Book Info.plist
 # (Now done within Xcode bUild Phases (DJE 6/2/2018))
 #		../scripts/HelpInfoProcess.sh ${SOURCE_DIR} ${HelpBookName}
@@ -312,7 +311,8 @@ ${RELEASES}: targetcheck
 	DEVELOPER_DIR=${DEVELOPER_DIR} \
 		make DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT=YES \
 		   DEBUG_INFORMATION_FORMAT=dwarf-with-dsym \
-		   $(subst -release,,$@)
+		   GCC_OPTIMIZATION_LEVEL=3 \
+		$(subst -release,,$@)
 	echo $@
 	echo ${VIENNA_APP}
 	[ -d ${SOURCE_DIR} ]

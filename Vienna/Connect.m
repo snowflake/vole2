@@ -1183,7 +1183,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
     (void)object;
 	NSInteger result = MA_Connect_Success;
 	VTask * task;
-	NSUInteger index;
+	NSUInteger index = 0;
 
     @autoreleasepool {
 #ifdef WHATS_THIS
