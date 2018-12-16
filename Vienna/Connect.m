@@ -1395,7 +1395,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
  */
 -(NSInteger)collectScratchpad
 {
-	BOOL endOfFile;
+	BOOL endOfFile = TRUE;
 	NSInteger result = MA_Connect_Success;
 	BOOL isReadOnly = NO;
 
