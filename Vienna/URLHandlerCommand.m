@@ -59,7 +59,7 @@
 		}
 
 		// Hand off the result to the delegate
-		AppController * app = [NSApp delegate];
+		AppController * app = (AppController *)[NSApp delegate];
 		[app handleCIXLink:folderPath messageNumber:messageNumber];
 	}
 	else if ([urlPrefix isEqualToString:@"feed"])
@@ -80,7 +80,7 @@
 			feedScheme = @"http:";
 		linkPath = [NSString stringWithFormat:@"%@//%@", feedScheme, linkPath];
 
-		AppController * app = [NSApp delegate];
+		AppController * app = (AppController *)[NSApp delegate];
 		[app handleRSSLink:linkPath];
 	}
 	if ([urlPrefix isEqualToString:@"cixfile"])
@@ -96,7 +96,7 @@
 		[scanner scanUpToString:@"" intoString:&fileName];
 		
 		// Hand off the result to the delegate
-		AppController * app = [NSApp delegate];
+		AppController * app = (AppController *)[NSApp delegate];
 		[app handleCIXFileLink:folderPath file:fileName];
 	}
     return nil;
