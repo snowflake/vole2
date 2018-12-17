@@ -1020,6 +1020,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	// Package up the message and folder numbers to the context info
 	NSArray * contextArray = [NSArray arrayWithObjects:[NSNumber numberWithLong:(long)messageId], folderPath, nil];	
 // #warning 64BIT: Check formatting arguments
+    NSString *fmtString = @"%@";
 	NSBeginAlertSheet(titleText,
 					  NSLocalizedString(@"Join", nil),
 					  NSLocalizedString(@"Cancel", nil),
@@ -1028,7 +1029,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 					  self,
 					  @selector(doRetrieveMessage:returnCode:contextInfo:),
 					  nil, (__bridge void *)(contextArray),
-					  bodyText);
+					  fmtString,bodyText);
 }
 
 #pragma mark - doRetrieveMessage
@@ -3272,6 +3273,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 {
 //	NSLog(@"checkbeta");
+    NSString *fmtString=@"%@";
 	
 	NSString *infotext  = [NSString stringWithFormat: @"Using the Cix beta server at %s. To disable this and to use the normal server"
 						   ", remove the file \"%s\" from"
@@ -3281,7 +3283,7 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 												 defaultButton:@"Continue"
 											   alternateButton:@"Abort Connect"
 												   otherButton:nil
-									 informativeTextWithFormat:infotext];
+									 informativeTextWithFormat:fmtString, infotext];
 		if ([askUserAlert runModal] != NSAlertDefaultReturn){
 			return 1;
 		}
@@ -4035,7 +4037,6 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	NSString * folderPath = [db folderPathName:folderId];
 // #warning 64BIT: Check formatting arguments
 	NSString * alertBody = [NSString stringWithFormat:NSLocalizedString(@"Toggle Topic %@?", nil), folderPath];
-
 	// Get confirmation first
 	NSInteger returnCode;
 	returnCode = NSRunAlertPanel(NSLocalizedString(@"Toggle Readonly", nil), alertBody, NSLocalizedString(@"Yes", nil), NSLocalizedString(@"Cancel", nil), nil);

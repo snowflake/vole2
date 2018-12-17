@@ -132,7 +132,7 @@
 	if (![defaultSignature isEqualToString:@"None"] && messageNumber == MA_MsgID_New)
 	{
 		// Select default signature for this folder(conference)
-		AppController * app = [NSApp delegate];
+		AppController * app = (AppController *)[NSApp delegate];
 		Folder * f = [db folderFromID: [app currentFolderId]];
 		f = [db folderFromID: [f parentId]];
 		NSString * folderName = [f name];
