@@ -127,7 +127,7 @@
 		AA36CD7C06100692001E33A4 /* VField.m in Sources */ = {isa = PBXBuildFile; fileRef = AA36CD7A06100692001E33A4 /* VField.m */; };
 		AA4F650C062AE8EB00D4837C /* Join.h in Headers */ = {isa = PBXBuildFile; fileRef = AA4F650A062AE8EB00D4837C /* Join.h */; };
 		AA4F650D062AE8EB00D4837C /* Join.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4F650B062AE8EB00D4837C /* Join.m */; };
-		AA4F6617062B94D200D4837C /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACFDEBB0604D4D20072D140 /* AppController.m */; };
+		AA4F6617062B94D200D4837C /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACFDEBB0604D4D20072D140 /* AppController.m */; settings = {COMPILER_FLAGS = "-Wno-objc-interface-ivars -Weverything -Wextra -Wno-direct-ivar-access"; }; };
 		AA55EB290870629A00D7DBFA /* SplitViewExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = AA55EB270870629A00D7DBFA /* SplitViewExtensions.h */; };
 		AA55EB2A0870629A00D7DBFA /* SplitViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA55EB280870629A00D7DBFA /* SplitViewExtensions.m */; };
 		AA56328406168A9A00B317EB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA56328306168A9A00B317EB /* Security.framework */; };

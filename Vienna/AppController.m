@@ -4040,8 +4040,12 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 	NSString * alertBody = [NSString stringWithFormat:NSLocalizedString(@"Toggle Topic %@?", nil), folderPath];
 	// Get confirmation first
 	NSInteger returnCode;
-	returnCode = NSRunAlertPanel(NSLocalizedString(@"Toggle Readonly", nil), alertBody, NSLocalizedString(@"Yes", nil), NSLocalizedString(@"Cancel", nil), nil);
-	if (returnCode == NSAlertAlternateReturn)
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-security"
+    returnCode = NSRunAlertPanel(NSLocalizedString(@"Toggle Readonly", nil), alertBody, NSLocalizedString(@"Yes", nil), NSLocalizedString(@"Cancel", nil), nil);
+#pragma clang diagnostic pop
+    if (returnCode == NSAlertAlternateReturn)
 		return;
 	
 	// Create a task to change the folder on the service
