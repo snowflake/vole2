@@ -172,7 +172,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 	[nc addObserver:self selector:@selector(handleCheckFrequencyChange:) name:@"MA_Notify_CheckFrequencyChange" object:nil];
 	[nc addObserver:self selector:@selector(handleFolderUpdate:) name:@"MA_Notify_FoldersUpdated" object:nil];
 	[nc addObserver:self selector:@selector(handleUsernameChange:) name:@"MA_Notify_UsernameChange" object:nil];
-	[nc addObserver:self selector:@selector(checkForUpdatesComplete:) name:@"MA_Notify_UpdateCheckCompleted" object:nil];
+#warning checkForUpdatesComplete selector does not exist anywhere - next line is commented out
+//   [nc addObserver:self selector:@selector(checkForUpdatesComplete:) name:@"MA_Notify_UpdateCheckCompleted" object:nil];
 	[nc addObserver:self selector:@selector(handleTaskAdded:) name:@"MA_Notify_TaskAdded" object:nil];
 	[nc addObserver:self selector:@selector(handleTaskAdded:) name:@"MA_Notify_TaskChanged" object:nil];
 	[nc addObserver:self selector:@selector(handleMugshotFolderChanged:) name:@"MA_Notify_MugshotsFolderChanged" object:nil];
