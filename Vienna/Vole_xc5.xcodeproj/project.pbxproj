@@ -14,6 +14,7 @@
 		614862CB18A2754900FAAA7D /* VoleBuildInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614862C918A2754900FAAA7D /* VoleBuildInfoController.m */; };
 		614862CE18A2760B00FAAA7D /* VoleBuildInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614862CC18A2760B00FAAA7D /* VoleBuildInfo.xib */; };
 		61587D0C184132010018AB9E /* Vole.h in Headers */ = {isa = PBXBuildFile; fileRef = 61587D0B184132010018AB9E /* Vole.h */; };
+		6160A28021CA9B61004ED7C0 /* logit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6160A27F21CA9B61004ED7C0 /* logit.h */; };
 		6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6176B81A147FA24700BB5841 /* checkVienna.xib */; };
 		6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */; };
 		6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */; };
@@ -269,6 +270,7 @@
 		614862C918A2754900FAAA7D /* VoleBuildInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoleBuildInfoController.m; sourceTree = "<group>"; };
 		614862CD18A2760B00FAAA7D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/VoleBuildInfo.xib; sourceTree = "<group>"; };
 		61587D0B184132010018AB9E /* Vole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vole.h; sourceTree = "<group>"; };
+		6160A27F21CA9B61004ED7C0 /* logit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logit.h; sourceTree = "<group>"; };
 		6176B81B147FA24700BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
 		6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testAnotherViennaIsRunning.h; sourceTree = "<group>"; };
 		6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testAnotherViennaIsRunning.c; sourceTree = "<group>"; };
@@ -810,6 +812,7 @@
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 				6176B9391480196F00BB5841 /* getBSDProcessTable.c */,
 				6176B93B1480197A00BB5841 /* getBSDProcessTable.h */,
+				6160A27F21CA9B61004ED7C0 /* logit.h */,
 				61587D0B184132010018AB9E /* Vole.h */,
 			);
 			name = "Other Sources";
@@ -859,6 +862,7 @@
 				AA26F4E50604927300FE7994 /* VMessage.h in Headers */,
 				AA26F4E70604927300FE7994 /* MessageListView.h in Headers */,
 				AA26F4E80604927300FE7994 /* PreferenceNames.h in Headers */,
+				6160A28021CA9B61004ED7C0 /* logit.h in Headers */,
 				AA26F4EB0604927300FE7994 /* TreeNode.h in Headers */,
 				AA26F4EF0604927300FE7994 /* BackTrackArray.h in Headers */,
 				AA26F4F10604927300FE7994 /* ConnectProtocol.h in Headers */,

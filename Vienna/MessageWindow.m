@@ -45,7 +45,7 @@
 -(id)initNewMessage:(Database *)theDb recipient:(NSString *)recipient commentNumber:(NSInteger)commentNumber initialText:(NSString *)initialText
 {
     // DJE rearanged to assign self first 30/8/2014
-    logit();
+    LOGLINE
     self=[super initWithWindowNibName:@"Comment"];
     if(self){
         db = theDb;
@@ -56,7 +56,7 @@
         if (initialText)
             [message setText: initialText];
     }
-    logit();
+    LOGLINE
     return self;
 }
 
@@ -65,10 +65,10 @@
  */
 -(id)initMessageFromMessage:(Database *)theDb message:(VMessage *)newMessage
 {
-    logit();
+    LOGLINE
 	db = theDb;
 	message = newMessage;
-    logit();
+    LOGLINE
 	return [super initWithWindowNibName:@"Comment"];
 }
 
@@ -76,22 +76,22 @@
  */
 -(void)windowDidLoad
 {
-    logit();
+    LOGLINE
 	// Create the toolbar.
     NSToolbar * toolbar = [[NSToolbar alloc] initWithIdentifier:@"MA_ReplyToolbar"];
 
     // Set the appropriate toolbar options. We are the delegate, customization is allowed,
 	// changes made by the user are automatically saved and we start in icon+text mode.
-    logit();
+    LOGLINE
     [toolbar setDelegate:(id)self];
-    logit();
+    LOGLINE
     [toolbar setAllowsUserCustomization:YES];
     [toolbar setAutosavesConfiguration:YES]; 
     [toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
-    logit();
+    LOGLINE
     [messageWindow setToolbar:toolbar];
 	[messageWindow setDelegate:(id)self];
-    logit();
+    LOGLINE
 	// Set the current message text
 	NSInteger messageNumber = [message messageId];
 	NSInteger folderId = [message folderId];
@@ -103,7 +103,7 @@
 			messageText = [messageText secondAndSubsequentLines];
 		[textView setString:messageText];
 	}
-    logit();
+    LOGLINE
 	// Disable subject line if this is a comment
 	if ([message comment])
 	{
@@ -116,7 +116,7 @@
 		if ([message text])
 			[textView setString: [message text]];
 	}
-    logit();
+    LOGLINE
 	// Set the recipient line
 	[postToLine setStringValue:[message sender]];
 	[postToLine setEnabled:NO];
@@ -127,14 +127,14 @@
 	// Make sure we're notified if the message font changes
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(handleMessageFontChange:) name:@"MA_Notify_MessageFontChange" object:nil];
-    logit();
+    LOGLINE
 	// Also wants to be notified if the list of signatures changes
 	[nc addObserver:self selector:@selector(handleSignaturesChange:) name:@"MA_Notify_SignaturesChange" object:nil];
 
 	// Init the list of signatures
 	currentSignature = nil;
 	[self reloadSignaturesList];
-    logit();
+    LOGLINE
 	// If the text is empty, insert the default signature.
 	NSString * defaultSignature = [[NSUserDefaults standardUserDefaults] valueForKey:MAPref_DefaultSignature];
 	if (![defaultSignature isEqualToString:@"None"] && messageNumber == MA_MsgID_New)
@@ -152,7 +152,7 @@
 		[signaturesList selectItemWithTitle:signature];
 		[self insertSignature:signature];
 	}
-    logit();
+    LOGLINE
 	// Set the window title
 	[self updateTitle];
     LOGLINE
@@ -262,7 +262,7 @@
 -(BOOL)windowShouldClose:(NSNotification *)notification
 {
     (void)notification;
-    logit();
+    LOGLINE
 	[[self window] orderFront:self];
 	if ([messageWindow isDocumentEdited])
 	{
@@ -284,10 +284,10 @@
 	if (![messageWindow isDocumentEdited])
 	{
 //		[self autorelease];
-        logit();
+        LOGLINE
 		return YES;
 	}
-    logit();
+    LOGLINE
 	return NO;
 }
 
@@ -297,12 +297,12 @@
 -(void)sendMessage:(id)sender
 {
     (void)sender;
-    logit();
+    LOGLINE
 	[self removeFromFolder:MA_Draft_NodeID];
-    logit();
+    LOGLINE
 	[self saveToFolder:MA_Outbox_NodeID];
 	[messageWindow performClose:self];
-    logit();
+    LOGLINE
 }
 
 /* saveAsDraft
@@ -328,13 +328,13 @@
  */
 -(NSString *)textRestyledForPosting
 {
-    logit();
+    LOGLINE
 	NSMutableString * msgText = [NSMutableString stringWithString:[textView string]];
 	[msgText replaceString:[NSString stringWithFormat:@"%C", (unichar)SINGLE_OPEN_QUOTE] withString:@"'"];
 	[msgText replaceString:[NSString stringWithFormat:@"%C", (unichar)SINGLE_CLOSE_QUOTE] withString:@"'"];
 	[msgText replaceString:[NSString stringWithFormat:@"%C", (unichar)DOUBLE_OPEN_QUOTE] withString:@"\""];
 	[msgText replaceString:[NSString stringWithFormat:@"%C", (unichar)DOUBLE_CLOSE_QUOTE] withString:@"\""];
-    logit();
+    LOGLINE
 	return msgText;
 }
 
@@ -344,13 +344,13 @@
 -(void)saveToFolder:(NSInteger)folderId
 {
 	NSInteger messageNumber;
-    logit();
+    LOGLINE
 	// Set the text into the message
 	if ([message comment] == 0)
 		[message setText:[NSString stringWithFormat:@"%@\n%@", [subjectLine stringValue], [self textRestyledForPosting]]];
 	else
 		[message setText:[self textRestyledForPosting]];
-    logit();
+    LOGLINE
 	// We need to know the message number so removing it later
 	// actually works.
 	[message markRead:YES];
@@ -358,7 +358,7 @@
 	messageNumber = [db addMessage:folderId message:message wasNew:nil];
 	if (messageNumber != MA_MsgID_New)
 		[message setNumber:messageNumber];
-    logit();
+    LOGLINE
 	NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
 	[nc postNotificationName:@"MA_Notify_FoldersUpdated" object:[NSNumber numberWithLong:(long)folderId]];
 
@@ -370,7 +370,7 @@
  */
 -(void)removeFromFolder:(NSInteger)folderId
 {
-    logit();
+    LOGLINE
 	if ([message folderId] == folderId)
 	{
 		[db deleteMessage:folderId messageNumber:[message messageId]];
@@ -441,7 +441,7 @@
  */
 -(NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
-    logit();
+    LOGLINE
     (void)toolbar; (void)flag;
     NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
 	if ([itemIdentifier isEqualToString:@"SendMessage"])
@@ -460,7 +460,7 @@
         [item setTarget:self];
         [item setAction:@selector(saveAsDraft:)];
 	}
-    logit();
+    LOGLINE
 	return item;
 }
 
@@ -471,7 +471,7 @@
 -(NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
     (void)toolbar;
-    logit();
+    LOGLINE
     return [NSArray arrayWithObjects:@"SendMessage",
 									 NSToolbarPrintItemIdentifier,
 									 @"SaveAsDraft",
@@ -485,8 +485,8 @@
 -(NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
     (void)toolbar;
-    logit();
-    return [NSArray arrayWithObjects:NSToolbarSeparatorItemIdentifier,
+    LOGLINE
+      return [NSArray arrayWithObjects:NSToolbarSeparatorItemIdentifier,
 									 NSToolbarSpaceItemIdentifier,
 									 NSToolbarFlexibleSpaceItemIdentifier,
 									 NSToolbarPrintItemIdentifier,
