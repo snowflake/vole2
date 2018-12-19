@@ -3391,7 +3391,9 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 
 		[quoteString setString: @"> "];
 		[quoteString appendString: messageText];
-		[quoteString replaceOccurrencesOfString: @"\n" withString: @"\n> " options:0 range: NSMakeRange(0, [messageText length])];
+		[quoteString replaceOccurrencesOfString: @"\n" withString: @"\n> "
+                                        options:NSCaseInsensitiveSearch
+                                          range: NSMakeRange(0, [messageText length])];
 
 		[quoteString appendString: @"\n"];
 	}
