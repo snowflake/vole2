@@ -3651,10 +3651,13 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 {
     (void)sender;
 	return;  // DJE
+#if 0
+    // set Windows text is allways true
 	showWindowsCP = !showWindowsCP;
 	[[NSUserDefaults standardUserDefaults] setBool:showWindowsCP forKey:MAPref_ShowWindowsCP];
 	if (currentSelectedRow != -1)
 		[self updateMessageText];
+#endif
 }
 
 #pragma mark - toggleThreading
