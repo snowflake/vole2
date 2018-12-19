@@ -1669,6 +1669,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					__DEBUG__,
 					"VOLE_DEPLOYMENT_TARGET=10007",
+					"DEBUG=1",
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
