@@ -155,7 +155,8 @@
     logit();
 	// Set the window title
 	[self updateTitle];
-    logit();
+    LOGLINE
+    CALLSTACK
 }
 
 /* handleMessageFontChange
