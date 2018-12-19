@@ -155,6 +155,8 @@
     LOGLINE
 	// Set the window title
 	[self updateTitle];
+    NSLog(@"%@", self);
+    NSLog(@"MessageWindow delegate %@",[toolbar delegate]);
     LOGLINE
     CALLSTACK
 }
