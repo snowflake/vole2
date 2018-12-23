@@ -159,6 +159,9 @@
     NSLog(@"MessageWindow delegate %@",[toolbar delegate]);
     LOGLINE
     CALLSTACK
+    // Add this to the window collection to ensure that a reference is
+    // maintained.
+    [[WindowCollection defaultCollection] add:self];
 }
 
 /* handleMessageFontChange
@@ -293,6 +296,15 @@
 	return NO;
 }
 
+/* When the window is about to close, remove ourselves from the
+ * collection.
+ */
+-(void)windowWillClose:(NSNotification *)notification
+{
+    [[WindowCollection defaultCollection] remove:self];
+}
+
+
 /* sendMessage
  * Save the message to the Out Basket then close the window
  */
@@ -304,7 +316,8 @@
     LOGLINE
 	[self saveToFolder:MA_Outbox_NodeID];
 	[messageWindow performClose:self];
-    LOGLINE
+    // Warning - cannot refer to LOGLINE here as performClose will release the object
+    // we are supposedly referring to.
 }
 
 /* saveAsDraft

@@ -15,6 +15,8 @@
 		614862CE18A2760B00FAAA7D /* VoleBuildInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614862CC18A2760B00FAAA7D /* VoleBuildInfo.xib */; };
 		61587D0C184132010018AB9E /* Vole.h in Headers */ = {isa = PBXBuildFile; fileRef = 61587D0B184132010018AB9E /* Vole.h */; };
 		6160A28021CA9B61004ED7C0 /* logit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6160A27F21CA9B61004ED7C0 /* logit.h */; };
+		61741CB821CFB996008F19C3 /* WindowCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 61741CB621CFB996008F19C3 /* WindowCollection.h */; };
+		61741CB921CFB996008F19C3 /* WindowCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 61741CB721CFB996008F19C3 /* WindowCollection.m */; };
 		6176B81C147FA24700BB5841 /* checkVienna.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6176B81A147FA24700BB5841 /* checkVienna.xib */; };
 		6176B900148010BE00BB5841 /* testAnotherViennaIsRunning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */; };
 		6176B901148010BE00BB5841 /* testAnotherViennaIsRunning.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */; };
@@ -271,6 +273,8 @@
 		614862CD18A2760B00FAAA7D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/VoleBuildInfo.xib; sourceTree = "<group>"; };
 		61587D0B184132010018AB9E /* Vole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vole.h; sourceTree = "<group>"; };
 		6160A27F21CA9B61004ED7C0 /* logit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logit.h; sourceTree = "<group>"; };
+		61741CB621CFB996008F19C3 /* WindowCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowCollection.h; sourceTree = "<group>"; };
+		61741CB721CFB996008F19C3 /* WindowCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowCollection.m; sourceTree = "<group>"; };
 		6176B81B147FA24700BB5841 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/checkVienna.xib; sourceTree = "<group>"; };
 		6176B8FE148010BE00BB5841 /* testAnotherViennaIsRunning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testAnotherViennaIsRunning.h; sourceTree = "<group>"; };
 		6176B8FF148010BE00BB5841 /* testAnotherViennaIsRunning.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testAnotherViennaIsRunning.c; sourceTree = "<group>"; };
@@ -837,6 +841,8 @@
 				CD2BE9D107F863BE000056B7 /* SSHSocket.m */,
 				CDC85C6807FC7BD9001CD23A /* TCPSocket.h */,
 				CDC85C6907FC7BD9001CD23A /* TCPSocket.m */,
+				61741CB621CFB996008F19C3 /* WindowCollection.h */,
+				61741CB721CFB996008F19C3 /* WindowCollection.m */,
 				AA328863084700B700A7AD5A /* XMLParser.h */,
 				AA328864084700B700A7AD5A /* XMLParser.m */,
 			);
@@ -889,6 +895,7 @@
 				AA583930063590110055BE1E /* Credentials.h in Headers */,
 				AAA541EB0639E39200A373CA /* MessageInfoBar.h in Headers */,
 				AA8C72F50641DE1F00649BA2 /* VCriteria.h in Headers */,
+				61741CB821CFB996008F19C3 /* WindowCollection.h in Headers */,
 				AA999F760647501B00EF3190 /* Signatures.h in Headers */,
 				AA16788A0657BCD80091365D /* MessageView.h in Headers */,
 				AA75843E06614E2700B04481 /* MissingMessagesController.h in Headers */,
@@ -1198,6 +1205,7 @@
 				AA26F602060496D300FE7994 /* AuthenticationController.m in Sources */,
 				AA26F677060497BB00FE7994 /* FoldersTree.m in Sources */,
 				AA4F6617062B94D200D4837C /* AppController.m in Sources */,
+				61741CB921CFB996008F19C3 /* WindowCollection.m in Sources */,
 				AA960B06060587DB009D3D45 /* MessageWindow.m in Sources */,
 				AAF3B14306095E7B0025CC7F /* StringExtensions.m in Sources */,
 				AABFDCA20609EA8100100A9B /* ActivityViewer.m in Sources */,

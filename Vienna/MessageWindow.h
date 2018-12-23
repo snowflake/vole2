@@ -21,6 +21,7 @@
 #import <AppKit/AppKit.h>
 #import "Vole.h"
 #import "Database.h"
+#import "WindowCollection.h"
 
 @interface MessageWindow : NSWindowController {
 	IBOutlet NSWindow * messageWindow;
@@ -46,4 +47,6 @@
 -(IBAction)signatureSelected:(id)sender;
 
 -(BOOL)windowShouldClose:(NSNotification *)notification;
+-(void)windowWillClose:(NSNotification *)notification; // Added from CIXReader project
+
 @end
