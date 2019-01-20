@@ -25,12 +25,11 @@
 #import "SSHSocket.h"
 #import "TCPSocket.h"
 #import "RichXMLParser.h"
-// required for sleep(3)
-
 #import "CIXFolderUpdateData.h"
 #import "RSSFolderUpdateData.h"
 #import "ThreadFolderData.h"
 
+// required for sleep(3)
 #import <unistd.h>
 
 extern char * cixLocation_cstring; // in main.m, used for name of the service
@@ -42,8 +41,9 @@ extern char * cixLocation_cstring; // in main.m, used for name of the service
 
 #define MAX_LINE   32
 
-#ifdef STRUCT
+#ifdef STRUCT_DO_NOT_USE
 // Structure for encapsulating a message, a folder and some flags
+// 2018-01-20 DJE Replaced by Classes with the same names
 typedef struct
 {
 	NSString * folderPath;
@@ -416,29 +416,30 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 /* addToDatabase
  * Called from the thread with a new folder or message to be added to the database.
  */
--(void)addToDatabase:(NSData *)data
+-(void)addToDatabase:(ThreadFolderData *) threadData
 {
-#ifdef STRUCT
-	ThreadFolderData * threadData = (ThreadFolderData *)[data bytes];
-	NSAssert(threadData->folderPath != nil, @"threadData->folderPath cannot be nil");
+    // STRUCT replaced
+#if 1
+//	ThreadFolderData * threadData = (ThreadFolderData *)[data bytes];
+	NSAssert(threadData.folderPath != nil, @"threadData.folderPath cannot be nil");
 
-	if (threadData->message != nil)
+	if (threadData.message != nil)
 	{
 		BOOL wasNew;
 
-		[db addMessageToFolder:[db conferenceNodeID] path:threadData->folderPath message:threadData->message raw:NO wasNew:&wasNew];
-		[self updateLastFolder:[NSNumber numberWithLong:(long)[threadData->message folderId]]];
+		[db addMessageToFolder:[db conferenceNodeID] path:threadData.folderPath message:threadData.message raw:NO wasNew:&wasNew];
+		[self updateLastFolder:[NSNumber numberWithLong:(long)[threadData.message folderId]]];
 		if (wasNew)
 			++messagesCollected;
 	}
 	else
 	{
-		NSInteger folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData->folderPath];
+		NSInteger folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData.folderPath];
 		if (folderId != -1)
 		{
-			if (threadData->mask & MA_LockedFolder)
+			if (threadData.mask & MA_LockedFolder)
 			{
-				[db markFolderLocked:folderId isLocked:(threadData->permissions & MA_LockedFolder) == MA_LockedFolder];
+				[db markFolderLocked:folderId isLocked:(threadData.permissions & MA_LockedFolder) == MA_LockedFolder];
 				[self updateLastFolder:[NSNumber numberWithLong:(long)folderId]];
 			}
 		}
@@ -450,14 +451,16 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 /* addRSSMessageToDatabase
  * Called from the thread with a new RSS message to be added to the database.
  */
--(void)addRSSMessageToDatabase:(NSData *)data
+-(void)addRSSMessageToDatabase:(ThreadFolderData *)threadData
 {
-#ifdef STRUCT
-	ThreadFolderData * threadData = (ThreadFolderData *)[data bytes];
-	NSInteger folderId = [threadData->message folderId];
+    // STRUCT replaced
+#if 1
+    
+//	ThreadFolderData * threadData = (ThreadFolderData *)[data bytes];
+	NSInteger folderId = [threadData.message folderId];
 	BOOL wasNew;
 
-	[db addMessage:folderId message:threadData->message wasNew:&wasNew];
+	[db addMessage:folderId message:threadData.message wasNew:&wasNew];
 	[self updateLastFolder:[NSNumber numberWithLong:(long)folderId]];
 	if (wasNew)
 		++messagesCollected;
@@ -468,19 +471,20 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 /* updateRSSFolder
  * Update information on an RSS folder.
  */
--(void)updateRSSFolder:(NSData *)data
+-(void)updateRSSFolder:(RSSFolderUpdateData *)threadData
 {
-#ifdef STRUCT
-	RSSFolderUpdateData * threadData = (RSSFolderUpdateData *)[data bytes];
-	Folder * folder = [db folderFromID:threadData->folderId];
+    // STRUCT Replaced
+#if 1
+//	RSSFolderUpdateData * threadData = (RSSFolderUpdateData *)[data bytes];
+	Folder * folder = [db folderFromID:threadData.folderId];
 
 	if ([[folder name] isEqualToString:@"(Untitled Feed)"])
-		[db setFolderName:threadData->folderId newName:threadData->title];
-	if (threadData->description != nil)
-		[db setFolderDescription:threadData->folderId newDescription:threadData->description];
-	if (threadData->link != nil)
-		[db setFolderLink:threadData->folderId newLink:threadData->link];
-	[db setRSSFeedLastUpdate:threadData->folderId lastUpdate:threadData->lastUpdate];
+		[db setFolderName:threadData.folderId newName:threadData.title];
+	if (threadData.description != nil)
+		[db setFolderDescription:threadData.folderId newDescription:threadData.description];
+	if (threadData.link != nil)
+		[db setFolderLink:threadData.folderId newLink:threadData.link];
+	[db setRSSFeedLastUpdate:threadData.folderId lastUpdate:threadData.lastUpdate];
 #endif // STRUCT
 }
 
@@ -488,13 +492,14 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 /* updateFolder
  * Update information on an standard folder.
  */
--(void)updateFolder:(NSData *)data
+-(void)updateFolder:(CIXFolderUpdateData *)threadData
 {
-#ifdef STRUCT
-    CIXFolderUpdateData * threadData = (CIXFolderUpdateData *)[data bytes];
-	NSInteger folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData->folderPath];
+    // STRUCT replaced
+#if 1
+//    CIXFolderUpdateData * threadData = (CIXFolderUpdateData *)[data bytes];
+	NSInteger folderId = [db addFolderByPath:[db conferenceNodeID] path:threadData.folderPath];
 	if (folderId != -1)
-		[db setFolderDescription:folderId newDescription:threadData->description];
+		[db setFolderDescription:folderId newDescription:threadData.description];
 #endif // STRUCT
 }
 
@@ -748,24 +753,25 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 				NSEnumerator * messageEnumerator = [sortedArrayOfMessages objectEnumerator];
 				VMessage * message;
 // #define STRUCT 1
-#ifdef STRUCT
+// STRUCT replaced
+#if 1
             // Here's where we add the messages to the database
 				while ((message = [messageEnumerator nextObject]) != nil)
 				{
 
-					ThreadFolderData threadData;
+					ThreadFolderData * threadData = [[ThreadFolderData alloc] init];
 					threadData.folderPath = nil;
 					threadData.mask = 0;
 					threadData.message = message;
 					[self performSelectorOnMainThread:@selector(addRSSMessageToDatabase:)
 // #warning 64BIT: Inspect use of sizeof
-										   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
+										   withObject:threadData
 										waitUntilDone:YES];
             }
 				
 				// Set the last update date for this folder to be the date of the most
 				// recent article we retrieved.
-				RSSFolderUpdateData threadData;
+				RSSFolderUpdateData * threadData = [[RSSFolderUpdateData alloc] init];
 				threadData.folderId = [rssFolder folderId];
 				threadData.lastUpdate = newLastUpdate;
 				threadData.title = feedTitle;
@@ -773,7 +779,7 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 				threadData.link = feedLink;
 				[self performSelectorOnMainThread:@selector(updateRSSFolder:)
 // #warning 64BIT: Inspect use of sizeof
-									   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
+									   withObject:threadData
 									waitUntilDone:YES];
 #endif // STRUCT
         }
@@ -1418,22 +1424,24 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			break;
 		else if ([line hasPrefix:@"READ ONLY"] && folderPath != nil)
 		{
-#ifdef STRUCT
+// STRUCT replaced
+#if 1
 			// Use a ThreadFolderData to communicate with the main thread
-			ThreadFolderData threadData;
+			ThreadFolderData * threadData = [[ThreadFolderData alloc] init];
 			threadData.folderPath = folderPath;
 			threadData.permissions = MA_LockedFolder;
 			threadData.mask = MA_LockedFolder;
 			threadData.message = nil;
 			[self performSelectorOnMainThread:@selector(addToDatabase:)
 // #warning 64BIT: Inspect use of sizeof
-								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)] 
+								   withObject:threadData
 								waitUntilDone:YES];
 #endif // STRUCT
         }
 		else if ([line hasPrefix:@"Joining "])
 		{
-#ifdef STRUCT
+// STRUCT replaced
+#if 1
 			NSScanner * scanner = [NSScanner scannerWithString:line];
 			[scanner scanString:@"Joining " intoString:nil];
 			[scanner scanUpToString:@" " intoString:&folderPath];
@@ -1442,14 +1450,14 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			isReadOnly = ([line hasSuffix:@"READ ONLY\n"]);
 			
 			// Use a ThreadFolderData to communicate with the main thread
-			ThreadFolderData threadData;
+			ThreadFolderData * threadData = [[ThreadFolderData alloc] init];
 			threadData.folderPath = folderPath;
 			threadData.permissions = isReadOnly ? MA_LockedFolder : 0;
 			threadData.mask = MA_LockedFolder;
 			threadData.message = nil;
 			[self performSelectorOnMainThread:@selector(addToDatabase:)
 // #warning 64BIT: Inspect use of sizeof
-								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)] 
+								   withObject:threadData
 								waitUntilDone:YES];
 #endif // STRUCT
 		}
@@ -1514,15 +1522,16 @@ NSInteger messageDateSortHandler(VMessage * item1, VMessage * item2, void * cont
 			[message setSender:userName];
 			[message setText:messageBody];
 			[message setDateFromDate:messageDate];
-#ifdef STRUCT
+// STRUCT replaced
+#if 1
 			// Use a ThreadFolderData to communicate with the main thread
-			ThreadFolderData threadData;
+			ThreadFolderData * threadData = [[ThreadFolderData alloc] init];
 			threadData.folderPath = messagePath;
 			threadData.mask = 0;
 			threadData.message = message;
 			[self performSelectorOnMainThread:@selector(addToDatabase:)
 // #warning 64BIT: Inspect use of sizeof
-								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
+								   withObject:threadData
 								waitUntilDone:YES];
 #endif // STRUCT
 			// Clean up
@@ -1844,13 +1853,15 @@ abortLabel:
 		// Store in database here
 		if (topicName != nil && topicDescription != nil)
 		{
-#ifdef STRUCT
-			CIXFolderUpdateData threadData;
+
+// STRUCT replaced
+#if 1
+			CIXFolderUpdateData * threadData = [[CIXFolderUpdateData alloc] init];
 			threadData.folderPath = [NSString stringWithFormat:@"%@/%@", folderName, topicName];
 			threadData.description = topicDescription;
 			[self performSelectorOnMainThread:@selector(updateFolder:)
 // #warning 64BIT: Inspect use of sizeof
-								   withObject:[NSData dataWithBytes:&threadData length:sizeof(threadData)]
+								   withObject:threadData
 								waitUntilDone:YES];
 #endif //STRUCT
 		}
