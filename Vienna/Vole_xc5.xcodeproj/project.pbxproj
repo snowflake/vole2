@@ -23,6 +23,12 @@
 		6176B93A1480196F00BB5841 /* getBSDProcessTable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6176B9391480196F00BB5841 /* getBSDProcessTable.c */; };
 		6176B93C1480197A00BB5841 /* getBSDProcessTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6176B93B1480197A00BB5841 /* getBSDProcessTable.h */; };
 		61AD505711CB9D7D0033534B /* XXXX-Tempfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */; };
+		61C14F3221F4BAAE00BD058E /* ThreadFolderData.h in Headers */ = {isa = PBXBuildFile; fileRef = 61C14F3021F4BAAE00BD058E /* ThreadFolderData.h */; };
+		61C14F3321F4BAAE00BD058E /* ThreadFolderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C14F3121F4BAAE00BD058E /* ThreadFolderData.m */; };
+		61C14F3621F4BE0400BD058E /* RSSFolderUpdateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 61C14F3421F4BE0400BD058E /* RSSFolderUpdateData.h */; };
+		61C14F3721F4BE0400BD058E /* RSSFolderUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C14F3521F4BE0400BD058E /* RSSFolderUpdateData.m */; };
+		61C14F3A21F4BFC800BD058E /* CIXFolderUpdateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 61C14F3821F4BFC800BD058E /* CIXFolderUpdateData.h */; };
+		61C14F3B21F4BFC800BD058E /* CIXFolderUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C14F3921F4BFC800BD058E /* CIXFolderUpdateData.m */; };
 		61CC8C1F13672D4F0049AECF /* sanitise_string_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */; };
 		61CC8C2013672D4F0049AECF /* sanitise_string.c in Sources */ = {isa = PBXBuildFile; fileRef = 61CC8C1D13672D4F0049AECF /* sanitise_string.c */; };
 		61CC8C2113672D4F0049AECF /* sanitise_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CC8C1E13672D4F0049AECF /* sanitise_string.h */; };
@@ -282,6 +288,12 @@
 		6176B93B1480197A00BB5841 /* getBSDProcessTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getBSDProcessTable.h; sourceTree = "<group>"; };
 		61AD505611CB9D7D0033534B /* XXXX-Tempfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XXXX-Tempfile.h"; sourceTree = "<group>"; };
 		61BDCD541CEF11310066C977 /* elcapitan2.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = elcapitan2.xcconfig; path = xcconfig/elcapitan2.xcconfig; sourceTree = "<group>"; };
+		61C14F3021F4BAAE00BD058E /* ThreadFolderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadFolderData.h; sourceTree = "<group>"; };
+		61C14F3121F4BAAE00BD058E /* ThreadFolderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadFolderData.m; sourceTree = "<group>"; };
+		61C14F3421F4BE0400BD058E /* RSSFolderUpdateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSFolderUpdateData.h; sourceTree = "<group>"; };
+		61C14F3521F4BE0400BD058E /* RSSFolderUpdateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSFolderUpdateData.m; sourceTree = "<group>"; };
+		61C14F3821F4BFC800BD058E /* CIXFolderUpdateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIXFolderUpdateData.h; sourceTree = "<group>"; };
+		61C14F3921F4BFC800BD058E /* CIXFolderUpdateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIXFolderUpdateData.m; sourceTree = "<group>"; };
 		61CC8C1C13672D4F0049AECF /* sanitise_string_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string_private.h; sourceTree = "<group>"; };
 		61CC8C1D13672D4F0049AECF /* sanitise_string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanitise_string.c; sourceTree = "<group>"; };
 		61CC8C1E13672D4F0049AECF /* sanitise_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sanitise_string.h; sourceTree = "<group>"; };
@@ -825,6 +837,12 @@
 		AAC5063D082A7AE00089FF70 /* Support Classes */ = {
 			isa = PBXGroup;
 			children = (
+				61C14F3821F4BFC800BD058E /* CIXFolderUpdateData.h */,
+				61C14F3921F4BFC800BD058E /* CIXFolderUpdateData.m */,
+				61C14F3421F4BE0400BD058E /* RSSFolderUpdateData.h */,
+				61C14F3521F4BE0400BD058E /* RSSFolderUpdateData.m */,
+				61C14F3021F4BAAE00BD058E /* ThreadFolderData.h */,
+				61C14F3121F4BAAE00BD058E /* ThreadFolderData.m */,
 				AA26F4D70604927300FE7994 /* BackTrackArray.h */,
 				AA26F4D80604927300FE7994 /* BackTrackArray.m */,
 				AA26F4C50604927300FE7994 /* BufferedFile.h */,
@@ -856,6 +874,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61C14F3A21F4BFC800BD058E /* CIXFolderUpdateData.h in Headers */,
 				8D15AC290486D014006FF6A4 /* Vole_Prefix.pch in Headers */,
 				AA26F4840604911B00FE7994 /* SQLDatabase.h in Headers */,
 				AA26F4860604911B00FE7994 /* SQLDatabasePrivate.h in Headers */,
@@ -880,6 +899,7 @@
 				AACFDEBC0604D4D20072D140 /* AppController.h in Headers */,
 				AA960B05060587DB009D3D45 /* MessageWindow.h in Headers */,
 				AAF3B14206095E7B0025CC7F /* StringExtensions.h in Headers */,
+				61C14F3221F4BAAE00BD058E /* ThreadFolderData.h in Headers */,
 				AABFDCA10609EA8100100A9B /* ActivityViewer.h in Headers */,
 				AA36CD7B06100692001E33A4 /* VField.h in Headers */,
 				AAD264B80611E108005A27E4 /* CheckForUpdates.h in Headers */,
@@ -897,6 +917,7 @@
 				AA8C72F50641DE1F00649BA2 /* VCriteria.h in Headers */,
 				61741CB821CFB996008F19C3 /* WindowCollection.h in Headers */,
 				AA999F760647501B00EF3190 /* Signatures.h in Headers */,
+				61C14F3621F4BE0400BD058E /* RSSFolderUpdateData.h in Headers */,
 				AA16788A0657BCD80091365D /* MessageView.h in Headers */,
 				AA75843E06614E2700B04481 /* MissingMessagesController.h in Headers */,
 				AA7300E5067BF75E00827E96 /* Browser.h in Headers */,
@@ -1199,6 +1220,8 @@
 				AA26F4EE0604927300FE7994 /* MessageListView.m in Sources */,
 				AA26F4F00604927300FE7994 /* BackTrackArray.m in Sources */,
 				AA26F4F20604927300FE7994 /* Connect.m in Sources */,
+				61C14F3721F4BE0400BD058E /* RSSFolderUpdateData.m in Sources */,
+				61C14F3321F4BAAE00BD058E /* ThreadFolderData.m in Sources */,
 				AA26F4F30604927300FE7994 /* ImageAndTextCell.m in Sources */,
 				AA26F4F40604927300FE7994 /* URLHandlerCommand.m in Sources */,
 				AA26F5E00604969000FE7994 /* PreferenceController.m in Sources */,
@@ -1245,6 +1268,7 @@
 				AA328866084700B700A7AD5A /* XMLParser.m in Sources */,
 				AA328A7608483DE100A7AD5A /* Export.m in Sources */,
 				AA328A9C0848404200A7AD5A /* Import.m in Sources */,
+				61C14F3B21F4BFC800BD058E /* CIXFolderUpdateData.m in Sources */,
 				AA55EB2A0870629A00D7DBFA /* SplitViewExtensions.m in Sources */,
 				CD4DF90508DD93C200D245E1 /* Logfile.m in Sources */,
 				CDD2C16B0BC4F0AE00E1CF06 /* sqlite3.c in Sources */,
