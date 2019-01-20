@@ -26,6 +26,11 @@
 #import "TCPSocket.h"
 #import "RichXMLParser.h"
 // required for sleep(3)
+
+#import "CIXFolderUpdateData.h"
+#import "RSSFolderUpdateData.h"
+#import "ThreadFolderData.h"
+
 #import <unistd.h>
 
 extern char * cixLocation_cstring; // in main.m, used for name of the service
