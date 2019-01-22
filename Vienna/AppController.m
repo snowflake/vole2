@@ -3915,10 +3915,10 @@ NSInteger messageSortHandler(id i1, id i2, void * context)
 #pragma mark - modTopicSheetDidEnd
 -(void)modTopicSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    (void)returnCode;
     (void)sheet;
     (void)contextInfo;
-	// Get the full path of the folder
+    if(returnCode != NSOKButton) return;
+    // Get the full path of the folder
 	NSInteger folderId = [foldersTree actualSelection];
 	NSString * folderPath = [db folderPathName:folderId];
 
