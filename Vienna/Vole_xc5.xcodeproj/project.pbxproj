@@ -972,6 +972,7 @@
 				AA65D27F083CF46F00BC387C /* CopyFiles */,
 				CDADB40B088962CF0023267E /* MDI Script */,
 				CDA3BDA408F18AB200D6393F /* ZModem script */,
+				614766D621FB40210074E698 /* Build Help Index */,
 			);
 			buildRules = (
 				CDADB413088A4D230023267E /* PBXBuildRule */,
@@ -1099,6 +1100,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		614766D621FB40210074E698 /* Build Help Index */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Help Index";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ". ../scripts/makevolehelpindex.sh";
+		};
 		61AD4D9211C94A770033534B /* Growl Extract */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
