@@ -19,7 +19,7 @@
 	<key>HPDBookAccessPath</key>
 	<string>Vole.html</string>
 	<key>HPDBookIconPath</key>
-	<string>shrd/CixReader.png</string>
+	<string>shrd/Small-Vienna-Logo.jpg</string>
 	<key>HPDBookIndexPath</key>
 	<string>Vole.helpindex</string>
 	<key>HPDBookKBProduct</key>
@@ -34,3 +34,9 @@
 	<string>helpstyle.css</string>
 </dict>
 </plist>
+<!--
+Local Variables:
+mode: nxml
+coding: utf-8
+End:
+  -->
