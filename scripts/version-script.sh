@@ -188,6 +188,10 @@ if [ $unchecked_files -ne 0 ]
 	then 
 		echo ERROR files not checked into Fossil or Git.
 	fi
+
+sleep 2
+touch ${SRCROOT}/Timestamp
+
 echo 'version-script.sh completed'
 
 exit 0

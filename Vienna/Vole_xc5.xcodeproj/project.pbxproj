@@ -960,6 +960,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA503398085CFC6000BC203D /* Build configuration list for PBXNativeTarget "Vole" */;
 			buildPhases = (
+				614766D821FBB7840074E698 /* Run script to create the Timestamp, if required */,
 				61B75330202B17C100DF486E /* Run script to generate VoleInfo.plist */,
 				61AD4DD211C991280033534B /* Run version script to generate XXXX-Tempfile.h */,
 				61AD4D9211C94A770033534B /* Growl Extract */,
@@ -1114,6 +1115,21 @@
 			shellPath = /bin/sh;
 			shellScript = ". ../scripts/makevolehelpindex.sh";
 		};
+		614766D821FBB7840074E698 /* Run script to create the Timestamp, if required */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run script to create the Timestamp, if required";
+			outputPaths = (
+				"${SRCROOT}/Timestamp",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ! -f ${SRCROOT}/Timestamp ]\nthen\ntouch ${SRCROOT}/Timestamp\nfi\n";
+		};
 		61AD4D9211C94A770033534B /* Growl Extract */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1134,16 +1150,15 @@
 			files = (
 			);
 			inputPaths = (
-				A_FILE_WHICH_MUST_NOT_EXIST,
+				"$(SRCROOT)/Timestamp",
 			);
 			name = "Run version script to generate XXXX-Tempfile.h";
 			outputPaths = (
-				"XXXX-Tempfile.h",
-				VoleInfo.plist,
+				"${SRCROOT}/XXXX-Tempfile.h",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nPATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\n# modified to take the script\nrm -f XXXX-Tempfile.h\n. ../scripts/version-script.sh\n";
+			shellScript = "#!/bin/sh\n\nPATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\n# modified to take the script\nrm -f XXXX-Tempfile.h\n. ../scripts/version-script.sh\n\n\n";
 		};
 		61B75330202B17C100DF486E /* Run script to generate VoleInfo.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1151,9 +1166,11 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Timestamp",
 			);
 			name = "Run script to generate VoleInfo.plist";
 			outputPaths = (
+				"${SRCROOT}/Voleinfo.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
