@@ -10,3 +10,9 @@
 .style4 {font-family: Verdana, Arial, Helvetica, sans-serif;
 	 font-weight: bold; font-size: xx-large; }
 
+.aligncenter { text-align: center; }
+
+.aligncenterstyle1 { text-align: center;
+		     font-family: Verdana, Arial, Helvetica, sans-serif;
+		     font-weight: bold;
+		   }
