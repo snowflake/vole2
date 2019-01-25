@@ -405,7 +405,7 @@ helpnotes:
 		awk -f ../scripts/makewikihelpindex.awk | \
 		fossil wiki commit Help
 
-# validate-help requires Macports: gmake opensp html
+# validate-help requires Macports: gmake opensp html rxp and possibly a schema for xhtml1
 .PHONY: validate-help
 validate-help:
 	/opt/local/bin/gmake -f ../mk/validate-html.mk validate
