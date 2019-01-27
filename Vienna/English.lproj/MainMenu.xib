@@ -14,7 +14,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Vole" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="mainWindow" animationBehavior="default" id="21" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -112,7 +112,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                                     <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="bezel" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="725" id="972">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="729">
                                                             <items>
                                                                 <menuItem hidden="YES" id="725"/>
@@ -1019,7 +1019,7 @@ CA
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="1002"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="352">
-                <rect key="frame" x="1" y="9" width="290" height="107"/>
+                <rect key="frame" x="0.0" y="0.0" width="290" height="107"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" id="351">
@@ -1329,7 +1329,7 @@ DQ
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="1002"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="703">
-                <rect key="frame" x="1" y="9" width="480" height="144"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="144"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView id="704">
@@ -1418,7 +1418,7 @@ Gw
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="1002"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="806">
-                <rect key="frame" x="1" y="9" width="443" height="122"/>
+                <rect key="frame" x="0.0" y="0.0" width="443" height="122"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" id="807">
@@ -1486,7 +1486,7 @@ Gw
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="1002"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="822">
-                <rect key="frame" x="1" y="9" width="632" height="179"/>
+                <rect key="frame" x="0.0" y="0.0" width="632" height="179"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" id="823">

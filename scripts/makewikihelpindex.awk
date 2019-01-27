@@ -6,7 +6,7 @@
 
 
 BEGIN {
-        oldhelp="[/doc/RELEASE-%s/Vienna/English.lproj/Vienna Help/index.html|%s]\n\n"
+        oldhelp="[/doc/RELEASE-%s/Vienna/English.lproj/Vienna%%20Help/index.html|%s]\n\n"
 # help is now in a proper Help Book
         newhelp="[/doc/RELEASE-%s/Vienna/Vole.help/Contents/Resources/English.lproj/Vole.html|%s]\n\n"
             
