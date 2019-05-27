@@ -1,5 +1,7 @@
 This is the root directory for the Vole off-line reader for Cix project.
 
+This is for 1.6.x and 2.0.x branch for manual retain release.
+
 Find out about Cix at https://www.cix.uk/forums/
 
 and https://www.cix.uk/forums/accessing-forums
