@@ -327,4 +327,5 @@
 
 // Acronyms
 +(NSString *)getAcronymsVersion;
++(int)getAcronymsCount;
 @end

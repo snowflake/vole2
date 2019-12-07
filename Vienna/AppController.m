@@ -5490,6 +5490,11 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 	return acronymsVersion;
 }
 
+static int acronymsCount =  0;
++(int) getAcronymsCount{
+    return acronymsCount;
+}
+
 #pragma mark - readAcronyms
 -(void)readAcronyms
 {
@@ -5539,8 +5544,10 @@ static NSString * acronymsVersion = @"[ Acronyms list NOT INSTALLED ]";
 		
 		[scanner scanUpToString:@"\t" intoString: &acronym];
 		[scanner scanUpToString:@"" intoString: &expansion];
-		if ( ! ((acronym == nil) || ( expansion == nil) ) ) 
+        if (acronym && expansion){
 			[acronymDictionary setObject: expansion forKey: acronym];
+            acronymsCount++;
+        }
 		
 		line = [buffer readLine:&endOfFile];
 	}

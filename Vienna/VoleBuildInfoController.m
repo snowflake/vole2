@@ -101,7 +101,7 @@
 						"[SQLite]\n"
 						"SQLite version: %s\n"
 						"SQLite: %s\n\n"
-						"[Acronyms]\n%@\n\n"
+						"[Acronyms]\n%@\nCount: %d\n\n"
 						"%s",  // unchecked files
 						[[NSDate date] description],
 						bundleLocation ? bundleLocation : @"Unknown", // Location
@@ -114,6 +114,7 @@
 						sqlite3_libversion(),
 						sqlite3_sourceid(),
 						[AppController getAcronymsVersion],
+                        [AppController getAcronymsCount],
 						vole_vcs_changes];
 	
 	return report;
