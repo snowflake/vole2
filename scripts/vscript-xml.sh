@@ -3,7 +3,7 @@
 # Generate a plist containing info about Vole for the 
 #   Check-For-Updates facility.
 
-PATH=../scripts:${PATH}
+PATH=../scripts:${PATH}:/opt/local/bin
 
 set -e
 filename=VoleInfo.plist
