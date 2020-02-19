@@ -14,8 +14,8 @@
 # If this script is called with $1 set to vcsdate, it displays
 # the version control checkin date.
 
-# for finding Fossil
-PATH=$SYSTEM_DEVELOPER_BIN_DIR:$PATH:/usr/local/bin
+# for finding Fossil - use Macports
+PATH=$SYSTEM_DEVELOPER_BIN_DIR:$PATH:/opt/local/bin
 
 OF=XXXX-Tempfile.h
 . ../scripts/common-functions.sh
