@@ -1,5 +1,8 @@
 # export the Fossil repository to git.
 
+PATH=/opt/local/bin:/bin:/usr/bin:/sbin:/usr/sbin
+
+
 # Note: the github repo was changed from vole to vole2 (2014-10-13)
 dir=../../vole-git
 marks=/tmp/marks
