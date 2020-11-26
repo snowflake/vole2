@@ -15,7 +15,8 @@ The source code for Vole is in the Vienna directory.
 
 Requirements to run:
 
-      macOS 10.7+ (Lion or later versions),
+      macOS 10.7 to 10.14 (Lion or later versions. It does not currently
+                           run on Catalina or Big Sur)
       Intel 64-bit Mac.
 
       (macOS was formerly known as Mac OS X,
