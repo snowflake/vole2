@@ -1000,7 +1000,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 							  @selector(doRetrieveMessage:returnCode:contextInfo:), // did end selector
 							  nil,                                                  // didDismassSelector
 #warning dje added a CFBridgingRetain to keep ARC happy
-                              (const void *)CFBridgingRetain(contextArray),                                         // context Info
+                              (const void *)CFBridgingRetain(contextArray),         // context Info
                               @"%@",                                                // msg Format
 							  bodyText);                                            // Message ...
 		}
