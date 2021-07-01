@@ -93,7 +93,7 @@ printf '[File]\n'
 if [ $sandpit = files ]
 then
    printf 'Filename: %s\n' ${1}
-   printf 'Hotlink To Download: cix:vienna/files:%s\n' ${1}
+   printf 'Hotlink To Download: cixfile:vienna/files:%s\n' ${1}
    case ${google} in
 	([Yy]) webdownload ;;
    esac
