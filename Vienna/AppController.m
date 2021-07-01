@@ -1029,7 +1029,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 					  mainWindow,
 					  self,
 					  @selector(doRetrieveMessage:returnCode:contextInfo:),
-					  nil, ( void *)CFBridgingRetain(contextArray),
+					  nil, ( const void *)CFBridgingRetain(contextArray),
 					  fmtString,bodyText);
 }
 
