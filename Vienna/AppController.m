@@ -999,8 +999,8 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 							  self,                                                 // modal delegate
 							  @selector(doRetrieveMessage:returnCode:contextInfo:), // did end selector
 							  nil,                                                  // didDismassSelector
-#warning dje added a __bridge to keep ARC happy
-                              (__bridge void *)(contextArray),                                         // context Info
+#warning dje added a CFBridgingRetain to keep ARC happy
+                              (const void *)CFBridgingRetain(contextArray),                                         // context Info
                               @"%@",                                                // msg Format
 							  bodyText);                                            // Message ...
 		}
@@ -1029,7 +1029,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 					  mainWindow,
 					  self,
 					  @selector(doRetrieveMessage:returnCode:contextInfo:),
-					  nil, (__bridge void *)(contextArray),
+					  nil, ( void *)CFBridgingRetain(contextArray),
 					  fmtString,bodyText);
 }
 
@@ -1040,7 +1040,7 @@ static NSString * MA_DefaultMugshotsFolder = @"~/Library/Vienna/Mugshots";
 -(void)doRetrieveMessage:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     (void)sheet;
-	NSArray * contextArray = (__bridge NSArray *)contextInfo;
+	NSArray * contextArray = (NSArray *)CFBridgingRelease(contextInfo);
 	if (returnCode == NSAlertDefaultReturn)
 	{
 		NSAssert(contextArray != nil, @"Got a nil context array");
