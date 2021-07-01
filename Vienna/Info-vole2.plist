@@ -44,7 +44,7 @@
 
 <!-- *************** This file is for Vole 2 ****************** -->
 	<key>CFBundleShortVersionString</key>
-	<string>2.1.0</string> <!-- 2.1.x is Vole 2 with ARC
+	<string>2.1.1</string> <!-- 2.1.x is Vole 2 with ARC
 <!-- *************** This file is for Vole 2 ****************** -->
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
