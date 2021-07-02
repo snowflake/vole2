@@ -5501,41 +5501,42 @@ static int acronymsCount =  0;
 	// DJE modified here, 29 May 2013
 	// The acronyms.lst file is using CP1252 encoding. Luckily, the 
 	// BufferedFile class converts it to NSString internal encoding.
+    
+    // DJE 2 July 2021 use the UTF-8 version of the acronyms file
 
-	BufferedFile * buffer = nil;
-	NSString *fileName = [@"~/Library/Application Support/Vole/acronyms.lst" stringByExpandingTildeInPath];
-	BOOL foundCommon = NO;
-	BOOL endOfFile = NO;
-	BOOL foundFile = NO;
+	NSString *fileName = [@"~/Library/Application Support/Vole/acronyms.txt" stringByExpandingTildeInPath];
 	NSString * line;
-	
+    NSArray * acronymsArray = nil;
+    NSError * fileError = nil;
 
 	// Look for the acronyms file in ~/Library.
 	if ([[NSFileManager defaultManager] isReadableFileAtPath: fileName]) {
-		foundFile = YES;
-		buffer = [[BufferedFile alloc] initWithPath: fileName];
+ 		NSString *fullFile = [NSString stringWithContentsOfFile: fileName
+                                                       encoding: NSUTF8StringEncoding
+                                                          error: &fileError ];
+        if(fileError) {
+            NSLog(@"Acronyms file error %@",fileError); }
+        else {
+            acronymsArray = [fullFile componentsSeparatedByString: @"\n" ];
+        }
+        
 	}
-	acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 20000];
+    if(!fileError && acronymsArray ){
+        acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 40000];
 
-	if(buffer) line = [buffer readLine:&endOfFile];
-	while (foundFile && buffer && !endOfFile)
+	for( line in acronymsArray)
 	{			
-		if([line hasPrefix:@"[Acronyms.Lst Version"])
+		if([line hasPrefix:@"# acronyms.txt version"])
 		{
 			acronymsVersion = [ NSString stringWithFormat:@"%@]", line];
               // DO NOT release, it's required for Vole Status Report
             // (acronymsVersion is static)
-			line = [buffer readLine:&endOfFile];
-			continue;
+            continue;
 		}
-		if ([line isEqualToString: @"[common]"])
-			foundCommon = YES;
-
-		if ([line hasPrefix:@"["] || !foundCommon)
-		{
-			line = [buffer readLine:&endOfFile];
-			continue;
-		}
+        if ([line isEqualToString: @"# "]) {continue;}
+        if (![line length]) {
+                continue;
+            }
 
 		NSScanner * scanner = [NSScanner scannerWithString: line];
 		NSString *acronym;
@@ -5549,8 +5550,9 @@ static int acronymsCount =  0;
             acronymsCount++;
         }
 		
-		line = [buffer readLine:&endOfFile];
+
 	}
+    }
 	// append our special acronyms at the end of the dictionary
 	NSString * voleAcronyms[]={ @"Vole", @"VOLE", @"vole"}; // keys to lookup
 	size_t i;
