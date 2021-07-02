@@ -5522,7 +5522,7 @@ static int acronymsCount =  0;
         
 	}
     if(!fileError && acronymsArray ){
-        acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 40000];
+        acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 50000];
 
 	for( line in acronymsArray)
 	{			
@@ -5533,7 +5533,7 @@ static int acronymsCount =  0;
             // (acronymsVersion is static)
             continue;
 		}
-        if ([line isEqualToString: @"# "]) {continue;}
+        if ([line hasPrefix: @"# "]) {continue;}
         if (![line length]) {
                 continue;
             }
