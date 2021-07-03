@@ -5506,7 +5506,7 @@ static int acronymsCount =  0;
     // DJE 3 July 2021 The acronyms installer 3.35 and later now installs the acronyms in /Library
     //                 not for each user.
 
-    NSString *fileName = @"/Library/Application Support/uk.org.voleproject/Vole/Acronyms/acronyms.txt";
+    NSString *fileName = @"/Library/Application Support/uk.org.voleproject.vole/Acronyms/acronyms.txt";
 	NSString * line;
     NSArray * acronymsArray = nil;
     NSError * fileError = nil;
@@ -5525,7 +5525,7 @@ static int acronymsCount =  0;
         
 	}
     acronymDictionary = [[NSMutableDictionary alloc] init];
-    if(!fileError && acronymsArray ){
+    if( acronymsArray ){
         acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 50000];
 
 	for( line in acronymsArray)
@@ -5553,8 +5553,6 @@ static int acronymsCount =  0;
 			[acronymDictionary setObject: expansion forKey: acronym];
             acronymsCount++;
         }
-		
-
 	}
     }
 	// append our special acronyms at the end of the dictionary
