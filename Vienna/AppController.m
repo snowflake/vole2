@@ -5503,11 +5503,14 @@ static int acronymsCount =  0;
 	// BufferedFile class converts it to NSString internal encoding.
     
     // DJE 2 July 2021 use the UTF-8 version of the acronyms file
+    // DJE 3 July 2021 The acronyms installer 3.35 and later now installs the acronyms in /Library
+    //                 not for each user.
 
-	NSString *fileName = [@"~/Library/Application Support/Vole/acronyms.txt" stringByExpandingTildeInPath];
+    NSString *fileName = @"/Library/Application Support/uk.org.voleproject/Vole/Acronyms/acronyms.txt";
 	NSString * line;
     NSArray * acronymsArray = nil;
     NSError * fileError = nil;
+    acronymsVersion = @"[ Acronyms NOT INSTALLED ]";
 
 	// Look for the acronyms file in ~/Library.
 	if ([[NSFileManager defaultManager] isReadableFileAtPath: fileName]) {
@@ -5521,6 +5524,7 @@ static int acronymsCount =  0;
         }
         
 	}
+    acronymDictionary = [[NSMutableDictionary alloc] init];
     if(!fileError && acronymsArray ){
         acronymDictionary = [[NSMutableDictionary alloc] initWithCapacity: 50000];
 
@@ -5528,7 +5532,7 @@ static int acronymsCount =  0;
 	{			
 		if([line hasPrefix:@"# acronyms.txt version"])
 		{
-			acronymsVersion = [ NSString stringWithFormat:@"%@]", line];
+			acronymsVersion = [ NSString stringWithFormat:@"[ %@ ]", line];
               // DO NOT release, it's required for Vole Status Report
             // (acronymsVersion is static)
             continue;
