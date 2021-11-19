@@ -44,6 +44,10 @@ your Fossil settings and look for the manifest file in the root directory.
 For details of where to obtain the Fossil repository, please ask in the CIX
 vienna conference.
 
+To check the manifest you should first delete the line near the end of the manifest just before the signature that reads:
+
+# Remove this line to create a well-formed Fossil manifest.
+
 -------------------------------------------------------------------------------
 Are you looking for the Vienna RSS and Atom feed reader?
 
