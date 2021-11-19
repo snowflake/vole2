@@ -6,6 +6,8 @@ and https://www.cix.uk/forums/accessing-forums
 
 Wikipedia article  http://en.wikipedia.org/wiki/CIX
 
+Vole support is provided by the CIX vienna conference
+
 -------------------------------------------------------------------------------
 
 Vole was formerly known as Vienna or Vinkix, and you will see many historical
@@ -30,6 +32,17 @@ Work is in progress to make it build on High Sierra and Mojave
 
 Vole was formerly known as Vienna. It was renamed to avoid conflict
 with the Vienna RSS and Atom reader.
+
+-------------------------------------------------------------------------------
+if you are using the git repository from github.com, you will notice that
+the commits are shown as unverified. This is because the Git repository
+is exported from the master Fossil repository and it is not possible to sign
+the commits with GPG.
+
+The master Fossil repository IS signed with a GPG key. Enable the manifest in
+your Fossil settings and look for the manifest file in the root directory.
+For details of where to obtain the Fossil repository, please ask in the CIX
+vienna conference.
 
 -------------------------------------------------------------------------------
 Are you looking for the Vienna RSS and Atom feed reader?
